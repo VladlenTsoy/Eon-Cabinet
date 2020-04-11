@@ -56,8 +56,6 @@ const addMinimizer = (config) => {
             filename: 'static/css/[name].css?[contenthash:8]',
             chunkFilename: 'static/css/[name].chunk.css?[contenthash:8]',
         }));
-        console.log(config.module.rules);
-        // config.modules.rules;
     }
 
     return config;
