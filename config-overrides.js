@@ -1,21 +1,16 @@
-const {override, fixBabelImports, addBundleVisualizer, addLessLoader, addWebpackAlias, addWebpackPlugin, setWebpackOptimizationSplitChunks} = require('customize-cra');
+const {override, fixBabelImports, addBundleVisualizer, addWebpackAlias, addWebpackPlugin, setWebpackOptimizationSplitChunks} = require('customize-cra');
 const path = require('path');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const ThemesGeneratorPlugin = require('themes-switch/ThemesGeneratorPlugin');
-// const HtmlWebpackPlugin = require('html-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const addMinimizer = (config) => {
-    config.entry = {
-        app: config.entry,
-        // light: path.resolve(__dirname, 'src/styles/themes/light.less'),
-        // dark: path.resolve(__dirname, 'src/styles/themes/dark.less'),
-    };
     config.devtool = config.mode === 'production' ? false : 'source-map';
     config.optimization.minimizer = [
-        config.optimization.minimizer[0],
         ...config.mode === 'production' ?
             [
+                config.optimization.minimizer[0],
                 new UglifyJsPlugin({
                     uglifyOptions: {
                         compress: {
@@ -42,10 +37,29 @@ const addMinimizer = (config) => {
                     },
                     canPrint: true
                 }),
-            ] : [],
+            ] : config.optimization.minimizer,
     ];
 
-    console.log(config);
+    if (config.mode === 'production') {
+        config.plugins[5].options.filename = 'static/css/[name].css?[contenthash:8]';
+        config.plugins[5].options.chunkFilename = 'static/css/[name].chunk.css?[contenthash:8]';
+    } else {
+        config.module.rules.push({
+            test: /\.(less)$/,
+            use: [
+                MiniCssExtractPlugin.loader,
+                "css-loader",
+                "less-loader?javascriptEnabled=true",
+            ]
+        });
+        config.plugins.push(new MiniCssExtractPlugin({
+            filename: 'static/css/[name].css?[contenthash:8]',
+            chunkFilename: 'static/css/[name].chunk.css?[contenthash:8]',
+        }));
+        console.log(config.module.rules);
+        // config.modules.rules;
+    }
+
     return config;
 };
 
@@ -55,28 +69,27 @@ module.exports = override(
         libraryName: 'antd',
         libraryDirectory: 'es',
     }),
-    addLessLoader({javascriptEnabled: true}),
+    // addLessLoader({javascriptEnabled: true}),
     addBundleVisualizer({}, true),
     setWebpackOptimizationSplitChunks({
-            chunks: 'all',
-            maxInitialRequests: Infinity,
-            minSize: 105000,
-            cacheGroups: {
-                vendor: {
-                    test: /[\\/]node_modules[\\/]/,
-                    name(module) {
-                        // получает имя, то есть node_modules/packageName/not/this/part.js
-                        // или node_modules/packageName
-                        const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
+        chunks: 'all',
+        maxInitialRequests: Infinity,
+        minSize: 105000,
+        cacheGroups: {
+            vendor: {
+                test: /[\\/]node_modules[\\/]/,
+                name(module) {
+                    // получает имя, то есть node_modules/packageName/not/this/part.js
+                    // или node_modules/packageName
+                    const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
 
-                        // имена npm-пакетов можно, не опасаясь проблем, использовать
-                        // в URL, но некоторые серверы не любят символы наподобие @
-                        return `npm.${packageName.replace('@', '')}`;
-                    },
+                    // имена npm-пакетов можно, не опасаясь проблем, использовать
+                    // в URL, но некоторые серверы не любят символы наподобие @
+                    return `npm.${packageName.replace('@', '')}`;
                 },
-            }
+            },
         }
-    ),
+    }),
     addWebpackPlugin(new ThemesGeneratorPlugin({
         srcDir: 'src',
         themesDir: 'src/styles/themes',
@@ -84,14 +97,6 @@ module.exports = override(
         defaultStyleName: 'default.less',
         clearTemp: false,
     })),
-    // addWebpackPlugin(new HtmlWebpackPlugin({
-    //     template: path.resolve(__dirname, 'public/index.html'),
-    //     manifest: path.resolve(__dirname, 'public/favicon.ico'),
-    //     excludeChunks: [
-    //         'css/dark.css',
-    //         'css/light.css'
-    //     ]
-    // })),
     addWebpackAlias({
         'src': path.resolve(__dirname, './src'),
         'components': path.resolve(__dirname, './src/components'),

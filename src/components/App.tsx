@@ -11,7 +11,7 @@ import {ThemeProvider} from "styled-components";
 import {_theme} from '../styles/_theme';
 import {Loader} from "lib";
 // @ts-ignore
-// import { changeTheme } from 'themes-switch';
+import { changeTheme } from 'themes-switch';
 
 const App: React.FC = () => {
     const {user, app, api} = useSelector((state: any) => (state));
@@ -31,10 +31,10 @@ const App: React.FC = () => {
 
     useEffect(() => {
         if (user && user.setting) {
-            // if (user.setting.is_dark)
-            //     changeTheme('themes-dark', 'css/theme-dark.css');
-            // else
-            //     changeTheme('themes-light', 'css/theme-light.css');
+            if (user.setting.is_dark)
+                changeTheme('themes-dark', 'static/css/theme-dark.chunk.css');
+            else
+                changeTheme('themes-light', 'static/css/theme-light.chunk.css');
 
             // @ts-ignore
                 // import (/* webpackPrefetch: true */ /* webpackChunkName: "dark" */ 'styles/themes/dark.less');
