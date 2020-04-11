@@ -1,0 +1,41 @@
+import React from 'react';
+import {useSelector} from "react-redux";
+import ProfileBlock from "../../../layouts/profile-block/ProfileBlock";
+import {Card} from "lib";
+import Awards from "./awards/Awards";
+import styled from "styled-components";
+
+const ProfileCardWrapper = styled(Card)`
+  &.ant-card{
+    @media (max-width: 576px) {
+      margin-right: 1rem;
+    }
+  
+    .ant-card-body{
+      display: flex;
+      height: 100%;
+      
+      .profile-block{
+        @media (max-width: 480px) {
+          text-align: left;
+          grid-gap: 1rem;
+          grid-template-columns: 75px 1fr;
+          
+          > div {
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+`;
+
+const Profile: React.FC = () => {
+    const {user} = useSelector((state: any) => state);
+    return <ProfileCardWrapper>
+        <ProfileBlock user={user}/>
+        <Awards/>
+    </ProfileCardWrapper>;
+};
+
+export default Profile;

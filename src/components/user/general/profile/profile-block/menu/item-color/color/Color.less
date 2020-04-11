@@ -1,0 +1,113 @@
+/** Настройки цифры **/
+.color-modal-block {
+  text-align: center;
+
+  #output-int-color {
+    width: 100%;
+    font-size: 200px;
+    line-height: 200px;
+    margin-bottom: 1rem;
+  }
+
+  .block-select-color div {
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    margin: 0 0.25rem;
+    border-radius: 50%;
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.20);
+    border: 3px solid #ffffff;
+  }
+
+  .block-select-color {
+    .black, .block-anzan-bg.black {
+      background: rgba(0, 0, 0, 0.65);
+    }
+
+    .red, .block-anzan-bg.red {
+      background: #B82C35;
+    }
+
+    .purple, .block-anzan-bg.purple {
+      background: #6C2E4D;
+    }
+
+    .dark-purple, .block-anzan-bg.dark-purple {
+      background: #423759;
+    }
+
+    .light-blue, .block-anzan-bg.light-blue {
+      background: #648886;
+    }
+
+    .green, .block-anzan-bg.green {
+      background: #4C7F5B;
+    }
+
+    .yellow, .block-anzan-bg.yellow {
+      background: #DFD68A;
+    }
+
+    & div:hover {
+      opacity: 0.7;
+    }
+
+    .active {
+      font-weight: 900;
+
+      &::before {
+        position: absolute;
+        content: "\2714";
+        color: #fff;
+        top: 5px;
+        bottom: 0;
+        right: 0;
+        left: 0;
+      }
+    }
+  }
+
+  .block-anzan-bg div,
+  .block-anzan-bg .light-blue {
+    color: #ffffff;
+  }
+}
+
+
+
+
+/*------------------- Цвета Анзан -------------------*/
+
+.black {
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.white {
+  color: #ffffff;
+}
+
+.red {
+  color: #B82C35;
+}
+
+.purple {
+  color: #6C2E4D;
+}
+
+.dark-purple {
+  color: #423759;
+}
+
+.light-blue {
+  color: #648886;
+}
+
+.green {
+  color: #4C7F5B;
+}
+
+.yellow {
+  color: #DFD68A;
+}

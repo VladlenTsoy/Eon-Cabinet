@@ -1,0 +1,70 @@
+import React from "react";
+import styled from "styled-components";
+import { FlagOutlined, HomeOutlined } from '@ant-design/icons';
+import {Link} from "react-router-dom";
+import {Card} from "lib";
+import {Button} from "antd";
+import {useSelector} from "react-redux";
+
+const HomeworkWrapper = styled.div`
+  display: block;
+  text-align: center;
+  padding: 0.5rem 0;
+  
+  .icon-block{
+    font-size: 45px;
+    margin-bottom: 1rem;
+    color: ${props => props.theme.color_warning};
+
+    i{
+      padding: 0.5rem;
+      border-radius: 50%;
+    }
+  }
+  
+  .info-block{
+     margin-bottom: 1.5rem;
+     
+     p {
+      margin: 0;
+     }
+     
+     .sub-title{
+      font-size: 12px;
+      color: ${props => props.theme.color_second};
+     }
+     
+     .title{
+      font-size: 20px;
+      font-weight: 900;
+     }
+  }
+`;
+
+interface HomeworkBlockProps {
+    homework: any;
+}
+
+const HomeworkBlock: React.FC<HomeworkBlockProps> = ({homework}) => {
+    const {language} = useSelector((state: any) => state);
+    return (
+        <Card className="animated fadeIn">
+            <HomeworkWrapper>
+                <div className="icon-block">
+                    <HomeOutlined />
+                </div>
+                <div className="info-block">
+                    <p className="sub-title">{language.common.homework}</p>
+                    <p className="title">{language.common.level} № {homework.level}</p>
+                </div>
+                <Link to={`/homework/${homework.id}`}>
+                    <Button icon={<FlagOutlined />} block>
+                        {language.common.more}
+                    </Button>
+                </Link>
+            </HomeworkWrapper>
+        </Card>
+    );
+};
+
+export default HomeworkBlock;

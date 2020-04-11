@@ -1,0 +1,34 @@
+import * as React from "react";
+import AvatarLabelWrapper from "../avatar/Label";
+import {getBase64} from "../Upload";
+import {useState} from "react";
+import { EditOutlined } from '@ant-design/icons';
+import {IconsWrapper, IconEditWrapper} from "../avatar/IconsWrapper";
+import {FormItem} from "../index";
+
+const InputPhoto: React.FC<any> = ({form}) => {
+    const [imageUrl, setImageUrl] = useState();
+
+    const handleChange = (e: any) => {
+        // Get this url from response in real world.
+        return getBase64(e.target.files[0], (imageUrl: any) => {
+            setImageUrl(imageUrl);
+            form.setFieldsValue({image: imageUrl})
+        });
+    };
+
+    return (
+        <FormItem form={form} name="image">
+            <AvatarLabelWrapper>
+                <img src={imageUrl || form.getFieldValue('image') || 'http://api.eon.loc/images/default.svg'}
+                     alt="Изменить фотографию"/>
+                <input type="file" accept="image/x-png,image/gif,image/jpeg" onChange={handleChange} hidden/>
+                <IconsWrapper>
+                    <IconEditWrapper><EditOutlined /> Изменить</IconEditWrapper>
+                </IconsWrapper>
+            </AvatarLabelWrapper>
+        </FormItem>
+    );
+};
+
+export default InputPhoto;
