@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
-import { EditOutlined, MenuOutlined } from '@ant-design/icons';
-import {ModalMenu, Table} from "lib";
+import React from 'react';
+import {EditOutlined, MenuOutlined} from '@ant-design/icons';
+import {ModalMenu} from "lib";
 import moment from "moment";
 import {Link} from "react-router-dom";
 import MoreHomeworkDrawer from "./more-homework/MoreHomeworkDrawer";
 import DeleteHomework from "./DeleteHomework";
+import UsingTablePagination from "layouts/components/table-pagination/usingTablePagination";
 
 interface TableHomeworkProps {
     discipline_id: number;
@@ -12,9 +13,7 @@ interface TableHomeworkProps {
 }
 
 const TableHomework: React.FC<TableHomeworkProps> = ({discipline_id, category_id}) => {
-    const [loading, setLoading] = useState(false);
-
-    const columns = [
+    const columns = (fetch: any) => [
         {
             title: 'Создано',
             dataIndex: 'created_at',
@@ -33,28 +32,25 @@ const TableHomework: React.FC<TableHomeworkProps> = ({discipline_id, category_id
             dataIndex: 'description',
         },
         {
-            title: <MenuOutlined />,
-            render: (text: string, record: any) => menu(record)
+            title: <MenuOutlined/>,
+            render: (text: string, record: any) => menu(record, fetch)
         }
     ];
 
-    const menu = (homework: any) => (
+    const menu = (homework: any, fetch: any) => (
         <ModalMenu>
             <MoreHomeworkDrawer homework={homework}/>
             <Link to={`homework/${homework.id}`}>
-                <EditOutlined /> Редактировать
+                <EditOutlined/> Редактировать
             </Link>
-            <DeleteHomework homework={homework} setLoading={setLoading}/>
+            <DeleteHomework homework={homework} setLoading={fetch}/>
         </ModalMenu>
     );
 
-    return <Table
-        card
-        loader={loading}
-        setLoader={setLoading}
-        columns={columns}
+    return <UsingTablePagination
         url={`/teacher/homework/${discipline_id}/${category_id}`}
-        rowKey="id"/>;
+        columns={columns}
+    />
 };
 
 export default TableHomework;

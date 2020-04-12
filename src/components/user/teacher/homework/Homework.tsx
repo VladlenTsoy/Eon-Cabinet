@@ -1,10 +1,11 @@
 import React from 'react';
 import {Tabs} from "antd";
 import {Link} from "react-router-dom";
-import {Navigation, NavigationButton, TabTitleCustom} from "../../../../layouts/components";
+import {Navigation, NavigationButton, TabTitleCustom} from "layouts/components";
 import TabsCategories from "./tabs-categories/TabsCategories";
 import {useDispatch, useSelector} from "react-redux";
-import {appChangeActiveDisciplineId} from "../../../../store/app/actions";
+import {appChangeActiveDisciplineId} from "store/app/actions";
+import {PlusOutlined} from "@ant-design/icons";
 
 const {TabPane} = Tabs;
 
@@ -19,7 +20,7 @@ const Homework:React.FC = () => {
     return <>
         <Navigation>
             <Link to="/homework/create">
-                <NavigationButton type="primary" icon="plus">
+                <NavigationButton type="primary" icon={<PlusOutlined/>}>
                     Создать домашнее задание
                 </NavigationButton>
             </Link>

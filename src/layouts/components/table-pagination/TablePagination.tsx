@@ -7,7 +7,7 @@ import styled from "styled-components";
 const TableWrapper: React.FC<TableProps<any>> = styled(Table)`
   .ant-table-thead > tr > th {
     background: transparent;
-    padding: 10px 16px;
+    //padding: 10px 16px;
     //color: ${props => props.theme['@text-color-secondary']};
     text-align: center;
   }
