@@ -34,9 +34,8 @@ const usingDrawerEditor = (FormComponent: any): React.FC<HookDrawerEditorProps> 
     ) => {
         const [visible, setVisible] = useState<boolean>(isVisible);
 
-        const open = () => {
+        const open = () =>
             setVisible(true);
-        };
 
         const close = (e: any, isFetch?: boolean) => {
             if (isFetch)

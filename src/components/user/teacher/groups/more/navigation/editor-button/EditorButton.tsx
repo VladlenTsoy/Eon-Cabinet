@@ -6,7 +6,7 @@ import {message} from "antd";
 import moment from 'moment';
 import {useScreenWindow} from "../../../../../../../effects/use-screen-window.effect";
 
-const EditorButton = usingDrawerEditor(StudentItems);
+const EditorDrawer = usingDrawerEditor(StudentItems);
 
 interface EditorStudentButtonProps {
     title: string;
@@ -15,7 +15,7 @@ interface EditorStudentButtonProps {
     group_id?: any;
 }
 
-const EditorStudentButton: React.FC<EditorStudentButtonProps> = ({title, children, student, fetch, group_id}) => {
+const EditorButton: React.FC<EditorStudentButtonProps> = ({title, children, student, fetch, group_id}) => {
     const {api} = useSelector((state: any) => (state));
     const [, breakpoint] = useScreenWindow({breakpoint: 'sm'});
 
@@ -29,7 +29,7 @@ const EditorStudentButton: React.FC<EditorStudentButtonProps> = ({title, childre
         }
     };
 
-    return <EditorButton
+    return <EditorDrawer
         title={title}
         fetch={fetch}
         group_id={group_id}
@@ -49,7 +49,7 @@ const EditorStudentButton: React.FC<EditorStudentButtonProps> = ({title, childre
         }}
     >
         {children}
-    </EditorButton>
+    </EditorDrawer>
 };
 
-export default EditorStudentButton;
+export default EditorButton;

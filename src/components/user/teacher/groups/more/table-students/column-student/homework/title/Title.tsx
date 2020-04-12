@@ -29,11 +29,11 @@ const WrapperCancelHomework = styled.span`
   font-size: 14px;
   cursor: pointer;
 
-  i {
+  .anticon {
     margin-right: 0.25rem;
   }
 
-  span {
+  .cancel-text {
      font-size: 12px;
   }
 `;
@@ -62,7 +62,7 @@ const Title:React.FC<TitleProps> = ({homework, fetch}) => {
             className="level">{homework.level}</span>({moment(homework.created_at).format('DD/MM/YY')})
             {homework.status === 0 ?
                 <WrapperCancelHomework onClick={cancelHomeworkHandler}>
-                    <StopOutlined /> <span>Отменить отправку</span>
+                    <StopOutlined /> <span className="cancel-text">Отменить отправку</span>
                 </WrapperCancelHomework> :
                 null}
         </WrapperTitleLevel>

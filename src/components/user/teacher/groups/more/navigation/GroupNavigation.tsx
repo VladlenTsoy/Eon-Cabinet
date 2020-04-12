@@ -1,8 +1,9 @@
 import React from 'react';
-import EditorStudentButton from "./editor-student-button/EditorStudentButton";
+import {PlusOutlined} from "@ant-design/icons";
+import EditorButton from "./editor-button/EditorButton";
 import SentHomeworkStudentButton from "./sent-homework-button/SentHomeworkStudentButton";
 import DeleteStudentButton from "./delete-student-button/DeleteStudentButton";
-import {Navigation, NavigationButton} from "../../../../../../layouts/components";
+import {Navigation, NavigationButton} from "layouts/components";
 
 interface NavigationProps {
     fetchUsers:() => void;
@@ -13,15 +14,15 @@ interface NavigationProps {
 
 const GroupNavigation: React.FC<NavigationProps> = ({fetchUsers,groupId, selectUsersId, isVisible}) => {
     return <Navigation>
-        <EditorStudentButton
+        <EditorButton
             title="Создать ученика"
             group_id={groupId}
             fetch={fetchUsers}
         >
-            <NavigationButton type="primary" icon="plus">
+            <NavigationButton type="primary" icon={<PlusOutlined/>}>
                 Создать ученика
             </NavigationButton>
-        </EditorStudentButton>
+        </EditorButton>
         <SentHomeworkStudentButton
             isVisible={isVisible}
             selectUsersId={selectUsersId}

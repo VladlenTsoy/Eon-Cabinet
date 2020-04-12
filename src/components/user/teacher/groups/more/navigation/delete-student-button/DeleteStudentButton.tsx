@@ -1,7 +1,8 @@
 import React from 'react';
-import {NavigationButton} from "../../../../../../../layouts/components";
 import {Modal} from "antd";
+import {DeleteOutlined} from "@ant-design/icons";
 import {useSelector} from "react-redux";
+import {NavigationButton} from "layouts/components";
 
 const {confirm} = Modal;
 
@@ -31,7 +32,7 @@ const DeleteStudentButton: React.FC<DeleteStudentButtonProps> = ({fetch, selectU
         danger
         disabled={!selectUsersId.length}
         onClick={deleteUsers}
-        icon="delete">
+        icon={<DeleteOutlined/>}>
         Удалить
     </NavigationButton>;
 };

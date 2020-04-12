@@ -6,7 +6,7 @@ import ItemColor from "./item-color/ItemColor";
 import ItemBlock from "../../../../director-franchise/layouts/items/ItemBlock";
 import ItemPassword from "./item-password/ItemPassword";
 import ItemEmailVerification from "./ItemEmailVerification";
-import EditorStudentButton from "../../../../teacher/groups/more/navigation/editor-student-button/EditorStudentButton";
+import EditorButton from "../../../../teacher/groups/more/navigation/editor-button/EditorButton";
 
 const MenuWrapper = styled(Menu)`
   &.ant-menu {
@@ -48,9 +48,9 @@ const ProfileBlockMenu: React.FC<ProfileBlockMenuProps> = ({currentUser, changeD
         <MenuWrapper>
             {setting.edit ?
                 <Menu.Item>
-                    <EditorStudentButton title="Редактировать профиль" fetch={changeDataCurrentUser}>
+                    <EditorButton title="Редактировать профиль" fetch={changeDataCurrentUser}>
                         <EditOutlined /> Редактировать
-                    </EditorStudentButton>
+                    </EditorButton>
                 </Menu.Item>
                 : null}
             {setting.color ?

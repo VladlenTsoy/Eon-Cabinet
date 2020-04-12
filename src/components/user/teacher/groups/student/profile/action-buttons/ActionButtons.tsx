@@ -2,7 +2,7 @@ import React from 'react';
 import { DeleteOutlined, DollarOutlined, EditOutlined } from '@ant-design/icons';
 import styled from "styled-components";
 import ItemBlock from "../../../../../director-franchise/layouts/items/ItemBlock";
-import EditorStudentButton from "../../../more/navigation/editor-student-button/EditorStudentButton";
+import EditorButton from "../../../more/navigation/editor-button/EditorButton";
 import DeleteButton from "./delete-button/DeleteButton";
 
 const ActionsWrapper = styled.div`
@@ -85,9 +85,9 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({student, update}) => {
     return (
       <ActionsWrapper>
           <ButtonWrapper>
-              <EditorStudentButton title="Редактировать ученика" student={student} fetch={update}>
+              <EditorButton title="Редактировать ученика" student={student} fetch={update}>
                   <EditOutlined /> Редактировать
-              </EditorStudentButton>
+              </EditorButton>
           </ButtonWrapper>
           <ButtonWrapper>
               <ItemBlock user={student} afterAction={update}/>

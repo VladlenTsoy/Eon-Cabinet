@@ -1,12 +1,13 @@
 import React, {useCallback} from "react";
-import {NavigationButton} from "../../../../../../../layouts/components";
-import usingDrawerEditor from "../../../../../../../layouts/drawer-editor/usingDrawerEditor";
+import {ShareAltOutlined} from "@ant-design/icons";
+import {NavigationButton} from "layouts/components";
+import usingDrawerEditor from "layouts/drawer-editor/usingDrawerEditor";
 import FormSentHomeworkItems from "./form-items/FormSentHomeworkItems";
-import checkStudentGif from "../../../../../../../assets/images/hints/check-student.gif";
+import checkStudentGif from "assets/images/hints/check-student.gif";
 import {useDispatch, useSelector} from "react-redux";
 import {message, Modal} from "antd";
-import {useScreenWindow} from "../../../../../../../effects/use-screen-window.effect";
-import {appChangeDataForSending} from "../../../../../../../store/app/actions";
+import {useScreenWindow} from "effects/use-screen-window.effect";
+import {appChangeDataForSending} from "store/app/actions";
 
 const SentDrawerButton = usingDrawerEditor(FormSentHomeworkItems);
 
@@ -77,7 +78,7 @@ const SentHomeworkStudentButton: React.FC<SentHomeworkStudentButtonProps> = (
 
     return <>
         {buttonWrapper(
-            <NavigationButton type="primary" icon="share-alt">
+            <NavigationButton type="primary" icon={<ShareAltOutlined/>}>
                 Отправить домашнее задание
             </NavigationButton>
         )}

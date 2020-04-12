@@ -47,7 +47,13 @@ const usingFormDrawerEditorData = (FormItemsComponent: any) => {
         };
 
         return <>
-            <Form onFinish={handleSubmit} id={`FormDrawerEditorData-${time}`} form={form}>
+            <Form
+                initialValues={data}
+                onFinish={handleSubmit}
+                id={`FormDrawerEditorData-${time}`}
+                layout="vertical"
+                form={form}
+            >
                 <FormItemsComponent form={form} data={data} setIsSaveBtn={setIsSaveBtn} {...props}/>
             </Form>
             <DrawerActions>
@@ -57,7 +63,6 @@ const usingFormDrawerEditorData = (FormItemsComponent: any) => {
                 {isSaveBtn ?
                     <Button
                         htmlType="submit"
-                        onClick={handleSubmit}
                         loading={loading}
                         type="primary"
                         icon={<SaveOutlined/>}

@@ -32,15 +32,15 @@ const App: React.FC = () => {
     useEffect(() => {
         if (user && user.setting) {
             if (user.setting.is_dark)
-                changeTheme('themes-dark', 'static/css/theme-dark.chunk.css');
+                changeTheme('themes-dark', '/static/css/theme-dark.chunk.css');
             else
-                changeTheme('themes-light', 'static/css/theme-light.chunk.css');
+                changeTheme('themes-light', '/static/css/theme-light.chunk.css');
 
             // @ts-ignore
             // import (/* webpackPrefetch: true */ /* webpackChunkName: "dark" */ 'styles/themes/dark.less');
             setUserTheme(_theme[user.theme || 'default-theme-eon']);
         } else
-            changeTheme('themes-light', 'static/css/theme-light.chunk.css');
+            changeTheme('themes-light', '/static/css/theme-light.chunk.css');
     }, [user]);
 
     // Fetch language and current user data

@@ -1,4 +1,3 @@
-import React from "react";
 import {Button} from "antd";
 import {ButtonProps} from "antd/lib/button";
 import styled from "styled-components";
@@ -7,7 +6,7 @@ type ButtonNavigationProps = ButtonProps & {
     danger?: boolean;
 }
 
-const ButtonNavigation: React.FC<ButtonNavigationProps> = styled(Button)<ButtonNavigationProps>`
+const ButtonNavigation: any = styled(Button)<ButtonNavigationProps>`
   &.ant-btn{
     border-radius: 20px;
     height: 40px;

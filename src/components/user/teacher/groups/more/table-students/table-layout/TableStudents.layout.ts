@@ -17,7 +17,7 @@ const TableStudentsLayout = styled(CardTable)`
     }
 
     .ant-table-thead > tr > th {
-      background: #ffffff;
+      background: transparent;
       font-weight: bolder;
       
       &.td-homework-table{

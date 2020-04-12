@@ -12,7 +12,7 @@ const WrapperTaskLeadTime = styled.div`
       font-size: 14px;
       margin-bottom: 0.5rem;
 
-      i {
+      .anticon {
           margin-right: 0.2rem;
       }
   }
