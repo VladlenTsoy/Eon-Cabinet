@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useCallback, useState} from "react";
 import DrawerEditor from "./DrawerEditor";
 import usingFormDrawerEditorData from "./DrawerEditorData";
 
@@ -37,12 +37,12 @@ const usingDrawerEditor = (FormComponent: any): React.FC<HookDrawerEditorProps> 
         const open = () =>
             setVisible(true);
 
-        const close = (e: any, isFetch?: boolean) => {
+        const close = useCallback(async (e: any, isFetch?: boolean) => {
             if (isFetch)
                 fetch();
 
             setVisible(false);
-        };
+        }, [fetch]);
 
         return <>
             <span

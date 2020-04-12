@@ -35,7 +35,7 @@ const RowHomeworkTasksWrapper = styled(Row)`
         padding: 0.5rem;
         line-height: 1;
         
-        i{
+        .anticon{
 
           &.warning{
             color: ${props => props.theme.color_warning}

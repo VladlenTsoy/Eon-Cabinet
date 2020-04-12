@@ -34,7 +34,7 @@ const HeaderWrapper = styled.div`
       color: ${props => props.theme.color_warning};
     }
 
-    i{
+    .anticon{
       font-size: 20px;
       margin-right: 0.5rem;
     }

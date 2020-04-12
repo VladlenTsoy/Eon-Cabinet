@@ -8,6 +8,7 @@ import Profile from "./profile/Profile";
 import Homework from "./homework/Homework";
 import Notification from "./notification/Notification";
 import Tournaments from "../../home/short-info/tournaments/Tournaments";
+import {Spin} from "../../../../../layouts/components";
 
 interface StudentProps {
     match: any;
@@ -33,14 +34,15 @@ const Student: React.FC<StudentProps> = ({match}) => {
                 subTitle={error ? error.message : 'Нет доступа к данному профилю!'}
             />
         </Card> :
-        <Row gutter={15} >
+        <Row gutter={15}>
             {student ? <Notification student={student}/> : null}
             <Col xl={12} lg={12} xs={24}>
-                {
-                    loading ?
-                        <LoadingBlock/> :
-                        <Profile student={student} update={fetch}/>
-                }
+                <Spin spinning={loading && !!student} tip="Загрузка...">
+                    {
+                        loading && !student ? <LoadingBlock/> :
+                            <Profile student={student} update={fetch}/>
+                    }
+                </Spin>
             </Col>
             <Col lg={6} md={12} sm={12} xs={24}>
                 <Tournaments/>

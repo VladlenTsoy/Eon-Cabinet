@@ -43,7 +43,7 @@ const ButtonWrapper: React.FC<ButtonProps> = styled.div<ButtonProps>`
       //background: ${props => props.theme.light_color_border};
       box-shadow: 0 5px 10px 0 rgba(0,0,0,0.1);
       
-      i{
+      span{
         animation-duration: 1s;
         animation-fill-mode: both;
         
@@ -69,7 +69,7 @@ const ButtonWrapper: React.FC<ButtonProps> = styled.div<ButtonProps>`
       }
     }
     
-    i{
+    span.anticon{
       font-size: 30px;
       margin-bottom: 0.5rem;
     }

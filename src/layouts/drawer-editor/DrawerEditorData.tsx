@@ -34,16 +34,15 @@ const usingFormDrawerEditorData = (FormItemsComponent: any) => {
             try {
                 await sendData(values);
 
-                close(null, true);
                 form.resetFields();
+                close(null, true);
             } catch (e) {
+                setLoading(false);
                 if (e.response)
                     message.error(e.response.data.message);
                 else
                     message.error('Неизвестная ошибка!');
             }
-
-            setLoading(false);
         };
 
         return <>
