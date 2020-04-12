@@ -79,7 +79,7 @@ const CountContent = styled.span<any>`
   width: 100%;
   display: block;
   font-size: 22px;
-  font-weight: 900;
+  font-weight: 600;
   line-height: 28px;
   text-align: center;
   color: ${props => props.theme['color_' + props.t]};
