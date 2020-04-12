@@ -1,7 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import {Link} from "react-router-dom";
+import {Typography} from "antd";
+import {TextProps} from "antd/es/typography/Text";
 import Avatar from "../../../../layouts/components/avatar/Avatar";
+
+const {Text} = Typography;
 
 const ProfileWrapper = styled(Link)<any>`
   color: ${props => props.theme.color_main};
@@ -11,25 +15,24 @@ const ProfileWrapper = styled(Link)<any>`
 `;
 
 const WrapperProfileData = styled.div`
-   height: 46px;
-   overflow: hidden;
-   margin-left: 0.5rem;
+  height: 46px;
+  overflow: hidden;
+  margin-left: 0.5rem;
 `;
 
-const UserName = styled.span`
-      display: block;
-      height: 10px;
-      line-height: 40px;
+const UserName: React.FC<TextProps> = styled(Text)`
+  display: block;
+  height: 10px;
+  line-height: 40px;
 `;
 
-const UserId = styled.span`
-      font-weight: bolder;
-      color: ${props => props.theme.color_minimal};
-      font-size: 80%;
+const UserId: React.FC<TextProps> = styled(Text)`
+  font-weight: bolder;
+  font-size: 80%;
 
-      span {
-         color: #ff9800;
-      }
+  span {
+     color: ${props => props.theme.color_warning};
+  }
 `;
 
 interface HeaderProfileProps {
@@ -42,7 +45,7 @@ const HeaderProfile: React.FC<HeaderProfileProps> = ({user, mr}) =>
         <Avatar src={user.image} alt={`${user.last_name} ${user.first_name}`}/>
         <WrapperProfileData>
             <UserName>{user.last_name} {user.first_name}</UserName>
-            <UserId>Ваш ID: <span>{user.id}</span></UserId>
+            <UserId type="secondary">Ваш ID: <span>{user.id}</span></UserId>
         </WrapperProfileData>
     </ProfileWrapper>;
 
