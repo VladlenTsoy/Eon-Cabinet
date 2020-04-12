@@ -6,13 +6,13 @@ import {useApiUserGeneral} from "../../../../../../effects/use-api-user-general.
 const {Option, OptGroup} = Select;
 
 interface CategoryItemCentersProps {
-    form: any;
 }
 
-const CategoryItemCenters: React.FC<CategoryItemCentersProps> = ({form}) => {
+// TODO - Похожие файлы CategoryItemFranchise
+const CategoryItemCenters: React.FC<CategoryItemCentersProps> = () => {
     const [loading, centers] = useApiUserGeneral({url: 'admin/centers/all'});
 
-    return <FormItem form={form} name="center_id" label="Центр" required="Выберите центр!">
+    return <FormItem name="center_id" label="Центр" required="Выберите центр!">
         <Select
             showSearch
             loading={loading}

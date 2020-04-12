@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {withRouter, RouteComponentProps} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import {LoadingBlock} from "lib";
 import {FormItem, Spin} from "../../../../../../../../layouts/components";
 import { FileAddOutlined } from '@ant-design/icons';
@@ -13,20 +13,18 @@ import {useDispatch} from "react-redux";
 
 const {TextArea} = Input;
 
-type FormSentHomeworkItems = RouteComponentProps & {
-    form: any;
+type FormSentHomeworkItems = {
     group_id: number;
     setIsSaveBtn: (isSaveBtn: boolean) => void;
 }
 
 const FormSentHomeworkItems: React.FC<FormSentHomeworkItems> = (
     {
-        form,
         group_id,
-        history,
         setIsSaveBtn
     }
 ) => {
+    const history = useHistory();
     const dispatch = useDispatch();
     const [selectHomework, setSelectHomework]: any = useState(null);
     const [loading, homework] = useApiUserGeneral({url: `/teacher/homework/group/${group_id}`, initValue: []});
@@ -55,7 +53,6 @@ const FormSentHomeworkItems: React.FC<FormSentHomeworkItems> = (
             <Button block icon={<FileAddOutlined />} size="large" type="link" onClick={createHomeworkHandler}>Создать домашнее
                 задание</Button>
             <FormItem
-                form={form}
                 name="homework"
                 label="Уровень"
                 required="Выберите уровень!"
@@ -69,7 +66,6 @@ const FormSentHomeworkItems: React.FC<FormSentHomeworkItems> = (
                 </Select>
             </FormItem>
             <FormItem
-                form={form}
                 name="message"
                 label="Сообщение"
             >
@@ -93,4 +89,4 @@ const FormSentHomeworkItems: React.FC<FormSentHomeworkItems> = (
     );
 };
 
-export default withRouter(FormSentHomeworkItems);
+export default FormSentHomeworkItems;

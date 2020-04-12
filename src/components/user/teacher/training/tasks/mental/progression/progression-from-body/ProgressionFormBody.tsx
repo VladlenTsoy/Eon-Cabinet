@@ -1,10 +1,11 @@
 import React from 'react';
-import { FormComponentProps } from '@ant-design/compatible/es/form';
 import ProgressionFormItems from "./progression-form-items/ProgressionFormItems";
 import ConfigBlock from "../../../config/Config";
 import usingFormBodyLayout from "../../layout/form-body/usingFormBody.layout";
+import {FormInstance} from "antd/es/form";
 
 interface ProgressionFormBodyProps {
+    form: FormInstance,
     clearSaveSetting?: () => void;
     startApplication?: (setting: any, print: boolean) => void;
     addSettingHomework?: (setting: any) => void;
@@ -12,9 +13,9 @@ interface ProgressionFormBodyProps {
     onChange: (changedFields: any, fieldsValue: any) => void;
 }
 
-const ProgressionFormBody: React.FC<ProgressionFormBodyProps & FormComponentProps> = ({form}) => {
+const ProgressionFormBody: React.FC<ProgressionFormBodyProps> = ({form}) => {
     return <>
-        <ProgressionFormItems form={form}/>
+        <ProgressionFormItems/>
         <ConfigBlock
             form={form}
             sounds={{

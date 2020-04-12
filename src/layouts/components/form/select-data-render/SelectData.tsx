@@ -6,7 +6,6 @@ import {useApiUserGeneral} from "../../../../effects/use-api-user-general.effect
 const {Option} = Select;
 
 interface SelectDataProps {
-    form: any;
     url: string;
     name: string;
     label: string;
@@ -18,7 +17,6 @@ interface SelectDataProps {
 
 const SelectData: React.FC<SelectDataProps> = (
     {
-        form,
         url,
         name,
         label,
@@ -42,7 +40,7 @@ const SelectData: React.FC<SelectDataProps> = (
             </div>
         </>;
 
-    return <FormItem form={form} name={name} label={label} required={required} rules={rules}>
+    return <FormItem name={name} label={label} required={required} rules={rules}>
         <Select
             showSearch
             loading={loading}

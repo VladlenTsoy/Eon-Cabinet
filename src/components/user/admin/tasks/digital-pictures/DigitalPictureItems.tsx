@@ -8,7 +8,6 @@ interface PersonalityItemsProps {
 const DigitalPictureItems: React.FC<PersonalityItemsProps> = ({form}) => {
     return <>
         <FormItem
-            form={form}
             name="number"
             label="Цифра"
             required="Введите цифру!"/>

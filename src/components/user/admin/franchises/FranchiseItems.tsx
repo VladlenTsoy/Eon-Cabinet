@@ -14,11 +14,10 @@ const FranchiseItems: React.FC<FranchiseItemsProps> = ({form}) => {
     return (
         <Row gutter={15}>
             <Col span={24}>
-                <FormItem form={form} name="title" label="Название" required="Введите название!"/>
+                <FormItem name="title" label="Название" required="Введите название!"/>
             </Col>
             <Col span={12}>
                 <SelectData
-                    form={form}
                     url="/admin/directors"
                     name="director_id"
                     label="Директор"
@@ -37,7 +36,6 @@ const FranchiseItems: React.FC<FranchiseItemsProps> = ({form}) => {
             </Col>
             <Col span={12}>
                 <SelectData
-                    form={form}
                     label="Прайс"
                     name="price_id"
                     url="/admin/prices"
@@ -53,7 +51,7 @@ const FranchiseItems: React.FC<FranchiseItemsProps> = ({form}) => {
                 />
             </Col>
             <Col span={24}>
-                <FormItem form={form} name="description" label="Описание">
+                <FormItem name="description" label="Описание">
                     <TextArea/>
                 </FormItem>
                 <Upload form={form} label="Логотип" name="image"/>

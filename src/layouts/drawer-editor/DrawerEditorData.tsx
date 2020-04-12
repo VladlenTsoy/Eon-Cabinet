@@ -1,9 +1,6 @@
 import React, {useState} from 'react';
-import { FormComponentProps } from '@ant-design/compatible/lib/form';
-import { SaveOutlined } from '@ant-design/icons';
-import { Form } from '@ant-design/compatible';
-import '@ant-design/compatible/assets/index.css';
-import { Button, message } from "antd";
+import {SaveOutlined} from '@ant-design/icons';
+import {Form, Button, message} from "antd";
 import {DrawerActions} from "../components";
 import moment from "moment";
 
@@ -17,45 +14,40 @@ interface FormDrawerEditorDataProps {
 }
 
 const usingFormDrawerEditorData = (FormItemsComponent: any) => {
-    const FormDrawerEditorData: React.FC<FormDrawerEditorDataProps & FormComponentProps> = (
+    const FormDrawerEditorData: React.FC<FormDrawerEditorDataProps> = (
         {
-            form,
             data,
             close,
             sendData,
             ...props
         }
     ) => {
+        const [form] = Form.useForm();
         const [loading, setLoading] = useState(false);
         const time = moment().format('hmmsssss');
 
         const [isSaveBtn, setIsSaveBtn] = useState(false);
 
-        const handleSubmit = (e: any) => {
-            e.preventDefault();
-            form.validateFields(async (err: any, values: any) => {
-                if (!err) {
-                    setLoading(true);
+        const handleSubmit = async (values: any) => {
+            setLoading(true);
 
-                    try {
-                        await sendData(values);
+            try {
+                await sendData(values);
 
-                        close(null, true);
-                        form.resetFields();
-                    } catch (e) {
-                        if (e.response)
-                            message.error(e.response.data.message);
-                        else
-                            message.error('Неизвестная ошибка!');
-                    }
+                close(null, true);
+                form.resetFields();
+            } catch (e) {
+                if (e.response)
+                    message.error(e.response.data.message);
+                else
+                    message.error('Неизвестная ошибка!');
+            }
 
-                    setLoading(false);
-                }
-            });
+            setLoading(false);
         };
 
         return <>
-            <Form onSubmit={handleSubmit} id={`FormDrawerEditorData-${time}`}>
+            <Form onFinish={handleSubmit} id={`FormDrawerEditorData-${time}`} form={form}>
                 <FormItemsComponent form={form} data={data} setIsSaveBtn={setIsSaveBtn} {...props}/>
             </Form>
             <DrawerActions>
@@ -68,7 +60,7 @@ const usingFormDrawerEditorData = (FormItemsComponent: any) => {
                         onClick={handleSubmit}
                         loading={loading}
                         type="primary"
-                        icon={<SaveOutlined />}
+                        icon={<SaveOutlined/>}
                         form={`FormDrawerEditorData-${time}`}>
                         Сохранить
                     </Button> : null
@@ -77,15 +69,7 @@ const usingFormDrawerEditorData = (FormItemsComponent: any) => {
         </>;
     };
 
-    return Form.create<FormDrawerEditorDataProps & FormComponentProps>({
-        name: 'drawer-items',
-        mapPropsToFields({data}) {
-            let a: any = {};
-            for (let key in data)
-                a[key] = Form.createFormField({value: data[key]});
-            return a;
-        },
-    })(FormDrawerEditorData);
+    return FormDrawerEditorData;
 };
 
 export default usingFormDrawerEditorData;

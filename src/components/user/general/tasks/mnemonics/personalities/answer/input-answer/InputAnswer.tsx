@@ -34,12 +34,11 @@ const InputWrapper = styled.div`
 `;
 
 interface InputAnswerProps {
-    form: any;
     total: any;
     totalKey: number;
 }
 
-const InputAnswer: React.FC<InputAnswerProps> = ({form, total, totalKey}) => {
+const InputAnswer: React.FC<InputAnswerProps> = ({total, totalKey}) => {
     const {game} = useSelector((state: any) => state);
     const {setting} = game;
     const [, isBreakpoint] = useScreenWindow({breakpoint: 'sm'});
@@ -54,7 +53,6 @@ const InputAnswer: React.FC<InputAnswerProps> = ({form, total, totalKey}) => {
         <div className="content">
             <FormItem
                 label={`Личность №${totalKey + 1}`}
-                form={form}
                 name={`answer[${totalKey}][full_name]`}
                 size="large"
                 placeholder="Имя"
@@ -63,11 +61,11 @@ const InputAnswer: React.FC<InputAnswerProps> = ({form, total, totalKey}) => {
             />
             {Number(setting.mode) > 1 ?
                 <div className="date-pickers">
-                    <FormItem form={form} name={`answer[${totalKey}][born]`} label="Дата рождения" marginBottom="0">
+                    <FormItem name={`answer[${totalKey}][born]`} label="Дата рождения" marginBottom="0">
                         <DatePicker format={dateFormatList} style={{width: '100%'}}/>
                     </FormItem>
                     {Number(setting.mode) === 3 ?
-                        <FormItem form={form} name={`answer[${totalKey}][die]`} label="Годы жизни" marginBottom="0">
+                        <FormItem name={`answer[${totalKey}][die]`} label="Годы жизни" marginBottom="0">
                             <DatePicker format={dateFormatList} style={{width: '100%'}}/>
                         </FormItem> : null}
                 </div> : null}

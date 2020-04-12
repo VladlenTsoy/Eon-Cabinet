@@ -11,10 +11,9 @@ import {gameChangeStats, gameChangeStatus, gameChangeTotals} from "../../../../.
 const {Title} = Typography;
 
 interface AnswerProps {
-    form: any;
 }
 
-const Answer: React.FC<AnswerProps> = ({form}) => {
+const Answer: React.FC<AnswerProps> = () => {
     const dispatch = useDispatch();
     const {game} = useSelector((state: any) => state);
     const {totals, currentTimes} = game;
@@ -42,13 +41,11 @@ const Answer: React.FC<AnswerProps> = ({form}) => {
 
     return (
         <AnswerLayout
-            form={form}
             cols={{xl: 10, md: 12, xs: 24}}
             checkHandler={checkHandler}
         >
             <Title level={2}>Введите ответ</Title>
             <FormInputAnswerLayout
-                form={form}
                 answerKey={0}
             />
             <Button type="primary" htmlType="submit" block size="large" icon={<ArrowRightOutlined />}>

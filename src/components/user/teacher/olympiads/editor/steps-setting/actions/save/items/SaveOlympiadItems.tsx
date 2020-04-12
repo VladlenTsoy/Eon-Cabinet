@@ -6,11 +6,10 @@ const {TextArea} = Input;
 const {Option} = Select;
 
 interface SaveOlympiadItemsProps {
-    form: any;
     setIsSaveBtn: (isSaveBtn: boolean) => void;
 }
 
-const SaveOlympiadItems: React.FC<SaveOlympiadItemsProps> = ({form, setIsSaveBtn}) => {
+const SaveOlympiadItems: React.FC<SaveOlympiadItemsProps> = ({setIsSaveBtn}) => {
 
     useEffect(() => {
         setIsSaveBtn(true);
@@ -18,13 +17,11 @@ const SaveOlympiadItems: React.FC<SaveOlympiadItemsProps> = ({form, setIsSaveBtn
 
     return <>
         <FormItem
-            form={form}
             name="title"
             label="Название"
             required="Введите название!"
         />
         <FormItem
-            form={form}
             name="description"
             label="Описание"
             required="Введите описание!"
@@ -32,7 +29,6 @@ const SaveOlympiadItems: React.FC<SaveOlympiadItemsProps> = ({form, setIsSaveBtn
             <TextArea rows={4}/>
         </FormItem>
         <FormItem
-            form={form}
             name="access"
             label="Доступ"
             required="Выберите доступ!"

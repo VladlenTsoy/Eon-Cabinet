@@ -1,12 +1,10 @@
 import React, {useState} from 'react';
 import styled from "styled-components";
-import { FlagOutlined, QuestionCircleOutlined, UndoOutlined, UserAddOutlined } from '@ant-design/icons';
-import { Form } from '@ant-design/compatible';
-import '@ant-design/compatible/assets/index.css';
-import { Button, Radio, Switch } from "antd";
+import {FlagOutlined, QuestionCircleOutlined, UndoOutlined, UserAddOutlined} from '@ant-design/icons';
+import {Button, Radio, Switch, Form} from "antd";
 import EditorExercises from "./editor-exercise/EditorExercises";
-import { FormComponentProps } from '@ant-design/compatible/es/form';
 import {FormItem} from "../../../../../../../../layouts/components";
+import {FormProps} from "antd/es/form";
 
 const HeaderBlockWrapper = styled.div`
   display: flex;
@@ -21,7 +19,7 @@ const HeaderBlockWrapper = styled.div`
   }
 `;
 
-const FormWrapper = styled(Form)`
+const FormWrapper: React.FC<FormProps> = styled(Form)`
   display: flex;
   align-items: center;
   margin-right: auto;
@@ -49,9 +47,9 @@ interface HeaderBlockProps {
     clearExercise: () => void;
 }
 
-const HeaderBlock: React.FC<FormComponentProps & HeaderBlockProps> = (
+const HeaderBlock: React.FC<HeaderBlockProps> = (
     {
-        form,
+        fields,
         isDisabledMode,
         isMaxStudent,
         addExercise,
@@ -59,6 +57,7 @@ const HeaderBlock: React.FC<FormComponentProps & HeaderBlockProps> = (
         clearExercise,
     }
 ) => {
+    const [form] = Form.useForm();
     const [loading, setLoading] = useState(false);
 
     /**
@@ -80,11 +79,14 @@ const HeaderBlock: React.FC<FormComponentProps & HeaderBlockProps> = (
 
     return (
         <HeaderBlockWrapper>
-            <FormWrapper id="multi-from" onSubmit={handlerSubmit}>
+            <FormWrapper id="multi-from" onFinish={handlerSubmit} initialValues={{
+                mode: fields.mode.value,
+                group: fields.group.value
+            }}>
                 <FormItem
-                    form={form}
                     name="mode"
-                    initialValue="addition"
+                    // TODO - значения по умолчанию
+                    // initialValue="addition"
                 >
                     <Radio.Group
                         disabled={isDisabledMode}
@@ -97,9 +99,8 @@ const HeaderBlock: React.FC<FormComponentProps & HeaderBlockProps> = (
                 </FormItem>
                 {form.getFieldValue('mode') === 'multiplication' ?
                     <SwitchWrapper>
-                        <span>Примеры подряд <QuestionCircleOutlined /></span>
+                        <span>Примеры подряд <QuestionCircleOutlined/></span>
                         <FormItem
-                            form={form}
                             name="group"
                             valuePropName="checked"
                         >
@@ -113,13 +114,13 @@ const HeaderBlock: React.FC<FormComponentProps & HeaderBlockProps> = (
                     updateExercise={addExercise}
                     mods={form.getFieldValue('mode')}
                 >
-                    <Button icon={<UserAddOutlined />} size="large">
+                    <Button icon={<UserAddOutlined/>} size="large">
                         Добавить участника
                     </Button>
                 </EditorExercises>}
             <Button.Group size="large">
                 <Button
-                    icon={<UndoOutlined />}
+                    icon={<UndoOutlined/>}
                     onClick={handlerClear}
                 >
                     Очистить
@@ -128,7 +129,7 @@ const HeaderBlock: React.FC<FormComponentProps & HeaderBlockProps> = (
                     form="multi-from"
                     loading={loading}
                     type="primary"
-                    icon={<FlagOutlined />}
+                    icon={<FlagOutlined/>}
                     onClick={handlerSubmit}
                 >
                     Начать
@@ -138,22 +139,4 @@ const HeaderBlock: React.FC<FormComponentProps & HeaderBlockProps> = (
     );
 };
 
-export default Form.create<FormComponentProps & HeaderBlockProps>(
-    {
-        onFieldsChange(props, changedFields) {
-            props.onChange(changedFields);
-        },
-        mapPropsToFields({fields}) {
-            return {
-                mode: Form.createFormField({
-                    ...fields.mode,
-                    value: fields.mode.value
-                }),
-                group: Form.createFormField({
-                    ...fields.group,
-                    value: fields.group.value
-                })
-            }
-        }
-    }
-)(HeaderBlock);
+export default HeaderBlock;

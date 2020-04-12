@@ -1,14 +1,10 @@
 import React from 'react';
-import { FormComponentProps } from '@ant-design/compatible/lib/form';
-import { Form } from '@ant-design/compatible';
-import '@ant-design/compatible/assets/index.css';
 import {FormItem, SelectData} from "../../components";
 
-const FormEditorCategoryItems: React.FC<FormComponentProps> = ({form}) => {
+const FormEditorCategoryItems: React.FC = ({}) => {
     return <>
-        <FormItem form={form} name="title" label="Название" required="Введите название!"/>
+        <FormItem name="title" label="Название" required="Введите название!"/>
         <SelectData
-            form={form}
             url="director-franchise/disciplines"
             label="Дисциплина"
             name="discipline_id"
@@ -17,4 +13,4 @@ const FormEditorCategoryItems: React.FC<FormComponentProps> = ({form}) => {
     </>
 };
 
-export default Form.create<FormComponentProps>()(FormEditorCategoryItems);
+export default FormEditorCategoryItems;

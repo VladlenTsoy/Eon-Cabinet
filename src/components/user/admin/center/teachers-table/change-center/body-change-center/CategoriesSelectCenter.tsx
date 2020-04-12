@@ -17,14 +17,13 @@ const CategoriesWrapper = styled.div`
 `;
 
 interface CategoriesSelectCenterProps {
-    form: any;
     teacher: any;
     centerId: any;
     currentCenterId: any;
     categoriesCurrentCenter: any;
 }
 
-const CategoriesSelectCenter: React.FC<CategoriesSelectCenterProps> = ({form, teacher, centerId, currentCenterId, categoriesCurrentCenter}) => {
+const CategoriesSelectCenter: React.FC<CategoriesSelectCenterProps> = ({teacher, centerId, currentCenterId, categoriesCurrentCenter}) => {
     const {api} = useSelector((state: any) => (state));
     const [loading, setLoading] = useState(false);
     const [categories, setCategories] = useState<any>([]);
@@ -49,9 +48,8 @@ const CategoriesSelectCenter: React.FC<CategoriesSelectCenterProps> = ({form, te
         {teacher.methods_id.includes(1) ?
             <>
                 <p className="discipline-title">Ментальная арифметика</p>
-                <Row  gutter={15}>
+                <Row gutter={15}>
                     <FormItemWrapper
-                        form={form}
                         loading={loading}
                         fetch={fetch}
                         discipline={1}
@@ -62,9 +60,8 @@ const CategoriesSelectCenter: React.FC<CategoriesSelectCenterProps> = ({form, te
         {teacher.methods_id.includes(2) ?
             <>
                 <p className="discipline-title">Мнемотехника</p>
-                <Row  gutter={15}>
+                <Row gutter={15}>
                     <FormItemWrapper
-                        form={form}
                         loading={loading}
                         fetch={fetch}
                         discipline={2}

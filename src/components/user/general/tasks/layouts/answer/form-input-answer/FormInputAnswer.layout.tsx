@@ -1,9 +1,9 @@
 import React from 'react';
-import { Form } from '@ant-design/compatible';
 import '@ant-design/compatible/assets/index.css';
-import { Input } from "antd";
+import {Input} from "antd";
 import {Typography} from "antd";
 import styled from "styled-components";
+import {FormItem} from "layouts/components";
 
 const {Title} = Typography;
 
@@ -18,7 +18,6 @@ const InputWrapper = styled(Input)`
 `;
 
 interface FormInputAnswer {
-    form: any;
     group?: boolean;
     title?: string;
     answerKey: number;
@@ -26,30 +25,25 @@ interface FormInputAnswer {
 
 const FormInputAnswerLayout: React.FC<FormInputAnswer> = (
     {
-        form,
         title,
         group,
         answerKey
     }
 ) => {
-    const {getFieldDecorator} = form;
-
     return <AnswerInputWrapper>
         {group ? <Title level={4}>{title ? title : `Ответ №${answerKey + 1}`}</Title> : null}
-        <Form.Item key={answerKey}>
-            {getFieldDecorator(group ? `answer[${answerKey}]` : 'answer', {
-                rules: [
-                    {required: true, message: group ? `Введите ответ №${answerKey + 1}!` : 'Введите ответ!'},
-                ]
-            })(
-                <InputWrapper
-                    size="large"
-                    placeholder="Ответ"
-                    autoFocus={answerKey === 0}
-                    autoComplete="off"
-                />
-            )}
-        </Form.Item>
+        <FormItem
+            key={answerKey}
+            name={group ? `answer[${answerKey}]` : 'answer'}
+            required={group ? `Введите ответ №${answerKey + 1}!` : 'Введите ответ!'}
+        >
+            <InputWrapper
+                size="large"
+                placeholder="Ответ"
+                autoFocus={answerKey === 0}
+                autoComplete="off"
+            />
+        </FormItem>
     </AnswerInputWrapper>;
 };
 

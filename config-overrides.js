@@ -1,4 +1,4 @@
-const {override, fixBabelImports, addBundleVisualizer, addWebpackAlias, addWebpackPlugin, setWebpackOptimizationSplitChunks} = require('customize-cra');
+const {override, addLessLoader, fixBabelImports, addBundleVisualizer, addWebpackAlias, addWebpackPlugin, setWebpackOptimizationSplitChunks} = require('customize-cra');
 const path = require('path');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const ThemesGeneratorPlugin = require('themes-switch/ThemesGeneratorPlugin');
@@ -45,7 +45,8 @@ const addMinimizer = (config) => {
         config.plugins[5].options.chunkFilename = 'static/css/[name].chunk.css?[contenthash:8]';
     } else {
         config.module.rules.push({
-            test: /\.(less)$/,
+            test: /(dark|default|light).(less)$/,
+            // include: /\/themes\//,
             use: [
                 MiniCssExtractPlugin.loader,
                 "css-loader",
@@ -67,7 +68,7 @@ module.exports = override(
         libraryName: 'antd',
         libraryDirectory: 'es',
     }),
-    // addLessLoader({javascriptEnabled: true}),
+    addLessLoader({javascriptEnabled: true}),
     addBundleVisualizer({}, true),
     setWebpackOptimizationSplitChunks({
         chunks: 'all',

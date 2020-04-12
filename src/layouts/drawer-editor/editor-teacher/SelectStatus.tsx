@@ -38,7 +38,7 @@ const RadioGroupWrapper = styled(Radio.Group)`
   }
 `;
 
-const SelectStatus: React.FC<any> = ({form}) => {
+const SelectStatus: React.FC = () => {
     const [status, setStatus] = useState('test');
     const handleChange = (e: any) => {
         setStatus(e.target.value);
@@ -68,7 +68,7 @@ const SelectStatus: React.FC<any> = ({form}) => {
                 showIcon
             />}
 
-        <FormItem form={form} name="status" required="Выберите статус!">
+        <FormItem name="status" required="Выберите статус!">
             <RadioGroupWrapper buttonStyle="solid" onChange={handleChange}>
                 <Radio.Button value="test"><ClockCircleOutlined />Тестовый период</Radio.Button>
                 <Radio.Button value="active"><DollarOutlined />Платежный аккаунт</Radio.Button>

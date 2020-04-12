@@ -1,5 +1,6 @@
 import React from 'react';
 import {useSelector} from "react-redux";
+import {BankOutlined} from "@ant-design/icons";
 import {CardStatistic} from "../../../../../layouts/components";
 import {useApiUserGeneral} from "../../../../../effects/use-api-user-general.effect";
 
@@ -10,7 +11,7 @@ const CenterCounter: React.FC<any> = () => {
     return <CardStatistic
         title="Центры"
         theme="success"
-        icon="bank"
+        icon={<BankOutlined/>}
         loading={loading}
         count={counter ? counter.all : 0}
         activeTitle="Открытых"

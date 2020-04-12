@@ -52,12 +52,12 @@ interface TypeSettingAnzanProps {
     form: any;
 }
 
-const TypeSettingAnzan: React.FC<TypeSettingAnzanProps> = ({form}) => {
+const TypeSettingAnzan: React.FC<TypeSettingAnzanProps> = () => {
     return (
       <FormItem
-          form={form}
           name="anzan"
-          initialValue="basic"
+          // TODO - Значения по умолчанию
+          // initialValue="basic"
       >
           <RadioWrapper size="large">
               <Radio.Button value="basic">Обычный</Radio.Button>

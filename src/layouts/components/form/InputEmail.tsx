@@ -2,12 +2,12 @@ import React from "react";
 import {Input} from "antd";
 import {FormItem} from "../index";
 
-const InputEmail: React.FC<any> = ({form}) => {
+const InputEmail: React.FC = () => {
     const rules = [
         {type: 'email', message: 'Введен неверный E-mail!',},
     ];
 
-    return <FormItem form={form} name="email" rules={rules} label="E-mail">
+    return <FormItem name="email" rules={rules} label="E-mail">
         <Input/>
     </FormItem>
 };

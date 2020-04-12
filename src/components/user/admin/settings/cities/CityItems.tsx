@@ -5,13 +5,12 @@ import {Select} from "antd";
 const {Option} = Select;
 
 interface CityItemsProps {
-    form: any;
 }
 
-const CityItems: React.FC<CityItemsProps> = ({form}) => {
+const CityItems: React.FC<CityItemsProps> = () => {
     return <>
-        <FormItem form={form} name="title" label="Название" required="Введите название!"/>
-        <FormItem form={form} name="lang_id" label="Язык" required="Выберите язык!">
+        <FormItem name="title" label="Название" required="Введите название!"/>
+        <FormItem name="lang_id" label="Язык" required="Выберите язык!">
             <Select>
                 <Option value={1} key={1}>Русский</Option>
             </Select>

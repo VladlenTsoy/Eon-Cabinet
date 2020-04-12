@@ -1,5 +1,6 @@
 import React from "react";
 import {useSelector} from "react-redux";
+import {TeamOutlined} from "@ant-design/icons";
 import {CardStatistic} from "../../../../../layouts/components";
 import {useApiUserGeneral} from "../../../../../effects/use-api-user-general.effect";
 
@@ -10,7 +11,7 @@ const StudentCounter: React.FC<any> = () => {
     return <CardStatistic
         title="Ученики"
         theme="primary"
-        icon="team"
+        icon={<TeamOutlined/>}
         loading={loading}
         count={counter ? counter.all : 0}
         items={[

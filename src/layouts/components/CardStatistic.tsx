@@ -1,13 +1,12 @@
 import React from "react";
-import { Icon as LegacyIcon } from '@ant-design/compatible';
-import { LoadingOutlined } from '@ant-design/icons';
+import {LoadingOutlined} from '@ant-design/icons';
 import Card from "../../lib/card/Card";
 import styled from "styled-components";
 
 interface CardStatisticProps {
     title: string;
     theme: string;
-    icon: string;
+    icon: React.ReactNode;
     loading: boolean;
     count?: number | null;
     active?: number | null;
@@ -32,13 +31,13 @@ const StatisticWrapper = styled.div`
 
 export const IconWrapper = styled.div<any>`
     display: flex;
-    width: 35px;
-    height: 35px;
+    //width: 35px;
+    //height: 35px;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    margin-right: .5rem;
-    font-size: 18px;
+    //margin-right: .5rem;
+    //font-size: 18px;
     color: #ffffff;
       
     background: ${props => props.theme['color_' + props.t]};
@@ -91,19 +90,19 @@ const CardStatistic: React.FC<CardStatisticProps> = ({title, theme, icon, loadin
         <Title>{title}</Title>
         <StatisticWrapper>
             <IconWrapper t={theme}>
-                <LegacyIcon type={icon}/>
+                {icon}
             </IconWrapper>
             {count !== null ? <ContentWrapper>
                 <TitleContent>Всего</TitleContent>
                 <CountContent>
-                    {loading ? <LoadingOutlined /> : count}
+                    {loading ? <LoadingOutlined/> : count}
                 </CountContent>
             </ContentWrapper> : null}
 
             {active !== null ? <ContentWrapper>
                 <TitleContent>{activeTitle || 'Активных'}</TitleContent>
                 <CountContent t={theme}>
-                    {loading ? <LoadingOutlined /> : active}
+                    {loading ? <LoadingOutlined/> : active}
                 </CountContent>
             </ContentWrapper> : null}
 
@@ -111,7 +110,7 @@ const CardStatistic: React.FC<CardStatisticProps> = ({title, theme, icon, loadin
                 <ContentWrapper key={key}>
                     <TitleContent>{item.title}</TitleContent>
                     <CountContent t={item.type}>
-                        {loading ? <LoadingOutlined /> : item.count}
+                        {loading ? <LoadingOutlined/> : item.count}
                     </CountContent>
                 </ContentWrapper>
             ) : null}

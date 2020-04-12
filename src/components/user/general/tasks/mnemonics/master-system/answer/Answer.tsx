@@ -1,9 +1,7 @@
 import React from 'react';
 import AnswerLayout from "../../../layouts/answer/Answer.layout";
-import { ArrowRightOutlined } from '@ant-design/icons';
-import { Form } from '@ant-design/compatible';
-import '@ant-design/compatible/assets/index.css';
-import { Button, Typography } from "antd";
+import {ArrowRightOutlined} from '@ant-design/icons';
+import {Button, Typography} from "antd";
 import {useDispatch, useSelector} from "react-redux";
 import {gameChangeStats, gameChangeStatus, gameChangeTotals} from "../../../../../../../store/game/actions";
 import FormInputAnswerLayout from "../../../layouts/answer/form-input-answer/FormInputAnswer.layout";
@@ -11,10 +9,9 @@ import FormInputAnswerLayout from "../../../layouts/answer/form-input-answer/For
 const {Title} = Typography;
 
 interface AnswerProps {
-    form: any;
 }
 
-const Answer: React.FC<AnswerProps> = ({form}) => {
+const Answer: React.FC<AnswerProps> = () => {
     const {game} = useSelector((state: any) => state);
     const {totals} = game;
     const dispatch = useDispatch();
@@ -31,13 +28,12 @@ const Answer: React.FC<AnswerProps> = ({form}) => {
     };
 
     return (
-        <AnswerLayout form={form} cols={{xl: 10, md: 12, xs: 24}} checkHandler={checkHandler}>
+        <AnswerLayout cols={{xl: 10, md: 12, xs: 24}} checkHandler={checkHandler}>
             <Title level={2}>Введите ответы</Title>
             {
                 totals.map((total: any, key: number) =>
                     <FormInputAnswerLayout
                         group
-                        form={form}
                         answerKey={key}
                         title={
                             `Введите слово цифры ${Number(totals[key].exercise.number) > 9 ?
@@ -48,11 +44,11 @@ const Answer: React.FC<AnswerProps> = ({form}) => {
                     />
                 )
             }
-            <Button type="primary" htmlType="submit" block size="large" icon={<ArrowRightOutlined />}>
+            <Button type="primary" htmlType="submit" block size="large" icon={<ArrowRightOutlined/>}>
                 Далее
             </Button>
         </AnswerLayout>
     );
 };
 
-export default Form.create()(Answer);
+export default Answer;

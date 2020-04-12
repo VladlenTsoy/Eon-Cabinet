@@ -51,6 +51,7 @@ interface UploadInputProps {
     rules?: any;
 }
 
+// TODO - Нужно просмотреть Form для изменения
 const UploadInput:React.FC<UploadInputProps> = ({form, name, label, required, rules}) => {
     const [imageUrl, setImageUrl] = useState();
     const {getFieldDecorator} = form;

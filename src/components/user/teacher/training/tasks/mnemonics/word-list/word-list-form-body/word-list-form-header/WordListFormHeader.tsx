@@ -1,8 +1,6 @@
 import React from 'react';
-import { PlusOutlined } from '@ant-design/icons';
-import { Form } from '@ant-design/compatible';
-import '@ant-design/compatible/assets/index.css';
-import { Button, Col, Row, Select } from "antd";
+import {PlusOutlined} from '@ant-design/icons';
+import {Button, Col, Row, Select, Form} from "antd";
 import {FormItem} from "../../../../../../../../../layouts/components";
 import styled from "styled-components";
 import {useSelector} from "react-redux";
@@ -33,27 +31,25 @@ const CounterWrapper = styled.div`
 `;
 
 interface WordListFormHeaderProps {
-    form: any;
     addSetting: any;
 }
 
-const WordListFormHeader: React.FC<WordListFormHeaderProps> = ({form, addSetting}) => {
+const WordListFormHeader: React.FC<WordListFormHeaderProps> = ({addSetting}) => {
     const {language} = useSelector((state: any) => state);
     const {common} = language;
 
-    const submitHandler = (e: any) => {
-        e.preventDefault();
-        form.validateFields(async (err: any, values: any) => {
-            if (!err)
-                addSetting(values);
-        });
+    const submitHandler = (values: any) => {
+        addSetting(values);
     };
 
     return (
-        <Form onSubmit={submitHandler} id="form-setting-word-list">
-            <Row  gutter={15}>
+        <Form onFinish={submitHandler} id="form-setting-word-list">
+            <Row gutter={15}>
                 <Col xl={7} md={8} xs={12}>
-                    <FormItem form={form} name="mode" initialValue={0} label={common.mode} required="Выберите режим!">
+                    <FormItem name="mode"
+                        // TODO - Значение по умолчанию
+                        // initialValue={0}
+                              label={common.mode} required="Выберите режим!">
                         <Select>
                             {common.tasksTraining.wordsList.mode.map((type: string, key: number) =>
                                 <Option value={key} key={key}>{type}</Option>
@@ -61,8 +57,14 @@ const WordListFormHeader: React.FC<WordListFormHeaderProps> = ({form, addSetting
                         </Select>
                     </FormItem>
                 </Col>
-                <Col xl={7}  md={8}  xs={12}>
-                    <FormItem form={form} name="type" initialValue={0} label={common.type} required="Выберите тип!">
+                <Col xl={7} md={8} xs={12}>
+                    <FormItem
+                        name="type"
+                        // TODO - Значение по умолчанию
+                        // initialValue={0}
+                        label={common.type}
+                        required="Выберите тип!"
+                    >
                         <Select>
                             {common.tasksTraining.wordsList.type.map((type: string, key: number) =>
                                 <Option value={key} key={key}>{type}</Option>
@@ -72,7 +74,10 @@ const WordListFormHeader: React.FC<WordListFormHeaderProps> = ({form, addSetting
                 </Col>
                 <Col xl={10} md={8} xs={24}>
                     <CounterWrapper>
-                        <FormItem form={form} name="count" initialValue={5} label={common.qty} required="Введите кол-во!"
+                        <FormItem name="count"
+                            // TODO - Значение по умолчанию
+                            // initialValue={5}
+                                  label={common.qty} required="Введите кол-во!"
                                   marginBottom="0">
                             <Select>
                                 <Option value={5}>{5}</Option>
@@ -90,7 +95,7 @@ const WordListFormHeader: React.FC<WordListFormHeaderProps> = ({form, addSetting
                         <Button
                             ghost
                             block
-                            icon={<PlusOutlined />}
+                            icon={<PlusOutlined/>}
                             type="primary"
                             htmlType="submit"
                             form="form-setting-word-list"
@@ -104,4 +109,4 @@ const WordListFormHeader: React.FC<WordListFormHeaderProps> = ({form, addSetting
     );
 };
 
-export default Form.create<WordListFormHeaderProps>()(WordListFormHeader);
+export default WordListFormHeader;

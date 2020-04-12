@@ -5,8 +5,13 @@ import {useState} from "react";
 import { EditOutlined } from '@ant-design/icons';
 import {IconsWrapper, IconEditWrapper} from "../avatar/IconsWrapper";
 import {FormItem} from "../index";
+import {FormInstance} from "antd/es/form";
 
-const InputPhoto: React.FC<any> = ({form}) => {
+interface InputPhotoProps {
+    form: FormInstance
+}
+
+const InputPhoto: React.FC<InputPhotoProps> = ({form}) => {
     const [imageUrl, setImageUrl] = useState();
 
     const handleChange = (e: any) => {
@@ -18,7 +23,7 @@ const InputPhoto: React.FC<any> = ({form}) => {
     };
 
     return (
-        <FormItem form={form} name="image">
+        <FormItem name="image">
             <AvatarLabelWrapper>
                 <img src={imageUrl || form.getFieldValue('image') || 'http://api.eon.loc/images/default.svg'}
                      alt="Изменить фотографию"/>

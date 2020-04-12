@@ -52,7 +52,6 @@ const HeaderSettingAnzan: React.FC<HeaderSettingAdditionProps> = (
         </Col>
         <Col sm={isMultiplication && !isThemes ? 12 : 8} xs={12}>
             <FormItem
-                form={form}
                 name={`length`}
                 label="Разряд чисел"
                 required="Выберите разряд чисел!"
@@ -71,7 +70,6 @@ const HeaderSettingAnzan: React.FC<HeaderSettingAdditionProps> = (
         </Col>
         <Col sm={isMultiplication && !isThemes ? 12 : 8} xs={12}>
             <FormItem
-                form={form}
                 label={isMultiplication ? 'Второе число' : 'Режим'}
                 name={'type'}
                 required={isMultiplication ? 'Выберите режим!' : 'Выберите второе число!'}
@@ -88,7 +86,6 @@ const HeaderSettingAnzan: React.FC<HeaderSettingAdditionProps> = (
         {!isMultiplication ?
             <Col sm={8} xs={24}>
                 <FormItem
-                    form={form}
                     label="Под тема"
                     name={'theme'}
                     required="Выберите под тему!">
@@ -104,7 +101,6 @@ const HeaderSettingAnzan: React.FC<HeaderSettingAdditionProps> = (
             isThemes ?
                 <Col sm={8} xs={24}>
                     <FormItem
-                        form={form}
                         name={'theme'}
                         label="Число"
                         required="Введите число!"

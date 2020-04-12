@@ -1,9 +1,10 @@
 import React from 'react';
 import {Col, InputNumber, Row} from "antd";
 import {FormItem} from "../../../../../../../../../../layouts/components";
+import {FormInstance} from "antd/es/form";
 
 interface BasicSettingProps {
-    form: any;
+    form: FormInstance;
     mods?: string;
     multi?: boolean;
     setting: any;
@@ -15,7 +16,6 @@ const BasicSetting: React.FC<BasicSettingProps> = (
         form,
         mods,
         multi,
-        setting,
         isMultiplication
     }
 ) => {
@@ -23,10 +23,10 @@ const BasicSetting: React.FC<BasicSettingProps> = (
         {!isMultiplication ?
             <Col sm={multi ? 12 : 8} xs={12}>
                 <FormItem
-                    form={form}
                     name="count"
                     label="Количество цифр"
-                    initialValue={setting.count || 1}
+                    // TODO - Значение по умолчанию
+                    // initialValue={setting.count || 1}
                     required="Введите количество цифр!">
                     <InputNumber min={1} max={
                         isMultiplication ? 200 :
@@ -38,20 +38,20 @@ const BasicSetting: React.FC<BasicSettingProps> = (
         {!multi || mods === 'multiplication' ?
             <Col sm={isMultiplication ? 12 : 8} xs={12}>
                 <FormItem
-                    form={form}
                     name="times"
                     label="Количество раз"
-                    initialValue={1}
+                    // TODO - Значение по умолчанию
+                    // initialValue={1}
                     required="Введите количество раз!">
                     <InputNumber min={1} style={{width: '100%'}}/>
                 </FormItem>
             </Col> : null}
         <Col sm={multi || isMultiplication ? 12 : 8} xs={multi || isMultiplication ? 12 : 24}>
             <FormItem
-                form={form}
                 name="time"
                 label="Время (секунды)"
-                initialValue={2}
+                // TODO - Значение по умолчанию
+                // initialValue={2}
                 required="Введите время!">
                 <InputNumber min={0.2} max={10} step={0.1} style={{width: '100%'}}/>
             </FormItem>

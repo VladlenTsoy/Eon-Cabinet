@@ -24,7 +24,6 @@ interface AnswerInputProps {
 
 const AnswerInput: React.FC<AnswerInputProps> = (
     {
-        form,
         isWait,
         isAnswersOpen,
         taskKey
@@ -35,8 +34,8 @@ const AnswerInput: React.FC<AnswerInputProps> = (
 
     return <AnswerWrapper>
         {setting.group ?
-            <GroupInput form={form} isAnswersOpen={isAnswersOpen} taskKey={taskKey}/> :
-            <BasicInput form={form} isWait={isWait} taskKey={taskKey}/>
+            <GroupInput isAnswersOpen={isAnswersOpen} taskKey={taskKey}/> :
+            <BasicInput isWait={isWait} taskKey={taskKey}/>
         }
     </AnswerWrapper>;
 };

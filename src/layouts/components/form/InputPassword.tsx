@@ -19,11 +19,10 @@ const InputPasswordWrapper = styled.div`
 `;
 
 interface InputPasswordProps {
-    form: any;
     user: any;
 }
 
-const InputPassword: React.FC<InputPasswordProps> = ({form, user}) => {
+const InputPassword: React.FC<InputPasswordProps> = ({user}) => {
     const [disabled, setDisabled] = useState<boolean>(!!(user && user.first_name));
     const rules = [
         {required: !disabled, message: "Введите пароль!"},
@@ -36,7 +35,6 @@ const InputPassword: React.FC<InputPasswordProps> = ({form, user}) => {
     return <InputPasswordWrapper>
         {user && user.first_name ? <Switch defaultChecked onChange={toggleHandler}/> : null}
         <FormItem
-            form={form}
             name="password"
             rules={rules}
             label="Пароль"

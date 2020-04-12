@@ -1,6 +1,7 @@
 import React from 'react';
 import {CardStatistic} from "../../../../../../layouts/components";
 import styled from "styled-components";
+import {HomeOutlined} from "@ant-design/icons";
 
 const HomeworkWrapper = styled.div`
   @media (max-width: 576px) {
@@ -13,7 +14,7 @@ const Homework = () => {
         <CardStatistic
             title="Домашние задания"
             theme="warning"
-            icon="home"
+            icon={<HomeOutlined/>}
             loading={false}
             count={10}
             items={[

@@ -2,15 +2,15 @@ import * as React from "react";
 import {Select} from "antd";
 import {useSelector} from "react-redux";
 import {FormItem} from "../../components";
-import { FormComponentProps } from '@ant-design/compatible/lib/form';
 
 const {Option} = Select;
 
 interface FormEditorGroupProps {
+    form: React.Ref<any>;
     data: any;
 }
 
-const FormEditorGroupItems: React.FC<FormComponentProps & FormEditorGroupProps> = ({form}) => {
+const FormEditorGroupItems: React.FC<FormEditorGroupProps> = () => {
     const {app} = useSelector((state: any) => state);
     const {disciplines, categories} = app;
 
@@ -23,20 +23,18 @@ const FormEditorGroupItems: React.FC<FormComponentProps & FormEditorGroupProps> 
     const changeDiscipline = (value: number) => {
         if (categories.length) {
             const category = searchCategoryById(value, 'find');
-            form.setFieldsValue({
-                category_id: String(category.id),
-            });
+            // form.setFieldsValue({
+            //     category_id: String(category.id),
+            // });
         }
     };
 
     return <>
         <FormItem
-            form={form}
             name="title"
             required="Введите название!"
         />
         <FormItem
-            form={form}
             name="method_id"
             label="Метод"
             required="Выберите дисциплину!"
@@ -47,14 +45,13 @@ const FormEditorGroupItems: React.FC<FormComponentProps & FormEditorGroupProps> 
             </Select>
         </FormItem>
         <FormItem
-            form={form}
             name="category_id"
             label="Категория"
             required="Выберите категорию!"
         >
             <Select>
-                {searchCategoryById(form.getFieldValue('method_id'), 'filter')
-                    .map((category: any) => <Option key={category.id} value={category.id}>{category.title}</Option>)}
+                {/*{searchCategoryById(form.getFieldValue('method_id'), 'filter')*/}
+                {/*    .map((category: any) => <Option key={category.id} value={category.id}>{category.title}</Option>)}*/}
             </Select>
         </FormItem>
     </>

@@ -1,7 +1,5 @@
 import React from 'react';
 import { ArrowRightOutlined } from '@ant-design/icons';
-import { Form } from '@ant-design/compatible';
-import '@ant-design/compatible/assets/index.css';
 import { Button } from 'antd';
 import AnswerLayout from "../../../layouts/answer/Answer.layout";
 import {gameChangeStats, gameChangeStatus, gameChangeTotals} from "../../../../../../../store/game/actions";
@@ -22,10 +20,9 @@ const InputsWrapper = styled.div`
 `;
 
 interface AnswerProps {
-    form: any;
 }
 
-const Answer: React.FC<AnswerProps> = ({form}) => {
+const Answer: React.FC<AnswerProps> = () => {
     const {game} = useSelector((state: any) => state);
     const {totals, setting} = game;
     const dispatch = useDispatch();
@@ -57,13 +54,12 @@ const Answer: React.FC<AnswerProps> = ({form}) => {
 
     return (
         <AnswerLayout
-            form={form}
             cols={{span: 24}}
             checkHandler={checkHandler}
         >
             <InputsWrapper>
                 {totals.map((total: any, key: number) =>
-                    <InputAnswer total={total} form={form} key={key} totalKey={key}/>)
+                    <InputAnswer total={total} key={key} totalKey={key}/>)
                 }
             </InputsWrapper>
             <Button type="primary" htmlType="submit" block size="large" icon={<ArrowRightOutlined />}>
@@ -73,4 +69,4 @@ const Answer: React.FC<AnswerProps> = ({form}) => {
     );
 };
 
-export default Form.create()(Answer);
+export default Answer;

@@ -3,14 +3,12 @@ import {Col, InputNumber, Row} from "antd";
 import {FormItem} from "../../../../../../../../../layouts/components";
 
 interface FlashFormItemsProps {
-    form: any;
 }
 
-const FlashFormItems:React.FC<FlashFormItemsProps> = ({form}) => {
+const FlashFormItems:React.FC<FlashFormItemsProps> = () => {
     return <Row  gutter={15}>
         <Col span={12}>
             <FormItem
-                form={form}
                 name="from"
                 label="От"
                 required="Введите от какой цифры">
@@ -19,7 +17,6 @@ const FlashFormItems:React.FC<FlashFormItemsProps> = ({form}) => {
         </Col>
         <Col span={12}>
             <FormItem
-                form={form}
                 name="to"
                 label="До"
                 required="Введите до какой цифры">
@@ -28,7 +25,6 @@ const FlashFormItems:React.FC<FlashFormItemsProps> = ({form}) => {
         </Col>
         <Col span={12}>
             <FormItem
-                form={form}
                 name="count"
                 label="Количество цифр"
                 required="Введите количество цифр!">
@@ -37,7 +33,6 @@ const FlashFormItems:React.FC<FlashFormItemsProps> = ({form}) => {
         </Col>
         <Col span={12}>
             <FormItem
-                form={form}
                 name="time"
                 label="Время (секунды)"
                 required="Введите время!">

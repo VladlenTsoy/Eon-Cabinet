@@ -1,6 +1,7 @@
+import React from 'react';
 import styled from "styled-components";
-import { Form } from '@ant-design/compatible';
-import '@ant-design/compatible/assets/index.css';
+import {Form} from 'antd';
+import {FormProps} from 'antd/lib/form';
 
 export const Title = styled.h1`
     text-align: center;
@@ -13,7 +14,7 @@ export const SubTitle = styled.p`
       margin-bottom: 1rem;
 `;
 
-export const FormWrapper = styled(Form)`
+export const FormWrapper: React.FC<FormProps> = styled(Form)`
   .ant-form-item:last-child {
       margin-bottom: 0;
     }

@@ -13,11 +13,12 @@ const SearchWrapper = styled.div`
   padding: 0 0 0 1rem;
   color: ${props => props.theme.color_minimal};
   
-  & > i {
+  & > .anticon {
     margin: 0;
+    line-height: 1.5;
   }
   
-  :hover i{
+  :hover .anticon{
     color: ${props => props.theme.color_primary};
   }
   
@@ -28,7 +29,7 @@ const SearchWrapper = styled.div`
     font-size: 16px;
     padding-left: 24px;
 
-    & > i {
+    & > .anticon {
         line-height: 25px;
         min-width: 25px;
         font-size: 25px;
@@ -40,7 +41,7 @@ const SearchWrapper = styled.div`
 `;
 
 const SelectWrapper = styled(Select)`
-  .ant-select-selection{
+  &.ant-select > div.ant-select-selector{
     border: 0;
     box-shadow: none !important;
     width: 200px;

@@ -15,7 +15,7 @@ const WrapperLoader = styled.div`
     justify-content: center;
     flex-flow: column;
     
-    i {
+    .anticon {
         //margin: 0 auto;
         font-size: 30px;
         margin-bottom: 1rem;

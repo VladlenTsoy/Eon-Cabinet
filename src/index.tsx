@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './styles/index.less';
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 import {ConfigProvider} from 'antd';
@@ -9,6 +8,7 @@ import {store} from "./store/rootReducer";
 import {Provider} from "react-redux";
 import moment from "moment";
 import 'moment/locale/ru';
+import './styles/index.less';
 
 moment.locale("ru");
 

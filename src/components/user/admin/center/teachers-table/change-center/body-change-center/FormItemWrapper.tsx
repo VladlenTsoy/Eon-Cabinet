@@ -15,7 +15,6 @@ const EmptyWrapper = styled.div`
 `;
 
 interface FormItemWrapper {
-    form: any;
     fetch: any;
     loading: boolean;
     discipline: number;
@@ -23,14 +22,13 @@ interface FormItemWrapper {
     categories: any;
 }
 
-const FormItemWrapper: React.FC<FormItemWrapper> = ({form, fetch, loading, discipline, categoriesCurrentCenter, categories}) => {
+const FormItemWrapper: React.FC<FormItemWrapper> = ({fetch, loading, discipline, categoriesCurrentCenter, categories}) => {
     const categoriesForDiscipline = categoriesCurrentCenter.filter((category: any) => category.discipline_id === discipline);
 
     return categoriesForDiscipline.length ?
         categoriesForDiscipline.map((_category: any, _key: any) =>
             <Col xl={8} key={_key}>
                 <FormItem
-                    form={form}
                     name={`categories[${_category.id}]`}
                     label={_category.title}
                     rules={[{required: _category.require, message: `Данная категория обязательна!`}]}

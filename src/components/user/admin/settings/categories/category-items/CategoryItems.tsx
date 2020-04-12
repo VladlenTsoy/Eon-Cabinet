@@ -8,19 +8,18 @@ import CategoryItemFranchise from "./CategoryItemFranchise";
 const {Option} = Select;
 
 interface CategoryItemsProps {
-    form: any;
     isFranchise: boolean;
 }
 
-const CategoryItems: React.FC<CategoryItemsProps> = ({form, isFranchise}) => {
+const CategoryItems: React.FC<CategoryItemsProps> = ({isFranchise}) => {
     const {app} = useSelector((state: any) => (state));
     const [type, setType] = useState(isFranchise ? 'franchise' : 'center');
 
     const handleTypeChange = (e: any) => setType(e.target.value);
 
     return <>
-        <FormItem form={form} name="title" label="Название" required="Введите название!"/>
-        <FormItem form={form} name="discipline_id" label="Дисциплина" required="Выберите дисциплину!">
+        <FormItem name="title" label="Название" required="Введите название!"/>
+        <FormItem name="discipline_id" label="Дисциплина" required="Выберите дисциплину!">
             <Select>
                 {app.disciplines.map((discipline: any, key: number) =>
                     <Option key={key} value={discipline.id}>{discipline.title}</Option>
@@ -32,8 +31,8 @@ const CategoryItems: React.FC<CategoryItemsProps> = ({form, isFranchise}) => {
             <Radio.Button value="center">Центр</Radio.Button>
         </Radio.Group>
         {type === 'franchise' ?
-            <CategoryItemFranchise form={form}/> :
-            <CategoryItemCenters form={form}/>
+            <CategoryItemFranchise/> :
+            <CategoryItemCenters/>
         }
     </>
 };

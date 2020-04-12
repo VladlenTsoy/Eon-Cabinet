@@ -1,8 +1,5 @@
 import React, {useEffect} from "react";
-import { FormComponentProps } from '@ant-design/compatible/lib/form';
-import { Form } from '@ant-design/compatible';
-import '@ant-design/compatible/assets/index.css';
-import { Col, DatePicker, Input, Row } from "antd";
+import {Form, Col, DatePicker, Input, Row} from "antd";
 import moment from 'moment';
 import InputPhoto from "../../components/form/InputPhoto";
 import {FormItem, InputEmail, InputLogin, InputPassword} from "../../components";
@@ -15,7 +12,10 @@ interface FormEditorStudentProps {
     data?: any;
 }
 
-const FormEditorStudent: React.FC<FormComponentProps & FormEditorStudentProps> = ({form, data, close, group_id}) => {
+const FormEditorStudent: React.FC<FormEditorStudentProps> = ({data, close, group_id}) => {
+    const [form] = Form.useForm();
+
+    // TODO - Значения по умолчанию
     useEffect(() => {
         if (data)
             form.setFieldsValue({
@@ -41,18 +41,18 @@ const FormEditorStudent: React.FC<FormComponentProps & FormEditorStudentProps> =
                     <InputPhoto form={form}/>
                 </Col>
                 <Col span={12}>
-                    <FormItem form={form} name="first_name" label="Имя" required="Введите имя!"/>
-                    <InputEmail form={form}/>
-                    <InputLogin form={form}/>
-                    <SelectData form={form} url="teacher/groups" label="Группа" name="group_id" required="Выберите группу!"/>
+                    <FormItem name="first_name" label="Имя" required="Введите имя!"/>
+                    <InputEmail/>
+                    <InputLogin/>
+                    <SelectData url="teacher/groups" label="Группа" name="group_id" required="Выберите группу!"/>
                 </Col>
                 <Col span={12}>
-                    <FormItem form={form} name="last_name" label="Фамилия" required="Введите фамилию!"/>
-                    <FormItem form={form} name="phone" label="Телефон">
+                    <FormItem name="last_name" label="Фамилия" required="Введите фамилию!"/>
+                    <FormItem name="phone" label="Телефон">
                         <Input/>
                     </FormItem>
-                    <InputPassword form={form} user={data}/>
-                    <FormItem form={form} name="date_of_birth" label="Дата рождения">
+                    <InputPassword user={data}/>
+                    <FormItem name="date_of_birth" label="Дата рождения">
                         <DatePicker style={{width: '100%'}}/>
                     </FormItem>
                 </Col>
@@ -62,4 +62,5 @@ const FormEditorStudent: React.FC<FormComponentProps & FormEditorStudentProps> =
     </>
 };
 
-export default Form.create<FormComponentProps & FormEditorStudentProps>()(FormEditorStudent);
+// TODO - не присоединен
+export default FormEditorStudent;

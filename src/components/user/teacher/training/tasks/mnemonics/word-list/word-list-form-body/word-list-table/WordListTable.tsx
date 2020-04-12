@@ -1,11 +1,10 @@
 import React, {useState} from 'react';
-import { DeleteOutlined, FlagOutlined, PlusOutlined, UndoOutlined } from '@ant-design/icons';
-import { Form } from '@ant-design/compatible';
-import '@ant-design/compatible/assets/index.css';
-import { Button, Empty, InputNumber } from "antd";
+import {DeleteOutlined, FlagOutlined, PlusOutlined, UndoOutlined} from '@ant-design/icons';
+import {Button, Empty, InputNumber, Form} from "antd";
 import {FormItem} from "../../../../../../../../../layouts/components";
 import styled from "styled-components";
 import {useSelector} from "react-redux";
+import {FormInstance} from "antd/es/form";
 
 const TableWrapper = styled.div`
   margin-bottom: 1.5rem;
@@ -78,7 +77,7 @@ const ButtonGroupWrapper = styled(Button.Group)`
 `;
 
 interface WordListTableProps {
-    form: any;
+    form: FormInstance,
     deleteSetting: (key: string) => void;
     clearSetting?: any;
     startApplication?: (setting: any, print: boolean) => void;
@@ -99,21 +98,18 @@ const WordListTable: React.FC<WordListTableProps> = (
 
     const [loading, setLoading] = useState(false);
 
-    const submitHandler = (e: any) => {
-        e.preventDefault();
-        form.validateFields(async (err: any, values: any) => {
-            if (!err && values.several && Object.entries(values.several).length) {
-                setLoading(true);
-                if (addSettingHomework)
-                    await addSettingHomework(values);
-                else if (startApplication)
-                    await startApplication(values, false);
-            }
-        });
+    const submitHandler = async (values: any) => {
+        if (values.several && Object.entries(values.several).length) {
+            setLoading(true);
+            if (addSettingHomework)
+                await addSettingHomework(values);
+            else if (startApplication)
+                await startApplication(values, false);
+        }
     };
 
     return (
-        <Form onSubmit={submitHandler}>
+        <Form form={form} onFinish={submitHandler}>
             <TableWrapper>
                 {form.getFieldValue('several') && Object.entries(form.getFieldValue('several')).length ?
                     <table>
@@ -127,7 +123,7 @@ const WordListTable: React.FC<WordListTableProps> = (
                                     <Button
                                         ghost
                                         type="danger"
-                                        icon={<DeleteOutlined />}
+                                        icon={<DeleteOutlined/>}
                                         shape="circle"
                                         onClick={() => deleteSetting(arr[0])}
                                     />
@@ -139,21 +135,27 @@ const WordListTable: React.FC<WordListTableProps> = (
                     <Empty/>
                 }
                 <div className="hideme">
-                    <FormItem form={form} name="several"/>
+                    <FormItem name="several"/>
                 </div>
-                <FormItem form={form} name="time" label="Время (Минуты)" initialValue={1} required="Выберите время">
+                <FormItem
+                    name="time"
+                    label="Время (Минуты)"
+                    // TODO - Значание по умолчанию
+                    // initialValue={1}
+                    required="Выберите время"
+                >
                     <InputNumber style={{width: '100%'}} min={0.1} max={30} step={0.1}/>
                 </FormItem>
             </TableWrapper>
             <ButtonGroupWrapper size="large">
                 {addSettingHomework ?
-                    <Button htmlType="submit" type="primary" icon={<PlusOutlined />}>Добавить</Button> :
+                    <Button htmlType="submit" type="primary" icon={<PlusOutlined/>}>Добавить</Button> :
                     <>
-                        <Button icon={<UndoOutlined />} onClick={clearSetting}>Очистить</Button>
+                        <Button icon={<UndoOutlined/>} onClick={clearSetting}>Очистить</Button>
                         <Button
                             htmlType="submit"
                             type="primary"
-                            icon={<FlagOutlined />}
+                            icon={<FlagOutlined/>}
                             loading={loading}
                         >
                             Начать

@@ -1,7 +1,5 @@
 import React from 'react';
-import { Form } from '@ant-design/compatible';
-import '@ant-design/compatible/assets/index.css';
-import { Col, Row } from "antd";
+import {Col, Row, Form} from "antd";
 import styled from "styled-components";
 import {Card} from "lib";
 
@@ -24,7 +22,6 @@ const CardWrapper = styled(Card)`
 `;
 
 interface AnswerProps {
-    form: any,
     cols: {},
     checkHandler: (values: any) => void;
 }
@@ -32,23 +29,18 @@ interface AnswerProps {
 const AnswerLayout: React.FC<AnswerProps> = (
     {
         children,
-        form,
         cols,
         checkHandler
     }
 ) => {
-    const submitHandler = (e: any) => {
-        e.preventDefault();
-        form.validateFields(async (err: any, values: any) => {
-            if (!err)
-                checkHandler(values);
-        });
+    const submitHandler = (values: any) => {
+        checkHandler(values);
     };
 
-    return <RowWrapper  justify="center" align="middle" gutter={15}>
+    return <RowWrapper justify="center" align="middle" gutter={15}>
         <Col {...cols}>
             <CardWrapper>
-                <Form onSubmit={submitHandler}>
+                <Form onFinish={submitHandler}>
                     {children}
                 </Form>
             </CardWrapper>

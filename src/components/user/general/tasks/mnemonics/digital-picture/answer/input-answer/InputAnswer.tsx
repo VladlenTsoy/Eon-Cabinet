@@ -39,12 +39,11 @@ const InputWrapper = styled.div`
 `;
 
 interface InputAnswerProps {
-    form: any;
     total: any;
     totalKey: number;
 }
 
-const InputAnswer: React.FC<InputAnswerProps> = ({form, total, totalKey}) => {
+const InputAnswer: React.FC<InputAnswerProps> = ({ total, totalKey}) => {
     return <InputWrapper>
         <div className="picture">
             <img src={total.exercise.url_picture} alt=""/>
@@ -52,7 +51,6 @@ const InputAnswer: React.FC<InputAnswerProps> = ({form, total, totalKey}) => {
         <div className="content">
             <FormItem
                 label={`Число №${totalKey + 1}`}
-                form={form}
                 name={`answer[${totalKey}][number]`}
                 marginBottom="0"
                 autofocus={totalKey === 0}

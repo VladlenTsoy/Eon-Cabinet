@@ -6,19 +6,17 @@ import {useSelector} from "react-redux";
 const {TextArea} = Input;
 
 interface SaveHomeworkItemsProps {
-    form: any;
     disciplineId: any;
 }
 
-const SaveHomeworkItems: React.FC<SaveHomeworkItemsProps> = ({form, disciplineId}) => {
+const SaveHomeworkItems: React.FC<SaveHomeworkItemsProps> = ({disciplineId}) => {
     const {app} = useSelector((state: any) => state);
-    return <Row  gutter={15}>
+    return <Row gutter={15}>
         <Col span={12}>
-            <FormItem form={form} name="level" label="Уровень" required="Введите уровень!"/>
+            <FormItem name="level" label="Уровень" required="Введите уровень!"/>
         </Col>
         <Col span={12}>
             <FormItem
-                form={form}
                 name="category"
                 label="Категория"
                 required="Введите категорию!"
@@ -32,7 +30,7 @@ const SaveHomeworkItems: React.FC<SaveHomeworkItemsProps> = ({form, disciplineId
             </FormItem>
         </Col>
         <Col span={24}>
-            <FormItem form={form} name="description" label="Описание">
+            <FormItem name="description" label="Описание">
                 <TextArea rows={4}/>
             </FormItem>
         </Col>

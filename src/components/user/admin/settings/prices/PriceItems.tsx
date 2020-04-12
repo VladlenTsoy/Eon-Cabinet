@@ -2,14 +2,13 @@ import React from "react";
 import {FormItem} from "../../../../../layouts/components";
 
 interface PriceItemsProps {
-    form: any;
 }
 
-const PriceItems: React.FC<PriceItemsProps> = ({form}) => {
+const PriceItems: React.FC<PriceItemsProps> = () => {
     return <>
-        <FormItem form={form} name="title" label="Название" required="Введите название!"/>
-        <FormItem form={form} name="student" label="Студент" required="Введите стоимость студента!"/>
-        <FormItem form={form} name="teacher" label="Учитель" required="Введите стоимость учителя!"/>
+        <FormItem name="title" label="Название" required="Введите название!"/>
+        <FormItem name="student" label="Студент" required="Введите стоимость студента!"/>
+        <FormItem name="teacher" label="Учитель" required="Введите стоимость учителя!"/>
     </>
 };
 

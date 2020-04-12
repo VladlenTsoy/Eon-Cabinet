@@ -1,6 +1,6 @@
 import React from "react";
-import { LoadingOutlined } from '@ant-design/icons';
-import { Spin } from "antd";
+import {LoadingOutlined} from '@ant-design/icons';
+import {Spin} from "antd";
 import styled from "styled-components";
 import {useSelector} from "react-redux";
 
@@ -28,7 +28,7 @@ const Container: React.FC<ContainerStyledProps> = styled.div<ContainerStyledProp
     text-align: center;
     font-size: 30px;
 
-    i{
+    .anticon{
       font-size: 50px;
       margin-bottom: ${props => props.marginBottom};
     }
@@ -46,20 +46,18 @@ interface LoadingBlockProps {
 const LoadingBlock: React.FC<LoadingBlockProps> = ({title, maxHeight = '100%'}) => {
     const {language} = useSelector((state: any) => state);
 
-    return (
-        <LoadingWrapper className="animated fadeIn" maxHeight={maxHeight} padding={title === null? '0': '2rem'}>
-            <Container marginBottom={title === null ? '0' : '1rem'}>
-                <Spin indicator={<LoadingOutlined />}/>
-                {
-                    title === null ?
-                        <></> :
-                        <p>
-                            {title || `${language.common.loader}...`}
-                        </p>
-                }
-            </Container>
-        </LoadingWrapper>
-    );
+    return <LoadingWrapper className="animated fadeIn" maxHeight={maxHeight} padding={title === null ? '0' : '2rem'}>
+        <Container marginBottom={title === null ? '0' : '1rem'}>
+            <Spin indicator={<LoadingOutlined/>}/>
+            {
+                title === null ?
+                    <></> :
+                    <p>
+                        {title || `${language.common.loader}...`}
+                    </p>
+            }
+        </Container>
+    </LoadingWrapper>
 };
 
 export default React.memo(LoadingBlock);

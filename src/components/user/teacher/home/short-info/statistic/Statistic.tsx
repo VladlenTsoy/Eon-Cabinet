@@ -3,6 +3,7 @@ import {CardStatistic} from "../../../../../../layouts/components";
 import {useApiUserGeneral} from "../../../../../../effects/use-api-user-general.effect";
 import Students from "./students/Students";
 import styled from "styled-components";
+import {HomeOutlined, TeamOutlined} from "@ant-design/icons";
 
 const StatisticWrapper = styled.div`
   display: grid;
@@ -16,13 +17,13 @@ const Statistic: React.FC = () => {
     return <StatisticWrapper>
         <CardStatistic
             title="Групп"
-            icon="team"
+            icon={<TeamOutlined/>}
             theme="success"
             loading={loading}
             count={statistic ? statistic.groups : 0}/>
         <CardStatistic
             title="Дом. заданий"
-            icon="home"
+            icon={<HomeOutlined/>}
             theme="primary"
             loading={loading}
             count={statistic ? statistic.homework.count : 0}/>

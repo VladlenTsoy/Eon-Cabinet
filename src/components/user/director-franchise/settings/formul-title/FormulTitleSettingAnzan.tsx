@@ -1,8 +1,6 @@
 import React, {useMemo, useState} from "react";
-import { SaveOutlined } from '@ant-design/icons';
-import { Form } from '@ant-design/compatible';
-import '@ant-design/compatible/assets/index.css';
-import { Button, Input, message } from "antd";
+import {SaveOutlined} from '@ant-design/icons';
+import {Button, Form, Input, message} from "antd";
 import {useSelector} from "react-redux";
 import {FormItem} from "../../../../../layouts/components";
 
@@ -27,26 +25,20 @@ const FormulTitleSettingAnzan: React.FC<any> = ({form, defaultTypes}) => {
     //     form.setFieldsValue(formuls);
     // }, []);
 
-    const handleSubmit = (e: any) => {
-        e.preventDefault();
-        form.validateFields(async (err: any) => {
-            if (!err) {
-                setBtnLoading(true);
-                try {
-                    message.success('Вы успешно изменили название формул!');
-                } catch (e) {
-                    message.error(e.response.data.message);
-                }
-                setBtnLoading(false);
-            }
-        });
+    const handleSubmit = async (values: any) => {
+        setBtnLoading(true);
+        try {
+            message.success('Вы успешно изменили название формул!');
+        } catch (e) {
+            message.error(e.response.data.message);
+        }
+        setBtnLoading(false);
     };
 
     return (
-        <Form onSubmit={handleSubmit}>
+        <Form onFinish={handleSubmit}>
             {defaultTypes.map((type: any, key: any) =>
                 <FormItem
-                    form={form}
                     name={type[0]}
                     label={type[1]}
                     key={key}
@@ -58,7 +50,7 @@ const FormulTitleSettingAnzan: React.FC<any> = ({form, defaultTypes}) => {
                 htmlType="submit"
                 type="primary"
                 block
-                icon={<SaveOutlined />}
+                icon={<SaveOutlined/>}
                 loading={btnLoading}
             >
                 Сохранить
@@ -67,4 +59,4 @@ const FormulTitleSettingAnzan: React.FC<any> = ({form, defaultTypes}) => {
     );
 };
 
-export default Form.create<any>()(FormulTitleSettingAnzan);
+export default FormulTitleSettingAnzan;

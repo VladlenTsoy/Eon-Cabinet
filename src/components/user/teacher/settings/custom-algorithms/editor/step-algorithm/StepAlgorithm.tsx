@@ -1,13 +1,10 @@
 import React, {useState} from 'react';
-import { PlusCircleOutlined, SaveOutlined } from '@ant-design/icons';
-import { Form } from '@ant-design/compatible';
-import '@ant-design/compatible/assets/index.css';
-import { Button, message } from 'antd';
-import { FormComponentProps } from '@ant-design/compatible/es/form';
+import {PlusCircleOutlined, SaveOutlined} from '@ant-design/icons';
+import {Button, message, Form} from 'antd';
 import styled from "styled-components";
 import FieldAlgorithm from "./field-algorithm/FieldAlgorithm";
 import {useDispatch, useSelector} from "react-redux";
-import {withRouter, RouteComponentProps} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import {appChangeCustomAlgorithms} from "../../../../../../../store/app/actions";
 
 const StepWrapper = styled.div`
@@ -38,11 +35,12 @@ const StepWrapper = styled.div`
   }
 `;
 
-type StepAlgorithmProps = FormComponentProps & {
+type StepAlgorithmProps = {
     setting: any;
 }
 
-const StepAlgorithm: React.FC<RouteComponentProps & StepAlgorithmProps> = ({form, history, setting}) => {
+const StepAlgorithm: React.FC<StepAlgorithmProps> = ({setting}) => {
+    const history = useHistory();
     const [loading, setLoading] = useState(false);
     const [ids, setIds] = useState<any[]>([]);
     const {api} = useSelector((state: any) => (state));
@@ -53,25 +51,19 @@ const StepAlgorithm: React.FC<RouteComponentProps & StepAlgorithmProps> = ({form
         setIds((prevState: any) => [...prevState, 1]);
     };
 
-    const submitHandler = (e: any) => {
-        e.preventDefault();
-        form.validateFields(async (err: any, values: any) => {
-            if (!err) {
+    const submitHandler = async (values: any) => {
                 setLoading(true);
                 const response = await api.user_general.post('/teacher/custom-algorithms', {...values, setting});
                 dispatch(appChangeCustomAlgorithms(response.data));
                 message.success('Вы успешно добавили алгоритмы!');
                 history.push('/settings/custom-algorithms');
-            }
-        });
     };
 
     return (
-        <Form onSubmit={submitHandler}>
+        <Form onFinish={submitHandler}>
             <StepWrapper>
                 {ids.map((id: any, key) =>
                     <FieldAlgorithm
-                        form={form}
                         isMultiplication={isMultiplication}
                         fieldId={key}
                         key={key}
@@ -79,13 +71,13 @@ const StepAlgorithm: React.FC<RouteComponentProps & StepAlgorithmProps> = ({form
                     />
                 )}
                 <div className="block-add" onClick={addHandler}>
-                    <PlusCircleOutlined />
+                    <PlusCircleOutlined/>
                     <p>Добавить алгоритм</p>
                 </div>
             </StepWrapper>
             <Button
                 type="primary"
-                icon={<SaveOutlined />}
+                icon={<SaveOutlined/>}
                 block
                 size="large"
                 loading={loading}
@@ -97,4 +89,4 @@ const StepAlgorithm: React.FC<RouteComponentProps & StepAlgorithmProps> = ({form
     );
 };
 
-export default Form.create<StepAlgorithmProps>()(withRouter(StepAlgorithm));
+export default StepAlgorithm;

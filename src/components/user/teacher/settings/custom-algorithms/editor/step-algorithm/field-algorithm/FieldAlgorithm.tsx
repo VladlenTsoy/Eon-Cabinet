@@ -1,9 +1,7 @@
 import React, {useState} from 'react';
 import {FormItem} from "lib";
-import { DeleteOutlined, PlusOutlined } from '@ant-design/icons';
-import { Form } from '@ant-design/compatible';
-import '@ant-design/compatible/assets/index.css';
-import { Button, Select } from "antd";
+import {DeleteOutlined, PlusOutlined} from '@ant-design/icons';
+import {Button, Select, Form} from "antd";
 import styled from "styled-components";
 
 const {Option} = Select;
@@ -41,13 +39,12 @@ const MultiWrapper = styled.div`
 `;
 
 interface FieldAlgorithmProps {
-    form: any;
     setting: any;
     fieldId: number;
     isMultiplication: boolean;
 }
 
-const FieldAlgorithm: React.FC<FieldAlgorithmProps> = ({form, setting, fieldId, isMultiplication}) => {
+const FieldAlgorithm: React.FC<FieldAlgorithmProps> = ({setting, fieldId, isMultiplication}) => {
     const [ids, setIds] = useState<any[]>([]);
 
     const addField = () => {
@@ -67,13 +64,11 @@ const FieldAlgorithm: React.FC<FieldAlgorithmProps> = ({form, setting, fieldId, 
                         isMultiplication ?
                             <MultiWrapper>
                                 <FormItem
-                                    form={form}
                                     name={`step[${fieldId}][${key}].first`}
                                     label="Первое число"
                                     required="Введите число!"
                                 />
                                 <FormItem
-                                    form={form}
                                     name={`step[${fieldId}][${key}].sign`}
                                     label="Действие"
                                     required="Выберите Действие!"
@@ -84,27 +79,26 @@ const FieldAlgorithm: React.FC<FieldAlgorithmProps> = ({form, setting, fieldId, 
                                     </Select>
                                 </FormItem>
                                 <FormItem
-                                    form={form}
                                     name={`step[${fieldId}][${key}].second`}
                                     label="Второе число"
                                     required="Введите число!"
-                                    initialValue={setting.theme ? setting.theme : null}
+                                    // TODO - Значение по умолчанию
+                                    // initialValue={setting.theme ? setting.theme : null}
                                 />
 
                             </MultiWrapper> :
                             <FormItem
-                                form={form}
                                 name={`step[${fieldId}][${key}]`}
                                 label={`Шаг №${key + 1}`}
                                 required="Введите число!"
                             />
                     }
-                    <Button type="danger" icon={<DeleteOutlined />} disabled={key + 1 !== ids.length}
+                    <Button type="danger" icon={<DeleteOutlined/>} disabled={key + 1 !== ids.length}
                             onClick={() => deleteHandler(key)}/>
                 </FieldWrapper>
             )}
             <Form.Item>
-                <Button type="dashed" icon={<PlusOutlined />} onClick={addField} block>Добавить</Button>
+                <Button type="dashed" icon={<PlusOutlined/>} onClick={addField} block>Добавить</Button>
             </Form.Item>
         </Wrapper>
     );

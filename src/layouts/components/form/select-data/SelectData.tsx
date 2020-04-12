@@ -6,7 +6,6 @@ import {useApiUserGeneral} from "../../../../effects/use-api-user-general.effect
 const {Option} = Select;
 
 interface SelectDisciplinesProps {
-    form: any;
     url: string;
     label: string;
     name: string;
@@ -14,13 +13,13 @@ interface SelectDisciplinesProps {
     rules?: string;
 }
 
-const SelectData: React.FC<SelectDisciplinesProps> = ({form, url, label, name, required, rules}) => {
+const SelectData: React.FC<SelectDisciplinesProps> = ({url, label, name, required, rules}) => {
     const [loading, data] = useApiUserGeneral({url, initValue: []});
 
     const filter = (input: any, option: any) =>
         option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0;
 
-    return <FormItem form={form} name={name} label={label} required={required} rules={rules}>
+    return <FormItem name={name} label={label} required={required} rules={rules}>
         <Select
             showSearch
             loading={loading}

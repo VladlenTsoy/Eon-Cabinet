@@ -11,10 +11,9 @@ import { Button, Typography } from "antd";
 const {Title} = Typography;
 
 interface AnswerProps {
-    form: any;
 }
 
-const Answer: React.FC<AnswerProps> = ({form}) => {
+const Answer: React.FC<AnswerProps> = () => {
     const {game} = useSelector((state: any) => state);
     const {totals} = game;
     const dispatch = useDispatch();
@@ -31,11 +30,11 @@ const Answer: React.FC<AnswerProps> = ({form}) => {
     };
 
     return (
-        <AnswerLayout form={form} cols={{xl: 10, md: 12, xs: 24}} checkHandler={checkHandler}>
+        <AnswerLayout cols={{xl: 10, md: 12, xs: 24}} checkHandler={checkHandler}>
             <Title level={2}>Введите ответы</Title>
             {
                 totals.map((total: any, key: any) =>
-                    <FormInputAnswerLayout group form={form} answerKey={key} key={key}/>
+                    <FormInputAnswerLayout group answerKey={key} key={key}/>
                 )
             }
             <Button type="primary" htmlType="submit" block size="large" icon={<ArrowRightOutlined />}>

@@ -38,12 +38,11 @@ const InputWrapper = styled.div`
 `;
 
 interface InputAnswerProps {
-    form: any;
     total: any;
     totalKey: number;
 }
 
-const InputAnswer: React.FC<InputAnswerProps> = ({form, total, totalKey}) => {
+const InputAnswer: React.FC<InputAnswerProps> = ({total, totalKey}) => {
     const {game} = useSelector((state: any) => state);
     const {setting} = game;
 
@@ -54,7 +53,6 @@ const InputAnswer: React.FC<InputAnswerProps> = ({form, total, totalKey}) => {
         <div className="content">
             <FormItem
                 label={`Страна №${totalKey + 1}`}
-                form={form}
                 name={`answer[${totalKey}][country]`}
                 size="large"
                 placeholder="Название"
@@ -63,7 +61,6 @@ const InputAnswer: React.FC<InputAnswerProps> = ({form, total, totalKey}) => {
             />
             {Number(setting.mode) > 1 ?
                 <FormItem
-                    form={form}
                     name={`answer[${totalKey}][capital]`}
                     placeholder="Столица"
                     marginBottom="0"

@@ -1,22 +1,22 @@
 import React from 'react';
-import {Col, InputNumber, Radio, Row} from "antd";
+import {Col, Form, InputNumber, Radio, Row} from "antd";
 import {FormItem} from "../../../../../../../../../layouts/components";
 import {useSelector} from "react-redux";
 
 interface SpecialFormItemsProps {
-    form: any;
 }
 
-const SpecialFormItems:React.FC<SpecialFormItemsProps> = ({form}) => {
+const SpecialFormItems: React.FC<SpecialFormItemsProps> = () => {
     const {language} = useSelector((state: any) => state);
-    const {getFieldDecorator} = form;
 
-    return <Row  gutter={15}>
+    return <Row gutter={15}>
         <Col span={24}>
-            {getFieldDecorator('mode', {
-                initialValue: 'plus',
-                rules: [{required: true}],
-            })(
+            <Form.Item
+                name="mode"
+                required
+                // TODO - Значание по умолчанию
+                // initialValue="plus"
+            >
                 <Radio.Group className="setting-mode" buttonStyle="solid">
                     <Radio.Button value="plus">
                         {language.common.modeNames['plus']}
@@ -25,11 +25,10 @@ const SpecialFormItems:React.FC<SpecialFormItemsProps> = ({form}) => {
                         {language.common.modeNames['plus-minus']}
                     </Radio.Button>
                 </Radio.Group>
-            )}
+            </Form.Item>
         </Col>
         <Col span={12}>
             <FormItem
-                form={form}
                 name="from"
                 label="От"
                 required="Введите от какой цифры">
@@ -38,7 +37,6 @@ const SpecialFormItems:React.FC<SpecialFormItemsProps> = ({form}) => {
         </Col>
         <Col span={12}>
             <FormItem
-                form={form}
                 name="to"
                 label="До"
                 required="Введите до какой цифры">
@@ -47,7 +45,6 @@ const SpecialFormItems:React.FC<SpecialFormItemsProps> = ({form}) => {
         </Col>
         <Col span={8}>
             <FormItem
-                form={form}
                 name="count"
                 label="Количество цифр"
                 required="Введите количество цифр!">
@@ -56,7 +53,6 @@ const SpecialFormItems:React.FC<SpecialFormItemsProps> = ({form}) => {
         </Col>
         <Col span={8}>
             <FormItem
-                form={form}
                 name="times"
                 label="Количество раз"
                 required="Введите количество раз!">
@@ -65,7 +61,6 @@ const SpecialFormItems:React.FC<SpecialFormItemsProps> = ({form}) => {
         </Col>
         <Col span={8}>
             <FormItem
-                form={form}
                 name="time"
                 label="Время (секунды)"
                 required="Введите время!">

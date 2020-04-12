@@ -49,7 +49,6 @@ const RangePicker: React.FC<RangePickerProps> = ({form, first}) => {
 
     return <>
         <FormItem
-            form={form}
             name="start_at"
             label="C какого"
             required="Выберите с какого!"
@@ -71,7 +70,6 @@ const RangePicker: React.FC<RangePickerProps> = ({form, first}) => {
 
         </FormItem>
         <FormItem
-            form={form}
             name="end_at"
             label="По какое"
             required="Выберите по какое!"

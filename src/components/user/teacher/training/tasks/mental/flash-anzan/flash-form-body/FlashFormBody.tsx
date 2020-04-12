@@ -2,14 +2,15 @@ import React from 'react';
 import ConfigBlock from "../../../config/Config";
 import FlashFormItems from "./flash-form-items/FlashFormItems";
 import usingFormBodyLayout from "../../layout/form-body/usingFormBody.layout";
+import {FormInstance} from "antd/es/form";
 
 interface FlashFormBodyProps {
-    form: any;
+    form: FormInstance;
 }
 
 const FlashFormBody: React.FC<FlashFormBodyProps> = ({form}) => {
     return <>
-        <FlashFormItems form={form}/>
+        <FlashFormItems/>
         <ConfigBlock
             form={form}
             sounds={{

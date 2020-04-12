@@ -20,9 +20,7 @@ const BodySettingAnzan: React.FC<BodySettingAnzanProps> = (
     }
 ) => {
     return form.getFieldValue('anzan') === 'list' ?
-        <ListSetting
-            form={form}
-        /> :
+        <ListSetting/> :
         <BasicSetting
             form={form}
             mods={mods}

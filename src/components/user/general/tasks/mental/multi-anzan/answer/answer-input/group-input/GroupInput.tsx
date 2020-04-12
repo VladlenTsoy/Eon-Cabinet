@@ -37,14 +37,12 @@ const GroupWrapper = styled(BasicWrapper)`
 `;
 
 interface GroupInputProps {
-    form: any;
     taskKey: number;
     isAnswersOpen: boolean;
 }
 
 const GroupInput: React.FC<GroupInputProps> = (
     {
-        form,
         taskKey,
         isAnswersOpen,
     }
@@ -64,7 +62,6 @@ const GroupInput: React.FC<GroupInputProps> = (
                         </div>
                     </TextFit> :
                     <FormItem
-                        form={form}
                         size="large"
                         autofocus={taskKey === 0 && key === 0}
                         placeholder={`Ответ`}

@@ -1,9 +1,7 @@
 import React, {useState} from 'react';
 import styled from "styled-components";
 import ConfirmEmailBg from "../../../../assets/images/pages/confirm_email.svg";
-import { Form } from '@ant-design/compatible';
-import '@ant-design/compatible/assets/index.css';
-import { Button, Typography } from "antd";
+import {Button, Typography, Form} from "antd";
 import {FormItem} from "../../../../layouts/components";
 import {useSelector} from "react-redux";
 
@@ -20,29 +18,23 @@ const EmailInputWrapper = styled.div`
 `;
 
 interface EmailInputProps {
-    form: any;
     currentUser: any;
     changeDataCurrentUser?: any;
 }
 
-const EmailInput: React.FC<EmailInputProps> = ({form, changeDataCurrentUser, currentUser}) => {
+const EmailInput: React.FC<EmailInputProps> = ({changeDataCurrentUser, currentUser}) => {
     const {api} = useSelector((state: any) => state);
     const [loading, setLoading] = useState(false);
 
-    const handlerSubmit = (e: any) => {
-        e.preventDefault();
-        form.validateFields(async (err: any, values: any) => {
-            if (!err) {
-                setLoading(true);
-                try {
-                    const response = await api.user_general.patch(`/${currentUser.id}`, values);
-                    return changeDataCurrentUser(response.data);
-                } catch (e) {
-                    console.log(e);
-                }
-                setLoading(false);
-            }
-        });
+    const handlerSubmit = async (values: any) => {
+        setLoading(true);
+        try {
+            const response = await api.user_general.patch(`/${currentUser.id}`, values);
+            return changeDataCurrentUser(response.data);
+        } catch (e) {
+            console.log(e);
+        }
+        setLoading(false);
     };
 
     return <EmailInputWrapper>
@@ -50,9 +42,8 @@ const EmailInput: React.FC<EmailInputProps> = ({form, changeDataCurrentUser, cur
         <div className="image-wrapper">
             <img src={ConfirmEmailBg} width="100%" alt="email-input"/>
         </div>
-        <Form onSubmit={handlerSubmit}>
+        <Form onFinish={handlerSubmit}>
             <FormItem
-                form={form}
                 name="email"
                 label="Эл.почта"
                 rules={[{
@@ -68,4 +59,4 @@ const EmailInput: React.FC<EmailInputProps> = ({form, changeDataCurrentUser, cur
     </EmailInputWrapper>;
 };
 
-export default Form.create<EmailInputProps>()(EmailInput);
+export default EmailInput;

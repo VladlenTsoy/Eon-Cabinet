@@ -23,14 +23,12 @@ export const BasicWrapper = styled.div`
 `;
 
 interface BasicInputProps {
-    form: any
     isWait: boolean;
     taskKey: number;
 }
 
 const BasicInput: React.FC<BasicInputProps> = (
     {
-        form,
         isWait,
         taskKey
     }
@@ -43,7 +41,6 @@ const BasicInput: React.FC<BasicInputProps> = (
             <>
                 <Title level={2}>Пользователь №{taskKey + 1}</Title>
                 <FormItem
-                    form={form}
                     size="large"
                     autofocus={taskKey === 0}
                     placeholder={`Ответ`}
