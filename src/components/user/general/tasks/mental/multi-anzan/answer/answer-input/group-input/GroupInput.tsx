@@ -66,7 +66,7 @@ const GroupInput: React.FC<GroupInputProps> = (
                         autofocus={taskKey === 0 && key === 0}
                         placeholder={`Ответ`}
                         name={`answer[${taskKey}][${key}]`}
-                        required={`Введите ответ №${taskKey + 1}`}
+                        requiredMsg={`Введите ответ №${taskKey + 1}`}
                     />
                 }
             </div>

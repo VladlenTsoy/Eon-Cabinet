@@ -18,12 +18,22 @@ interface HookModalEditorProps {
 const usingModalEditor = (FormComponent: any): React.FC<HookModalEditorProps> => {
     const FormComponentData = usingFormEditorModalData(FormComponent);
 
-    return ({title, fetch, children, sendData, data, isMouseDown, width, ...props}) => {
+    return (
+        {
+            title,
+            fetch,
+            children,
+            sendData,
+            data,
+            isMouseDown,
+            width,
+            ...props
+        }
+    ) => {
         const [visible, setVisible] = useState(false);
 
-        const open = () => {
+        const open = () =>
             setVisible(true);
-        };
 
         const close = async (e: any, isFetch?: boolean) => {
             setVisible(false);
@@ -38,7 +48,7 @@ const usingModalEditor = (FormComponent: any): React.FC<HookModalEditorProps> =>
             >
                 {children}
             </span>
-            <ModalEditor visible={visible} close={close} title={title} width={width}>
+            <ModalEditor visible={visible} onCancel={close} title={title} width={width}>
                 <FormComponentData close={close} sendData={sendData} data={data} {...props}/>
             </ModalEditor>
         </>;

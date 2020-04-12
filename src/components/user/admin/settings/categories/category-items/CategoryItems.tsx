@@ -18,8 +18,8 @@ const CategoryItems: React.FC<CategoryItemsProps> = ({isFranchise}) => {
     const handleTypeChange = (e: any) => setType(e.target.value);
 
     return <>
-        <FormItem name="title" label="Название" required="Введите название!"/>
-        <FormItem name="discipline_id" label="Дисциплина" required="Выберите дисциплину!">
+        <FormItem name="title" label="Название" requiredMsg="Введите название!"/>
+        <FormItem name="discipline_id" label="Дисциплина" requiredMsg="Выберите дисциплину!">
             <Select>
                 {app.disciplines.map((discipline: any, key: number) =>
                     <Option key={key} value={discipline.id}>{discipline.title}</Option>

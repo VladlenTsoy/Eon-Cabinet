@@ -15,7 +15,7 @@ const CentersListBodyChangeCenter: React.FC<CentersListBodyChangeCenter> = ({cur
 
     return <FormItem
         name="center_id"
-        required="Выберите центр!"
+        requiredMsg="Выберите центр!"
         label="Выберите центр для превода учителя"
     >
         <Select style={{width: '100%'}} onChange={handlerChange} loading={loading}>

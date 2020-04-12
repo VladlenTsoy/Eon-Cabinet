@@ -12,7 +12,7 @@ interface CategoryItemCentersProps {
 const CategoryItemCenters: React.FC<CategoryItemCentersProps> = () => {
     const [loading, centers] = useApiUserGeneral({url: 'admin/centers/all'});
 
-    return <FormItem name="center_id" label="Центр" required="Выберите центр!">
+    return <FormItem name="center_id" label="Центр" requiredMsg="Выберите центр!">
         <Select
             showSearch
             loading={loading}

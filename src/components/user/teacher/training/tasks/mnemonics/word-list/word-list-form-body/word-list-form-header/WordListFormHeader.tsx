@@ -49,7 +49,7 @@ const WordListFormHeader: React.FC<WordListFormHeaderProps> = ({addSetting}) => 
                     <FormItem name="mode"
                         // TODO - Значение по умолчанию
                         // initialValue={0}
-                              label={common.mode} required="Выберите режим!">
+                              label={common.mode} requiredMsg="Выберите режим!">
                         <Select>
                             {common.tasksTraining.wordsList.mode.map((type: string, key: number) =>
                                 <Option value={key} key={key}>{type}</Option>
@@ -63,7 +63,7 @@ const WordListFormHeader: React.FC<WordListFormHeaderProps> = ({addSetting}) => 
                         // TODO - Значение по умолчанию
                         // initialValue={0}
                         label={common.type}
-                        required="Выберите тип!"
+                        requiredMsg="Выберите тип!"
                     >
                         <Select>
                             {common.tasksTraining.wordsList.type.map((type: string, key: number) =>
@@ -77,7 +77,7 @@ const WordListFormHeader: React.FC<WordListFormHeaderProps> = ({addSetting}) => 
                         <FormItem name="count"
                             // TODO - Значение по умолчанию
                             // initialValue={5}
-                                  label={common.qty} required="Введите кол-во!"
+                                  label={common.qty} requiredMsg="Введите кол-во!"
                                   marginBottom="0">
                             <Select>
                                 <Option value={5}>{5}</Option>

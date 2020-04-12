@@ -6,9 +6,9 @@ interface PriceItemsProps {
 
 const PriceItems: React.FC<PriceItemsProps> = () => {
     return <>
-        <FormItem name="title" label="Название" required="Введите название!"/>
-        <FormItem name="student" label="Студент" required="Введите стоимость студента!"/>
-        <FormItem name="teacher" label="Учитель" required="Введите стоимость учителя!"/>
+        <FormItem name="title" label="Название" requiredMsg="Введите название!"/>
+        <FormItem name="student" label="Студент" requiredMsg="Введите стоимость студента!"/>
+        <FormItem name="teacher" label="Учитель" requiredMsg="Введите стоимость учителя!"/>
     </>
 };
 

@@ -7,7 +7,7 @@ interface DigitalImageFormBodyProps {
 }
 
 const DigitalImageFormBody:React.FC<DigitalImageFormBodyProps> = () => {
-    return <FormItem name="mode" label="Мод" required="Выберите мод!">
+    return <FormItem name="mode" label="Мод" requiredMsg="Выберите мод!">
         <Select>
             <Select.Option value="1">По порядку</Select.Option>
             <Select.Option value="2">Вразброс</Select.Option>

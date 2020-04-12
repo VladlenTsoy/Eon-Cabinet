@@ -3,7 +3,7 @@ import {Input} from "antd";
 import {FormItem} from "../index";
 
 const InputEmail: React.FC = () => {
-    const rules = [
+    const rules: any = [
         {type: 'email', message: 'Введен неверный E-mail!',},
     ];
 

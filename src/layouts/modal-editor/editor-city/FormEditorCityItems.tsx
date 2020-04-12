@@ -12,7 +12,7 @@ const FormEditorCityItems: React.FC<FormEditorCityItemsProps> = () => {
             url="director-franchise/languages"
             label="Язык"
             name="lang_id"
-            required="Выберите язык!"
+            requiredMsg="Выберите язык!"
         />
     </>
 };

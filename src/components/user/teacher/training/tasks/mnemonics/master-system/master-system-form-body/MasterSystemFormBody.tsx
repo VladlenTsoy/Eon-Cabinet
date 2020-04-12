@@ -9,7 +9,7 @@ interface MasterSystemFormBodyProps {
 const MasterSystemFormBody: React.FC<MasterSystemFormBodyProps> = () => {
     return <Row  gutter={15}>
         <Col span={24}>
-            <FormItem name="mode" label="Мод" required="Выберите мод!">
+            <FormItem name="mode" label="Мод" requiredMsg="Выберите мод!">
                 <Select>
                     <Select.Option value="1">По порядку</Select.Option>
                     <Select.Option value="2">Вразброс</Select.Option>
@@ -17,12 +17,12 @@ const MasterSystemFormBody: React.FC<MasterSystemFormBodyProps> = () => {
             </FormItem>
         </Col>
         <Col xs={12}>
-            <FormItem label="Количество цифр" required="Введите количество цифр" name="count">
+            <FormItem label="Количество цифр" requiredMsg="Введите количество цифр" name="count">
                 <InputNumber style={{width: '100%'}}/>
             </FormItem>
         </Col>
         <Col xs={12}>
-            <FormItem label="Время (минуты)" required="Введите время (минуты)" name="time">
+            <FormItem label="Время (минуты)" requiredMsg="Введите время (минуты)" name="time">
                 <InputNumber style={{width: '100%'}}/>
             </FormItem>
         </Col>

@@ -48,7 +48,7 @@ const PasswordBlock = ({form, currentUser, closeModal}: any) => {
     };
 
     return (
-        <Form onSubmit={handleSubmit} className="login-form">
+        <Form onSubmit={handleSubmit} className="login-form" layout="vertical">
             <Form.Item label="Текущий пароль">
                 {getFieldDecorator('password_old', {
                     rules: [{required: true, message: 'Введите текущий пароль!'}],

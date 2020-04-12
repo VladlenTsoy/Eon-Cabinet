@@ -35,7 +35,7 @@ const FormInputAnswerLayout: React.FC<FormInputAnswer> = (
         <FormItem
             key={answerKey}
             name={group ? `answer[${answerKey}]` : 'answer'}
-            required={group ? `Введите ответ №${answerKey + 1}!` : 'Введите ответ!'}
+            requiredMsg={group ? `Введите ответ №${answerKey + 1}!` : 'Введите ответ!'}
         >
             <InputWrapper
                 size="large"

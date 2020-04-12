@@ -34,7 +34,7 @@ const FormEditorStudent: React.FC<FormEditorStudentProps> = (
             <FormItem
                 name="first_name"
                 label="Имя"
-                required="Введите имя!"
+                requiredMsg="Введите имя!"
             />
             <InputEmail/>
             <InputLogin/>
@@ -43,14 +43,14 @@ const FormEditorStudent: React.FC<FormEditorStudentProps> = (
                     url={`teacher/field/groups/${group_id}`}
                     label="Группа"
                     name="group_id"
-                    required="Выберите группу!"
+                    requiredMsg="Выберите группу!"
                 /> : null}
         </Col>
         <Col sm={12} xs={24}>
             <FormItem
                 name="last_name"
                 label="Фамилия"
-                required="Введите фамилию!"
+                requiredMsg="Введите фамилию!"
             />
             <FormItem
                 name="phone"

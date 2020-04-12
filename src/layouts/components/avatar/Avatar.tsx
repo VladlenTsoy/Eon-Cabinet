@@ -12,8 +12,8 @@ interface UserImageProps {
 }
 
 const UserImageWrapper = styled.div<any>`
-  background: ${props => props.theme['@layout-body-background']};
-  border: 2px solid ${props => props.theme['@layout-body-background']};
+  background: #ffffff;
+  border: 2px solid #ffffff;
   border-radius: 50%;
   box-shadow: ${props => props.theme.shadow_primary};
   display: flex;

@@ -21,7 +21,7 @@ const FormEditorCenterItems: React.FC<FormEditorCenterItemsProps> = ({form}) => 
                     url="admin/franchises"
                     label="Франшиза"
                     name="franchise_id"
-                    required="Выберите франшизу!"
+                    requiredMsg="Выберите франшизу!"
                 />
             </Col> : null}
 
@@ -29,7 +29,7 @@ const FormEditorCenterItems: React.FC<FormEditorCenterItemsProps> = ({form}) => 
             <FormItem
                 name="title"
                 label="Название"
-                required="Введите название!"/>
+                requiredMsg="Введите название!"/>
             <FormItem name="phone" label="Телефон"/>
         </Col>
         <Col span={12}>

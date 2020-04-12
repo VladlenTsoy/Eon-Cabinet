@@ -2,7 +2,7 @@ import React from 'react';
 import { EditOutlined } from '@ant-design/icons';
 import {Card, ButtonLink} from "lib";
 import DeleteGroupButton from "./delete-button/DeleteGroupButton";
-import EditorGroupButton from "../editor-group-button/EditorGroupButton";
+import EditorButton from "../editor-button/EditorButton";
 import moment from "moment";
 
 interface CardGroupProps {
@@ -14,9 +14,9 @@ const CardGroup: React.FC<CardGroupProps> = ({group, fetchGroups}) => {
     return (
         <Card>
             <Card.Header title="Группа" icons>
-                <EditorGroupButton title="Редактировать группу" fetch={fetchGroups} group={group}>
+                <EditorButton title="Редактировать группу" fetch={fetchGroups} group={group}>
                     <EditOutlined />
-                </EditorGroupButton>
+                </EditorButton>
                 <DeleteGroupButton group={group} fetch={fetchGroups}/>
             </Card.Header>
             <Card.Title title={group.title}/>

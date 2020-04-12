@@ -68,7 +68,7 @@ const SelectStatus: React.FC = () => {
                 showIcon
             />}
 
-        <FormItem name="status" required="Выберите статус!">
+        <FormItem name="status" requiredMsg="Выберите статус!">
             <RadioGroupWrapper buttonStyle="solid" onChange={handleChange}>
                 <Radio.Button value="test"><ClockCircleOutlined />Тестовый период</Radio.Button>
                 <Radio.Button value="active"><DollarOutlined />Платежный аккаунт</Radio.Button>

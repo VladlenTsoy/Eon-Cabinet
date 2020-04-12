@@ -9,7 +9,7 @@ interface CountriesFormBodyProps {
 const CountriesFormBody:React.FC<CountriesFormBodyProps> = () => {
     return <Row  gutter={15}>
         <Col span={24}>
-            <FormItem name="mode" label="Мод" required="Выберите мод!">
+            <FormItem name="mode" label="Мод" requiredMsg="Выберите мод!">
                 <Select>
                     <Select.Option value="1">Уровень 1</Select.Option>
                     <Select.Option value="2">Уровень 2</Select.Option>
@@ -17,12 +17,12 @@ const CountriesFormBody:React.FC<CountriesFormBodyProps> = () => {
             </FormItem>
         </Col>
         <Col xs={12}>
-            <FormItem label="Количество стран" required="Введите количество стран" name="count">
+            <FormItem label="Количество стран" requiredMsg="Введите количество стран" name="count">
                 <InputNumber style={{width: '100%'}}/>
             </FormItem>
         </Col>
         <Col xs={12}>
-            <FormItem label="Время (минуты)" required="Введите время (минуты)" name="time">
+            <FormItem label="Время (минуты)" requiredMsg="Введите время (минуты)" name="time">
                 <InputNumber style={{width: '100%'}}/>
             </FormItem>
         </Col>

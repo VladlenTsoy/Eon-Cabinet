@@ -41,13 +41,13 @@ const FormEditorStudent: React.FC<FormEditorStudentProps> = ({data, close, group
                     <InputPhoto form={form}/>
                 </Col>
                 <Col span={12}>
-                    <FormItem name="first_name" label="Имя" required="Введите имя!"/>
+                    <FormItem name="first_name" label="Имя" requiredMsg="Введите имя!"/>
                     <InputEmail/>
                     <InputLogin/>
-                    <SelectData url="teacher/groups" label="Группа" name="group_id" required="Выберите группу!"/>
+                    <SelectData url="teacher/groups" label="Группа" name="group_id" requiredMsg="Выберите группу!"/>
                 </Col>
                 <Col span={12}>
-                    <FormItem name="last_name" label="Фамилия" required="Введите фамилию!"/>
+                    <FormItem name="last_name" label="Фамилия" requiredMsg="Введите фамилию!"/>
                     <FormItem name="phone" label="Телефон">
                         <Input/>
                     </FormItem>

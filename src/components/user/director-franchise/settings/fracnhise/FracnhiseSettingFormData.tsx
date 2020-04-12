@@ -37,7 +37,7 @@ const FranchiseSettingFormData: React.FC<any> = ({form, franchise, update}) => {
                         <Upload form={form} name="image" label="Лого"/>
                     </Col>
                     <Col xl={12}>
-                        <FormItem name="title" label="Название" required="Введите название">
+                        <FormItem name="title" label="Название" requiredMsg="Введите название">
                             <Input/>
                         </FormItem>
                         <FormItem name="description" label="Описание">

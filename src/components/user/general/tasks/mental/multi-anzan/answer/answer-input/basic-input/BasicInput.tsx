@@ -45,7 +45,7 @@ const BasicInput: React.FC<BasicInputProps> = (
                     autofocus={taskKey === 0}
                     placeholder={`Ответ`}
                     name={`answer[${taskKey}]`}
-                    required={`Введите ответ пользователя №${taskKey + 1}`}
+                    requiredMsg={`Введите ответ пользователя №${taskKey + 1}`}
                 />
             </>}
     </BasicWrapper>;

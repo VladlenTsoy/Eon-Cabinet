@@ -15,15 +15,15 @@ const WordItems: React.FC<PersonalityItemsProps> = () => {
     const levels = language.common.tasksTraining.wordsList.type;
 
     return <>
-        <FormItem name="word" label="Слово" required="Введите слово!"/>
-        <FormItem name="type" label="Тип" required="Выберите тип!">
+        <FormItem name="word" label="Слово" requiredMsg="Введите слово!"/>
+        <FormItem name="type" label="Тип" requiredMsg="Выберите тип!">
             <Select>
                 {types.map((type: any, key: number) =>
                     <Option value={key} key={key}>{type}</Option>
                 )}
             </Select>
         </FormItem>
-        <FormItem name="level" label="Уровень" required="Выберите уровень!">
+        <FormItem name="level" label="Уровень" requiredMsg="Выберите уровень!">
             <Select>
                 {levels.map((level: any, key: number) =>
                     <Option value={key} key={key}>{level}</Option>
@@ -33,7 +33,7 @@ const WordItems: React.FC<PersonalityItemsProps> = () => {
         <FormItem name="description" label="Описание">
             <TextArea rows={6}/>
         </FormItem>
-        <FormItem name="lang_id" label="Язык" required="Выберите язык!">
+        <FormItem name="lang_id" label="Язык" requiredMsg="Выберите язык!">
             <Select>
                 <Option value={1} key={1}>Русский</Option>
                 <Option value={2} key={2}>Узбекский</Option>

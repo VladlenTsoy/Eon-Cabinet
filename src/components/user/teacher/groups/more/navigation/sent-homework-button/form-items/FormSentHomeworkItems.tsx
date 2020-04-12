@@ -55,7 +55,7 @@ const FormSentHomeworkItems: React.FC<FormSentHomeworkItems> = (
             <FormItem
                 name="homework"
                 label="Уровень"
-                required="Выберите уровень!"
+                requiredMsg="Выберите уровень!"
             >
                 <Select loading={loading} onChange={handlerChange}>
                     {homework.map((val: any, key: number) =>

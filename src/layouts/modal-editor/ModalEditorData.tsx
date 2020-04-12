@@ -29,7 +29,7 @@ const usingFormEditorModalData = (FormItemsComponent: any) => {
             }
         };
 
-        return <Form onFinish={onFinish} form={form}>
+        return <Form onFinish={onFinish} form={form} layout="vertical">
             <FormItemsComponent form={form} {...props}/>
             <div className="actions-block">
                 <Button type="primary" htmlType="submit" loading={loading}>Сохранить</Button>

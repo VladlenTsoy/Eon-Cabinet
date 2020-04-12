@@ -9,17 +9,17 @@ interface SelectDisciplinesProps {
     url: string;
     label: string;
     name: string;
-    required?: string;
-    rules?: string;
+    requiredMsg?: string;
+    rules?: any;
 }
 
-const SelectData: React.FC<SelectDisciplinesProps> = ({url, label, name, required, rules}) => {
+const SelectData: React.FC<SelectDisciplinesProps> = ({url, label, name, requiredMsg, rules}) => {
     const [loading, data] = useApiUserGeneral({url, initValue: []});
 
     const filter = (input: any, option: any) =>
         option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0;
 
-    return <FormItem name={name} label={label} required={required} rules={rules}>
+    return <FormItem name={name} label={label} requiredMsg={requiredMsg} rules={rules}>
         <Select
             showSearch
             loading={loading}

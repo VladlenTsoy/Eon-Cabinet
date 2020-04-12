@@ -12,7 +12,7 @@ interface CategoryItemFranchiseProps {
 const CategoryItemFranchise: React.FC<CategoryItemFranchiseProps> = () => {
     const [loading, franchises] = useApiUserGeneral({url: 'admin/franchises'});
 
-    return <FormItem name="franchise_id" label="Франшиза" required="Выберите франшизу!">
+    return <FormItem name="franchise_id" label="Франшиза" requiredMsg="Выберите франшизу!">
         <Select
             showSearch
             loading={loading}

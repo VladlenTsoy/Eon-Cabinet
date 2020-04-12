@@ -6,8 +6,8 @@ interface WordNumberItemsProps {
 
 const WordNumberItems: React.FC<WordNumberItemsProps> = () => {
     return <>
-        <FormItem name="number" label="Цифра" required="Введите цифру!"/>
-        <FormItem name="word" label="Слово" required="Введите слово!"/>
+        <FormItem name="number" label="Цифра" requiredMsg="Введите цифру!"/>
+        <FormItem name="word" label="Слово" requiredMsg="Введите слово!"/>
     </>
 };
 

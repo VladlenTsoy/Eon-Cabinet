@@ -11,7 +11,7 @@ const ProgressionFormItems:React.FC<ProgressionFormItemsProps> = () => {
             <FormItem
                 name="count"
                 label="Количество цифр"
-                required="Введите количество цифр!">
+                requiredMsg="Введите количество цифр!">
                 <InputNumber min={1} max={10} style={{width: '100%'}}/>
             </FormItem>
         </Col>
@@ -19,7 +19,7 @@ const ProgressionFormItems:React.FC<ProgressionFormItemsProps> = () => {
             <FormItem
                 name="time"
                 label="Время (секунды)"
-                required="Введите время!">
+                requiredMsg="Введите время!">
                 <InputNumber min={0.2} max={10} step={0.1} style={{width: '100%'}}/>
             </FormItem>
         </Col>

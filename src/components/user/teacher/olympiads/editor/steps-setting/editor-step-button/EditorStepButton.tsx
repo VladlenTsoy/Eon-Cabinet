@@ -46,7 +46,7 @@ const EditorStepButton: React.FC<EditorStepButtonProps> = (
 
     return <>
         <ModalEditor
-            close={close}
+            onCancel={close}
             visible={visible}
             title={step && step.title ? 'Редактирование этапа' : 'Создание этапа'}
             destroyOnClose={false}
@@ -56,7 +56,7 @@ const EditorStepButton: React.FC<EditorStepButtonProps> = (
                 start_at: step.start_at ? moment(step.start_at) : null,
                 end_at: step.end_at ? moment(step.end_at) : null
             }}>
-                <FormItem name="title" label="Название" required="Введите название!"/>
+                <FormItem name="title" label="Название" requiredMsg="Введите название!"/>
                 <RangePicker form={form} first={first}/>
                 {step && step.title ?
                     <Button type="primary" block icon={<SaveOutlined/>} htmlType="submit">Сохранить</Button> :

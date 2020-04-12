@@ -19,19 +19,19 @@ const SaveOlympiadItems: React.FC<SaveOlympiadItemsProps> = ({setIsSaveBtn}) => 
         <FormItem
             name="title"
             label="Название"
-            required="Введите название!"
+            requiredMsg="Введите название!"
         />
         <FormItem
             name="description"
             label="Описание"
-            required="Введите описание!"
+            requiredMsg="Введите описание!"
         >
             <TextArea rows={4}/>
         </FormItem>
         <FormItem
             name="access"
             label="Доступ"
-            required="Выберите доступ!"
+            requiredMsg="Выберите доступ!"
         >
             <Select>
                 <Option value="public">Публичный</Option>

@@ -42,7 +42,7 @@ const FormulTitleSettingAnzan: React.FC<any> = ({form, defaultTypes}) => {
                     name={type[0]}
                     label={type[1]}
                     key={key}
-                    required={`Введите название формулы (${type[1]})`}>
+                    requiredMsg={`Введите название формулы (${type[1]})`}>
                     <Input/>
                 </FormItem>
             )}

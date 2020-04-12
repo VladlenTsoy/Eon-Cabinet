@@ -51,7 +51,7 @@ const RangePicker: React.FC<RangePickerProps> = ({form, first}) => {
         <FormItem
             name="start_at"
             label="C какого"
-            required="Выберите с какого!"
+            requiredMsg="Выберите с какого!"
         >
             <DatePicker
                 disabled={!first}
@@ -72,7 +72,7 @@ const RangePicker: React.FC<RangePickerProps> = ({form, first}) => {
         <FormItem
             name="end_at"
             label="По какое"
-            required="Выберите по какое!"
+            requiredMsg="Выберите по какое!"
         >
             <DatePicker
                 disabledDate={disabledEndDate}

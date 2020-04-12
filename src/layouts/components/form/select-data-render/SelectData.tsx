@@ -9,8 +9,8 @@ interface SelectDataProps {
     url: string;
     name: string;
     label: string;
-    required?: string;
-    rules?: string;
+    requiredMsg?: string;
+    rules?: any;
     evtBtn?: any;
     optRender?: any;
 }
@@ -20,7 +20,7 @@ const SelectData: React.FC<SelectDataProps> = (
         url,
         name,
         label,
-        required,
+        requiredMsg,
         rules,
         evtBtn,
         optRender
@@ -40,7 +40,7 @@ const SelectData: React.FC<SelectDataProps> = (
             </div>
         </>;
 
-    return <FormItem name={name} label={label} required={required} rules={rules}>
+    return <FormItem name={name} label={label} requiredMsg={requiredMsg} rules={rules}>
         <Select
             showSearch
             loading={loading}

@@ -14,7 +14,7 @@ const FranchiseItems: React.FC<FranchiseItemsProps> = ({form}) => {
     return (
         <Row gutter={15}>
             <Col span={24}>
-                <FormItem name="title" label="Название" required="Введите название!"/>
+                <FormItem name="title" label="Название" requiredMsg="Введите название!"/>
             </Col>
             <Col span={12}>
                 <SelectData

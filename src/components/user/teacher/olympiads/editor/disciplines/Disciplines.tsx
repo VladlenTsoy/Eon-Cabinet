@@ -29,7 +29,7 @@ const Disciplines: React.FC<DisciplinesProps> = ({setDiscipline}) => {
                     <Card.Title title="Создание олимпиады" level={3}/>
                     <p>Выберите дисциплину в которой будет проводиться олимпиада.</p>
                     <Form onFinish={submitHandler}>
-                        <FormItem name="discipline_id" label="Диспиплина" required="Выберите дисциплину!">
+                        <FormItem name="discipline_id" label="Диспиплина" requiredMsg="Выберите дисциплину!">
                             <Select>
                                 {
                                     app.disciplines.map(function (discipline: any, key: number) {

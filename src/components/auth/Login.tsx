@@ -33,10 +33,10 @@ const Login = () => {
         <Title>Авторизация</Title>
         <SubTitle>Вход в личный кабинет</SubTitle>
         <FormWrapper onFinish={handleSubmit}>
-            <FormItem name="login" required="Введите Логин или Почту!">
+            <FormItem name="login" requiredMsg="Введите Логин или Почту!">
                 <Input prefix={<UserOutlined/>} placeholder="Логин или Почту"/>
             </FormItem>
-            <FormItem name="password" required="Введите пароль!">
+            <FormItem name="password" requiredMsg="Введите пароль!">
                 <Input.Password prefix={<LockOutlined/>} placeholder="Пароль"/>
             </FormItem>
             <Form.Item>

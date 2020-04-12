@@ -2,10 +2,11 @@ import React from 'react';
 import {Col, Row, Empty, Tabs} from "antd";
 import GroupBlock from "./card-group/CardGroup";
 import {Navigation, NavigationButton, Spin, TabTitleCustom} from "../../../../../layouts/components";
-import EditorGroupButton from "./editor-group-button/EditorGroupButton";
+import EditorButton from "./editor-button/EditorButton";
 import {useApiUserGeneral} from "../../../../../effects/use-api-user-general.effect";
 import {appChangeActiveDisciplineId} from "../../../../../store/app/actions";
 import {useDispatch, useSelector} from "react-redux";
+import {PlusOutlined} from "@ant-design/icons";
 
 const {TabPane} = Tabs;
 
@@ -25,11 +26,11 @@ const Groups: React.FC = () => {
 
     return <>
         <Navigation>
-            <EditorGroupButton fetch={fetch} title="Создать группу">
-                <NavigationButton type="primary" icon="plus">
+            <EditorButton fetch={fetch} title="Создать группу">
+                <NavigationButton type="primary" icon={<PlusOutlined/>}>
                     Создать группу
                 </NavigationButton>
-            </EditorGroupButton>
+            </EditorButton>
         </Navigation>
 
         <Spin spinning={loading} tip="Загрузка...">

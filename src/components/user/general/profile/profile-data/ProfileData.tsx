@@ -49,7 +49,7 @@ const ProfileData: React.FC = () => {
                     <FormItem
                         name="last_name"
                         label="Фамилия"
-                        required="Введите фамилию!"
+                        requiredMsg="Введите фамилию!"
                     />
                     <FormItem
                         name="date_of_birth"
@@ -73,12 +73,12 @@ const ProfileData: React.FC = () => {
                     <FormItem
                         name="first_name"
                         label="Имя"
-                        required="Введите имя!"
+                        requiredMsg="Введите имя!"
                     />
                     <FormItem
                         name="login"
                         label="Логин"
-                        required="Введите Логин!"
+                        requiredMsg="Введите Логин!"
                     />
                     <FormItem
                         name="phone"

@@ -1,7 +1,9 @@
+import {FC} from "react";
 import antd from "antd";
+import {ModalProps} from "antd/es/modal";
 import styled from "styled-components";
 
-const Modal = styled(antd.Modal)`
+const Modal: FC<ModalProps> = styled(antd.Modal)`
     .ant-modal-content {
       border-radius: 10px;
       box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);

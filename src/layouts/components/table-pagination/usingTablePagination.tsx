@@ -2,17 +2,6 @@ import React, {useState} from 'react';
 import {useApiUserGeneral} from "effects/use-api-user-general.effect";
 import {Navigation, TablePagination} from "../index";
 import {Card} from "lib";
-import styled from "styled-components";
-
-interface CardStyleProps {
-    isPadding: boolean;
-}
-
-const CardWrapper = styled(Card)<CardStyleProps>`
-  &.ant-card > .ant-card-body{
-    padding: ${props => props.theme.isPadding ? '1rem' : '0 1rem'};
-  }
-`;
 
 interface UsingTablePaginationProps<RecordType = any> {
     url: string;
@@ -61,7 +50,7 @@ const UsingTablePagination: React.FC<UsingTablePaginationProps> = (
     });
 
     const Wrapper = (child: any) => isCard ?
-        <CardWrapper isPadding={isPagination || isSearch}>{child}</CardWrapper> : child;
+        <Card>{child}</Card> : child;
 
     return <>
         {header ?

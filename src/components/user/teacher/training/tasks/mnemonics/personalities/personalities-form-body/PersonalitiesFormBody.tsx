@@ -9,7 +9,7 @@ interface PersonalitiesFormBodyProps {
 const PersonalitiesFormBody:React.FC<PersonalitiesFormBodyProps> = () => {
     return <Row  gutter={15}>
         <Col span={24}>
-            <FormItem name="mode" label="Мод" required="Выберите мод!">
+            <FormItem name="mode" label="Мод" requiredMsg="Выберите мод!">
                 <Select>
                     <Select.Option value="1">Уровень 1</Select.Option>
                     <Select.Option value="2">Уровень 2</Select.Option>
@@ -18,12 +18,12 @@ const PersonalitiesFormBody:React.FC<PersonalitiesFormBodyProps> = () => {
             </FormItem>
         </Col>
         <Col sm={12} xs={24}>
-            <FormItem label="Количество личностей" required="Введите количество личностей" name="count">
+            <FormItem label="Количество личностей" requiredMsg="Введите количество личностей" name="count">
                 <InputNumber style={{width: '100%'}}/>
             </FormItem>
         </Col>
         <Col sm={12} xs={24}>
-            <FormItem label="Время (минуты)" required="Введите время (минуты)" name="time">
+            <FormItem label="Время (минуты)" requiredMsg="Введите время (минуты)" name="time">
                 <InputNumber style={{width: '100%'}}/>
             </FormItem>
         </Col>

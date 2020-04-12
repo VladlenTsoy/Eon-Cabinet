@@ -47,12 +47,12 @@ interface UploadInputProps {
     form: any;
     name: string;
     label?: string;
-    required?: string;
+    requiredMsg?: string;
     rules?: any;
 }
 
 // TODO - Нужно просмотреть Form для изменения
-const UploadInput:React.FC<UploadInputProps> = ({form, name, label, required, rules}) => {
+const UploadInput:React.FC<UploadInputProps> = ({form, name, label, requiredMsg, rules}) => {
     const [imageUrl, setImageUrl] = useState();
     const {getFieldDecorator} = form;
 
@@ -75,7 +75,7 @@ const UploadInput:React.FC<UploadInputProps> = ({form, name, label, required, ru
                             // @ts-ignore
                            onChange={handleChange} hidden/>
                     {getFieldDecorator(name, {
-                        rules: rules || (required ? [{required: true, message: required}] : null),
+                        rules: rules || (requiredMsg ? [{required: true, message: requiredMsg}] : null),
                     })(
                         <Input/>
                     )}

@@ -10,12 +10,12 @@ const DigitalPictureItems: React.FC<PersonalityItemsProps> = ({form}) => {
         <FormItem
             name="number"
             label="Цифра"
-            required="Введите цифру!"/>
+            requiredMsg="Введите цифру!"/>
         <Upload
             form={form}
             name="picture"
             label="Картинка"
-            required="Выберите картинку!"/>
+            requiredMsg="Выберите картинку!"/>
     </>
 };
 

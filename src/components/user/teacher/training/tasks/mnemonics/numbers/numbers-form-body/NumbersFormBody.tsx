@@ -26,7 +26,7 @@ const NumbersFormBody: React.FC<NumbersFormBodyProps> = ({form}) => {
                         <Radio.Button value="list"><FileOutlined/> Листы</Radio.Button>
                     </RadioWrapper>
                 </FormItem>
-                <FormItem name="mode" label="Мод" required="Выберите мод!">
+                <FormItem name="mode" label="Мод" requiredMsg="Выберите мод!">
                     <Select>
                         <Select.Option value="1">2 - значные</Select.Option>
                         <Select.Option value="2">3 - значные</Select.Option>
@@ -36,16 +36,16 @@ const NumbersFormBody: React.FC<NumbersFormBodyProps> = ({form}) => {
             </Col>
             <Col xs={12}>
                 {form.getFieldValue('task-mode') === 'basic' ?
-                    <FormItem label="Количество цифр" required="Введите количество цифр" name="count">
+                    <FormItem label="Количество цифр" requiredMsg="Введите количество цифр" name="count">
                         <InputNumber style={{width: '100%'}}/>
                     </FormItem> :
-                    <FormItem label="Количество строк" required="Введите строк" name="count">
+                    <FormItem label="Количество строк" requiredMsg="Введите строк" name="count">
                         <InputNumber style={{width: '100%'}}/>
                     </FormItem>
                 }
             </Col>
             <Col xs={12}>
-                <FormItem label="Время (минуты)" required="Введите время (минуты)" name="time">
+                <FormItem label="Время (минуты)" requiredMsg="Введите время (минуты)" name="time">
                     <InputNumber style={{width: '100%'}}/>
                 </FormItem>
             </Col>

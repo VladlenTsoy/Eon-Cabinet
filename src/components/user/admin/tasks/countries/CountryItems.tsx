@@ -11,8 +11,8 @@ interface CountryItemsProps {
 const CountryItems: React.FC<CountryItemsProps> = ({form}) => {
     return <Row gutter={15}>
         <Col span={12}>
-            <FormItem name="country" label="Страна" required="Введите страну!"/>
-            <FormItem name="capital" label="Столица" required="Введите столицу!"/>
+            <FormItem name="country" label="Страна" requiredMsg="Введите страну!"/>
+            <FormItem name="capital" label="Столица" requiredMsg="Введите столицу!"/>
         </Col>
         <Col span={12}>
             <FormItem name="description" label="Описание">
@@ -20,10 +20,10 @@ const CountryItems: React.FC<CountryItemsProps> = ({form}) => {
             </FormItem>
         </Col>
         <Col span={12}>
-            <Upload form={form} name="flag" label="Флаг" required="Выберите флаг!"/>
+            <Upload form={form} name="flag" label="Флаг" requiredMsg="Выберите флаг!"/>
         </Col>
         <Col span={12}>
-            <Upload form={form} name="emblem" label="Герб" required="Выберите герб!"/>
+            <Upload form={form} name="emblem" label="Герб" requiredMsg="Выберите герб!"/>
         </Col>
     </Row>
 };

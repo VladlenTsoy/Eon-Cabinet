@@ -1,42 +1,39 @@
 import React from "react";
 import {Form} from 'antd';
+import {FormItemProps} from 'antd/es/form';
 import {Input} from "antd";
 
-interface FormItemProps {
-    name: string;
+type Diff<T extends keyof any, U extends keyof any> =
+    ({ [P in T]: P } & { [P in U]: never } & { [x: string]: never })[T];
+type Overwrite<T, U> = Pick<T, Diff<keyof T, keyof U>> & U;
+
+interface ItemProps {
     size?: 'small' | 'middle' | 'large';
-    label?: string;
     autofocus?: boolean;
-    required?: string;
-    rules?: any;
-    valuePropName?: string;
-    getValueFromEvent?: any;
     placeholder?: any;
     marginBottom?: string;
+    requiredMsg?: string;
+    children?: any;
 }
 
-const FormItem: React.FC<FormItemProps> = (
+const FormItem: React.FC<Overwrite<FormItemProps, ItemProps>> = (
     {
-        label,
         size,
-        name,
-        children,
-        rules,
-        required,
-        autofocus = false,
-        getValueFromEvent,
         placeholder,
+        autofocus = false,
+        //
+        requiredMsg,
         marginBottom,
-        valuePropName = 'value',
+        rules,
+        //
+        children,
+        ...props
     }
 ) => {
     return <Form.Item
-        label={label}
-        name={name}
         style={marginBottom ? {marginBottom: marginBottom} : {}}
-        valuePropName={valuePropName}
-        rules={rules || (required ? [{required: true, message: required}] : null)}
-        getValueFromEvent={getValueFromEvent}
+        rules={rules || (requiredMsg ? [{required: true, message: requiredMsg}] : undefined)}
+        {...props}
     >
         {
             children ||

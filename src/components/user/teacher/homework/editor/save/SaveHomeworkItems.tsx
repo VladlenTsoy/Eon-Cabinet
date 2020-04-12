@@ -13,13 +13,13 @@ const SaveHomeworkItems: React.FC<SaveHomeworkItemsProps> = ({disciplineId}) => 
     const {app} = useSelector((state: any) => state);
     return <Row gutter={15}>
         <Col span={12}>
-            <FormItem name="level" label="Уровень" required="Введите уровень!"/>
+            <FormItem name="level" label="Уровень" requiredMsg="Введите уровень!"/>
         </Col>
         <Col span={12}>
             <FormItem
                 name="category"
                 label="Категория"
-                required="Введите категорию!"
+                requiredMsg="Введите категорию!"
             >
                 <Select>
                     {app.categories.filter((category: any) => category.discipline_id === disciplineId)

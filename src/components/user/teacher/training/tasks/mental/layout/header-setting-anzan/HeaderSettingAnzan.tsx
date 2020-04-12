@@ -98,7 +98,7 @@ const HeaderSettingAnzan: React.FC<HeaderSettingAdditionProps> = ({form, isArray
             <FormItem
                 name={isArray ? `length[${isArray}]` : `length`}
                 label="Разряд чисел"
-                required="Выберите разряд чисел!"
+                requiredMsg="Выберите разряд чисел!"
                 getValueFromEvent={changeLength}>
                 <Select loading={!lengths.length}>
                     {lengths.length ? lengths.map((leng: any) =>
@@ -116,7 +116,7 @@ const HeaderSettingAnzan: React.FC<HeaderSettingAdditionProps> = ({form, isArray
             <FormItem
                 label={isMultiplication ? 'Второе число' : 'Режим'}
                 name={isArray ? `type[${isArray}]` : 'type'}
-                required={isMultiplication ? 'Выберите режим!' : 'Выберите второе число!'}
+                requiredMsg={isMultiplication ? 'Выберите режим!' : 'Выберите второе число!'}
                 getValueFromEvent={changeType}>
                 <Select loading={!types.length}>
                     {types.length ? types.map((type: any) =>
@@ -132,7 +132,7 @@ const HeaderSettingAnzan: React.FC<HeaderSettingAdditionProps> = ({form, isArray
                 <FormItem
                     label="Под тема"
                     name={isArray ? `theme[${isArray}]` : 'theme'}
-                    required="Выберите под тему!">
+                    requiredMsg="Выберите под тему!">
                     <Select loading={!themes.length}>
                         {themes.length ? themes.map((theme: any) =>
                             <Option key={theme} value={theme}>
@@ -147,7 +147,7 @@ const HeaderSettingAnzan: React.FC<HeaderSettingAdditionProps> = ({form, isArray
                     <FormItem
                         name={isArray ? `theme[${isArray}]` : 'theme'}
                         label="Число"
-                        required="Введите число!"
+                        requiredMsg="Введите число!"
                     />
                 </Col> : null
         }

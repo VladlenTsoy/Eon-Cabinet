@@ -21,7 +21,7 @@ const CardHeaderWrapper: React.FC<StyledProps> = styled.div<StyledProps>`
 `;
 
 const CardHeaderActionWrapper: React.FC<StyledProps> = styled.div<StyledProps>`
-    i {
+    .anticon {
     font-size: ${props => props.icons ? '18px' : 'initial'};
     cursor: pointer;
 

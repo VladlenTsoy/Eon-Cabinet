@@ -19,7 +19,7 @@ const ForgotPasswordBlock = () => {
         <Card>
             <Title>Восстановление пароля</Title>
             <FormWrapper onFinish={onFinish} className="login-form">
-                <FormItem name="login" required="Введите почту!">
+                <FormItem name="login" requiredMsg="Введите почту!">
                     <Input
                         prefix={<UserOutlined style={{color: 'rgba(0,0,0,.25)'}}/>}
                         placeholder="Введите почту"

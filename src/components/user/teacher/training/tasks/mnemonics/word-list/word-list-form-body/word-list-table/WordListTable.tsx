@@ -142,7 +142,7 @@ const WordListTable: React.FC<WordListTableProps> = (
                     label="Время (Минуты)"
                     // TODO - Значание по умолчанию
                     // initialValue={1}
-                    required="Выберите время"
+                    requiredMsg="Выберите время"
                 >
                     <InputNumber style={{width: '100%'}} min={0.1} max={30} step={0.1}/>
                 </FormItem>

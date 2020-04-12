@@ -35,7 +35,7 @@ const FormVerificationCode: React.FC<FormVerificationCodeProps> = ({updateResult
         <FormItem
             name="verification_code"
             placeholder="Проверочный код"
-            required="Введите проверочный код!"
+            requiredMsg="Введите проверочный код!"
         />
         <Button
             className="confirm-button"

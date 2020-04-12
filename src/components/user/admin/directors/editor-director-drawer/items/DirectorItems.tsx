@@ -15,17 +15,17 @@ const DirectorItems: React.FC<DirectorItemsProps> = ({form, data, isFranchise}) 
             <InputPhoto form={form}/>
         </Col>
         <Col span={12}>
-            <FormItem name="first_name" label="Имя" required="Введите имя!"/>
+            <FormItem name="first_name" label="Имя" requiredMsg="Введите имя!"/>
             <InputEmail/>
             <InputLogin/>
             {isFranchise ? null : <SelectData
                 url="/admin/franchises"
                 name="franchise_id"
                 label="Франшиза"
-                required="Выбреите франщизу!"/>}
+                requiredMsg="Выбреите франщизу!"/>}
         </Col>
         <Col span={12}>
-            <FormItem name="last_name" label="Фамилия" required="Введите фамилию!"/>
+            <FormItem name="last_name" label="Фамилия" requiredMsg="Введите фамилию!"/>
             <FormItem name="phone" label="Телефон">
                 <Input/>
             </FormItem>

@@ -54,7 +54,7 @@ const HeaderSettingAnzan: React.FC<HeaderSettingAdditionProps> = (
             <FormItem
                 name={`length`}
                 label="Разряд чисел"
-                required="Выберите разряд чисел!"
+                requiredMsg="Выберите разряд чисел!"
             >
                 <Select loading={!lengths.length}>
                     {lengths.length ? lengths.map((leng: any) =>
@@ -72,7 +72,7 @@ const HeaderSettingAnzan: React.FC<HeaderSettingAdditionProps> = (
             <FormItem
                 label={isMultiplication ? 'Второе число' : 'Режим'}
                 name={'type'}
-                required={isMultiplication ? 'Выберите режим!' : 'Выберите второе число!'}
+                requiredMsg={isMultiplication ? 'Выберите режим!' : 'Выберите второе число!'}
             >
                 <Select loading={!types.length}>
                     {types.length ? types.map((type: any) =>
@@ -88,7 +88,7 @@ const HeaderSettingAnzan: React.FC<HeaderSettingAdditionProps> = (
                 <FormItem
                     label="Под тема"
                     name={'theme'}
-                    required="Выберите под тему!">
+                    requiredMsg="Выберите под тему!">
                     <Select loading={!themes.length}>
                         {themes.length ? themes.map((theme: any) =>
                             <Option key={theme} value={theme}>
@@ -103,7 +103,7 @@ const HeaderSettingAnzan: React.FC<HeaderSettingAdditionProps> = (
                     <FormItem
                         name={'theme'}
                         label="Число"
-                        required="Введите число!"
+                        requiredMsg="Введите число!"
                     />
                 </Col> : null
         }

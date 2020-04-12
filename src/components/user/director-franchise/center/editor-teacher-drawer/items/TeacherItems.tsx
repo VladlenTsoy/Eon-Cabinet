@@ -21,7 +21,7 @@ const TeacherItems:React.FC<TeacherItemsProps> = ({form, franchise_id, data}) =>
             url={user.access === 'admin' ? `admin/centers/franchise/${franchise_id}` : 'director-franchise/centers'}
             name="center_id"
             label="Центр"
-            required="Выберите центр!"
+            requiredMsg="Выберите центр!"
             evtBtn={(update: any) =>
                 <EditorCenterButton
                     title="Создать центр"
@@ -40,13 +40,13 @@ const TeacherItems:React.FC<TeacherItemsProps> = ({form, franchise_id, data}) =>
             <InputPhoto form={form}/>
         </Col>
         <Col span={12}>
-            <FormItem name="first_name" label="Имя" required="Введите имя!"/>
+            <FormItem name="first_name" label="Имя" requiredMsg="Введите имя!"/>
             <InputEmail/>
             <InputLogin/>
             {centerItems}
         </Col>
         <Col span={12}>
-            <FormItem name="last_name" label="Фамилия" required="Введите фамилию!"/>
+            <FormItem name="last_name" label="Фамилия" requiredMsg="Введите фамилию!"/>
             <FormItem name="phone" label="Телефон"/>
             <InputPassword user={data}/>
             <FormItem name="date_of_birth" label="Дата рождения">

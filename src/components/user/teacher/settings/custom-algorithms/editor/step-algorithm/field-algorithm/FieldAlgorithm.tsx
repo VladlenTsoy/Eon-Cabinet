@@ -66,12 +66,12 @@ const FieldAlgorithm: React.FC<FieldAlgorithmProps> = ({setting, fieldId, isMult
                                 <FormItem
                                     name={`step[${fieldId}][${key}].first`}
                                     label="Первое число"
-                                    required="Введите число!"
+                                    requiredMsg="Введите число!"
                                 />
                                 <FormItem
                                     name={`step[${fieldId}][${key}].sign`}
                                     label="Действие"
-                                    required="Выберите Действие!"
+                                    requiredMsg="Выберите Действие!"
                                 >
                                     <Select>
                                         <Option value="*" disabled={setting.mode === 'divide'}>×</Option>
@@ -81,7 +81,7 @@ const FieldAlgorithm: React.FC<FieldAlgorithmProps> = ({setting, fieldId, isMult
                                 <FormItem
                                     name={`step[${fieldId}][${key}].second`}
                                     label="Второе число"
-                                    required="Введите число!"
+                                    requiredMsg="Введите число!"
                                     // TODO - Значение по умолчанию
                                     // initialValue={setting.theme ? setting.theme : null}
                                 />
@@ -90,7 +90,7 @@ const FieldAlgorithm: React.FC<FieldAlgorithmProps> = ({setting, fieldId, isMult
                             <FormItem
                                 name={`step[${fieldId}][${key}]`}
                                 label={`Шаг №${key + 1}`}
-                                required="Введите число!"
+                                requiredMsg="Введите число!"
                             />
                     }
                     <Button type="danger" icon={<DeleteOutlined/>} disabled={key + 1 !== ids.length}

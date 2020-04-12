@@ -15,6 +15,11 @@ const LayoutWrapper = styled(antd.Layout)`
   &.ant-layout{
     height: 100%;
     overflow-x: hidden;
+    .ant-layout-sider-children{
+     > .ant-menu {
+        height: 100%;
+     }
+    }
   }
 `;
 
