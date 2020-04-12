@@ -1,6 +1,29 @@
 import React from 'react';
 import {Table} from 'antd';
+import {TableProps} from 'antd/es/table';
 import HeaderTablePagination from "./header/HeaderTablePagination";
+import styled from "styled-components";
+
+const TableWrapper: React.FC<TableProps<any>> = styled(Table)`
+  .ant-table-thead > tr > th {
+    background: transparent;
+    padding: 10px 16px;
+    //color: ${props => props.theme['@text-color-secondary']};
+    text-align: center;
+  }
+
+  .ant-table-tbody {
+    text-align: center;
+    
+    tr:last-child > td {
+      border: 0;
+    }
+  }
+  
+  .ant-table-pagination.ant-pagination{
+    margin: 16px 16px;
+  }
+`;
 
 const checkRowClass = (record: any) => {
     if (record.is_blocked)
@@ -57,9 +80,9 @@ const TablePagination: React.FC<TablePaginationProps> = (
             >
                 {children}
             </HeaderTablePagination>
-        : null}
+            : null}
 
-        <Table
+        <TableWrapper
             scroll={{x: true}}
             pagination={pagination}
             columns={columns}

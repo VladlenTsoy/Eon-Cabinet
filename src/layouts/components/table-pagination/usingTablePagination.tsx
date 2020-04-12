@@ -2,9 +2,21 @@ import React, {useState} from 'react';
 import {useApiUserGeneral} from "effects/use-api-user-general.effect";
 import {Navigation, TablePagination} from "../index";
 import {Card} from "lib";
+import styled from "styled-components";
 
-interface UsingTablePaginationProps {
+interface CardStyleProps {
+    isPadding: boolean;
+}
+
+const CardWrapper = styled(Card)<CardStyleProps>`
+  &.ant-card > .ant-card-body{
+    padding: ${props => props.theme.isPadding ? '1rem' : '0 1rem'};
+  }
+`;
+
+interface UsingTablePaginationProps<RecordType = any> {
     url: string;
+    isPagination?: boolean;
     isSearch?: boolean;
     isCard?: boolean;
     columns: (fetch?: any, pagination?: any) => any[];
@@ -15,6 +27,7 @@ interface UsingTablePaginationProps {
 const UsingTablePagination: React.FC<UsingTablePaginationProps> = (
     {
         url,
+        isPagination = true,
         isSearch = true,
         isCard = true,
         columns,
@@ -27,7 +40,7 @@ const UsingTablePagination: React.FC<UsingTablePaginationProps> = (
     // Вывод данных по @url
     const [loading, response, , fetch] = useApiUserGeneral({
         url: url,
-        initValue: {total: 0},
+        initValue: isPagination ? {total: 0} : [],
         config: {
             params: {
                 results: pagination.pageSize,
@@ -35,18 +48,20 @@ const UsingTablePagination: React.FC<UsingTablePaginationProps> = (
             }
         },
         afterRequest: (response, params) =>
-            setPagination({
-                ...pagination,
-                pageSize: params.results,
-                current: params.page,
-                field: params.sortField,
-                order: params.sortOrder,
-                total: response.total,
-                ...params,
-            })
+            isPagination ?
+                setPagination({
+                    ...pagination,
+                    pageSize: params.results,
+                    current: params.page,
+                    field: params.sortField,
+                    order: params.sortOrder,
+                    total: response.total,
+                    ...params,
+                }) : null
     });
 
-    const Wrapper = (child: any) => isCard ? <Card>{child}</Card> : child;
+    const Wrapper = (child: any) => isCard ?
+        <CardWrapper isPadding={isPagination || isSearch}>{child}</CardWrapper> : child;
 
     return <>
         {header ?
@@ -58,9 +73,9 @@ const UsingTablePagination: React.FC<UsingTablePaginationProps> = (
             Wrapper(
                 <TablePagination
                     isSearch={isSearch}
-                    pagination={pagination}
+                    pagination={isPagination ? pagination : false}
                     loading={loading}
-                    data={response.data}
+                    data={isPagination ? response.data : response}
                     fetch={fetch}
                     columns={columns(fetch, pagination)}
                     isCheckUser={true}
