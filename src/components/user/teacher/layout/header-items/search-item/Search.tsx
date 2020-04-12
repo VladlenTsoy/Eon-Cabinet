@@ -15,7 +15,6 @@ const SearchWrapper = styled.div`
   
   & > .anticon {
     margin: 0;
-    line-height: 1.5;
   }
   
   :hover .anticon{
@@ -30,13 +29,12 @@ const SearchWrapper = styled.div`
     padding-left: 24px;
 
     & > .anticon {
-        line-height: 25px;
-        min-width: 25px;
-        font-size: 25px;
-        margin-right: 10px;
-        vertical-align: middle;
+      line-height: 25px;
+      min-width: 25px;
+      font-size: 25px;
+      margin-right: 10px;
+      vertical-align: middle;
     }
-  
   }
 `;
 
@@ -45,6 +43,10 @@ const SelectWrapper = styled(Select)`
     border: 0;
     box-shadow: none !important;
     width: 200px;
+    
+    .ant-select-selection-placeholder{
+      line-height: 34px;
+    }
   }
 `;
 
