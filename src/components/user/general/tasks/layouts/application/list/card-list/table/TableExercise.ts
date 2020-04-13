@@ -9,7 +9,7 @@ export const TableWrapper = styled.table`
     th{
         padding: .3rem;
       i{
-        color: ${props => props.theme.color_second};
+        //color: ${props => props.theme.color_second};
         background: #e9ecef;
         border-radius: 50%;
         display: inline-block;
@@ -34,7 +34,7 @@ export const TableWrapper = styled.table`
       padding: .3rem;
       
       span{
-        color: ${props => props.theme.color_second};
+        //color: ${props => props.theme.color_second};
         background: #e9ecef;
         border-radius: 50%;
         display: inline-block;

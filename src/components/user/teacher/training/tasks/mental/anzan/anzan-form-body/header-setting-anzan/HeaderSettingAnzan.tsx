@@ -7,7 +7,7 @@ import {useSelector} from "react-redux";
 const {Option} = Select;
 
 interface HeaderSettingAdditionProps {
-    form: any;
+    typeAnzan: string;
     mods?: string;
     isMultiplication: boolean;
     forceDefaultAlgorithms?: boolean;
@@ -19,7 +19,7 @@ interface HeaderSettingAdditionProps {
 
 const HeaderSettingAnzan: React.FC<HeaderSettingAdditionProps> = (
     {
-        form,
+        typeAnzan,
         mods,
         setting,
         lengths,
@@ -58,7 +58,7 @@ const HeaderSettingAnzan: React.FC<HeaderSettingAdditionProps> = (
                 <Select loading={!lengths.length}>
                     {lengths.length ? lengths.map((leng: any) =>
                         <Option
-                            disabled={form.getFieldValue('anzan') === 'double' && Number(leng) > 7}
+                            disabled={typeAnzan === 'double' && Number(leng) > 7}
                             key={leng}
                             value={leng}>
                             {isMultiplication ? language.common.lengthNames[leng] : leng}

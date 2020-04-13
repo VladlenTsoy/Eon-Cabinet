@@ -1,10 +1,9 @@
 import React from 'react';
 import {Col, InputNumber, Row} from "antd";
 import {FormItem} from "../../../../../../../../../../layouts/components";
-import {FormInstance} from "antd/es/form";
 
 interface BasicSettingProps {
-    form: FormInstance;
+    length: number;
     mods?: string;
     multi?: boolean;
     setting: any;
@@ -13,7 +12,7 @@ interface BasicSettingProps {
 
 const BasicSetting: React.FC<BasicSettingProps> = (
     {
-        form,
+        length,
         mods,
         multi,
         isMultiplication
@@ -30,8 +29,8 @@ const BasicSetting: React.FC<BasicSettingProps> = (
                     requiredMsg="Введите количество цифр!">
                     <InputNumber min={1} max={
                         isMultiplication ? 200 :
-                            form.getFieldValue('length') === 1 ? 10 :
-                                form.getFieldValue('length') === 2 ? 20 : 200
+                            length === 1 ? 10 :
+                                length === 2 ? 20 : 200
                     } style={{width: '100%'}}/>
                 </FormItem>
             </Col> : null}

@@ -37,8 +37,8 @@ const EditorForm: React.FC<EditorProps> = ({form, setting, lengths, themes, type
     return (
         <Form onSubmit={handleSubmit}>
             <HeaderSettingAnzan
-                form={form}
                 forceDefaultAlgorithms
+                typeAnzan={form.getFieldValue('anzan')}
                 isMultiplication={isMultiplication}
                 setting={setting}
                 lengths={lengths}

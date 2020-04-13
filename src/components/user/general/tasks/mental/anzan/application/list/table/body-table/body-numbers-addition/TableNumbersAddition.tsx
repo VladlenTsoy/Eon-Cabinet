@@ -4,11 +4,10 @@ import {Result} from "../../../../../../../layouts/application/list/card-list/ta
 import AnswerTable from "../../answer-table/AnswerTable";
 
 export interface TableNumbersAdditionProps {
-    form: any;
     table: any;
 }
 
-const TableNumbersAddition: React.FC<TableNumbersAdditionProps> = ({form, table}) => {
+const TableNumbersAddition: React.FC<TableNumbersAdditionProps> = ({table}) => {
     const {game} = useSelector((state: any) => state);
     const {status} = game;
 
@@ -44,7 +43,7 @@ const TableNumbersAddition: React.FC<TableNumbersAdditionProps> = ({form, table}
                         </tr>
                     ] :
                     <tr key="answers">
-                        <AnswerTable form={form} table={table}/>
+                        <AnswerTable table={table}/>
                     </tr> : null
         ]
     )}

@@ -4,7 +4,7 @@ import {Result} from "../../../../../../../layouts/application/list/card-list/ta
 import {useSelector} from "react-redux";
 import AnswerTable from "../../answer-table/AnswerTable";
 
-const TableNumbersMultiplication: React.FC<TableNumbersAdditionProps> = ({form, table}) => {
+const TableNumbersMultiplication: React.FC<TableNumbersAdditionProps> = ({table}) => {
     const {game} = useSelector((state: any) => state);
     const {status} = game;
 
@@ -43,7 +43,7 @@ const TableNumbersMultiplication: React.FC<TableNumbersAdditionProps> = ({form, 
                     </tr>,
                 ] :
                 <tr key={`answer-${columnKey}`}>
-                    <AnswerTable form={form} table={column}/>
+                    <AnswerTable table={column}/>
                 </tr>
         ]
     )}

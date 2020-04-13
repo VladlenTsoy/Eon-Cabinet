@@ -130,7 +130,7 @@ const Anzan: React.FC<AnzanProps> = (
         let mode = allFields.find((field: any) => field.name.includes('mode'));
         let length = allFields.find((field: any) => field.name.includes('length'));
 
-        changedFields.map((field: any) => {
+        return changedFields.map((field: any) => {
             if (field.name.includes('mode'))
                 return updateLengthsByMode(
                     allFields,
@@ -151,9 +151,9 @@ const Anzan: React.FC<AnzanProps> = (
                     length.value,
                     field.value
                 );
+            else
+                return setFields(allFields);
         });
-
-        setFields(allFields)
     }, [updateLengthsByMode, updateTypesByLength, updateThemesByType]);
 
     useEffect(() => {
@@ -173,23 +173,24 @@ const Anzan: React.FC<AnzanProps> = (
         }
     }, [mods, userSetting, updateLengthsByMode]);
 
-    return <AnzanFormBody
-        initialValues={{
-            mode: 'plus',
-        }}
-        isEdit={isEdit}
-        mods={mods}
-        isMultiAnzan={isMultiAnzan}
-        onChange={handleFormChange}
-        clearSaveSetting={clearSaveSetting}
-        startApplication={startApplication}
-        addSettingHomework={addSettingHomework}
-        fields={fields}
-        lengths={lengths}
-        sound={sound}
-        types={types}
-        themes={themes}
-    />;
+    return fields.length ?
+        <AnzanFormBody
+            initialValues={{
+                mode: 'plus',
+            }}
+            isEdit={isEdit}
+            mods={mods}
+            isMultiAnzan={isMultiAnzan}
+            onChange={handleFormChange}
+            clearSaveSetting={clearSaveSetting}
+            startApplication={startApplication}
+            addSettingHomework={addSettingHomework}
+            fields={fields}
+            lengths={lengths}
+            sound={sound}
+            types={types}
+            themes={themes}
+        /> : null;
 };
 
 export default Anzan;

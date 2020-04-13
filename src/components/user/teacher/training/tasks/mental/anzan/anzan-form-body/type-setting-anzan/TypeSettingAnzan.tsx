@@ -49,7 +49,6 @@ export const RadioWrapper: React.FC<RadioWrapper> = styled(Radio.Group)<StyledPr
 `;
 
 interface TypeSettingAnzanProps {
-    form: any;
 }
 
 const TypeSettingAnzan: React.FC<TypeSettingAnzanProps> = () => {

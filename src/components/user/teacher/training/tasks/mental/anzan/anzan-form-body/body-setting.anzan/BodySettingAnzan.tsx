@@ -3,7 +3,8 @@ import ListSetting from "./list-setting/ListSetting";
 import BasicSetting from "./basic-setting/BasicSetting";
 
 interface BodySettingAnzanProps {
-    form: any;
+    typeAnzan: string;
+    length: number;
     mods?: string;
     isMultiAnzan: boolean;
     setting: any;
@@ -12,17 +13,18 @@ interface BodySettingAnzanProps {
 
 const BodySettingAnzan: React.FC<BodySettingAnzanProps> = (
     {
-        form,
+        typeAnzan,
+        length,
         mods,
         isMultiAnzan,
         setting,
         isMultiplication
     }
 ) => {
-    return form.getFieldValue('anzan') === 'list' ?
+    return typeAnzan === 'list' ?
         <ListSetting/> :
         <BasicSetting
-            form={form}
+            length={length}
             mods={mods}
             multi={isMultiAnzan}
             setting={setting}

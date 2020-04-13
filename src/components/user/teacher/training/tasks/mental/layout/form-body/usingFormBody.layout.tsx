@@ -58,31 +58,29 @@ const usingFormBodyLayout = (FormItems: any) => {
             onChange(changedFields, allFields);
         };
 
-        return (
-            <Form
-                form={form}
-                initialValues={initialValues}
+        return <Form
+            form={form}
+            initialValues={initialValues}
+            fields={fields}
+            layout='vertical'
+            onFinish={onFinish}
+            onFieldsChange={fieldsChange}
+        >
+            <FormItems
                 fields={fields}
-                layout='vertical'
-                onFinish={onFinish}
-                onFieldsChange={fieldsChange}
-            >
-                <FormItems
-                    form={form}
-                    loading={loading}
-                    {...props}
-                />
-                <Buttons
-                    form={form}
-                    setLoading={setLoading}
-                    loading={loading}
-                    addSettingHomework={addSettingHomework}
-                    startApplication={startApplication}
-                    clearSaveSetting={clearSaveSetting}
-                    isEdit={isEdit}
-                />
-            </Form>
-        );
+                loading={loading}
+                {...props}
+            />
+            <Buttons
+                form={form}
+                setLoading={setLoading}
+                loading={loading}
+                addSettingHomework={addSettingHomework}
+                startApplication={startApplication}
+                clearSaveSetting={clearSaveSetting}
+                isEdit={isEdit}
+            />
+        </Form>
     };
     return FormWrapper;
 };
