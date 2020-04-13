@@ -31,7 +31,7 @@ const Buttons: React.FC<ButtonsProps> = (
         isEdit
     }
 ) => {
-    const typeAnzan = fields.find((field: any) => field.name.includes('anzan')).value;
+    const typeAnzan = fields ? fields.find((field: any) => field.name.includes('anzan')).value : false;
 
     /***
      * Печать листов

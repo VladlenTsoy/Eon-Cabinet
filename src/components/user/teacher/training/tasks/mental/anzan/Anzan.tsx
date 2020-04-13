@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {useSelector} from "react-redux";
 import AnzanFormBody from "./anzan-form-body/AnzanFormBody";
 
@@ -38,7 +38,6 @@ const Anzan: React.FC<AnzanProps> = (
     }
 ) => {
     const {app, user} = useSelector((state: any) => state);
-    const [fields, setFields] = useState<any[]>([]);
     const [lengths, setLengths] = useState<any>([]);
     const [types, setTypes] = useState<any>([]);
     const [themes, setThemes] = useState<any>([]);
@@ -50,20 +49,20 @@ const Anzan: React.FC<AnzanProps> = (
     /***
      * Обновление тем
      *
-     * @param _fields       - Значения всех полей
+     * @param allFields       - Значения всех полей
      * @param changedFields - Измененные поля
      * @param modeValue     - Мод значение
      * @param lengthValue   - Разряд значение
      * @param typeValue     - Тип значение
      */
     const updateThemesByType = useCallback(
-        (_fields, changedFields, modeValue = "plus", lengthValue = "1", typeValue = "p", user?) => {
+        (allFields, changedFields, modeValue = "plus", lengthValue = "1", typeValue = "p", user?) => {
             const _themes = Object.keys(checkAlgorithms()[modeValue][lengthValue][typeValue]);
             setThemes(_themes);
 
             let theme = user ? String(user.theme) : _themes[0];
 
-            setFields(_fields.map((field: any) => {
+            return allFields.map((field: any) => {
                 if (field.name.includes('mode'))
                     field.value = modeValue;
                 else if (field.name.includes('length'))
@@ -73,7 +72,7 @@ const Anzan: React.FC<AnzanProps> = (
                 else if (field.name.includes('theme'))
                     field.value = theme;
                 return field;
-            }));
+            });
         },
         [checkAlgorithms]
     );
@@ -81,19 +80,19 @@ const Anzan: React.FC<AnzanProps> = (
     /**
      * Обновление типов
      *
-     * @param _fields       - Значения всех полей
+     * @param allFields       - Значения всех полей
      * @param changedFields - Измененные поля
      * @param modeValue     - Мод значение
      * @param lengthValue   - Разряд значение
      */
     const updateTypesByLength = useCallback(
-        (_fields, changedFields, modeValue = "plus", lengthValue = "1", user?) => {
+        (allFields, changedFields, modeValue = "plus", lengthValue = "1", user?) => {
             const _types = Object.keys(checkAlgorithms()[modeValue][lengthValue]);
             setTypes(_types);
 
             let type = user ? String(user.type) : _types[0];
             // Обновление тем
-            updateThemesByType(_fields, changedFields, modeValue, lengthValue, type, user);
+            return updateThemesByType(allFields, changedFields, modeValue, lengthValue, type, user);
         },
         [checkAlgorithms, updateThemesByType]
     );
@@ -101,12 +100,12 @@ const Anzan: React.FC<AnzanProps> = (
     /**
      * Обновление разряда
      *
-     * @param _fields       - Значения всех полей
+     * @param allFields       - Значения всех полей
      * @param changedFields - Измененные поля
      * @param modeValue     - Мод значение
      */
     const updateLengthsByMode = useCallback(
-        (_fields, changedFields, modeValue = 'plus', user?) => {
+        (allFields, changedFields, modeValue = 'plus', user?) => {
             if (!checkAlgorithms().hasOwnProperty(modeValue))
                 return false;
 
@@ -115,7 +114,7 @@ const Anzan: React.FC<AnzanProps> = (
 
             let length = user ? String(user.length) : _lengths[0];
             // Обновление типов
-            updateTypesByLength(_fields, changedFields, modeValue, length, user)
+            return updateTypesByLength(allFields, changedFields, modeValue, length, user)
         },
         [checkAlgorithms, updateTypesByLength]
     );
@@ -130,48 +129,43 @@ const Anzan: React.FC<AnzanProps> = (
         let mode = allFields.find((field: any) => field.name.includes('mode'));
         let length = allFields.find((field: any) => field.name.includes('length'));
 
-        return changedFields.map((field: any) => {
-            if (field.name.includes('mode'))
-                return updateLengthsByMode(
-                    allFields,
-                    changedFields,
-                    field.value
-                );
-            else if (field.name.includes('length'))
-                return updateTypesByLength(
-                    allFields, changedFields,
-                    mode.value,
-                    field.value
-                );
-            else if (field.name.includes('type'))
-                return updateThemesByType(
-                    allFields,
-                    changedFields,
-                    mode.value,
-                    length.value,
-                    field.value
-                );
-            else
-                return setFields(allFields);
-        });
+        if (changedFields.length)
+            return changedFields.map((field: any) => {
+                if (field.name.includes('mode'))
+                    return updateLengthsByMode(
+                        allFields,
+                        changedFields,
+                        field.value,
+                    );
+                else if (field.name.includes('length'))
+                    return updateTypesByLength(
+                        allFields,
+                        changedFields,
+                        mode.value,
+                        field.value
+                    );
+                else if (field.name.includes('type'))
+                    return updateThemesByType(
+                        allFields,
+                        changedFields,
+                        mode.value,
+                        length.value,
+                        field.value
+                    );
+                return allFields;
+            })[0];
+        else
+            return allFields;
     }, [updateLengthsByMode, updateTypesByLength, updateThemesByType]);
 
-    useEffect(() => {
-        try {
-            if (userSetting) {
-                let _fields: any = [];
-                for (let key in userSetting)
-                    if (userSetting.hasOwnProperty(key))
-                        _fields.push({name: [key], value: userSetting[key]});
-
-                updateLengthsByMode(_fields, {}, userSetting.mode, userSetting);
-                setFields(_fields);
-            } else
-                updateLengthsByMode({}, {}, !mods || mods === 'addition' ? 'plus' : 'multiply');
-        } catch (e) {
-            console.log(e);
-        }
-    }, [mods, userSetting, updateLengthsByMode]);
+    const settingCustomSorting = useCallback((_setting, setFields) => {
+        if (_setting) {
+            let _fields = Object.keys(_setting).map((key: string) => ({name: [key], value: _setting[key]}));
+            updateLengthsByMode(_fields, {}, _setting.mode, _setting);
+            setFields(_fields);
+        } else
+            updateLengthsByMode({}, {}, !mods || mods === 'addition' ? 'plus' : 'multiply');
+    }, [updateLengthsByMode]);
 
     return <AnzanFormBody
         initialValues={{
@@ -180,11 +174,12 @@ const Anzan: React.FC<AnzanProps> = (
         isEdit={isEdit}
         mods={mods}
         isMultiAnzan={isMultiAnzan}
+        userSetting={userSetting}
         onChange={handleFormChange}
         clearSaveSetting={clearSaveSetting}
         startApplication={startApplication}
         addSettingHomework={addSettingHomework}
-        fields={fields}
+        settingCustomSorting={settingCustomSorting}
         lengths={lengths}
         sound={sound}
         types={types}
