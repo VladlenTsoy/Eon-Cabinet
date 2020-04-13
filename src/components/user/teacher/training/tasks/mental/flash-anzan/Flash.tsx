@@ -1,39 +1,22 @@
 import React from 'react';
-import FlashFormBody from "./flash-form-body/FlashFormBody";
-import {useFieldsSetting} from "../../../../../../../effects/use-fields-setting.effect";
+import usingFormBodyLayout from "../layout/form-body/usingFormBody.layout";
+import FlashFormItems from "./flash-form-items/FlashFormItems";
+import ConfigBlock from "../../config/Config";
 
-interface FlashProps {
-    userSetting?: any;
-    clearSaveSetting?: any;
-    startApplication?: (setting: any, print: boolean) => void;
-    addSettingHomework?: (setting: any) => void;
-}
 
-const Flash: React.FC<FlashProps> = (
-    {
-        userSetting,
-        clearSaveSetting,
-        startApplication,
-        addSettingHomework,
-    }
-) => {
-    const [fields, setFields] = useFieldsSetting({setting: userSetting});
-
-    /**
-     * Обновление настроек
-     *
-     * @param changedFields
-     */
-    const handlerChangeHeader = (changedFields: any) =>
-        setFields((prevState: any) => ({...prevState, ...changedFields}));
-
-    return <FlashFormBody
-        onChange={handlerChangeHeader}
-        clearSaveSetting={clearSaveSetting}
-        startApplication={startApplication}
-        addSettingHomework={addSettingHomework}
-        setting={fields}
-    />;
+// TODO - Ненудный постредник
+const Flash: React.FC = () => {
+    return <>
+        <FlashFormItems/>
+        <ConfigBlock
+            sounds={{
+                language: true,
+            }}
+            mods={{
+                plus: true,
+            }}
+        />
+    </>;
 };
 
-export default Flash;
+export default usingFormBodyLayout(Flash);
