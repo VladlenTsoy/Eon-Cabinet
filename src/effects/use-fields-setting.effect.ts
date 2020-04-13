@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 
+// TODO - Удалить
 export const useFieldsSetting = ({setting}: any) => {
     const [fields, setFields] = useState<any>({});
 

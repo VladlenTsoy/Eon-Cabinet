@@ -81,7 +81,7 @@ const usingFormBodyLayout = (FormItems: any) => {
                 setFields(onChange ? onChange(changedFields, allFields) : allFields);
         };
 
-        return !fields || fields.length ?
+        return fields.length ?
             <Form
                 form={form}
                 initialValues={initialValues}

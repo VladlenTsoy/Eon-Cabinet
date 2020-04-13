@@ -31,7 +31,7 @@ const Buttons: React.FC<ButtonsProps> = (
         isEdit
     }
 ) => {
-    const typeAnzan = fields ? fields.find((field: any) => field.name.includes('anzan')).value : false;
+    const isList = fields ? fields.map((field: any) => field.name.includes('anzan') ? field.value === 'list' : false) : false;
 
     /***
      * Печать листов
@@ -67,7 +67,7 @@ const Buttons: React.FC<ButtonsProps> = (
                 <Button htmlType="submit" type="primary" icon={<PlusOutlined/>}>Добавить</Button> :
             <>
                 <Button icon={<UndoOutlined/>} onClick={clearSetting}>Очистить</Button>
-                {typeAnzan === 'list' ?
+                {isList === 'list' ?
                     <Button
                         icon={<PrinterOutlined/>}
                         type="primary"
