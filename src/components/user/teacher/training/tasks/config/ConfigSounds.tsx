@@ -8,7 +8,7 @@ export const RadioGroup = styled(Radio.Group)`
   &.ant-radio-group {
     display: flex;
     width: 100%;
-    margin-bottom: 2rem;
+    //margin-bottom: 2rem;
 
     label {
       display: flex;

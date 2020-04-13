@@ -8,7 +8,7 @@ const CheckboxGroup = styled(Checkbox.Group)`
   &.ant-checkbox-group{
     display: flex;
     width: 100%;
-    margin-bottom: 2rem;
+    //margin-bottom: 2rem;
     position: relative;
     z-index: 5;
 
