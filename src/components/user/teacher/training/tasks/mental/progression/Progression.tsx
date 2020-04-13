@@ -3,10 +3,7 @@ import ProgressionFormItems from "./progression-form-items/ProgressionFormItems"
 import ConfigBlock from "../../config/Config";
 import usingFormBodyLayout from "../layout/form-body/usingFormBody.layout";
 
-interface ProgressionProps {
-}
-
-const Progression:React.FC<ProgressionProps> = () => {
+const Progression:React.FC = () => {
     return <>
         <ProgressionFormItems/>
         <ConfigBlock

@@ -3,8 +3,6 @@ import usingFormBodyLayout from "../layout/form-body/usingFormBody.layout";
 import FlashFormItems from "./flash-form-items/FlashFormItems";
 import ConfigBlock from "../../config/Config";
 
-
-// TODO - Ненудный постредник
 const Flash: React.FC = () => {
     return <>
         <FlashFormItems/>
