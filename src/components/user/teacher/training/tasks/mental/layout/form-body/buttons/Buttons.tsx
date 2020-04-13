@@ -2,7 +2,6 @@ import React from 'react';
 import {Button} from "antd";
 import styled from "styled-components";
 import {EditOutlined, FlagOutlined, PlusOutlined, PrinterOutlined, UndoOutlined} from '@ant-design/icons';
-import {FormInstance} from "antd/es/form";
 
 const ButtonGroupWrapper = styled(Button.Group)`
   width: 100%;
@@ -10,7 +9,8 @@ const ButtonGroupWrapper = styled(Button.Group)`
 `;
 
 interface ButtonsProps {
-    form: FormInstance,
+    form: any,
+    fields: any,
     clearSaveSetting?: () => void;
     startApplication?: (setting: any, print: boolean) => void;
     setLoading: (loading: boolean) => void;
@@ -22,6 +22,7 @@ interface ButtonsProps {
 const Buttons: React.FC<ButtonsProps> = (
     {
         form,
+        fields,
         loading,
         setLoading,
         clearSaveSetting,
@@ -30,6 +31,7 @@ const Buttons: React.FC<ButtonsProps> = (
         isEdit
     }
 ) => {
+    const typeAnzan = fields.find((field: any) => field.name.includes('anzan')).value;
 
     /***
      * Печать листов
@@ -58,7 +60,6 @@ const Buttons: React.FC<ButtonsProps> = (
             clearSaveSetting();
     };
 
-
     return <ButtonGroupWrapper size="large">
         {addSettingHomework ?
             isEdit ?
@@ -66,7 +67,7 @@ const Buttons: React.FC<ButtonsProps> = (
                 <Button htmlType="submit" type="primary" icon={<PlusOutlined/>}>Добавить</Button> :
             <>
                 <Button icon={<UndoOutlined/>} onClick={clearSetting}>Очистить</Button>
-                {form.getFieldValue('anzan') === 'list' ?
+                {typeAnzan === 'list' ?
                     <Button
                         icon={<PrinterOutlined/>}
                         type="primary"

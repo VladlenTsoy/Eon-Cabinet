@@ -173,24 +173,23 @@ const Anzan: React.FC<AnzanProps> = (
         }
     }, [mods, userSetting, updateLengthsByMode]);
 
-    return fields.length ?
-        <AnzanFormBody
-            initialValues={{
-                mode: 'plus',
-            }}
-            isEdit={isEdit}
-            mods={mods}
-            isMultiAnzan={isMultiAnzan}
-            onChange={handleFormChange}
-            clearSaveSetting={clearSaveSetting}
-            startApplication={startApplication}
-            addSettingHomework={addSettingHomework}
-            fields={fields}
-            lengths={lengths}
-            sound={sound}
-            types={types}
-            themes={themes}
-        /> : null;
+    return <AnzanFormBody
+        initialValues={{
+            mode: 'plus',
+        }}
+        isEdit={isEdit}
+        mods={mods}
+        isMultiAnzan={isMultiAnzan}
+        onChange={handleFormChange}
+        clearSaveSetting={clearSaveSetting}
+        startApplication={startApplication}
+        addSettingHomework={addSettingHomework}
+        fields={fields}
+        lengths={lengths}
+        sound={sound}
+        types={types}
+        themes={themes}
+    />
 };
 
 export default Anzan;
