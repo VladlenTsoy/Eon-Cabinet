@@ -1,5 +1,6 @@
 import React from 'react';
-import {Form, Input} from "antd";
+import { Input} from "antd";
+import {FormItem} from "lib";
 
 declare global {
     interface Window {
@@ -14,14 +15,14 @@ interface AnswerTableProps {
 const AnswerTable: React.FC<AnswerTableProps> = ({ table}) => {
     return table.map((column: any, columnKey: number) =>
         <td key={columnKey}>
-            <Form.Item name={`answer[${window.itemCounter++}]`}>
+            <FormItem name={`answer[${window.itemCounter++}]`} marginBottom="0">
                 <Input
                     type="number"
                     placeholder="Ответ"
                     autoComplete="off"
                     autoFocus={window.itemCounter === 1}
                 />
-            </Form.Item>
+            </FormItem>
         </td>
     );
 };
