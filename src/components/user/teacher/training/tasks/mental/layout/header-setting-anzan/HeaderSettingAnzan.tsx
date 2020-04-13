@@ -92,7 +92,7 @@ const HeaderSettingAnzan: React.FC<HeaderSettingAdditionProps> = ({form, isArray
 
     return <Row  gutter={15}>
         <Col span={24}>
-            <ModeAnzan form={form} isArray={isArray} changeModes={changeModes}/>
+            <ModeAnzan isArray={isArray} changeModes={changeModes}/>
         </Col>
         <Col span={isMultiplication && !isThemes ? 12 : 8}>
             <FormItem

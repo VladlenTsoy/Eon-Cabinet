@@ -30,8 +30,8 @@ const TaskCardWrapper: any = styled(Card)`
       margin-left: 1.5rem;
       width: calc(100% - 80px);
 
-      a{
-        i{
+      a {
+        .anticon {
           margin-right: 0.5rem;
         }
       }

@@ -1,6 +1,6 @@
 import React from 'react';
-import { SoundOutlined, StopOutlined } from '@ant-design/icons';
-import { Radio, Tooltip } from "antd";
+import {SoundOutlined, StopOutlined} from '@ant-design/icons';
+import {Form, Radio, Tooltip} from "antd";
 import styled from "styled-components";
 import {ConfigSoundProps} from "./Config";
 
@@ -88,35 +88,32 @@ export const RadioGroup = styled(Radio.Group)`
 `;
 
 interface ConfigSoundsProps {
-    form: any;
     config?: ConfigSoundProps;
 }
 
-const ConfigSounds: React.FC<ConfigSoundsProps> = ({form, config}) => {
-    const {getFieldDecorator} = form;
-    return getFieldDecorator('sound', {
-        initialValue: 'basic',
-        rules: [{required: true}]
-    })(
+const ConfigSounds: React.FC<ConfigSoundsProps> = ({config}) => {
+    return <Form.Item name="sound" required>
         <RadioGroup>
             <Radio.Button className="secondary-button" value="none">
-                <Tooltip title="Без звука"><StopOutlined /></Tooltip>
+                <Tooltip title="Без звука"><StopOutlined/></Tooltip>
             </Radio.Button>
             <Radio.Button value="basic">
-                <Tooltip title="Со звуком"><SoundOutlined /></Tooltip>
+                <Tooltip title="Со звуком"><SoundOutlined/></Tooltip>
             </Radio.Button>
             {config && config.language ?
                 <>
                     <Radio.Button value="ru">
-                        <Tooltip title="На русском языке"><>RU</></Tooltip>
+                        <Tooltip title="На русском языке"><>RU</>
+                        </Tooltip>
                     </Radio.Button>
                     < Radio.Button value="en">
-                        < Tooltip title="На английском языке"><>EN</></Tooltip>
+                        < Tooltip title="На английском языке"><>EN</>
+                        </Tooltip>
                     </Radio.Button>
                 </> : null
             }
         </RadioGroup>
-    );
+    </Form.Item>
 };
 
 export default ConfigSounds;

@@ -1,7 +1,6 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {useSelector} from "react-redux";
 import AnzanFormBody from "./anzan-form-body/AnzanFormBody";
-import {mergeDeep} from "../../../../../../../tools/merge-deep.tool";
 
 interface AnzanProps {
     mods?: string,
@@ -39,14 +38,14 @@ const Anzan: React.FC<AnzanProps> = (
     }
 ) => {
     const {app, user} = useSelector((state: any) => state);
-    const [fields, setFields] = useState<any>({});
+    const [fields, setFields] = useState<any[]>([]);
     const [lengths, setLengths] = useState<any>([]);
     const [types, setTypes] = useState<any>([]);
     const [themes, setThemes] = useState<any>([]);
 
     const checkAlgorithms = useCallback(() => {
-        return user.setting.is_custom_algorithms?app.custom_algorithms:app.algorithms;
-    }, [user.setting.is_custom_algorithms,app.custom_algorithms, app.algorithms ]);
+        return user.setting.is_custom_algorithms ? app.custom_algorithms : app.algorithms;
+    }, [user.setting.is_custom_algorithms, app.custom_algorithms, app.algorithms]);
 
     /***
      * Обновление тем
@@ -63,14 +62,18 @@ const Anzan: React.FC<AnzanProps> = (
             setThemes(_themes);
 
             let theme = user ? String(user.theme) : _themes[0];
-            setFields(mergeDeep(_fields, changedFields,
-                {
-                    mode: {value: modeValue},
-                    length: {value: lengthValue},
-                    type: {value: typeValue},
-                    theme: {value: theme},
-                }
-            ));
+
+            setFields(_fields.map((field: any) => {
+                if (field.name.includes('mode'))
+                    field.value = modeValue;
+                else if (field.name.includes('length'))
+                    field.value = lengthValue;
+                else if (field.name.includes('type'))
+                    field.value = typeValue;
+                else if (field.name.includes('theme'))
+                    field.value = theme;
+                return field;
+            }));
         },
         [checkAlgorithms]
     );
@@ -123,25 +126,44 @@ const Anzan: React.FC<AnzanProps> = (
      * @param changedFields - Измененные поля
      * @param fieldsValue   - Значения всех полей
      */
-    const handleFormChange = useCallback((changedFields: any, fieldsValue: any) => {
-        if (changedFields.mode)
-            updateLengthsByMode(fieldsValue, changedFields, changedFields.mode.value);
-        else if (changedFields.length)
-            updateTypesByLength(fieldsValue, changedFields, fieldsValue.mode.value, changedFields.length.value);
-        else if (changedFields.type)
-            updateThemesByType(fieldsValue, changedFields, fieldsValue.mode.value, fieldsValue.length.value, changedFields.type.value);
-        else
-            setFields({...fieldsValue, ...changedFields})
+    const handleFormChange = useCallback((changedFields: any[], allFields: any[]) => {
+        let mode = allFields.find((field: any) => field.name.includes('mode'));
+        let length = allFields.find((field: any) => field.name.includes('length'));
+
+        changedFields.map((field: any) => {
+            if (field.name.includes('mode'))
+                return updateLengthsByMode(
+                    allFields,
+                    changedFields,
+                    field.value
+                );
+            else if (field.name.includes('length'))
+                return updateTypesByLength(
+                    allFields, changedFields,
+                    mode.value,
+                    field.value
+                );
+            else if (field.name.includes('type'))
+                return updateThemesByType(
+                    allFields,
+                    changedFields,
+                    mode.value,
+                    length.value,
+                    field.value
+                );
+        });
+
+        setFields(allFields)
     }, [updateLengthsByMode, updateTypesByLength, updateThemesByType]);
 
     useEffect(() => {
         try {
             if (userSetting) {
-                let _fields: any = {};
+                let _fields: any = [];
                 for (let key in userSetting)
-                    _fields[key] = {
-                        value: userSetting[key]
-                    };
+                    if (userSetting.hasOwnProperty(key))
+                        _fields.push({name: [key], value: userSetting[key]});
+
                 updateLengthsByMode(_fields, {}, userSetting.mode, userSetting);
                 setFields(_fields);
             } else
@@ -152,6 +174,9 @@ const Anzan: React.FC<AnzanProps> = (
     }, [mods, userSetting, updateLengthsByMode]);
 
     return <AnzanFormBody
+        initialValues={{
+            mode: 'plus',
+        }}
         isEdit={isEdit}
         mods={mods}
         isMultiAnzan={isMultiAnzan}
@@ -159,7 +184,7 @@ const Anzan: React.FC<AnzanProps> = (
         clearSaveSetting={clearSaveSetting}
         startApplication={startApplication}
         addSettingHomework={addSettingHomework}
-        setting={fields}
+        fields={fields}
         lengths={lengths}
         sound={sound}
         types={types}

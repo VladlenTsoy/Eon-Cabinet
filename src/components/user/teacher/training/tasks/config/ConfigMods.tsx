@@ -1,5 +1,5 @@
 import React from 'react';
-import {Checkbox, Tooltip} from "antd";
+import {Checkbox, Form, Tooltip} from "antd";
 import styled from "styled-components";
 import {ConfigModsProps} from "./Config";
 import { FaPlus, FaUsers, FaQuoteRight, FaSquare, FaSlidersH } from 'react-icons/fa'
@@ -66,13 +66,10 @@ const CheckboxGroup = styled(Checkbox.Group)`
 `;
 
 interface ModsProps {
-    form: any;
     config?: ConfigModsProps;
 }
 
-const ConfigMods: React.FC<ModsProps> = ({form, config}) => {
-    const {getFieldDecorator} = form;
-
+const ConfigMods: React.FC<ModsProps> = ({config}) => {
     const options = [
         {
             label: <Tooltip title="Плюс"><FaPlus/></Tooltip>,
@@ -101,11 +98,9 @@ const ConfigMods: React.FC<ModsProps> = ({form, config}) => {
         },
     ];
 
-    return getFieldDecorator('extra', {
-        initialValue: []
-    })(
+    return <Form.Item name="extra">
         <CheckboxGroup options={options}/>
-    )
+    </Form.Item>
 };
 
 export default ConfigMods;

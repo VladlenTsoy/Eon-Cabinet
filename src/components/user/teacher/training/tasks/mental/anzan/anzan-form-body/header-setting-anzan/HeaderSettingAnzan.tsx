@@ -46,7 +46,6 @@ const HeaderSettingAnzan: React.FC<HeaderSettingAdditionProps> = (
         <Col span={24}>
             <ModeAnzan
                 forceDefaultAlgorithms={forceDefaultAlgorithms}
-                form={form}
                 mods={mods}
             />
         </Col>

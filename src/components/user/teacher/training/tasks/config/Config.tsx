@@ -16,7 +16,6 @@ export interface ConfigSoundProps {
 }
 
 interface ConfigProps {
-    form: any;
     mods?: ConfigModsProps | false;
     sounds?: ConfigSoundProps | false;
 }
@@ -25,10 +24,10 @@ const ConfigWrapper = styled.div`
   padding-top: 1rem;
 `;
 
-const ConfigBlock: React.FC<ConfigProps> = ({form, mods, sounds}) => {
+const ConfigBlock: React.FC<ConfigProps> = ({mods, sounds}) => {
     return <ConfigWrapper>
-        {mods ? <ConfigMods form={form} config={mods}/> : null}
-        {sounds ? <ConfigSounds form={form} config={sounds}/> : null}
+        {mods ? <ConfigMods config={mods}/> : null}
+        {sounds ? <ConfigSounds config={sounds}/> : null}
     </ConfigWrapper>;
 };
 

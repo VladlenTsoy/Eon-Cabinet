@@ -4,9 +4,10 @@ import HeaderSettingAnzan from "./header-setting-anzan/HeaderSettingAnzan";
 import BodySettingAnzan from "./body-setting.anzan/BodySettingAnzan";
 import ConfigBlock from "../../../config/Config";
 import usingFormBodyLayout from "../../layout/form-body/usingFormBody.layout";
+import {FormInstance} from "antd/es/form";
 
 interface AnzanFormBodyProps {
-    form: any;
+    form: FormInstance;
     sound?: boolean;
     setting: any;
     lengths: any;
@@ -51,7 +52,6 @@ const AnzanFormBody: React.FC<AnzanFormBodyProps> = (
             isMultiplication={isMultiplication}
         />
         <ConfigBlock
-            form={form}
             sounds={
                 type !== 'list' && sound ?
                     {

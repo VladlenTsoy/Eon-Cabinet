@@ -1,28 +1,23 @@
 import React from "react";
-import {Radio} from "antd";
+import {Form, Radio} from "antd";
 import {useSelector} from "react-redux";
 
 interface ModeAdditionProps {
-    form: any;
     mods?: string;
     changeModes?: any;
     isArray?: number;
     forceDefaultAlgorithms?: boolean;
 }
 
-const ModeAnzan: React.FC<ModeAdditionProps> = ({form, isArray, mods, forceDefaultAlgorithms}) => {
+const ModeAnzan: React.FC<ModeAdditionProps> = ({isArray, mods, forceDefaultAlgorithms}) => {
     const {language, app, user} = useSelector((state: any) => state);
-    const {getFieldDecorator} = form;
 
     const checkCustomAlg = (name: any) => {
-        return user.setting.is_custom_algorithms ? !(forceDefaultAlgorithms || app.custom_algorithms.hasOwnProperty(name)): false
+        return user.setting.is_custom_algorithms ? !(forceDefaultAlgorithms || app.custom_algorithms.hasOwnProperty(name)) : false
     };
 
-    return getFieldDecorator(isArray ? `mode[${isArray}]` : 'mode', {
-        initialValue: 'plus',
-        rules: [{required: true}],
-        // getValueFromEvent: changeModes
-    })(
+    // initialValue: 'plus',
+    return <Form.Item name={isArray ? `mode[${isArray}]` : 'mode'} required>
         <Radio.Group className="setting-mode" buttonStyle="solid">
             {!mods || mods === 'addition' ?
                 <>
@@ -50,7 +45,7 @@ const ModeAnzan: React.FC<ModeAdditionProps> = ({form, isArray, mods, forceDefau
                 </> : null
             }
         </Radio.Group>
-    );
+    </Form.Item>
 };
 
 export default ModeAnzan;

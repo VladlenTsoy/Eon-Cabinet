@@ -51,7 +51,6 @@ const NumbersFormBody: React.FC<NumbersFormBodyProps> = ({form}) => {
             </Col>
             <Col span={24}>
                 <ConfigBlock
-                    form={form}
                     sounds={form.getFieldValue('task-mode') === 'basic' ? {
                         language: true,
                     } : false}
