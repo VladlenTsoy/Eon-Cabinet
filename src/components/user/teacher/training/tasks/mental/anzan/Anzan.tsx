@@ -165,7 +165,7 @@ const Anzan: React.FC<AnzanProps> = (
             setFields(_fields);
         } else
             updateLengthsByMode({}, {}, !mods || mods === 'addition' ? 'plus' : 'multiply');
-    }, [updateLengthsByMode]);
+    }, [updateLengthsByMode, mods]);
 
     return <AnzanFormBody
         initialValues={{

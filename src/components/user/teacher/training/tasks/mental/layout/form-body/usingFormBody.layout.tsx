@@ -57,7 +57,7 @@ const usingFormBodyLayout = (FormItems: any) => {
             } catch (e) {
                 console.log(e);
             }
-        }, [userSetting, settingBasicSorting]);
+        }, [userSetting, settingBasicSorting, settingCustomSorting]);
 
         /***
          * Начать упражнения

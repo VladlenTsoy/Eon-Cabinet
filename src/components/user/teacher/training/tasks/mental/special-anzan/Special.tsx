@@ -3,7 +3,7 @@ import SpecialFormItems from "./special-form-items/SpecialFormItems";
 import ConfigBlock from "../../config/Config";
 import usingFormBodyLayout from "../layout/form-body/usingFormBody.layout";
 
-const Special: React.FC = ({}) => {
+const Special: React.FC = () => {
     return <>
         <SpecialFormItems/>
         <ConfigBlock
