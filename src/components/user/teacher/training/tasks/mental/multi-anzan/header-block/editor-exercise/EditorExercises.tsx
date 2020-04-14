@@ -45,6 +45,7 @@ const EditorExercises: React.FC<AddExercisesProps> = (
             {children}
         </span>
         <Modal
+            destroyOnClose
             centered
             closable={false}
             width="800px"

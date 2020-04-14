@@ -1,7 +1,6 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {Form} from "antd";
 import Buttons from "./buttons/Buttons";
-import {LoadingBlock} from "lib";
 
 interface FormItemsProps {
     clearSaveSetting?: () => void;
@@ -11,14 +10,16 @@ interface FormItemsProps {
     userSetting?: any;
     initialValues?: any;
     onChange?: (changedFields: any, fieldsValue: any) => any[];
-    settingCustomSorting?: (setting: any, setFields: any) => void;
 
     sound?: boolean;
     isMultiAnzan?: boolean;
     isEdit?: boolean;
 
-    // Для Аназана
+    // Для Мульти-Анзана
     mods?: string;
+    updateInitFields?: () => any[];
+
+    // Для Аназана
     lengths?: any;
     types?: any;
     themes?: any;
@@ -28,12 +29,12 @@ const usingFormBodyLayout = (FormItems: any) => {
     const FormWrapper: React.FC<FormItemsProps> = (
         {
             userSetting,
-            settingCustomSorting,
             onChange,
             initialValues = {},
             addSettingHomework,
             clearSaveSetting,
             startApplication,
+            updateInitFields,
             isEdit,
             ...props
         }
@@ -41,23 +42,6 @@ const usingFormBodyLayout = (FormItems: any) => {
         const [fields, setFields] = useState<any[]>([]);
         const [form] = Form.useForm();
         const [loading, setLoading] = useState(false);
-
-        const settingBasicSorting = useCallback((_setting: any) => {
-            let _fields = Object.keys(_setting).map((key: string) => ({name: [key], value: _setting[key]}));
-            setFields(_fields);
-        }, []);
-
-        useEffect(() => {
-            try {
-                if (userSetting) {
-                    settingCustomSorting ?
-                        settingCustomSorting(userSetting, setFields) :
-                        settingBasicSorting(userSetting);
-                }
-            } catch (e) {
-                console.log(e);
-            }
-        }, [userSetting, settingBasicSorting, settingCustomSorting]);
 
         /***
          * Начать упражнения
@@ -81,32 +65,32 @@ const usingFormBodyLayout = (FormItems: any) => {
                 setFields(onChange ? onChange(changedFields, allFields) : allFields);
         };
 
-        return fields.length ?
-            <Form
+        return <Form
+            form={form}
+            // userSetting DELETE
+            initialValues={initialValues}
+            fields={fields}
+            layout='vertical'
+            onFinish={onFinish}
+            onFieldsChange={fieldsChange}
+        >
+            <FormItems
                 form={form}
-                initialValues={initialValues}
                 fields={fields}
-                layout='vertical'
-                onFinish={onFinish}
-                onFieldsChange={fieldsChange}
-            >
-                <FormItems
-                    fields={fields}
-                    loading={loading}
-                    {...props}
-                />
-                <Buttons
-                    fields={fields}
-                    form={form}
-                    setLoading={setLoading}
-                    loading={loading}
-                    addSettingHomework={addSettingHomework}
-                    startApplication={startApplication}
-                    clearSaveSetting={clearSaveSetting}
-                    isEdit={isEdit}
-                />
-            </Form> :
-            <LoadingBlock/>
+                loading={loading}
+                {...props}
+            />
+            <Buttons
+                fields={fields}
+                form={form}
+                setLoading={setLoading}
+                loading={loading}
+                addSettingHomework={addSettingHomework}
+                startApplication={startApplication}
+                clearSaveSetting={clearSaveSetting}
+                isEdit={isEdit}
+            />
+        </Form>
     };
     return FormWrapper;
 };

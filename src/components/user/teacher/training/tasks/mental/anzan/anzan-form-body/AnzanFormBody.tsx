@@ -6,6 +6,7 @@ import ConfigBlock from "../../../config/Config";
 import usingFormBodyLayout from "../../layout/form-body/usingFormBody.layout";
 
 interface AnzanFormBodyProps {
+    form: any;
     fields: any;
     sound?: boolean;
     setting: any;
@@ -19,7 +20,7 @@ interface AnzanFormBodyProps {
 
 const AnzanFormBody: React.FC<AnzanFormBodyProps> = (
     {
-        fields,
+        form,
         sound,
         setting,
         lengths,
@@ -29,10 +30,10 @@ const AnzanFormBody: React.FC<AnzanFormBodyProps> = (
         mods,
     }
 ) => {
-    const typeAnzan = fields.find((field: any) => field.name.includes('anzan')).value;
-    const mode = fields.find((field: any) => field.name.includes('mode')).value;
-    const length = fields.find((field: any) => field.name.includes('length')).value;
-    const isMultiplication = mode === 'divide' || mode === 'multiply';
+    const typeAnzanValue = form.getFieldValue('anzan');
+    const modeValue = form.getFieldValue('mode');
+    const lengthValue = form.getFieldValue('length');
+    const isMultiplication = modeValue === 'divide' || modeValue === 'multiply';
 
     return <>
         {
@@ -40,7 +41,7 @@ const AnzanFormBody: React.FC<AnzanFormBodyProps> = (
                 <TypeSettingAnzan/> : null
         }
         <HeaderSettingAnzan
-            typeAnzan={typeAnzan.value}
+            typeAnzan={typeAnzanValue}
             mods={mods}
             isMultiplication={isMultiplication}
             setting={setting}
@@ -49,8 +50,8 @@ const AnzanFormBody: React.FC<AnzanFormBodyProps> = (
             themes={themes}
         />
         <BodySettingAnzan
-            length={length}
-            typeAnzan={typeAnzan}
+            length={lengthValue}
+            typeAnzan={typeAnzanValue}
             isMultiAnzan={isMultiAnzan}
             mods={mods}
             setting={setting}
@@ -58,7 +59,7 @@ const AnzanFormBody: React.FC<AnzanFormBodyProps> = (
         />
         <ConfigBlock
             sounds={
-                typeAnzan !== 'list' && sound ?
+                typeAnzanValue !== 'list' && sound ?
                     {
                         language: !isMultiplication,
                     } : false
@@ -66,14 +67,14 @@ const AnzanFormBody: React.FC<AnzanFormBodyProps> = (
             mods={
                 isMultiplication ?
                     {
-                        group: !isMultiAnzan && typeAnzan !== 'list'
+                        group: !isMultiAnzan && typeAnzanValue !== 'list'
                     } :
                     {
                         plus: true,
-                        group: !isMultiAnzan && typeAnzan !== 'list',
+                        group: !isMultiAnzan && typeAnzanValue !== 'list',
                         comma: true,
                         mirror: true,
-                        abacus: typeAnzan !== 'turbo' && typeAnzan !== 'list'
+                        abacus: typeAnzanValue !== 'turbo' && typeAnzanValue !== 'list'
                     }
             }
         />

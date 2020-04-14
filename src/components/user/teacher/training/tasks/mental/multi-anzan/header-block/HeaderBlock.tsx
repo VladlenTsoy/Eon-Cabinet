@@ -1,10 +1,9 @@
 import React, {useState} from 'react';
 import styled from "styled-components";
-import {FlagOutlined, QuestionCircleOutlined, UndoOutlined, UserAddOutlined} from '@ant-design/icons';
-import {Button, Radio, Switch, Form} from "antd";
-import EditorExercises from "./editor-exercise/EditorExercises";
-import {FormItem} from "../../../../../../../../layouts/components";
+import {Form} from "antd";
 import {FormProps} from "antd/es/form";
+import HeaderRadio from "./header-radio/HeaderRadio";
+import HeaderAction from "./header-actions/HeaderAction";
 
 const HeaderBlockWrapper = styled.div`
   display: flex;
@@ -20,20 +19,10 @@ const HeaderBlockWrapper = styled.div`
 `;
 
 const FormWrapper: React.FC<FormProps> = styled(Form)`
-  display: flex;
-  align-items: center;
-  margin-right: auto;
-`;
-
-const SwitchWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  margin-left: 1.5rem;
-  font-size: 16px;
-  
-  span{
-    margin-right: 0.5rem;
+  &.ant-form{
+    display: flex;
+    align-items: center;
+    margin-right: auto;
   }
 `;
 
@@ -41,7 +30,7 @@ interface HeaderBlockProps {
     fields: any;
     isDisabledMode: boolean;
     isMaxStudent?: boolean;
-    onChange: (setting: any) => void;
+    onChange: (changedFields: any[], allFields: any[]) => void;
     addExercise: (setting: any) => void;
     handlerStart: (setting: any) => void;
     clearExercise: () => void;
@@ -53,6 +42,7 @@ const HeaderBlock: React.FC<HeaderBlockProps> = (
         isDisabledMode,
         isMaxStudent,
         addExercise,
+        onChange,
         handlerStart,
         clearExercise,
     }
@@ -63,10 +53,10 @@ const HeaderBlock: React.FC<HeaderBlockProps> = (
     /**
      * Отправка настроек для начала упражнения
      */
-    const handlerSubmit = async () => {
+    const handlerSubmit = async (values: any) => {
         setLoading(true);
         try {
-            await handlerStart(form.getFieldsValue());
+            await handlerStart(values);
         } catch (e) {
             setLoading(false);
         }
@@ -79,62 +69,29 @@ const HeaderBlock: React.FC<HeaderBlockProps> = (
 
     return (
         <HeaderBlockWrapper>
-            <FormWrapper id="multi-from" onFinish={handlerSubmit} initialValues={{
-                mode: fields.mode.value,
-                group: fields.group.value
-            }}>
-                <FormItem
-                    name="mode"
-                    // TODO - значения по умолчанию
-                    // initialValue="addition"
-                >
-                    <Radio.Group
-                        disabled={isDisabledMode}
-                        buttonStyle="solid"
-                        size="large"
-                    >
-                        <Radio.Button value="addition">+ Плюс, - Минус</Radio.Button>
-                        <Radio.Button value="multiplication">* Умножение, / Деление</Radio.Button>
-                    </Radio.Group>
-                </FormItem>
-                {form.getFieldValue('mode') === 'multiplication' ?
-                    <SwitchWrapper>
-                        <span>Примеры подряд <QuestionCircleOutlined/></span>
-                        <FormItem
-                            name="group"
-                            valuePropName="checked"
-                        >
-                            <Switch/>
-                        </FormItem>
-                    </SwitchWrapper> : null
-                }
+            <FormWrapper
+                form={form}
+                fields={fields}
+                onFieldsChange={onChange}
+                id="multi-from"
+                onFinish={handlerSubmit}
+                initialValues={{
+                    mode: 'addition',
+                    group: false
+                }}
+            >
+                <HeaderRadio
+                    form={form}
+                    isDisabledMode={isDisabledMode}
+                />
             </FormWrapper>
-            {isMaxStudent ? null :
-                <EditorExercises
-                    updateExercise={addExercise}
-                    mods={form.getFieldValue('mode')}
-                >
-                    <Button icon={<UserAddOutlined/>} size="large">
-                        Добавить участника
-                    </Button>
-                </EditorExercises>}
-            <Button.Group size="large">
-                <Button
-                    icon={<UndoOutlined/>}
-                    onClick={handlerClear}
-                >
-                    Очистить
-                </Button>
-                <Button
-                    form="multi-from"
-                    loading={loading}
-                    type="primary"
-                    icon={<FlagOutlined/>}
-                    onClick={handlerSubmit}
-                >
-                    Начать
-                </Button>
-            </Button.Group>
+            <HeaderAction
+                loading={loading}
+                isMaxStudent={isMaxStudent}
+                handlerClear={handlerClear}
+                form={form}
+                addExercise={addExercise}
+            />
         </HeaderBlockWrapper>
     );
 };

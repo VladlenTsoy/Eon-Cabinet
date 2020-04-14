@@ -10,7 +10,7 @@ const InformationWrapper = styled.div`
   justify-content: center;
   align-items: center;
     
-  i{
+  .anticon{
     color: ${props => props.theme.color_border};
     font-size: 200px;
   }
@@ -25,7 +25,7 @@ const AddUserWrapper = styled.div`
   line-height: 25px;
   pointer-events: none;
 
-  i{
+  .anticon{
     color: ${props => props.theme.color_border};
     font-size: 150px;
     margin-bottom: 2rem;

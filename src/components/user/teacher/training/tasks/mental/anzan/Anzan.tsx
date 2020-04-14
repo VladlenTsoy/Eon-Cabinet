@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {useSelector} from "react-redux";
 import AnzanFormBody from "./anzan-form-body/AnzanFormBody";
 
@@ -158,28 +158,34 @@ const Anzan: React.FC<AnzanProps> = (
             return allFields;
     }, [updateLengthsByMode, updateTypesByLength, updateThemesByType]);
 
-    const settingCustomSorting = useCallback((_setting, setFields) => {
-        if (_setting) {
-            let _fields = Object.keys(_setting).map((key: string) => ({name: [key], value: _setting[key]}));
-            updateLengthsByMode(_fields, {}, _setting.mode, _setting);
-            setFields(_fields);
+    useEffect(() => {
+        if (userSetting) {
+            let _fields = Object.keys(userSetting).map((key: string) => ({name: [key], value: userSetting[key]}));
+            updateLengthsByMode(_fields, [], userSetting.mode, userSetting);
         } else
-            updateLengthsByMode({}, {}, !mods || mods === 'addition' ? 'plus' : 'multiply');
-    }, [updateLengthsByMode, mods]);
+            updateLengthsByMode([], [], !mods || mods === 'addition' ? 'plus' : 'multiply');
+    }, [mods, userSetting, updateLengthsByMode]);
 
     return <AnzanFormBody
-        initialValues={{
-            mode: 'plus',
+        initialValues={userSetting || {
+            anzan: 'basic',
+            mode: !mods || mods === 'addition' ? 'plus' : 'multiply',
+            length: '1',
+            type: !mods || mods === 'addition' ? 'p' : '1',
+            count: 1,
+            times: 1,
+            time: 1,
+            extra: [],
+            sound: 'basic',
         }}
         isEdit={isEdit}
         mods={mods}
         isMultiAnzan={isMultiAnzan}
-        userSetting={userSetting}
         onChange={handleFormChange}
         clearSaveSetting={clearSaveSetting}
         startApplication={startApplication}
         addSettingHomework={addSettingHomework}
-        settingCustomSorting={settingCustomSorting}
+        // settingCustomSorting={settingCustomSorting}
         lengths={lengths}
         sound={sound}
         types={types}

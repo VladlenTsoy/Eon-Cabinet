@@ -17,14 +17,10 @@ interface MultiAnzanProps {
     startApplication: (setting: any) => void;
 }
 
-const initFields = {
-    mode: {
-        value: 'addition',
-    },
-    group: {
-        value: false,
-    }
-};
+const initFields = [
+    {name: ['mode'], value: 'addition'},
+    {name: ['group'], value: false},
+];
 
 const MultiAnzan: React.FC<MultiAnzanProps> = (
     {
@@ -35,7 +31,7 @@ const MultiAnzan: React.FC<MultiAnzanProps> = (
 ) => {
     const eventChangeExercise = new Event('change-exercise');
     const [exercises, setExercise] = useState<any[]>([]);
-    const [fields, setFields] = useState<any>(initFields);
+    const [fields, setFields] = useState<any[]>(initFields);
 
     /**
      * Добавление окна настроек
@@ -103,21 +99,18 @@ const MultiAnzan: React.FC<MultiAnzanProps> = (
      * Обновление настроек
      *
      * @param changedFields
+     * @param allFields
      */
-    const handlerChangeHeader = (changedFields: any) =>
-        setFields((prevState: any) => ({...prevState, ...changedFields}));
+    const handlerChangeHeader = (changedFields: any[], allFields: any[]) =>
+        setFields(allFields);
 
     useEffect(() => {
         try {
             if (userSetting && userSetting.mode) {
-                setFields({
-                    mode: {
-                        value: userSetting.mode
-                    },
-                    group: {
-                        value: userSetting.group
-                    }
-                });
+                setFields([
+                    {name: ['mode'], value: userSetting.mode},
+                    {name: ['group'], value: userSetting.group},
+                ]);
                 setExercise(userSetting.windows || []);
             }
         } catch (e) {
