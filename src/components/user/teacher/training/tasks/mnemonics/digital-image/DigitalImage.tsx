@@ -1,40 +1,15 @@
 import React from 'react';
-import {useFieldsSetting} from "../../../../../../../effects/use-fields-setting.effect";
-import DigitalImageFormBody from "./digital-image-form-body/DigitalImageFormBody";
+import {Select} from "antd";
+import {FormItem} from "../../../../../../../layouts/components";
+import usingFormBodyLayout from "../../mental/layout/form-body/usingFormBody.layout";
 
-
-interface DigitalImageProps {
-    userSetting?: any;
-    clearSaveSetting?: any;
-    startApplication?: (setting: any, print: boolean) => void;
-    addSettingHomework?: (setting: any) => void;
-}
-
-const DigitalImage: React.FC<DigitalImageProps> = (
-    {
-        userSetting,
-        clearSaveSetting,
-        startApplication,
-        addSettingHomework,
-    }
-) => {
-    const [fields, setFields] = useFieldsSetting({setting: userSetting});
-
-    /**
-     * Обновление настроек
-     *
-     * @param changedFields
-     */
-    const handlerChangeHeader = (changedFields: any) =>
-        setFields((prevState: any) => ({...prevState, ...changedFields}));
-
-    return <DigitalImageFormBody
-        onChange={handlerChangeHeader}
-        clearSaveSetting={clearSaveSetting}
-        startApplication={startApplication}
-        addSettingHomework={addSettingHomework}
-        setting={fields}
-    />;
+const DigitalImage: React.FC = () => {
+    return <FormItem name="mode" label="Мод" requiredMsg="Выберите мод!">
+        <Select>
+            <Select.Option value="1">По порядку</Select.Option>
+            <Select.Option value="2">Вразброс</Select.Option>
+        </Select>
+    </FormItem>;
 };
 
-export default DigitalImage;
+export default usingFormBodyLayout(DigitalImage);

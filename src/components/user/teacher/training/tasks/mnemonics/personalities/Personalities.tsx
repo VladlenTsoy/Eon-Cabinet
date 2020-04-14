@@ -1,39 +1,30 @@
 import React from 'react';
-import {useFieldsSetting} from "../../../../../../../effects/use-fields-setting.effect";
-import PersonalitiesFormBody from "./personalities-form-body/PersonalitiesFormBody";
+import {FormItem} from "layouts/components";
+import {Col, InputNumber, Row, Select} from "antd";
+import usingFormBodyLayout from "../../mental/layout/form-body/usingFormBody.layout";
 
-interface PersonalitiesProps {
-    userSetting?: any;
-    clearSaveSetting?: any;
-    startApplication?: (setting: any, print: boolean) => void;
-    addSettingHomework?: (setting: any) => void;
-}
-
-const Personalities: React.FC<PersonalitiesProps> = (
-    {
-        userSetting,
-        clearSaveSetting,
-        startApplication,
-        addSettingHomework,
-    }
-) => {
-    const [fields, setFields] = useFieldsSetting({setting: userSetting});
-
-    /**
-     * Обновление настроек
-     *
-     * @param changedFields
-     */
-    const handlerChangeHeader = (changedFields: any) =>
-        setFields((prevState: any) => ({...prevState, ...changedFields}));
-
-    return <PersonalitiesFormBody
-        onChange={handlerChangeHeader}
-        clearSaveSetting={clearSaveSetting}
-        startApplication={startApplication}
-        addSettingHomework={addSettingHomework}
-        setting={fields}
-    />;
+const Personalities: React.FC = () => {
+    return <Row  gutter={15}>
+        <Col span={24}>
+            <FormItem name="mode" label="Мод" requiredMsg="Выберите мод!">
+                <Select>
+                    <Select.Option value="1">Уровень 1</Select.Option>
+                    <Select.Option value="2">Уровень 2</Select.Option>
+                    <Select.Option value="3">Уровень 3</Select.Option>
+                </Select>
+            </FormItem>
+        </Col>
+        <Col sm={12} xs={24}>
+            <FormItem label="Количество личностей" requiredMsg="Введите количество личностей" name="count">
+                <InputNumber style={{width: '100%'}}/>
+            </FormItem>
+        </Col>
+        <Col sm={12} xs={24}>
+            <FormItem label="Время (минуты)" requiredMsg="Введите время (минуты)" name="time">
+                <InputNumber style={{width: '100%'}}/>
+            </FormItem>
+        </Col>
+    </Row>;
 };
 
-export default Personalities;
+export default usingFormBodyLayout(Personalities);
