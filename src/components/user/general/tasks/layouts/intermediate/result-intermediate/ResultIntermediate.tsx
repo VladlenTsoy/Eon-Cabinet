@@ -13,22 +13,10 @@ const BuzzLossSound = new Audio(LossSound);
 const {Title} = Typography;
 
 const CardWrapper = styled.div`
-      .result-content {
-        text-align: center;
-        padding-top: 2.5rem;
-
-        .result-image-block {
-          height: 400px;
-          width: 400px;
-          margin: 0 auto;
-
-          img {
-            object-fit: fill;
-            height: 100%;
-            width: 100%;
-          }
-        }
-      }
+  .result-content {
+    text-align: center;
+    padding-top: 2.5rem;
+  }
 `;
 
 interface ResultIntermediateProps {

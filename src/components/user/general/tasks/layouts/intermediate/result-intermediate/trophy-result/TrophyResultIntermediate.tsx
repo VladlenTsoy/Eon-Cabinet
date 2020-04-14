@@ -1,8 +1,25 @@
 import React, {useState} from "react";
-import win from "../../../../../../../../assets/images/illustrations/block_win.svg";
-import loss from "../../../../../../../../assets/images/illustrations/block_loss.svg";
-import {Spin} from "../../../../../../../../layouts/components";
-import {Animated} from "react-animated-css";
+import win from "assets/images/illustrations/block_win.svg";
+import loss from "assets/images/illustrations/block_loss.svg";
+import {Spin} from "layouts/components";
+import styled from "styled-components";
+
+interface TrophyAnimationProps {
+    nameAnimation: string;
+}
+
+const TrophyAnimation: React.FC<TrophyAnimationProps> = styled.div<TrophyAnimationProps>`
+  height: 400px;
+  width: 400px;
+  margin: 0 auto;
+  animation: ${props => props.nameAnimation} 1s .4s ease-in-out;
+  
+  img {
+    object-fit: fill;
+    height: 100%;
+    width: 100%;
+  }
+`;
 
 interface TrophyResultIntermediateProps {
     result: any;
@@ -16,19 +33,14 @@ const TrophyResultIntermediate: React.FC<TrophyResultIntermediateProps> = ({resu
     };
 
     return <Spin spinning={loading} tip="Загрузка...">
-        <Animated
-            animationIn={result ? 'tada' : 'wobble'}
-            animationOut="fadeOut"
-            animationInDelay={400}
-            animationInDuration={1000}
-            isVisible
-            className="result-image-block">
-            <img src={result ? win : loss}
-                 alt="result-icon"
-                 onLoad={imageLoad}
+        <TrophyAnimation nameAnimation={result ? 'tada' : 'wobble'}>
+            <img
+                src={result ? win : loss}
+                alt="result-icon"
+                onLoad={imageLoad}
             />
-        </Animated>
+        </TrophyAnimation>
     </Spin>
 };
 
-export default TrophyResultIntermediate;
+export default React.memo(TrophyResultIntermediate);
