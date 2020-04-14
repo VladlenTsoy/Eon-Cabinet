@@ -46,9 +46,9 @@ const Tasks: React.FC<RouteComponentProps<TasksRouteProps>> = (
     const {discipline, task} = match.params;
     const [setting] = useState<any>(() => {
         try {
-            let userSetting = user.setting.tasks[discipline][task];
-            userSetting.mode = String(userSetting.mode);
-            return userSetting;
+            // let userSetting = user.setting.tasks[discipline][task];
+            // userSetting.mode = String(userSetting.mode);
+            return user.setting.tasks[discipline][task];
         } catch (e) {
             return {}
         }

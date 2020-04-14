@@ -24,8 +24,6 @@ const BasicSetting: React.FC<BasicSettingProps> = (
                 <FormItem
                     name="count"
                     label="Количество цифр"
-                    // TODO - Значение по умолчанию
-                    // initialValue={setting.count || 1}
                     requiredMsg="Введите количество цифр!">
                     <InputNumber min={1} max={
                         isMultiplication ? 200 :
@@ -39,8 +37,6 @@ const BasicSetting: React.FC<BasicSettingProps> = (
                 <FormItem
                     name="times"
                     label="Количество раз"
-                    // TODO - Значение по умолчанию
-                    // initialValue={1}
                     requiredMsg="Введите количество раз!">
                     <InputNumber min={1} style={{width: '100%'}}/>
                 </FormItem>
@@ -49,8 +45,6 @@ const BasicSetting: React.FC<BasicSettingProps> = (
             <FormItem
                 name="time"
                 label="Время (секунды)"
-                // TODO - Значение по умолчанию
-                // initialValue={2}
                 requiredMsg="Введите время!">
                 <InputNumber min={0.2} max={10} step={0.1} style={{width: '100%'}}/>
             </FormItem>

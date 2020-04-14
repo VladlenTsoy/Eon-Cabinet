@@ -159,7 +159,7 @@ const Anzan: React.FC<AnzanProps> = (
     }, [updateLengthsByMode, updateTypesByLength, updateThemesByType]);
 
     useEffect(() => {
-        if (userSetting) {
+        if (typeof userSetting === 'object' && Object.keys(userSetting).length) {
             let _fields = Object.keys(userSetting).map((key: string) => ({name: [key], value: userSetting[key]}));
             updateLengthsByMode(_fields, [], userSetting.mode, userSetting);
         } else
@@ -167,17 +167,22 @@ const Anzan: React.FC<AnzanProps> = (
     }, [mods, userSetting, updateLengthsByMode]);
 
     return <AnzanFormBody
-        initialValues={userSetting || {
-            anzan: 'basic',
-            mode: !mods || mods === 'addition' ? 'plus' : 'multiply',
-            length: '1',
-            type: !mods || mods === 'addition' ? 'p' : '1',
-            count: 1,
-            times: 1,
-            time: 1,
-            extra: [],
-            sound: 'basic',
-        }}
+        initialValues={
+            typeof userSetting === 'object' && Object.keys(userSetting).length ?
+                userSetting :
+                {
+                    anzan: 'basic',
+                    mode: !mods || mods === 'addition' ? 'plus' : 'multiply',
+                    length: '1',
+                    type: !mods || mods === 'addition' ? 'p' : '1',
+                    theme: '1-4',
+                    count: 1,
+                    times: 1,
+                    time: 1,
+                    extra: [],
+                    sound: 'basic',
+                }
+        }
         isEdit={isEdit}
         mods={mods}
         isMultiAnzan={isMultiAnzan}
