@@ -1,6 +1,6 @@
 import React, {useRef, useState} from 'react';
-import { RedoOutlined } from '@ant-design/icons';
-import {DatePicker, Button, Radio, Typography} from "antd";
+import {RedoOutlined} from '@ant-design/icons';
+import {DatePicker, Button, Radio, Typography, Form} from "antd";
 import {Alert} from "../../../../../../../layouts/components";
 import styled from "styled-components";
 import moment from "moment";
@@ -26,20 +26,17 @@ const DayOfWeekWrapper = styled.div`
 `;
 
 const DayOfWeek = () => {
-    const ref = useRef<any>();
     const weekRef = useRef<any>();
     const [visible, setVisible] = useState(false);
     const [user, setUser] = useState<any>(null);
     const [answer, setAnswer] = useState<any>(null);
 
-    const clickUpdateHandler = () => {
+    const onFinishHandler = (values: any) => {
         setVisible(false);
-        if (ref && ref.current) {
-            const [start, end] = ref.current.picker.state.value;
-            if (start && end) {
-                const date = new Date(start.valueOf() + Math.random() * (end.valueOf() - start.valueOf()));
-                setAnswer(date);
-            }
+        const [start, end] = values.period;
+        if (start && end) {
+            const date = new Date(start.valueOf() + Math.random() * (end.valueOf() - start.valueOf()));
+            setAnswer(date);
         }
         if (weekRef && weekRef.current)
             weekRef.current.state.value = undefined;
@@ -52,8 +49,14 @@ const DayOfWeek = () => {
 
     return (
         <DayOfWeekWrapper>
-            <RangePicker ref={ref} size="large"/>
-            <Button type="primary" icon={<RedoOutlined />} block onClick={clickUpdateHandler} size="large">Обновить дату</Button>
+            <Form onFinish={onFinishHandler}>
+                <Form.Item name="period">
+                    <RangePicker size="large" bordered={false} style={{width: '100%', textAlign: 'center'}}/>
+                </Form.Item>
+                <Button type="primary" htmlType="submit" icon={<RedoOutlined/>} block size="large">
+                    Обновить дату
+                </Button>
+            </Form>
             {answer ?
                 <>
                     <Title level={1}>Дата: {moment(answer).format('DD.MM.YYYY')}</Title>
