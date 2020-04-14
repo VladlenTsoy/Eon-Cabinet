@@ -1,8 +1,6 @@
 import React from 'react';
 import { ArrowRightOutlined } from '@ant-design/icons';
-import { Form } from '@ant-design/compatible';
-import '@ant-design/compatible/assets/index.css';
-import { Button, Col, Typography } from "antd";
+import { Button, Col, Typography, Form } from "antd";
 import {Card} from "lib";
 import {useDispatch, useSelector} from "react-redux";
 import {gameChangeStats, gameChangeStatus, gameChangeTotals} from "../../../../../../../../store/game/actions";
@@ -25,19 +23,12 @@ const CardWrapper = styled(Card)`
   }
 `;
 
-interface BasicProps {
-    form: any;
-}
-
-const Basic: React.FC<BasicProps> = ({form}) => {
+const Basic: React.FC = () => {
     const {game} = useSelector((state: any) => state);
     const {setting, totals, stats, currentTimes} = game;
     const dispatch = useDispatch();
 
-    const handleSubmit = (e: any) => {
-        e.preventDefault();
-        form.validateFields(async (err: any, values: any) => {
-            if (!err) {
+    const handleSubmit = (values: any) => {
                 if (setting.extra && setting.extra.includes('group')) {
                     let _totals = totals.map((total: any, key: number) => {
                         if (total.answer === Number(values.user[key]))
@@ -67,16 +58,14 @@ const Basic: React.FC<BasicProps> = ({form}) => {
                     dispatch(gameChangeTotals(totals));
                     dispatch(gameChangeStatus('intermediate'));
                 }
-            }
-        });
     };
 
     return (
         <Col xl={10} md={12} sm={14} xs={24}>
             <CardWrapper>
-                <Form onSubmit={handleSubmit}>
+                <Form onFinish={handleSubmit}>
                     <Title level={2}>Введите ответ</Title>
-                    <FormAnswer form={form} autofocus={true} name="user"/>
+                    <FormAnswer autofocus={true} name="user"/>
                     <Button type="primary" htmlType="submit" block size="large" icon={<ArrowRightOutlined />}>
                         Далее
                     </Button>
