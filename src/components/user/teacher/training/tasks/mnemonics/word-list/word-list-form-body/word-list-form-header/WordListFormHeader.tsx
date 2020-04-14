@@ -4,11 +4,13 @@ import {Button, Col, Row, Select, Form} from "antd";
 import {FormItem} from "../../../../../../../../../layouts/components";
 import styled from "styled-components";
 import {useSelector} from "react-redux";
+import {useScreenWindow} from "../../../../../../../../../effects/use-screen-window.effect";
 
 const {Option} = Select;
 
 const CounterWrapper = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   align-items: flex-end;
   
   .ant-form-item{
@@ -24,10 +26,6 @@ const CounterWrapper = styled.div`
       margin: 0;
     }
   }
-  
-  .ant-btn{
-    margin-bottom: 5px;
-  }
 `;
 
 interface WordListFormHeaderProps {
@@ -35,6 +33,7 @@ interface WordListFormHeaderProps {
 }
 
 const WordListFormHeader: React.FC<WordListFormHeaderProps> = ({addSetting}) => {
+    const [isBreakpoint] = useScreenWindow({breakpoint: 'md'});
     const {language} = useSelector((state: any) => state);
     const {common} = language;
 
@@ -43,13 +42,23 @@ const WordListFormHeader: React.FC<WordListFormHeaderProps> = ({addSetting}) => 
     };
 
     return (
-        <Form onFinish={submitHandler} id="form-setting-word-list">
+        <Form
+            onFinish={submitHandler}
+            id="form-setting-word-list"
+            layout="vertical"
+            initialValues={{
+                mode: 0,
+                type: 0,
+                count: 5,
+            }}
+        >
             <Row gutter={15}>
                 <Col xl={7} md={8} xs={12}>
-                    <FormItem name="mode"
-                        // TODO - Значение по умолчанию
-                        // initialValue={0}
-                              label={common.mode} requiredMsg="Выберите режим!">
+                    <FormItem
+                        name="mode"
+                        label={common.mode}
+                        requiredMsg="Выберите режим!"
+                    >
                         <Select>
                             {common.tasksTraining.wordsList.mode.map((type: string, key: number) =>
                                 <Option value={key} key={key}>{type}</Option>
@@ -60,8 +69,6 @@ const WordListFormHeader: React.FC<WordListFormHeaderProps> = ({addSetting}) => 
                 <Col xl={7} md={8} xs={12}>
                     <FormItem
                         name="type"
-                        // TODO - Значение по умолчанию
-                        // initialValue={0}
                         label={common.type}
                         requiredMsg="Выберите тип!"
                     >
@@ -74,11 +81,12 @@ const WordListFormHeader: React.FC<WordListFormHeaderProps> = ({addSetting}) => 
                 </Col>
                 <Col xl={10} md={8} xs={24}>
                     <CounterWrapper>
-                        <FormItem name="count"
-                            // TODO - Значение по умолчанию
-                            // initialValue={5}
-                                  label={common.qty} requiredMsg="Введите кол-во!"
-                                  marginBottom="0">
+                        <FormItem
+                            name="count"
+                            label={common.qty}
+                            requiredMsg="Введите кол-во!"
+                            marginBottom="0"
+                        >
                             <Select>
                                 <Option value={5}>{5}</Option>
                                 <Option value={10}>{10}</Option>
@@ -94,7 +102,7 @@ const WordListFormHeader: React.FC<WordListFormHeaderProps> = ({addSetting}) => 
                         </FormItem>
                         <Button
                             ghost
-                            block
+                            block={isBreakpoint}
                             icon={<PlusOutlined/>}
                             type="primary"
                             htmlType="submit"

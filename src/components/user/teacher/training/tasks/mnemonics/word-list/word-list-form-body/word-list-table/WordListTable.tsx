@@ -35,12 +35,13 @@ const TableWrapper = styled.div`
       padding-left: 1rem;
       padding-bottom: 0.5rem;
     
-      span{
+      div{
+        display: inline;
         padding-right: 6rem;
       }
       
       @media (max-width: 768px) {
-        span{
+        div{
           padding-right: 2rem;
         }
       }
@@ -78,6 +79,7 @@ const ButtonGroupWrapper = styled(Button.Group)`
 
 interface WordListTableProps {
     form: FormInstance,
+    fields: any[],
     deleteSetting: (key: string) => void;
     clearSetting?: any;
     startApplication?: (setting: any, print: boolean) => void;
@@ -87,6 +89,7 @@ interface WordListTableProps {
 const WordListTable: React.FC<WordListTableProps> = (
     {
         form,
+        fields,
         addSettingHomework,
         startApplication,
         clearSetting,
@@ -108,63 +111,65 @@ const WordListTable: React.FC<WordListTableProps> = (
         }
     };
 
-    return (
-        <Form form={form} onFinish={submitHandler}>
-            <TableWrapper>
-                {form.getFieldValue('several') && Object.entries(form.getFieldValue('several')).length ?
-                    <table>
-                        <tbody>
-                        {Object.entries(form.getFieldValue('several')).map((arr: any) =>
-                            <tr key={arr[0]}>
-                                <td className="mode">{common['tasksTraining']['wordsList']['mode'][arr[1].mode]}</td>
-                                <td className="type">{common['tasksTraining']['wordsList']['type'][arr[1].type]}</td>
-                                <td className="counter">
-                                    <span>{arr[1].count}</span>
-                                    <Button
-                                        ghost
-                                        type="danger"
-                                        icon={<DeleteOutlined/>}
-                                        shape="circle"
-                                        onClick={() => deleteSetting(arr[0])}
-                                    />
-                                </td>
-                            </tr>
-                        )}
-                        </tbody>
-                    </table> :
-                    <Empty/>
-                }
-                <div className="hideme">
-                    <FormItem name="several"/>
-                </div>
-                <FormItem
-                    name="time"
-                    label="Время (Минуты)"
-                    // TODO - Значание по умолчанию
-                    // initialValue={1}
-                    requiredMsg="Выберите время"
-                >
-                    <InputNumber style={{width: '100%'}} min={0.1} max={30} step={0.1}/>
-                </FormItem>
-            </TableWrapper>
-            <ButtonGroupWrapper size="large">
-                {addSettingHomework ?
-                    <Button htmlType="submit" type="primary" icon={<PlusOutlined/>}>Добавить</Button> :
-                    <>
-                        <Button icon={<UndoOutlined/>} onClick={clearSetting}>Очистить</Button>
-                        <Button
-                            htmlType="submit"
-                            type="primary"
-                            icon={<FlagOutlined/>}
-                            loading={loading}
-                        >
-                            Начать
-                        </Button>
-                    </>
-                }
-            </ButtonGroupWrapper>
-        </Form>
-    );
+    const severalFields = fields.filter((field: any) => new RegExp(field.name.join('|')).test('several'));
+
+    return <Form
+        form={form}
+        onFinish={submitHandler}
+        layout="vertical"
+    >
+        <TableWrapper>
+            {severalFields ?
+                <table>
+                    <tbody>
+                    {severalFields.map((field: any, key) =>
+                        <tr key={key}>
+                            <td className="mode">{common['tasksTraining']['wordsList']['mode'][field.value.mode]}</td>
+                            <td className="type">{common['tasksTraining']['wordsList']['type'][field.value.type]}</td>
+                            <td className="counter">
+                                <div>{field.value.count}</div>
+                                <Button
+                                    ghost
+                                    type="danger"
+                                    icon={<DeleteOutlined/>}
+                                    shape="circle"
+                                    onClick={() => deleteSetting(field.name[1])}
+                                />
+                            </td>
+                        </tr>
+                    )}
+                    </tbody>
+                </table> :
+                <Empty/>
+            }
+            <div className="hideme">
+                <FormItem name="several"/>
+            </div>
+            <FormItem
+                name="time"
+                label="Время (Минуты)"
+                requiredMsg="Выберите время"
+            >
+                <InputNumber style={{width: '100%'}} min={0.1} max={30} step={0.1}/>
+            </FormItem>
+        </TableWrapper>
+        <ButtonGroupWrapper size="large">
+            {addSettingHomework ?
+                <Button htmlType="submit" type="primary" icon={<PlusOutlined/>}>Добавить</Button> :
+                <>
+                    <Button icon={<UndoOutlined/>} onClick={clearSetting}>Очистить</Button>
+                    <Button
+                        htmlType="submit"
+                        type="primary"
+                        icon={<FlagOutlined/>}
+                        loading={loading}
+                    >
+                        Начать
+                    </Button>
+                </>
+            }
+        </ButtonGroupWrapper>
+    </Form>
 };
 
 export default WordListTable;

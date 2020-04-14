@@ -1,5 +1,4 @@
-import React, {useCallback} from 'react';
-import {useFieldsSetting} from "../../../../../../../effects/use-fields-setting.effect";
+import React, {useCallback, useEffect, useState} from 'react';
 import WordListFormBody from "./word-list-form-body/WordListFormBody";
 
 interface SettingWordsListProps {
@@ -17,34 +16,47 @@ const WordList: React.FC<SettingWordsListProps> = (
         addSettingHomework,
     }
 ) => {
-    const [fields, setFields] = useFieldsSetting({setting: userSetting});
+    const [fields, setFields] = useState<any[]>([]);
 
-    /**
-     * Обновление настроек
-     *
-     * @param changedFields
-     */
-    const handlerChangeHeader = (changedFields: any) =>
-        setFields((prevState: any) => ({...prevState, ...changedFields}));
+    const addSetting = useCallback(async (setting: any) => {
+        setFields((prevState) => {
+            let upField = {name: ['several', `setting-${setting.mode}-${setting.type}`], value: setting};
+            let nameField = `severalsetting-${setting.mode}-${setting.type}`;
+            if (prevState && prevState.length) {
+                const indexField = prevState.findIndex((field: any) => field.name.join('') === nameField);
 
-    const updateSeveral = useCallback((funcSetting: (prevState: any) => any) => {
-        setFields((prevState: any) => ({
-                ...prevState, ...{
-                    several: {
-                        value: funcSetting(prevState.several ? prevState.several.value : {})
-                    }
-                }
-            })
-        );
-    }, [setFields]);
+                if (indexField > -1)
+                    prevState[indexField] = upField;
+                else
+                    prevState.push(upField);
+            } else
+                prevState.push(upField);
+
+            return JSON.parse(JSON.stringify(prevState));
+        });
+    }, []);
+
+    const deleteSetting = useCallback((keyId: string) => {
+        setFields(JSON.parse(JSON.stringify(fields.filter((field: any) => !field.name.includes(keyId)))));
+    }, [fields]);
+
+    useEffect(() => {
+        Object.values(userSetting.several).map((several: any) => addSetting(several));
+    }, [userSetting, addSetting]);
 
     return <WordListFormBody
-        onChange={handlerChangeHeader}
+        initialValues={
+            userSetting ||
+            {
+                time: 1
+            }
+        }
         clearSaveSetting={clearSaveSetting}
         startApplication={startApplication}
         addSettingHomework={addSettingHomework}
-        updateSeveral={updateSeveral}
-        setting={fields}
+        deleteSetting={deleteSetting}
+        addSetting={addSetting}
+        fields={fields}
     />
 };
 
