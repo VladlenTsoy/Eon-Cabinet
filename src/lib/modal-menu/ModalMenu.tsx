@@ -30,7 +30,7 @@ const ModalWrapper = styled(Modal)`
       
       font-size: 16px;
         
-      i{
+      .anticon{
         min-width: 18px;
         margin-right: 15px;
         font-size: 18px;
