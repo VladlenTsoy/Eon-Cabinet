@@ -1,9 +1,15 @@
+import React from "react";
 import styled from "styled-components";
 
-export const TableWrapper = styled.table`
+interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
+    borderStyle?: 'solid' | 'dashed'
+}
+
+export const TableWrapper: React.FC<TableProps> = styled.table<TableProps>`
   width: 100%;
   margin-bottom: 1rem;
   text-align: center;
+  overflow: hidden;
   
   thead{
     th{
@@ -23,7 +29,7 @@ export const TableWrapper = styled.table`
   td{
     padding: .3rem;
     vertical-align: top;
-    border: 1px solid #dee2e6;
+    border: 1px ${props => props.borderStyle || 'solid'} #dee2e6;
   }
   
   .not-border{

@@ -2,6 +2,7 @@ import React from 'react';
 import {Button} from "antd";
 import styled from "styled-components";
 import {EditOutlined, FlagOutlined, PlusOutlined, PrinterOutlined, UndoOutlined} from '@ant-design/icons';
+import {FormInstance} from "antd/es/form";
 
 const ButtonGroupWrapper = styled(Button.Group)`
   width: 100%;
@@ -9,7 +10,7 @@ const ButtonGroupWrapper = styled(Button.Group)`
 `;
 
 interface ButtonsProps {
-    form: any,
+    form: FormInstance,
     fields: any,
     clearSaveSetting?: () => void;
     startApplication?: (setting: any, print: boolean) => void;
@@ -31,7 +32,7 @@ const Buttons: React.FC<ButtonsProps> = (
         isEdit
     }
 ) => {
-    const isList = fields ? fields.map((field: any) => field.name.includes('anzan') ? field.value === 'list' : false) : false;
+    // const isList = fields ? fields.map((field: any) => field.name.includes('anzan') ? field.value === 'list' : false) : false;
 
     /***
      * Печать листов
@@ -67,7 +68,7 @@ const Buttons: React.FC<ButtonsProps> = (
                 <Button htmlType="submit" type="primary" icon={<PlusOutlined/>}>Добавить</Button> :
             <>
                 <Button icon={<UndoOutlined/>} onClick={clearSetting}>Очистить</Button>
-                {isList === 'list' ?
+                {form.getFieldValue('anzan') === 'list' ?
                     <Button
                         icon={<PrinterOutlined/>}
                         type="primary"
