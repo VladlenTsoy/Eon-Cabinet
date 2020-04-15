@@ -10,7 +10,6 @@ export const APP_CHANGE_DISCIPLINES = "APP_CHANGE_DISCIPLINES";
 export const APP_CHANGE_CATEGORIES = "APP_CHANGE_CATEGORIES";
 export const APP_CHANGE_ACTIVE_DISCIPLINE_ID = "APP_CHANGE_ACTIVE_DISCIPLINE_ID";
 export const APP_CHANGE_DATA_FOR_SENDING = "APP_CHANGE_DATA_FOR_SENDING";
-export const APP_CHANGE_CUSTOM_ALGORITHMS = "APP_CHANGE_CUSTOM_ALGORITHMS";
 
 export const appChangeTitleNavbar = (title: string) =>
     (dispatch: Dispatch) =>
@@ -64,14 +63,4 @@ export const appChangeBasicSettings = (action: any) =>
         await dispatch({type: APP_CHANGE_DISCIPLINES, payload: action['disciplines']});
         await dispatch({type: APP_CHANGE_CATEGORIES, payload: action['categories']});
         await dispatch({type: APP_CHANGE_ALGORITHMS, payload: action['algorithms']});
-        await dispatch({type: APP_CHANGE_CUSTOM_ALGORITHMS, payload: action['custom_algorithms']});
     };
-
-/**
- * Основные настройки
- *
- * @param action
- */
-export const appChangeCustomAlgorithms = (action: any) =>
-    async (dispatch: Dispatch) =>
-        await dispatch({type: APP_CHANGE_CUSTOM_ALGORITHMS, payload: action});

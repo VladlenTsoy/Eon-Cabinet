@@ -9,7 +9,6 @@ import {
     APP_CHANGE_SPIN,
     APP_CHANGE_ACTIVE_DISCIPLINE_ID,
     APP_CHANGE_DATA_FOR_SENDING,
-    APP_CHANGE_CUSTOM_ALGORITHMS,
 } from "./actions";
 
 export const appReducer = (state = {
@@ -58,11 +57,6 @@ export const appReducer = (state = {
             return {
                 ...state,
                 algorithms: action.payload
-            };
-        case APP_CHANGE_CUSTOM_ALGORITHMS:
-            return {
-                ...state,
-                custom_algorithms: action.payload
             };
         case APP_CHANGE_DISCIPLINES:
             return {

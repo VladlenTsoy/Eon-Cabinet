@@ -77,16 +77,6 @@ const SidebarItems = () => {
             {/*</Item>*/}
             {
                 isMental ?
-                    <Item key="/settings/custom-algorithms">
-                        <Link to="/settings/custom-algorithms">
-                            <BookOutlined/>
-                            <span>Алгоритмы</span>
-                        </Link>
-                    </Item>
-                    : null
-            }
-            {
-                isMental ?
                     <Item key="/settings/custom-exercises">
                         <Link to="/settings/custom-exercises">
                             <BookOutlined/>

@@ -10,7 +10,6 @@ interface HeaderSettingAdditionProps {
     typeAnzan: string;
     mods?: string;
     isMultiplication: boolean;
-    forceDefaultAlgorithms?: boolean;
     setting: any;
     lengths: any;
     types: any;
@@ -26,7 +25,6 @@ const HeaderSettingAnzan: React.FC<HeaderSettingAdditionProps> = (
         types,
         themes,
         isMultiplication,
-        forceDefaultAlgorithms
     }
 ) => {
     const {language, app} = useSelector((state: any) => state);
@@ -45,7 +43,6 @@ const HeaderSettingAnzan: React.FC<HeaderSettingAdditionProps> = (
     return <Row  gutter={15}>
         <Col span={24}>
             <ModeAnzan
-                forceDefaultAlgorithms={forceDefaultAlgorithms}
                 mods={mods}
             />
         </Col>

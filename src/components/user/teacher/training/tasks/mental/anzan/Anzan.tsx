@@ -37,14 +37,14 @@ const Anzan: React.FC<AnzanProps> = (
         addSettingHomework,
     }
 ) => {
-    const {app, user} = useSelector((state: any) => state);
+    const {app} = useSelector((state: any) => state);
     const [lengths, setLengths] = useState<any>([]);
     const [types, setTypes] = useState<any>([]);
     const [themes, setThemes] = useState<any>([]);
 
     const checkAlgorithms = useCallback(() => {
-        return user.setting.is_custom_algorithms ? app.custom_algorithms : app.algorithms;
-    }, [user.setting.is_custom_algorithms, app.custom_algorithms, app.algorithms]);
+        return app.algorithms;
+    }, [app.algorithms]);
 
     /***
      * Обновление тем
