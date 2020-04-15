@@ -5,13 +5,15 @@ import {Navigation, NavigationButton, TabTitleCustom} from "layouts/components";
 import TabsCategories from "./tabs-categories/TabsCategories";
 import {useDispatch, useSelector} from "react-redux";
 import {appChangeActiveDisciplineId} from "store/app/actions";
-import {PlusOutlined} from "@ant-design/icons";
+import {PlusOutlined, AppstoreOutlined} from "@ant-design/icons";
+import {find} from "lodash";
 
 const {TabPane} = Tabs;
 
-const Homework:React.FC = () => {
+const Homework: React.FC = () => {
     const {app} = useSelector((state: any) => state);
     const dispatch = useDispatch();
+    const isMental = app.disciplines && !!find(app.disciplines, {id: 1});
 
     const clickEventHandler = (disciplineId: string) => {
         dispatch(appChangeActiveDisciplineId(disciplineId))
@@ -24,6 +26,14 @@ const Homework:React.FC = () => {
                     Создать домашнее задание
                 </NavigationButton>
             </Link>
+            {
+                isMental ?
+                    <Link to="/settings/custom-exercises">
+                        <NavigationButton type="primary" icon={<AppstoreOutlined/>}>
+                            Свои примеры
+                        </NavigationButton>
+                    </Link> : null
+            }
         </Navigation>
         <Tabs
             defaultActiveKey={app.activeDisciplineId}

@@ -76,7 +76,7 @@ const List: React.FC = () => {
         <Navigation>
             <Link to={`/settings/custom-exercises/create`}>
                 <NavigationButton type="primary" icon={<PlusOutlined/>}>
-                    Добавить
+                    Создать примеры
                 </NavigationButton>
             </Link>
         </Navigation>

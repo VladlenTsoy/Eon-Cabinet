@@ -1,5 +1,5 @@
 import React, {useCallback} from "react";
-import {ShareAltOutlined} from "@ant-design/icons";
+import {SendOutlined} from "@ant-design/icons";
 import {NavigationButton} from "layouts/components";
 import usingDrawerEditor from "layouts/drawer-editor/usingDrawerEditor";
 import FormSentHomeworkItems from "./form-items/FormSentHomeworkItems";
@@ -78,7 +78,7 @@ const SentHomeworkStudentButton: React.FC<SentHomeworkStudentButtonProps> = (
 
     return <>
         {buttonWrapper(
-            <NavigationButton type="primary" icon={<ShareAltOutlined/>}>
+            <NavigationButton type="primary" icon={<SendOutlined/>}>
                 Отправить домашнее задание
             </NavigationButton>
         )}

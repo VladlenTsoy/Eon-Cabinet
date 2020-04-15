@@ -21,7 +21,7 @@ const Group: React.FC<GroupProps> = ({match}) => {
     const [loadingGroup, group, errorGroup] = useApiUserGeneral({url: `/teacher/group/${match.params.id}`});
     const [loadingUsers, users, errorUsers, fetchUsers] = useApiUserGeneral({url: `/teacher/students/${match.params.id}`});
 
-    useChangeActionNavbar({action: 'back'});
+    useChangeActionNavbar({action: '/groups'});
     useChangeTitle({title: loadingGroup ? 'Группа: Загрузка...' : `Группа: ${group ? group.title : 'Недоступна'}`});
 
     const selectUsers = useCallback((ids: any) => {
