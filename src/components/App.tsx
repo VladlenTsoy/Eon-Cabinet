@@ -8,7 +8,7 @@ import {fetchCurrentUserData} from "store/user/actions";
 import {fetchCurrentLanguage} from "store/language/actions";
 import {Spin} from "layouts/components";
 import {ThemeProvider} from "styled-components";
-import {_theme} from '../styles/_theme';
+import {_theme, blackTheme, whiteTheme} from '../styles/_theme';
 import {Loader} from "lib";
 // @ts-ignore
 import {changeTheme} from 'themes-switch';
@@ -36,9 +36,7 @@ const App: React.FC = () => {
             else
                 changeTheme('themes-light', '/static/css/theme-light.chunk.css');
 
-            // @ts-ignore
-            // import (/* webpackPrefetch: true */ /* webpackChunkName: "dark" */ 'styles/themes/dark.less');
-            setUserTheme(_theme[user.theme || 'default-theme-eon']);
+            setUserTheme(Object.assign(user.setting.is_dark ? blackTheme : whiteTheme, _theme[user.theme || 'default-theme-eon']));
         } else
             changeTheme('themes-light', '/static/css/theme-light.chunk.css');
     }, [user]);

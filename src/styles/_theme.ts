@@ -21,10 +21,6 @@ export const _theme: any = {
         gradient_info: 'linear-gradient(60deg, #26c6da, #00acc1)',
     },
     'blue-theme-eon': {
-        color_main: "rgba(0, 0, 0, 0.65)",
-        color_second: "rgba(0, 0, 0, 0.45)",
-        color_border: "#f1f1f1",
-
         color_primary: "#007bff",
         shadow_primary: "0 4px 20px 0 rgba(0, 0, 0, .14), 0 7px 10px -5px rgba(0, 123, 255, 0.35)",
         gradient_primary: "linear-gradient(60deg, #007bff, #0062cc)",
@@ -46,10 +42,6 @@ export const _theme: any = {
         gradient_info: 'linear-gradient(60deg, #26c6da, #00acc1)',
     },
     'cyan-theme-eon': {
-        color_main: "rgba(0, 0, 0, 0.65)",
-        color_second: "rgba(0, 0, 0, 0.45)",
-        color_border: "#f1f1f1",
-
         color_primary: "#26c6da",
         shadow_primary: "0 4px 20px 0 rgba(0, 0, 0, .14), 0 7px 10px -5px rgba(156, 39, 176, .4)",
         gradient_primary: "linear-gradient(60deg, #ab47bc, #8e24aa)",
@@ -71,10 +63,6 @@ export const _theme: any = {
         gradient_info: 'linear-gradient(60deg, #26c6da, #00acc1)',
     },
     'orange-theme-eon': {
-        color_main: "rgba(0, 0, 0, 0.65)",
-        color_second: "rgba(0, 0, 0, 0.45)",
-        color_border: "#f1f1f1",
-
         color_primary: "red",
         shadow_primary: "0 4px 20px 0 rgba(0, 0, 0, .14), 0 7px 10px -5px rgba(156, 39, 176, .4)",
         gradient_primary: "linear-gradient(60deg, #ab47bc, #8e24aa)",
@@ -95,4 +83,73 @@ export const _theme: any = {
         shadow_info: '0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(0, 188, 212, 0.2)',
         gradient_info: 'linear-gradient(60deg, #26c6da, #00acc1)',
     }
+};
+
+export const blackTheme = {
+    color_black: "rgba(255,255,255, 1)",
+    color_main: "rgba(255,255,255, 0.85)",
+    color_second: "rgba(255,255,255, 0.65)",
+    color_minimal: "rgba(255,255,255, 0.45)",
+    color_border: "#000",
+    light_color_border: "rgba(255,255,255,0.1)",
+
+    bg_color_arrow: '#000',
+    legend_color: '#141414',
+
+    // Background color for `<body>`
+    '@body-background': '#141414',
+    // Base background color for most components
+    '@component-background': '#141414',
+    // Layout
+    '@layout-body-background': '#000',
+
+    '@background-color-base': '#000',
+
+    '@text-color': "rgba(255,255,255, 0.85)",
+    '@text-color-secondary': "rgba(255,255,255, 0.65)",
+    '@heading-color': "rgba(255,255,255, 1)",
+    '@disabled-color': "fade(#fff, 35%)",
+
+    '@border-color-base': "#000",
+    '@border-color-split': "#000",
+
+    '@modal-mask-bg': 'fade(@black, 45%)',
+
+    '@primary-1': '#000',
+    '@background-color-light': '#141414',
+};
+
+export const whiteTheme = {
+    color_black: "rgba(0, 0, 0, 0.85)",
+    color_main: "rgba(0, 0, 0, 0.65)",
+    color_second: "rgba(0, 0, 0, 0.45)",
+    color_minimal: "rgba(0, 0, 0, 0.25)",
+    // color_border: "#f1f1f1",
+    color_border: "#d9d9d9",
+    light_color_border: "rgba(0, 0, 0, 0.1)",
+
+    bg_color_arrow: '#ffffff',
+    legend_color: 'rgba(0, 0, 0, 0.45)',
+
+    // Background color for `<body>`
+    '@body-background': '#fff',
+    // Base background color for most components
+    '@component-background': '#fff',
+    // Layout
+    '@layout-body-background': '#f0f2f5',
+
+    '@background-color-base': '#f0f2f5',
+
+    '@text-color': "rgba(0, 0, 0, 0.65)",
+    '@text-color-secondary': "rgba(0, 0, 0, 0.45)",
+    '@heading-color': "rgba(0, 0, 0, 0.85)",
+    '@disabled-color': "fade(#000, 35%)",
+
+    '@border-color-base': 'hsv(0, 0, 85%)',
+    '@border-color-split': 'hsv(0, 0, 91%)',
+
+    '@modal-mask-bg': 'fade(@black, 45%)',
+
+    '@primary-1': 'color(~`colorPalette(\'@{primary-color}\', 1) `)',
+    '@background-color-light': '#fff',
 };

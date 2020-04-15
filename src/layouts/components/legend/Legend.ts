@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Legend: any = styled.legend`
   display: flex;
   align-items: center;
-  color: ${props => props.theme.legend_color};
+  color: ${props => props.theme.color_minimal};
   white-space: nowrap;
   margin-top: 1.5rem;
   margin-bottom: 1rem;
