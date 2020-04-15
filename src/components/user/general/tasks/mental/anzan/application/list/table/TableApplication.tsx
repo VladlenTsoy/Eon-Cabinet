@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Card} from "lib";
-import {ArrowRightOutlined} from '@ant-design/icons';
+import {ArrowRightOutlined, ExclamationCircleOutlined} from '@ant-design/icons';
 import {Button, Modal, Form} from "antd";
 import {TableWrapper} from "../../../../../layouts/application/list/card-list/table/TableExercise";
 import HeaderTable from "./header-table/HeaderTable";
@@ -42,10 +42,14 @@ const TableApplication: React.FC<TableApplicationProps> = (
         dispatch(gameChangeStats(stats));
 
     const handlerSubmit = (values: any) => {
-        Modal.confirm({
-            title: 'У вас еще есть время',
-            onOk: () => checkResult(values)
-        });
+        if (status === 'answer')
+            changeState('result');
+        else
+            Modal.confirm({
+                icon: <ExclamationCircleOutlined/>,
+                title: 'У вас еще есть время',
+                onOk: () => checkResult(values)
+            });
     };
 
     const checkResult = (values: any) => {
@@ -53,12 +57,12 @@ const TableApplication: React.FC<TableApplicationProps> = (
             changeState('result');
         } else {
             const _totals = totals.map((total: any, key: number) => {
-                if (total.answer === values.answer[key])
+                if (Number(total.answer) === Number(values.answer[key]))
                     stats.success++;
 
                 return ({
                     ...total,
-                    result: total.answer === values.answer[key],
+                    result: Number(total.answer) === Number(values.answer[key]),
                     user: values.answer[key]
                 });
             });
