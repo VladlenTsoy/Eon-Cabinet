@@ -23,8 +23,8 @@ const SaveButton: React.FC<SaveButtonProps> = ({form, setupSetting}) => {
                 setVisible(true);
                 let exercises = values.exercises;
 
-                if (setupSetting.type_task === 'list')
-                    exercises = flattenDepth(values.exercises, 2);
+                // if (setupSetting.type_task === 'list')
+                    exercises = flattenDepth(exercises, 2);
 
                 setExercises(exercises);
             });

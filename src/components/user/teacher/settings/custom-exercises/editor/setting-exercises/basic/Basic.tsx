@@ -38,8 +38,8 @@ const ScrollWrapper = styled.div`
 const AddBlock = styled.div`
   width: 350px;
   height: 100%;
-  border: 3px dashed #f1f1f1;
-  color: #ccc;
+  border: 3px dashed ${props => props.theme.light_color_border};
+  color: ${props => props.theme.color_minimal};
   display: inline-block;
   font-size: 135px;
   border-radius: 10px;
@@ -48,8 +48,8 @@ const AddBlock = styled.div`
   overflow: hidden;
   
   :hover{
-    border-color: ${props => props.theme.color_primary};
-    color: ${props => props.theme.color_primary};
+    border-color: ${props => props.theme.color_main};
+    color: ${props => props.theme.color_main};
   }
   
     
@@ -78,9 +78,8 @@ const Basic: React.FC<BasicProps> = ({setupSetting}) => {
     const [form] = Form.useForm();
     const [items, setItems] = useState<any[]>([]);
 
-    const onClickHandler = () => {
-        setItems((prevState) => [...prevState, true])
-    };
+    const onClickHandler = () =>
+        setItems((prevState) => [...prevState, true]);
 
     return <BasicWrapper>
         <Form form={form}>
@@ -90,9 +89,11 @@ const Basic: React.FC<BasicProps> = ({setupSetting}) => {
                         <Item times={key} key={key}>
                             {
                                 setupSetting.control_mode === 'addition' ?
-                                    <Addition columnKey={key} rowKey={key} tableKey={key}/> :
-                                    <Multiplication columnKey={key} rowKey={key} tableKey={key}
-                                                    controlMode={setupSetting.control_mode}/>
+                                    <Addition columnKey={0} rowKey={0} tableKey={key}/> :
+                                    <Multiplication
+                                        columnKey={0} rowKey={0} tableKey={key}
+                                        controlMode={setupSetting.control_mode}
+                                    />
                             }
                         </Item>
                     )

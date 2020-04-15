@@ -6,11 +6,12 @@ import Multiplication from "../../item/multiplication/Multiplication";
 
 interface TableAdditionProps {
     tableKey: number;
+    tableIndex: number;
     setupSetting: { control_mode: string, type_task: string };
     tableDeleteHandler: (key: number) => void;
 }
 
-const Table: React.FC<TableAdditionProps> = ({tableKey, setupSetting, tableDeleteHandler}) => {
+const Table: React.FC<TableAdditionProps> = ({tableKey, setupSetting, tableIndex, tableDeleteHandler}) => {
     const [rows, setRows] = useState<number[]>([0]);
     const columns: number[] = Array(6).fill(1);
 
@@ -47,13 +48,13 @@ const Table: React.FC<TableAdditionProps> = ({tableKey, setupSetting, tableDelet
                             {
                                 setupSetting.control_mode === 'addition' ?
                                     <Addition
-                                        tableKey={tableKey}
+                                        tableKey={tableIndex}
                                         rowKey={key}
                                         columnKey={tdKey}
                                     /> :
                                     <Multiplication
                                         controlMode={setupSetting.control_mode}
-                                        tableKey={tableKey}
+                                        tableKey={tableIndex}
                                         rowKey={key}
                                         columnKey={tdKey}
                                     />

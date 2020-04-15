@@ -48,6 +48,7 @@ const List: React.FC<ListProps> = ({setupSetting}) => {
                                 <HeaderTable tableKey={key} column={6} leftNumbering/>
                                 <Table
                                     tableKey={table}
+                                    tableIndex={key}
                                     setupSetting={setupSetting}
                                     tableDeleteHandler={onDeleteHandler}
                                 />

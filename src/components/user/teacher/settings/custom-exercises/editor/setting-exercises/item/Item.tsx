@@ -7,7 +7,7 @@ const {Title} = Typography;
 const ItemBlock = styled.div`
   display: inline-block;
   border-radius: 10px;
-  border: 1px solid #f1f1f1;
+  border: 1px solid  ${props => props.theme.light_color_border};
   padding: 1rem;
   width: 350px;
   height: 100%;
