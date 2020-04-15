@@ -12,9 +12,9 @@ import {
     UserOutlined,
 } from '@ant-design/icons';
 
-import { Menu } from "antd";
+import {Menu} from "antd";
 import {Link} from "react-router-dom";
-import {SidebarItem, SidebarSubItem} from "../../../../../layouts";
+import {SidebarItem, SidebarSubItem} from "layouts";
 import {useSelector} from "react-redux";
 import {find} from "lodash";
 
@@ -27,37 +27,37 @@ const SidebarItems = () => {
     return [
         <SidebarItem key="/">
             <Link to="/">
-                <HomeOutlined />
+                <HomeOutlined/>
                 <span>Главная страница</span>
             </Link>
         </SidebarItem>,
         <SidebarItem key="/profile">
             <Link to="/profile">
-                <UserOutlined />
+                <UserOutlined/>
                 <span>Мой профиль</span>
             </Link>
         </SidebarItem>,
         <SidebarItem key="/groups">
             <Link to="/groups">
-                <TeamOutlined />
+                <TeamOutlined/>
                 <span>Группы</span>
             </Link>
         </SidebarItem>,
         <SidebarItem key="/homework">
             <Link to="/homework">
-                <DatabaseOutlined />
+                <DatabaseOutlined/>
                 <span>Домашнее задание</span>
             </Link>
         </SidebarItem>,
         <SidebarItem key="/training">
             <Link to="/training">
-                <ThunderboltOutlined />
+                <ThunderboltOutlined/>
                 <span>Тренировка</span>
             </Link>
         </SidebarItem>,
         <SidebarItem key="/olympiad">
             <Link to="/olympiad">
-                <TrophyOutlined />
+                <TrophyOutlined/>
                 <span>Олимпиада</span>
             </Link>
         </SidebarItem>,
@@ -65,7 +65,7 @@ const SidebarItems = () => {
             key="setting"
             title={
                 <div>
-                    <SettingOutlined />
+                    <SettingOutlined/>
                     <span>Настройки</span>
                 </div>
             }>
@@ -79,15 +79,26 @@ const SidebarItems = () => {
                 isMental ?
                     <Item key="/settings/custom-algorithms">
                         <Link to="/settings/custom-algorithms">
-                            <BookOutlined />
+                            <BookOutlined/>
                             <span>Алгоритмы</span>
                         </Link>
-                    </Item> : null
+                    </Item>
+                    : null
+            }
+            {
+                isMental ?
+                    <Item key="/settings/custom-exercises">
+                        <Link to="/settings/custom-exercises">
+                            <BookOutlined/>
+                            <span>Свои примеры</span>
+                        </Link>
+                    </Item>
+                    : null
             }
         </SidebarSubItem>,
         <SidebarItem key="/platform">
             <Link to="/platform">
-                <InfoCircleOutlined />
+                <InfoCircleOutlined/>
                 <span>Об платформе</span>
             </Link>
         </SidebarItem>,
