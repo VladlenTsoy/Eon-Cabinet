@@ -4,6 +4,7 @@ import {ButtonLink} from "lib";
 import {DescriptionTitle} from "../../../../../../layouts/components";
 import {Empty} from "antd";
 import {useSelector} from "react-redux";
+import {TrophyOutlined} from "@ant-design/icons";
 
 const EmptyWrapper = styled.div`
   padding: 2rem 1rem;
@@ -27,7 +28,7 @@ const OlympiadEmpty = () => {
                 </>
             }
         >
-            <ButtonLink to="/olympiad" type="ghost" icon="trophy" size="large">
+            <ButtonLink to="/olympiad" type="ghost" icon={<TrophyOutlined/>} size="large">
                 {language.student.open_the_list_of_olympiads}
             </ButtonLink>
         </Empty>
