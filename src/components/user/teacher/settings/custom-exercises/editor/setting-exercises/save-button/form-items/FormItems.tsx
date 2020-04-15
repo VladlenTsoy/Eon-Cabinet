@@ -21,7 +21,7 @@ const FormItems: React.FC<FormItemsProps> = ({exercises, setupSetting}) => {
 
     const onFinishHandler = async (values: any) => {
         setLoading(true);
-        await api.user_general.post('/teacher/custom-exercises', {...values, ...setupSetting, ...exercises});
+        await api.user_general.post('/teacher/custom-exercises', {...values, ...setupSetting, exercises});
         history.push('/settings/custom-exercises');
     };
 

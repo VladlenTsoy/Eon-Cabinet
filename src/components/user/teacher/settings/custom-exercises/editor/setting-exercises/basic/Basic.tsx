@@ -90,8 +90,9 @@ const Basic: React.FC<BasicProps> = ({setupSetting}) => {
                         <Item times={key} key={key}>
                             {
                                 setupSetting.control_mode === 'addition' ?
-                                    <Addition times={key}/> :
-                                    <Multiplication times={key} controlMode={setupSetting.control_mode}/>
+                                    <Addition columnKey={key} rowKey={key} tableKey={key}/> :
+                                    <Multiplication columnKey={key} rowKey={key} tableKey={key}
+                                                    controlMode={setupSetting.control_mode}/>
                             }
                         </Item>
                     )

@@ -4,6 +4,7 @@ import {ArrowRightOutlined} from "@ant-design/icons";
 import {FormInstance} from "antd/es/form";
 import {Modal} from "layouts/components";
 import FormItems from "./form-items/FormItems";
+import {flattenDepth} from "lodash";
 
 interface SaveButtonProps {
     form: FormInstance;
@@ -14,11 +15,18 @@ const SaveButton: React.FC<SaveButtonProps> = ({form, setupSetting}) => {
     const [visible, setVisible] = useState(false);
     const [exercises, setExercises] = useState([]);
 
+    const close = () => setVisible(false);
+
     const onSubmitHandler = () => {
         form.validateFields()
             .then((values: any) => {
                 setVisible(true);
-                setExercises(values);
+                let exercises = values.exercises;
+
+                if (setupSetting.type_task === 'list')
+                    exercises = flattenDepth(values.exercises, 2);
+
+                setExercises(exercises);
             });
     };
 
@@ -29,6 +37,7 @@ const SaveButton: React.FC<SaveButtonProps> = ({form, setupSetting}) => {
         <Modal
             title="Сохранить"
             visible={visible}
+            onCancel={close}
         >
             <FormItems exercises={exercises} setupSetting={setupSetting}/>
         </Modal>
