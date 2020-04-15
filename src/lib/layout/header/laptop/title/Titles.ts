@@ -89,7 +89,7 @@ export const Titles: any = {
     '/settings/custom-algorithms': 'Алгоритмы',
     '/settings/custom-algorithms/create': 'Добавить алгоритмы',
 
-    '/settings/custom-exercises/create': 'Свои примеры',
-    '/settings/custom-exercises/create/create': 'Добавить свои примеры',
+    '/settings/custom-exercises': 'Свои примеры',
+    '/settings/custom-exercises/create': 'Добавить свои примеры',
     '/platform': 'Об платформе',
 };
