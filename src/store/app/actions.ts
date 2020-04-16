@@ -49,7 +49,15 @@ export const appChangeActiveDisciplineId = (action: string | undefined) =>
     (dispatch: Dispatch) =>
         dispatch({type: APP_CHANGE_ACTIVE_DISCIPLINE_ID, payload: action});
 
-export const appChangeDataForSending = (action: { studentsId?: any[], groupId?: any, isSaved?: boolean }) =>
+
+interface ActionForSendingProps {
+    studentsId?: any[],
+    groupId?: any,
+    isSaved?: boolean,
+    isVisibleCustomExercises?: boolean
+}
+
+export const appChangeDataForSending = (action: ActionForSendingProps) =>
     (dispatch: Dispatch, getState: any) =>
         dispatch({type: APP_CHANGE_DATA_FOR_SENDING, payload: {...getState().app.dataForSending, ...action}});
 

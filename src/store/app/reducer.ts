@@ -25,6 +25,7 @@ export const appReducer = (state = {
         studentsId: [],
         groupId: null,
         isSaved: false,
+        isVisibleCustomExercises: false,
     },
 }, action: any) => {
     switch (action.type) {

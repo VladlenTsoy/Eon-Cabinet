@@ -40,6 +40,9 @@ const FormSentHomeworkItems: React.FC<FormSentHomeworkItems> = (
     useEffect(() => {
         if (homework.length)
             setIsSaveBtn(true);
+
+        dispatch(appChangeDataForSending({isSaved: false}));
+
     }, [homework, setIsSaveBtn]);
 
     if (!loading && !homework.length)

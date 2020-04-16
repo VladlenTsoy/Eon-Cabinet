@@ -22,7 +22,11 @@ const FormItems: React.FC<FormItemsProps> = ({exercises, setupSetting}) => {
     const onFinishHandler = async (values: any) => {
         setLoading(true);
         await api.user_general.post('/teacher/custom-exercises', {...values, ...setupSetting, exercises});
-        history.push('/settings/custom-exercises');
+        history.push(
+            app.dataForSending.isVisibleCustomExercises ?
+                `/groups/${app.dataForSending.groupId}` :
+                '/settings/custom-exercises'
+        );
     };
 
     return <Form layout="vertical" onFinish={onFinishHandler}>
