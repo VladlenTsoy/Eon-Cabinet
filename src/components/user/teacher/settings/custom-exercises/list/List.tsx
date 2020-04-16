@@ -18,8 +18,8 @@ const columns = () => [
         defaultSortOrder: 'descend',
     },
     {
-        title: 'Название',
-        dataIndex: 'title',
+        title: 'Уровень',
+        dataIndex: 'level',
     },
     {
         title: 'Описание',

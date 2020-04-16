@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useSelector} from "react-redux";
-import {Button, Form, Input, Select} from "antd";
+import {Button, Form, Input, InputNumber, Select} from "antd";
 import {FormItem} from "../../../../../../../../../layouts/components";
 import {SaveOutlined} from "@ant-design/icons";
 import {useHistory} from "react-router-dom";
@@ -26,7 +26,9 @@ const FormItems: React.FC<FormItemsProps> = ({exercises, setupSetting}) => {
     };
 
     return <Form layout="vertical" onFinish={onFinishHandler}>
-        <FormItem name="title" label="Название" requiredMsg="Введите название!"/>
+        <FormItem name="level" label="Уровень" requiredMsg="Введите уровень!">
+            <InputNumber style={{width: '100%'}}/>
+        </FormItem>
         <FormItem
             name="category_id"
             label="Категория"
