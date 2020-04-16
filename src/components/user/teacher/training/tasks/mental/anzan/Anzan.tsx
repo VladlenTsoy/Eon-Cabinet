@@ -56,7 +56,7 @@ const Anzan: React.FC<AnzanProps> = (
      * @param typeValue     - Тип значение
      */
     const updateThemesByType = useCallback(
-        (allFields, changedFields, modeValue = "plus", lengthValue = "1", typeValue = "p", user?) => {
+        (allFields, modeValue = "plus", lengthValue = "1", typeValue = "p", user?) => {
             const _themes = Object.keys(checkAlgorithms()[modeValue][lengthValue][typeValue]);
             setThemes(_themes);
 
@@ -86,13 +86,13 @@ const Anzan: React.FC<AnzanProps> = (
      * @param lengthValue   - Разряд значение
      */
     const updateTypesByLength = useCallback(
-        (allFields, changedFields, modeValue = "plus", lengthValue = "1", user?) => {
+        (allFields, modeValue = "plus", lengthValue = "1", user?) => {
             const _types = Object.keys(checkAlgorithms()[modeValue][lengthValue]);
             setTypes(_types);
 
             let type = user ? String(user.type) : _types[0];
             // Обновление тем
-            return updateThemesByType(allFields, changedFields, modeValue, lengthValue, type, user);
+            return updateThemesByType(allFields, modeValue, lengthValue, type, user);
         },
         [checkAlgorithms, updateThemesByType]
     );
@@ -105,7 +105,7 @@ const Anzan: React.FC<AnzanProps> = (
      * @param modeValue     - Мод значение
      */
     const updateLengthsByMode = useCallback(
-        (allFields, changedFields, modeValue = 'plus', user?) => {
+        (allFields, modeValue = 'plus', user?) => {
             if (!checkAlgorithms().hasOwnProperty(modeValue))
                 return false;
 
@@ -114,7 +114,7 @@ const Anzan: React.FC<AnzanProps> = (
 
             let length = user ? String(user.length) : _lengths[0];
             // Обновление типов
-            return updateTypesByLength(allFields, changedFields, modeValue, length, user)
+            return updateTypesByLength(allFields, modeValue, length, user)
         },
         [checkAlgorithms, updateTypesByLength]
     );
@@ -134,20 +134,17 @@ const Anzan: React.FC<AnzanProps> = (
                 if (field.name.includes('mode'))
                     return updateLengthsByMode(
                         allFields,
-                        changedFields,
                         field.value,
                     );
                 else if (field.name.includes('length'))
                     return updateTypesByLength(
                         allFields,
-                        changedFields,
                         mode.value,
                         field.value
                     );
                 else if (field.name.includes('type'))
                     return updateThemesByType(
                         allFields,
-                        changedFields,
                         mode.value,
                         length.value,
                         field.value
@@ -161,9 +158,9 @@ const Anzan: React.FC<AnzanProps> = (
     useEffect(() => {
         if (typeof userSetting === 'object' && Object.keys(userSetting).length) {
             let _fields = Object.keys(userSetting).map((key: string) => ({name: [key], value: userSetting[key]}));
-            updateLengthsByMode(_fields, [], userSetting.mode, userSetting);
+            updateLengthsByMode(_fields, userSetting.mode, userSetting);
         } else
-            updateLengthsByMode([], [], !mods || mods === 'addition' ? 'plus' : 'multiply');
+            updateLengthsByMode([], !mods || mods === 'addition' ? 'plus' : 'multiply');
     }, [mods, userSetting, updateLengthsByMode]);
 
     return <AnzanFormBody

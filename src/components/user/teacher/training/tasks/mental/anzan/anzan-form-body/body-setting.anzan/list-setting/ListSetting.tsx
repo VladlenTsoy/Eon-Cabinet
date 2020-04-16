@@ -11,8 +11,6 @@ const ListSetting: React.FC<ListSetting> = () => {
             <FormItem
                 name="tables"
                 label="Таблиц"
-                // TODO - Значение по умолчанию
-                // initialValue={1}
                 requiredMsg="Введите кол-во таблиц!"
             >
                 <InputNumber min={1} style={{width: '100%'}}/>
@@ -22,8 +20,6 @@ const ListSetting: React.FC<ListSetting> = () => {
             <FormItem
                 name="column"
                 label="Столбцов"
-                // TODO - Значение по умолчанию
-                // initialValue={10}
                 requiredMsg="Введите кол-во столбцов!"
             >
                 <InputNumber min={10} max={10} style={{width: '100%'}}/>
@@ -33,8 +29,6 @@ const ListSetting: React.FC<ListSetting> = () => {
             <FormItem
                 name="rows"
                 label="Строк"
-                // TODO - Значение по умолчанию
-                // initialValue={4}
                 requiredMsg="Введите кол-во строк!"
             >
                 <InputNumber min={4} max={20} style={{width: '100%'}}/>
@@ -43,8 +37,6 @@ const ListSetting: React.FC<ListSetting> = () => {
         <Col sm={6} xs={12}>
             <FormItem
                 name="time"
-                // TODO - Значение по умолчанию
-                // initialValue={1}
                 label="Время (Минутах)"
                 requiredMsg="Введите время!"
             />
