@@ -25,6 +25,7 @@ const DrawerWrapper = styled(({notFooter, children, ...props}: any) => (
         padding: 12px 24px;
       }
       .ant-drawer-body{
+        padding-bottom: ${(props: any) => props.notFooter ? '1rem' : '52px'};
         height: ${(props: any) => props.notFooter ? 'auto' : 'calc(100% - 98px)'};
         overflow-y: auto;
       }

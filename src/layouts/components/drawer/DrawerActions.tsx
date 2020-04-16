@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const DrawerActions = styled.div`
   position: absolute;
-  //background: #ffffff;
+  background: ${props => props.theme['@component-background']}
   left: 0;
   bottom: 0;
   width: 100%;
