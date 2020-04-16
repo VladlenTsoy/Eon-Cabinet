@@ -34,7 +34,7 @@ const CustomExercises: React.FC<CustomExercisesProps> = (
         return allFields.map((field: any) => {
             if (field.name.includes('category_id'))
                 field.value = categoryValue;
-            else if (field.name.includes('type_task'))
+            else if (field.name.includes('anzan'))
                 field.value = typeTaskValue;
             else if (field.name.includes('mode'))
                 field.value = modeValue;
@@ -53,20 +53,20 @@ const CustomExercises: React.FC<CustomExercisesProps> = (
 
     const updateTypeTasks = useCallback((allFields, categoryValue, user?) => {
         let _typeTasks = Object.keys(exercises[categoryValue]);
-        let _typeTask = user ? user.type_task : _typeTasks[0];
+        let _typeTask = user ? user.anzan : _typeTasks[0];
         setTypeTasks(_typeTasks);
         return updateModes(allFields, categoryValue, _typeTask, user);
     }, [updateModes, exercises]);
 
     const handleFormChange = useCallback((changedFields: any[], allFields: any[]) => {
         let category = allFields.find((field: any) => field.name.includes('category_id'));
-        let typeTask = allFields.find((field: any) => field.name.includes('type_task'));
+        let typeTask = allFields.find((field: any) => field.name.includes('anzan'));
 
         if (changedFields.length) {
             return changedFields.map((field: any) => {
                 if (field.name.includes('category_id'))
                     return updateTypeTasks(allFields, field.value);
-                else if (field.name.includes('type_task'))
+                else if (field.name.includes('anzan'))
                     return updateModes(
                         allFields,
                         category.value,
@@ -95,9 +95,10 @@ const CustomExercises: React.FC<CustomExercisesProps> = (
 
             if (typeof userSetting === 'object' && Object.keys(userSetting).length) {
                 let _fields = Object.keys(userSetting).map((key: string) => ({name: [key], value: userSetting[key]}));
-                updateTypeTasks(_fields, userSetting.category_id, userSetting);
-            } else {
-
+                try {
+                    updateTypeTasks(_fields, userSetting.category_id, userSetting);
+                } catch (e) {
+                }
             }
             // console.log(_categories, _typeTasks, _modes, _titles);
         }

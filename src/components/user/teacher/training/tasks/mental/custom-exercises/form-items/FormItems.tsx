@@ -50,7 +50,7 @@ const FormItems: React.FC<FormItemsProps> = (
     const [description, setDescription] = useState('');
     const defCategories = app.categories;
 
-    let typeTask = form.getFieldValue('type_task');
+    let typeTask = form.getFieldValue('anzan');
     let mode = form.getFieldValue('mode');
     let customExercisesId = form.getFieldValue('custom_exercises_id');
 
@@ -83,7 +83,7 @@ const FormItems: React.FC<FormItemsProps> = (
             </RadioStyleWrapper>
         </FormItem>
 
-        <FormItem name="type_task" requiredMsg="Выберите тип задания!">
+        <FormItem name="anzan" requiredMsg="Выберите тип задания!">
             <RadioWrapper size="large" column="1fr 1fr">
                 <Radio.Button
                     disabled={!typeTasks.includes('basic')}
