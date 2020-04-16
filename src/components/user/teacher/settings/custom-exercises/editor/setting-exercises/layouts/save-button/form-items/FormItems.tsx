@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {useSelector} from "react-redux";
-import {Button, Form, Input, InputNumber, Select} from "antd";
-import {FormItem} from "../../../../../../../../../layouts/components";
+import {Button, Form, Input, Select} from "antd";
+import {FormItem} from "../../../../../../../../../../layouts/components";
 import {SaveOutlined} from "@ant-design/icons";
 import {useHistory} from "react-router-dom";
 
@@ -10,10 +10,10 @@ const {Option} = Select;
 
 interface FormItemsProps {
     exercises: any[];
-    setupSetting: { control_mode: string, type_task: string };
+    setting: any;
 }
 
-const FormItems: React.FC<FormItemsProps> = ({exercises, setupSetting}) => {
+const FormItems: React.FC<FormItemsProps> = ({exercises, setting}) => {
     const history = useHistory();
     const {app, api} = useSelector((state: any) => state);
     const {categories} = app;
@@ -21,7 +21,7 @@ const FormItems: React.FC<FormItemsProps> = ({exercises, setupSetting}) => {
 
     const onFinishHandler = async (values: any) => {
         setLoading(true);
-        await api.user_general.post('/teacher/custom-exercises', {...values, ...setupSetting, exercises});
+        await api.user_general.post('/teacher/custom-exercises', {...values, setting, exercises});
         history.push(
             app.dataForSending.isVisibleCustomExercises ?
                 `/groups/${app.dataForSending.groupId}` :
@@ -30,9 +30,7 @@ const FormItems: React.FC<FormItemsProps> = ({exercises, setupSetting}) => {
     };
 
     return <Form layout="vertical" onFinish={onFinishHandler}>
-        <FormItem name="level" label="Уровень" requiredMsg="Введите уровень!">
-            <InputNumber style={{width: '100%'}}/>
-        </FormItem>
+        <FormItem name="title" label="Название" requiredMsg="Введите название!"/>
         <FormItem
             name="category_id"
             label="Категория"

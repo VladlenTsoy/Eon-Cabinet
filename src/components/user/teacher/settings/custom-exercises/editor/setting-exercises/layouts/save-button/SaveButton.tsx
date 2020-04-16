@@ -8,7 +8,7 @@ import {flattenDepth} from "lodash";
 
 interface SaveButtonProps {
     form: FormInstance;
-    setupSetting: { control_mode: string, type_task: string };
+    setupSetting: any;
 }
 
 const SaveButton: React.FC<SaveButtonProps> = ({form, setupSetting}) => {
@@ -22,9 +22,7 @@ const SaveButton: React.FC<SaveButtonProps> = ({form, setupSetting}) => {
             .then((values: any) => {
                 setVisible(true);
                 let exercises = values.exercises;
-
-                // if (setupSetting.type_task === 'list')
-                    exercises = flattenDepth(exercises, 2);
+                exercises = flattenDepth(exercises, 2);
 
                 setExercises(exercises);
             });
@@ -39,7 +37,7 @@ const SaveButton: React.FC<SaveButtonProps> = ({form, setupSetting}) => {
             visible={visible}
             onCancel={close}
         >
-            <FormItems exercises={exercises} setupSetting={setupSetting}/>
+            <FormItems exercises={exercises} setting={setupSetting}/>
         </Modal>
     </>;
 };

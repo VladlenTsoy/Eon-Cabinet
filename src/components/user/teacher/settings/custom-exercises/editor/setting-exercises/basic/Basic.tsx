@@ -1,12 +1,11 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styled from "styled-components";
 import {Card} from "lib";
-import {PlusCircleOutlined} from "@ant-design/icons";
 import {Form} from "antd";
-import Addition from "../item/addition/Addition";
-import Multiplication from "../item/multiplication/Multiplication";
-import SaveButton from "../save-button/SaveButton";
-import Item from "../item/Item";
+import Addition from "../layouts/item/addition/Addition";
+import Multiplication from "../layouts/item/multiplication/Multiplication";
+import SaveButton from "../layouts/save-button/SaveButton";
+import Item from "../layouts/item/Item";
 
 const BasicWrapper = styled(Card)`
   &.ant-card{
@@ -35,75 +34,34 @@ const ScrollWrapper = styled.div`
   display: block;
 `;
 
-const AddBlock = styled.div`
-  width: 350px;
-  height: 100%;
-  border: 3px dashed ${props => props.theme.light_color_border};
-  color: ${props => props.theme.color_minimal};
-  display: inline-block;
-  font-size: 135px;
-  border-radius: 10px;
-  transition: all 0.5s ease-in-out;
-  cursor: pointer;
-  overflow: hidden;
-  
-  :hover{
-    border-color: ${props => props.theme.color_main};
-    color: ${props => props.theme.color_main};
-  }
-  
-    
-  .container{
-    display: flex;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-
-    .anticon{
-      margin-bottom: 1rem;
-    }
-  
-    .text{
-     font-size: 20px;
-    }
-  }
-`;
-
 interface BasicProps {
-    setupSetting: { control_mode: string, type_task: string };
+    setupSetting: any;
 }
 
 const Basic: React.FC<BasicProps> = ({setupSetting}) => {
     const [form] = Form.useForm();
-    const [items, setItems] = useState<any[]>([]);
-
-    const onClickHandler = () =>
-        setItems((prevState) => [...prevState, true]);
 
     return <BasicWrapper>
         <Form form={form}>
             <ScrollWrapper>
                 {
-                    items.map((item: any, key) =>
-                        <Item times={key} key={key}>
-                            {
-                                setupSetting.control_mode === 'addition' ?
-                                    <Addition columnKey={0} rowKey={0} tableKey={key}/> :
-                                    <Multiplication
-                                        columnKey={0} rowKey={0} tableKey={key}
-                                        controlMode={setupSetting.control_mode}
-                                    />
-                            }
-                        </Item>
-                    )
+                    Array(setupSetting.times).fill(1)
+                        .map((item: any, key) =>
+                            <Item times={key} key={key}>
+                                {
+                                    setupSetting.mode === 'plus-minus' ?
+                                        <Addition
+                                            columnKey={0} rowKey={0} tableKey={key}
+                                            setupSetting={setupSetting}
+                                        /> :
+                                        <Multiplication
+                                            columnKey={0} rowKey={0} tableKey={key}
+                                            mode={setupSetting.mode}
+                                        />
+                                }
+                            </Item>
+                        )
                 }
-                <AddBlock onClick={onClickHandler}>
-                    <div className="container">
-                        <PlusCircleOutlined/>
-                        <span className="text">Добавить</span>
-                    </div>
-                </AddBlock>
             </ScrollWrapper>
             <SaveButton form={form} setupSetting={setupSetting}/>
         </Form>

@@ -20,6 +20,11 @@ const Alert:React.FC<AlertProps> = styled(antd.Alert)`
     .ant-alert-description{
       color: rgba(255, 255, 255, 0.65);
     }
+    
+    a{
+      color: #fff;
+      text-decoration: underline;
+    }
       
     &.ant-alert-error{
       background: ${props => props.theme.gradient_danger};

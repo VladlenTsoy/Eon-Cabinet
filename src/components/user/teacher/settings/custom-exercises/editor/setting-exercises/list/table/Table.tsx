@@ -1,78 +1,44 @@
-import React, {useEffect, useState} from 'react';
-import Addition from "../../item/addition/Addition";
-import {Button} from "antd";
-import {PlusOutlined, DeleteOutlined} from "@ant-design/icons";
-import Multiplication from "../../item/multiplication/Multiplication";
+import React from 'react';
+import Addition from "../../layouts/item/addition/Addition";
+import Multiplication from "../../layouts/item/multiplication/Multiplication";
 
 interface TableAdditionProps {
     tableKey: number;
-    tableIndex: number;
-    setupSetting: { control_mode: string, type_task: string };
-    tableDeleteHandler: (key: number) => void;
+    setupSetting: any;
 }
 
-const Table: React.FC<TableAdditionProps> = ({tableKey, setupSetting, tableIndex, tableDeleteHandler}) => {
-    const [rows, setRows] = useState<number[]>([0]);
-    const columns: number[] = Array(6).fill(1);
-
-    const onClickHandler = () =>
-        setRows((prevState) => [...prevState, 1]);
-
-    const onDeleteHandler = (_key: number) =>
-        setRows((prevState) => prevState.filter((row, key) => key !== _key));
-
-    useEffect(() => {
-        if (!rows.length)
-            tableDeleteHandler(tableKey)
-    }, [rows, tableDeleteHandler]);
-
+const Table: React.FC<TableAdditionProps> = ({setupSetting, tableKey}) => {
     return <tbody>
     {
-        rows.map((row, key) =>
-            <tr key={key}>
-                <td className="not-border">
+        Array(setupSetting.rows).fill(1)
+            .map((row, key) =>
+                <tr key={key}>
+                    <td className="not-border numbering">
+                        <span>{key + 1}</span>
+                    </td>
                     {
-                        rows.length === key + 1 ?
-                            <Button
-                                ghost
-                                type="danger"
-                                shape="circle-outline"
-                                icon={<DeleteOutlined/>}
-                                onClick={() => onDeleteHandler(key)}
-                            /> : null
+                        Array(setupSetting.column).fill(1)
+                            .map((td, tdKey) =>
+                                <td key={tdKey}>
+                                    {
+                                        setupSetting.mode === 'plus-minus' ?
+                                            <Addition
+                                                tableKey={tableKey} rowKey={key} columnKey={tdKey}
+                                                setupSetting={setupSetting}
+                                            /> :
+                                            <Multiplication
+                                                mode={setupSetting.mode}
+                                                tableKey={tableKey}
+                                                rowKey={key}
+                                                columnKey={tdKey}
+                                            />
+                                    }
+                                </td>
+                            )
                     }
-                </td>
-                {
-                    columns.map((td, tdKey) =>
-                        <td key={tdKey}>
-                            {
-                                setupSetting.control_mode === 'addition' ?
-                                    <Addition
-                                        tableKey={tableIndex}
-                                        rowKey={key}
-                                        columnKey={tdKey}
-                                    /> :
-                                    <Multiplication
-                                        controlMode={setupSetting.control_mode}
-                                        tableKey={tableIndex}
-                                        rowKey={key}
-                                        columnKey={tdKey}
-                                    />
-                            }
-                        </td>
-                    )
-                }
-            </tr>
-        )
+                </tr>
+            )
     }
-    <tr>
-        <td className="not-border"/>
-        <td colSpan={6}>
-            <Button type="link" block icon={<PlusOutlined/>} onClick={onClickHandler}>
-                Добавить строку
-            </Button>
-        </td>
-    </tr>
     </tbody>;
 };
 

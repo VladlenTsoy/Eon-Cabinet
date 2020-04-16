@@ -3,7 +3,7 @@ import Basic from "./basic/Basic";
 import List from "./list/List";
 
 interface SettingExercisesProps {
-    setupSetting: { control_mode: string, type_task: string };
+    setupSetting: any;
 }
 
 const SettingExercises: React.FC<SettingExercisesProps> = ({setupSetting}) => {

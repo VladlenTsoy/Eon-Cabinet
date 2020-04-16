@@ -1,96 +1,61 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Card} from "lib";
 import {ArrowRightOutlined} from "@ant-design/icons";
-import {Button, Typography, Col, Form, Radio, Row} from "antd";
-import styled from "styled-components";
+import {Button, Col, Form, Row} from "antd";
 import {Alert} from "layouts/components";
 import {Link} from "react-router-dom";
-
-const {Text} = Typography;
-
-const RadioWrapper = styled(Radio.Group)`
-  &.ant-radio-group {
-    display: flex;
-    width: 100%;
-  
-    .ant-radio-button-wrapper{
-      width: 100%;
-      text-align: center;
-      height: 50px;
-      line-height: 48px;
-      border-style: dashed;
-      
-      span:last-child{
-        //font-weight: 900;
-      }
-    }
-  }
-  
-  &.mode{
-    .ant-radio-button-wrapper{
-      span:last-child{
-        font-size: 25px;
-        
-        .slash{
-          color: ${props => props.theme.light_color_border};
-        }
-      }
-    }
-  }
-  
-  &.type{
-    .ant-radio-button-wrapper{
-      span:last-child{
-        font-size: 20px;
-      }
-    }
-  }
-`;
+import FormHeadItems from "./form-head-items/FormHeadItems";
+import FormBodyItems from "./form-body-items/FormBodyItems";
 
 interface SetupProps {
     setSetupSetting: any;
 }
 
 const Setup: React.FC<SetupProps> = ({setSetupSetting}) => {
+    const [form] = Form.useForm();
+    const [typeTask, setTypeTask] = useState('basic');
+    const [mode, setMode] = useState('plus-minus');
+
+    const onChangeHandler = (changeValues: any, allValues: any) => {
+        setMode(allValues.mode);
+        setTypeTask(allValues.type_task);
+    };
+
     const onFinishHandler = (values: any) => {
         setSetupSetting(values);
     };
 
     return <Row align="middle" justify="center" style={{height: '100%'}}>
-        <Col xl={9}>
+        <Col xl={12}>
             <Card>
                 <Alert
                     type="info"
                     showIcon
                     message="Создание примеров"
-                    description="Выберите арифметическое действия в котором будут создаваться примеры."
-                />
-                <Form
-                    onFinish={onFinishHandler}
-                    initialValues={{
-                        control_mode: 'addition',
-                        type_task: 'basic',
-                    }}
-                >
-                    <Form.Item name="control_mode">
-                        <RadioWrapper size="large" className="mode">
-                            <Radio.Button value="addition">+ <span className="slash">/</span> -</Radio.Button>
-                            <Radio.Button value="multiplication">×</Radio.Button>
-                            <Radio.Button value="division">÷</Radio.Button>
-                        </RadioWrapper>
-                    </Form.Item>
-                    <p>
-                        <Text type="secondary">
+                    description={
+                        <>
                             Выберите в каком виде буду отображаться примеры. Если вы не знакомы с видами упражнений
                             перейдите в <Link to="/training">тренеровку.</Link>
-                        </Text>
-                    </p>
-                    <Form.Item name="type_task">
-                        <RadioWrapper size="large" className="type">
-                            <Radio.Button value="basic">Анзан</Radio.Button>
-                            <Radio.Button value="list">Листы</Radio.Button>
-                        </RadioWrapper>
-                    </Form.Item>
+                        </>
+                    }
+                />
+                <Form
+                    onValuesChange={onChangeHandler}
+                    form={form}
+                    layout="vertical"
+                    onFinish={onFinishHandler}
+                    initialValues={{
+                        type_task: 'basic',
+                        mode: 'plus-minus',
+                        count: 1,
+                        times: 1,
+                        tables: 1,
+                        column: 6,
+                        rows: 1,
+                    }}
+                >
+                    <FormHeadItems/>
+                    <FormBodyItems typeTask={typeTask} mode={mode}/>
                     <Button
                         type="primary"
                         icon={<ArrowRightOutlined/>}
