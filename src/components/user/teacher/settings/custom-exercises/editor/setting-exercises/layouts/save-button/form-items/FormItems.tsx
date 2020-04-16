@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useSelector} from "react-redux";
-import {Button, Form, Input, Select} from "antd";
+import {Button, Form, Input, message, Select} from "antd";
 import {FormItem} from "../../../../../../../../../../layouts/components";
 import {SaveOutlined} from "@ant-design/icons";
 import {useHistory} from "react-router-dom";
@@ -22,6 +22,7 @@ const FormItems: React.FC<FormItemsProps> = ({exercises, setting}) => {
     const onFinishHandler = async (values: any) => {
         setLoading(true);
         await api.user_general.post('/teacher/custom-exercises', {...values, setting, exercises});
+        message.success(`Вы успешно создали примеры!`);
         history.push(
             app.dataForSending.isVisibleCustomExercises ?
                 `/groups/${app.dataForSending.groupId}` :

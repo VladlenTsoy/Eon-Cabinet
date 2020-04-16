@@ -2,15 +2,17 @@ import React from 'react';
 import {Navigation, NavigationButton} from "layouts/components";
 import {Link} from "react-router-dom";
 import {Tabs, Tag} from "antd";
-import {PlusOutlined, PrinterOutlined, EditOutlined, SendOutlined} from "@ant-design/icons";
+import {PlusOutlined} from "@ant-design/icons";
 import UsingTablePagination from "layouts/components/table-pagination/usingTablePagination";
 import {ModalMenu} from "lib";
 import {useSelector} from "react-redux";
 import {useScreenWindow} from "effects/use-screen-window.effect";
+import DeleteItem from "./Menu/delete-item/DeleteItem";
+import PrintItem from "./Menu/print-item/PrintItem";
 
 const {TabPane} = Tabs;
 
-const columns = () => [
+const columns = (fetch: any) => [
     {
         title: 'ID',
         dataIndex: 'id',
@@ -18,8 +20,8 @@ const columns = () => [
         defaultSortOrder: 'descend',
     },
     {
-        title: 'Уровень',
-        dataIndex: 'level',
+        title: 'Название',
+        dataIndex: 'title',
     },
     {
         title: 'Описание',
@@ -34,13 +36,13 @@ const columns = () => [
     },
     {
         title: 'Режим',
-        dataIndex: 'control_mode',
+        dataIndex: 'mode',
         render: (text: any) =>
             <Tag color="processing">
                 {
-                    text === 'addition' ?
+                    text === 'plus-minus' ?
                         '+ -' :
-                        text === 'multiplication' ?
+                        text === 'multiply' ?
                             '×' :
                             '÷'
                 }
@@ -49,20 +51,12 @@ const columns = () => [
     {
         render: (text: any, record: any) =>
             <ModalMenu>
-                <div>
-                    <SendOutlined/>
-                    <span>Отправить</span>
-                </div>
-                {
-                    record.type_task === 'list' ? <div>
-                        <PrinterOutlined/>
-                        <span>Распечатать</span>
-                    </div> : null
-                }
-                <div>
-                    <EditOutlined/>
-                    <span>Редактировать</span>
-                </div>
+                {record.type_task === 'list' ? <PrintItem record={record}/> : null}
+                {/*<div>*/}
+                {/*    <EditOutlined/>*/}
+                {/*    <span>Редактировать</span>*/}
+                {/*</div>*/}
+                <DeleteItem record={record} fetch={fetch}/>
             </ModalMenu>
     },
 
