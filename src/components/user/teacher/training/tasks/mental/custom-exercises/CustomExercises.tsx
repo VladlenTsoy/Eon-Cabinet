@@ -1,177 +1,123 @@
-import React, {useState} from 'react';
-import usingFormBodyLayout from "../layout/form-body/usingFormBody.layout";
-import {FormItem} from "layouts/components";
-import {Col, InputNumber, Radio, Row, Select} from "antd";
-import {RadioWrapper} from "../anzan/anzan-form-body/type-setting-anzan/TypeSettingAnzan";
-import {FileOutlined} from '@ant-design/icons';
-import {FormInstance} from "antd/es/form";
-import ConfigBlock from "../../config/Config";
+import React, {useCallback, useEffect, useState} from 'react';
 import {useApiUserGeneral} from "../../../../../../../effects/use-api-user-general.effect";
 import {LoadingBlock} from "../../../../../../../lib";
-import styled from "styled-components";
-import {useSelector} from "react-redux";
-
-
-const RadioStyleWrapper = styled(Radio.Group)`
-  &.ant-radio-group {
-    display: flex;
-    width: 100%;
-  
-    .ant-radio-button-wrapper{
-      width: 100%;
-      text-align: center;
-    }
-  }
-`;
-
-const DescriptionWrapper = styled.div`
-  text-align: center;
-  padding: 1rem;
-  border: 1px dashed ${props => props.theme.light_color_border};
-`;
-
-const {Option} = Select;
+import FormItems from "./form-items/FormItems";
 
 interface CustomExercisesProps {
-    form: FormInstance;
+    userSetting?: any;
+    clearSaveSetting?: any;
+    startApplication?: (setting: any, print: boolean) => void;
+    addSettingHomework?: (setting: any) => void;
 }
 
-const CustomExercises: React.FC<CustomExercisesProps> = ({form}) => {
-    const {app} = useSelector((state: any) => state);
-    const [description, setDescription] = useState('');
-    const {categories} = app;
+const CustomExercises: React.FC<CustomExercisesProps> = (
+    {
+        userSetting,
+        clearSaveSetting,
+        startApplication,
+        addSettingHomework
+    }
+) => {
     const [loading, exercises] = useApiUserGeneral({url: '/teacher/custom-exercises/form'});
-    let categoryId = form.getFieldValue('category_id');
-    let typeTask = form.getFieldValue('type_task');
-    let controlMode = form.getFieldValue('control_mode');
 
-    const onChangeHandler = (item: any, select: any) =>
-        setDescription(select['data-description']);
+    const [categories, setCategories] = useState<string[]>([]);
+    const [typeTasks, setTypeTasks] = useState<string[]>([]);
+    const [modes, setModes] = useState<string[]>([]);
+    const [titles, setTitles] = useState<any[]>([]);
+
+    const updateTitles = useCallback((allFields, categoryValue, typeTaskValue, modeValue, user?) => {
+        let _titles = Object.values(exercises[categoryValue][typeTaskValue][modeValue]);
+        let _title: any = _titles[0];
+        let _titleValue = user ? user.custom_exercises_id : _title.id;
+        setTitles(_titles);
+
+        return allFields.map((field: any) => {
+            if (field.name.includes('category_id'))
+                field.value = categoryValue;
+            else if (field.name.includes('type_task'))
+                field.value = typeTaskValue;
+            else if (field.name.includes('mode'))
+                field.value = modeValue;
+            else if (field.name.includes('custom_exercises_id'))
+                field.value = _titleValue;
+            return field;
+        });
+    }, [exercises]);
+
+    const updateModes = useCallback((allFields, categoryValue, typeTaskValue, user?) => {
+        let _modes = Object.keys(exercises[categoryValue][typeTaskValue]);
+        let _mode = user ? user.mode : _modes[0];
+        setModes(_modes);
+        return updateTitles(allFields, categoryValue, typeTaskValue, _mode, user);
+    }, [updateTitles, exercises]);
+
+    const updateTypeTasks = useCallback((allFields, categoryValue, user?) => {
+        let _typeTasks = Object.keys(exercises[categoryValue]);
+        let _typeTask = user ? user.type_task : _typeTasks[0];
+        setTypeTasks(_typeTasks);
+        return updateModes(allFields, categoryValue, _typeTask, user);
+    }, [updateModes, exercises]);
+
+    const handleFormChange = useCallback((changedFields: any[], allFields: any[]) => {
+        let category = allFields.find((field: any) => field.name.includes('category_id'));
+        let typeTask = allFields.find((field: any) => field.name.includes('type_task'));
+
+        if (changedFields.length) {
+            return changedFields.map((field: any) => {
+                if (field.name.includes('category_id'))
+                    return updateTypeTasks(allFields, field.value);
+                else if (field.name.includes('type_task'))
+                    return updateModes(
+                        allFields,
+                        category.value,
+                        field.value
+                    );
+                else if (field.name.includes('mode'))
+                    return updateTitles(
+                        allFields,
+                        category.value,
+                        typeTask.value,
+                        field.value
+                    );
+                return allFields;
+            })[0];
+        } else
+            return allFields
+    }, [updateTypeTasks, updateModes, updateTitles]);
+
+    useEffect(() => {
+        if (typeof exercises === 'object') {
+            let _categories = Object.keys(exercises);
+            setCategories(_categories);
+            // let _typeTasks = Object.keys(exercises[_categories[0]]);
+            // let _modes = Object.keys(exercises[_categories[0]][_typeTasks[0]]);
+            // let _titles = Object.values(exercises[_categories[0]][_typeTasks[0]][_modes[0]]);
+
+            if (typeof userSetting === 'object' && Object.keys(userSetting).length) {
+                let _fields = Object.keys(userSetting).map((key: string) => ({name: [key], value: userSetting[key]}));
+                updateTypeTasks(_fields, userSetting.category_id, userSetting);
+            } else {
+
+            }
+            // console.log(_categories, _typeTasks, _modes, _titles);
+        }
+    }, [exercises, updateTypeTasks, userSetting]);
 
     return !loading ?
-        <>
-            <FormItem name="category_id" requiredMsg="Выберите категорию!">
-                <RadioStyleWrapper size="large">
-                    {
-                        categories.filter((category: any) => category.discipline_id === 1)
-                            .map((category: any) =>
-                                <Radio.Button
-                                    key={category.id}
-                                    value={category.id}
-                                    disabled={!Object.keys(exercises).includes(String(category.id))}
-                                >
-                                    {category.title}
-                                </Radio.Button>
-                            )
-                    }
-                </RadioStyleWrapper>
-            </FormItem>
+        <FormItems
+            initialValues={userSetting || {}}
 
-            {
-                categoryId ?
-                    <FormItem name="type_task" requiredMsg="Выберите тип задания!">
-                        <RadioWrapper size="large" column="1fr 1fr">
-                            <Radio.Button
-                                disabled={!Object.keys(exercises[categoryId]).includes('basic')}
-                                value="basic"
-                            >
-                                Обычный
-                            </Radio.Button>
-                            <Radio.Button
-                                disabled={!Object.keys(exercises[categoryId]).includes('list')}
-                                value="list"
-                            >
-                                <FileOutlined/> Листы
-                            </Radio.Button>
-                        </RadioWrapper>
-                    </FormItem> : null
-            }
+            onChange={handleFormChange}
+            categories={categories}
+            typeTasks={typeTasks}
+            modes={modes}
+            titles={titles}
 
-            {
-                categoryId && typeTask ?
-                    <FormItem name="control_mode" requiredMsg="Выберите действие!">
-                        <RadioStyleWrapper size="large">
-                            <Radio.Button
-                                disabled={!Object.keys(exercises[categoryId][typeTask]).includes('addition')}
-                                value="addition"
-                            >
-                                + <span className="slash">/</span> -
-                            </Radio.Button>
-                            <Radio.Button
-                                disabled={!Object.keys(exercises[categoryId][typeTask]).includes('multiplication')}
-                                value="multiplication"
-                            >
-                                ×
-                            </Radio.Button>
-                            <Radio.Button
-                                disabled={!Object.keys(exercises[categoryId][typeTask]).includes('division')}
-                                value="division"
-                            >
-                                ÷
-                            </Radio.Button>
-                        </RadioStyleWrapper>
-                    </FormItem> : null
-            }
-
-            <Row gutter={15}>
-                <Col xl={12}>
-                    <FormItem label="Уровень" name="custom_exercises_id" size="large" requiredMsg="Выберите уровень!">
-                        <Select onChange={(item: any, a: any) => onChangeHandler(item, a)}>
-                            {
-                                categoryId && typeTask && controlMode ?
-                                    Object.values(exercises[categoryId][typeTask][controlMode])
-                                        .map((item: any) =>
-                                            <Option value={item.id} key={item.id} data-description={item.description}>
-                                                Уровень {item.level}
-                                            </Option>
-                                        ) : null
-                            }
-                        </Select>
-                    </FormItem>
-                </Col>
-                <Col xl={12}>
-                    <FormItem
-                        label={`Время (${typeTask === 'basic' ? 'Секундах' : 'Минутах'})`}
-                        name="time"
-                        size="large"
-                        requiredMsg="Введите время!"
-                    >
-                        <InputNumber
-                            style={{width: '100%'}}
-                            step={typeTask === 'basic' ? 0.1 : 1}
-                            min={0}
-                            max={10}
-                        />
-                    </FormItem>
-                </Col>
-            </Row>
-
-            <DescriptionWrapper>
-                {description}
-            </DescriptionWrapper>
-
-            <ConfigBlock
-                sounds={
-                    typeTask === 'basic' && typeTask === 'addition' ? {
-                        language: false,
-                    } : false
-                }
-                mods={
-                    typeTask !== 'addition' ?
-                        {
-                            group: typeTask !== 'list'
-                        } :
-                        {
-                            plus: true,
-                            group: typeTask !== 'list',
-                            comma: true,
-                            mirror: true,
-                            abacus: typeTask !== 'list'
-                        }
-                }
-            />
-        </> :
+            clearSaveSetting={clearSaveSetting}
+            startApplication={startApplication}
+            addSettingHomework={addSettingHomework}
+        /> :
         <LoadingBlock/>;
 };
 
-export default usingFormBodyLayout(CustomExercises);
+export default CustomExercises;

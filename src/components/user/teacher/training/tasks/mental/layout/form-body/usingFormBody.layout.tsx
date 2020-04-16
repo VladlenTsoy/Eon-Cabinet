@@ -23,6 +23,12 @@ interface FormItemsProps {
     lengths?: any;
     types?: any;
     themes?: any;
+
+    //
+    categories?: string[];
+    typeTasks?: string[];
+    modes?: string[];
+    titles?: any[];
 }
 
 const usingFormBodyLayout = (FormItems: any) => {
