@@ -37,17 +37,25 @@ export const TableWrapper: React.FC<TableProps> = styled.table<TableProps>`
   }
   
   .numbering{
-      padding: .3rem;
-      
-      span{
-        //color: ${props => props.theme.color_second};
-        background: #e9ecef;
-        border-radius: 50%;
-        display: inline-block;
-        font-size: 14px;
-        height: 20px;
-        width: 20px;
-      }
+    vertical-align: middle;
+    padding: .3rem;
+  
+    span{
+      //color: ${props => props.theme.color_second};
+      background: #e9ecef;
+      border-radius: 50%;
+      display: inline-block;
+      font-size: 14px;
+      height: 20px;
+      width: 20px;
+    }
+  }
+  
+  tr{
+    transition: all 0.3s ease-in-out; 
+    :hover{
+      background: ${props => props.theme.color_primary}14;
+    }
   }
 `;
 
