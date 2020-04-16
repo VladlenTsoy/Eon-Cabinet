@@ -43,7 +43,7 @@ export const Titles: any = {
     '/training/2/16': 'Числа (Листы)',
     '/training/2/19': 'Цифра-Картинка',
     '/training/1/23': 'Анзан',
-    '/training/1/24': 'Лист',
+    '/training/1/24': 'Свои примеры',
 
     // Упражнения
     '/training/1/1/setting': 'Настройка Анзан (+ -)',
@@ -68,7 +68,7 @@ export const Titles: any = {
     '/training/2/16/setting': 'Настройка Числа (Листы)',
     '/training/2/19/setting': 'Настройка Цифра-Картинка',
     '/training/1/23/setting': 'Настройка Анзан',
-    '/training/1/24/setting': 'Настройка Листы',
+    '/training/1/24/setting': 'Настройка Своих примеров',
 
     '/settings/franchise': 'Настройка Франшизы',
     '/settings/formul-title': 'Название формул',

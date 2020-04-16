@@ -5,6 +5,7 @@ import MultiAnzan from "./multi-anzan/MultiAnzan";
 import Progression from "./progression/Progression";
 import Flash from "./flash-anzan/Flash";
 import Special from "./special-anzan/Special";
+import CustomExercises from "./custom-exercises/CustomExercises";
 
 interface MentalProps {
     setting: any;
@@ -59,6 +60,16 @@ const Mental: React.FC<MentalProps> = ({setting, clearSaveSetting, startOrPrintA
             path="/training/1/17/setting"
             children={
                 <Special
+                    userSetting={setting}
+                    clearSaveSetting={clearSaveSetting}
+                    startApplication={startOrPrintAndSaveSetting}
+                />
+            }/>
+        <Route
+            exact
+            path="/training/1/24/setting"
+            children={
+                <CustomExercises
                     userSetting={setting}
                     clearSaveSetting={clearSaveSetting}
                     startApplication={startOrPrintAndSaveSetting}
