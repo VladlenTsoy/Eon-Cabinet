@@ -55,7 +55,7 @@ const BasicApplication: React.FC<BasicApplicationProps> = (
 
     // Adding Answers to the Totals
     const addingAnswer = useCallback((data: any) => {
-        let updateData = setting.extra.includes('mirror') ? updateMirror(data) : data;
+        let updateData = setting.extra && setting.extra.includes('mirror') ? updateMirror(data) : data;
         totals[currentTimes] = {
             exercise: updateData,
             answer: countAnswer(updateData)
