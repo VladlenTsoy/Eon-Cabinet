@@ -19,7 +19,7 @@ const FormAnswer: React.FC<FormAnswerProps> = ({autofocus, name = 'user'}) => {
 
     return setting.extra && setting.extra.includes('group') ?
         totals.map((total: any, key: any) =>
-            <FormItem key={key} name={`${name}[${key}]`} requiredMsg={`Введите ответ №${key}!`}>
+            <FormItem key={key} name={[name, key]} requiredMsg={`Введите ответ №${key}!`}>
                 <InputWrapper placeholder={`Ваш ответ №${key}`} autoFocus={autofocus && key === 1} autoComplete="off"/>
             </FormItem>
         ) :

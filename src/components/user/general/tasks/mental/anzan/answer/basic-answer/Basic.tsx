@@ -1,6 +1,6 @@
 import React from 'react';
-import { ArrowRightOutlined } from '@ant-design/icons';
-import { Button, Col, Typography, Form } from "antd";
+import {ArrowRightOutlined} from '@ant-design/icons';
+import {Button, Col, Typography, Form} from "antd";
 import {Card} from "lib";
 import {useDispatch, useSelector} from "react-redux";
 import {gameChangeStats, gameChangeStatus, gameChangeTotals} from "../../../../../../../../store/game/actions";
@@ -29,35 +29,37 @@ const Basic: React.FC = () => {
     const dispatch = useDispatch();
 
     const handleSubmit = (values: any) => {
-                if (setting.extra && setting.extra.includes('group')) {
-                    let _totals = totals.map((total: any, key: number) => {
-                        if (total.answer === Number(values.user[key]))
-                            dispatch(gameChangeStats({...stats, success: stats.success + 1}));
+        if (setting.extra && setting.extra.includes('group')) {
+            let success = 0;
+            let _totals = totals.map((total: any, key: number) => {
+                if (total.answer === Number(values.user[key]))
+                    success++;
 
-                        return {
-                            ...total, ...{
-                                user: Number(values.user[key]),
-                                result: total.answer === Number(values.user[key])
-                            }
-                        };
-                    });
+                return {
+                    ...total, ...{
+                        user: Number(values.user[key]),
+                        result: total.answer === Number(values.user[key])
+                    }
+                };
+            });
 
-                    dispatch(gameChangeTotals(_totals));
-                    dispatch(gameChangeStatus('result'));
-                } else {
-                    if (totals[currentTimes].answer === Number(values.user))
-                        dispatch(gameChangeStats({...stats, success: stats.success + 1}));
+            dispatch(gameChangeStats({success}));
+            dispatch(gameChangeTotals(_totals));
+            dispatch(gameChangeStatus('result'));
+        } else {
+            if (totals[currentTimes].answer === Number(values.user))
+                dispatch(gameChangeStats({...stats, success: stats.success + 1}));
 
-                    totals[currentTimes] = {
-                        ...totals[currentTimes], ...{
-                            user: Number(values.user),
-                            result: totals[currentTimes].answer === Number(values.user)
-                        }
-                    };
-
-                    dispatch(gameChangeTotals(totals));
-                    dispatch(gameChangeStatus('intermediate'));
+            totals[currentTimes] = {
+                ...totals[currentTimes], ...{
+                    user: Number(values.user),
+                    result: totals[currentTimes].answer === Number(values.user)
                 }
+            };
+
+            dispatch(gameChangeTotals(totals));
+            dispatch(gameChangeStatus('intermediate'));
+        }
     };
 
     return (
@@ -66,7 +68,7 @@ const Basic: React.FC = () => {
                 <Form onFinish={handleSubmit}>
                     <Title level={2}>Введите ответ</Title>
                     <FormAnswer autofocus={true} name="user"/>
-                    <Button type="primary" htmlType="submit" block size="large" icon={<ArrowRightOutlined />}>
+                    <Button type="primary" htmlType="submit" block size="large" icon={<ArrowRightOutlined/>}>
                         Далее
                     </Button>
                 </Form>
