@@ -3,8 +3,8 @@ import { FileAddOutlined } from '@ant-design/icons';
 import {Empty, Button} from "antd";
 import {withRouter, RouteComponentProps} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {DescriptionTitle} from "../../../../../../../../layouts/components";
-import {appChangeDataForSending} from "../../../../../../../../store/app/actions";
+import {DescriptionTitle} from "../../../../../../../../../layouts/components";
+import {appChangeDataForSending} from "../../../../../../../../../store/app/actions";
 
 const HomeworkEmpty: React.FC<RouteComponentProps> = ({history}) => {
     const {language} = useSelector((state: any) => state);

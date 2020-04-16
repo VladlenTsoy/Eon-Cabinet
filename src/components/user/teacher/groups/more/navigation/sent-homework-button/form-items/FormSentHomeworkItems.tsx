@@ -7,7 +7,7 @@ import {Select, Divider, Input, Empty, Button} from "antd";
 import ExerciseLists from "../../../../../homework/editor/tabs-tasks/added-exercises/exercise-lists/ExerciseLists";
 import moment from "moment";
 import {useApiUserGeneral} from "../../../../../../../../effects/use-api-user-general.effect";
-import HomeworkEmpty from "../homework-empty/HomeworkEmpty";
+import HomeworkEmpty from "./homework-empty/HomeworkEmpty";
 import {appChangeDataForSending} from "../../../../../../../../store/app/actions";
 import {useDispatch} from "react-redux";
 
@@ -50,8 +50,9 @@ const FormSentHomeworkItems: React.FC<FormSentHomeworkItems> = (
             tip="Загрузка..."
             spinning={loading}
         >
-            <Button block icon={<FileAddOutlined />} size="large" type="link" onClick={createHomeworkHandler}>Создать домашнее
-                задание</Button>
+            <Button block icon={<FileAddOutlined />} size="large" type="link" onClick={createHomeworkHandler}>
+                Создать домашнее задание
+            </Button>
             <FormItem
                 name="homework"
                 label="Уровень"
