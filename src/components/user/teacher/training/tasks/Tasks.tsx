@@ -93,9 +93,19 @@ const Tasks: React.FC<RouteComponentProps<TasksRouteProps>> = (
             await dispatch(gameChangeSetting(setting));
             await changeSetting(setting);
             if (print) {
-                setting.print = true;
-                const response = await api.user_general.get('/algorithm/list', {params: setting});
-                await pdfRender(setting, response.data, language.common);
+                let url = '/algorithm/list';
+                let _setting = setting;
+                _setting.print = true;
+
+                if (task === '24') {
+                    url = `/custom-exercises/${_setting.custom_exercises_id}/print`;
+                    const response = await api.user_general.get(url, {params: _setting});
+                    await pdfRender(response.data.settings, response.data, language.common);
+                } else {
+                    const response = await api.user_general.get(url, {params: _setting});
+                    await pdfRender(_setting, response.data, language.common);
+                }
+
             } else
                 history.push(`/training/${discipline}/${task}`);
         },
