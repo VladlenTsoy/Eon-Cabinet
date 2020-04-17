@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlagOutlined, RedoOutlined } from '@ant-design/icons';
+import {FlagOutlined, RedoOutlined} from '@ant-design/icons';
 import {Button} from "antd";
 import {useDispatch} from "react-redux";
 import {gameChangeSetting, gameChangeStatus, gameChangeTotals} from "../../../../../../../../store/game/actions";
@@ -51,6 +51,8 @@ const Action: React.FC<Action> = ({task, history, id, type}) => {
                 return false;
             case 16:
                 return task.settings['task-mode'] === 'basic';
+            case 24:
+                return task.settings.type_task === 'basic';
         }
         return true;
     };
@@ -83,14 +85,14 @@ const Action: React.FC<Action> = ({task, history, id, type}) => {
                 !task.first ?
                     <Button
                         shape="round"
-                        icon={<FlagOutlined />}
+                        icon={<FlagOutlined/>}
                         size="large"
                         onClick={() => startApplication(task)}>
                         Начать
                     </Button> :
                     <Button
                         shape="round"
-                        icon={<RedoOutlined />}
+                        icon={<RedoOutlined/>}
                         type={task.first.exodus ? 'default' : 'danger'}
                         size="large"
                         onClick={() => startSecondApplication(task)}>
