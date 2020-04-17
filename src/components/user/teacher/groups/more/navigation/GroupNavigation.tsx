@@ -4,13 +4,11 @@ import EditorButton from "./editor-button/EditorButton";
 import SentHomeworkStudentButton from "./sent-homework-button/SentHomeworkStudentButton";
 import DeleteStudentButton from "./delete-student-button/DeleteStudentButton";
 import {Navigation, NavigationButton} from "layouts/components";
-import SentCustomExercisesButton from "./sent-custom-exercises-button/SentCustomExercisesButton";
 
 interface NavigationProps {
     fetchUsers: () => void;
     groupId: string;
     isVisible?: boolean;
-    isVisibleCustomExercises?: boolean;
     selectUsersId: number[];
 }
 
@@ -20,7 +18,6 @@ const GroupNavigation: React.FC<NavigationProps> = (
         groupId,
         selectUsersId,
         isVisible= false,
-        isVisibleCustomExercises = false
     }
 ) => {
     return <Navigation>
@@ -35,12 +32,6 @@ const GroupNavigation: React.FC<NavigationProps> = (
         </EditorButton>
         <SentHomeworkStudentButton
             isVisible={isVisible}
-            selectUsersId={selectUsersId}
-            group_id={groupId}
-            fetch={fetchUsers}
-        />
-        <SentCustomExercisesButton
-            isVisible={isVisibleCustomExercises}
             selectUsersId={selectUsersId}
             group_id={groupId}
             fetch={fetchUsers}

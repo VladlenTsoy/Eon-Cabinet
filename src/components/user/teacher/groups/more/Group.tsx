@@ -17,8 +17,7 @@ const Group: React.FC<GroupProps> = ({match}) => {
     const {app} = useSelector((state: any) => state);
     const dispatch = useDispatch();
     const isSaved = match.params.id === app.dataForSending.groupId && app.dataForSending.isSaved;
-    const isVisibleCustomExercises = match.params.id === app.dataForSending.groupId && app.dataForSending.isVisibleCustomExercises;
-    const [selectUsersId, setSelectUsersId] = useState<number[]>(isSaved || isVisibleCustomExercises ? app.dataForSending.studentsId : []);
+    const [selectUsersId, setSelectUsersId] = useState<number[]>(isSaved ? app.dataForSending.studentsId : []);
     const [loadingGroup, group, errorGroup] = useApiUserGeneral({url: `/teacher/group/${match.params.id}`});
     const [loadingUsers, users, errorUsers, fetchUsers] = useApiUserGeneral({url: `/teacher/students/${match.params.id}`});
 
@@ -49,7 +48,6 @@ const Group: React.FC<GroupProps> = ({match}) => {
     return <>
         <GroupNavigation
             isVisible={isSaved}
-            isVisibleCustomExercises={isVisibleCustomExercises}
             fetchUsers={fetchUsers}
             groupId={match.params.id}
             selectUsersId={selectUsersId}

@@ -54,7 +54,6 @@ interface ActionForSendingProps {
     studentsId?: any[],
     groupId?: any,
     isSaved?: boolean,
-    isVisibleCustomExercises?: boolean
 }
 
 export const appChangeDataForSending = (action: ActionForSendingProps) =>
