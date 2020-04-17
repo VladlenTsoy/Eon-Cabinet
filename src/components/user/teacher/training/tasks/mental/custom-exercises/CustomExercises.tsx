@@ -100,6 +100,34 @@ const CustomExercises: React.FC<CustomExercisesProps> = (
         }
     }, [exercises, updateTypeTasks, userSetting]);
 
+
+    const updateSetting = useCallback((setting) => {
+        let customExercises = titles.find((title) => title.id === setting.custom_exercises_id);
+        return {
+            ...customExercises.setting,
+            time: setting.time,
+            anzan: setting.anzan,
+            category_id: setting.category_id,
+            custom_exercises_id: setting.custom_exercises_id,
+            extra: setting.extra || [],
+            ...setting.sound ? {sound: setting.sound} : {}
+        }
+    }, [titles]);
+
+    const _startApplication = useCallback((setting: any, print: boolean) => {
+        if (startApplication) {
+            let _setting = updateSetting(setting);
+            startApplication(_setting, print);
+        }
+    }, [startApplication, updateSetting]);
+
+    const _addSettingHomework = useCallback((setting: any) => {
+        if (addSettingHomework) {
+            let _setting = updateSetting(setting);
+            addSettingHomework(_setting);
+        }
+    }, [addSettingHomework, updateSetting]);
+
     return !loading ?
         <FormItems
             initialValues={userSetting || {extra: []}}
@@ -111,8 +139,8 @@ const CustomExercises: React.FC<CustomExercisesProps> = (
             titles={titles}
 
             clearSaveSetting={clearSaveSetting}
-            startApplication={startApplication}
-            addSettingHomework={addSettingHomework}
+            startApplication={startApplication ? _startApplication : undefined}
+            addSettingHomework={addSettingHomework ? _addSettingHomework : undefined}
         /> :
         <LoadingBlock/>;
 };
