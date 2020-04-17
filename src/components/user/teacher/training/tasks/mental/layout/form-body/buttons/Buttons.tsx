@@ -78,8 +78,8 @@ const Buttons: React.FC<ButtonsProps> = (
     return <ButtonGroupWrapper size="large">
         {addSettingHomework ?
             isEdit ?
-                <Button htmlType="submit" type="primary" icon={<EditOutlined/>}>Изменить</Button> :
-                <Button htmlType="submit" type="primary" icon={<PlusOutlined/>}>Добавить</Button> :
+                <Button htmlType="submit" type="primary" onClick={onFinish} icon={<EditOutlined/>}>Изменить</Button> :
+                <Button htmlType="submit" type="primary" onClick={onFinish} icon={<PlusOutlined/>}>Добавить</Button> :
             <>
                 <Button icon={<UndoOutlined/>} onClick={clearSetting}>Очистить</Button>
                 {form.getFieldValue('anzan') === 'list' ?
