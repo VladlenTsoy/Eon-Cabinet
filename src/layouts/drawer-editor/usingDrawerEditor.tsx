@@ -38,10 +38,10 @@ const usingDrawerEditor = (FormComponent: any): React.FC<HookDrawerEditorProps> 
             setVisible(true);
 
         const close = useCallback(async (e: any, isFetch?: boolean) => {
+            setVisible(false);
+
             if (isFetch)
                 fetch();
-
-            setVisible(false);
         }, [fetch]);
 
         return <>

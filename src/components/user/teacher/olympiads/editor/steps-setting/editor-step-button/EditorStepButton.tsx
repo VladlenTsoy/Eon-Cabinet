@@ -41,7 +41,7 @@ const EditorStepButton: React.FC<EditorStepButtonProps> = (
             if (!first)
                 setCurrent(stepKey + 1);
         }
-        close();
+        // close();
     };
 
     return <>
@@ -51,11 +51,19 @@ const EditorStepButton: React.FC<EditorStepButtonProps> = (
             title={step && step.title ? 'Редактирование этапа' : 'Создание этапа'}
             destroyOnClose={false}
         >
-            <Form onFinish={onSubmitHandler} initialValues={{
-                title: step.title || null,
-                start_at: step.start_at ? moment(step.start_at) : null,
-                end_at: step.end_at ? moment(step.end_at) : null
-            }}>
+            <Form
+                onFinish={onSubmitHandler}
+                layout="vertical"
+                form={form}
+                initialValues={
+                    step ?
+                        {
+                            title: step.title,
+                            start_at: step.start_at ? moment(step.start_at) : null,
+                            end_at: step.end_at ? moment(step.end_at) : null
+                        } : {}
+                }
+            >
                 <FormItem name="title" label="Название" requiredMsg="Введите название!"/>
                 <RangePicker form={form} first={first}/>
                 {step && step.title ?
