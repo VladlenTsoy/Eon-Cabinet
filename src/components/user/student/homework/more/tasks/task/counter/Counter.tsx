@@ -24,7 +24,7 @@ const CounterWrapper: any = styled.div`
   box-shadow: ${(props: any) => props.type === 'default' ? props.theme.shadow_info : props.type === 'winner' ? props.theme.shadow_warning : props.theme.shadow_danger};
   background-size: 140%;
   
-  i{
+  .anticon{
     font-size: 20px;
     margin-bottom: 0.5rem;
     color: rgba(255,255,255,0.5);
@@ -71,6 +71,8 @@ const Counter: React.FC<CounterProps> = ({task, type}) => {
     let taskMode = () => {
         if (task.task_id === 15)
             return task.settings.mode;
+        if (task.task_id === 24)
+            return task.settings.type_task;
         if (task.task_id === 16)
             return task.settings['task-mode'];
         return 'basic';
