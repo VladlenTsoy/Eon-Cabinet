@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
 import {useSelector} from "react-redux";
 import AnzanType from "../anzan-setting/anzan-type/AnzanType";
-import {useApiUserGeneral} from "effects/use-api-user-general.effect";
-import {LoadingBlock} from "lib";
 import styled from "styled-components";
 
 const TitleWrapper = styled.div`
@@ -19,21 +17,10 @@ const CustomExercisesSettingBlock: React.FC<CustomExercisesSettingBlockProps> = 
     const {language} = useSelector((state: any) => state);
     const [isMultiplication] = useState(setting.mode === 'divide' || setting.mode === 'multiply');
 
-    const [loading, exercises] = useApiUserGeneral({url: `/teacher/custom-exercises/${setting.custom_exercises_id}/setting`});
-
-    if (loading)
-        return <tr>
-            <td colSpan={10}>
-                <LoadingBlock/>
-            </td>
-        </tr>;
-
-    let _setting = {...setting, ...exercises.setting};
-
     return <>
         <tr>
             <td colSpan={5}>
-                <TitleWrapper>{exercises.title}</TitleWrapper>
+                <TitleWrapper>{setting.title}</TitleWrapper>
             </td>
         </tr>
         <AnzanType setting={setting}/>
@@ -42,50 +29,50 @@ const CustomExercisesSettingBlock: React.FC<CustomExercisesSettingBlockProps> = 
                 <tr>
                     <td>Режим:</td>
                     <td>
-                        {language.common.modeNames[_setting.mode]}&nbsp;
+                        {language.common.modeNames[setting.mode]}&nbsp;
                     </td>
-                    {_setting.anzan === 'list' ?
+                    {setting.anzan === 'list' ?
                         <>
                             <td>Таблиц:</td>
-                            <td>{_setting.tables}</td>
+                            <td>{setting.tables}</td>
                         </> :
                         <td colSpan={2}/>
                     }
                 </tr> : [
                     <tr key="mode">
                         <td>Мод:</td>
-                        <td><b>{language.common.modeNames[_setting.mode]}</b></td>
-                        {_setting.anzan === 'list' ?
+                        <td><b>{language.common.modeNames[setting.mode]}</b></td>
+                        {setting.anzan === 'list' ?
                             <>
                                 <td>Таблиц:</td>
-                                <td>{_setting.tables}</td>
+                                <td>{setting.tables}</td>
                             </> :
                             <>
                                 <td>Кол-во:</td>
-                                <td>{_setting.count}</td>
+                                <td>{setting.count}</td>
                             </>
                         }
                     </tr>
                 ]}
-            {_setting.anzan === 'list' ?
+            {setting.anzan === 'list' ?
                 <tr>
                     <td>Столбцов:</td>
-                    <td>{_setting.column}</td>
+                    <td>{setting.column}</td>
                     <td>Строк:</td>
-                    <td>{_setting.rows}</td>
+                    <td>{setting.rows}</td>
                 </tr> :
                 <tr>
                     <td>Кол-во раз:</td>
-                    <td>{_setting.times}</td>
+                    <td>{setting.times}</td>
                     <td>Время:</td>
-                    <td>{_setting.time} с.</td>
+                    <td>{setting.time} с.</td>
                 </tr>
             }
             {
-                !isMultiplication && _setting.anzan === 'list' ?
+                !isMultiplication && setting.anzan === 'list' ?
                     <tr>
                         <td>Время:</td>
-                        <td>{_setting.time} м.</td>
+                        <td>{setting.time} м.</td>
                         <td/>
                         <td/>
                     </tr> :

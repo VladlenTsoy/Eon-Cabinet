@@ -100,11 +100,11 @@ const CustomExercises: React.FC<CustomExercisesProps> = (
         }
     }, [exercises, updateTypeTasks, userSetting]);
 
-
     const updateSetting = useCallback((setting) => {
         let customExercises = titles.find((title) => title.id === setting.custom_exercises_id);
         return {
             ...customExercises.setting,
+            title: customExercises.title,
             time: setting.time,
             anzan: setting.anzan,
             category_id: setting.category_id,
