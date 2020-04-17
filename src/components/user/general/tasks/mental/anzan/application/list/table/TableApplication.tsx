@@ -69,7 +69,7 @@ const TableApplication: React.FC<TableApplicationProps> = (
             dispatch(gameChangeTotals(_totals));
             updateStats(stats);
             setTables(isMultiplication ?
-                chunk(chunk(totals, setting.column), setting.rows) :
+                chunk(chunk(_totals, setting.column), setting.rows) :
                 chunk(_totals, setting.column)
             );
             changeState('answer');

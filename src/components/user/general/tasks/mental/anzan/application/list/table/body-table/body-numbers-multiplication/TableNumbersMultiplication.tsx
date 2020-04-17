@@ -25,8 +25,11 @@ const TableNumbersMultiplication: React.FC<TableNumbersAdditionProps> = ({table}
                     <tr key={`user-${columnKey}`}>
                         {column.map((row: any, rowKey: number) =>
                             <td key={rowKey}>
-                                {row.user ? <Result type="success">{row.user}</Result> :
-                                    <Result type="danger">Пусто</Result>}
+                                {
+                                    row.result ?
+                                        <Result type="success">{row.user}</Result> :
+                                        <Result type="danger">{row.user || 'Пусто'}</Result>
+                                }
                             </td>
                         )}
                     </tr>,
