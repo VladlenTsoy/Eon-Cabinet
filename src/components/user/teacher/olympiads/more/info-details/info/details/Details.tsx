@@ -12,7 +12,7 @@ const DetailsWrapper = styled.div`
   //grid-template-rows: 1fr 1fr;
   grid-gap: 1rem;
   
-  > i {
+  > .anticon {
     font-size: 25px;
     color: ${props => props.theme.color_minimal};
   } 

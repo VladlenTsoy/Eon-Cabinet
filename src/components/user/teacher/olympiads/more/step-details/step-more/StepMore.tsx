@@ -42,7 +42,7 @@ const InfoWrapper = styled.div`
       .icon {
         margin-right: 1rem;
         
-        i{
+        .anticon{
           font-size: 50px;
         }
       }

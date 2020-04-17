@@ -3,7 +3,7 @@ import styled from "styled-components";
 const BlockWrapper = styled.div`
   display: flex;
     
-  > i{
+  > .anticon{
     margin-right: 1rem;
     font-size: 25px;
     color: ${props => props.theme.color_minimal};

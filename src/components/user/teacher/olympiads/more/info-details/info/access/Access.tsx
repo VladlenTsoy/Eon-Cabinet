@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon as LegacyIcon } from '@ant-design/compatible';
+import {CheckCircleOutlined, UserAddOutlined, InfoCircleOutlined} from '@ant-design/icons';
 import BlockWrapper from "../layouts/Block.layout";
 import styled from "styled-components";
 
@@ -8,13 +8,13 @@ interface AccessStyle {
 }
 
 const AccessWrapper: React.FC<AccessStyle> = styled(BlockWrapper)<AccessStyle>`
-  > i {
+  > .anticon {
     color: ${props => props.theme[
-        props.type === 'public' ?
-            'color_success' : props.type === 'invite' ?
-                'color_warning' : 'color_danger'
-        ]
-    };  
+    props.type === 'public' ?
+        'color_success' : props.type === 'invite' ?
+        'color_warning' : 'color_danger'
+    ]
+};  
   }
 `;
 
@@ -25,13 +25,13 @@ interface AccessProps {
 const Access: React.FC<AccessProps> = ({olympiad}) => {
     return (
         <AccessWrapper type={olympiad.access}>
-            <LegacyIcon type={
-                olympiad.access === 'public' ? 'check-circle':
+            {
+                olympiad.access === 'public' ?
+                    <CheckCircleOutlined/> :
                     olympiad.access === 'invite' ?
-                        'user-add' :
-                        'info-circle'
+                        <UserAddOutlined/> :
+                        <InfoCircleOutlined/>
             }
-            />
             <div>
                 <span>
                     {
@@ -50,7 +50,7 @@ const Access: React.FC<AccessProps> = ({olympiad}) => {
                                 'Принять участие смогут ученики которых вы приняли заявки.' :
                                 'Принять участие смогут только те ученики которых вы пригласили.'
                     }
-                    </p>
+                </p>
             </div>
         </AccessWrapper>
     );
