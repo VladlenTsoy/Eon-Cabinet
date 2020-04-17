@@ -16,7 +16,7 @@ const Application = () => {
     const [isMultiplication] = useState(setting.mode !== 'plus-minus');
 
     const [loading, data] = useApiUserGeneral({
-        url: isMultiplication ?
+        url: setting.anzan === 'list' ?
             `/custom-exercises/${setting.custom_exercises_id}` :
             `/custom-exercises/${setting.custom_exercises_id}?currentTimes=${currentTimes}`,
         config: {params: setting},
