@@ -2,6 +2,7 @@ import React from 'react';
 import {Col, Row} from "antd";
 import {Navigation, NavigationButton} from "../../../../../layouts/components";
 import {Link} from "react-router-dom";
+import {PlusOutlined} from "@ant-design/icons";
 import CurrentOlympiads from "./current/CurrentOlympiads";
 import FutureOlympiads from "./future-olympiads/FutureOlympiads";
 import PastOlympiads from "./past-olympiads/PastOlympiads";
@@ -10,7 +11,7 @@ const Olympiads = () => {
     return <>
         <Navigation>
             <Link to="/olympiad/create">
-                <NavigationButton type="primary" icon="plus">
+                <NavigationButton type="primary" icon={<PlusOutlined/>}>
                     Создать олимпиаду
                 </NavigationButton>
             </Link>
