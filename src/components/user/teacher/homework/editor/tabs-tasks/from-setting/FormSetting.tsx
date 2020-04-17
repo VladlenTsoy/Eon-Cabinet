@@ -11,6 +11,7 @@ import SettingMasterSystem from "../../../../training/tasks/mnemonics/master-sys
 import SettingPersonalities from "../../../../training/tasks/mnemonics/personalities/Personalities";
 import SettingNumbers from "../../../../training/tasks/mnemonics/numbers/Numbers";
 import SettingDigitalRow from "../../../../training/tasks/mnemonics/digital-row/DigitalRow";
+import SettingCustomExercises from "../../../../training/tasks/mental/custom-exercises/CustomExercises";
 
 interface FormSettingProps {
     sendSubmit: any;
@@ -25,55 +26,60 @@ const FormSetting: React.FC<FormSettingProps> = ({taskId, sendSubmit}) => {
                     addSettingHomework={(setting => sendSubmit(taskId, setting))}
                     key={taskId}
                 />;
-                case 6:
+            case 6:
                 return <SettingFlash
                     addSettingHomework={(setting => sendSubmit(taskId, setting))}
                     key={taskId}
                 />;
-                case 17:
+            case 17:
                 return <SettingSpecial
                     addSettingHomework={(setting => sendSubmit(taskId, setting))}
                     key={taskId}
                 />;
-                case 22:
+            case 22:
                 return <SettingProgression
                     addSettingHomework={(setting => sendSubmit(taskId, setting))}
                     key={taskId}
                 />;
+            case 24:
+                return <SettingCustomExercises
+                    addSettingHomework={(setting => sendSubmit(taskId, setting))}
+                    key={taskId}
+                />;
 
-                //
+            //
 
-                case 15:
+            case 15:
                 return <SettingWordList
                     addSettingHomework={(setting => sendSubmit(taskId, setting))}
                     key={taskId}
                 />;
-                case 19:
+            case 19:
                 return <SettingDigitalPicture
                     addSettingHomework={(setting => sendSubmit(taskId, setting))}
                     key={taskId}
                 />;
-                case 9:
+            case 9:
                 return <SettingCountries
                     addSettingHomework={(setting => sendSubmit(taskId, setting))}
                     key={taskId}
                 />;
-                case 11:
+            case 11:
                 return <SettingMasterSystem
                     addSettingHomework={(setting => sendSubmit(taskId, setting))}
                     key={taskId}
                 />;
-                case 8:
+            case 8:
                 return <SettingPersonalities
                     addSettingHomework={(setting => sendSubmit(taskId, setting))}
                     key={taskId}
                 />;
-                case 16:
+            case 16:
                 return <SettingNumbers
                     addSettingHomework={(setting => sendSubmit(taskId, setting))}
                     key={taskId}
                 />;
-                case 10:
+            case 10:
                 return <SettingDigitalRow
                     addSettingHomework={(setting => sendSubmit(taskId, setting))}
                     key={taskId}

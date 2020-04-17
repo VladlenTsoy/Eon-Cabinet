@@ -1,5 +1,5 @@
 import React from 'react';
-import { DeleteOutlined } from '@ant-design/icons';
+import {DeleteOutlined} from '@ant-design/icons';
 import {Button} from "antd";
 import styled from "styled-components";
 import AnzanSettingBlock from "./exercise-blocks/mental/anzan-setting/AnzanSettingBlock";
@@ -16,6 +16,7 @@ import PersonalitiesSettingBlock from "./exercise-blocks/mnemonics/personalities
 import MasterSystemSettingBlock from "./exercise-blocks/mnemonics/master-system-setting/MasterSystemSettingBlock";
 import CountriesSettingBlock from "./exercise-blocks/mnemonics/countries-setting/CountriesSettingBlock";
 import DigitalPictureSettingBlock from "./exercise-blocks/mnemonics/digital-picture-setting/DigitalPictureSettingBlock";
+import CustomExercisesSettingBlock from "./exercise-blocks/mental/custom-exercises-setting/CustomExercisesSettingBlock";
 
 const ExerciseTitleWrapper = styled.div`
   text-align: center;
@@ -58,8 +59,11 @@ const ExerciseLists: React.FC<ExerciseWrapperProps> = ({exercise, deleteExercise
             case 22:
                 setting = <ProgressionSettingBlock setting={exercise.settings}/>;
                 break;
+            case 24:
+                setting = <CustomExercisesSettingBlock setting={exercise.settings}/>;
+                break;
 
-                //
+            //
 
             case 7:
             case 15:
@@ -102,7 +106,7 @@ const ExerciseLists: React.FC<ExerciseWrapperProps> = ({exercise, deleteExercise
             <h2>{exercise.task_name}</h2>
             {outputSetting()}
             {edit ?
-                <Button type="danger" size="small" icon={<DeleteOutlined />} onClick={deleteExercise}/> :
+                <Button type="danger" size="small" icon={<DeleteOutlined/>} onClick={deleteExercise}/> :
                 null}
         </ExerciseTitleWrapper>
     );
