@@ -28,7 +28,7 @@ const Disciplines: React.FC<DisciplinesProps> = ({setDiscipline}) => {
                 <Card>
                     <Card.Title title="Создание олимпиады" level={3}/>
                     <p>Выберите дисциплину в которой будет проводиться олимпиада.</p>
-                    <Form onFinish={submitHandler}>
+                    <Form onFinish={submitHandler} layout="vertical">
                         <FormItem name="discipline_id" label="Диспиплина" requiredMsg="Выберите дисциплину!">
                             <Select>
                                 {
