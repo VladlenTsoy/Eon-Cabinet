@@ -25,7 +25,7 @@ export const MoreWrapper: any = styled(Link)`
      color: ${props => props.theme.color_main};
    }
    
-   i{
+   .anticon{
      margin-bottom: 0.5rem;
      font-size: 60px;
    }
