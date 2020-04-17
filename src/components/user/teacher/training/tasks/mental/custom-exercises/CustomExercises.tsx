@@ -89,9 +89,6 @@ const CustomExercises: React.FC<CustomExercisesProps> = (
         if (typeof exercises === 'object') {
             let _categories = Object.keys(exercises);
             setCategories(_categories);
-            // let _typeTasks = Object.keys(exercises[_categories[0]]);
-            // let _modes = Object.keys(exercises[_categories[0]][_typeTasks[0]]);
-            // let _titles = Object.values(exercises[_categories[0]][_typeTasks[0]][_modes[0]]);
 
             if (typeof userSetting === 'object' && Object.keys(userSetting).length) {
                 let _fields = Object.keys(userSetting).map((key: string) => ({name: [key], value: userSetting[key]}));
@@ -100,7 +97,6 @@ const CustomExercises: React.FC<CustomExercisesProps> = (
                 } catch (e) {
                 }
             }
-            // console.log(_categories, _typeTasks, _modes, _titles);
         }
     }, [exercises, updateTypeTasks, userSetting]);
 

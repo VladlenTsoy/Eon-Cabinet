@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Button} from "antd";
 import styled from "styled-components";
 import {EditOutlined, FlagOutlined, PlusOutlined, PrinterOutlined, UndoOutlined} from '@ant-design/icons';
@@ -14,25 +14,39 @@ interface ButtonsProps {
     fields: any,
     clearSaveSetting?: () => void;
     startApplication?: (setting: any, print: boolean) => void;
-    setLoading: (loading: boolean) => void;
     addSettingHomework?: (setting: any) => void;
-    loading: boolean;
     isEdit?: boolean;
 }
 
 const Buttons: React.FC<ButtonsProps> = (
     {
         form,
-        fields,
-        loading,
-        setLoading,
         clearSaveSetting,
         startApplication,
         addSettingHomework,
         isEdit
     }
 ) => {
-    // const isList = fields ? fields.map((field: any) => field.name.includes('anzan') ? field.value === 'list' : false) : false;
+    const [loading, setLoading] = useState(false);
+
+    /***
+     * Начать упражнения
+     *
+     * @param e
+     */
+    const onFinish = async (e: any) => {
+        e.preventDefault();
+        let values = form.getFieldsValue();
+        setLoading(true);
+        try {
+            if (addSettingHomework)
+                await addSettingHomework(values);
+            else if (startApplication)
+                await startApplication(values, false);
+        } catch (e) {
+            setLoading(false);
+        }
+    };
 
     /***
      * Печать листов
@@ -78,6 +92,7 @@ const Buttons: React.FC<ButtonsProps> = (
                     </Button> : null
                 }
                 <Button
+                    onClick={onFinish}
                     htmlType="submit"
                     type="primary"
                     icon={<FlagOutlined/>}
@@ -90,4 +105,4 @@ const Buttons: React.FC<ButtonsProps> = (
     </ButtonGroupWrapper>;
 };
 
-export default Buttons;
+export default React.memo(Buttons);

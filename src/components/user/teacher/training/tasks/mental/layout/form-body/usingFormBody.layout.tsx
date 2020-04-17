@@ -47,24 +47,6 @@ const usingFormBodyLayout = (FormItems: any) => {
     ) => {
         const [fields, setFields] = useState<any[]>([]);
         const [form] = Form.useForm();
-        const [loading, setLoading] = useState(false);
-
-        /***
-         * Начать упражнения
-         *
-         * @param values
-         */
-        const onFinish = async (values: any) => {
-            setLoading(true);
-            try {
-                if (addSettingHomework)
-                    await addSettingHomework(values);
-                else if (startApplication)
-                    await startApplication(values, false);
-            } catch (e) {
-                setLoading(false);
-            }
-        };
 
         const fieldsChange = (changedFields: any[], allFields: any[]) => {
             if (changedFields.length)
@@ -73,24 +55,19 @@ const usingFormBodyLayout = (FormItems: any) => {
 
         return <Form
             form={form}
-            // userSetting DELETE
             initialValues={initialValues}
             fields={fields}
             layout='vertical'
-            onFinish={onFinish}
             onFieldsChange={fieldsChange}
         >
             <FormItems
                 form={form}
                 fields={fields}
-                loading={loading}
                 {...props}
             />
             <Buttons
                 fields={fields}
                 form={form}
-                setLoading={setLoading}
-                loading={loading}
                 addSettingHomework={addSettingHomework}
                 startApplication={startApplication}
                 clearSaveSetting={clearSaveSetting}
