@@ -21,6 +21,7 @@ import Personalities from "../../../general/tasks/mnemonics/personalities/Person
 import Countries from "../../../general/tasks/mnemonics/countries/Countries";
 import DigitalPicture from "../../../general/tasks/mnemonics/digital-picture/DigitalPicture";
 import MasterSystem from "../../../general/tasks/mnemonics/master-system/MasterSystem";
+import CustomExercises from "../../../general/tasks/mental/custom-exercises/CustomExercises";
 
 interface MatchProps {
     homeworkId: string;
@@ -28,7 +29,7 @@ interface MatchProps {
 
 type TasksProps = RouteComponentProps<MatchProps>;
 
-const Tasks:React.FC<TasksProps> = ({history, match}) => {
+const Tasks: React.FC<TasksProps> = ({history, match}) => {
     const {game} = useSelector((state: any) => state);
     const {homeworkId} = match.params;
 
@@ -41,8 +42,8 @@ const Tasks:React.FC<TasksProps> = ({history, match}) => {
 
     // Button cancel
     useEffect(() => {
-        if(window.speechSynthesis && window.speechSynthesis.getVoices)
-        window.speechSynthesis.getVoices();
+        if (window.speechSynthesis && window.speechSynthesis.getVoices)
+            window.speechSynthesis.getVoices();
         return () => {
             dispatch(gameChangeSetting(null));
             dispatch(gameChangeStatus('start'));
@@ -65,6 +66,7 @@ const Tasks:React.FC<TasksProps> = ({history, match}) => {
                 <Route exact path="/homework/:homeworkId/:id/18" children={<Anzan/>}/>
                 <Route exact path="/homework/:homeworkId/:id/21" children={<MultiAnzan/>}/>
                 <Route exact path="/homework/:homeworkId/:id/22" children={<Progression/>}/>
+                <Route exact path="/homework/:homeworkId/:id/24" children={<CustomExercises/>}/>
 
                 <Route exact path="/homework/:homeworkId/:id/15" children={<WordList/>}/>
                 <Route exact path="/homework/:homeworkId/:id/10" children={<DigitalRow/>}/>
