@@ -43,7 +43,7 @@ const FormSentHomeworkItems: React.FC<FormSentHomeworkItems> = (
 
         dispatch(appChangeDataForSending({isSaved: false}));
 
-    }, [homework, setIsSaveBtn]);
+    }, [homework, setIsSaveBtn, dispatch]);
 
     if (!loading && !homework.length)
         return <HomeworkEmpty/>;
