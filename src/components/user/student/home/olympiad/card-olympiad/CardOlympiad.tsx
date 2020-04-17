@@ -2,7 +2,7 @@ import React from 'react';
 import {Card} from "lib";
 import {ButtonLink} from "lib";
 import {useSelector} from "react-redux";
-import { AppstoreOutlined, TeamOutlined } from '@ant-design/icons';
+import {AppstoreOutlined, TeamOutlined, FlagOutlined} from '@ant-design/icons';
 import styled from "styled-components";
 import ImageTimer from "../../../../teacher/olympiads/list/current/card/image-timer/ImageTimer";
 
@@ -64,27 +64,27 @@ interface CardOlympiadProps {
 const CardOlympiad: React.FC<CardOlympiadProps> = ({olympiad, fetch}) => {
     const {language} = useSelector((state: any) => state);
     return (
-      <CardWrapper className="animated fadeIn">
-          <OlympiadWrapper>
-              <ImageTimer callback={fetch} endAt={olympiad.current_step.end_at}/>
-              <ContentWrapper>
-                  <Card.Title title={olympiad.title} level={3}/>
-                  <div className="counters">
-                      <div className="counter">
-                          <AppstoreOutlined />
-                          <span>{olympiad.steps_count} - этапов</span>
-                      </div>
-                      <div className="counter">
-                          <TeamOutlined />
-                          <span>{olympiad.students_count} - участвующих</span>
-                      </div>
-                  </div>
-                  <ButtonLink icon="flag" to={`olympiads/${olympiad.id}`} block>
-                      {language.common.more}
-                  </ButtonLink>
-              </ContentWrapper>
-          </OlympiadWrapper>
-      </CardWrapper>
+        <CardWrapper className="animated fadeIn">
+            <OlympiadWrapper>
+                <ImageTimer callback={fetch} endAt={olympiad.current_step.end_at}/>
+                <ContentWrapper>
+                    <Card.Title title={olympiad.title} level={3}/>
+                    <div className="counters">
+                        <div className="counter">
+                            <AppstoreOutlined/>
+                            <span>{olympiad.steps_count} - этапов</span>
+                        </div>
+                        <div className="counter">
+                            <TeamOutlined/>
+                            <span>{olympiad.students_count} - участвующих</span>
+                        </div>
+                    </div>
+                    <ButtonLink icon={<FlagOutlined/>} to={`olympiads/${olympiad.id}`} block>
+                        {language.common.more}
+                    </ButtonLink>
+                </ContentWrapper>
+            </OlympiadWrapper>
+        </CardWrapper>
     );
 };
 

@@ -20,6 +20,7 @@ import Personalities from "components/user/student/olympiad/tasks/mnemonics/pers
 import Countries from "components/user/student/olympiad/tasks/mnemonics/countries/Countries";
 import DigitalPicture from "components/user/student/olympiad/tasks/mnemonics/digital-picture/DigitalPicture";
 import MasterSystem from "components/user/student/olympiad/tasks/mnemonics/master-system/MasterSystem";
+import CustomExercises from "components/user/student/olympiad/tasks/mental/custom-exercises/CustomExercises";
 
 interface MatchProps {
     sentOlympiadId: string;
@@ -63,6 +64,7 @@ const Tasks: React.FC<TasksProps> = ({history, match}) => {
                 <Route exact path="/olympiads/:sentOlympiadId/:taskOlympiadId/17" children={<SpecialAnzan/>}/>
                 <Route exact path="/olympiads/:sentOlympiadId/:taskOlympiadId/18" children={<Anzan/>}/>
                 <Route exact path="/olympiads/:sentOlympiadId/:taskOlympiadId/22" children={<Progression/>}/>
+                <Route exact path="/olympiads/:sentOlympiadId/:taskOlympiadId/24" children={<CustomExercises/>}/>
 
                 <Route exact path="/olympiads/:sentOlympiadId/:taskOlympiadId/15" children={<WordList/>}/>
                 <Route exact path="/olympiads/:sentOlympiadId/:taskOlympiadId/10" children={<DigitalRow/>}/>

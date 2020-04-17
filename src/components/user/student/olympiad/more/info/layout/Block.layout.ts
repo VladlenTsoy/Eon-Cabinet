@@ -8,7 +8,7 @@ const BlockLayout = styled.div`
     margin-bottom: 0.5rem;
     align-items: center;
     
-    i{
+    .anticon{
       font-size: 30px;
       color: ${props => props.theme.color_minimal};
     }

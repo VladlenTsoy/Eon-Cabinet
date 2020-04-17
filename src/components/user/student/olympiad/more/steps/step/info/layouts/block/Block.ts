@@ -27,7 +27,7 @@ const BlockWrapper = styled.div`
     color: #fff;
     border: 10px solid #ffe27a;
   
-    i{
+    .anticon{
       font-size: 50px;
     }
   }
