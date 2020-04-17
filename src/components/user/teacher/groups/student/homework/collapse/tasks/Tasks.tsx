@@ -69,7 +69,7 @@ const Tasks: React.FC<TasksProps> = ({task}) => {
             case 4:
             case 23:
             case 24:
-                return <Anzan totals={task[state].totals}/>;
+                return <Anzan totals={task[state].totals} setting={task.settings}/>;
             case 7:
             case 15:
                 return <Words totals={task[state].totals}/>;
