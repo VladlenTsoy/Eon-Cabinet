@@ -1,54 +1,97 @@
 import * as React from "react";
 import styled from "styled-components";
-import {useState} from "react";
-import DefaultImage from '../../../assets/images/profile/default.svg'
+import {useEffect, useState} from "react";
+import DefaultImage from 'assets/images/profile/default.svg'
+import {LoadingOutlined} from '@ant-design/icons'
+import {v4 as uuidv4} from 'uuid';
 
-interface UserImageProps {
-    className?: string;
-    src: string,
-    alt: string,
+interface ImageWrapperProps {
     width?: string,
     mr?: string,
 }
 
-const UserImageWrapper = styled.div<any>`
-  background: #ffffff;
-  border: 2px solid #ffffff;
-  border-radius: 50%;
-  box-shadow: ${props => props.theme.shadow_primary};
-  display: flex;
-  overflow: hidden;
+const ImageWrapper: React.FC<ImageWrapperProps> = styled.div<ImageWrapperProps>`
+  margin-right: ${props => props.mr || 'initial'};
   height: ${props => props.width};
   width: ${props => props.width};
-  margin-right: ${props => props.mr || 'initial'};
-
-  img{
-    height: 100%;
-    object-fit: cover;
-    width: 100%;
+  
+  .loading{
+    transform: scale(0.5);
+  }
+  
+  svg{
+    overflow: hidden;
+    width: ${props => props.width};
+    height: ${props => props.width};
+    
+    circle,
+    rect {
+      fill: white;
+      stroke-width: 2;
+      stroke: rgba(0, 0, 0, 0.1);
+    }
+    
+    image {
+      width: ${props => props.width};
+      height: ${props => props.width};   
+    }
+    
+    g {
+      rect,
+      circle {
+        fill: none;
+      }
+    }
   }
 `;
+
+interface UserImageProps extends React.HTMLAttributes<HTMLDivElement> {
+    src: string,
+    alt?: string,
+    width?: string,
+    mr?: string,
+}
 
 const Avatar: React.FC<UserImageProps> = (
     {
         src,
-        alt,
         width = '38px',
         mr,
-        ...props
     }
 ) => {
-    const [, setError] = useState(false);
-    const handleError = (e: any) => {
-        // e.target.src = 'http://api2.eon.uz/images/default.svg';
-        e.target.src = DefaultImage;
-        e.target.onError = null;
-        setError(true);
-    };
+    const w = Number(width.match(/\d+/)) / 2;
+    const time = uuidv4();
+    const [image, setImage] = useState<any>(src);
+    const [loading, setLoading] = useState(true);
 
-    return <UserImageWrapper mr={mr} width={width} {...props}>
-        <img src={src} alt={alt} onError={handleError}/>
-    </UserImageWrapper>
+    useEffect(() => {
+        const image = new Image();
+        image.src = src;
+        image.onerror = () => setImage(DefaultImage);
+        image.onload = () => setLoading(false);
+    }, []);
+
+    return <ImageWrapper mr={mr} width={width}>
+        {
+            loading ?
+                <LoadingOutlined className="loading"/> :
+                <svg role="none">
+                    <mask id={`avatar-${time}`}>
+                        <circle cx={w} cy={w} r={w}/>
+                    </mask>
+                    <g mask={`url(#avatar-${time})`}>
+                        <image
+                            x="0" y="0"
+                            height="100%"
+                            preserveAspectRatio="xMidYMid slice"
+                            width="100%"
+                            xlinkHref={image}
+                        />
+                        <circle cx={w} cy={w} r={w}/>
+                    </g>
+                </svg>
+        }
+    </ImageWrapper>
 };
 
 export default Avatar;
