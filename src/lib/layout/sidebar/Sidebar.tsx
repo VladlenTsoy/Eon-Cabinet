@@ -12,6 +12,7 @@ const DrawerWrapper = styled(Drawer)`
     line-height: 46px;
     height: 46px;
     color: ${props => props.theme.color_main};
+    padding: 0;
 
     &:focus, &:hover{
       color: ${props => props.theme.color_black};

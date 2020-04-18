@@ -32,9 +32,9 @@ const HeaderItemLayout: React.FC<HeaderItemProps> = styled(antd.Menu.Item)<Style
   }
   
   @media (max-width: 768px) {
-    .ant-menu-horizontal &.ant-menu-item i{
+    .ant-menu-horizontal &.ant-menu-item .anticon{
       margin-right: 0;
-      font-size: 20px;
+      font-size: 25px;
     }
   }
 `;

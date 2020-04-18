@@ -11,7 +11,8 @@ const DrawerWrapper = styled(({notFooter, children, ...props}: any) => (
     height: 46px;
     line-height: 46px;
     color: ${props => props.theme.color_main};
-
+    padding: 0;
+    
     &:focus, &:hover{
       color: ${props => props.theme.color_black};
     }
