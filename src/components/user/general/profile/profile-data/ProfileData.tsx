@@ -45,7 +45,7 @@ const ProfileData: React.FC = () => {
             }}
         >
             <Row gutter={15}>
-                <Col lg={12}>
+                <Col sm={12} xs={24}>
                     <FormItem
                         name="last_name"
                         label="Фамилия"
@@ -69,7 +69,7 @@ const ProfileData: React.FC = () => {
                         }]}
                     />
                 </Col>
-                <Col lg={12}>
+                <Col sm={12} xs={24}>
                     <FormItem
                         name="first_name"
                         label="Имя"
