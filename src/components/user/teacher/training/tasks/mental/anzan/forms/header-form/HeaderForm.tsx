@@ -165,7 +165,7 @@ const FormHeader: React.FC<FormHeaderProps> = (
             theme: '1-4',
             ...initialValues
         })
-    }, [initialValues]);
+    }, [mods, initialValues]);
 
     useEffect(() => {
         let _fields = Object.keys(initValue).map(
