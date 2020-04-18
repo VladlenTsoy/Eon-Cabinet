@@ -13,7 +13,7 @@ const TableStudentsLayout = styled(CardTable)`
     .ant-table-tbody > tr.ant-table-row-hover:not(.ant-table-expanded-row) > td,
     .ant-table-thead > tr:hover:not(.ant-table-expanded-row) > td,
     .ant-table-tbody > tr:hover:not(.ant-table-expanded-row) > td {
-      background: none;
+      //background: none;
     }
 
     .ant-table-thead > tr > th {
@@ -44,8 +44,9 @@ const TableStudentsLayout = styled(CardTable)`
     }
     
     .ant-table-thead > tr > th, .ant-table-tbody > tr > td{
-       padding: .3rem 16px;
-       vertical-align: middle !important;
+      background: ${props => props.theme['@component-background']};
+      padding: .3rem 16px;
+      vertical-align: middle !important;
     }
     
     .ant-table-tbody > tr > td.td-homework-table {
