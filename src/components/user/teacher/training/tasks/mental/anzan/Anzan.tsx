@@ -122,6 +122,7 @@ const Anzan: React.FC<AnzanProps> = (
             loading={loading}
             clearForms={clearForms}
             typeTask={typeTask}
+            addSettingHomework={addSettingHomework}
         />
     </Form.Provider>
 };
