@@ -2,16 +2,14 @@ import React from "react";
 import {Form, Radio} from "antd";
 import {useSelector} from "react-redux";
 
-interface ModeAdditionProps {
+interface RadioModeProps {
     mods?: string;
-    changeModes?: any;
-    isArray?: number;
 }
 
-const ModeAnzan: React.FC<ModeAdditionProps> = ({isArray, mods}) => {
+const RadioMode: React.FC<RadioModeProps> = ({mods}) => {
     const {language} = useSelector((state: any) => state);
 
-    return <Form.Item name={isArray ? `mode[${isArray}]` : 'mode'} required>
+    return <Form.Item name="mode" required>
         <Radio.Group className="setting-mode" buttonStyle="solid">
             {!mods || mods === 'addition' ?
                 <>
@@ -28,12 +26,10 @@ const ModeAnzan: React.FC<ModeAdditionProps> = ({isArray, mods}) => {
             }
             {!mods || mods === 'multiplication' ?
                 <>
-                    <Radio.Button value="multiply"
-                                  disabled={!!isArray}>
+                    <Radio.Button value="multiply">
                         {language.common.modeNames['multiply']}
                     </Radio.Button>
-                    <Radio.Button value="divide"
-                                  disabled={!!isArray}>
+                    <Radio.Button value="divide">
                         {language.common.modeNames['divide']}
                     </Radio.Button>
                 </> : null
@@ -42,4 +38,4 @@ const ModeAnzan: React.FC<ModeAdditionProps> = ({isArray, mods}) => {
     </Form.Item>
 };
 
-export default ModeAnzan;
+export default React.memo(RadioMode);
