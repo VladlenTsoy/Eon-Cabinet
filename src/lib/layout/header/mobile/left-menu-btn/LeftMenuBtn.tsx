@@ -1,6 +1,6 @@
 import React from 'react';
-import { Icon as LegacyIcon } from '@ant-design/compatible';
-import { Modal } from "antd";
+import {ArrowLeftOutlined, StopOutlined, BarsOutlined, CloseOutlined, QuestionCircleOutlined} from '@ant-design/icons';
+import {Modal} from "antd";
 import {useSelector} from "react-redux";
 import {withRouter, RouteComponentProps} from "react-router";
 
@@ -22,22 +22,23 @@ const LeftMenuBtn: React.FC<LeftMenuBtnProps> = (
 
     const cancelTasks = () =>
         confirm({
+            icon: <QuestionCircleOutlined/>,
             title: 'Остановить выполнения задания?',
             onOk: () => history.goBack(),
         });
 
     const buttonNavbar = () => {
         if (app.action === 'back')
-            return "arrow-left";
+            return <ArrowLeftOutlined/>;
         else if (app.action === 'cancel')
-            return "stop";
+            return <StopOutlined/>;
         else if (app.action === null) {
             if (collapsed)
-                return "bars";
+                return <BarsOutlined/>;
             else
-                return "close";
+                return <CloseOutlined/>;
         } else
-            return "arrow-left";
+            return <ArrowLeftOutlined/>;
     };
 
     const actionButtonNavbar = () => {
@@ -51,12 +52,12 @@ const LeftMenuBtn: React.FC<LeftMenuBtnProps> = (
             return history.push(app.action);
     };
 
-    return (
-        <LegacyIcon
-            type={buttonNavbar()}
-            onClick={actionButtonNavbar}
-        />
-    );
+    return <div
+        style={{display: "flex"}}
+        onClick={actionButtonNavbar}
+    >
+        {buttonNavbar()}
+    </div>;
 };
 
 export default withRouter(LeftMenuBtn);
