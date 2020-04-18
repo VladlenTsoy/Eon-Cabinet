@@ -2,6 +2,7 @@ import React from 'react';
 import {Col, Form, InputNumber, Radio, Row} from "antd";
 import {FormItem} from "../../../../../../../../layouts/components";
 import {useSelector} from "react-redux";
+import Stepper from "../../../../../../../../lib/stepper/Stepper";
 
 interface SpecialFormItemsProps {
 }
@@ -40,7 +41,8 @@ const SpecialFormItems: React.FC<SpecialFormItemsProps> = () => {
                 name="to"
                 label="До"
                 requiredMsg="Введите до какой цифры">
-                <InputNumber min={1} max={9999999999} style={{width: '100%'}}/>
+                {/*<InputNumber min={1} max={9999999999} style={{width: '100%'}}/>*/}
+                <Stepper/>
             </FormItem>
         </Col>
         <Col span={8}>

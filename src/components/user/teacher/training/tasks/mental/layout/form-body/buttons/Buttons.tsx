@@ -11,7 +11,7 @@ const ButtonGroupWrapper = styled(Button.Group)`
 
 interface ButtonsProps {
     form: FormInstance,
-    fields: any,
+    fields?: any,
     clearSaveSetting?: () => void;
     startApplication?: (setting: any, print: boolean) => void;
     addSettingHomework?: (setting: any) => void;
@@ -76,7 +76,8 @@ const Buttons: React.FC<ButtonsProps> = (
     };
 
     return <ButtonGroupWrapper size="large">
-        {addSettingHomework ?
+        {
+            addSettingHomework ?
             isEdit ?
                 <Button htmlType="submit" type="primary" onClick={onFinish} icon={<EditOutlined/>}>Изменить</Button> :
                 <Button htmlType="submit" type="primary" onClick={onFinish} icon={<PlusOutlined/>}>Добавить</Button> :

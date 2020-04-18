@@ -1,6 +1,9 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {useSelector} from "react-redux";
-import AnzanFormBody from "./anzan-form-body/AnzanFormBody";
+import {Form} from "antd";
+import HeaderForm from "./forms/header-form/HeaderForm";
+import BodyForm from "./forms/body-form/BodyForm";
+import TypeForm from "./forms/type-form/TypeForm";
+import ActionForm from "./forms/action-form/ActionForm";
 
 interface AnzanProps {
     mods?: string,
@@ -30,169 +33,97 @@ const Anzan: React.FC<AnzanProps> = (
         mods,
         sound = true,
         isMultiAnzan = false,
-        isEdit = false,
         userSetting,
+        isEdit = false,
         clearSaveSetting,
         startApplication,
         addSettingHomework,
     }
 ) => {
-    const {app} = useSelector((state: any) => state);
-    const [lengths, setLengths] = useState<any>([]);
-    const [types, setTypes] = useState<any>([]);
-    const [themes, setThemes] = useState<any>([]);
+    const [isClearForm, setIsClearForm] = useState(false);
+    const [initialValue, setInitialValue] = useState(userSetting);
+    const [loading, setLoading] = useState(false);
+    const [typeTask, setTypeTask] = useState('basic');
+    const [length, setLength] = useState('1');
+    const [isMultiplication, setIsMultiplication] = useState(false);
 
-    const checkAlgorithms = useCallback(() => {
-        return app.algorithms;
-    }, [app.algorithms]);
+    const onFormChangeHandler = (formName: string, info: any) => {
+        const {types, header} = info.forms;
+        const mode = header.getFieldValue('mode');
 
-    /***
-     * Обновление тем
-     *
-     * @param allFields       - Значения всех полей
-     * @param changedFields - Измененные поля
-     * @param modeValue     - Мод значение
-     * @param lengthValue   - Разряд значение
-     * @param typeValue     - Тип значение
-     */
-    const updateThemesByType = useCallback(
-        (allFields, modeValue = "plus", lengthValue = "1", typeValue = "p", user?) => {
-            const _themes = Object.keys(checkAlgorithms()[modeValue][lengthValue][typeValue]);
-            setThemes(_themes);
+        setTypeTask(types.getFieldValue('anzan'));
+        setIsMultiplication(mode === 'divide' || mode === 'multiply');
+        setLength(header.getFieldValue('length'));
+    };
 
-            let theme = user ? String(user.theme) : _themes[0];
+    const onFormFinishHandler = async (formName: string, info: any) => {
+        const {types, header, body, action} = info.forms;
+        const typesValues = types.getFieldsValue();
+        const headerValues = header.getFieldsValue();
+        const bodyValues = body.getFieldsValue();
+        const setting = {...typesValues, ...headerValues, ...bodyValues};
+        const isPrint = action.getFieldValue('print');
 
-            return allFields.map((field: any) => {
-                if (field.name.includes('mode'))
-                    field.value = modeValue;
-                else if (field.name.includes('length'))
-                    field.value = lengthValue;
-                else if (field.name.includes('type'))
-                    field.value = typeValue;
-                else if (field.name.includes('theme'))
-                    field.value = theme;
-                return field;
-            });
-        },
-        [checkAlgorithms]
-    );
+        setLoading(true);
 
-    /**
-     * Обновление типов
-     *
-     * @param allFields       - Значения всех полей
-     * @param changedFields - Измененные поля
-     * @param modeValue     - Мод значение
-     * @param lengthValue   - Разряд значение
-     */
-    const updateTypesByLength = useCallback(
-        (allFields, modeValue = "plus", lengthValue = "1", user?) => {
-            const _types = Object.keys(checkAlgorithms()[modeValue][lengthValue]);
-            setTypes(_types);
+        if (startApplication)
+            await startApplication(setting, isPrint);
+        if (addSettingHomework)
+            await addSettingHomework(setting);
 
-            let type = user ? String(user.type) : _types[0];
-            // Обновление тем
-            return updateThemesByType(allFields, modeValue, lengthValue, type, user);
-        },
-        [checkAlgorithms, updateThemesByType]
-    );
+        if (isPrint || addSettingHomework)
+            setLoading(false);
+    };
 
-    /**
-     * Обновление разряда
-     *
-     * @param allFields       - Значения всех полей
-     * @param changedFields - Измененные поля
-     * @param modeValue     - Мод значение
-     */
-    const updateLengthsByMode = useCallback(
-        (allFields, modeValue = 'plus', user?) => {
-            if (!checkAlgorithms().hasOwnProperty(modeValue))
-                return false;
-
-            const _lengths = Object.keys(checkAlgorithms()[modeValue]);
-            setLengths(_lengths);
-
-            let length = user ? String(user.length) : _lengths[0];
-            // Обновление типов
-            return updateTypesByLength(allFields, modeValue, length, user)
-        },
-        [checkAlgorithms, updateTypesByLength]
-    );
-
-    /**
-     * Изменение формы настроки
-     *
-     * @param changedFields - Измененные поля
-     * @param fieldsValue   - Значения всех полей
-     */
-    const handleFormChange = useCallback((changedFields: any[], allFields: any[]) => {
-        let mode = allFields.find((field: any) => field.name.includes('mode'));
-        let length = allFields.find((field: any) => field.name.includes('length'));
-
-        if (changedFields.length)
-            return changedFields.map((field: any) => {
-                if (field.name.includes('mode'))
-                    return updateLengthsByMode(
-                        allFields,
-                        field.value,
-                    );
-                else if (field.name.includes('length'))
-                    return updateTypesByLength(
-                        allFields,
-                        mode.value,
-                        field.value
-                    );
-                else if (field.name.includes('type'))
-                    return updateThemesByType(
-                        allFields,
-                        mode.value,
-                        length.value,
-                        field.value
-                    );
-                return allFields;
-            })[0];
-        else
-            return allFields;
-    }, [updateLengthsByMode, updateTypesByLength, updateThemesByType]);
+    const clearForms = useCallback(async () => {
+        if (clearSaveSetting) {
+            setLoading(true);
+            setIsClearForm(true);
+            setInitialValue({anzan: 'basic', mode: 'plus', length: '1'});
+            await clearSaveSetting();
+            setIsClearForm(false);
+            setLoading(false);
+        }
+    }, [clearSaveSetting]);
 
     useEffect(() => {
-        if (typeof userSetting === 'object' && Object.keys(userSetting).length) {
-            let _fields = Object.keys(userSetting).map((key: string) => ({name: [key], value: userSetting[key]}));
-            updateLengthsByMode(_fields, userSetting.mode, userSetting);
-        } else
-            updateLengthsByMode([], !mods || mods === 'addition' ? 'plus' : 'multiply');
-    }, [mods, userSetting, updateLengthsByMode]);
-
-    return <AnzanFormBody
-        initialValues={
-            typeof userSetting === 'object' && Object.keys(userSetting).length ?
-                userSetting :
-                {
-                    anzan: 'basic',
-                    mode: !mods || mods === 'addition' ? 'plus' : 'multiply',
-                    length: '1',
-                    type: !mods || mods === 'addition' ? 'p' : '1',
-                    theme: '1-4',
-                    count: 1,
-                    times: 1,
-                    time: 1,
-                    extra: [],
-                    sound: 'basic',
-                }
+        if (typeof initialValue === 'object' && Object.keys(initialValue).length) {
+            setTypeTask(initialValue.anzan);
+            setIsMultiplication(initialValue.mode === 'divide' || initialValue.mode === 'multiply');
+            setLength(initialValue.length);
         }
-        isEdit={isEdit}
-        mods={mods}
-        isMultiAnzan={isMultiAnzan}
-        onChange={handleFormChange}
-        clearSaveSetting={clearSaveSetting}
-        startApplication={startApplication}
-        addSettingHomework={addSettingHomework}
-        // settingCustomSorting={settingCustomSorting}
-        lengths={lengths}
-        sound={sound}
-        types={types}
-        themes={themes}
-    />
+    }, [initialValue]);
+
+    return <Form.Provider
+        onFormFinish={onFormFinishHandler}
+        onFormChange={onFormChangeHandler}
+    >
+        <TypeForm
+            isClearForm={isClearForm}
+            initialValues={initialValue}
+        />
+        <HeaderForm
+            isClearForm={isClearForm}
+            mods={mods}
+            initialValues={initialValue}
+        />
+        <BodyForm
+            isClearForm={isClearForm}
+            initialValues={initialValue}
+            mods={mods}
+            isMultiAnzan={isMultiAnzan}
+            sound={sound}
+            typeTask={typeTask}
+            length={length}
+            isMultiplication={isMultiplication}
+        />
+        <ActionForm
+            isEdit={isEdit}
+            loading={loading}
+            clearForms={clearForms}
+            typeTask={typeTask}
+        />
+    </Form.Provider>
 };
 
 export default Anzan;

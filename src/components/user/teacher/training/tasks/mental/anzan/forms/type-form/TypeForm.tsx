@@ -1,6 +1,6 @@
-import React from 'react';
-import { BlockOutlined, FileOutlined, ThunderboltOutlined } from '@ant-design/icons';
-import { Radio } from "antd";
+import React, {useEffect} from 'react';
+import {BlockOutlined, FileOutlined, ThunderboltOutlined} from '@ant-design/icons';
+import {Form, Radio} from "antd";
 import {RadioGroupProps} from "antd/es/radio";
 import {FormItem} from "../../../../../../../../../layouts/components";
 import styled from "styled-components";
@@ -48,24 +48,41 @@ export const RadioWrapper: React.FC<RadioWrapper> = styled(Radio.Group)<StyledPr
   }
 `;
 
-interface TypeSettingAnzanProps {
+interface TypeFormProps {
+    isClearForm: boolean;
+    initialValues: any;
 }
 
-const TypeSettingAnzan: React.FC<TypeSettingAnzanProps> = () => {
-    return (
-      <FormItem
-          name="anzan"
-          // TODO - Значения по умолчанию
-          // initialValue="basic"
-      >
-          <RadioWrapper size="large">
-              <Radio.Button value="basic">Обычный</Radio.Button>
-              <Radio.Button value="list"><FileOutlined /> Листы</Radio.Button>
-              <Radio.Button value="turbo"><ThunderboltOutlined /> Турбо</Radio.Button>
-              <Radio.Button value="double"><BlockOutlined /> Двойной</Radio.Button>
-          </RadioWrapper>
-      </FormItem>
-    );
+const TypeForm: React.FC<TypeFormProps> = (
+    {
+        isClearForm,
+        initialValues
+    }
+) => {
+    const [form] = Form.useForm();
+
+    useEffect(() => {
+        if (isClearForm)
+            form.resetFields()
+    }, [form, isClearForm]);
+
+    return <Form
+        form={form}
+        name="types"
+        initialValues={{
+            anzan: 'basic',
+            ...initialValues
+        }}
+    >
+        <FormItem name="anzan">
+            <RadioWrapper size="large">
+                <Radio.Button value="basic">Обычный</Radio.Button>
+                <Radio.Button value="list"><FileOutlined/> Листы</Radio.Button>
+                <Radio.Button value="turbo"><ThunderboltOutlined/> Турбо</Radio.Button>
+                <Radio.Button value="double"><BlockOutlined/> Двойной</Radio.Button>
+            </RadioWrapper>
+        </FormItem>
+    </Form>
 };
 
-export default TypeSettingAnzan;
+export default React.memo(TypeForm);

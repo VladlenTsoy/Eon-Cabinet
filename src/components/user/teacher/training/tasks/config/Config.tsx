@@ -31,4 +31,4 @@ const ConfigBlock: React.FC<ConfigProps> = ({mods, sounds}) => {
     </ConfigWrapper>;
 };
 
-export default ConfigBlock;
+export default React.memo(ConfigBlock);

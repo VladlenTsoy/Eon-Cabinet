@@ -1,10 +1,17 @@
 import React from 'react';
 import SpecialFormItems from "./special-form-items/SpecialFormItems";
 import ConfigBlock from "../../config/Config";
-import usingFormBodyLayout from "../layout/form-body/usingFormBody.layout";
+import {Form} from "antd";
 
-const Special: React.FC = () => {
-    return <>
+interface SpecialProps {
+    userSetting?: any;
+    clearSaveSetting?: any;
+    startApplication?: (setting: any, print: boolean) => void;
+    addSettingHomework?: (setting: any) => void;
+}
+
+const Special: React.FC<SpecialProps> = () => {
+    return <Form layout="vertical">
         <SpecialFormItems/>
         <ConfigBlock
             sounds={{
@@ -16,7 +23,7 @@ const Special: React.FC = () => {
                 comma: true,
             }}
         />
-    </>;
+    </Form>;
 };
 
-export default usingFormBodyLayout(Special);
+export default Special;

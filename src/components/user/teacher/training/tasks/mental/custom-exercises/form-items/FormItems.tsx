@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Col, InputNumber, Radio, Row, Select} from "antd";
-import {RadioWrapper} from "../../anzan/anzan-form-body/type-setting-anzan/TypeSettingAnzan";
+import {RadioWrapper} from "../../anzan/forms/type-form/TypeForm";
 import ConfigBlock from "../../../config/Config";
 import usingFormBodyLayout from "../../layout/form-body/usingFormBody.layout";
 import {useSelector} from "react-redux";

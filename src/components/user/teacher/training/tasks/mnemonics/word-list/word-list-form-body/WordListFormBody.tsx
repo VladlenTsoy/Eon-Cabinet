@@ -3,7 +3,7 @@ import {FileOutlined} from '@ant-design/icons';
 import {Form, Radio} from "antd";
 import FormSettingWordsList from "./word-list-form-header/WordListFormHeader";
 import WordListFormBodyTable from "./word-list-table/WordListTable";
-import {RadioWrapper} from "../../../mental/anzan/anzan-form-body/type-setting-anzan/TypeSettingAnzan";
+import {RadioWrapper} from "../../../mental/anzan/forms/type-form/TypeForm";
 import {FormItem} from "../../../../../../../../layouts/components";
 // import WordListModeInformation from "./word-list-mode-information/WordListModeInformation";
 

@@ -1,7 +1,7 @@
 import React from "react";
 import {Col, InputNumber, Radio, Row, Select} from "antd";
 import {FormItem} from "layouts/components";
-import {RadioWrapper} from "../../mental/anzan/anzan-form-body/type-setting-anzan/TypeSettingAnzan";
+import {RadioWrapper} from "../../mental/anzan/forms/type-form/TypeForm";
 import ConfigBlock from "../../config/Config";
 import {FileOutlined} from '@ant-design/icons';
 import usingFormBodyLayout from "../../mental/layout/form-body/usingFormBody.layout";

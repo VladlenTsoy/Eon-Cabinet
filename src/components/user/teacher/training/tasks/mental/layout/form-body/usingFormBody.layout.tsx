@@ -19,11 +19,6 @@ interface FormItemsProps {
     mods?: string;
     updateInitFields?: () => any[];
 
-    // Для Аназана
-    lengths?: any;
-    types?: any;
-    themes?: any;
-
     //
     categories?: string[];
     typeTasks?: string[];
@@ -42,6 +37,7 @@ const usingFormBodyLayout = (FormItems: any) => {
             startApplication,
             updateInitFields,
             isEdit,
+            children,
             ...props
         }
     ) => {
@@ -64,7 +60,9 @@ const usingFormBodyLayout = (FormItems: any) => {
                 form={form}
                 fields={fields}
                 {...props}
-            />
+            >
+                {children}
+            </FormItems>
             <Buttons
                 fields={fields}
                 form={form}
