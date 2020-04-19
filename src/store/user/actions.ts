@@ -9,8 +9,11 @@ export const DELETE_CURRENT_USER_DATA = "DELETE_CURRENT_USER_DATA";
 export const fetchCurrentUserData = () =>
     async (dispatch: Dispatch, getState: any) => {
         try {
-            let response = await getState().api.user_general.get('');
-            dispatch({type: FETCH_CURRENT_USER_DATA, payload: response.data});
+            if (getState().api.token) {
+                let response = await getState().api.user_general.get('');
+                if (response)
+                    dispatch({type: FETCH_CURRENT_USER_DATA, payload: response.data});
+            }
         } catch (e) {
             console.log(e);
             // dispatch({type: FETCH_CURRENT_USER_ERROR, payload: e.response.data})
