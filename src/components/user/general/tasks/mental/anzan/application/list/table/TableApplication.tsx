@@ -9,6 +9,13 @@ import TableNumbersAddition from "./body-table/body-numbers-addition/TableNumber
 import {useDispatch, useSelector} from "react-redux";
 import {chunk} from "lodash";
 import {gameChangeStats, gameChangeStatus, gameChangeTotals} from "../../../../../../../../../store/game/actions";
+import styled from "styled-components";
+
+const ScrollWrapper = styled.div`
+  width: 100%;
+  overflow-x: auto;
+  margin-bottom: 0.5rem;
+`;
 
 declare global {
     interface Window {
@@ -80,13 +87,15 @@ const TableApplication: React.FC<TableApplicationProps> = (
     return <Card>
         <Form onFinish={handlerSubmit} form={form}>
             {tables.map((table: any[], tableKey: number) =>
-                <TableWrapper key={tableKey}>
-                    <HeaderTable tableKey={tableKey} column={setting.column}/>
-                    {isMultiplication ?
-                        <TableNumbersMultiplication table={table}/> :
-                        <TableNumbersAddition table={table}/>
-                    }
-                </TableWrapper>
+                <ScrollWrapper>
+                    <TableWrapper key={tableKey}>
+                        <HeaderTable tableKey={tableKey} column={setting.column}/>
+                        {isMultiplication ?
+                            <TableNumbersMultiplication table={table}/> :
+                            <TableNumbersAddition table={table}/>
+                        }
+                    </TableWrapper>
+                </ScrollWrapper>
             )}
             <Button
                 type="primary"

@@ -17,6 +17,10 @@ const AnswerTable: React.FC<AnswerTableProps> = ({table}) => {
         <td key={columnKey}>
             <FormItem name={['answer', window.itemCounter++]} marginBottom="0">
                 <Input
+                    style={{
+                        width: '100%',
+                        minWidth: '80px',
+                    }}
                     type="number"
                     placeholder="Ответ"
                     autoComplete="off"

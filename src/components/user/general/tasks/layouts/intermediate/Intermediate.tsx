@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import {Col, Row} from "antd";
 import ResultIntermediate from "./result-intermediate/ResultIntermediate";
 import ActionIntermediate from "./action-intermediate/ActionIntermediate";
@@ -7,6 +7,7 @@ import styled from "styled-components";
 import {Card} from "lib";
 import StepsIntermediate from "./layouts/step-intermediate/StepsIntermediate";
 import BgIconsDownIntermediateLayout from "./layouts/bg-icons-down/BgIconsDownIntermediate.layout";
+import {useScreenWindow} from "../../../../../../effects/use-screen-window.effect";
 
 const CardWrapper = styled(Card)`
   &.ant-card{
@@ -31,6 +32,7 @@ const RowWrapper = styled(Row)`
 const Intermediate: React.FC = ({children}) => {
     const {game} = useSelector((state: any) => state);
     const {setting, currentTimes, totals} = game;
+    const [, isBreakpoint] = useScreenWindow({breakpoint: 'sm'});
 
     const checkResult = useCallback((total: any) => {
         if (setting.anzan === 'double')
@@ -39,18 +41,22 @@ const Intermediate: React.FC = ({children}) => {
             return total.result;
     }, [setting]);
 
+    useEffect(() => {
+        document.getElementsByClassName('ant-layout-content')[0].scrollTo(0, 0);
+    }, []);
+
     return <CardWrapper>
-        <StepsIntermediate checkResult={checkResult}/>
-        <RowWrapper  justify="center" align="middle" gutter={15}>
+        {!isBreakpoint ? <StepsIntermediate checkResult={checkResult}/> : null}
+        <RowWrapper justify="center" align="middle" gutter={15}>
             {!(setting.extra && setting.extra.includes('group')) ?
-                <Col xl={7}>
+                <Col lg={7} xs={{span: 24, order: 2}}>
                     {children}
                 </Col> : null}
             {!(setting.extra && setting.extra.includes('group')) ?
-                <Col xl={10} style={{position: 'unset'}}>
+                <Col lg={10} xs={{span: 24, order: 1}} style={{position: 'unset'}}>
                     <ResultIntermediate checkResult={checkResult} total={totals[currentTimes]}/>
                 </Col> : null}
-            <Col xl={7}>
+            <Col lg={7} xs={{span: 24, order: 3}}>
                 <ActionIntermediate/>
             </Col>
         </RowWrapper>

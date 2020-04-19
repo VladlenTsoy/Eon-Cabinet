@@ -28,6 +28,10 @@ const ActionWrapper = styled.div`
           font-size: 90px;
           line-height: 120px;
           font-weight: bolder;
+          
+          @media (max-width: 576px) {
+            font-size: 70px;
+          }
         }
       }
 

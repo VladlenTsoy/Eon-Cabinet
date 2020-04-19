@@ -9,7 +9,11 @@ const DecorLeftWrapper = styled.img`
   top: -115px; 
   animation: left 1s ease-in-out forwards;
   animation-delay: 1s;
-
+ 
+  @media (max-width: 576px) {
+    width: 150px;
+  }
+  
   @keyframes left{
     from {
       left: -115px;
@@ -28,6 +32,10 @@ const DecorRightWrapper = styled.img`
   right: -115px; 
   animation: right 1s ease-in-out forwards;
   animation-delay: 1s;
+
+  @media (max-width: 576px) {
+    width: 150px;
+  }
 
   @keyframes right{
     from {

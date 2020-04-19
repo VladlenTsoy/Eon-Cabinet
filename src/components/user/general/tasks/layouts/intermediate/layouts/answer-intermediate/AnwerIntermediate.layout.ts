@@ -18,6 +18,31 @@ const AnswerIntermediateLayout = styled.div`
         color: ${props => props.theme.color_danger};
       }
     }
+    
+    @media (max-width: 576px) {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      
+      .desc{
+        font-size: 70px;
+      }
+      
+      > span:first-child{
+          order: 1;
+      }
+      
+      > span:nth-of-type(3){
+          order: 2;
+      }
+      
+      > span:nth-of-type(2){
+          order: 3;
+      }
+      
+      > span:nth-of-type(4){
+          order: 4;
+      }
+    }
 `;
 
 export default AnswerIntermediateLayout;

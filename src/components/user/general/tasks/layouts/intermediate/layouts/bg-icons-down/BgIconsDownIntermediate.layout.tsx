@@ -12,6 +12,10 @@ const BgIconLeft = styled.div`
   z-index: 0;
   color: ${props => props.theme.color_minimal};
   opacity: 0.1;
+  
+  @media (max-width: 576px) {
+    font-size: 160px;
+  }
 `;
 
 const BgIconRight = styled(BgIconLeft)`
@@ -19,6 +23,10 @@ const BgIconRight = styled(BgIconLeft)`
   font-size: 230px;
   right: 15px;
   bottom: -35px;
+  
+  @media (max-width: 576px) {
+    font-size: 160px;
+  }
 `;
 
 const BgIconsDownIntermediateLayout: React.FC = () => {
