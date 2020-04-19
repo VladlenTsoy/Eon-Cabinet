@@ -49,14 +49,14 @@ const Intermediate: React.FC = ({children}) => {
         {!isBreakpoint ? <StepsIntermediate checkResult={checkResult}/> : null}
         <RowWrapper justify="center" align="middle" gutter={15}>
             {!(setting.extra && setting.extra.includes('group')) ?
-                <Col lg={7} xs={{span: 24, order: 2}}>
+                <Col lg={{span: 7, order: 1}} xs={{span: 24, order: 2}}>
                     {children}
                 </Col> : null}
             {!(setting.extra && setting.extra.includes('group')) ?
-                <Col lg={10} xs={{span: 24, order: 1}} style={{position: 'unset'}}>
+                <Col lg={{span: 10, order: 2}} xs={{span: 24, order: 1}} style={{position: 'unset'}}>
                     <ResultIntermediate checkResult={checkResult} total={totals[currentTimes]}/>
                 </Col> : null}
-            <Col lg={7} xs={{span: 24, order: 3}}>
+            <Col lg={{span: 7, order: 3}} xs={{span: 24, order: 3}}>
                 <ActionIntermediate/>
             </Col>
         </RowWrapper>
