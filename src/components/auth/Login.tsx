@@ -40,9 +40,9 @@ const Login = () => {
                 <Input.Password prefix={<LockOutlined/>} placeholder="Пароль"/>
             </FormItem>
             <Form.Item>
-                <TextLink position="right" to="/forgot-password">
-                    Забыли пароль?
-                </TextLink>
+                {/*<TextLink position="right" to="/forgot-password">*/}
+                {/*    Забыли пароль?*/}
+                {/*</TextLink>*/}
                 <Button type="primary" htmlType="submit" block loading={loading}>
                     Войти
                 </Button>
