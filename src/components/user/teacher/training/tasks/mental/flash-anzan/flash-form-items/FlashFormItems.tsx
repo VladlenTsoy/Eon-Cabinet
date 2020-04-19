@@ -3,10 +3,7 @@ import {Col, InputNumber, Row} from "antd";
 import {FormItem} from "../../../../../../../../layouts/components";
 import Stepper from "../../../../../../../../lib/stepper/Stepper";
 
-interface FlashFormItemsProps {
-}
-
-const FlashFormItems: React.FC<FlashFormItemsProps> = () => {
+const FlashFormItems: React.FC = () => {
     return <Row gutter={15}>
         <Col span={12}>
             <FormItem
