@@ -1,6 +1,7 @@
 import React, {useState} from "react";
-import { LoadingOutlined, SearchOutlined } from '@ant-design/icons';
-import { Select } from "antd";
+import {LoadingOutlined, SearchOutlined} from '@ant-design/icons';
+import {Select} from "antd";
+import {SelectProps} from "antd/es/select";
 import {useSelector} from "react-redux";
 import styled from "styled-components";
 import SearchOption from "./SearchOption";
@@ -38,7 +39,7 @@ const SearchWrapper = styled.div`
   }
 `;
 
-const SelectWrapper = styled(Select)`
+const SelectWrapper: React.FC<SelectProps<any>> = styled(Select)`
   &.ant-select > div.ant-select-selector{
     border: 0;
     box-shadow: none !important;
@@ -72,13 +73,15 @@ const Search = () => {
     };
 
     const handleChange = async (value: any) => {
-        const list = data.find((item: any) => item.id === Number(value));
-        await pdfRender(list.settings, list, language.common);
+        if (value) {
+            const list = data.find((item: any) => item.id === Number(value));
+            await pdfRender(list.settings, list, language.common);
+        }
     };
 
     const notFound = () => {
         if (loading)
-            return <div><LoadingOutlined /> Поиск...</div>;
+            return <div><LoadingOutlined/> Поиск...</div>;
         if (data === null)
             return 'ID Не Найден';
         return null;
@@ -86,8 +89,9 @@ const Search = () => {
 
     return (
         <SearchWrapper>
-            <SearchOutlined />
+            <SearchOutlined/>
             <SelectWrapper
+                allowClear
                 showSearch
                 value={undefined}
                 loading={loading}
