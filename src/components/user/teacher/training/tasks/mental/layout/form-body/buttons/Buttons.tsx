@@ -11,7 +11,6 @@ const ButtonGroupWrapper = styled(Button.Group)`
 
 interface ButtonsProps {
     form: FormInstance,
-    fields?: any,
     clearSaveSetting?: () => void;
     startApplication?: (setting: any, print: boolean) => void;
     addSettingHomework?: (setting: any) => void;

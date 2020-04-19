@@ -12,12 +12,7 @@ const SpecialFormItems: React.FC<SpecialFormItemsProps> = () => {
 
     return <Row gutter={15}>
         <Col span={24}>
-            <Form.Item
-                name="mode"
-                required
-                // TODO - Значание по умолчанию
-                // initialValue="plus"
-            >
+            <Form.Item name="mode" required>
                 <Radio.Group className="setting-mode" buttonStyle="solid">
                     <Radio.Button value="plus">
                         {language.common.modeNames['plus']}
@@ -41,8 +36,7 @@ const SpecialFormItems: React.FC<SpecialFormItemsProps> = () => {
                 name="to"
                 label="До"
                 requiredMsg="Введите до какой цифры">
-                {/*<InputNumber min={1} max={9999999999} style={{width: '100%'}}/>*/}
-                <Stepper/>
+                <InputNumber min={1} max={9999999999} style={{width: '100%'}}/>
             </FormItem>
         </Col>
         <Col span={8}>
@@ -50,7 +44,7 @@ const SpecialFormItems: React.FC<SpecialFormItemsProps> = () => {
                 name="count"
                 label="Количество цифр"
                 requiredMsg="Введите количество цифр!">
-                <InputNumber min={1} max={10} style={{width: '100%'}}/>
+                <Stepper min={1} max={10}/>
             </FormItem>
         </Col>
         <Col span={8}>
@@ -58,7 +52,7 @@ const SpecialFormItems: React.FC<SpecialFormItemsProps> = () => {
                 name="times"
                 label="Количество раз"
                 requiredMsg="Введите количество раз!">
-                <InputNumber min={1} max={10} style={{width: '100%'}}/>
+                <Stepper min={1} max={10}/>
             </FormItem>
         </Col>
         <Col span={8}>
@@ -66,7 +60,7 @@ const SpecialFormItems: React.FC<SpecialFormItemsProps> = () => {
                 name="time"
                 label="Время (секунды)"
                 requiredMsg="Введите время!">
-                <InputNumber min={0.2} max={10} step={0.1} style={{width: '100%'}}/>
+                <Stepper min={0.2} max={10} step={0.1}/>
             </FormItem>
         </Col>
     </Row>;

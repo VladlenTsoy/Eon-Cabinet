@@ -64,7 +64,6 @@ const usingFormBodyLayout = (FormItems: any) => {
                 {children}
             </FormItems>
             <Buttons
-                fields={fields}
                 form={form}
                 addSettingHomework={addSettingHomework}
                 startApplication={startApplication}
