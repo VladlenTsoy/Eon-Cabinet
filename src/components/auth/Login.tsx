@@ -39,14 +39,21 @@ const Login = () => {
             <FormItem name="password" requiredMsg="Введите пароль!">
                 <Input.Password prefix={<LockOutlined/>} placeholder="Пароль"/>
             </FormItem>
+            {/*<Form.Item>*/}
+            {/*<TextLink position="right" to="/forgot-password">*/}
+            {/*    Забыли пароль?*/}
+            {/*</TextLink>*/}
+            {/*</Form.Item>*/}
             <Form.Item>
-                {/*<TextLink position="right" to="/forgot-password">*/}
-                {/*    Забыли пароль?*/}
-                {/*</TextLink>*/}
                 <Button type="primary" htmlType="submit" block loading={loading}>
                     Войти
                 </Button>
             </Form.Item>
+            <div style={{textAlign: 'center'}}>
+                <a href="http://old.eon.uz/">
+                    Предыдущая версия сайта
+                </a>
+            </div>
         </FormWrapper>
     </Card>
 };
