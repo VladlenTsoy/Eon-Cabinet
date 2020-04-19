@@ -1,12 +1,13 @@
 import React from 'react';
 import {Col, InputNumber, Row} from "antd";
 import {FormItem} from "../../../../../../../../layouts/components";
+import Stepper from "../../../../../../../../lib/stepper/Stepper";
 
 interface FlashFormItemsProps {
 }
 
-const FlashFormItems:React.FC<FlashFormItemsProps> = () => {
-    return <Row  gutter={15}>
+const FlashFormItems: React.FC<FlashFormItemsProps> = () => {
+    return <Row gutter={15}>
         <Col span={12}>
             <FormItem
                 name="from"
@@ -28,7 +29,7 @@ const FlashFormItems:React.FC<FlashFormItemsProps> = () => {
                 name="count"
                 label="Количество цифр"
                 requiredMsg="Введите количество цифр!">
-                <InputNumber min={1} max={10} style={{width: '100%'}}/>
+                <Stepper min={1} max={10}/>
             </FormItem>
         </Col>
         <Col span={12}>
@@ -36,7 +37,7 @@ const FlashFormItems:React.FC<FlashFormItemsProps> = () => {
                 name="time"
                 label="Время (секунды)"
                 requiredMsg="Введите время!">
-                <InputNumber min={0.2} max={10} step={0.1} style={{width: '100%'}}/>
+                <Stepper min={0.2} max={10} step={0.1}/>
             </FormItem>
         </Col>
     </Row>;
