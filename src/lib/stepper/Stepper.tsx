@@ -85,7 +85,7 @@ const Stepper: React.FC<StepperProps> = (
         max,
     }
 ) => {
-    const up = (val: number) => step < 1 ? Math.round((val) * 10) / 10 : val;
+    const up = (val: number) => step < 1 ? Math.round((val) * 10) / 10 : Math.round(val);
     const plusHandler = () => onChange ? onChange(up(value + step)) : null;
     const minusHandler = () => onChange ? onChange(up(value - step)) : null;
 

@@ -67,40 +67,44 @@ const Buttons: React.FC<ButtonsProps> = (
      *
      * @param e
      */
-    const clearSetting = (e: any) => {
+    const clearSetting = async (e: any) => {
+        setLoading(true);
         e.preventDefault();
         form.resetFields();
         if (clearSaveSetting)
-            clearSaveSetting();
+            await clearSaveSetting();
+        setLoading(false);
     };
 
     return <ButtonGroupWrapper size="large">
         {
             addSettingHomework ?
-            isEdit ?
-                <Button htmlType="submit" type="primary" onClick={onFinish} icon={<EditOutlined/>}>Изменить</Button> :
-                <Button htmlType="submit" type="primary" onClick={onFinish} icon={<PlusOutlined/>}>Добавить</Button> :
-            <>
-                <Button icon={<UndoOutlined/>} onClick={clearSetting}>Очистить</Button>
-                {form.getFieldValue('anzan') === 'list' ?
+                isEdit ?
+                    <Button htmlType="submit" type="primary" onClick={onFinish}
+                            icon={<EditOutlined/>}>Изменить</Button> :
+                    <Button htmlType="submit" type="primary" onClick={onFinish}
+                            icon={<PlusOutlined/>}>Добавить</Button> :
+                <>
+                    <Button icon={<UndoOutlined/>} loading={loading} onClick={clearSetting}>Очистить</Button>
+                    {form.getFieldValue('anzan') === 'list' ?
+                        <Button
+                            icon={<PrinterOutlined/>}
+                            type="primary"
+                            onClick={handlerPrintList}
+                            loading={loading}>
+                            Распечатать
+                        </Button> : null
+                    }
                     <Button
-                        icon={<PrinterOutlined/>}
+                        onClick={onFinish}
+                        htmlType="submit"
                         type="primary"
-                        onClick={handlerPrintList}
-                        loading={loading}>
-                        Распечатать
-                    </Button> : null
-                }
-                <Button
-                    onClick={onFinish}
-                    htmlType="submit"
-                    type="primary"
-                    icon={<FlagOutlined/>}
-                    loading={loading}
-                >
-                    Начать
-                </Button>
-            </>
+                        icon={<FlagOutlined/>}
+                        loading={loading}
+                    >
+                        Начать
+                    </Button>
+                </>
         }
     </ButtonGroupWrapper>;
 };

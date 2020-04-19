@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Col, InputNumber, Radio, Row, Select} from "antd";
+import {Col, Radio, Row, Select} from "antd";
 import {RadioWrapper} from "../../anzan/forms/type-form/TypeForm";
 import ConfigBlock from "../../../config/Config";
 import usingFormBodyLayout from "../../layout/form-body/usingFormBody.layout";
@@ -8,6 +8,7 @@ import styled from "styled-components";
 import {FormInstance} from "antd/es/form";
 import {FormItem} from "lib";
 import {FileOutlined} from "@ant-design/icons";
+import Stepper from "lib/stepper/Stepper";
 
 const RadioStyleWrapper = styled(Radio.Group)`
   &.ant-radio-group {
@@ -124,9 +125,9 @@ const FormItems: React.FC<FormItemsProps> = (
         </FormItem>
 
         <Row gutter={15}>
-            <Col xl={12}>
-                <FormItem label="Уровень" name="custom_exercises_id" size="large" requiredMsg="Выберите уровень!">
-                    <Select onChange={(item: any, a: any) => onChangeHandler(item, a)}>
+            <Col sm={12} xs={24}>
+                <FormItem label="Уровень" name="custom_exercises_id" requiredMsg="Выберите уровень!">
+                    <Select onChange={(item: any, a: any) => onChangeHandler(item, a)} size="large">
                         {
                             titles
                                 .map((item: any) =>
@@ -138,19 +139,14 @@ const FormItems: React.FC<FormItemsProps> = (
                     </Select>
                 </FormItem>
             </Col>
-            <Col xl={12}>
+            <Col sm={12} xs={24}>
                 <FormItem
                     label={`Время (${typeTask === 'basic' ? 'Секундах' : 'Минутах'})`}
                     name="time"
                     size="large"
                     requiredMsg="Введите время!"
                 >
-                    <InputNumber
-                        style={{width: '100%'}}
-                        step={typeTask === 'basic' ? 0.1 : 1}
-                        min={0}
-                        max={10}
-                    />
+                    <Stepper min={typeTask === 'basic' ? 0.2 : 1} max={10} step={typeTask === 'basic' ? 0.1 : 1}/>
                 </FormItem>
             </Col>
         </Row>
