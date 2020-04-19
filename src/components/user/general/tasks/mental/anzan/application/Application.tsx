@@ -17,7 +17,7 @@ const Application: React.FC = () => {
         url: setting.anzan === 'list' ? '/algorithm/list' : setting.anzan === 'double' ? '/algorithm/double' : '/algorithm',
         config: {params: setting},
         afterRequest: async () => {
-            if (setting.extra.includes('abacus')) {
+            if (setting.extra && setting.extra.includes('abacus')) {
                 return new Promise((resolve => {
                     const iconAbacus = new Image();
                     iconAbacus.onload = () => resolve(true);
