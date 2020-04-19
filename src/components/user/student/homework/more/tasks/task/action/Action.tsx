@@ -58,11 +58,43 @@ const Action: React.FC<Action> = ({task, history, id, type}) => {
     };
 
     const startApplication = (_task: any) => {
+        if (_task.settings.hasOwnProperty('task')) {
+            switch (Number(_task.settings.task)) {
+                case 2:
+                case 4:
+                    _task.settings.anzan = 'list';
+                    break;
+                case 1:
+                case 3:
+                    _task.settings.anzan = 'basic';
+                    break;
+                case 5:
+                    _task.settings.anzan = 'double';
+                    break;
+            }
+        }
+
         dispatch(gameChangeSetting(_task.settings));
         history.push(`/homework/${id}/${_task.id}/${_task.task_id}`);
     };
 
     const startSecondApplication = (_task: any) => {
+        if (_task.settings.hasOwnProperty('task')) {
+            switch (Number(_task.settings.task)) {
+                case 2:
+                case 4:
+                    _task.settings.anzan = 'list';
+                    break;
+                case 1:
+                case 3:
+                    _task.settings.anzan = 'basic';
+                    break;
+                case 5:
+                    _task.settings.anzan = 'double';
+                    break;
+            }
+        }
+
         dispatch(gameChangeSetting(_task.settings));
         if (Number(_task.first.view) !== 1) {
             dispatch(gameChangeStatus('refresh'));
