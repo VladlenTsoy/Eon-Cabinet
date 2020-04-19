@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {LockOutlined, UserOutlined} from '@ant-design/icons';
-import {Button, Input, message, Form} from "antd";
+import {Alert, Button, Input, message, Form} from "antd";
 import {useHistory} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {apiChangeAccessToken} from "../../store/api/actions";
@@ -49,6 +49,14 @@ const Login = () => {
                     Войти
                 </Button>
             </Form.Item>
+            {/*<Form.Item>*/}
+            {/*    <Alert*/}
+            {/*        type="info"*/}
+            {/*        showIcon*/}
+            {/*        message="Данное обновление является бета-версией!"*/}
+            {/*        description="Бета-версия будет обновляться ежедневно до завершения бета-периода и не исключены ошибки при работе с сайтом, при неисправности просим Вас уведомлять нас в чате (нижнем в правом углу)."*/}
+            {/*    />*/}
+            {/*</Form.Item>*/}
             <div style={{textAlign: 'center'}}>
                 <a href="http://old.eon.uz/">
                     Предыдущая версия сайта
