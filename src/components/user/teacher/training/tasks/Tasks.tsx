@@ -5,7 +5,7 @@ import {Switch, Route} from "react-router";
 import {useChangeActionNavbar} from "../../../../../effects/use-change-action-navbar.effect";
 import {setCurrentUserData} from "../../../../../store/user/actions";
 import {gameChangeSetting} from "../../../../../store/game/actions";
-import {pdfRender} from "./print/general";
+// import {pdfRender} from "./print/general";
 import {Col, Row} from "antd";
 import {Card, Loader} from "lib";
 import styled from "styled-components";
@@ -96,6 +96,8 @@ const Tasks: React.FC<RouteComponentProps<TasksRouteProps>> = (
                 let url = '/algorithm/list';
                 let _setting = setting;
                 _setting.print = true;
+
+                const {pdfRender} = await import("./print/general");
 
                 if (task === '24') {
                     url = `/custom-exercises/${_setting.custom_exercises_id}/print`;

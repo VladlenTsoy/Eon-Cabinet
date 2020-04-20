@@ -5,7 +5,7 @@ import {SelectProps} from "antd/es/select";
 import {useSelector} from "react-redux";
 import styled from "styled-components";
 import SearchOption from "./SearchOption";
-import {pdfRender} from "../../../training/tasks/print/general";
+// import {pdfRender} from "../../../training/tasks/print/general";
 
 const SearchWrapper = styled.div`
   margin-right: auto;
@@ -75,6 +75,7 @@ const Search = () => {
     const handleChange = async (value: any) => {
         if (value) {
             const list = data.find((item: any) => item.id === Number(value));
+            const {pdfRender} = await import("../../../training/tasks/print/general");
             await pdfRender(list.settings, list, language.common);
         }
     };
