@@ -72,6 +72,9 @@ const Avatar: React.FC<UserImageProps> = (
             setLoading(false);
         };
         image.onload = () => setLoading(false);
+        return () => {
+            image.onload = null;
+        }
     }, [src]);
 
     return <ImageWrapper mr={mr} width={width}>
