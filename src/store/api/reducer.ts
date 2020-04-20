@@ -5,7 +5,6 @@ import {API_CHANGE_ACCESS_TOKEN, API_DELETE_ACCESS_TOKEN} from "./actions";
 // const DOMAIN_API = 'https://api.eon.uz/api';
 // const DOMAIN_API = 'http://api.eon.loc/api';
 const DOMAIN_API = 'http://192.168.1.105:8000/api';
-// const DOMAIN_API = 'http://192.168.0.103:8000/api';
 
 
 export const apiReducer = (state = {
