@@ -1,21 +1,23 @@
-import React, {useCallback, useEffect} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {
     gameChangeOutput, gameChangeSetting,
     gameChangeStats,
     gameChangeStatus,
     gameChangeTotals
-} from "../../../../../../../store/game/actions";
+} from "store/game/actions";
 import _ from 'lodash';
 import {useDispatch, useSelector} from "react-redux";
-import {Card} from "lib";
+import {Card, LoadingBlock} from "lib";
 import OutputBlock from "../../../layouts/output/Output";
-import {useAddTimeout} from "../../../../../../../effects/use-add-timeout.effect";
-import {useAddInternal} from "../../../../../../../effects/use-add-interval.effect";
+import {useAddTimeout} from "effects/use-add-timeout.effect";
+import {useAddInternal} from "effects/use-add-interval.effect";
 import ApplicationAnzanWrapper from "../../../layouts/application/anzan/Anzan.layout";
+import IconAbacus from "assets/images/tasks/abacus.svg";
 
 const Application: React.FC<any> = () => {
     const {game} = useSelector((state: any) => state);
     const dispatch = useDispatch();
+    const [loading, setLoading] = useState(true);
 
     const [addInterval] = useAddInternal();
     const [addTimeout] = useAddTimeout();
@@ -51,12 +53,22 @@ const Application: React.FC<any> = () => {
     }, [dispatch]);
 
     const createNumbers = useCallback(async () => {
+        setLoading(true);
         setting.extra.push('abacus');
+
+        new Promise((resolve => {
+            const iconAbacus = new Image();
+            iconAbacus.onload = () => resolve(true);
+            iconAbacus.src = IconAbacus;
+        }));
+
         for (let i = 0; i < setting.count; i++) {
             let number = _.random(setting.from, setting.to);
             totals[i] = {exercise: number, answer: number};
         }
+
         await updateStore(totals, setting);
+        setLoading(false);
     }, [totals, setting, updateStore]);
 
     // Fetch algorithms or check totals exercise
@@ -73,7 +85,7 @@ const Application: React.FC<any> = () => {
 
     return <ApplicationAnzanWrapper>
         <Card>
-            <OutputBlock/>
+            {loading ? <LoadingBlock/> : <OutputBlock/>}
         </Card>
     </ApplicationAnzanWrapper>;
 };
