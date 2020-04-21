@@ -43,9 +43,9 @@ const Anzan: React.FC<AnzanProps> = (
     const [isClearForm, setIsClearForm] = useState(false);
     const [initialValue, setInitialValue] = useState(userSetting);
     const [loading, setLoading] = useState(false);
-    const [typeTask, setTypeTask] = useState('basic');
+    const [typeTask, setTypeTask] = useState(mods === 'addition' ? 'basic' : 'multiply');
     const [length, setLength] = useState('1');
-    const [isMultiplication, setIsMultiplication] = useState(false);
+    const [isMultiplication, setIsMultiplication] = useState(Boolean(mods && mods === 'multiplication'));
 
     const onFormChangeHandler = (formName: string, info: any) => {
         const {types, header} = info.forms;
