@@ -2,7 +2,7 @@ import React from 'react';
 import styled from "styled-components";
 import {Modal} from "antd";
 import moment from "moment";
-import {UserImage} from "../../../../../../../../layouts/components";
+import {Avatar} from "../../../../../../../../layouts/components";
 import {useDispatch, useSelector} from "react-redux";
 import {gameChangeStatus} from "../../../../../../../../store/game/actions";
 import CarouselApplication from "../../../../layouts/application/carousel-application/CarouselApplication";
@@ -80,14 +80,14 @@ const BasicApplication: React.FC<CarouselApplicationProps> = () => {
             {totals.map((total: any, key: number) =>
                 <div key={key}>
                     <ExerciseWrapper>
-                        <UserImage
+                        <Avatar
                             width={isBreakpoint ? '150px' : '200px'}
                             className="image"
                             src={total.exercise.url_photo}
                             alt={total.exercise.full_name}
                         />
-
-                        {Number(setting.mode) > 1 ?
+                        {
+                            Number(setting.mode) > 1 &&
                             <div className="dates">
                                 <div>{moment(total.exercise.born).format('DD-MM-YYYY')}</div>
                                 {Number(setting.mode) === 3 ?
@@ -96,9 +96,8 @@ const BasicApplication: React.FC<CarouselApplicationProps> = () => {
                                         <div>{moment(total.exercise.die).format('DD-MM-YYYY')}</div>
                                     </> : null
                                 }
-                            </div> : null
+                            </div>
                         }
-
                         <div className="name">{total.exercise.full_name}</div>
                     </ExerciseWrapper>
                 </div>

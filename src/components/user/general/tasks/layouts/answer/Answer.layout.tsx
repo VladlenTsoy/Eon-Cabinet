@@ -53,7 +53,7 @@ const AnswerLayout: React.FC<AnswerProps> = (
     return <RowWrapper justify="center" align="middle" gutter={15}>
         <Col {...cols}>
             <CardWrapper>
-                <Form onFinish={submitHandler}>
+                <Form onFinish={submitHandler} layout={"vertical"}>
                     {children}
                 </Form>
             </CardWrapper>

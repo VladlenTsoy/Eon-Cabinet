@@ -3,6 +3,7 @@ export {default as FormItem} from '../../lib/form/form-item/FormItem';
 // export { default as Layout } from '../../lib/layout/Layout';
 // export { default as LoadingBlock } from '../../lib/loading-block/LoadingBlock';
 export {default as UserImage} from './avatar/Avatar';
+export {default as Avatar} from './avatar/Avatar';
 export {default as HeaderItem} from '../header/HeaderItem.layout';
 export {default as CardStatistic} from './CardStatistic';
 // export { default as Card } from '../../lib/card/Card';

@@ -53,22 +53,26 @@ const InputAnswer: React.FC<InputAnswerProps> = ({total, totalKey}) => {
         <div className="content">
             <FormItem
                 label={`Личность №${totalKey + 1}`}
-                name={`answer[${totalKey}][full_name]`}
+                name={['answer', totalKey, 'full_name']}
                 size="large"
                 placeholder="Имя"
                 marginBottom="0"
                 autofocus={totalKey === 0}
             />
-            {Number(setting.mode) > 1 ?
+            {
+                Number(setting.mode) > 1 &&
                 <div className="date-pickers">
-                    <FormItem name={`answer[${totalKey}][born]`} label="Дата рождения" marginBottom="0">
+                    <FormItem name={['answer', totalKey, 'born']} label="Дата рождения" marginBottom="0">
                         <DatePicker format={dateFormatList} style={{width: '100%'}}/>
                     </FormItem>
-                    {Number(setting.mode) === 3 ?
-                        <FormItem name={`answer[${totalKey}][die]`} label="Годы жизни" marginBottom="0">
+                    {
+                        Number(setting.mode) === 3 &&
+                        <FormItem name={['answer', totalKey, 'die']} label="Годы жизни" marginBottom="0">
                             <DatePicker format={dateFormatList} style={{width: '100%'}}/>
-                        </FormItem> : null}
-                </div> : null}
+                        </FormItem>
+                    }
+                </div>
+            }
         </div>
     </InputWrapper>;
 };

@@ -57,6 +57,7 @@ const Avatar: React.FC<UserImageProps> = (
         src,
         width = '38px',
         mr,
+        ...props
     }
 ) => {
     const w = Number(width.match(/\d+/)) / 2;
@@ -77,7 +78,7 @@ const Avatar: React.FC<UserImageProps> = (
         }
     }, [src]);
 
-    return <ImageWrapper mr={mr} width={width}>
+    return <ImageWrapper mr={mr} width={width} {...props}>
         {
             loading ?
                 <LoadingOutlined className="loading"/> :

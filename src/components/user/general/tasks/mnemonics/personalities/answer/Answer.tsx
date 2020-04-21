@@ -1,9 +1,8 @@
 import React from 'react';
-import { ArrowRightOutlined } from '@ant-design/icons';
-import { Button } from 'antd';
+import {ArrowRightOutlined} from '@ant-design/icons';
+import {Button} from 'antd';
 import AnswerLayout from "../../../layouts/answer/Answer.layout";
-import {gameChangeStats, gameChangeStatus, gameChangeTotals} from "../../../../../../../store/game/actions";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import InputAnswer from "./input-answer/InputAnswer";
 import styled from "styled-components";
 import moment from "moment";
@@ -19,13 +18,9 @@ const InputsWrapper = styled.div`
   }
 `;
 
-interface AnswerProps {
-}
-
-const Answer: React.FC<AnswerProps> = () => {
+const Answer: React.FC = () => {
     const {game} = useSelector((state: any) => state);
     const {totals, setting} = game;
-    const dispatch = useDispatch();
 
     const namePreparation = (name: string): string => {
         return String(name)
@@ -47,26 +42,27 @@ const Answer: React.FC<AnswerProps> = () => {
             return {...total, user, result};
         });
 
-        dispatch(gameChangeTotals(_totals));
-        dispatch(gameChangeStats({all: setting.count, success: _totals.filter((val: any) => val.result).length}));
-        dispatch(gameChangeStatus('result'));
+        return {
+            totals: _totals,
+            status: 'result',
+            stats: {all: setting.count, success: _totals.filter((val: any) => val.result).length},
+        };
     };
 
-    return (
-        <AnswerLayout
-            cols={{span: 24}}
-            checkHandler={checkHandler}
-        >
-            <InputsWrapper>
-                {totals.map((total: any, key: number) =>
+    return <AnswerLayout
+        cols={{span: 24}}
+        checkHandler={checkHandler}
+    >
+        <InputsWrapper>
+            {
+                totals.map((total: any, key: number) =>
                     <InputAnswer total={total} key={key} totalKey={key}/>)
-                }
-            </InputsWrapper>
-            <Button type="primary" htmlType="submit" block size="large" icon={<ArrowRightOutlined />}>
-                Далее
-            </Button>
-        </AnswerLayout>
-    );
+            }
+        </InputsWrapper>
+        <Button type="primary" htmlType="submit" block size="large" icon={<ArrowRightOutlined/>}>
+            Далее
+        </Button>
+    </AnswerLayout>
 };
 
 export default Answer;
