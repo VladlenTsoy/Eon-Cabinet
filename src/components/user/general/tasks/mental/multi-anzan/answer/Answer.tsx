@@ -3,9 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import styled from "styled-components";
 import AnswerInput from "./answer-input/AnswerInput";
 import {Card} from "lib";
-import { Form } from '@ant-design/compatible';
-import '@ant-design/compatible/assets/index.css';
-import { FormComponentProps } from '@ant-design/compatible/es/form';
+import {Form} from "antd";
 import {gameChangeStatus, gameChangeTotals} from "../../../../../../../store/game/actions";
 import MultiGridLayout from "../layouts/MultiGrid.layout";
 import Header from "./header/Header";
@@ -27,40 +25,31 @@ const FormWrapper = styled(Form)`
   margin-left: 0;
 `;
 
-const Answer: React.FC<FormComponentProps> = (
-    {
-        form,
-    }
-) => {
+const Answer: React.FC = () => {
     const {game} = useSelector((state: any) => state);
     let {totals, setting, currentTimes} = game;
     const [isAnswersOpen, setIsAnswersOpen] = useState(false);
     const dispatch = useDispatch();
+    const [form] = Form.useForm();
 
-    const submitHandler = (e: any) => {
-        e.preventDefault();
-
-        form.validateFields((err, values) => {
-            if (!err) {
-                let result = (setting.group ? totals : totals[currentTimes]).answer
-                    .map(function (answer: any, key: number) {
-                        if (setting.group)
-                            return answer.map((val: any, answKey: number) =>
-                                Number(val) === Number(values.answer[key][answKey])
-                            );
-
-                        return Number(answer) === Number(values.answer[key]);
-                    });
-
+    const submitHandler = (values: any) => {
+        let result = (setting.group ? totals : totals[currentTimes]).answer
+            .map(function (answer: any, key: number) {
                 if (setting.group)
-                    totals = {...totals, user: values.answer, result};
-                else
-                    totals[currentTimes] = {...totals[currentTimes], user: values.answer, result};
+                    return answer.map((val: any, answKey: number) =>
+                        Number(val) === Number(values.answer[key][answKey])
+                    );
 
-                dispatch(gameChangeTotals(totals));
-                dispatch(gameChangeStatus(setting.mode === 'multiplication' && !setting.group ? 'intermediate' : 'result'));
-            }
-        });
+                return Number(answer) === Number(values.answer[key]);
+            });
+
+        if (setting.group)
+            totals = {...totals, user: values.answer, result};
+        else
+            totals[currentTimes] = {...totals[currentTimes], user: values.answer, result};
+
+        dispatch(gameChangeTotals(totals));
+        dispatch(gameChangeStatus(setting.mode === 'multiplication' && !setting.group ? 'intermediate' : 'result'));
     };
 
     const openAnswer = () =>
@@ -72,8 +61,9 @@ const Answer: React.FC<FormComponentProps> = (
             openAnswer={openAnswer}
         />
         <FormWrapper
+            form={form}
             id="form-answer"
-            onSubmit={submitHandler}
+            onFinish={submitHandler}
         >
             <MultiGridLayout
                 background="@background-color-base"
@@ -96,4 +86,4 @@ const Answer: React.FC<FormComponentProps> = (
     </CardWrapper>;
 };
 
-export default Form.create<FormComponentProps>()(Answer);
+export default Answer;
