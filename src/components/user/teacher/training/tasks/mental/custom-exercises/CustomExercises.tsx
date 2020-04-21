@@ -130,7 +130,11 @@ const CustomExercises: React.FC<CustomExercisesProps> = (
 
     return !loading ?
         <FormItems
-            initialValues={userSetting || {extra: []}}
+            initialValues={{
+                time: 1,
+                extra: [],
+                ...userSetting
+            }}
 
             onChange={handleFormChange}
             categories={categories}
