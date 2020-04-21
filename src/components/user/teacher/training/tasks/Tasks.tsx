@@ -64,11 +64,11 @@ const Tasks: React.FC = () => {
     const changeSetting = useCallback(async (setting: any) => {
         try {
             let userSetting = Object.keys(user.setting).length ? user.setting : {};
-            userSetting.tasks = userSetting.tasks && userSetting.tasks[0] && userSetting.tasks[0].hasOwnProperty(discipline) ?
+            userSetting.tasks = userSetting.tasks && userSetting.tasks[0] && userSetting.tasks[0].hasOwnProperty('discipline') ?
                 userSetting.tasks : [];
 
             const keySetting = userSetting.tasks.findIndex(
-                (item: any) => item.discipline === discipline && item.task === task
+                (item: any) => Number(item.discipline) === Number(discipline) && Number(item.task) === Number(task)
             );
             keySetting < 0 ?
                 userSetting.tasks.push({discipline, task, setting}) :
