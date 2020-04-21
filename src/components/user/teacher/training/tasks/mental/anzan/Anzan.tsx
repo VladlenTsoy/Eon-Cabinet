@@ -51,14 +51,15 @@ const Anzan: React.FC<AnzanProps> = (
         const {types, header} = info.forms;
         const mode = header.getFieldValue('mode');
 
-        setTypeTask(types.getFieldValue('anzan'));
+        if (!isMultiAnzan)
+            setTypeTask(types.getFieldValue('anzan'));
         setIsMultiplication(mode === 'divide' || mode === 'multiply');
         setLength(header.getFieldValue('length'));
     };
 
     const onFormFinishHandler = async (formName: string, info: any) => {
         const {types, header, body, action} = info.forms;
-        const typesValues = types.getFieldsValue();
+        const typesValues = !isMultiAnzan ? types.getFieldsValue() : null;
         const headerValues = header.getFieldsValue();
         const bodyValues = body.getFieldsValue();
         const setting = {...typesValues, ...headerValues, ...bodyValues};
@@ -98,10 +99,12 @@ const Anzan: React.FC<AnzanProps> = (
         onFormFinish={onFormFinishHandler}
         onFormChange={onFormChangeHandler}
     >
-        <TypeForm
-            isClearForm={isClearForm}
-            initialValues={initialValue}
-        />
+        {!isMultiAnzan ?
+            <TypeForm
+                isClearForm={isClearForm}
+                initialValues={initialValue}
+            /> : null
+        }
         <HeaderForm
             isClearForm={isClearForm}
             mods={mods}
