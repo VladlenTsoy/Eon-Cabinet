@@ -1,5 +1,5 @@
 import React from 'react';
-import { TrophyOutlined } from '@ant-design/icons';
+import {TrophyOutlined} from '@ant-design/icons';
 import styled from "styled-components";
 import {useSelector} from "react-redux";
 
@@ -18,7 +18,7 @@ const UserIntermediateWrapper: any = styled.div`
   justify-content: center;
   flex-direction: column;
   
-  i{
+  .anticon{
     font-size: 110px;
     margin-bottom: 0.5rem;
     color: ${(props: any) => props.result === 'true' ? props.theme.color_warning : props.theme.color_minimal};
@@ -63,7 +63,7 @@ const UserIntermediate: React.FC<UserIntermediateProps> = (
             Ожидание...
         </WaitWrapper> :
         <UserIntermediateWrapper result={result.toString()}>
-            <TrophyOutlined />
+            <TrophyOutlined/>
             <div className="counts-block">
                 <div className="passed-block">
                     <span className="title">Пройдено</span>
