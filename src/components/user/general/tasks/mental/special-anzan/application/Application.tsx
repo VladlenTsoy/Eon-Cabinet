@@ -13,7 +13,7 @@ const Application: React.FC = () => {
     const {game} = useSelector((state: any) => state);
     const dispatch = useDispatch();
 
-    const {totals, setting, status} = game;
+    const {totals, setting, status, currentTimes} = game;
     const [startApplication, , addingAnswer] = useOutputTask({times: setting.times});
 
     //
@@ -31,7 +31,7 @@ const Application: React.FC = () => {
     useEffect(() => {
         (async () => {
             if (status === 'refresh' || status === 'repeat')
-                startApplication(totals);
+                startApplication(totals[currentTimes].exercise);
             else {
                 const numbers = await createNumbers();
                 startApplication(numbers);
