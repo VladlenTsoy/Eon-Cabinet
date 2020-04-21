@@ -23,7 +23,7 @@ const Answer: React.FC = () => {
         let _totals = isDouble ?
             totals.map((total: any, key: number) => {
                 let result1 = total[0].answer === Number(values.answer1[key]);
-                let result2 = total[0].answer === Number(values.answer2[key]);
+                let result2 = total[1].answer === Number(values.answer2[key]);
 
                 result1 && stats.success++;
                 result2 && stats.success++;

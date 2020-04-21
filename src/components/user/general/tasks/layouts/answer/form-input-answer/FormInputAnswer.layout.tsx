@@ -18,29 +18,36 @@ const InputWrapper = styled(Input)`
 `;
 
 interface FormInputAnswer {
+    type?: string;
     group?: boolean;
+    autoFocus?: boolean;
     title?: string;
     answerKey: number;
+    name?: string;
 }
 
 const FormInputAnswerLayout: React.FC<FormInputAnswer> = (
     {
         title,
+        type= 'text',
         group,
-        answerKey
+        autoFocus= false,
+        answerKey,
+        name = 'answer',
     }
 ) => {
     return <AnswerInputWrapper>
-        {group ? <Title level={4}>{title ? title : `Ответ №${answerKey + 1}`}</Title> : null}
+        {group ? <Title level={4}>{title ? title : `Ответ №${answerKey}`}</Title> : null}
         <FormItem
             key={answerKey}
-            name={group ? `answer[${answerKey}]` : 'answer'}
-            requiredMsg={group ? `Введите ответ №${answerKey + 1}!` : 'Введите ответ!'}
+            name={group ? [name, answerKey] : name}
+            requiredMsg={group ? `Введите ответ №${answerKey}!` : 'Введите ответ!'}
         >
             <InputWrapper
+                type={type}
                 size="large"
                 placeholder="Ответ"
-                autoFocus={answerKey === 0}
+                autoFocus={autoFocus && answerKey === 1}
                 autoComplete="off"
             />
         </FormItem>

@@ -2,6 +2,8 @@ import React from 'react';
 import {Col, Row, Form} from "antd";
 import styled from "styled-components";
 import {Card} from "lib";
+import {gameChangeStats, gameChangeStatus, gameChangeTotals} from "../../../../../../store/game/actions";
+import {useDispatch} from "react-redux";
 
 const RowWrapper = styled(Row)`
   height: 100%;
@@ -23,7 +25,12 @@ const CardWrapper = styled(Card)`
 
 interface AnswerProps {
     cols: {},
-    checkHandler: (values: any) => void;
+    nextStatus?: string;
+    checkHandler: (values: any) => any | {
+        status: string;
+        totals: any[] | {};
+        stats: { all: number, success: number };
+    };
 }
 
 const AnswerLayout: React.FC<AnswerProps> = (
@@ -33,8 +40,14 @@ const AnswerLayout: React.FC<AnswerProps> = (
         checkHandler
     }
 ) => {
+    const dispatch = useDispatch();
+
     const submitHandler = (values: any) => {
-        checkHandler(values);
+        const {status, totals, stats} = checkHandler(values);
+
+        dispatch(gameChangeStats(stats));
+        dispatch(gameChangeTotals(totals));
+        dispatch(gameChangeStatus(status));
     };
 
     return <RowWrapper justify="center" align="middle" gutter={15}>

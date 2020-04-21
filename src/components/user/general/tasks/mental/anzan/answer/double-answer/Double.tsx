@@ -18,7 +18,7 @@ const Double: React.FC = () => {
                             type="number" answerKey={key} name="answer1"/>
                     ) :
                     <FormInputAnswerLayout
-                        type="number" answerKey={0}
+                        type="number" answerKey={1}
                         autoFocus name="answer1"/>
             }
         </Col>
@@ -31,7 +31,7 @@ const Double: React.FC = () => {
                             group key={key} name="answer2"/>
                     ) :
                     <FormInputAnswerLayout
-                        type="number" answerKey={0} name="answer2"/>
+                        type="number" answerKey={1} name="answer2"/>
             }
         </Col>
     </Row>;
