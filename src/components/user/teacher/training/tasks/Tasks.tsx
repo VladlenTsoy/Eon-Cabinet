@@ -1,11 +1,10 @@
 import React, {useCallback, useState} from 'react';
-import {BrowserRouter as Router, RouteComponentProps} from "react-router-dom";
+import {BrowserRouter as Router, useHistory, useRouteMatch} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {Switch, Route} from "react-router";
-import {useChangeActionNavbar} from "../../../../../effects/use-change-action-navbar.effect";
+import {useChangeActionNavbar} from "effects/use-change-action-navbar.effect";
 import {setCurrentUserData} from "../../../../../store/user/actions";
 import {gameChangeSetting} from "../../../../../store/game/actions";
-// import {pdfRender} from "./print/general";
 import {Col, Row} from "antd";
 import {Card, Loader} from "lib";
 import styled from "styled-components";
@@ -36,24 +35,23 @@ interface TasksRouteProps {
     task: string;
 }
 
-const Tasks: React.FC<RouteComponentProps<TasksRouteProps>> = (
-    {
-        match,
-        history
-    }
-) => {
+const Tasks: React.FC = () => {
     const {api, user, language} = useSelector((state: any) => state);
+    const match = useRouteMatch<TasksRouteProps>();
+    const history = useHistory();
     const {discipline, task} = match.params;
+    const dispatch = useDispatch();
+
     const [setting] = useState<any>(() => {
         try {
-            // let userSetting = user.setting.tasks[discipline][task];
-            // userSetting.mode = String(userSetting.mode);
-            return user.setting.tasks[discipline][task];
+            let userSetting = user.setting.tasks
+                .find((item: any) =>
+                    Number(item.discipline) === Number(discipline) && Number(item.task) === Number(task));
+            return userSetting.setting || {};
         } catch (e) {
             return {}
         }
     });
-    const dispatch = useDispatch();
 
     // Действие назад
     useChangeActionNavbar({action: '/training'});
@@ -65,16 +63,21 @@ const Tasks: React.FC<RouteComponentProps<TasksRouteProps>> = (
      */
     const changeSetting = useCallback(async (setting: any) => {
         try {
-            let userSetting = user.setting;
-            userSetting.tasks = userSetting.tasks || [];
-            userSetting.tasks[discipline] = userSetting.tasks[discipline] || [];
-            userSetting.tasks[discipline][task] = userSetting.tasks[discipline][task] || [];
-            userSetting.tasks[discipline][task] = setting;
+            let userSetting = Object.keys(user.setting).length ? user.setting : {};
+            userSetting.tasks = userSetting.tasks && userSetting.tasks[0] && userSetting.tasks[0].hasOwnProperty(discipline) ?
+                userSetting.tasks : [];
+
+            const keySetting = userSetting.tasks.findIndex(
+                (item: any) => item.discipline === discipline && item.task === task
+            );
+            keySetting < 0 ?
+                userSetting.tasks.push({discipline, task, setting}) :
+                userSetting.tasks[keySetting].setting = setting;
 
             let response = await api.user_general.patch(`/${user.id}`, {setting: userSetting});
             dispatch(setCurrentUserData(response.data));
         } catch (e) {
-
+            console.error(e);
         }
     }, [user.setting, dispatch, api.user_general, discipline, task, user.id]);
 
