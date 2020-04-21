@@ -12,9 +12,9 @@ const Basic: React.FC = () => {
         {
             isGroup ?
                 totals.map((total: any, key: any) =>
-                    <FormInputAnswerLayout answerKey={key} autoFocus group key={key}/>
+                    <FormInputAnswerLayout index={key} autoFocus={1} group={key} key={key}/>
                 ) :
-                <FormInputAnswerLayout answerKey={1} autoFocus/>
+                <FormInputAnswerLayout index={1} autoFocus={1}/>
         }
     </>;
 };
