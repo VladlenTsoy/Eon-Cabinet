@@ -1,52 +1,36 @@
 const {override, addLessLoader, fixBabelImports, addBundleVisualizer, addWebpackAlias, addWebpackPlugin, setWebpackOptimizationSplitChunks} = require('customize-cra');
 const path = require('path');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const ThemesGeneratorPlugin = require('themes-switch/ThemesGeneratorPlugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
+
+const isEnvProduction = process.env.NODE_ENV === 'production';
+process.env.GENERATE_SOURCEMAP = !isEnvProduction;
 
 const addMinimizer = (config) => {
-    config.devtool = config.mode === 'production' ? false : 'source-map';
-    config.optimization.minimizer = [
-        ...config.mode === 'production' ?
-            [
-                config.optimization.minimizer[0],
-                new UglifyJsPlugin({
-                    uglifyOptions: {
-                        compress: {
-                            unsafe: true,
-                            inline: true,
-                            passes: 2,
-                            keep_fargs: false,
-                        },
-                        output: {
-                            beautify: false,
-                        },
-                        mangle: true,
-                    },
-                    sourceMap: false,
-                }),
-                new OptimizeCSSAssetsPlugin({
-                    assetNameRegExp: /\.css$/g,
-                    //     cssProcessor: require('cssnano'),
-                    cssProcessorPluginOptions: {
-                        preset: ['default', {discardComments: {removeAll: true}}],
-                        autoprefixer: {disable: true},
-                        "safe": true,
-                        "map": {"inline": false},
-                    },
-                    canPrint: true
-                }),
-            ] : config.optimization.minimizer,
-    ];
+    config.plugins[0].options.inject = false;
 
-    if (config.mode === 'production') {
-        config.plugins[5].options.filename = 'static/css/[name].css?[contenthash:8]';
-        config.plugins[5].options.chunkFilename = 'static/css/[name].chunk.css?[contenthash:8]';
+    if (isEnvProduction) {
+        config.optimization.minimizer.push(
+            new UglifyJsPlugin({
+                sourceMap: false,
+                uglifyOptions: {
+                    mangle: true,
+                    output: {
+                        beautify: false,
+                    },
+                    compress: {
+                        unsafe: true,
+                        inline: true,
+                        passes: 2,
+                        keep_fargs: false,
+                    },
+                },
+            })
+        );
     } else {
         config.module.rules.push({
-            test: /(dark|default|light).(less)$/,
-            // include: /\/themes\//,
+            test: /(dark|default).(less)$/,
             use: [
                 MiniCssExtractPlugin.loader,
                 "css-loader",
@@ -54,11 +38,11 @@ const addMinimizer = (config) => {
             ]
         });
         config.plugins.push(new MiniCssExtractPlugin({
-            filename: 'static/css/[name].css?[contenthash:8]',
-            chunkFilename: 'static/css/[name].chunk.css?[contenthash:8]',
+            moduleFilename: 'static/css/[name].[contenthash:8].css',
+            filename: 'static/css/[name].[contenthash:8].css',
+            chunkFilename: 'static/css/[name].[contenthash:8].chunk.css',
         }));
     }
-
     return config;
 };
 
@@ -69,12 +53,20 @@ module.exports = override(
         libraryDirectory: 'es',
     }),
     addLessLoader({javascriptEnabled: true}),
-    addBundleVisualizer({}, true),
+    addBundleVisualizer({}, !isEnvProduction),
     setWebpackOptimizationSplitChunks({
         chunks: 'all',
         maxInitialRequests: Infinity,
         minSize: 105000,
         cacheGroups: {
+            default: {
+                test: /(default).(less)$/,
+                name: 'default',
+            },
+            dark: {
+                test: /(dark).(less)$/,
+                name: 'dark',
+            },
             vendor: {
                 test: /[\\/]node_modules[\\/]/,
                 name(module) {
@@ -89,13 +81,12 @@ module.exports = override(
             },
         }
     }),
-    addWebpackPlugin(new ThemesGeneratorPlugin({
-        srcDir: 'src',
-        themesDir: 'src/styles/themes',
-        outputDir: 'static/css',
-        defaultStyleName: 'default.less',
-        clearTemp: false,
-    })),
+    isEnvProduction ?
+        addWebpackPlugin(new CompressionPlugin({
+            filename: "[path].gz[query]",
+            algorithm: "gzip",
+            test: /\.(js|css)$/,
+        })) : null,
     addWebpackAlias({
         'src': path.resolve(__dirname, './src'),
         'components': path.resolve(__dirname, './src/components'),
@@ -105,5 +96,6 @@ module.exports = override(
         'assets': path.resolve(__dirname, './src/assets'),
         'tools': path.resolve(__dirname, './src/tools'),
         'store': path.resolve(__dirname, './src/store')
-    })
-);
+    }),
+)
+;
