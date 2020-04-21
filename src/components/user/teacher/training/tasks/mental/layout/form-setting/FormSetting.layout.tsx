@@ -6,6 +6,7 @@ import {Spin} from "../../../../../../../../layouts/components";
 interface FormSettingProps {
     isEdit?: boolean;
     initialValues: any;
+    onValuesChange?: (changeValues: any, allValues: any) => void;
     userSetting: any;
     clearSaveSetting?: any;
     startApplication?: (setting: any, print: boolean) => void;
@@ -15,6 +16,7 @@ interface FormSettingProps {
 const FormSettingLayout: React.FC<FormSettingProps> = (
     {
         initialValues,
+        onValuesChange,
         userSetting,
         clearSaveSetting,
         startApplication,
@@ -37,6 +39,7 @@ const FormSettingLayout: React.FC<FormSettingProps> = (
 
     return <Spin tip="Загрузка..." spinning={loading}>
         <Form
+            onValuesChange={onValuesChange}
             form={form}
             initialValues={initValues}
             layout="vertical"
