@@ -34,7 +34,7 @@ const Answer: React.FC<AnswerProps> = () => {
             <Title level={2}>Введите ответы</Title>
             {
                 totals.map((total: any, key: any) =>
-                    <FormInputAnswerLayout group answerKey={key} key={key}/>
+                    <FormInputAnswerLayout group={key} index={key} autoFocus={1} key={key}/>
                 )
             }
             <Button type="primary" htmlType="submit" block size="large" icon={<ArrowRightOutlined />}>

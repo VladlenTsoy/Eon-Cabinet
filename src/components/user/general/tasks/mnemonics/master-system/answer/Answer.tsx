@@ -33,8 +33,9 @@ const Answer: React.FC<AnswerProps> = () => {
             {
                 totals.map((total: any, key: number) =>
                     <FormInputAnswerLayout
-                        group
-                        answerKey={key}
+                        group={key}
+                        index={key}
+                        autoFocus={1}
                         title={
                             `Введите слово цифры ${Number(totals[key].exercise.number) > 9 ?
                                 totals[key].exercise.number :

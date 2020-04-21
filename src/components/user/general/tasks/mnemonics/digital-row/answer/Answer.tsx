@@ -45,9 +45,7 @@ const Answer: React.FC<AnswerProps> = () => {
             checkHandler={checkHandler}
         >
             <Title level={2}>Введите ответ</Title>
-            <FormInputAnswerLayout
-                answerKey={0}
-            />
+            <FormInputAnswerLayout index={0} autoFocus={0}/>
             <Button type="primary" htmlType="submit" block size="large" icon={<ArrowRightOutlined />}>
                 Далее
             </Button>
