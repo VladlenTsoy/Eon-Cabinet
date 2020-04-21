@@ -38,12 +38,16 @@ const BasicApplication: React.FC<BasicApplicationProps> = (
         if (isMultiplication) {
             sOutput(exercise[0] + (setting.mode === 'multiply' ? ' * ' : ' / ') + exercise[1]);
             addTimeout([
-                setTimeout(() => dispatch(gameChangeStatus('answer')), setting.time * 1000),
+                setTimeout(() => dispatch(gameChangeStatus(
+                    setting.extra && setting.extra.includes('group') ? 'intermediate' : 'answer'
+                )), setting.time * 1000),
             ])
         } else {
             addInterval(() => {
                 if (i === (setting.count))
-                    dispatch(gameChangeStatus(setting.extra && setting.extra.includes('group') ? 'intermediate' : 'answer'));
+                    dispatch(gameChangeStatus(
+                        setting.extra && setting.extra.includes('group') ? 'intermediate' : 'answer'
+                    ));
                 else
                     sOutput(exercise[i++]);
             }, setting.time * 1000);
