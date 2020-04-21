@@ -26,6 +26,16 @@ interface FormInputAnswer {
     name?: string;
 }
 
+/**
+ *
+ * @param title         - Название при выводе в группе
+ * @param type          - Тип инпута
+ * @param group         - Вывод нескольких
+ * @param autoFocus     - На какомм индексе сработает автофокус
+ * @param index         - Ключ для key и autoFocus
+ * @param name          - Название для формы
+ * @constructor
+ */
 const FormInputAnswerLayout: React.FC<FormInputAnswer> = (
     {
         title,
