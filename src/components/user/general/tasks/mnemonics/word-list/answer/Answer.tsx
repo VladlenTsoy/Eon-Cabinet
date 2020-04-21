@@ -1,8 +1,7 @@
 import React from 'react';
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {ArrowRightOutlined} from '@ant-design/icons';
 import {Button, Typography} from "antd";
-import {gameChangeStats, gameChangeStatus, gameChangeTotals} from "../../../../../../../store/game/actions";
 import FormInputAnswerLayout from "../../../layouts/answer/form-input-answer/FormInputAnswer.layout";
 import AnswerLayout from "../../../layouts/answer/Answer.layout";
 
@@ -14,9 +13,9 @@ interface AnswerProps {
 const Answer: React.FC<AnswerProps> = () => {
     const {game} = useSelector((state: any) => state);
     const {totals} = game;
-    const dispatch = useDispatch();
 
     const checkHandler = (values: any) => {
+        console.log(values);
         let _totals = totals.map((total: any, key: number) => ({
             ...total,
             user: values.answer[key],
@@ -26,9 +25,12 @@ const Answer: React.FC<AnswerProps> = () => {
                 .replace(/ё/g, "е")
                 .toLowerCase()
         }));
-        dispatch(gameChangeTotals(_totals));
-        dispatch(gameChangeStats({all: totals.length, success: _totals.filter((val: any) => val.result).length}));
-        dispatch(gameChangeStatus('result'));
+
+        return {
+            totals: _totals,
+            status: 'result',
+            stats: {all: _totals.length, success: _totals.filter((val: any) => val.result).length},
+        };
     };
 
     return (
@@ -36,7 +38,7 @@ const Answer: React.FC<AnswerProps> = () => {
             <Title level={2}>Введите ответы</Title>
             {
                 totals.map((total: any, key: any) =>
-                    <FormInputAnswerLayout group={key} index={key} autoFocus={1} key={key}/>
+                    <FormInputAnswerLayout group={key + 1} index={key} autoFocus={0} key={key}/>
                 )
             }
             <Button type="primary" htmlType="submit" block size="large" icon={<ArrowRightOutlined/>}>

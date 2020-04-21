@@ -41,16 +41,16 @@ const WordList: React.FC<SettingWordsListProps> = (
     }, [fields]);
 
     useEffect(() => {
-        Object.values(userSetting.several).map((several: any) => addSetting(several));
+        if (typeof userSetting === 'object' && Object.keys(userSetting).length)
+            Object.values(userSetting.several).map((several: any) => addSetting(several));
     }, [userSetting, addSetting]);
 
     return <WordListFormBody
-        initialValues={
-            userSetting ||
-            {
-                time: 1
-            }
-        }
+        initialValues={{
+            mode: 'basic',
+            time: 1,
+            ...userSetting
+        }}
         clearSaveSetting={clearSaveSetting}
         startApplication={startApplication}
         addSettingHomework={addSettingHomework}
