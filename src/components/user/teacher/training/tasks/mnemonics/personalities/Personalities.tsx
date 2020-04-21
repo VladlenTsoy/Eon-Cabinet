@@ -1,30 +1,57 @@
 import React from 'react';
 import {FormItem} from "layouts/components";
-import {Col, InputNumber, Row, Select} from "antd";
-import usingFormBodyLayout from "../../mental/layout/form-body/usingFormBody.layout";
+import {Col, Row, Select} from "antd";
+import FormSettingLayout from "../../mental/layout/form-setting/FormSetting.layout";
+import Stepper from "../../../../../../../lib/stepper/Stepper";
 
-const Personalities: React.FC = () => {
-    return <Row  gutter={15}>
-        <Col span={24}>
-            <FormItem name="mode" label="Мод" requiredMsg="Выберите мод!">
-                <Select>
-                    <Select.Option value="1">Уровень 1</Select.Option>
-                    <Select.Option value="2">Уровень 2</Select.Option>
-                    <Select.Option value="3">Уровень 3</Select.Option>
-                </Select>
-            </FormItem>
-        </Col>
-        <Col sm={12} xs={24}>
-            <FormItem label="Количество личностей" requiredMsg="Введите количество личностей" name="count">
-                <InputNumber style={{width: '100%'}}/>
-            </FormItem>
-        </Col>
-        <Col sm={12} xs={24}>
-            <FormItem label="Время (минуты)" requiredMsg="Введите время (минуты)" name="time">
-                <InputNumber style={{width: '100%'}}/>
-            </FormItem>
-        </Col>
-    </Row>;
+interface PersonalitiesProps {
+    userSetting?: any;
+    clearSaveSetting?: any;
+    startApplication?: (setting: any, print: boolean) => void;
+    addSettingHomework?: (setting: any) => void;
+}
+
+const Personalities: React.FC<PersonalitiesProps> = (
+    {
+        userSetting,
+        clearSaveSetting,
+        startApplication,
+        addSettingHomework,
+    }
+) => {
+    return <FormSettingLayout
+        initialValues={{
+            mode: '1',
+            count: 1,
+            time: 1,
+        }}
+        userSetting={userSetting}
+        clearSaveSetting={clearSaveSetting}
+        startApplication={startApplication}
+        addSettingHomework={addSettingHomework}
+    >
+        <Row gutter={15}>
+            <Col span={24}>
+                <FormItem name="mode" label="Мод" requiredMsg="Выберите мод!">
+                    <Select>
+                        <Select.Option value="1">Уровень 1</Select.Option>
+                        <Select.Option value="2">Уровень 2</Select.Option>
+                        <Select.Option value="3">Уровень 3</Select.Option>
+                    </Select>
+                </FormItem>
+            </Col>
+            <Col sm={12} xs={24}>
+                <FormItem label="Количество личностей" requiredMsg="Введите количество личностей" name="count">
+                    <Stepper min={1}/>
+                </FormItem>
+            </Col>
+            <Col sm={12} xs={24}>
+                <FormItem label="Время (минуты)" requiredMsg="Введите время (минуты)" name="time">
+                    <Stepper min={1} max={99}/>
+                </FormItem>
+            </Col>
+        </Row>
+    </FormSettingLayout>;
 };
 
-export default usingFormBodyLayout(Personalities);
+export default Personalities;
