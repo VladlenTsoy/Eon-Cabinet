@@ -10,7 +10,9 @@ interface TrophyAnimationProps {
 
 const TrophyAnimation: React.FC<TrophyAnimationProps> = styled.div<TrophyAnimationProps>`
   height: 400px;
-  width: 400px;
+  //width: 400px;
+  max-width: 400px;
+  width: 100%;
   margin: 0 auto;
   animation: ${props => props.nameAnimation} 1s .4s ease-in-out;
   
