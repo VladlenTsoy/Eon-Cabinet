@@ -10,7 +10,7 @@ const ProgressionFormItems: React.FC = () => {
                 name="count"
                 label="Количество цифр"
                 requiredMsg="Введите количество цифр!">
-                <Stepper min={1} max={10}/>
+                <Stepper min={1} max={99}/>
             </FormItem>
         </Col>
         <Col span={12}>

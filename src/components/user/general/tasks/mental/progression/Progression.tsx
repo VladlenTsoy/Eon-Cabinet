@@ -1,7 +1,7 @@
 import React from 'react';
 import {useSelector} from "react-redux";
 import Application from "./application/Application";
-import Answer from "../anzan/answer/Answer";
+import Answer from "./answer/Answer";
 import Result from "../../layouts/result/Result";
 
 const Progression: React.FC = () => {
