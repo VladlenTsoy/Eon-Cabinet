@@ -1,93 +1,40 @@
 import React from 'react';
-import {Card} from "lib";
-import {Button, Col, Row, Typography, Form} from "antd";
-import {useDispatch, useSelector} from "react-redux";
-import {gameChangeStats, gameChangeStatus, gameChangeTotals} from "../../../../../../../../store/game/actions";
-import FormAnswer from "../FormAnswer";
-
-const {Title} = Typography;
+import {Col, Row} from "antd";
+import {useSelector} from "react-redux";
+import FormInputAnswerLayout from "../../../../layouts/answer/form-input-answer/FormInputAnswer.layout";
 
 const Double: React.FC = () => {
     const {game} = useSelector((state: any) => state);
-    const {setting, totals, stats, currentTimes} = game;
-    const dispatch = useDispatch();
+    const {setting, totals} = game;
+    const isGroup = setting.extra && setting.extra.includes('group');
 
-    const handleSubmitDouble = (values: any) => {
-        if (setting.extra && setting.extra.includes('group')) {
-            let _totals = totals.map((total: any, key: number) => {
-                if (total[0].answer === Number(values.user1[key]))
-                    stats.success += 1;
-
-                if (total[1].answer === Number(values.user2[key]))
-                    stats.success += 1;
-
-                return [
-                    {
-                        ...total[0],
-                        ...{
-                            user: Number(values.user1[key]),
-                            result: total[0].answer === Number(values.user1[key])
-                        }
-                    },
-                    {
-                        ...total[1],
-                        ...{
-                            user: Number(values.user2[key]),
-                            result: total[1].answer === Number(values.user2[key])
-                        }
-                    }
-                ];
-            });
-
-            dispatch(gameChangeStats(stats));
-            dispatch(gameChangeTotals(_totals));
-            dispatch(gameChangeStatus('result'));
-        } else {
-            if (totals[currentTimes][0].answer === Number(values.user1))
-                stats.success += 1;
-
-            if (totals[currentTimes][1].answer === Number(values.user2))
-                stats.success += 1;
-
-            totals[currentTimes] = [
-                {
-                    ...totals[currentTimes][0], ...{
-                        user: Number(values.user1),
-                        result: totals[currentTimes][0].answer === Number(values.user1)
-                    }
-                },
-                {
-                    ...totals[currentTimes][1], ...{
-                        user: Number(values.user2),
-                        result: totals[currentTimes][1].answer === Number(values.user2)
-                    }
-                },
-            ];
-
-            dispatch(gameChangeStats(stats));
-            dispatch(gameChangeTotals(totals));
-            dispatch(gameChangeStatus('intermediate'));
-        }
-    };
-
-    return <Col xl={12} md={14} sm={16} xs={24}>
-        <Card>
-            <Form onFinish={handleSubmitDouble}>
-                <Title level={3}>Введите ответ</Title>
-                <Row justify="center" align="middle" gutter={15}>
-                    <Col xl={12}>
-                        <FormAnswer autofocus={true} name="user1"/>
-                    </Col>
-                    <Col xl={12}>
-                        <FormAnswer autofocus={false} name="user2"/>
-                    </Col>
-                </Row>
-                <Button type="primary" htmlType="submit" block>
-                    Далее
-                </Button>
-            </Form>
-        </Card>
-    </Col>;
+    return <Row justify="center" align="middle" gutter={15}>
+        <Col span={12}>
+            {
+                isGroup ?
+                    totals.map((total: any, key: any) =>
+                        <FormInputAnswerLayout
+                            key={key} group autoFocus
+                            type="number" answerKey={key} name="answer1"/>
+                    ) :
+                    <FormInputAnswerLayout
+                        type="number" answerKey={0}
+                        autoFocus name="answer1"/>
+            }
+        </Col>
+        <Col span={12}>
+            {
+                isGroup ?
+                    totals.map((total: any, key: any) =>
+                        <FormInputAnswerLayout
+                            type="number" answerKey={key}
+                            group key={key} name="answer2"/>
+                    ) :
+                    <FormInputAnswerLayout
+                        type="number" answerKey={0} name="answer2"/>
+            }
+        </Col>
+    </Row>;
 };
 
 export default Double;
