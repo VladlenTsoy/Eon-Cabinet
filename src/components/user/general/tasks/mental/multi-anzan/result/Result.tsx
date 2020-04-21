@@ -27,7 +27,6 @@ const Result: React.FC = () => {
     const {game} = useSelector((state: any) => state);
     const {totals, currentTimes, setting} = game;
 
-    console.log(totals);
     return <ResultWrapper>
         <Header/>
         <BodyWrapper>
