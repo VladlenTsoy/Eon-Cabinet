@@ -50,7 +50,7 @@ const FormInputAnswerLayout: React.FC<FormInputAnswer> = (
         {group !== undefined && <Title level={4}>{title ? title : `Ответ №${group}`}</Title>}
         <FormItem
             key={index}
-            name={group !== undefined ? [name, group] : name}
+            name={group !== undefined ? [name, index] : name}
             requiredMsg={group !== undefined ? `Введите ответ №${group}!` : 'Введите ответ!'}
         >
             <InputWrapper

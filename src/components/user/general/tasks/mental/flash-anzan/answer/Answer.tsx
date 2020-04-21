@@ -14,14 +14,10 @@ const Answer: React.FC = () => {
     const onFinishSubmit = (values: any) => {
         let _totals = totals.map((total: any, key: number) => {
             let result = total.answer === Number(values.answer[key]);
-            if (result)
-                stats.success++;
+            result && stats.success++;
 
-            return {
-                ...total, ...{user: Number(values.answer[key]), result}
-            };
+            return {...total, ...{user: Number(values.answer[key]), result}};
         });
-
         return {status: 'result', stats, totals: _totals};
     };
 
