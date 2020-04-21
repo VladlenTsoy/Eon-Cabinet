@@ -15,7 +15,6 @@ const Answer: React.FC<AnswerProps> = () => {
     const {totals} = game;
 
     const checkHandler = (values: any) => {
-        console.log(values);
         let _totals = totals.map((total: any, key: number) => ({
             ...total,
             user: values.answer[key],
