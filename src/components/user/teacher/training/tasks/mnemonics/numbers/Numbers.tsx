@@ -17,6 +17,7 @@ const Numbers: React.FC<NumbersProps> = (
         addSettingHomework,
     }
 ) => {
+    const setting = userSetting.hasOwnProperty('mode') ? {...userSetting, mode: String(userSetting.mode)} : userSetting;
     const [typeTask, setTypeTask] = useState(() =>
         typeof userSetting === 'object' && Object.keys(userSetting).length ? userSetting['task-mode'] : 'basic'
     );
@@ -28,14 +29,14 @@ const Numbers: React.FC<NumbersProps> = (
     return <FormSettingLayout
         initialValues={{
             'task-mode': 'basic',
-            mode: 1,
+            mode: '1',
             count: 1,
             time: 1,
             extra: [],
             sound: 'basic',
         }}
         onValuesChange={onChangeHandler}
-        userSetting={userSetting}
+        userSetting={setting}
         clearSaveSetting={clearSaveSetting}
         startApplication={startApplication}
         addSettingHomework={addSettingHomework}

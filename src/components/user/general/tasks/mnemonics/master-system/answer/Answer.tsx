@@ -2,19 +2,14 @@ import React from 'react';
 import AnswerLayout from "../../../layouts/answer/Answer.layout";
 import {ArrowRightOutlined} from '@ant-design/icons';
 import {Button, Typography} from "antd";
-import {useDispatch, useSelector} from "react-redux";
-import {gameChangeStats, gameChangeStatus, gameChangeTotals} from "../../../../../../../store/game/actions";
+import {useSelector} from "react-redux";
 import FormInputAnswerLayout from "../../../layouts/answer/form-input-answer/FormInputAnswer.layout";
 
 const {Title} = Typography;
 
-interface AnswerProps {
-}
-
-const Answer: React.FC<AnswerProps> = () => {
+const Answer: React.FC = () => {
     const {game} = useSelector((state: any) => state);
     const {totals} = game;
-    const dispatch = useDispatch();
 
     const checkHandler = (values: any) => {
         let _totals = totals.map((total: any, key: number) => ({
@@ -22,9 +17,11 @@ const Answer: React.FC<AnswerProps> = () => {
             user: values.answer[key],
             result: String(total.exercise.word).toLowerCase() === String(values.answer[key]).toLowerCase()
         }));
-        dispatch(gameChangeTotals(_totals));
-        dispatch(gameChangeStats({all: totals.length, success: _totals.filter((val: any) => val.result).length}));
-        dispatch(gameChangeStatus('result'));
+        return {
+            status: 'result',
+            totals: _totals,
+            stats: {all: totals.length, success: _totals.filter((val: any) => val.result).length},
+        };
     };
 
     return (
@@ -33,9 +30,9 @@ const Answer: React.FC<AnswerProps> = () => {
             {
                 totals.map((total: any, key: number) =>
                     <FormInputAnswerLayout
-                        group={key}
+                        group={key + 1}
                         index={key}
-                        autoFocus={1}
+                        autoFocus={0}
                         title={
                             `Введите слово цифры ${Number(totals[key].exercise.number) > 9 ?
                                 totals[key].exercise.number :

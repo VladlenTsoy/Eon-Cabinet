@@ -1,12 +1,9 @@
 import React from 'react';
 import AnswerLayout from "../../../layouts/answer/Answer.layout";
-import { ArrowRightOutlined } from '@ant-design/icons';
-import { Form } from '@ant-design/compatible';
-import '@ant-design/compatible/assets/index.css';
-import { Button, Typography } from "antd";
+import {ArrowRightOutlined} from '@ant-design/icons';
+import {Button, Typography} from "antd";
 import FormInputAnswerLayout from "../../../layouts/answer/form-input-answer/FormInputAnswer.layout";
-import {useDispatch, useSelector} from "react-redux";
-import {gameChangeStats, gameChangeStatus, gameChangeTotals} from "../../../../../../../store/game/actions";
+import {useSelector} from "react-redux";
 
 const {Title} = Typography;
 
@@ -14,7 +11,6 @@ interface AnswerProps {
 }
 
 const Answer: React.FC<AnswerProps> = () => {
-    const dispatch = useDispatch();
     const {game} = useSelector((state: any) => state);
     const {totals, currentTimes} = game;
 
@@ -34,9 +30,11 @@ const Answer: React.FC<AnswerProps> = () => {
                 return success;
             });
 
-        dispatch(gameChangeTotals(totals));
-        dispatch(gameChangeStats({success}));
-        dispatch(gameChangeStatus('result'));
+        return {
+            totals: totals,
+            stats: {success},
+            status: 'result',
+        };
     };
 
     return (
@@ -46,11 +44,11 @@ const Answer: React.FC<AnswerProps> = () => {
         >
             <Title level={2}>Введите ответ</Title>
             <FormInputAnswerLayout index={0} autoFocus={0}/>
-            <Button type="primary" htmlType="submit" block size="large" icon={<ArrowRightOutlined />}>
+            <Button type="primary" htmlType="submit" block size="large" icon={<ArrowRightOutlined/>}>
                 Далее
             </Button>
         </AnswerLayout>
     );
 };
 
-export default Form.create()(Answer);
+export default Answer;

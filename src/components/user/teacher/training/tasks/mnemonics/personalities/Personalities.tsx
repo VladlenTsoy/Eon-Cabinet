@@ -19,13 +19,14 @@ const Personalities: React.FC<PersonalitiesProps> = (
         addSettingHomework,
     }
 ) => {
+    const setting = userSetting.hasOwnProperty('mode') ? {...userSetting, mode: String(userSetting.mode)} : userSetting;
     return <FormSettingLayout
         initialValues={{
             mode: '1',
             count: 1,
             time: 1,
         }}
-        userSetting={userSetting}
+        userSetting={setting}
         clearSaveSetting={clearSaveSetting}
         startApplication={startApplication}
         addSettingHomework={addSettingHomework}

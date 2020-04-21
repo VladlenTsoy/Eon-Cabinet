@@ -53,7 +53,7 @@ const InputAnswer: React.FC<InputAnswerProps> = ({total, totalKey}) => {
         <div className="content">
             <FormItem
                 label={`Страна №${totalKey + 1}`}
-                name={`answer[${totalKey}][country]`}
+                name={['answer', totalKey, 'country']}
                 size="large"
                 placeholder="Название"
                 marginBottom="0"
@@ -61,7 +61,7 @@ const InputAnswer: React.FC<InputAnswerProps> = ({total, totalKey}) => {
             />
             {Number(setting.mode) > 1 ?
                 <FormItem
-                    name={`answer[${totalKey}][capital]`}
+                    name={['answer', totalKey, 'capital']}
                     placeholder="Столица"
                     marginBottom="0"
                 /> : null}
