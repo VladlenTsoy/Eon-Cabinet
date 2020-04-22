@@ -35,16 +35,18 @@ const Buttons: React.FC<ButtonsProps> = (
      */
     const onFinish = async (e: any) => {
         e.preventDefault();
-        let values = form.getFieldsValue();
-        setLoading(true);
-        try {
-            if (addSettingHomework)
-                await addSettingHomework(values);
-            else if (startApplication)
-                await startApplication(values, false);
-        } catch (e) {
-            setLoading(false);
-        }
+        form.validateFields()
+            .then(async (values: any) => {
+                setLoading(true);
+                if (addSettingHomework)
+                    await addSettingHomework(values);
+                else if (startApplication)
+                    await startApplication(values, false);
+            })
+            .catch(() => {
+                setLoading(false);
+
+            })
     };
 
     /***
@@ -54,11 +56,13 @@ const Buttons: React.FC<ButtonsProps> = (
      */
     const handlerPrintList = async (e: any) => {
         e.preventDefault();
-        let values = form.getFieldsValue();
-        setLoading(true);
-        if (startApplication)
-            await startApplication(values, true);
-        setLoading(false);
+        form.validateFields()
+            .then(async (values: any) => {
+                setLoading(true);
+                if (startApplication)
+                    await startApplication(values, true);
+                setLoading(false);
+            });
     };
 
 
