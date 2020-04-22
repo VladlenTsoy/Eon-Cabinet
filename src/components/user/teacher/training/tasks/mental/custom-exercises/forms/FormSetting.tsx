@@ -23,6 +23,7 @@ const FormSetting: React.FC<FormSettingProps> = (
     }
 ) => {
     const [initialValues] = useState({time: 1, extra: [], sound: 'none'});
+    const [initValues, setInitValues] = useState({...initialValues, ...userSetting});
     const [form] = Form.useForm();
     const [fields, setFields] = useState<any[]>([]);
     const [description, setDescription] = useState('');
@@ -36,6 +37,9 @@ const FormSetting: React.FC<FormSettingProps> = (
     });
 
     const clearFormSetting = useCallback(async () => {
+        await setInitValues(initialValues);
+        await setFields([]);
+        await setData({categories: [], modes: [], typeTasks: [], titles: [], typeTask: 'basic', mode: 'plus-minus'});
         await clearSaveSetting();
         form.resetFields();
     }, [form, clearSaveSetting]);
@@ -131,22 +135,19 @@ const FormSetting: React.FC<FormSettingProps> = (
     };
 
     useEffect(() => {
-        if (typeof userSetting === 'object' && Object.keys(userSetting).length) {
+        if (initValues.hasOwnProperty('category_id')) {
             let setting = updateTypeTasks({
-                allFields: [], categories, category: userSetting.category_id, user: userSetting
+                allFields: [], categories, category: initValues.category_id, user: initValues
             });
             if (setting)
                 setData(setting);
-        } else {
-            setFields([]);
-            setData({categories: [], modes: [], typeTasks: [], titles: [], typeTask: 'basic', mode: 'plus-minus'})
         }
-    }, [userSetting]);
+    }, [initValues]);
 
     return <Form
         form={form}
         layout="vertical"
-        initialValues={{...initialValues, ...userSetting}}
+        initialValues={initValues}
         fields={fields}
         onFieldsChange={handleFormChange}
     >
