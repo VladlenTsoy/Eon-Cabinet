@@ -11,7 +11,7 @@ interface TitleItemProps {
 
 const TitleItem: React.FC<TitleItemProps> = ({titles, onChangeHandler}) => {
     return <FormItem label="Уровень" name="custom_exercises_id" requiredMsg="Выберите уровень!">
-        <Select onChange={(item: any) => onChangeHandler(item)} size="large">
+        <Select onChange={(item: any, select:any) => onChangeHandler(item, select)} size="large">
             {
                 titles
                     .map((item: any) =>

@@ -31,6 +31,8 @@ const FormSetting: React.FC<FormSettingProps> = (
         modes: [],
         typeTasks: [],
         titles: [],
+        typeTask: 'basic',
+        mode: 'plus-minus',
     });
 
     const clearFormSetting = useCallback(async () => {
@@ -64,7 +66,7 @@ const FormSetting: React.FC<FormSettingProps> = (
             return field;
         }));
 
-        return {categories, typeTasks, modes, titles}
+        return {categories, typeTasks, modes, titles, typeTask, mode}
     }, [exercises]);
 
     const updateModes = useCallback(({allFields, categories, category, typeTask, typeTasks, user = false}) => {
@@ -135,8 +137,10 @@ const FormSetting: React.FC<FormSettingProps> = (
             });
             if (setting)
                 setData(setting);
-        } else
-            setData({categories: [], modes: [], typeTasks: [], titles: [],})
+        } else {
+            setFields([]);
+            setData({categories: [], modes: [], typeTasks: [], titles: [], typeTask: 'basic', mode: 'plus-minus'})
+        }
     }, [userSetting]);
 
     return <Form

@@ -6,7 +6,7 @@ interface ConfigItemProps {
     mode: string;
 }
 
-const ConfigItem:React.FC<ConfigItemProps> = (
+const ConfigItem: React.FC<ConfigItemProps> = (
     {
         mode,
         typeTask,
