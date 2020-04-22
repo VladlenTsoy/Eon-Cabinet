@@ -29,7 +29,6 @@ const FormItems: React.FC<FormHeaderProps> = (
         onChangeHandler,
     }
 ) => {
-    console.log(1);
     return <>
         <CategoryItem categories={categories}/>
         <TypeItem typeTasks={data.typeTasks}/>

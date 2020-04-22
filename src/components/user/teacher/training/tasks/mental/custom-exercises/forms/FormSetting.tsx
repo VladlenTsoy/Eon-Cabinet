@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {Form} from "antd";
-import FromAction from "./form-action/FromAction";
 import FormItems from "./form-items/FormItems";
+import FromAction from "./form-action/FromAction";
 
 interface FormSettingProps {
     userSetting: any,
@@ -22,7 +22,7 @@ const FormSetting: React.FC<FormSettingProps> = (
         addSettingHomework,
     }
 ) => {
-    const [initialValues, setInitialData] = useState({time: 1, extra: [], sound: 'none'});
+    const [initialValues] = useState({time: 1, extra: [], sound: 'none'});
     const [form] = Form.useForm();
     const [fields, setFields] = useState<any[]>([]);
     const [description, setDescription] = useState('');
@@ -45,6 +45,7 @@ const FormSetting: React.FC<FormSettingProps> = (
     }, []);
 
     const updateTitles = useCallback(({allFields, categories, category, typeTask, mode, typeTasks, modes, user = false}) => {
+        if (!category || !typeTask || !mode) return false;
         let titles = Object.values(exercises[category][typeTask][mode]);
         let title: any = titles[0];
         let titleValue = user ? user.custom_exercises_id : title.id;
@@ -67,12 +68,14 @@ const FormSetting: React.FC<FormSettingProps> = (
     }, [exercises]);
 
     const updateModes = useCallback(({allFields, categories, category, typeTask, typeTasks, user = false}) => {
+        if (!category || !typeTask) return false;
         let modes = Object.keys(exercises[category][typeTask]);
         let mode = user ? user.mode : modes[0];
         return updateTitles({allFields, categories, category, typeTask, mode, typeTasks, modes, user});
     }, [updateTitles, exercises]);
 
     const updateTypeTasks = useCallback(({allFields, categories, category, user = false,}) => {
+        if (!category) return false;
         let typeTasks = Object.keys(exercises[category]);
         let typeTask = user ? user.anzan : typeTasks[0];
         return updateModes({allFields, categories, category, typeTask, typeTasks, user});
@@ -95,14 +98,15 @@ const FormSetting: React.FC<FormSettingProps> = (
             let typeTask = allFields.find((field: any) => field.name.includes('anzan'));
 
             setData((prevState: any) => {
+                let stats = prevState;
                 if (changedFields[0].name.includes('category_id'))
-                    return updateTypeTasks({
+                    stats = updateTypeTasks({
                         allFields,
                         categories: [],
                         category: changedFields[0].value,
                     });
                 else if (changedFields[0].name.includes('anzan'))
-                    return updateModes({
+                    stats = updateModes({
                         allFields,
                         categories: [],
                         category: category.value,
@@ -110,7 +114,7 @@ const FormSetting: React.FC<FormSettingProps> = (
                         typeTasks: prevState.typeTasks,
                     });
                 else if (changedFields[0].name.includes('mode'))
-                    return updateTitles({
+                    stats = updateTitles({
                         allFields,
                         categories: [],
                         category: category.value,
@@ -119,7 +123,7 @@ const FormSetting: React.FC<FormSettingProps> = (
                         typeTasks: prevState.typeTasks,
                         modes: prevState.modes,
                     });
-                return prevState;
+                return stats;
             });
         }
     };
@@ -129,16 +133,16 @@ const FormSetting: React.FC<FormSettingProps> = (
             let setting = updateTypeTasks({
                 allFields: [], categories, category: userSetting.category_id, user: userSetting
             });
-            setData(setting);
-        }
+            if (setting)
+                setData(setting);
+        } else
+            setData({categories: [], modes: [], typeTasks: [], titles: [],})
     }, [userSetting]);
 
     return <Form
         form={form}
         layout="vertical"
-        initialValues={{
-            ...initialValues, ...userSetting
-        }}
+        initialValues={{...initialValues, ...userSetting}}
         fields={fields}
         onFieldsChange={handleFormChange}
     >

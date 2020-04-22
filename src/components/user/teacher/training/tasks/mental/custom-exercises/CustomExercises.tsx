@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {useApiUserGeneral} from "effects/use-api-user-general.effect";
 import {LoadingBlock} from "lib";
 import FormSetting from "./forms/FormSetting";
@@ -20,13 +20,12 @@ const CustomExercises: React.FC<CustomExercisesProps> = (
         addSettingHomework
     }
 ) => {
-    const [setting] = useState(userSetting);
     const [loading, exercises] = useApiUserGeneral({url: '/teacher/custom-exercises/form'});
 
     return !loading ?
         <FormSetting
             exercises={exercises}
-            userSetting={setting}
+            userSetting={userSetting}
             isEdit={isEdit}
             clearSaveSetting={clearSaveSetting}
             startApplication={startApplication}

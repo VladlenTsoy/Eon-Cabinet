@@ -65,7 +65,6 @@ const Buttons: React.FC<ButtonsProps> = (
             });
     };
 
-
     /***
      * Очистка настроек
      *
