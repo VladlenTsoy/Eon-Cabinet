@@ -42,7 +42,7 @@ const FormSetting: React.FC<FormSettingProps> = (
         await setData({categories: [], modes: [], typeTasks: [], titles: [], typeTask: 'basic', mode: 'plus-minus'});
         await clearSaveSetting();
         form.resetFields();
-    }, [form, clearSaveSetting]);
+    }, [form, clearSaveSetting, initialValues]);
 
     const [categories] = useState<any>(typeof exercises === 'object' ? Object.keys(exercises) : []);
 
@@ -142,7 +142,7 @@ const FormSetting: React.FC<FormSettingProps> = (
             if (setting)
                 setData(setting);
         }
-    }, [initValues]);
+    }, [initValues, categories, updateTypeTasks]);
 
     return <Form
         form={form}

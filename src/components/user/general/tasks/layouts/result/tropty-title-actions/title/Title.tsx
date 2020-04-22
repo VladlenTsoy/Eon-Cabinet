@@ -41,7 +41,7 @@ const Title: React.FC<TitleProps> = () => {
     const result: boolean = stats.all && stats.all === stats.success;
 
     return <TitleWrapper result={result.toString()}>
-        <div className="counter">{stats.all}/{stats.success}</div>
+        <div className="counter">{stats.success}/{stats.all}</div>
         <div className={`title animated ${result ? 'tada' : 'flash'}`}>{result ? 'Победа' : 'Неудача'}!</div>
     </TitleWrapper>
 };

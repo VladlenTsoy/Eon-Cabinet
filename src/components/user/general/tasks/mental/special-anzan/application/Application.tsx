@@ -37,7 +37,7 @@ const Application: React.FC = () => {
                 startApplication(numbers);
             }
         })();
-    }, [startApplication, status, createNumbers, totals]);
+    }, [startApplication, status, createNumbers, totals, currentTimes]);
 
     return <ApplicationAnzanWrapper>
         <Card>
