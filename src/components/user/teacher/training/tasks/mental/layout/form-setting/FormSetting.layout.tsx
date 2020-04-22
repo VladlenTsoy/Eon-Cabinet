@@ -7,6 +7,7 @@ interface FormSettingProps {
     isEdit?: boolean;
     initialValues: any;
     onValuesChange?: (changeValues: any, allValues: any) => void;
+    onFieldsChange?: (changeFields: any, allFields: any) => void;
     userSetting: any;
     clearSaveSetting?: any;
     startApplication?: (setting: any, print: boolean) => void;
@@ -17,6 +18,7 @@ const FormSettingLayout: React.FC<FormSettingProps> = (
     {
         initialValues,
         onValuesChange,
+        onFieldsChange,
         userSetting,
         clearSaveSetting,
         startApplication,
@@ -39,6 +41,7 @@ const FormSettingLayout: React.FC<FormSettingProps> = (
 
     return <Spin tip="Загрузка..." spinning={loading}>
         <Form
+            onFieldsChange={onFieldsChange}
             onValuesChange={onValuesChange}
             form={form}
             initialValues={initValues}

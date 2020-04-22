@@ -31,13 +31,13 @@ const App: React.FC = () => {
     }, [api.token, dispatch]);
 
     useEffect(() => {
-        let jivoSite = document.createElement('script');
-        jivoSite.async = true;
-        jivoSite.src = '//code.jivosite.com/widget/sgTNJpRrJZ';
-        document.documentElement.appendChild(jivoSite);
-
-        ReactGA.initialize('UA-129675719-1');
-        ReactGA.pageview(window.location.pathname + window.location.search);
+        // let jivoSite = document.createElement('script');
+        // jivoSite.async = true;
+        // jivoSite.src = '//code.jivosite.com/widget/sgTNJpRrJZ';
+        // document.documentElement.appendChild(jivoSite);
+        //
+        // ReactGA.initialize('UA-129675719-1');
+        // ReactGA.pageview(window.location.pathname + window.location.search);
     }, []);
 
     useEffect(() => {
