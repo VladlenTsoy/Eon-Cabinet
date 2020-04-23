@@ -1,20 +1,21 @@
 import {
     GAME_CHANGE_CURRENT_TIMES,
-    GAME_CHANGE_OUTPUT,
-    GAME_CHANGE_SETTING,
+    GAME_CHANGE_DISPLAY_TYPE,
+    GAME_CHANGE_EXECUTION_MODE,
     GAME_CHANGE_STATS,
     GAME_CHANGE_STATUS,
-    GAME_CHANGE_TOTALS
-} from "./actions";
+    GameReducerTypes, SelectGameTypes,
+} from "./types";
 
-export const gameReducer = (state: any = {
+export const game: SelectGameTypes = (state) => state.game;
+
+export const gameReducer: GameReducerTypes = (state = {
     status: 'start',
+    displayType: 'basic',
+    executionMode: 'first',
     currentTimes: 1,
-    totals: [],
-    setting: null,
-    output: null,
     stats: {all: 0, success: 0},
-}, action: any) => {
+}, action) => {
     switch (action.type) {
         case GAME_CHANGE_STATUS:
             return {
@@ -28,29 +29,22 @@ export const gameReducer = (state: any = {
                 currentTimes: action.payload
             };
 
-        case GAME_CHANGE_SETTING:
-            return {
-                ...state,
-                setting: action.payload
-            };
-
-        case GAME_CHANGE_TOTALS:
-            return {
-                ...state,
-                totals: action.payload
-            };
-
         case GAME_CHANGE_STATS:
             return {
                 ...state,
                 stats: action.payload
             };
 
-        case GAME_CHANGE_OUTPUT:
+        case GAME_CHANGE_EXECUTION_MODE:
             return {
                 ...state,
-                output: action.payload
+                executionMode: action.payload
+            };
+
+        case GAME_CHANGE_DISPLAY_TYPE:
+            return {
+                ...state,
+                displayType: action.payload
             };
     }
-    return state;
 };

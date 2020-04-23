@@ -1,6 +1,6 @@
 import React from 'react';
-import { ArrowRightOutlined, FlagOutlined, HistoryOutlined } from '@ant-design/icons';
-import { Button } from "antd";
+import {ArrowRightOutlined, FlagOutlined, HistoryOutlined} from '@ant-design/icons';
+import {Button} from "antd";
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
 import {gameChangeStatus} from "../../../../../../../store/game/actions";
@@ -54,18 +54,19 @@ interface ActionIntermediateProps {
 
 const ActionIntermediate: React.FC<ActionIntermediateProps> = () => {
     const {game} = useSelector((state: any) => state);
-    const {setting, currentTimes} = game;
+    const {setting, currentTimes, status} = game;
     const dispatch = useDispatch();
 
     const repeatExercise = () => dispatch(gameChangeStatus('refresh'));
-    const nextExercise = () => dispatch(gameChangeStatus('start'));
+    const nextExercise = () => dispatch(gameChangeStatus(status === 'repeat' ? 'repeat' : 'start'));
+
     const completionTask = () => setting.extra && setting.extra.includes('group') ?
         dispatch(gameChangeStatus('answer')) :
         dispatch(gameChangeStatus('result'));
 
     return (
         <ActionWrapper>
-            <Button icon={<HistoryOutlined />} size="large" onClick={repeatExercise}>Повторить текущий пример</Button>
+            <Button icon={<HistoryOutlined/>} size="large" onClick={repeatExercise}>Повторить текущий пример</Button>
             <div className="counts-block">
                 <div className="passed-block">
                     <span className="title">Пройдено</span>
@@ -77,12 +78,13 @@ const ActionIntermediate: React.FC<ActionIntermediateProps> = () => {
                 </div>
             </div>
             {currentTimes >= setting.times ?
-                <Button type="primary" size="large" autoFocus icon={<FlagOutlined />} onClick={completionTask}>Завершить</Button> :
+                <Button type="primary" size="large" autoFocus icon={<FlagOutlined/>}
+                        onClick={completionTask}>Завершить</Button> :
                 <Button.Group size="large">
-                    <Button icon={<FlagOutlined />} onClick={completionTask}>Завершить</Button>
+                    <Button icon={<FlagOutlined/>} onClick={completionTask}>Завершить</Button>
                     <Button type="primary" size="large" autoFocus onClick={nextExercise}>
                         Следующее
-                        <ArrowRightOutlined />
+                        <ArrowRightOutlined/>
                     </Button>
                 </Button.Group>
             }

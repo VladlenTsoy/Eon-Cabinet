@@ -1,6 +1,6 @@
 import React from 'react';
-import { TrophyOutlined } from '@ant-design/icons';
-import { Steps } from "antd";
+import {TrophyOutlined} from '@ant-design/icons';
+import {Steps} from "antd";
 import styled from "styled-components";
 import {useSelector} from "react-redux";
 
@@ -37,8 +37,9 @@ const StepsIntermediate: React.FC<StepsIntermediateProps> = ({checkResult}) => {
                 <Step
                     key={key + 1}
                     title={key + 1}
-                    icon={<TrophyOutlined />}
-                    status={!totals[key + 1] ? 'wait' : checkResult(totals[key + 1]) ? 'finish' : 'error'}
+                    icon={<TrophyOutlined/>}
+                    status={!(totals[key + 1] && totals[key + 1].hasOwnProperty('result')) ?
+                        'wait' : checkResult(totals[key + 1]) ? 'finish' : 'error'}
                 />
             )}
         </StepsWrapper>

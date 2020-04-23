@@ -1,7 +1,10 @@
 import React from "react";
 import Timer from "react-compound-timer";
 import styled from "styled-components";
-import { ClockCircleOutlined } from '@ant-design/icons';
+import {ClockCircleOutlined} from '@ant-design/icons';
+import {Modal} from "antd";
+import {useDispatch} from "react-redux";
+import {gameChangeStatus} from "../../../../../../../store/game/actions";
 
 const TimerWrapper = styled.div`
   position: fixed;
@@ -21,29 +24,39 @@ const TimerWrapper = styled.div`
 `;
 
 interface TimerBlockProps {
-    time: any;
-    callback: any;
+    time: number;
 }
 
-const TimerBlock: React.FC<TimerBlockProps> = ({time, callback}) => {
-    return (
-        <TimerWrapper>
-            <ClockCircleOutlined />
-            <Timer
-                formatValue={(value: any) => value < 10 ? `0${value}` : value}
-                initialTime={60000 * time}
-                direction="backward"
-                checkpoints={[
-                    {
-                        time: 1000,
-                        callback: callback,
-                    }
-                ]}
-            >
-                <Timer.Minutes/> : <Timer.Seconds/>
-            </Timer>
-        </TimerWrapper>
-    );
+const TimerBlock: React.FC<TimerBlockProps> = ({time}) => {
+    const dispatch = useDispatch();
+
+    // Сообщение при завершении времени
+    const timeIsRunningOut = () => {
+        return Modal.warning({
+            title: 'This is a warning message',
+            content: 'some messages...some messages...',
+            onOk() {
+                dispatch(gameChangeStatus('answer'));
+            }
+        });
+    };
+
+    return <TimerWrapper>
+        <ClockCircleOutlined/>
+        <Timer
+            formatValue={(value: any) => value < 10 ? `0${value}` : value}
+            initialTime={60000 * time}
+            direction="backward"
+            checkpoints={[
+                {
+                    time: 1000,
+                    callback: timeIsRunningOut,
+                }
+            ]}
+        >
+            <Timer.Minutes/> : <Timer.Seconds/>
+        </Timer>
+    </TimerWrapper>;
 };
 
 export default React.memo(TimerBlock);

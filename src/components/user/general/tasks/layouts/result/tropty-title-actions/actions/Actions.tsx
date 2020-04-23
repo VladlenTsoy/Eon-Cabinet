@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from "styled-components";
-import { ArrowLeftOutlined, HistoryOutlined, RedoOutlined } from '@ant-design/icons';
-import {useDispatch} from "react-redux";
-import {gameChangeStatus} from "../../../../../../../../store/game/actions";
+import {ArrowLeftOutlined, HistoryOutlined, RedoOutlined} from '@ant-design/icons';
+import {useDispatch, useSelector} from "react-redux";
+import {gameChangeCurrentTimes, gameChangeStatus, gameChangeTotals} from "../../../../../../../../store/game/actions";
 import {withRouter, RouteComponentProps} from "react-router";
 
 const ActionsWrapper = styled.div`
@@ -54,10 +54,18 @@ const ActionsWrapper = styled.div`
 type ActionsProps = RouteComponentProps<{ homeworkId?: string, id?: string }>
 
 const Actions: React.FC<ActionsProps> = ({match, history}) => {
+    const {game} = useSelector((state: any) => state);
+    const {totals} = game;
+
     const dispatch = useDispatch();
 
     const again = () => dispatch(gameChangeStatus('again'));
-    const repeat = () => dispatch(gameChangeStatus('repeat'));
+    const repeat = () => {
+        let _totals = totals.map((total: any) => ({exercise: total.exercise, answer: total.answer}));
+        dispatch(gameChangeCurrentTimes(1));
+        dispatch(gameChangeTotals(_totals));
+        dispatch(gameChangeStatus('repeat'));
+    };
     const back = () => history.goBack();
 
     return (
@@ -65,15 +73,15 @@ const Actions: React.FC<ActionsProps> = ({match, history}) => {
             {match.params.homeworkId ?
                 <>
                     <div onClick={back}>
-                        <ArrowLeftOutlined /> Вернуться назад
+                        <ArrowLeftOutlined/> Вернуться назад
                     </div>
                 </> :
                 <>
                     <div onClick={again}>
-                        <RedoOutlined /> Повторить с новыми примерами
+                        <RedoOutlined/> Повторить с новыми примерами
                     </div>
                     <div onClick={repeat}>
-                        <HistoryOutlined /> Повторить те же примеры
+                        <HistoryOutlined/> Повторить те же примеры
                     </div>
                 </>
             }

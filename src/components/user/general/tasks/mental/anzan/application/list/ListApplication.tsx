@@ -61,31 +61,13 @@ const ListApplication: React.FC<ListApplicationProps> = (
         })();
     }, [dispatch, numbers, status, updateStats, addingAnswer]);
 
-    // Сообщение при завершении времени
-    const timeIsRunningOut = () => {
-        return Modal.warning({
-            title: 'This is a warning message',
-            content: 'some messages...some messages...',
-            onOk() {
-            }
-        });
-    };
+    if (loading)
+        return <LoadingBlock/>;
 
-    return loading ?
-        <LoadingBlock/> :
-        <>
-            {
-                status === 'start' ||
-                status === 'again' ||
-                status === 'repeat' ||
-                status === 'refresh' ?
-                    <TimerBlock
-                        time={setting.time}
-                        callback={timeIsRunningOut}
-                    /> : null
-            }
-            <TableApplication isMultiplication={isMultiplication}/>
-        </>;
+    return <>
+        {status === 'start' && <TimerBlock time={setting.time}/>}
+        <TableApplication isMultiplication={isMultiplication}/>
+    </>;
 };
 
 export default ListApplication;
