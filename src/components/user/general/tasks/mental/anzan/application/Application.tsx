@@ -42,6 +42,15 @@ const Application: React.FC = () => {
                     answer: addAnswerToTotals(exercises),
                 }
             });
+        } else if (setting.anzan === 'double') {
+            totals[currentTimes] = data.map((exercises: any) => {
+                exercises = setting.extra && setting.extra.includes('mirror') ? updateMirror(exercises) : exercises;
+                return {
+                    exercise: exercises,
+                    output: addOutputToTotals(exercises),
+                    answer: addAnswerToTotals(exercises),
+                };
+            });
         } else {
             const exercises = setting.extra && setting.extra.includes('mirror') ? updateMirror(data) : data;
             totals[currentTimes] = {

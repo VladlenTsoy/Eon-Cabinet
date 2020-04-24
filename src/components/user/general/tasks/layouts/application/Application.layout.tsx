@@ -14,6 +14,8 @@ import {SettingAnzanProps} from "../../../../../../store/tasks/setting/games-typ
 import PreparationLayout from "./preparation/Preparation.layout";
 import List from "./list-new/List";
 import {Form} from "antd";
+import Turbo from "./turbo/Turbo";
+import Double from "./double/Double";
 
 const BasicSound = require('assets/sounds/anzan.ogg');
 
@@ -115,6 +117,8 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
             {timer && <Timer time={setting.time} afterMessage={afterMessage}/>}
             {displayType === 'basic' && <Basic setting={setting} nextStatus={nextStatus} basicSound={basicSound}/>}
             {displayType === 'list' && setting.anzan === 'list' && <List listForm={ListForm} setting={setting} updateResultsTotals={updateResultsTotals}/>}
+            {displayType === 'turbo' && <Turbo/>}
+            {displayType === 'double' && setting.anzan === 'double' && <Double setting={setting} nextStatus={nextStatus} basicSound={basicSound}/>}
         </>
     </PreparationLayout>;
 };

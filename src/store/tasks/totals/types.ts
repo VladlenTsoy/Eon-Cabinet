@@ -11,6 +11,8 @@ interface anzanTotalProps {
     result?: boolean;
 }
 
+type doubleTotalsProps = anzanTotalProps[];
+
 type TotalsStateProps = { [currentTimes: number]: anzanTotalProps };
 
 interface TotalsActionTypes {

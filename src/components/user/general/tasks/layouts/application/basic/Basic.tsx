@@ -82,7 +82,7 @@ const Basic: React.FC<BasicProps> = (
         outputInterval(totals[currentTimes].output);
         if (window.speechSynthesis.getVoices().length === 0)
             message.error("Произошла ошибка! Звук в данном браузере не доступен.")
-    }, [outputInterval, totals]);
+    }, [outputInterval, totals, currentTimes]);
 
     if (setting.extra && setting.extra.includes("abacus"))
         return <ApplicationAnzanWrapper>
