@@ -1,10 +1,10 @@
 import React from 'react';
 import {ActionWrapper} from "../../../../../../../homework/more/tasks/task/action/Action";
 import {useDispatch} from "react-redux";
-import {gameChangeSetting} from "store/game/actions";
 import { FlagOutlined } from '@ant-design/icons';
 import {Button} from "antd";
 import {RouteComponentProps, withRouter} from "react-router";
+import {settingChange} from "../../../../../../../../../../store/tasks/setting/action";
 
 type ActionProps = RouteComponentProps & {
     task: any;
@@ -28,7 +28,7 @@ const Action: React.FC<ActionProps> = ({history, task, type}) => {
     };
 
     const startApplication = (_task: any) => {
-        dispatch(gameChangeSetting(_task.settings));
+        dispatch(settingChange(_task.settings));
         history.push(`/olympiads/${task.sent_id}/${_task.id}/${_task.task_id}`);
     };
 

@@ -2,7 +2,7 @@ import React from 'react';
 import {FlagOutlined, RedoOutlined} from '@ant-design/icons';
 import {Button} from "antd";
 import {useDispatch} from "react-redux";
-import {gameChangeSetting, gameChangeStatus, gameChangeTotals} from "../../../../../../../../store/game/actions";
+import {gameChangeStatus} from "../../../../../../../../store/game/actions";
 import {withRouter, RouteComponentProps} from "react-router";
 import styled from "styled-components";
 
@@ -74,7 +74,7 @@ const Action: React.FC<Action> = ({task, history, id, type}) => {
             }
         }
 
-        dispatch(gameChangeSetting(_task.settings));
+        // dispatch(gameChangeSetting(_task.settings));
         history.push(`/homework/${id}/${_task.id}/${_task.task_id}`);
     };
 
@@ -95,10 +95,10 @@ const Action: React.FC<Action> = ({task, history, id, type}) => {
             }
         }
 
-        dispatch(gameChangeSetting(_task.settings));
+        // dispatch(gameChangeSetting(_task.settings));
         if (Number(_task.first.view) !== 1) {
-            dispatch(gameChangeStatus('refresh'));
-            dispatch(gameChangeTotals(_task.first.totals));
+            // dispatch(gameChangeStatus('refresh'));
+            // dispatch(gameChangeTotals(_task.first.totals));
         }
         history.push(`/homework/${id}/${_task.id}/${_task.task_id}`);
     };

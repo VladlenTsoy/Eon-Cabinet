@@ -7,11 +7,12 @@ export const GAME_CHANGE_STATUS = "GAME_CHANGE_STATUS";
 export const GAME_CHANGE_CURRENT_TIMES = "GAME_CHANGE_CURRENT_TIMES";
 export const GAME_CHANGE_STATS = "GAME_CHANGE_STATS";
 
-type StatusProps = "preparation" | "start" | "answer" | 'intermediate' | 'result';
-type ExecutionModeProps = 'first' | 'repeat' | 'again';
-type DisplayTypeProps = 'basic' | 'list' | 'carousel';
-type StatsProps = { all?: number; success?: number };
-type CurrentTimesProps = number;
+export type StatusProps = "preparation" | "start" | "answer" | 'intermediate' | 'result';
+export type ExecutionModeProps = 'first' | 'repeat' | 'again';
+export type DisplayTypeProps = 'basic' | 'list' | 'carousel';
+export type StatsProps = { all: number; success: number };
+export type StatsActionProps = { all?: number; success?: number };
+export type CurrentTimesProps = number;
 
 export interface GameStateProps {
     status: StatusProps,
@@ -38,7 +39,7 @@ interface GameCurrentTimesActionTypes {
 
 interface GameStatsActionTypes {
     type: typeof GAME_CHANGE_STATS;
-    payload: StatsProps;
+    payload: StatsActionProps;
 }
 
 interface GameDisplayTypeActionTypes {
@@ -56,7 +57,7 @@ export type GameActionTypes =
 export type GameChangeExecutionModeTypes = ActionFunctionTypes<ExecutionModeProps, GameModeActionTypes>;
 export type GameChangeStatusTypes = ActionFunctionTypes<StatusProps, GameStatusActionTypes>;
 export type GameChangeCurrentTimesTypes = ActionFunctionTypes<CurrentTimesProps, GameCurrentTimesActionTypes>;
-export type GameChangeStatsTypes = ActionFunctionTypes<StatsProps, GameStatsActionTypes>;
+export type GameChangeStatsTypes = ActionFunctionTypes<StatsActionProps, GameStatsActionTypes>;
 export type GameChangeDisplayTypeTypes = ActionFunctionTypes<DisplayTypeProps, GameDisplayTypeActionTypes>;
 
 export type GameReducerTypes = Reducer<GameStateProps, GameActionTypes>;

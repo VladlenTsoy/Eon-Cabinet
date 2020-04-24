@@ -1,10 +1,10 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {random, shuffle} from 'lodash';
-import {gameChangeTotals} from "../../../../../../../store/game/actions";
 import {LoadingBlock} from "lib";
 import ListApplication from "./list-application/ListApplication";
 import BasicApplication from "./basic-application/BasicApplication";
+import {totalsChange} from "../../../../../../../store/tasks/totals/action";
 
 const Application: React.FC = () => {
     const {game} = useSelector((state: any) => state);
@@ -24,7 +24,7 @@ const Application: React.FC = () => {
         }
 
         let _totals = shuffle(numbers.map((number: number) => ({exercise: number})));
-        await dispatch(gameChangeTotals(_totals));
+        await dispatch(totalsChange(_totals));
         setLoading(false);
     }, [setting, dispatch]);
 

@@ -8,8 +8,9 @@ import TableNumbersMultiplication from "./body-table/body-numbers-multiplication
 import TableNumbersAddition from "./body-table/body-numbers-addition/TableNumbersAddition";
 import {useDispatch, useSelector} from "react-redux";
 import {chunk} from "lodash";
-import {gameChangeStats, gameChangeStatus, gameChangeTotals} from "../../../../../../../../../store/game/actions";
+import {gameChangeStats, gameChangeStatus} from "../../../../../../../../../store/game/actions";
 import styled from "styled-components";
+import {totalsChange} from "../../../../../../../../../store/tasks/totals/action";
 
 const ScrollWrapper = styled.div`
   width: 100%;
@@ -42,7 +43,7 @@ const TableApplication: React.FC<TableApplicationProps> = (
         chunk(totals, setting.column)
     );
 
-    const changeState = (status: string) =>
+    const changeState = (status: any) =>
         dispatch(gameChangeStatus(status));
 
     const updateStats = (stats: any) =>
@@ -73,7 +74,7 @@ const TableApplication: React.FC<TableApplicationProps> = (
                     user: values.answer[key]
                 });
             });
-            dispatch(gameChangeTotals(_totals));
+            dispatch(totalsChange(_totals));
             updateStats(stats);
             setTables(isMultiplication ?
                 chunk(chunk(_totals, setting.column), setting.rows) :

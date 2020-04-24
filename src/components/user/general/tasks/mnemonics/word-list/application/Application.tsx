@@ -1,10 +1,11 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {gameChangeStatus, gameChangeTotals} from "../../../../../../../store/game/actions";
+import {gameChangeStatus} from "../../../../../../../store/game/actions";
 import {useDispatch, useSelector} from "react-redux";
 import {LoadingBlock} from "lib";
 import ListApplication from "./list-application/ListApplication";
 import BasicApplication from "./basic-application/BasicApplication";
 import {Modal} from "antd";
+import {totalsChange} from "../../../../../../../store/tasks/totals/action";
 
 const Application: React.FC = () => {
     const {game, api} = useSelector((state: any) => state);
@@ -26,7 +27,7 @@ const Application: React.FC = () => {
         let response = await api.user_general.post('/task/words', {several: data});
         let _totals = response.data.map((exercise: any) => ({exercise}));
 
-        await dispatch(gameChangeTotals(_totals));
+        await dispatch(totalsChange(_totals));
     }, [dispatch, setting, api.user_general]);
 
     /**

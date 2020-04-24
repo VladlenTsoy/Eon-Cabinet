@@ -1,9 +1,7 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {
-    gameChangeOutput, gameChangeSetting,
     gameChangeStats,
     gameChangeStatus,
-    gameChangeTotals
 } from "store/game/actions";
 import _ from 'lodash';
 import {useDispatch, useSelector} from "react-redux";
@@ -13,6 +11,8 @@ import {useAddTimeout} from "effects/use-add-timeout.effect";
 import {useAddInternal} from "effects/use-add-interval.effect";
 import ApplicationAnzanWrapper from "../../../layouts/application/anzan/Anzan.layout";
 import IconAbacus from "assets/images/tasks/abacus.svg";
+import {totalsChange} from "../../../../../../../store/tasks/totals/action";
+import {settingChange} from "../../../../../../../store/tasks/setting/action";
 
 const Application: React.FC<any> = () => {
     const {game} = useSelector((state: any) => state);
@@ -23,7 +23,7 @@ const Application: React.FC<any> = () => {
     const [addTimeout] = useAddTimeout();
 
     const {totals, setting, status} = game;
-    const sOutput = useCallback((out: string) => dispatch(gameChangeOutput(out)), [dispatch]);
+    const sOutput = useCallback((out: string) => out, [dispatch]);
 
     // Output exercise
     const outputExercise = useCallback((i: number = 0) => {
@@ -48,8 +48,8 @@ const Application: React.FC<any> = () => {
     }, [dispatch, sOutput, outputExercise, addTimeout, setting]);
 
     const updateStore = useCallback(async (_totals: any, _setting: any) => {
-        await dispatch(gameChangeTotals(_totals));
-        await dispatch(gameChangeSetting(_setting));
+        await dispatch(totalsChange(_totals));
+        await dispatch(settingChange(_setting));
     }, [dispatch]);
 
     const createNumbers = useCallback(async () => {

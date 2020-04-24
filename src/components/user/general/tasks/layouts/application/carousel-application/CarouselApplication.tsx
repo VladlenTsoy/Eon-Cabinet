@@ -103,7 +103,6 @@ const CarouselApplication: React.FC<CarouselProps> = (
         {timeIsRunningOut && setting.time ?
             <TimerBlock
                 time={setting.time}
-                callback={timeIsRunningOut}
             /> : null}
         <CardWrapper>
             <CarouselWrapper className="animated fadeIn">

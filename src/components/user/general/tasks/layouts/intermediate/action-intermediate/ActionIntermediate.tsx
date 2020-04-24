@@ -57,8 +57,10 @@ const ActionIntermediate: React.FC<ActionIntermediateProps> = () => {
     const {setting, currentTimes, status} = game;
     const dispatch = useDispatch();
 
-    const repeatExercise = () => dispatch(gameChangeStatus('refresh'));
-    const nextExercise = () => dispatch(gameChangeStatus(status === 'repeat' ? 'repeat' : 'start'));
+    // const repeatExercise = () => dispatch(gameChangeStatus('refresh'));
+    // const nextExercise = () => dispatch(gameChangeStatus(status === 'repeat' ? 'repeat' : 'start'));
+    const repeatExercise = () => null;
+    const nextExercise = () => null;
 
     const completionTask = () => setting.extra && setting.extra.includes('group') ?
         dispatch(gameChangeStatus('answer')) :

@@ -12,7 +12,7 @@ import {Button} from "antd";
 import styled from "styled-components";
 import {withRouter, RouteComponentProps} from "react-router";
 import {useDispatch, useSelector} from "react-redux";
-import {gameChangeStatus} from "../../../../../../../../store/game/actions";
+import {gameChangeExecutionMode, gameChangeStatus} from "../../../../../../../../store/game/actions";
 
 const HeaderWrapper = styled.div`
   display: flex;
@@ -46,8 +46,8 @@ const Header: React.FC<HeaderProps & RouteComponentProps> = (
     const dispatch = useDispatch();
 
     const back = () => history.goBack();
-    const again = () => dispatch(gameChangeStatus('again'));
-    const repeat = () => dispatch(gameChangeStatus('repeat'));
+    const again = () => dispatch(gameChangeExecutionMode('again'));
+    const repeat = () => dispatch(gameChangeExecutionMode('repeat'));
 
     return (
         <HeaderWrapper>

@@ -1,9 +1,9 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {usePreloadPictures} from "../../../../../../../effects/use-preload-pictures.effect";
-import {gameChangeTotals} from "../../../../../../../store/game/actions";
 import {LoadingBlock} from "lib";
 import BasicApplication from "./basic-application/BasicApplication";
+import {totalsChange} from "../../../../../../../store/tasks/totals/action";
 
 const Application: React.FC = () => {
     const {game, api} = useSelector((state: any) => state);
@@ -23,7 +23,7 @@ const Application: React.FC = () => {
         await preloadImage(flags.concat(emblems));
 
         let _totals = response.data.map((exercise: any) => ({exercise}));
-        await dispatch(gameChangeTotals(_totals));
+        await dispatch(totalsChange(_totals));
 
         setLoading(false);
     }, [dispatch, setting, api.user_general, preloadImage]);

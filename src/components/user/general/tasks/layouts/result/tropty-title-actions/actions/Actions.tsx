@@ -2,8 +2,12 @@ import React from 'react';
 import styled from "styled-components";
 import {ArrowLeftOutlined, HistoryOutlined, RedoOutlined} from '@ant-design/icons';
 import {useDispatch, useSelector} from "react-redux";
-import {gameChangeCurrentTimes, gameChangeStatus, gameChangeTotals} from "../../../../../../../../store/game/actions";
+import {
+    gameChangeCurrentTimes,
+    gameChangeExecutionMode,
+} from "../../../../../../../../store/game/actions";
 import {withRouter, RouteComponentProps} from "react-router";
+import {totalsChange} from "../../../../../../../../store/tasks/totals/action";
 
 const ActionsWrapper = styled.div`
     font-size: 25px;
@@ -59,12 +63,12 @@ const Actions: React.FC<ActionsProps> = ({match, history}) => {
 
     const dispatch = useDispatch();
 
-    const again = () => dispatch(gameChangeStatus('again'));
+    const again = () => dispatch(gameChangeExecutionMode('again'));
     const repeat = () => {
         let _totals = totals.map((total: any) => ({exercise: total.exercise, answer: total.answer}));
         dispatch(gameChangeCurrentTimes(1));
-        dispatch(gameChangeTotals(_totals));
-        dispatch(gameChangeStatus('repeat'));
+        dispatch(totalsChange(_totals));
+        dispatch(gameChangeExecutionMode('repeat'));
     };
     const back = () => history.goBack();
 

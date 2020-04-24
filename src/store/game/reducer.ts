@@ -32,7 +32,7 @@ export const gameReducer: GameReducerTypes = (state = {
         case GAME_CHANGE_STATS:
             return {
                 ...state,
-                stats: action.payload
+                stats: {...state.stats, ...action.payload}
             };
 
         case GAME_CHANGE_EXECUTION_MODE:
@@ -46,5 +46,7 @@ export const gameReducer: GameReducerTypes = (state = {
                 ...state,
                 displayType: action.payload
             };
+        default:
+            return state;
     }
 };

@@ -2,7 +2,7 @@ import React, {useCallback, useEffect, useState} from 'react';
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
 import {Card} from "lib";
-import {gameChangeStats, gameChangeStatus, gameChangeTotals} from "store/game/actions";
+import {gameChangeStats, gameChangeStatus} from "store/game/actions";
 import _ from 'lodash';
 import TimerBlock from "../../../layouts/application/timer/Timer";
 import { FlagOutlined } from '@ant-design/icons';
@@ -12,6 +12,7 @@ import ApplicationAnzanWrapper from "../../../layouts/application/anzan/Anzan.la
 import TextFit
     from "components/user/teacher/training/tasks/mental/multi-anzan/exercise-setting/multiplication-block/TextFit";
 import PreparationLayout from "../../../layouts/application/preparation/Preparation.layout";
+import {totalsChange} from "../../../../../../../store/tasks/totals/action";
 
 const ApplicationWrapper = styled.div`
   text-align: center;
@@ -61,7 +62,7 @@ const Application:React.FC = () => {
         }
         let exercise = _.random(Number(fromIntRand), Number(toIntRand)).toPrecision(setting.count);
         const _totals = addingAnswer(exercise);
-        await dispatch(gameChangeTotals(_totals));
+        await dispatch(totalsChange(_totals));
         return exercise;
     }, [setting, dispatch, addingAnswer]);
 
@@ -101,7 +102,6 @@ const Application:React.FC = () => {
                         status === 'refresh') ?
                         <TimerBlock
                             time={setting.time}
-                            callback={timeIsRunningOut}
                         /> : null
                 }
                 <Card>

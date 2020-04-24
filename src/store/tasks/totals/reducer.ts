@@ -1,9 +1,9 @@
 import {TOTALS_CHANGE, TotalsReducerTypes, SelectTotalsTypes} from "./types";
 
-export const totals: SelectTotalsTypes = (state) => state.gameSetting;
+export const totalsSelect: SelectTotalsTypes = (state) => state.gameTotals;
 
 export const gameTotalsReducer: TotalsReducerTypes = (
-    state, action
+    state = [], action
 ) => {
     if (action.type === TOTALS_CHANGE) {
         return {
@@ -11,4 +11,5 @@ export const gameTotalsReducer: TotalsReducerTypes = (
             ...action.payload
         };
     }
+    return state;
 };

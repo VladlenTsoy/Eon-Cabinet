@@ -4,9 +4,10 @@ import styled from "styled-components";
 import AnswerInput from "./answer-input/AnswerInput";
 import {Card} from "lib";
 import {Form} from "antd";
-import {gameChangeStatus, gameChangeTotals} from "../../../../../../../store/game/actions";
+import {gameChangeStatus} from "../../../../../../../store/game/actions";
 import MultiGridLayout from "../layouts/MultiGrid.layout";
 import Header from "./header/Header";
+import {totalsChange} from "../../../../../../../store/tasks/totals/action";
 
 const CardWrapper = styled(Card)`
   &.ant-card {
@@ -48,7 +49,7 @@ const Answer: React.FC = () => {
         else
             totals[currentTimes] = {...totals[currentTimes], user: values.answer, result};
 
-        dispatch(gameChangeTotals(totals));
+        dispatch(totalsChange(totals));
         dispatch(gameChangeStatus(setting.mode === 'multiplication' && !setting.group ? 'intermediate' : 'result'));
     };
 

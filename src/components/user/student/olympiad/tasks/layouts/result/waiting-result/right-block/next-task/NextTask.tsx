@@ -6,9 +6,7 @@ import {Button} from "antd";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {
     gameChangeCurrentTimes,
-    gameChangeSetting,
     gameChangeStatus,
-    gameChangeTotals
 } from "../../../../../../../../../../store/game/actions";
 import {useDispatch} from "react-redux";
 
@@ -28,8 +26,8 @@ const NextTask: React.FC<NextStepProps> = ({loading, nextTask, history, match}) 
 
     const nextTaskStart = () => {
         history.push(`/olympiads/${match.params.sentOlympiadId}/${nextTask.id}/${nextTask.task_id}`);
-        dispatch(gameChangeSetting(nextTask.settings));
-        dispatch(gameChangeTotals([]));
+        // dispatch(gameChangeSetting(nextTask.settings));
+        // dispatch(gameChangeTotals([]));
         dispatch(gameChangeCurrentTimes(1));
         dispatch(gameChangeStatus('start'));
     };

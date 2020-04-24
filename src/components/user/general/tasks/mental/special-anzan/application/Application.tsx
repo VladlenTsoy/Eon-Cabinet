@@ -2,12 +2,10 @@ import React, {useCallback, useEffect} from 'react';
 import {Card} from "lib";
 import OutputBlock from "../../../layouts/output/Output";
 import {useDispatch, useSelector} from "react-redux";
-import {
-    gameChangeTotals
-} from "store/game/actions";
 import _ from 'lodash';
 import ApplicationAnzanWrapper from "../../../layouts/application/anzan/Anzan.layout";
 import {useOutputTask} from "../../../../../../../effects/use-output-task.effect";
+import {totalsChange} from "../../../../../../../store/tasks/totals/action";
 
 const Application: React.FC = () => {
     const {game} = useSelector((state: any) => state);
@@ -23,7 +21,7 @@ const Application: React.FC = () => {
             numbers.push(_.random(setting.from, setting.to));
         }
         const _totals = addingAnswer(numbers);
-        await dispatch(gameChangeTotals(_totals));
+        await dispatch(totalsChange(_totals));
         return numbers;
     }, [dispatch, setting, addingAnswer]);
 

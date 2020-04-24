@@ -2,7 +2,7 @@ import React from 'react';
 import styled from "styled-components";
 import { ArrowRightOutlined, FlagOutlined, HistoryOutlined } from '@ant-design/icons';
 import { Button } from "antd";
-import {gameChangeStatus} from "../../../../../../../../store/game/actions";
+import {gameChangeExecutionMode, gameChangeStatus} from "../../../../../../../../store/game/actions";
 import {useDispatch, useSelector} from "react-redux";
 
 const HeaderWrapper = styled.div`
@@ -25,7 +25,7 @@ const Header: React.FC<HeaderProps> = () => {
     const dispatch = useDispatch();
     const times = setting.windows.reduce((arr: number, val: any) => arr < val.times ? val.times : arr, 0);
 
-    const repeatExercise = () => dispatch(gameChangeStatus('refresh'));
+    const repeatExercise = () => dispatch(gameChangeExecutionMode('repeat'));
     const nextExercise = () => dispatch(gameChangeStatus('start'));
     const completionTask = () => dispatch(gameChangeStatus('result'));
 

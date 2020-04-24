@@ -4,10 +4,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {useChangeActionNavbar} from "effects/use-change-action-navbar.effect";
 import {
     gameChangeCurrentTimes,
-    gameChangeSetting,
     gameChangeStats,
     gameChangeStatus,
-    gameChangeTotals
 } from "store/game/actions";
 import Anzan from "components/user/student/olympiad/tasks/mental/anzan/Anzan";
 import FlashAnzan from "components/user/student/olympiad/tasks/mental/flash-anzan/FlashAnzan";
@@ -21,6 +19,8 @@ import Countries from "components/user/student/olympiad/tasks/mnemonics/countrie
 import DigitalPicture from "components/user/student/olympiad/tasks/mnemonics/digital-picture/DigitalPicture";
 import MasterSystem from "components/user/student/olympiad/tasks/mnemonics/master-system/MasterSystem";
 import CustomExercises from "components/user/student/olympiad/tasks/mental/custom-exercises/CustomExercises";
+import {settingChange} from "../../../../../store/tasks/setting/action";
+import {totalsChange} from "../../../../../store/tasks/totals/action";
 
 interface MatchProps {
     sentOlympiadId: string;
@@ -44,9 +44,9 @@ const Tasks: React.FC<TasksProps> = ({history, match}) => {
         if (window.speechSynthesis && window.speechSynthesis.getVoices)
             window.speechSynthesis.getVoices();
         return () => {
-            dispatch(gameChangeSetting(null));
+            dispatch(settingChange(null));
             dispatch(gameChangeStatus('start'));
-            dispatch(gameChangeTotals([]));
+            dispatch(totalsChange([]));
             dispatch(gameChangeStats({all: 0, success: 0}));
             dispatch(gameChangeCurrentTimes(1));
         }

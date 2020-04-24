@@ -2,7 +2,7 @@ import {Action, Dispatch} from "redux";
 import {GameStateProps} from "./game/types";
 
 export type State = {
-    game: GameStateProps;
+    game: any;
     gameSetting: any;
     gameTotals: any;
 };

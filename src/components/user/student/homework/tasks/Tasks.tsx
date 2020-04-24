@@ -2,10 +2,8 @@ import {useDispatch, useSelector} from "react-redux";
 import React, {useEffect} from "react";
 import {
     gameChangeCurrentTimes,
-    gameChangeSetting,
     gameChangeStats,
     gameChangeStatus,
-    gameChangeTotals
 } from "../../../../../store/game/actions";
 import {BrowserRouter as Router, Route, Switch, RouteComponentProps} from "react-router-dom";
 import Anzan from "../../../general/tasks/mental/anzan/Anzan";
@@ -22,6 +20,8 @@ import Countries from "../../../general/tasks/mnemonics/countries/Countries";
 import DigitalPicture from "../../../general/tasks/mnemonics/digital-picture/DigitalPicture";
 import MasterSystem from "../../../general/tasks/mnemonics/master-system/MasterSystem";
 import CustomExercises from "../../../general/tasks/mental/custom-exercises/CustomExercises";
+import {settingChange} from "../../../../../store/tasks/setting/action";
+import {totalsChange} from "../../../../../store/tasks/totals/action";
 
 interface MatchProps {
     homeworkId: string;
@@ -45,9 +45,9 @@ const Tasks: React.FC<TasksProps> = ({history, match}) => {
         if (window.speechSynthesis && window.speechSynthesis.getVoices)
             window.speechSynthesis.getVoices();
         return () => {
-            dispatch(gameChangeSetting(null));
+            dispatch(settingChange(null));
             dispatch(gameChangeStatus('start'));
-            dispatch(gameChangeTotals([]));
+            dispatch(totalsChange([]));
             dispatch(gameChangeStats({all: 0, success: 0}));
             dispatch(gameChangeCurrentTimes(1));
         }

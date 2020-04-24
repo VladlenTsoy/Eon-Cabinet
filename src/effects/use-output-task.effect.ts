@@ -1,7 +1,7 @@
 import {useCallback} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useAddInternal} from "./use-add-interval.effect";
-import {gameChangeOutput, gameChangeStats, gameChangeStatus} from "../store/game/actions";
+import {gameChangeStats, gameChangeStatus} from "../store/game/actions";
 import {useAddTimeout} from "./use-add-timeout.effect";
 
 export const useOutputTask = ({times}: any) => {
@@ -12,7 +12,8 @@ export const useOutputTask = ({times}: any) => {
     const [addInterval] = useAddInternal();
 
     const {totals, currentTimes, setting} = game;
-    const sOutput = useCallback((out: string) => dispatch(gameChangeOutput(out)), [dispatch]);
+    // const sOutput = useCallback((out: string) => dispatch(gameChangeOutput(out)), [dispatch]);
+    const sOutput = useCallback((out: string) => out, [dispatch]);
 
     // Adding Answers to the Totals
     const addingAnswer = useCallback((data: number[]) => {

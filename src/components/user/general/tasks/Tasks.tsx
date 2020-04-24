@@ -10,6 +10,7 @@ import {
 import Anzan from "./mental/anzan/Anzan";
 import {totalsChange} from "../../../../store/tasks/totals/action";
 import {settingChange} from "../../../../store/tasks/setting/action";
+import {settingAnzan} from "../../../../store/tasks/setting/reducer";
 // import MultiAnzan from "./mental/multi-anzan/MultiAnzan";
 // import FlashAnzan from "./mental/flash-anzan/FlashAnzan";
 // import SpecialAnzan from "./mental/special-anzan/SpecialAnzan";
@@ -37,12 +38,12 @@ import {settingChange} from "../../../../store/tasks/setting/action";
 // }
 
 const Tasks = ({history, match}: any) => {
-    const {game} = useSelector((state: any) => state);
+    const setting = useSelector(settingAnzan);
     const {discipline, task} = match.params;
 
     const dispatch = useDispatch();
 
-    if (!game.setting)
+    if (!setting)
         history.push(`/training/${discipline}/${task}/setting`);
 
     // Button cancel
@@ -67,10 +68,10 @@ const Tasks = ({history, match}: any) => {
                 {/*<Route exact path="/training/1/3" children={<Anzan/>}/>*/}
                 {/*<Route exact path="/training/1/4" children={<Anzan/>}/>*/}
                 {/*<Route exact path="/training/1/6" children={<FlashAnzan/>}/>*/}
-                {/*<Route exact path="/training/1/23" children={<Anzan/>}/>*/}
+                <Route exact path="/training/1/23" children={<Anzan/>}/>
                 {/*<Route exact path="/training/1/17" children={<SpecialAnzan/>}/>*/}
 
-                <Route exact path="/training/1/18" children={<Anzan/>}/>
+                {/*<Route exact path="/training/1/18" children={<Anzan/>}/>*/}
 
                 {/*<Route exact path="/training/1/21" children={<MultiAnzan/>}/>*/}
                 {/*<Route exact path="/training/1/22" children={<Progression/>}/>*/}

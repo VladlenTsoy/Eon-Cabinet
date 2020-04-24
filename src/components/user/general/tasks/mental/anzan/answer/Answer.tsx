@@ -5,12 +5,16 @@ import Basic from "./basic-answer/Basic";
 import AnswerLayout from "../../../layouts/answer/Answer.layout";
 import {Button, Typography} from "antd";
 import {ArrowRightOutlined} from '@ant-design/icons';
+import {game} from "../../../../../../../store/game/reducer";
+import {settingAnzan} from "../../../../../../../store/tasks/setting/reducer";
+import {totalsSelect} from "../../../../../../../store/tasks/totals/reducer";
 
 const {Title} = Typography;
 
 const Answer: React.FC = () => {
-    const {game} = useSelector((state: any) => state);
-    const {setting, totals, stats, currentTimes} = game;
+    const {stats, currentTimes} = useSelector(game);
+    const setting = useSelector(settingAnzan);
+    const totals = useSelector(totalsSelect);
 
     const isDouble = setting.anzan === 'double';
     const isGroup = setting.extra && setting.extra.includes('group');
@@ -21,6 +25,7 @@ const Answer: React.FC = () => {
 
     const checkAnswerGroup = (values: any) => {
         let _totals = isDouble ?
+            // @ts-ignore
             totals.map((total: any, key: number) => {
                 let result1 = total[0].answer === Number(values.answer1[key]);
                 let result2 = total[1].answer === Number(values.answer2[key]);
@@ -33,6 +38,7 @@ const Answer: React.FC = () => {
                     {...total[1], ...{user: Number(values.answer2[key]), result: result2}}
                 ];
             }) :
+            // @ts-ignore
             totals.map((total: any, key: number) => {
                 let result = total.answer === Number(values.answer[key]);
                 result && stats.success++;
@@ -45,21 +51,21 @@ const Answer: React.FC = () => {
 
     const checkAnswer = (values: any) => {
         if (isDouble) {
-            let result1 = totals[currentTimes][0].answer === Number(values.answer1);
-            let result2 = totals[currentTimes][1].answer === Number(values.answer2);
-            result1 && stats.success++;
-            result2 && stats.success++;
-
-            totals[currentTimes] = [
-                {...totals[currentTimes][0], ...{user: Number(values.answer1), result: result1}},
-                {...totals[currentTimes][1], ...{user: Number(values.answer2), result: result2}},
-            ];
-        } else {
-            let result = totals[currentTimes].answer === Number(values.answer);
-            result && stats.success++;
-            totals[currentTimes] = {
-                ...totals[currentTimes], ...{user: Number(values.answer), result: result}
-            };
+            // let result1 = totals[currentTimes][0].answer === Number(values.answer1);
+        //     let result2 = totals[currentTimes][1].answer === Number(values.answer2);
+        //     result1 && stats.success++;
+        //     result2 && stats.success++;
+        //
+        //     totals[currentTimes] = [
+        //         {...totals[currentTimes][0], ...{user: Number(values.answer1), result: result1}},
+        //         {...totals[currentTimes][1], ...{user: Number(values.answer2), result: result2}},
+        //     ];
+        // } else {
+        //     let result = totals[currentTimes].answer === Number(values.answer);
+        //     result && stats.success++;
+        //     totals[currentTimes] = {
+        //         ...totals[currentTimes], ...{user: Number(values.answer), result: result}
+        //     };
         }
         return {totals, status: 'intermediate', stats}
     };

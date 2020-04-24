@@ -33,8 +33,8 @@ const ModeOutput: React.FC<ModeOutputProps> = ({setting, output, state, color}) 
                         <AbacusOutput setting={setting} output={output[1]} double/>
                     </> :
                     <>
-                        <BasicOutput output={output[0]} state={state} setting={setting} color={color}/>
-                        <BasicOutput output={output[1]} state={state} setting={setting} color={color}/>
+                        <BasicOutput output={output[0]} state={state} time={setting.time} color={color}/>
+                        <BasicOutput output={output[1]} state={state} time={setting.time} color={color}/>
                     </>
                 }
             </DoubleOutput>;
@@ -42,7 +42,7 @@ const ModeOutput: React.FC<ModeOutputProps> = ({setting, output, state, color}) 
         if (setting.extra.includes('abacus'))
             return <AbacusOutput setting={setting} output={output}/>;
     }
-    return <BasicOutput output={output} state={state} setting={setting} color={color}/>;
+    return <BasicOutput output={output} state={state} time={setting.time} color={color}/>;
 };
 
 export default ModeOutput;

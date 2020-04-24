@@ -2,7 +2,6 @@ import React, {useCallback} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {LoadingBlock} from "lib";
 import BasicApplication from "./basic/BasicApplication";
-import {gameChangeOutput} from "../../../../../../../../store/game/actions";
 import DoubleApplication from "./double/DoubleApplication";
 import {useAddInternal} from "../../../../../../../../effects/use-add-interval.effect";
 import {useAddTimeout} from "../../../../../../../../effects/use-add-timeout.effect";
@@ -27,7 +26,8 @@ const OtherApplication: React.FC<OtherApplicationProps> = (
     const [addTimeout] = useAddTimeout();
 
     // Вывод текузего примера
-    const sOutput = useCallback((number: any) => dispatch(gameChangeOutput(number)), [dispatch]);
+    // const sOutput = useCallback((number: any) => dispatch(gameChangeOutput(number)), [dispatch]);
+    const sOutput = useCallback((number: any) => number, [dispatch]);
 
     // Update exercise mirror
     const updateMirror = useCallback((exercises: any) => {

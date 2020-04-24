@@ -20,11 +20,10 @@ export const gameChangeCurrentTimes: GameChangeCurrentTimesTypes = (action) =>
     (dispatch) =>
         dispatch({type: GAME_CHANGE_CURRENT_TIMES, payload: action});
 
-
 export const gameChangeDisplayType: GameChangeDisplayTypeTypes = (action: any) =>
     (dispatch) =>
         dispatch({type: GAME_CHANGE_DISPLAY_TYPE, payload: action});
 
 export const gameChangeStats: GameChangeStatsTypes = (action) =>
-    (dispatch, getState) =>
-        dispatch({type: GAME_CHANGE_STATS, payload: {...getState().game.stats, ...action}});
+    (dispatch) =>
+        dispatch({type: GAME_CHANGE_STATS, payload: action});

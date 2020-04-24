@@ -3,7 +3,15 @@ import {Reducer} from "redux";
 
 export const TOTALS_CHANGE = "TOTALS_CHANGE";
 
-type TotalsStateProps = any;
+interface anzanTotalProps {
+    output: number[] | string[];
+    exercises: number[];
+    answer: number;
+    user: number;
+    result: boolean;
+}
+
+type TotalsStateProps = { [currentTimes: number]: anzanTotalProps };
 
 interface TotalsActionTypes {
     type: typeof TOTALS_CHANGE;
@@ -14,4 +22,4 @@ export type TotalsChangeTypes = ActionFunctionTypes<TotalsStateProps, TotalsActi
 
 export type TotalsReducerTypes = Reducer<TotalsStateProps, TotalsActionTypes>;
 
-export type SelectTotalsTypes = (state: State) => TotalsActionTypes;
+export type SelectTotalsTypes = (state: State) => TotalsStateProps;

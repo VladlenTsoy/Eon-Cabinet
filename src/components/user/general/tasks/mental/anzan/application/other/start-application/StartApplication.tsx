@@ -2,8 +2,8 @@ import React, {useEffect} from 'react';
 import {Card} from "lib";
 import OutputBlock from "../../../../../layouts/output/Output";
 import ApplicationAnzanWrapper from "../../../../../layouts/application/anzan/Anzan.layout";
-import {gameChangeTotals} from "../../../../../../../../../store/game/actions";
 import {useDispatch, useSelector} from "react-redux";
+import {totalsChange} from "../../../../../../../../../store/tasks/totals/action";
 
 interface StartApplicationProps {
     numbers: any;
@@ -30,7 +30,7 @@ const StartApplication: React.FC<StartApplicationProps> = (
             if (status === 'refresh' || status === 'repeat')
                 startApplication(totals[currentTimes].exercise, outputExercise);
             else {
-                await dispatch(gameChangeTotals(addingAnswer(numbers)));
+                await dispatch(totalsChange(addingAnswer(numbers)));
                 startApplication(numbers, outputExercise);
             }
         })();

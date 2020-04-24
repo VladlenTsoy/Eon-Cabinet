@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
-import TextFit from "../../../../../teacher/training/tasks/mental/multi-anzan/exercise-setting/multiplication-block/TextFit";
+import TextFit
+    from "../../../../../teacher/training/tasks/mental/multi-anzan/exercise-setting/multiplication-block/TextFit";
 // @ts-ignore
 // import {Textfit} from 'react-textfit';
 
@@ -8,13 +9,13 @@ export const BasicOutputWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 400px;
-  width: 400px;
+  height: 450px;
+  width: 450px;
   border-radius: 50%;
   animation: pulsar-primary 1s linear infinite;
 
   .text-output {
-    width: 400px;
+    width: 450px;
     white-space: nowrap;
     text-align: center;
     font-weight: bolder;
@@ -64,15 +65,15 @@ export const BasicOutputWrapper = styled.div`
 interface BasicOutputProps {
     output: string;
     state: string;
-    setting: any;
+    time: number;
     color?: string;
 }
 
-const BasicOutput: React.FC<BasicOutputProps> = ({output, state, setting, color}) => {
+const BasicOutput: React.FC<BasicOutputProps> = ({output, state, time, color}) => {
     return <BasicOutputWrapper
         key={output}
         className={`${color}`}
-        style={{animation: `pulsar-${state === 'preparation' ? 'danger' : 'primary'} ${state === 'preparation' ? 1 : setting.time}s linear infinite`}}>
+        style={{animation: `pulsar-${state === 'preparation' ? 'danger' : 'primary'} ${state === 'preparation' ? 1 : time}s linear infinite`}}>
         <TextFit
             widthOnly
         >

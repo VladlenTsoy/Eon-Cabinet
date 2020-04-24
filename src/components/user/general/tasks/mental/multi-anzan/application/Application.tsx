@@ -6,8 +6,9 @@ import {LoadingBlock} from "lib";
 import {Card} from "lib";
 import MultiOutput from "./multi-output/MultiOutput";
 import styled from "styled-components";
-import {gameChangeStatus, gameChangeTotals} from "../../../../../../../store/game/actions";
+import {gameChangeStatus} from "../../../../../../../store/game/actions";
 import MultiGridLayout from "../layouts/MultiGrid.layout";
+import {totalsChange} from "../../../../../../../store/tasks/totals/action";
 
 const CardWrapper = styled(Card)`
   &.ant-card{
@@ -61,7 +62,7 @@ const Application: React.FC = () => {
         config: {params: {setting}},
         initValue: [],
         afterRequest: async (data: any) => {
-            dispatch(gameChangeTotals(addAnswer(data)));
+            dispatch(totalsChange(addAnswer(data)));
 
             if (setting.map((val: any) => val.extra.includes('abacus')).includes(true)) {
                 return new Promise((resolve => {

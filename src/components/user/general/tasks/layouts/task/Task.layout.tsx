@@ -26,10 +26,13 @@ const TaskLayout: React.FC<TaskProps> = (
     const {status} = useSelector(game);
     const dispatch = useDispatch();
 
+    if(status === 'preparation' && !preparation)
+        dispatch(gameChangeStatus('start'));
+
     return <>
-        {status === 'preparation' && preparation ? <PreparationLayout/> : dispatch(gameChangeStatus('start'))}
+        {status === 'preparation' && preparation && <PreparationLayout/>}
         {status === 'start' && start}
-        // TODO - возможен пустой экран
+        {/*// TODO - возможен пустой экран*/}
         {status === 'answer' && answer && answer}
         {status === 'intermediate' && intermediate && <Intermediate>{intermediate}</Intermediate>}
         {status === 'result' && result && <Result>{result}</Result>}

@@ -8,11 +8,12 @@ import { FormComponentProps } from '@ant-design/compatible/es/form';
 import HeaderTable from "../../../../mental/anzan/application/list/table/header-table/HeaderTable";
 import styled from "styled-components";
 import {TableWrapper} from "./table/TableExercise";
-import {gameChangeStats, gameChangeStatus, gameChangeTotals} from "../../../../../../../../store/game/actions";
+import {gameChangeStats, gameChangeStatus} from "../../../../../../../../store/game/actions";
 import {useDispatch, useSelector} from "react-redux";
 import ListTableLayout from "./table/ListTable.layout";
 import TimerBlock from "../../timer/Timer";
 import {useScreenWindow} from "../../../../../../../../effects/use-screen-window.effect";
+import {totalsChange} from "../../../../../../../../store/tasks/totals/action";
 
 const ScrollWrapper = styled.div`
   width: 100%;
@@ -77,7 +78,7 @@ const CardListLayout: React.FC<CardListProps> = (
                     user: values.answer[key],
                     result: checkResult(total, values.answer[key])
                 }));
-                dispatch(gameChangeTotals(_totals));
+                dispatch(totalsChange(_totals));
                 dispatch(gameChangeStats({
                     all: _totals.length,
                     success: _totals.filter((val: any) => val.result).length
@@ -94,7 +95,6 @@ const CardListLayout: React.FC<CardListProps> = (
             isStart ?
                 <TimerBlock
                     time={setting.time}
-                    callback={timeIsRunningOut}
                 /> : null
         }
         <Card>

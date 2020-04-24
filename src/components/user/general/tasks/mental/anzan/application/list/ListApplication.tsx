@@ -2,9 +2,10 @@ import React, {useCallback, useEffect, useState} from 'react';
 import TimerBlock from "../../../../layouts/application/timer/Timer";
 import {useDispatch, useSelector} from "react-redux";
 import {Modal} from "antd";
-import {gameChangeStats, gameChangeTotals} from "../../../../../../../../store/game/actions";
+import {gameChangeStats} from "../../../../../../../../store/game/actions";
 import {LoadingBlock} from "lib";
 import TableApplication from "./table/TableApplication";
+import {totalsChange} from "../../../../../../../../store/tasks/totals/action";
 
 interface ListApplicationProps {
     numbers: any,
@@ -54,7 +55,7 @@ const ListApplication: React.FC<ListApplicationProps> = (
             if (status === 'refresh' || status === 'repeat')
                 updateStats();
             else {
-                await dispatch(gameChangeTotals(addingAnswer(numbers)));
+                await dispatch(totalsChange(addingAnswer(numbers)));
                 updateStats();
             }
             setLoading(false)

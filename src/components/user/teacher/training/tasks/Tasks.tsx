@@ -4,10 +4,10 @@ import {useDispatch, useSelector} from "react-redux";
 import {Switch, Route} from "react-router";
 import {useChangeActionNavbar} from "effects/use-change-action-navbar.effect";
 import {setCurrentUserData} from "../../../../../store/user/actions";
-import {gameChangeSetting} from "../../../../../store/game/actions";
 import {Col, Row} from "antd";
 import {Card, Loader} from "lib";
 import styled from "styled-components";
+import {settingChange} from "../../../../../store/tasks/setting/action";
 
 const Mental = React.lazy(() => import("./mental/Mental"));
 const Mnemonics = React.lazy(() => import("./mnemonics/Mnemonics"));
@@ -93,7 +93,7 @@ const Tasks: React.FC = () => {
      */
     const startOrPrintAndSaveSetting = useCallback(
         async (setting: any, print?: boolean) => {
-            await dispatch(gameChangeSetting(setting));
+            await dispatch(settingChange(setting));
             await changeSetting(setting);
             if (print) {
                 let url = '/algorithm/list';
