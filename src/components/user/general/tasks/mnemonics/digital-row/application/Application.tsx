@@ -4,11 +4,11 @@ import {useDispatch, useSelector} from "react-redux";
 import {Card} from "lib";
 import {gameChangeStats, gameChangeStatus} from "store/game/actions";
 import _ from 'lodash';
-import TimerBlock from "../../../layouts/application/timer/Timer";
+import TimerBlock from "../../../layouts/application/_old/timer/Timer";
 import { FlagOutlined } from '@ant-design/icons';
 import {Button, Modal} from "antd";
 import {useAddSpaceToString} from "../../../../../../../effects/use-add-space-to-string";
-import ApplicationAnzanWrapper from "../../../layouts/application/anzan/Anzan.layout";
+import ApplicationAnzanWrapper from "../../../layouts/application/_old/anzan/Anzan.layout";
 import TextFit
     from "components/user/teacher/training/tasks/mental/multi-anzan/exercise-setting/multiplication-block/TextFit";
 import PreparationLayout from "../../../layouts/application/preparation/Preparation.layout";

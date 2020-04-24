@@ -1,5 +1,5 @@
 import React from 'react';
-import {TableWrapper} from "../../../../../../general/tasks/layouts/application/list/card-list/table/TableExercise";
+import {TableWrapper} from "../../../../../../general/tasks/layouts/application/list/card-list/tables-output/table/TableExercise";
 import HeaderTable from "../../../../../../general/tasks/mental/anzan/application/list/table/header-table/HeaderTable";
 import {Card} from "../../../../../../../../lib";
 import {Form} from "antd";

@@ -7,7 +7,6 @@ import TaskLayout from "../../layouts/task/Task.layout";
 
 const Anzan: React.FC = () => {
     return <TaskLayout
-        preparation={true}
         start={<Application/>}
         answer={<Answer/>}
         intermediate={<IntermediateBlock/>}

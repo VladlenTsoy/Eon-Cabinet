@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import ApplicationAnzanWrapper from "../../../../layouts/application/anzan/Anzan.layout";
+import ApplicationAnzanWrapper from "../../../../layouts/application/_old/anzan/Anzan.layout";
 import {gameChangeStatus} from "../../../../../../../../store/game/actions";
 import styled from "styled-components";
 import {Card} from "lib";

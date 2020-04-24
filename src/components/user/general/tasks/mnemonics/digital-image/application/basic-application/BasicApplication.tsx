@@ -3,7 +3,7 @@ import {withRouter} from 'react-router-dom';
 import CarouselApplication from "../../../../layouts/application/carousel-application/CarouselApplication";
 import PreparationLayout from "../../../../layouts/application/preparation/Preparation.layout";
 import {useSelector} from "react-redux";
-import CardFlip from "../../../../layouts/application/card-flip/CardFlip";
+import CardFlip from "../../../../layouts/application/_old/card-flip/CardFlip";
 
 interface BasicApplicationProps {
     history: any;

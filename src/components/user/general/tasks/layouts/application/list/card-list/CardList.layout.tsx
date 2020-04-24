@@ -7,11 +7,11 @@ import { Button, Modal } from "antd";
 import { FormComponentProps } from '@ant-design/compatible/es/form';
 import HeaderTable from "../../../../mental/anzan/application/list/table/header-table/HeaderTable";
 import styled from "styled-components";
-import {TableWrapper} from "./table/TableExercise";
+import {TableWrapper} from "./tables-output/table/TableExercise";
 import {gameChangeStats, gameChangeStatus} from "../../../../../../../../store/game/actions";
 import {useDispatch, useSelector} from "react-redux";
-import ListTableLayout from "./table/ListTable.layout";
-import TimerBlock from "../../timer/Timer";
+import ListTableLayout from "./tables-output/table/ListTable.layout";
+import TimerBlock from "../../_old/timer/Timer";
 import {useScreenWindow} from "../../../../../../../../effects/use-screen-window.effect";
 import {totalsChange} from "../../../../../../../../store/tasks/totals/action";
 

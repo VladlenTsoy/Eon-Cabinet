@@ -2,7 +2,8 @@ import React, {useCallback, useEffect, useState} from 'react';
 import styled from "styled-components";
 import {Card} from "lib";
 import {useAddTimeout} from "../../../../../../../effects/use-add-timeout.effect";
-import TextFit from "../../../../../teacher/training/tasks/mental/multi-anzan/exercise-setting/multiplication-block/TextFit";
+import TextFit
+    from "../../../../../teacher/training/tasks/mental/multi-anzan/exercise-setting/multiplication-block/TextFit";
 
 const PreparationWrapper = styled(Card)`
   &.ant-card{
@@ -63,17 +64,16 @@ const PreparationLayout: React.FC = ({children}) => {
         startPreparation();
     }, [startPreparation]);
 
-    return <>
-        {startApplication ?
-            children :
-            <PreparationWrapper>
-                <OutputWrapper>
-                    <TextFit key={output} isLoading>
-                        <div className="output">{output}</div>
-                    </TextFit>
-                </OutputWrapper>
-            </PreparationWrapper>}
-    </>;
+    if (startApplication)
+        return <>{children}</>;
+
+    return <PreparationWrapper>
+        <OutputWrapper>
+            <TextFit key={output} isLoading>
+                <div className="output">{output}</div>
+            </TextFit>
+        </OutputWrapper>
+    </PreparationWrapper>;
 };
 
 export default PreparationLayout;

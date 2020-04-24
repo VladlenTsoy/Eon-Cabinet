@@ -2,7 +2,7 @@ import React, {useCallback, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {Card} from "lib";
 import OutputBlock from "../../../layouts/output/Output";
-import ApplicationAnzanWrapper from "../../../layouts/application/anzan/Anzan.layout";
+import ApplicationAnzanWrapper from "../../../layouts/application/_old/anzan/Anzan.layout";
 import {useOutputTask} from "../../../../../../../effects/use-output-task.effect";
 import {totalsChange} from "../../../../../../../store/tasks/totals/action";
 

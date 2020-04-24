@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import TimerBlock from "../../../../layouts/application/timer/Timer";
+import TimerBlock from "../../../../layouts/application/_old/timer/Timer";
 import {useDispatch, useSelector} from "react-redux";
 import {Modal} from "antd";
 import {gameChangeStats} from "../../../../../../../../store/game/actions";

@@ -1,6 +1,6 @@
 import React from 'react';
 import {useSelector} from "react-redux";
-import {Result} from "../../../../../../../layouts/application/list/card-list/table/TableExercise";
+import {Result} from "../../../../../../../layouts/application/list/card-list/tables-output/table/TableExercise";
 import AnswerTable from "../../answer-table/AnswerTable";
 
 export interface TableNumbersAdditionProps {

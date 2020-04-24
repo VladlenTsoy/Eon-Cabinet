@@ -20,46 +20,25 @@ export const BasicOutputWrapper = styled.div`
     text-align: center;
     font-weight: bolder;
     background: none;
-    
-    //@keyframes flash {
-    //   100% {
-    //     color: #fff;
-    //   }
-    //   85%{
-    //    color: inherit;
-    //   }
-    //   0%{
-    //    color: inherit;
-    //   }
-    //}  
   }
- 
+  
   @media (max-width: 576px) {
     height: 250px;
     width: 250px;
-  
+
     .text-output {
       width: 250px;
     }  
   }
- 
+
   @keyframes pulsar-primary {
-      100% {
-        box-shadow: 0 0 3px 0 ${props => props.theme.color_primary};
-      }
-      0% {
-        box-shadow: 0 0 170px 5px ${props => props.theme.color_primary};
-      }
+    100% {
+      box-shadow: 0 0 3px 0 ${props => props.theme.color_primary};
     }
-    
-    @keyframes pulsar-danger {
-      to {
-        box-shadow: 0 0 3px 0 ${props => props.theme.color_danger};
-      }
-      from {
-        box-shadow: 0 0 170px 5px ${props => props.theme.color_danger};
-      }
+    0% {
+      box-shadow: 0 0 170px 5px ${props => props.theme.color_primary};
     }
+  }
 `;
 
 interface BasicOutputProps {
@@ -68,7 +47,7 @@ interface BasicOutputProps {
     time: number;
     color?: string;
 }
-
+// TODO - Удалить
 const BasicOutput: React.FC<BasicOutputProps> = ({output, state, time, color}) => {
     return <BasicOutputWrapper
         key={output}

@@ -4,7 +4,7 @@ import styled from "styled-components";
 import {ClockCircleOutlined} from '@ant-design/icons';
 import {Modal} from "antd";
 import {useDispatch} from "react-redux";
-import {gameChangeStatus} from "../../../../../../../store/game/actions";
+import {gameChangeStatus} from "../../../../../../../../store/game/actions";
 
 const TimerWrapper = styled.div`
   position: fixed;

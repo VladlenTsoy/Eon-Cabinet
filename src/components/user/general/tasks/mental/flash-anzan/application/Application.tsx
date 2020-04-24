@@ -9,7 +9,7 @@ import {Card, LoadingBlock} from "lib";
 import OutputBlock from "../../../layouts/output/Output";
 import {useAddTimeout} from "effects/use-add-timeout.effect";
 import {useAddInternal} from "effects/use-add-interval.effect";
-import ApplicationAnzanWrapper from "../../../layouts/application/anzan/Anzan.layout";
+import ApplicationAnzanWrapper from "../../../layouts/application/_old/anzan/Anzan.layout";
 import IconAbacus from "assets/images/tasks/abacus.svg";
 import {totalsChange} from "../../../../../../../store/tasks/totals/action";
 import {settingChange} from "../../../../../../../store/tasks/setting/action";

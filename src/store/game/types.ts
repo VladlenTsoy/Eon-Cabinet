@@ -7,7 +7,7 @@ export const GAME_CHANGE_STATUS = "GAME_CHANGE_STATUS";
 export const GAME_CHANGE_CURRENT_TIMES = "GAME_CHANGE_CURRENT_TIMES";
 export const GAME_CHANGE_STATS = "GAME_CHANGE_STATS";
 
-export type StatusProps = "preparation" | "start" | "answer" | 'intermediate' | 'result';
+export type StatusProps = "start" | "answer" | 'intermediate' | 'result';
 export type ExecutionModeProps = 'first' | 'repeat' | 'again';
 export type DisplayTypeProps = 'basic' | 'list' | 'carousel';
 export type StatsProps = { all: number; success: number };
