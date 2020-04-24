@@ -6,6 +6,7 @@ import {totalsSelect} from "../../../../../../../store/tasks/totals/reducer";
 import {flattenDepth} from "lodash";
 import {totalsChange} from "../../../../../../../store/tasks/totals/action";
 import {gameChangeStats, gameChangeStatus} from "../../../../../../../store/game/actions";
+import {useUpdateOutputEffect} from "../../../layouts/application/use-update-output.effect";
 
 const Application: React.FC = () => {
     const dispatch = useDispatch();
@@ -14,9 +15,7 @@ const Application: React.FC = () => {
     const [isMultiplication] = useState(setting.mode === 'divide' || setting.mode === 'multiply');
 
     // Update exercise mirror
-    const updateMirror = useCallback((exercises: any) => {
-        return exercises.map((int: any) => parseInt(`${int}${Math.abs(int)}`));
-    }, []);
+    const [updateExercises, updateMirror] = useUpdateOutputEffect({extra: setting.extra});
 
     const addAnswerToTotals = useCallback((exercises) => {
         // Count the answer
@@ -29,7 +28,7 @@ const Application: React.FC = () => {
     const addOutputToTotals = useCallback((exercise) => {
         if (isMultiplication)
             return exercise[0] + (setting.mode === 'multiply' ? ' * ' : ' / ') + exercise[1];
-        return exercise;
+        return updateExercises(exercise);
     }, [isMultiplication, setting]);
 
     const updateAnswersTotals = useCallback((data, currentTimes) => {

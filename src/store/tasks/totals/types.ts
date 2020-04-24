@@ -4,7 +4,7 @@ import {Reducer} from "redux";
 export const TOTALS_CHANGE = "TOTALS_CHANGE";
 
 interface anzanTotalProps {
-    output: number[] | string[];
+    output: any;
     exercise: number[];
     answer: number;
     user?: number;
