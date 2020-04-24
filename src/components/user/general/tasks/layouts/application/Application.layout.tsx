@@ -8,12 +8,12 @@ import {usePreloadPictures} from "effects/use-preload-pictures.effect";
 import Basic from "./basic/Basic";
 import Timer from "./_old/timer/Timer";
 import {totalsChange} from "store/tasks/totals/action";
-import {totalsSelect} from "store/tasks/totals/reducer";
 import {StatsActionProps, StatusProps} from "store/game/types";
 import {gameChangeStats} from "../../../../../../store/game/actions";
 import {SettingAnzanProps} from "../../../../../../store/tasks/setting/games-types/anzan.types";
 import PreparationLayout from "./preparation/Preparation.layout";
 import List from "./list-new/List";
+import {Form} from "antd";
 
 const BasicSound = require('assets/sounds/anzan.ogg');
 
@@ -25,7 +25,8 @@ interface ApplicationProps {
     pictures?: string[] | 'abacus' | picturesFunction;
     urlExercises: string;
     timer?: boolean;
-    updateTotals: (data: any, totals: any, currentTimes: number) => any;
+    updateResultsTotals?: (answers: any[]) => any;
+    updateAnswersTotals: (data: any, currentTimes: number) => any;
     updateStats: () => StatsActionProps;
     nextStatus: StatusProps;
 }
@@ -37,12 +38,13 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
         pictures,
         urlExercises,
         timer,
-        updateTotals,
+        updateAnswersTotals,
+        updateResultsTotals,
         updateStats,
         nextStatus,
     }
 ) => {
-    const totals = useSelector(totalsSelect);
+    const [ListForm] = Form.useForm();
     const {executionMode, currentTimes} = useSelector(game);
     const dispatch = useDispatch();
     const [, preloadImage] = usePreloadPictures();
@@ -81,12 +83,12 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
         if (pictures) await picturesLoad(data);
         if (setting.sound) await soundsLoad();
 
-        let _totals = updateTotals(data, totals, currentTimes);
-        dispatch(totalsChange(_totals));
+        let totals = updateAnswersTotals(data, currentTimes);
+        dispatch(totalsChange(totals));
 
         let stats = updateStats();
         dispatch(gameChangeStats(stats))
-    }, [updateTotals, updateStats, setting, dispatch, currentTimes, soundsLoad, picturesLoad, pictures]);
+    }, [updateAnswersTotals, updateStats, setting, dispatch, currentTimes, soundsLoad, picturesLoad, pictures]);
 
     // Загрузка примеров
     const [loading] = useApiUserGeneral({
@@ -96,14 +98,23 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
         cancel: executionMode === 'repeat'
     });
 
+
+    const afterMessage = useCallback(async () => {
+        const answers = ListForm.getFieldValue('answer');
+        if (updateResultsTotals) {
+            await updateResultsTotals(answers);
+        }
+    }, [updateResultsTotals, ListForm]);
+
+
     if (loading)
         return <LoadingBlock title="Загрузка чисел..."/>;
 
     return <PreparationLayout>
         <>
-            {timer && <Timer time={setting.time}/>}
+            {timer && <Timer time={setting.time} afterMessage={afterMessage}/>}
             {displayType === 'basic' && <Basic setting={setting} nextStatus={nextStatus} basicSound={basicSound}/>}
-            {displayType === 'list' && setting.anzan === 'list' && <List setting={setting}/>}
+            {displayType === 'list' && setting.anzan === 'list' && <List listForm={ListForm} setting={setting} updateResultsTotals={updateResultsTotals}/>}
         </>
     </PreparationLayout>;
 };

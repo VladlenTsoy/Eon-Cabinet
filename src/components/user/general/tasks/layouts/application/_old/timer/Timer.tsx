@@ -18,26 +18,24 @@ const TimerWrapper = styled.div`
   font-size: 20px;
   border-radius: 10px 0 0 10px;
   
-  i{
+  .anticon{
     margin-right: 0.5rem;
   }
 `;
 
 interface TimerBlockProps {
     time: number;
+    afterMessage?: any;
 }
 
-const TimerBlock: React.FC<TimerBlockProps> = ({time}) => {
-    const dispatch = useDispatch();
+const TimerBlock: React.FC<TimerBlockProps> = ({time, afterMessage}) => {
 
     // Сообщение при завершении времени
     const timeIsRunningOut = () => {
         return Modal.warning({
             title: 'This is a warning message',
             content: 'some messages...some messages...',
-            onOk() {
-                dispatch(gameChangeStatus('answer'));
-            }
+            onOk : afterMessage
         });
     };
 

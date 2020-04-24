@@ -1,10 +1,16 @@
 import React, {useCallback, useState} from 'react';
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import ApplicationLayout from "../../../layouts/application/Application.layout";
 import {settingAnzan} from "../../../../../../../store/tasks/setting/reducer";
+import {totalsSelect} from "../../../../../../../store/tasks/totals/reducer";
+import {flattenDepth} from "lodash";
+import {totalsChange} from "../../../../../../../store/tasks/totals/action";
+import {gameChangeStats, gameChangeStatus} from "../../../../../../../store/game/actions";
 
 const Application: React.FC = () => {
+    const dispatch = useDispatch();
     const setting = useSelector(settingAnzan);
+    const totals = useSelector(totalsSelect);
     const [isMultiplication] = useState(setting.mode === 'divide' || setting.mode === 'multiply');
 
     // Update exercise mirror
@@ -26,12 +32,12 @@ const Application: React.FC = () => {
         return exercise;
     }, [isMultiplication, setting]);
 
-    const updateTotals = useCallback((data, totals, currentTimes) => {
+    const updateAnswersTotals = useCallback((data, currentTimes) => {
         if (setting.anzan === 'list') {
             data.map((exercises: any, key: number) => {
                 exercises = setting.extra && setting.extra.includes('mirror') ? updateMirror(exercises) : exercises;
                 totals[key] = {
-                    exercises: exercises,
+                    exercise: exercises,
                     output: addOutputToTotals(exercises),
                     answer: addAnswerToTotals(exercises),
                 }
@@ -39,13 +45,33 @@ const Application: React.FC = () => {
         } else {
             const exercises = setting.extra && setting.extra.includes('mirror') ? updateMirror(data) : data;
             totals[currentTimes] = {
-                exercises: exercises,
+                exercise: exercises,
                 output: addOutputToTotals(exercises),
                 answer: addAnswerToTotals(exercises),
             };
         }
         return totals;
-    }, [isMultiplication, addAnswerToTotals]);
+    }, [isMultiplication, addAnswerToTotals, totals]);
+
+    const updateResultsTotals = useCallback((answers: any) => {
+        let success = 0;
+        let flattenAnswers = flattenDepth(answers, 2);
+
+        const _totals = Object.values(totals).map((total: any, key: number) => {
+            if (Number(total.answer) === Number(flattenAnswers[key]))
+                success++;
+
+            return {
+                ...total,
+                result: Number(total.answer) === Number(flattenAnswers[key]),
+                user: flattenAnswers[key]
+            };
+        });
+
+        dispatch(totalsChange(_totals));
+        dispatch(gameChangeStats({success}));
+        dispatch(gameChangeStatus('result'));
+    }, []);
 
     const updateStats = useCallback(() => {
         if (setting.anzan === 'list')
@@ -57,7 +83,8 @@ const Application: React.FC = () => {
     return <ApplicationLayout
         timer={setting.anzan === 'list'}
         setting={setting}
-        updateTotals={updateTotals}
+        updateAnswersTotals={updateAnswersTotals}
+        updateResultsTotals={updateResultsTotals}
         updateStats={updateStats}
         displayType={setting.anzan}
         urlExercises={setting.anzan === 'list' ? '/algorithm/list' : setting.anzan === 'double' ? '/algorithm/double' : '/algorithm'}

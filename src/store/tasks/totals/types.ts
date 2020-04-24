@@ -5,10 +5,10 @@ export const TOTALS_CHANGE = "TOTALS_CHANGE";
 
 interface anzanTotalProps {
     output: number[] | string[];
-    exercises: number[];
+    exercise: number[];
     answer: number;
-    user: number;
-    result: boolean;
+    user?: number;
+    result?: boolean;
 }
 
 type TotalsStateProps = { [currentTimes: number]: anzanTotalProps };
