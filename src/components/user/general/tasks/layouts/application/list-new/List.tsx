@@ -5,6 +5,7 @@ import {Button, Form, Modal} from "antd";
 import {ArrowRightOutlined, ExclamationCircleOutlined} from '@ant-design/icons';
 import TablesOutput from "./tables-output/TablesOutput";
 import {FormInstance} from "antd/es/form";
+import ApplicationAnzanWrapper from "../_old/anzan/Anzan.layout";
 
 interface ListProps {
     listForm: FormInstance;
@@ -21,19 +22,21 @@ const List: React.FC<ListProps> = ({listForm, setting, updateResultsTotals}) => 
         });
     };
 
-    return <Card>
-        <Form form={listForm} onFinish={onFinishHandler}>
-            <TablesOutput setting={setting}/>
-            <Button
-                block
-                type="primary"
-                htmlType="submit"
-                icon={<ArrowRightOutlined/>}
-            >
-                Далее
-            </Button>
-        </Form>
-    </Card>;
+    return <ApplicationAnzanWrapper>
+        <Card>
+            <Form form={listForm} onFinish={onFinishHandler}>
+                <TablesOutput setting={setting}/>
+                <Button
+                    block
+                    type="primary"
+                    htmlType="submit"
+                    icon={<ArrowRightOutlined/>}
+                >
+                    Далее
+                </Button>
+            </Form>
+        </Card>
+    </ApplicationAnzanWrapper>;
 };
 
 export default List;

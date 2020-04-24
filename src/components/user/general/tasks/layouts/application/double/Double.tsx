@@ -67,14 +67,10 @@ const Double: React.FC<DoubleProps> = (
         outputInterval(totals[currentTimes]);
     }, [outputInterval, totals, currentTimes]);
 
-    return <ApplicationAnzanWrapper>
-        <Card>
-            <DoubleWrapper>
-                <Output time={setting.time} output={outputOne} key={`one-${outputOne}`}/>
-                <Output time={setting.time} output={outputTwo} key={`two-${outputTwo}`}/>
-            </DoubleWrapper>
-        </Card>
-    </ApplicationAnzanWrapper>;
+    return <DoubleWrapper>
+        <Output time={setting.time} output={outputOne} key={`one-${outputOne}`}/>
+        <Output time={setting.time} output={outputTwo} key={`two-${outputTwo}`}/>
+    </DoubleWrapper>;
 };
 
 export default Double;

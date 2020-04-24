@@ -7,7 +7,7 @@ interface SettingProps {
 }
 
 type ReturnTypes = [
-    (setting: { time: number, output: string, type: SoundTypes }) => void,
+    (setting: { time: number, output?: string, type: SoundTypes }) => void,
 ]
 
 type UseSoundEffectTypes = (setting: SettingProps) => ReturnTypes;

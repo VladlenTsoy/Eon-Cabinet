@@ -6,10 +6,7 @@ export const gameTotalsReducer: TotalsReducerTypes = (
     state = [], action
 ) => {
     if (action.type === TOTALS_CHANGE) {
-        return {
-            ...state,
-            ...action.payload
-        };
+        return action.payload;
     }
     return state;
 };

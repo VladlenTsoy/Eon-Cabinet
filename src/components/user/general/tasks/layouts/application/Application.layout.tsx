@@ -14,8 +14,8 @@ import {SettingAnzanProps} from "../../../../../../store/tasks/setting/games-typ
 import PreparationLayout from "./preparation/Preparation.layout";
 import List from "./list-new/List";
 import {Form} from "antd";
-import Turbo from "./turbo/Turbo";
 import Double from "./double/Double";
+import ApplicationCardLayout from "./ApplicationCard.layout";
 
 const BasicSound = require('assets/sounds/anzan.ogg');
 
@@ -100,7 +100,6 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
         cancel: executionMode === 'repeat'
     });
 
-
     const afterMessage = useCallback(async () => {
         const answers = ListForm.getFieldValue('answer');
         if (updateResultsTotals) {
@@ -108,18 +107,19 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
         }
     }, [updateResultsTotals, ListForm]);
 
-
     if (loading)
         return <LoadingBlock title="Загрузка чисел..."/>;
 
     return <PreparationLayout>
-        <>
+        <ApplicationCardLayout>
             {timer && <Timer time={setting.time} afterMessage={afterMessage}/>}
-            {displayType === 'basic' && <Basic setting={setting} nextStatus={nextStatus} basicSound={basicSound}/>}
-            {displayType === 'list' && setting.anzan === 'list' && <List listForm={ListForm} setting={setting} updateResultsTotals={updateResultsTotals}/>}
-            {displayType === 'turbo' && <Turbo/>}
-            {displayType === 'double' && setting.anzan === 'double' && <Double setting={setting} nextStatus={nextStatus} basicSound={basicSound}/>}
-        </>
+            {displayType === 'basic' || displayType === 'turbo' &&
+            <Basic setting={setting} nextStatus={nextStatus} basicSound={basicSound}/>}
+            {displayType === 'list' && setting.anzan === 'list' &&
+            <List listForm={ListForm} setting={setting} updateResultsTotals={updateResultsTotals}/>}
+            {displayType === 'double' && setting.anzan === 'double' &&
+            <Double setting={setting} nextStatus={nextStatus} basicSound={basicSound}/>}
+        </ApplicationCardLayout>
     </PreparationLayout>;
 };
 
