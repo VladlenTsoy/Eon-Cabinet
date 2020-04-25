@@ -1,47 +1,45 @@
-import React, {useCallback, useEffect} from 'react';
-import {Card} from "lib";
-import OutputBlock from "../../../layouts/output/Output";
-import {useDispatch, useSelector} from "react-redux";
-import _ from 'lodash';
-import ApplicationAnzanWrapper from "../../../layouts/application/_old/anzan/Anzan.layout";
-import {useOutputTask} from "../../../../../../../effects/use-output-task.effect";
-import {totalsChange} from "../../../../../../../store/tasks/totals/action";
+import React, {useCallback} from 'react';
+import {useSelector} from "react-redux";
+import {random} from 'lodash';
+import {settingAnzan} from "store/tasks/setting/reducer";
+import {totalsSelect} from "store/tasks/totals/reducer";
+import {useUpdateOutputEffect} from "../../../layouts/application/use-update-output.effect";
+import ApplicationLayout from "../../../layouts/application/Application.layout";
 
 const Application: React.FC = () => {
-    const {game} = useSelector((state: any) => state);
-    const dispatch = useDispatch();
+    let setting = useSelector(settingAnzan);
+    const totals = useSelector(totalsSelect);
 
-    const {totals, setting, status, currentTimes} = game;
-    const [startApplication, , addingAnswer] = useOutputTask({times: setting.times});
+    const [updateExercises] = useUpdateOutputEffect({extra: setting.extra});
 
-    //
-    const createNumbers = useCallback(async () => {
+    const updateAnswersTotals = useCallback((data, currentTimes) => {
         let numbers = [];
         for (let i = 0; i < setting.count; i++) {
-            numbers.push(_.random(setting.from, setting.to));
+            numbers.push(random(setting.from, setting.to));
         }
-        const _totals = addingAnswer(numbers);
-        await dispatch(totalsChange(_totals));
-        return numbers;
-    }, [dispatch, setting, addingAnswer]);
+        totals[currentTimes] = {
+            exercise: numbers,
+            answer: numbers.reduce((total: any, val: any) => total + val)
+        };
+        return totals
+    }, [totals]);
 
-    // Fetch algorithms or check totals exercise
-    useEffect(() => {
-        (async () => {
-            if (status === 'refresh' || status === 'repeat')
-                startApplication(totals[currentTimes].exercise);
-            else {
-                const numbers = await createNumbers();
-                startApplication(numbers);
-            }
-        })();
-    }, [startApplication, status, createNumbers, totals, currentTimes]);
+    const updateStats = useCallback(() => {
+        return {all: setting.count};
+    }, []);
 
-    return <ApplicationAnzanWrapper>
-        <Card>
-            <OutputBlock/>
-        </Card>
-    </ApplicationAnzanWrapper>
+    const createOutputs = useCallback((totals, currentTimes) => {
+        return updateExercises(totals[currentTimes].exercise);
+    }, []);
+
+    return <ApplicationLayout
+        createOutputs={createOutputs}
+        displayType="basic"
+        setting={setting}
+        updateAnswersTotals={updateAnswersTotals}
+        updateStats={updateStats}
+        pictures="abacus"
+    />
 };
 
 export default Application;
