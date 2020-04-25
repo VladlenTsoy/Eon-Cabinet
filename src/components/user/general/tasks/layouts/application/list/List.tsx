@@ -1,19 +1,25 @@
 import React from 'react';
 import {SettingAnzanListProps} from "store/tasks/setting/games-types/anzan.types";
-import {Card} from "lib";
 import {Button, Form, Modal} from "antd";
 import {ArrowRightOutlined, ExclamationCircleOutlined} from '@ant-design/icons';
 import TablesOutput from "./tables-output/TablesOutput";
 import {FormInstance} from "antd/es/form";
-import ApplicationAnzanWrapper from "../_old/anzan/Anzan.layout";
 
 interface ListProps {
+    outputs: any[];
     listForm: FormInstance;
     setting: SettingAnzanListProps;
     updateResultsTotals?: (answers: any[]) => void;
 }
 
-const List: React.FC<ListProps> = ({listForm, setting, updateResultsTotals}) => {
+const List: React.FC<ListProps> = (
+    {
+        outputs,
+        listForm,
+        setting,
+        updateResultsTotals
+    }
+) => {
     const onFinishHandler = (values: any) => {
         Modal.confirm({
             icon: <ExclamationCircleOutlined/>,
@@ -22,21 +28,17 @@ const List: React.FC<ListProps> = ({listForm, setting, updateResultsTotals}) => 
         });
     };
 
-    return <ApplicationAnzanWrapper>
-        <Card>
-            <Form form={listForm} onFinish={onFinishHandler}>
-                <TablesOutput setting={setting}/>
-                <Button
-                    block
-                    type="primary"
-                    htmlType="submit"
-                    icon={<ArrowRightOutlined/>}
-                >
-                    Далее
-                </Button>
-            </Form>
-        </Card>
-    </ApplicationAnzanWrapper>;
+    return <Form form={listForm} onFinish={onFinishHandler}>
+        <TablesOutput outputs={outputs} setting={setting}/>
+        <Button
+            block
+            type="primary"
+            htmlType="submit"
+            icon={<ArrowRightOutlined/>}
+        >
+            Далее
+        </Button>
+    </Form>;
 };
 
 export default List;

@@ -3,13 +3,10 @@ import styled from "styled-components";
 import Output from "../basic/output/Output";
 import {SettingAnzanBasicProps,} from "../../../../../../../store/tasks/setting/games-types/anzan.types";
 import {StatusProps} from "../../../../../../../store/game/types";
-import {useDispatch, useSelector} from "react-redux";
-import {totalsSelect} from "../../../../../../../store/tasks/totals/reducer";
-import {game} from "../../../../../../../store/game/reducer";
+import {useDispatch} from "react-redux";
 import {useAddInternal} from "../../../../../../../effects/use-add-interval.effect";
 import {gameChangeStatus} from "../../../../../../../store/game/actions";
 import {useSoundEffect} from "../use-sound.effect";
-import {useAddTimeout} from "../../../../../../../effects/use-add-timeout.effect";
 
 const DoubleWrapper = styled.div`
   display: grid;
@@ -18,6 +15,7 @@ const DoubleWrapper = styled.div`
 `;
 
 interface DoubleProps {
+    outputs: any[];
     setting: SettingAnzanBasicProps;
     nextStatus: StatusProps;
     basicSound: HTMLAudioElement;
@@ -25,19 +23,16 @@ interface DoubleProps {
 
 const Double: React.FC<DoubleProps> = (
     {
+        outputs,
         setting,
         nextStatus,
         basicSound,
     }
 ) => {
-    const totals = useSelector(totalsSelect);
-    const {currentTimes} = useSelector(game);
     const [output, setOutput] = useState({one: '0', two: '0', key: 0});
     const [addInterval] = useAddInternal();
-    const [addTimeout] = useAddTimeout();
     const dispatch = useDispatch();
     const [play] = useSoundEffect({basicSound});
-    const [isMultiplication] = useState(setting.mode === 'multiply' || setting.mode === 'divide');
 
     const changeOutput = useCallback((one, two, index) => {
         setOutput({one, two, key: index});
@@ -46,26 +41,21 @@ const Double: React.FC<DoubleProps> = (
     }, [setting, basicSound]);
 
     // Вывод цифр
-    const outputInterval = useCallback((total: any, i: number = 0) => {
-        if (isMultiplication){
-            addTimeout([setTimeout(() => dispatch(gameChangeStatus(nextStatus)), setting.time * 1000)]);
-            return changeOutput(total[0].output, total[1].output, i++);
-        }
-
+    const outputInterval = useCallback((outputs: any, i: number = 0) => {
         addInterval(() => {
-            if (i >= (setting.count || setting.times))
+            if (i >= outputs[1].length)
                 return dispatch(gameChangeStatus(nextStatus));
 
-            changeOutput(total[0].output[i], total[1].output[i], i++);
+            changeOutput(outputs[0][i], outputs[1][i], i++);
         }, setting.time * 1000);
 
         // Первый вывод числа
-        changeOutput(total[0].output[i], total[1].output[i], i++);
-    }, [dispatch, addInterval, isMultiplication]);
+        changeOutput(outputs[0][i], outputs[1][i], i++);
+    }, [dispatch, addInterval]);
 
     useEffect(() => {
-        outputInterval(totals[currentTimes]);
-    }, [outputInterval, totals, currentTimes]);
+        outputInterval(outputs);
+    }, [outputInterval, outputs]);
 
     return <DoubleWrapper>
         <Output time={setting.time} output={output.one} key={`one-${output.key}`}/>

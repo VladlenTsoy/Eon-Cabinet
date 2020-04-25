@@ -8,7 +8,11 @@ import {totalsChange} from "../../../../../../../store/tasks/totals/action";
 import {gameChangeStats, gameChangeStatus} from "../../../../../../../store/game/actions";
 import {useUpdateOutputEffect} from "../../../layouts/application/use-update-output.effect";
 
-const Application: React.FC = () => {
+interface ApplicationProps {
+    otherUrl?: string;
+}
+
+const Application: React.FC<ApplicationProps> = ({otherUrl}) => {
     const dispatch = useDispatch();
     const setting = useSelector(settingAnzan);
     const totals = useSelector(totalsSelect);
@@ -27,7 +31,7 @@ const Application: React.FC = () => {
 
     const addOutputToTotals = useCallback((exercise) => {
         if (isMultiplication)
-            return exercise[0] + (setting.mode === 'multiply' ? ' * ' : ' / ') + exercise[1];
+            return [exercise[0] + (setting.mode === 'multiply' ? ' * ' : ' / ') + exercise[1]];
         return updateExercises(exercise);
     }, [isMultiplication, setting]);
 
@@ -37,7 +41,6 @@ const Application: React.FC = () => {
                 exercises = setting.extra && setting.extra.includes('mirror') ? updateMirror(exercises) : exercises;
                 totals[key] = {
                     exercise: exercises,
-                    output: addOutputToTotals(exercises),
                     answer: addAnswerToTotals(exercises),
                 }
             });
@@ -46,7 +49,6 @@ const Application: React.FC = () => {
                 exercises = setting.extra && setting.extra.includes('mirror') ? updateMirror(exercises) : exercises;
                 return {
                     exercise: exercises,
-                    output: addOutputToTotals(exercises),
                     answer: addAnswerToTotals(exercises),
                 };
             });
@@ -54,7 +56,6 @@ const Application: React.FC = () => {
             const exercises = setting.extra && setting.extra.includes('mirror') ? updateMirror(data) : data;
             totals[currentTimes] = {
                 exercise: exercises,
-                output: addOutputToTotals(exercises),
                 answer: addAnswerToTotals(exercises),
             };
         }
@@ -88,14 +89,28 @@ const Application: React.FC = () => {
             return {all: setting.times};
     }, []);
 
+    const createOutputs = useCallback((totals, currentTimes) => {
+        if (setting.anzan === 'list') {
+            return Object.values(totals).map((total: any) => addOutputToTotals(total.exercise));
+        } else if (setting.anzan === 'double') {
+            return [addOutputToTotals(totals[currentTimes][0].exercise), addOutputToTotals(totals[currentTimes][1].exercise)];
+        } else {
+            return addOutputToTotals(totals[currentTimes].exercise);
+        }
+    }, []);
+
     return <ApplicationLayout
+        createOutputs={createOutputs}
         timer={setting.anzan === 'list'}
         setting={setting}
         updateAnswersTotals={updateAnswersTotals}
         updateResultsTotals={updateResultsTotals}
         updateStats={updateStats}
         displayType={setting.anzan}
-        urlExercises={setting.anzan === 'list' ? '/algorithm/list' : setting.anzan === 'double' ? '/algorithm/double' : '/algorithm'}
+        urlExercises={
+            otherUrl ? otherUrl :
+                setting.anzan === 'list' ? '/algorithm/list' : setting.anzan === 'double' ? '/algorithm/double' : '/algorithm'
+        }
         pictures="abacus"
         nextStatus={setting.extra.includes('group') ? "intermediate" : "answer"}
     />

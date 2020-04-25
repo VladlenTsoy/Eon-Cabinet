@@ -1,5 +1,4 @@
 import React from 'react';
-import AnswerTable from "../../../../../../mental/anzan/application/list/table/answer-table/AnswerTable";
 import ColumnAnswer from "../column-answer/ColumnAnswer";
 
 interface TbodyMultiplicationProps {
@@ -15,7 +14,7 @@ const TbodyMultiplication: React.FC<TbodyMultiplicationProps> = ({table, tableKe
                 <tr key={columnKey}>
                     {column.map((row: any, rowKey: number) =>
                         <td key={rowKey}>
-                            {row.output}
+                            {row}
                         </td>
                     )}
                 </tr>,

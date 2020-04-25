@@ -1,93 +1,52 @@
-import React, {useCallback, useEffect, useState} from 'react';
-import {
-    gameChangeStats,
-    gameChangeStatus,
-} from "store/game/actions";
-import _ from 'lodash';
-import {useDispatch, useSelector} from "react-redux";
-import {Card, LoadingBlock} from "lib";
-import OutputBlock from "../../../layouts/output/Output";
-import {useAddTimeout} from "effects/use-add-timeout.effect";
-import {useAddInternal} from "effects/use-add-interval.effect";
-import ApplicationAnzanWrapper from "../../../layouts/application/_old/anzan/Anzan.layout";
-import IconAbacus from "assets/images/tasks/abacus.svg";
-import {totalsChange} from "../../../../../../../store/tasks/totals/action";
-import {settingChange} from "../../../../../../../store/tasks/setting/action";
+import React, {useCallback, useEffect} from 'react';
+import {random} from 'lodash';
+import {useSelector} from "react-redux";
+import ApplicationLayout from "../../../layouts/application/Application.layout";
+import {settingAnzan} from "store/tasks/setting/reducer";
+import {totalsSelect} from "store/tasks/totals/reducer";
+import {useUpdateOutputEffect} from "../../../layouts/application/use-update-output.effect";
 
 const Application: React.FC<any> = () => {
-    const {game} = useSelector((state: any) => state);
-    const dispatch = useDispatch();
-    const [loading, setLoading] = useState(true);
+    let setting = useSelector(settingAnzan);
+    const totals = useSelector(totalsSelect);
 
-    const [addInterval] = useAddInternal();
-    const [addTimeout] = useAddTimeout();
+    const [, , updaterOutput] = useUpdateOutputEffect({extra: setting.extra});
 
-    const {totals, setting, status} = game;
-    const sOutput = useCallback((out: string) => out, [dispatch]);
-
-    // Output exercise
-    const outputExercise = useCallback((i: number = 0) => {
-        addInterval(() => {
-            if (i === (setting.count))
-                dispatch(gameChangeStatus(setting.extra && setting.extra.includes('group') ? 'intermediate' : 'answer'));
-            else
-                sOutput(totals[i++].exercise);
-        }, setting.time * 1000);
-        sOutput(totals[i++].exercise);
-    }, [sOutput, setting, addInterval, dispatch, totals]);
-
-    // Start Application
-    const startApplication = useCallback(() => {
-        sOutput('На старт');
-        addTimeout([
-            setTimeout(() => sOutput('Внимание'), 1000),
-            setTimeout(() => sOutput('Марш'), 2000),
-            setTimeout(() => outputExercise(), 3000),
-        ]);
-        dispatch(gameChangeStats({all: setting.count}));
-    }, [dispatch, sOutput, outputExercise, addTimeout, setting]);
-
-    const updateStore = useCallback(async (_totals: any, _setting: any) => {
-        await dispatch(totalsChange(_totals));
-        await dispatch(settingChange(_setting));
-    }, [dispatch]);
-
-    const createNumbers = useCallback(async () => {
-        setLoading(true);
-        setting.extra.push('abacus');
-
-        new Promise((resolve => {
-            const iconAbacus = new Image();
-            iconAbacus.onload = () => resolve(true);
-            iconAbacus.src = IconAbacus;
-        }));
-
+    const updateAnswersTotals = useCallback(() => {
         for (let i = 0; i < setting.count; i++) {
-            let number = _.random(setting.from, setting.to);
-            totals[i] = {exercise: number, answer: number};
+            let number = random(setting.from, setting.to);
+            totals[i] = {
+                exercise: number,
+                answer: number
+            };
         }
+        return totals
+    }, [totals]);
 
-        await updateStore(totals, setting);
-        setLoading(false);
-    }, [totals, setting, updateStore]);
+    const updateStats = useCallback(() => {
+        return {all: setting.count};
+    }, []);
 
-    // Fetch algorithms or check totals exercise
+    const createOutputs = useCallback((totals) => {
+        let outputs: any = [];
+        Object.values(totals).map((total: any) => {
+            outputs.push(updaterOutput(total.exercise))
+        });
+        return outputs;
+    }, []);
+
     useEffect(() => {
-        (async () => {
-            if (status === 'refresh' || status === 'repeat')
-                startApplication();
-            else {
-                await createNumbers();
-                startApplication();
-            }
-        })();
-    }, [status, createNumbers, startApplication]);
+        setting.extra.push('abacus');
+    }, [setting]);
 
-    return <ApplicationAnzanWrapper>
-        <Card>
-            {loading ? <LoadingBlock/> : <OutputBlock/>}
-        </Card>
-    </ApplicationAnzanWrapper>;
+    return <ApplicationLayout
+        createOutputs={createOutputs}
+        displayType="basic"
+        setting={setting}
+        updateAnswersTotals={updateAnswersTotals}
+        updateStats={updateStats}
+        pictures="abacus"
+    />
 };
 
 export default Application;

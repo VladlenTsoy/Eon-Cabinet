@@ -4,14 +4,14 @@ import {Reducer} from "redux";
 export const TOTALS_CHANGE = "TOTALS_CHANGE";
 
 interface anzanTotalProps {
-    output: any;
-    exercise: number[];
+    output?: any;
+    exercise: number[] | number;
     answer: number;
     user?: number;
     result?: boolean;
 }
 
-type doubleTotalsProps = anzanTotalProps[];
+// type doubleTotalsProps = anzanTotalProps[];
 
 type TotalsStateProps = { [currentTimes: number]: anzanTotalProps };
 

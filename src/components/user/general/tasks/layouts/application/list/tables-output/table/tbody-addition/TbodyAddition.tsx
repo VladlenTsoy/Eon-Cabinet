@@ -9,18 +9,15 @@ interface TbodyAdditionProps {
 const TbodyAddition: React.FC<TbodyAdditionProps> = ({table, tableKey}) => {
     return <tbody>
     {
-        table[0].output.map((tr: any, trKey: number) =>
-            <>
-                <tr key={trKey}>
-                    {table.map((column: any, columnKey: number) =>
-                        <td key={columnKey}>{column.output[trKey]}</td>
-                    )}
-                </tr>
-            </>
+        table[0].map((tr: any, trKey: number) =>
+            <tr key={trKey}>
+                {table.map((column: any, columnKey: number) =>
+                    <td key={columnKey}>{column[trKey]}</td>
+                )}
+            </tr>
         )
     }
     <tr>
-        {/*<AnswerTable table={table}/>*/}
         <ColumnAnswer
             column={table}
             name={['answer', tableKey]}

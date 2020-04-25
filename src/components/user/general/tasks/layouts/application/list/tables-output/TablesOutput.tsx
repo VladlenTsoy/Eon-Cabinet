@@ -1,7 +1,5 @@
 import React, {useState} from 'react';
 import styled from "styled-components";
-import {useSelector} from "react-redux";
-import {totalsSelect} from "../../../../../../../../store/tasks/totals/reducer";
 import Table from "./table/Table";
 import {SettingAnzanListProps} from "../../../../../../../../store/tasks/setting/games-types/anzan.types";
 import {chunk} from "lodash";
@@ -14,17 +12,16 @@ const TablesOutputWrapper = styled.div`
 `;
 
 interface TablesOutputProps {
+    outputs: any[];
     setting: SettingAnzanListProps;
 }
 
-const TablesOutput:React.FC<TablesOutputProps> = ({setting}) => {
-    const totals = useSelector(totalsSelect);
-    const totalsValues = Object.values(totals);
+const TablesOutput: React.FC<TablesOutputProps> = ({outputs, setting}) => {
     const [isMultiplication] = useState(setting.mode === 'multiply' || setting.mode === 'divide');
 
     const [tables]: any = useState(isMultiplication ?
-        chunk(chunk(totalsValues, setting.column), setting.rows) :
-        chunk(totalsValues, setting.column)
+        chunk(chunk(outputs, setting.column), setting.rows) :
+        chunk(outputs, setting.column)
     );
 
     return <>

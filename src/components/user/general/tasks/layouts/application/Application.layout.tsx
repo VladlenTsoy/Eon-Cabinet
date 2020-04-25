@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {useApiUserGeneral} from "effects/use-api-user-general.effect";
 import IconAbacus from "assets/images/tasks/abacus.svg";
 import {useDispatch, useSelector} from "react-redux";
@@ -25,16 +25,18 @@ interface ApplicationProps {
     setting: SettingAnzanProps;
     displayType: SettingAnzanProps['anzan'] | 'carousel' | React.ReactNode;
     pictures?: string[] | 'abacus' | picturesFunction;
-    urlExercises: string;
+    urlExercises?: string;
     timer?: boolean;
     updateResultsTotals?: (answers: any[]) => any;
     updateAnswersTotals: (data: any, currentTimes: number) => any;
+    createOutputs: (totals: any, currentTimes: number) => any;
     updateStats: () => StatsActionProps;
-    nextStatus: StatusProps;
+    nextStatus?: StatusProps;
 }
 
 const ApplicationLayout: React.FC<ApplicationProps> = (
     {
+        createOutputs,
         setting,
         displayType,
         pictures,
@@ -43,9 +45,10 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
         updateAnswersTotals,
         updateResultsTotals,
         updateStats,
-        nextStatus,
+        nextStatus = 'answer',
     }
 ) => {
+    const [outputs, setOutputs] = useState([]);
     const [ListForm] = Form.useForm();
     const {executionMode, currentTimes} = useSelector(game);
     const dispatch = useDispatch();
@@ -88,17 +91,25 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
         let totals = updateAnswersTotals(data, currentTimes);
         dispatch(totalsChange(totals));
 
+        let outputsTotals = createOutputs(totals, currentTimes);
+        setOutputs(outputsTotals);
+
         let stats = updateStats();
         dispatch(gameChangeStats(stats))
     }, [updateAnswersTotals, updateStats, setting, dispatch, currentTimes, soundsLoad, picturesLoad, pictures]);
 
     // Загрузка примеров
     const [loading] = useApiUserGeneral({
-        url: urlExercises,
+        url: urlExercises || '',
         config: {params: setting},
         afterRequest: afterRequest,
-        cancel: executionMode === 'repeat'
+        cancel: !urlExercises || executionMode === 'repeat'
     });
+
+    useEffect(() => {
+        if (!urlExercises)
+            afterRequest([]).then();
+    }, [urlExercises, afterRequest]);
 
     const afterMessage = useCallback(async () => {
         const answers = ListForm.getFieldValue('answer');
@@ -113,12 +124,15 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
     return <PreparationLayout>
         <ApplicationCardLayout>
             {timer && <Timer time={setting.time} afterMessage={afterMessage}/>}
+            {/**/}
             {(displayType === 'basic' || displayType === 'turbo') &&
-            <Basic setting={setting} nextStatus={nextStatus} basicSound={basicSound}/>}
+            <Basic setting={setting} nextStatus={nextStatus} basicSound={basicSound} outputs={outputs}/>}
+            {/**/}
             {displayType === 'list' && setting.anzan === 'list' &&
-            <List listForm={ListForm} setting={setting} updateResultsTotals={updateResultsTotals}/>}
+            <List listForm={ListForm} setting={setting} updateResultsTotals={updateResultsTotals} outputs={outputs}/>}
+            {/**/}
             {displayType === 'double' && setting.anzan === 'double' &&
-            <Double setting={setting} nextStatus={nextStatus} basicSound={basicSound}/>}
+            <Double setting={setting} nextStatus={nextStatus} basicSound={basicSound} outputs={outputs}/>}
         </ApplicationCardLayout>
     </PreparationLayout>;
 };
