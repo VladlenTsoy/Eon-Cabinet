@@ -3,8 +3,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {LoadingBlock} from "lib";
 import BasicApplication from "./basic/BasicApplication";
 import DoubleApplication from "./double/DoubleApplication";
-import {useAddInternal} from "../../../../../../../../effects/use-add-interval.effect";
-import {useAddTimeout} from "../../../../../../../../effects/use-add-timeout.effect";
+import {useAddInternal} from "../../../../../../../../../effects/use-add-interval.effect";
+import {useAddTimeout} from "../../../../../../../../../effects/use-add-timeout.effect";
 
 interface OtherApplicationProps {
     numbers: any,

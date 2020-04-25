@@ -1,12 +1,9 @@
 import React, {useCallback, useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {
-    gameChangeStats,
-    gameChangeStatus,
-} from "../../../../../../../../../store/game/actions";
+import {gameChangeStats, gameChangeStatus} from "../../../../../../../../../../store/game/actions";
 import StartApplication from "../start-application/StartApplication";
 
-interface BasicApplicationProps {
+interface DoubleApplicationProps {
     numbers: any,
     isMultiplication: boolean;
     addInterval: (interval: any, time: number) => void;
@@ -17,7 +14,7 @@ interface BasicApplicationProps {
     startApplication: (exercise: any, callBack: (exercise: any) => void) => any;
 }
 
-const BasicApplication: React.FC<BasicApplicationProps> = (
+const DoubleApplication: React.FC<DoubleApplicationProps> = (
     {
         isMultiplication,
         numbers,
@@ -36,40 +33,42 @@ const BasicApplication: React.FC<BasicApplicationProps> = (
     // Output exercise
     const outputExercise = useCallback((exercise: any, i: number = 0) => {
         if (isMultiplication) {
-            sOutput(exercise[0] + (setting.mode === 'multiply' ? ' * ' : ' / ') + exercise[1]);
+            sOutput([
+                exercise[0][0] + (setting.mode === 'multiply' ? ' * ' : ' / ') + exercise[0][1],
+                exercise[1][0] + (setting.mode === 'multiply' ? ' * ' : ' / ') + exercise[1][1]
+            ]);
             addTimeout([
-                setTimeout(() => dispatch(gameChangeStatus(
-                    setting.extra && setting.extra.includes('group') ? 'intermediate' : 'answer'
-                )), setting.time * 1000),
+                setTimeout(() => dispatch(gameChangeStatus('answer')), setting.time * 1000),
             ])
         } else {
             addInterval(() => {
                 if (i === (setting.count))
-                    dispatch(gameChangeStatus(
-                        setting.extra && setting.extra.includes('group') ? 'intermediate' : 'answer'
-                    ));
+                    dispatch(gameChangeStatus(setting.extra && setting.extra.includes('group') ? 'intermediate' : 'answer'));
                 else
-                    sOutput(exercise[i++]);
+                    sOutput([exercise[0][i], exercise[1][i++]]);
             }, setting.time * 1000);
 
             // Первый вывод числа
-            sOutput(exercise[i++]);
+            sOutput([exercise[0][i], exercise[1][i++]]);
         }
-    }, [isMultiplication, sOutput, setting, dispatch, addInterval, addTimeout]);
+    }, [isMultiplication, sOutput, setting, dispatch, addTimeout, addInterval]);
+
 
     // Adding Answers to the Totals
     const addingAnswer = useCallback((data: any) => {
-        let updateData = setting.extra && setting.extra.includes('mirror') ? updateMirror(data) : data;
-        totals[currentTimes] = {
-            exercise: updateData,
-            answer: countAnswer(updateData)
-        };
+        totals[currentTimes] = data.map((val: any) => {
+            let data = setting.extra.includes('mirror') ? updateMirror(val) : val;
+            return {
+                exercise: data,
+                answer: countAnswer(data)
+            }
+        });
         return totals;
     }, [countAnswer, currentTimes, updateMirror, setting.extra, totals]);
 
     // Fetch algorithms or check totals exercise
     useEffect(() => {
-        dispatch(gameChangeStats({all: setting.times}));
+        dispatch(gameChangeStats({all: setting.times * 2}));
     }, [dispatch, setting]);
 
     return <StartApplication
@@ -80,4 +79,4 @@ const BasicApplication: React.FC<BasicApplicationProps> = (
     />;
 };
 
-export default BasicApplication;
+export default DoubleApplication;

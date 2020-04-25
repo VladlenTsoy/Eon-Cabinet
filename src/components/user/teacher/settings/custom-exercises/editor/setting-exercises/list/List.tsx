@@ -1,6 +1,6 @@
 import React from 'react';
 import {TableWrapper} from "../../../../../../general/tasks/layouts/application/_old/list/card-list/table/TableExercise";
-import HeaderTable from "../../../../../../general/tasks/mental/anzan/application/list/table/header-table/HeaderTable";
+import HeaderTable from "../../../../../../general/tasks/mental/anzan/application/_old/list/table/header-table/HeaderTable";
 import {Card} from "../../../../../../../../lib";
 import {Form} from "antd";
 import SaveButton from "../layouts/save-button/SaveButton";

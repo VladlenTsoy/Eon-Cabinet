@@ -1,5 +1,5 @@
 import React from 'react';
-import {FormItem} from "../../../../../../../../../../lib";
+import {FormItem} from "../../../../../../../../../lib";
 import {Input} from "antd";
 
 interface RowAnswerProps {

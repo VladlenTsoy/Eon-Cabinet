@@ -5,7 +5,7 @@ import { Form } from '@ant-design/compatible';
 import '@ant-design/compatible/assets/index.css';
 import { Button, Modal } from "antd";
 import { FormComponentProps } from '@ant-design/compatible/es/form';
-import HeaderTable from "../../../../../mental/anzan/application/list/table/header-table/HeaderTable";
+import HeaderTable from "../../../../../mental/anzan/application/_old/list/table/header-table/HeaderTable";
 import styled from "styled-components";
 import {TableWrapper} from "./table/TableExercise";
 import {gameChangeStats, gameChangeStatus} from "../../../../../../../../../store/game/actions";
@@ -45,7 +45,6 @@ const CardListLayout: React.FC<CardListProps> = (
     {
         form,
         column,
-        timeIsRunningOut,
         checkResult,
         outputExercise,
     }

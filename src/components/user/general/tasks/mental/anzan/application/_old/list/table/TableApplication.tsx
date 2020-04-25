@@ -2,15 +2,15 @@ import React, {useState} from 'react';
 import {Card} from "lib";
 import {ArrowRightOutlined, ExclamationCircleOutlined} from '@ant-design/icons';
 import {Button, Modal, Form} from "antd";
-import {TableWrapper} from "../../../../../layouts/application/_old/list/card-list/table/TableExercise";
+import {TableWrapper} from "../../../../../../layouts/application/_old/list/card-list/table/TableExercise";
 import HeaderTable from "./header-table/HeaderTable";
 import TableNumbersMultiplication from "./body-table/body-numbers-multiplication/TableNumbersMultiplication";
 import TableNumbersAddition from "./body-table/body-numbers-addition/TableNumbersAddition";
 import {useDispatch, useSelector} from "react-redux";
 import {chunk} from "lodash";
-import {gameChangeStats, gameChangeStatus} from "../../../../../../../../../store/game/actions";
+import {gameChangeStats, gameChangeStatus} from "../../../../../../../../../../store/game/actions";
 import styled from "styled-components";
-import {totalsChange} from "../../../../../../../../../store/tasks/totals/action";
+import {totalsChange} from "../../../../../../../../../../store/tasks/totals/action";
 
 const ScrollWrapper = styled.div`
   width: 100%;

@@ -3,10 +3,12 @@ import {useDispatch, useSelector} from "react-redux";
 import ApplicationLayout from "../../../layouts/application/Application.layout";
 import {settingAnzan} from "../../../../../../../store/tasks/setting/reducer";
 import {totalsSelect} from "../../../../../../../store/tasks/totals/reducer";
-import {flattenDepth} from "lodash";
+import {chunk, flattenDepth} from "lodash";
 import {totalsChange} from "../../../../../../../store/tasks/totals/action";
 import {gameChangeStats, gameChangeStatus} from "../../../../../../../store/game/actions";
 import {useUpdateOutputEffect} from "../../../layouts/application/use-update-output.effect";
+import TbodyAddition from "./list/tbody-addition/TbodyAddition";
+import TbodyMultiplication from "./list/tbody-multiplication/TbodyMultiplication";
 
 interface ApplicationProps {
     otherUrl?: string;
@@ -91,15 +93,28 @@ const Application: React.FC<ApplicationProps> = ({otherUrl}) => {
 
     const createOutputs = useCallback((totals, currentTimes) => {
         if (setting.anzan === 'list') {
-            return Object.values(totals).map((total: any) => addOutputToTotals(total.exercise));
+            let outputs = Object.values(totals).map((total: any) => addOutputToTotals(total.exercise));
+            return isMultiplication ?
+                chunk(chunk(outputs, setting.column), setting.rows) :
+                chunk(outputs, setting.column);
         } else if (setting.anzan === 'double') {
             return [addOutputToTotals(totals[currentTimes][0].exercise), addOutputToTotals(totals[currentTimes][1].exercise)];
         } else {
             return addOutputToTotals(totals[currentTimes].exercise);
         }
-    }, []);
+    }, [isMultiplication]);
 
     return <ApplicationLayout
+        {
+            ...setting.anzan === 'list' &&
+            {
+                listSetting: {
+                    column: setting.column,
+                    leftNumbering: false,
+                    list: isMultiplication ? TbodyMultiplication : TbodyAddition
+                }
+            }
+        }
         createOutputs={createOutputs}
         timer={setting.anzan === 'list'}
         setting={setting}

@@ -26,6 +26,7 @@ interface ApplicationProps {
     setting: SettingAnzanProps;
     displayType: SettingAnzanProps['anzan'] | 'carousel' | React.ReactNode;
     pictures?: string[] | 'abacus' | picturesFunction;
+    listSetting?: { column: any, list: any, leftNumbering: boolean }
     requestSetting?: { url: string, method?: 'post' | 'get', setting?: any };
     timer?: boolean;
     updateResultsTotals?: (answers: any[]) => any;
@@ -38,6 +39,7 @@ interface ApplicationProps {
 
 const ApplicationLayout: React.FC<ApplicationProps> = (
     {
+        listSetting,
         createOutputs,
         setting,
         displayType,
@@ -51,7 +53,7 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
         carouselItem,
     }
 ) => {
-    const [outputs, setOutputs] = useState([]);
+    const [outputs, setOutputs] = useState<any>([]);
     const [ListForm] = Form.useForm();
     const {executionMode, currentTimes} = useSelector(game);
     const dispatch = useDispatch();
@@ -132,8 +134,8 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
             {(displayType === 'basic' || displayType === 'turbo') &&
             <Basic setting={setting} nextStatus={nextStatus} basicSound={basicSound} outputs={outputs}/>}
             {/**/}
-            {displayType === 'list' && setting.anzan === 'list' &&
-            <List listForm={ListForm} setting={setting} updateResultsTotals={updateResultsTotals} outputs={outputs}/>}
+            {displayType === 'list' && listSetting &&
+            <List listForm={ListForm} listSetting={listSetting} updateResultsTotals={updateResultsTotals} outputs={outputs}/>}
             {/**/}
             {displayType === 'double' && setting.anzan === 'double' &&
             <Double setting={setting} nextStatus={nextStatus} basicSound={basicSound} outputs={outputs}/>}

@@ -1,5 +1,4 @@
 import React from 'react';
-import {SettingAnzanListProps} from "store/tasks/setting/games-types/anzan.types";
 import {Button, Form, Modal} from "antd";
 import {ArrowRightOutlined, ExclamationCircleOutlined} from '@ant-design/icons';
 import TablesOutput from "./tables-output/TablesOutput";
@@ -8,7 +7,7 @@ import {FormInstance} from "antd/es/form";
 interface ListProps {
     outputs: any[];
     listForm: FormInstance;
-    setting: SettingAnzanListProps;
+    listSetting: { column: any, list: any, leftNumbering: boolean },
     updateResultsTotals?: (answers: any[]) => void;
 }
 
@@ -16,7 +15,7 @@ const List: React.FC<ListProps> = (
     {
         outputs,
         listForm,
-        setting,
+        listSetting,
         updateResultsTotals
     }
 ) => {
@@ -28,8 +27,8 @@ const List: React.FC<ListProps> = (
         });
     };
 
-    return <Form form={listForm} onFinish={onFinishHandler}>
-        <TablesOutput outputs={outputs} setting={setting}/>
+    return <Form form={listForm} onFinish={onFinishHandler} style={{width: '100%'}}>
+        <TablesOutput outputs={outputs} listSetting={listSetting}/>
         <Button
             block
             type="primary"

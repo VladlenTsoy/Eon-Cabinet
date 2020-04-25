@@ -1,11 +1,10 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import TimerBlock from "../../../../layouts/application/_old/timer/Timer";
+import TimerBlock from "../../../../../layouts/application/_old/timer/Timer";
 import {useDispatch, useSelector} from "react-redux";
-import {Modal} from "antd";
-import {gameChangeStats} from "../../../../../../../../store/game/actions";
+import {gameChangeStats} from "../../../../../../../../../store/game/actions";
 import {LoadingBlock} from "lib";
 import TableApplication from "./table/TableApplication";
-import {totalsChange} from "../../../../../../../../store/tasks/totals/action";
+import {totalsChange} from "../../../../../../../../../store/tasks/totals/action";
 
 interface ListApplicationProps {
     numbers: any,
