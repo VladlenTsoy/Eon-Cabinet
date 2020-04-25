@@ -12,7 +12,8 @@ import {Button} from "antd";
 import styled from "styled-components";
 import {withRouter, RouteComponentProps} from "react-router";
 import {useDispatch, useSelector} from "react-redux";
-import {gameChangeExecutionMode, gameChangeStatus} from "../../../../../../../../store/game/actions";
+import {gameChangeExecutionMode} from "../../../../../../../../store/game/actions";
+import {settingAnzan} from "../../../../../../../../store/tasks/setting/reducer";
 
 const HeaderWrapper = styled.div`
   display: flex;
@@ -41,8 +42,7 @@ const Header: React.FC<HeaderProps & RouteComponentProps> = (
         openAnswer,
     }
 ) => {
-    const {game} = useSelector((state: any) => state);
-    const {setting} = game;
+    const setting: any = useSelector(settingAnzan);
     const dispatch = useDispatch();
 
     const back = () => history.goBack();

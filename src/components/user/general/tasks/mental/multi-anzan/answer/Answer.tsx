@@ -8,6 +8,9 @@ import {gameChangeStatus} from "../../../../../../../store/game/actions";
 import MultiGridLayout from "../layouts/MultiGrid.layout";
 import Header from "./header/Header";
 import {totalsChange} from "../../../../../../../store/tasks/totals/action";
+import {game} from "../../../../../../../store/game/reducer";
+import {totalsSelect} from "../../../../../../../store/tasks/totals/reducer";
+import {settingAnzan} from "../../../../../../../store/tasks/setting/reducer";
 
 const CardWrapper = styled(Card)`
   &.ant-card {
@@ -27,8 +30,9 @@ const FormWrapper = styled(Form)`
 `;
 
 const Answer: React.FC = () => {
-    const {game} = useSelector((state: any) => state);
-    let {totals, setting, currentTimes} = game;
+    const {currentTimes} = useSelector(game);
+    let totals: any = useSelector(totalsSelect);
+    const setting = useSelector(settingAnzan);
     const [isAnswersOpen, setIsAnswersOpen] = useState(false);
     const dispatch = useDispatch();
     const [form] = Form.useForm();

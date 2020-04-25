@@ -6,6 +6,8 @@ import {Typography} from "antd";
 import {useSelector} from "react-redux";
 import TextFit
     from "../../../../../../../teacher/training/tasks/mental/multi-anzan/exercise-setting/multiplication-block/TextFit";
+import {totalsSelect} from "../../../../../../../../../store/tasks/totals/reducer";
+import {settingAnzan} from "../../../../../../../../../store/tasks/setting/reducer";
 
 const {Title} = Typography;
 
@@ -47,8 +49,8 @@ const GroupInput: React.FC<GroupInputProps> = (
         isAnswersOpen,
     }
 ) => {
-    const {game} = useSelector((state: any) => state);
-    const {totals, setting} = game;
+    const totals: any = useSelector(totalsSelect);
+    const setting = useSelector(settingAnzan);
 
     return <GroupWrapper>
         <Title level={2}>Пользователь №{taskKey + 1}</Title>

@@ -1,22 +1,17 @@
 import React from 'react';
-import {useSelector} from "react-redux";
 import Application from "./application/Application";
 import Answer from "./answer/Answer";
-import Result from "./result/Result";
-import Intermediate from "./intermediate/Intermediate";
+import TaskLayout from "../../layouts/task/Task.layout";
+import IntermediateBlock from "../anzan/intermediate/Intermediate";
+import ResultBlock from "../anzan/result/Result";
 
 const MultiAnzan: React.FC = () => {
-    const {status} = useSelector((state: any) => state.game);
-    return <>
-        {status === 'start' ||
-        status === 'again' ||
-        status === 'repeat' ||
-        status === 'refresh' ?
-            <Application/> : null}
-        {status === 'answer' ? <Answer/> : null}
-        {status === 'intermediate' ? <Intermediate/> : null}
-        {status === 'result' ? <Result/> : null}
-    </>;
+    return <TaskLayout
+        start={<Application/>}
+        answer={<Answer/>}
+        intermediate={<IntermediateBlock/>}
+        result={<ResultBlock/>}
+    />;
 };
 
 export default MultiAnzan;

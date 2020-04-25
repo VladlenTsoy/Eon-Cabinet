@@ -9,6 +9,9 @@ import styled from "styled-components";
 import {gameChangeStatus} from "../../../../../../../store/game/actions";
 import MultiGridLayout from "../layouts/MultiGrid.layout";
 import {totalsChange} from "../../../../../../../store/tasks/totals/action";
+import {totalsSelect} from "../../../../../../../store/tasks/totals/reducer";
+import {settingAnzan} from "../../../../../../../store/tasks/setting/reducer";
+import {game} from "../../../../../../../store/game/reducer";
 
 const CardWrapper = styled(Card)`
   &.ant-card{
@@ -21,8 +24,9 @@ const CardWrapper = styled(Card)`
 `;
 
 const Application: React.FC = () => {
-    const {game} = useSelector((state: any) => state);
-    let {setting, totals, currentTimes, status} = game;
+    const {currentTimes, executionMode} = useSelector(game);
+    const totals: any = useSelector(totalsSelect);
+    const setting = useSelector(settingAnzan);
     const [completed, setCompleted] = useState([]);
     const dispatch = useDispatch();
 
@@ -57,7 +61,7 @@ const Application: React.FC = () => {
 
     //
     const [loading] = useApiUserGeneral({
-        cancel: status === 'refresh' || status === 'repeat',
+        cancel: executionMode === 'repeat',
         url: '/algorithm/multi',
         config: {params: {setting}},
         initValue: [],
