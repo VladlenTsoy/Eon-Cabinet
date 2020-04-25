@@ -24,7 +24,7 @@ type picturesFunction = (exercises: any) => any[];
 
 interface ApplicationProps {
     setting: SettingAnzanProps;
-    displayType: SettingAnzanProps['anzan'] | 'carousel' | React.ReactNode;
+    displayType: SettingAnzanProps['anzan'] | 'carousel' | 'custom';
     pictures?: string[] | 'abacus' | picturesFunction;
     listSetting?: { column: any, list: any, leftNumbering: boolean }
     requestSetting?: { url: string, method?: 'post' | 'get', setting?: any };
@@ -35,6 +35,7 @@ interface ApplicationProps {
     updateStats: () => StatsActionProps;
     nextStatus?: StatusProps;
     carouselItem?: React.ReactNode;
+    CustomDisplay?: React.FC<any>;
 }
 
 const ApplicationLayout: React.FC<ApplicationProps> = (
@@ -51,6 +52,7 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
         updateStats,
         nextStatus = 'answer',
         carouselItem,
+        CustomDisplay,
     }
 ) => {
     const [outputs, setOutputs] = useState<any>([]);
@@ -127,6 +129,7 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
     if (loading)
         return <LoadingBlock title="Загрузка чисел..."/>;
 
+    console.log(typeof displayType);
     return <PreparationLayout>
         <ApplicationCardLayout>
             {timer && <Timer time={setting.time} afterMessage={afterMessage}/>}
@@ -135,13 +138,16 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
             <Basic setting={setting} nextStatus={nextStatus} basicSound={basicSound} outputs={outputs}/>}
             {/**/}
             {displayType === 'list' && listSetting &&
-            <List listForm={ListForm} listSetting={listSetting} updateResultsTotals={updateResultsTotals} outputs={outputs}/>}
+            <List listForm={ListForm} listSetting={listSetting} updateResultsTotals={updateResultsTotals}
+                  outputs={outputs}/>}
             {/**/}
             {displayType === 'double' && setting.anzan === 'double' &&
             <Double setting={setting} nextStatus={nextStatus} basicSound={basicSound} outputs={outputs}/>}
             {/**/}
             {displayType === 'carousel' &&
             <Carousel topNumber nextStatus={nextStatus} outputs={outputs}>{carouselItem}</Carousel>}
+            {/**/}
+            {displayType === 'custom' && CustomDisplay && <CustomDisplay outputs={outputs} finishHandler={() => null}/>}
         </ApplicationCardLayout>
     </PreparationLayout>;
 };
