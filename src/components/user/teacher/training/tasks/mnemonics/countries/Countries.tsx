@@ -19,7 +19,10 @@ const Countries: React.FC<CountriesProps> = (
         addSettingHomework,
     }
 ) => {
-    const setting = userSetting.hasOwnProperty('mode') ? {...userSetting, mode: String(userSetting.mode)} : userSetting;
+    const setting = typeof userSetting === 'object' && userSetting.hasOwnProperty('mode') ? {
+        ...userSetting,
+        mode: String(userSetting.mode)
+    } : userSetting;
     return <FormSettingLayout
         initialValues={{
             mode: '1',

@@ -17,7 +17,7 @@ const Numbers: React.FC<NumbersProps> = (
         addSettingHomework,
     }
 ) => {
-    const setting = userSetting.hasOwnProperty('mode') ? {...userSetting, mode: String(userSetting.mode)} : userSetting;
+    const setting = typeof userSetting === 'object' && userSetting.hasOwnProperty('mode') ? {...userSetting, mode: String(userSetting.mode)} : userSetting;
     const [typeTask, setTypeTask] = useState(() =>
         typeof userSetting === 'object' && Object.keys(userSetting).length ? userSetting['task-mode'] : 'basic'
     );
