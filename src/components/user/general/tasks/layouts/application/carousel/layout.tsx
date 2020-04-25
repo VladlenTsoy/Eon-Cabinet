@@ -1,12 +1,10 @@
 import React, {useEffect, useRef} from 'react';
-import NextArrow from "./next-arrow/NextArrow";
-import PrevArrow from "./prev-arrow/PrevArrow";
-import TextFit
-    from "../../../../../../../teacher/training/tasks/mental/multi-anzan/exercise-setting/multiplication-block/TextFit";
-import {Carousel} from "antd";
-import {useSelector} from "react-redux";
 import styled from "styled-components";
-import {totalsSelect} from "../../../../../../../../../store/tasks/totals/reducer";
+import {Carousel} from "antd";
+import NextArrow from "../_old/carousel-application/carousel/next-arrow/NextArrow";
+import PrevArrow from "../_old/carousel-application/carousel/prev-arrow/PrevArrow";
+import TextFit
+    from "../../../../../teacher/training/tasks/mental/multi-anzan/exercise-setting/multiplication-block/TextFit";
 
 const ExerciseWrapper = styled.div`
   height: 250px;
@@ -23,25 +21,24 @@ const TextFitWrapper = styled.div`
 `;
 
 interface CarouselProps {
-    outputExercise?: (exercise: any) => string;
+    outputs: any[];
     checkTimerForAnswer: () => void;
     setCurrent: (current: number) => void;
 }
 
-const CarouselLayout: React.FC<CarouselProps> = (
+
+const Layout: React.FC<CarouselProps> = (
     {
+        outputs,
         children,
         setCurrent,
-        outputExercise,
         checkTimerForAnswer
     }
 ) => {
     const carouselRef = useRef<any>();
-    const totals = useSelector(totalsSelect);
 
-    const beforeChange = (current: number, next: number) => {
+    const beforeChange = (current: number, next: number) =>
         setCurrent(next + 1);
-    };
 
     useEffect(() => {
         document.onkeyup = (e) => {
@@ -60,16 +57,16 @@ const CarouselLayout: React.FC<CarouselProps> = (
     return <Carousel
         dots={false}
         beforeChange={beforeChange}
-        arrows={Object.values(totals).length >= 2}
+        arrows={outputs.length >= 2}
         ref={carouselRef}
         nextArrow={NextArrow()}
         prevArrow={PrevArrow()}
     >
-        {children || Object.values(totals).map((total: any, key: number) =>
+        {children || outputs.map((output: any, key: number) =>
             <TextFitWrapper key={key}>
                 <TextFit>
                     <ExerciseWrapper>
-                        {outputExercise ? outputExercise(total) : total.exercise.word}
+                        {output}
                     </ExerciseWrapper>
                 </TextFit>
             </TextFitWrapper>
@@ -77,4 +74,4 @@ const CarouselLayout: React.FC<CarouselProps> = (
     </Carousel>;
 };
 
-export default CarouselLayout;
+export default Layout;

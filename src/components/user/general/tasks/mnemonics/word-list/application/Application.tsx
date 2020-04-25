@@ -1,63 +1,44 @@
-import React, {useCallback, useEffect, useState} from 'react';
-import {gameChangeStatus} from "../../../../../../../store/game/actions";
-import {useDispatch, useSelector} from "react-redux";
-import {LoadingBlock} from "lib";
-import ListApplication from "./list-application/ListApplication";
-import BasicApplication from "./basic-application/BasicApplication";
-import {Modal} from "antd";
-import {totalsChange} from "../../../../../../../store/tasks/totals/action";
+import React, {useCallback} from 'react';
+import {useSelector} from "react-redux";
+import ApplicationLayout from "../../../layouts/application/Application.layout";
+import {settingAnzan} from "../../../../../../../store/tasks/setting/reducer";
 
 const Application: React.FC = () => {
-    const {game, api} = useSelector((state: any) => state);
-    const dispatch = useDispatch();
-    const [loading, setLoading] = useState(true);
+    const setting = useSelector(settingAnzan);
 
-    const {setting, status} = game;
+    const updateAnswersTotals = useCallback((data) => {
+        return data.map((exercise: any) => ({exercise}));
+    }, []);
 
-    /**
-     * Запрос слов по настройкам
-     */
-    const fetch = useCallback(async (): Promise<void> => {
+    const createOutputs = useCallback((totals) => {
+        return Object.values(totals).map((total: any) => total.exercise.word);
+    }, []);
+
+    const updateStats = useCallback(() => {
+        return {all: 1};
+    }, []);
+
+    const createSeveral = () => {
         let data = [];
-        setLoading(true);
-
         for (let val in setting.several)
             data.push(setting.several[val]);
-
-        let response = await api.user_general.post('/task/words', {several: data});
-        let _totals = response.data.map((exercise: any) => ({exercise}));
-
-        await dispatch(totalsChange(_totals));
-    }, [dispatch, setting, api.user_general]);
-
-    /**
-     * Окончание таймера
-     */
-    const timeIsRunningOut = () => {
-        Modal.destroyAll();
-        document.onkeyup = null;
-        return Modal.warning({
-            title: 'Время закончилось!',
-            // content: '',
-            onOk() {
-                dispatch(gameChangeStatus('answer'));
-            }
-        });
+        return data;
     };
 
-    // Fetch algorithms or check totals exercise
-    useEffect(() => {
-        (async () => {
-            if (status !== 'refresh' && status !== 'repeat' && status !== 'answer' && status !== 'intermediate')
-                await fetch();
-            setLoading(false);
-        })();
-    }, [fetch, status]);
-
-    return loading ?
-        <LoadingBlock/> : setting.mode === 'list' ?
-            <ListApplication timeIsRunningOut={timeIsRunningOut}/> :
-            <BasicApplication timeIsRunningOut={timeIsRunningOut}/>
+    return <ApplicationLayout
+        createOutputs={createOutputs}
+        timer
+        setting={setting}
+        updateAnswersTotals={updateAnswersTotals}
+        updateStats={updateStats}
+        displayType={setting.mode === 'basic' ? "carousel" : 'list'}
+        requestSetting={{
+            url: '/task/words',
+            method: 'post',
+            setting: {several: createSeveral()}
+        }}
+        nextStatus="answer"
+    />
 };
 
 export default Application;

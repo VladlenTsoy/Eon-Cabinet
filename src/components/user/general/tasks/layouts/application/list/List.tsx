@@ -23,7 +23,7 @@ const List: React.FC<ListProps> = (
     const onFinishHandler = (values: any) => {
         Modal.confirm({
             icon: <ExclamationCircleOutlined/>,
-            title: 'У вас еще есть время',
+            title: "У вас еще осталось время, Вы уверены что хотите перейти к ответам?",
             onOk: () => updateResultsTotals && updateResultsTotals(values.answer)
         });
     };

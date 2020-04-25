@@ -107,10 +107,10 @@ const Application: React.FC<ApplicationProps> = ({otherUrl}) => {
         updateResultsTotals={updateResultsTotals}
         updateStats={updateStats}
         displayType={setting.anzan}
-        urlExercises={
-            otherUrl ? otherUrl :
+        requestSetting={{
+            url: otherUrl ? otherUrl :
                 setting.anzan === 'list' ? '/algorithm/list' : setting.anzan === 'double' ? '/algorithm/double' : '/algorithm'
-        }
+        }}
         pictures="abacus"
         nextStatus={setting.extra.includes('group') ? "intermediate" : "answer"}
     />

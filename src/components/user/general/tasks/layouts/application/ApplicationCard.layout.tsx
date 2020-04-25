@@ -22,6 +22,39 @@ const ApplicationCardWrapper = styled.div`
       display: flex;
       align-items: center;
       justify-content: center;
+      
+      animation-duration: 1s;
+      animation-fill-mode: both;
+      animation-name: fadeIn;
+      
+      .ant-carousel{
+        width: 80%;
+        
+        @media (max-width: 576px) {
+          width: 75%;
+        }
+        
+        .slick-slide {
+          position: relative;
+        }
+        
+        .slick-dots-bottom{
+          bottom: -25px;
+        }
+        
+        .slick-dots{ 
+          li{ 
+            button{
+              background: ${props => props.theme.color_second}
+            }
+          }
+        
+          li.slick-active button{
+            background: ${props => props.theme.color_primary}
+          }
+        }
+      }
+
     }
   }
 `;

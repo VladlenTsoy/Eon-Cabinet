@@ -16,7 +16,7 @@ import FlashAnzan from "./mental/flash-anzan/FlashAnzan";
 import SpecialAnzan from "./mental/special-anzan/SpecialAnzan";
 import Progression from "./mental/progression/Progression";
 // import DigitalRow from "./mnemonics/digital-row/DigitalRow";
-// import WordList from "./mnemonics/word-list/WordList";
+import WordList from "./mnemonics/word-list/WordList";
 // import Numbers from "./mnemonics/numbers/Numbers";
 // import Personalities from "./mnemonics/personalities/Personalities";
 // import DigitalImage from "./mnemonics/digital-image/DigitalImage";
@@ -76,7 +76,7 @@ const Tasks = ({history, match}: any) => {
                 <Route exact path="/training/1/24" children={<CustomExercises/>}/>
 
                 {/*<Route exact path="/training/2/10" children={<DigitalRow/>}/>*/}
-                {/*<Route exact path="/training/2/15" children={<WordList/>}/>*/}
+                <Route exact path="/training/2/15" children={<WordList/>}/>
                 {/*<Route exact path="/training/2/16" children={<Numbers/>}/>*/}
                 {/*<Route exact path="/training/2/8" children={<Personalities/>}/>*/}
                 {/*<Route exact path="/training/2/13" children={<DigitalImage/>}/>*/}

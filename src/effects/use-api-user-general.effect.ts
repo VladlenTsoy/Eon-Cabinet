@@ -38,18 +38,27 @@ export const useApiUserGeneral: FH = (
 
     const fetch = useCallback((params?) => {
         setLoading(true);
-        api.user_general[method](url, {
-            ...configuration,
-            ...params ? {params} : {},
-            cancelToken: source.token
-        }).then(async (response: any) => {
-            setData(response.data);
+        (
+            method === 'post' ?
+                api.user_general.post(url, configuration.params, {
+                    ...configuration,
+                    ...params ? {params} : {},
+                    cancelToken: source.token
+                }) :
+                api.user_general.get(url, {
+                    ...configuration,
+                    ...params ? {params} : {},
+                    cancelToken: source.token
+                })
+        )
+            .then(async (response: any) => {
+                setData(response.data);
 
-            if (afterRequest)
-                await afterRequest(response.data, params || configuration.params);
+                if (afterRequest)
+                    await afterRequest(response.data, params || configuration.params);
 
-            setLoading(false);
-        }).catch((thrown: any) => {
+                setLoading(false);
+            }).catch((thrown: any) => {
             if (axios.isCancel(thrown)) {
                 // console.log('Request canceled', thrown.message);
             } else {

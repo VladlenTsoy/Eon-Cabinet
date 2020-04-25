@@ -16,6 +16,7 @@ import List from "./list/List";
 import {Form} from "antd";
 import Double from "./double/Double";
 import ApplicationCardLayout from "./ApplicationCard.layout";
+import Carousel from "./carousel/Carousel";
 
 const BasicSound = require('assets/sounds/anzan.ogg');
 
@@ -25,13 +26,14 @@ interface ApplicationProps {
     setting: SettingAnzanProps;
     displayType: SettingAnzanProps['anzan'] | 'carousel' | React.ReactNode;
     pictures?: string[] | 'abacus' | picturesFunction;
-    urlExercises?: string;
+    requestSetting?: { url: string, method?: 'post' | 'get', setting?: any };
     timer?: boolean;
     updateResultsTotals?: (answers: any[]) => any;
     updateAnswersTotals: (data: any, currentTimes: number) => any;
     createOutputs: (totals: any, currentTimes: number) => any;
     updateStats: () => StatsActionProps;
     nextStatus?: StatusProps;
+    carouselItem?: React.ReactNode;
 }
 
 const ApplicationLayout: React.FC<ApplicationProps> = (
@@ -40,12 +42,13 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
         setting,
         displayType,
         pictures,
-        urlExercises,
+        requestSetting,
         timer,
         updateAnswersTotals,
         updateResultsTotals,
         updateStats,
         nextStatus = 'answer',
+        carouselItem,
     }
 ) => {
     const [outputs, setOutputs] = useState([]);
@@ -100,16 +103,17 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
 
     // Загрузка примеров
     const [loading] = useApiUserGeneral({
-        url: urlExercises || '',
-        config: {params: setting},
+        method: requestSetting && requestSetting.method || 'get',
+        url: requestSetting && requestSetting.url || '',
+        config: {params: requestSetting && requestSetting.setting || setting},
         afterRequest: afterRequest,
-        cancel: !urlExercises || executionMode === 'repeat'
+        cancel: !requestSetting || executionMode === 'repeat'
     });
 
     useEffect(() => {
-        if (!urlExercises)
+        if (!requestSetting)
             afterRequest([]).then();
-    }, [urlExercises, afterRequest]);
+    }, [requestSetting, afterRequest]);
 
     const afterMessage = useCallback(async () => {
         const answers = ListForm.getFieldValue('answer');
@@ -133,6 +137,9 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
             {/**/}
             {displayType === 'double' && setting.anzan === 'double' &&
             <Double setting={setting} nextStatus={nextStatus} basicSound={basicSound} outputs={outputs}/>}
+            {/**/}
+            {displayType === 'carousel' &&
+            <Carousel topNumber nextStatus={nextStatus} outputs={outputs}>{carouselItem}</Carousel>}
         </ApplicationCardLayout>
     </PreparationLayout>;
 };
