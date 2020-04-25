@@ -1,46 +1,59 @@
-import React, {useCallback, useEffect, useState} from 'react';
-import {useDispatch, useSelector} from "react-redux";
-import {random, shuffle} from 'lodash';
-import {LoadingBlock} from "lib";
-import ListApplication from "./list-application/ListApplication";
-import BasicApplication from "./basic-application/BasicApplication";
-import {totalsChange} from "../../../../../../../store/tasks/totals/action";
+import React, {useCallback} from 'react';
+import {useSelector} from "react-redux";
+import {chunk, random, shuffle} from 'lodash';
+import {settingAnzan} from "../../../../../../../store/tasks/setting/reducer";
+import ApplicationLayout from "../../../layouts/application/Application.layout";
+import {useScreenWindow} from "../../../../../../../effects/use-screen-window.effect";
+import List from "../../word-list/application/list/List";
 
 const Application: React.FC = () => {
-    const {game} = useSelector((state: any) => state);
-    const dispatch = useDispatch();
-    const {setting, status, totals} = game;
-    const [loading, setLoading] = useState(false);
+    let setting = useSelector(settingAnzan);
+    const [, isBreakpoint] = useScreenWindow({breakpoint: 'sm'});
 
-    const createNumbers = useCallback(async (numbers: any = []) => {
-        setLoading(true);
-        const {mode, count} = setting;
-        const _count = setting['task-mode'] === 'list' ? count * 10 : count;
+    setting.column = isBreakpoint ? 5 : 10;
+
+    const updateAnswersTotals = useCallback(() => {
+        let numbers = [];
+        const _count = setting['task-mode'] === 'list' ? setting.count * 10 : setting.count;
 
         for (let i = 0; i < _count; i++) {
             let a = random(10, 99);
             let b = random(100, 999);
-            numbers.push(mode === '1' ? a : mode === '3' ? (i % 2 === 0 ? a : b) : b);
+            numbers.push(String(setting.mode) === '1' ? a : String(setting.mode) === '3' ? (i % 2 === 0 ? a : b) : b);
         }
 
-        let _totals = shuffle(numbers.map((number: number) => ({exercise: number})));
-        await dispatch(totalsChange(_totals));
-        setLoading(false);
-    }, [setting, dispatch]);
+        return shuffle(numbers.map((number: number) => ({exercise: number, answer: number})));
+    }, [setting]);
 
-    // Fetch algorithms or check totals exercise
-    useEffect(() => {
-        (async () => {
-            if (status !== 'refresh' && status !== 'repeat' && status !== 'answer' && status !== 'intermediate')
-                await createNumbers([]);
-        })();
-    }, [status, createNumbers]);
+    const updateStats = useCallback(() => {
+        return {all: setting.count};
+    }, []);
 
-    return loading && !totals.length ?
-        <LoadingBlock/> :
-        setting['task-mode'] === 'list' ?
-            <ListApplication/> :
-            <BasicApplication/>;
+    const createOutputs = useCallback((totals) => {
+        if (setting['task-mode'] === 'list')
+            return [chunk(Object.values(totals).map((total: any) => total.exercise), setting.column)];
+        else
+            return Object.values(totals).map((total: any) => total.exercise);
+    }, []);
+
+    return <ApplicationLayout
+        {
+            ...setting['task-mode'] === 'list' &&
+            {
+                listSetting: {
+                    column: setting.column,
+                    leftNumbering: false,
+                    list: List
+                }
+            }
+        }
+        createOutputs={createOutputs}
+        displayType={setting['task-mode']}
+        setting={setting}
+        updateAnswersTotals={updateAnswersTotals}
+        updateStats={updateStats}
+        pictures="abacus"
+    />
 };
 
 export default Application;

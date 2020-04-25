@@ -17,7 +17,7 @@ const HeaderTable: React.FC<HeaderTableProps> = ({tableKey, column, leftNumberin
 
     return <thead>
     <tr>
-        <th colSpan={10}><b>Таблица №{tableKey + 1}</b></th>
+        <th colSpan={20}><b>Таблица №{tableKey + 1}</b></th>
     </tr>
     <tr>
         {leftNumbering ? <th className="not-border"/> : null}
