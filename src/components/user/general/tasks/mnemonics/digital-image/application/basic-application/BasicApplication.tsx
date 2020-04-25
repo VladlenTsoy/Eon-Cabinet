@@ -1,6 +1,6 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom';
-import CarouselApplication from "../../../../layouts/application/carousel-application/CarouselApplication";
+import CarouselApplication from "../../../../layouts/application/_old/carousel-application/CarouselApplication";
 import PreparationLayout from "../../../../layouts/application/preparation/Preparation.layout";
 import {useSelector} from "react-redux";
 import CardFlip from "../../../../layouts/application/_old/card-flip/CardFlip";

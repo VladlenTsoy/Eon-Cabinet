@@ -1,5 +1,5 @@
 import React from 'react';
-import CardListLayout from "../../../../layouts/application/list/card-list/CardList.layout";
+import CardListLayout from "../../../../layouts/application/_old/list/card-list/CardList.layout";
 
 interface ListTableProps {
     timeIsRunningOut: () => void;

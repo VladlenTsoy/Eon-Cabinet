@@ -4,8 +4,8 @@ import {Card} from "lib";
 import { FlagOutlined } from '@ant-design/icons';
 import {Button, Modal} from "antd";
 import {useDispatch, useSelector} from "react-redux";
-import {gameChangeStatus} from "../../../../../../../store/game/actions";
-import TimerBlock from "../_old/timer/Timer";
+import {gameChangeStatus} from "../../../../../../../../store/game/actions";
+import TimerBlock from "../timer/Timer";
 import CarouselLayout from "./carousel/Carousel.layout";
 import Number from "./number/Number";
 

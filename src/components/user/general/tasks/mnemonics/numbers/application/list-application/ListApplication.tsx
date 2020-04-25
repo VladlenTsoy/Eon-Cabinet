@@ -4,7 +4,7 @@ import { Form } from '@ant-design/compatible';
 import '@ant-design/compatible/assets/index.css';
 import { Modal } from "antd";
 import { gameChangeStatus } from "../../../../../../../../store/game/actions";
-import CardListLayout from "../../../../layouts/application/list/card-list/CardList.layout";
+import CardListLayout from "../../../../layouts/application/_old/list/card-list/CardList.layout";
 
 
 const ListApplication: React.FC = () => {

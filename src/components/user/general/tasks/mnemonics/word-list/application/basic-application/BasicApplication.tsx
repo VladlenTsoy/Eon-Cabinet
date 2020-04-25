@@ -1,6 +1,6 @@
 import React from 'react';
 import PreparationLayout from "../../../../layouts/application/preparation/Preparation.layout";
-import CarouselApplication from "../../../../layouts/application/carousel-application/CarouselApplication";
+import CarouselApplication from "../../../../layouts/application/_old/carousel-application/CarouselApplication";
 
 interface BasicApplicationProps {
     timeIsRunningOut: () => void;

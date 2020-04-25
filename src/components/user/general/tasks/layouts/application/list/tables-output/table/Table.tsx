@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import {TableWrapper} from "../../../list/card-list/table/TableExercise";
+import {TableWrapper} from "../../../_old/list/card-list/table/TableExercise";
 import HeaderTable from "../../../../../mental/anzan/application/list/table/header-table/HeaderTable";
 import TbodyMultiplication from "./tbody-multiplication/TbodyMultiplication";
 import TbodyAddition from "./tbody-addition/TbodyAddition";

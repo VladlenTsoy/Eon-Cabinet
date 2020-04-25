@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Card} from "lib";
 import {ArrowRightOutlined, ExclamationCircleOutlined} from '@ant-design/icons';
 import {Button, Modal, Form} from "antd";
-import {TableWrapper} from "../../../../../layouts/application/list/card-list/table/TableExercise";
+import {TableWrapper} from "../../../../../layouts/application/_old/list/card-list/table/TableExercise";
 import HeaderTable from "./header-table/HeaderTable";
 import TableNumbersMultiplication from "./body-table/body-numbers-multiplication/TableNumbersMultiplication";
 import TableNumbersAddition from "./body-table/body-numbers-addition/TableNumbersAddition";

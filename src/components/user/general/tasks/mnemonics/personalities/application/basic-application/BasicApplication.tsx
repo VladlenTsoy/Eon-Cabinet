@@ -5,7 +5,7 @@ import moment from "moment";
 import {Avatar} from "../../../../../../../../layouts/components";
 import {useDispatch, useSelector} from "react-redux";
 import {gameChangeStatus} from "../../../../../../../../store/game/actions";
-import CarouselApplication from "../../../../layouts/application/carousel-application/CarouselApplication";
+import CarouselApplication from "../../../../layouts/application/_old/carousel-application/CarouselApplication";
 import PreparationLayout from "../../../../layouts/application/preparation/Preparation.layout";
 import {useScreenWindow} from "../../../../../../../../effects/use-screen-window.effect";
 

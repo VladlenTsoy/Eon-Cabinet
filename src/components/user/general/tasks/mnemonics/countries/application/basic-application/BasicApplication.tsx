@@ -1,5 +1,5 @@
 import React from 'react';
-import CarouselApplication from "../../../../layouts/application/carousel-application/CarouselApplication";
+import CarouselApplication from "../../../../layouts/application/_old/carousel-application/CarouselApplication";
 import PreparationLayout from "../../../../layouts/application/preparation/Preparation.layout";
 import {useDispatch, useSelector} from "react-redux";
 import styled from "styled-components";

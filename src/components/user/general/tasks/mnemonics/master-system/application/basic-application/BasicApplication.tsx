@@ -1,7 +1,7 @@
 import React from 'react';
 import {useSelector} from "react-redux";
 import PreparationLayout from "../../../../layouts/application/preparation/Preparation.layout";
-import CarouselApplication from "../../../../layouts/application/carousel-application/CarouselApplication";
+import CarouselApplication from "../../../../layouts/application/_old/carousel-application/CarouselApplication";
 import CardFlip from "../../../../layouts/application/_old/card-flip/CardFlip";
 import TextFit from "../../../../../../teacher/training/tasks/mental/multi-anzan/exercise-setting/multiplication-block/TextFit";
 

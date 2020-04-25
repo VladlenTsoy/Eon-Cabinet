@@ -12,7 +12,7 @@ import {StatsActionProps, StatusProps} from "store/game/types";
 import {gameChangeStats} from "../../../../../../store/game/actions";
 import {SettingAnzanProps} from "../../../../../../store/tasks/setting/games-types/anzan.types";
 import PreparationLayout from "./preparation/Preparation.layout";
-import List from "./list-new/List";
+import List from "./list/List";
 import {Form} from "antd";
 import Double from "./double/Double";
 import ApplicationCardLayout from "./ApplicationCard.layout";
@@ -113,7 +113,7 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
     return <PreparationLayout>
         <ApplicationCardLayout>
             {timer && <Timer time={setting.time} afterMessage={afterMessage}/>}
-            {displayType === 'basic' || displayType === 'turbo' &&
+            {(displayType === 'basic' || displayType === 'turbo') &&
             <Basic setting={setting} nextStatus={nextStatus} basicSound={basicSound}/>}
             {displayType === 'list' && setting.anzan === 'list' &&
             <List listForm={ListForm} setting={setting} updateResultsTotals={updateResultsTotals}/>}
