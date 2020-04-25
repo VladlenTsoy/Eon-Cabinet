@@ -34,7 +34,7 @@ interface ApplicationProps {
     createOutputs: (totals: any, currentTimes: number) => any;
     updateStats: () => StatsActionProps;
     nextStatus?: StatusProps;
-    carouselItem?: React.ReactNode;
+    CarouselItem?: React.FC<any>;
     CustomDisplay?: React.FC<any>;
 }
 
@@ -51,7 +51,7 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
         updateResultsTotals,
         updateStats,
         nextStatus = 'answer',
-        carouselItem,
+        CarouselItem,
         CustomDisplay,
     }
 ) => {
@@ -145,7 +145,10 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
             <Double setting={setting} nextStatus={nextStatus} basicSound={basicSound} outputs={outputs}/>}
             {/**/}
             {displayType === 'carousel' &&
-            <Carousel topNumber nextStatus={nextStatus} outputs={outputs}>{carouselItem}</Carousel>}
+            <Carousel topNumber nextStatus={nextStatus} outputs={outputs}>
+                {/*{CarouselItem && <CarouselItem outputs={outputs} setting={setting}/>}*/}
+                {CarouselItem && CarouselItem({outputs, setting})}
+            </Carousel>}
             {/**/}
             {displayType === 'custom' && CustomDisplay && <CustomDisplay outputs={outputs} finishHandler={() => null}/>}
         </ApplicationCardLayout>

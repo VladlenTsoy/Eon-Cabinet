@@ -1,42 +1,40 @@
-import React, {useCallback, useEffect, useState} from 'react';
-import {useDispatch, useSelector} from "react-redux";
-import {LoadingBlock} from "lib";
-import {usePreloadPictures} from "../../../../../../../effects/use-preload-pictures.effect";
-import BasicApplication from "./basic-application/BasicApplication";
-import {totalsChange} from "../../../../../../../store/tasks/totals/action";
+import React, {useCallback} from 'react';
+import {useSelector} from "react-redux";
+import {settingAnzan} from "../../../../../../../store/tasks/setting/reducer";
+import ApplicationLayout from "../../../layouts/application/Application.layout";
+import Carousel from "./carousel/Carousel";
 
 const Application: React.FC = () => {
-    const {game, api} = useSelector((state: any) => state);
-    const dispatch = useDispatch();
-    const [loading, setLoading] = useState(false);
+    let setting = useSelector(settingAnzan);
 
-    const [numberOfDownloaded, preloadImage] = usePreloadPictures();
-    const {setting, status} = game;
+    const updateAnswersTotals = useCallback((data) => {
+        let pictures = data.map((exercise: any) => exercise.url_photo);
+        return data.map((exercise: any) => ({exercise}));
+    }, []);
 
-    const fetch = useCallback(async (): Promise<any> => {
-        setLoading(true);
+    const createOutputs = useCallback((totals) => {
+        return Object.values(totals).map((total: any) => total.exercise);
+    }, [setting]);
 
-        let response = await api.user_general.post('/task/personalities', setting);
+    const updateStats = useCallback(() => {
+        return {all: 1};
+    }, []);
 
-        let pictures = response.data.map((exercise: any) => exercise.url_photo);
-        await preloadImage(pictures);
-
-        let _totals = response.data.map((exercise: any) => ({exercise}));
-        await dispatch(totalsChange(_totals));
-
-        setLoading(false);
-    }, [dispatch, setting, api.user_general, preloadImage]);
-
-    useEffect(() => {
-        (async () => {
-            if (status !== 'refresh' && status !== 'repeat' && status !== 'answer' && status !== 'intermediate')
-                await fetch();
-        })();
-    }, [fetch, status]);
-
-    return loading ?
-        <LoadingBlock title={`Загруженно ${numberOfDownloaded} из ${setting.count}`}/>
-        : <BasicApplication/>;
+    return <ApplicationLayout
+        createOutputs={createOutputs}
+        timer
+        setting={setting}
+        updateAnswersTotals={updateAnswersTotals}
+        updateStats={updateStats}
+        displayType="carousel"
+        requestSetting={{
+            url: '/task/personalities',
+            method: 'post',
+            setting,
+        }}
+        CarouselItem={Carousel}
+        nextStatus="answer"
+    />
 };
 
 export default Application;
