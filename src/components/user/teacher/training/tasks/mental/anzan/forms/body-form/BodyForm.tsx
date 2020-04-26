@@ -67,7 +67,7 @@ const BodyForm: React.FC<AnzanFormBodyProps> = (
             sounds={
                 typeTask !== 'list' && sound ?
                     {
-                        language: !isMultiplication,
+                        language: !isMultiplication && typeTask !== 'double',
                     } : false
             }
             mods={
