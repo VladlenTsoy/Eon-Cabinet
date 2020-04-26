@@ -12,6 +12,21 @@ const DoubleWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
+
+  @media (max-width: 768px) {
+    gap: 1rem;
+  }
+  
+  @media (max-width: 576px) {
+    .text-wrapper{
+       width: 150px;
+       height: 150px;
+      
+      .text-output{
+         width: 150px;
+      }
+    }
+  } 
 `;
 
 interface DoubleProps {
