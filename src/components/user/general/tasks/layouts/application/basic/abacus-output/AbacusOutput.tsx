@@ -1,13 +1,13 @@
 import styled from "styled-components";
-import {BasicOutputWrapper} from "../../../output/ModeOutput/BasicOutput";
+import {OutputWrapper} from "../output/Output";
 import React from "react";
-import Abacus from "../../../output/ModeOutput/abacus/Abacus";
+import Abacus from "./abacus/Abacus";
 
 interface AbacusOutputStyleProps extends React.HTMLAttributes<HTMLDivElement> {
     time: number;
 }
 
-const AbacusOutputWrapper: React.FC<AbacusOutputStyleProps> = styled(BasicOutputWrapper)<AbacusOutputStyleProps>`
+const AbacusOutputWrapper: React.FC<AbacusOutputStyleProps> = styled(OutputWrapper)<AbacusOutputStyleProps>`
     height: 500px;
     width: ${(props: any) => props.theme.double ? '50%' : '100%'};
     overflow: hidden;

@@ -1,6 +1,6 @@
 import React from 'react';
 import './Abacus.less';
-import IconAbacus from '../../../../../../../../assets/images/tasks/abacus.svg';
+import IconAbacus from 'assets/images/tasks/abacus.svg';
 
 const OutputAbacus = ({numbers, minus, minusPosition, plus}: any) =>
 

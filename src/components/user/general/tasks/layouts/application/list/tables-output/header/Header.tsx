@@ -1,12 +1,12 @@
 import React from 'react';
 
-interface HeaderTableProps {
+interface HeaderProps {
     tableKey: number;
     column: number;
     leftNumbering?: boolean;
 }
 
-const HeaderTable: React.FC<HeaderTableProps> = ({tableKey, column, leftNumbering}) => {
+const Header: React.FC<HeaderProps> = ({tableKey, column, leftNumbering}) => {
     //
     const genCharArray = (count: number) => {
         let a = [], q = "A".charCodeAt(0);
@@ -29,4 +29,4 @@ const HeaderTable: React.FC<HeaderTableProps> = ({tableKey, column, leftNumberin
     </thead>;
 };
 
-export default React.memo(HeaderTable);
+export default React.memo(Header);

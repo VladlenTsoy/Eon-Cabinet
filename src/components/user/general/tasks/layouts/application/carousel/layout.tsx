@@ -1,8 +1,8 @@
 import React, {useEffect, useRef} from 'react';
 import styled from "styled-components";
 import {Carousel} from "antd";
-import NextArrow from "../_old/carousel-application/carousel/next-arrow/NextArrow";
-import PrevArrow from "../_old/carousel-application/carousel/prev-arrow/PrevArrow";
+import NextArrow from "./next-arrow/NextArrow";
+import PrevArrow from "./prev-arrow/PrevArrow";
 import TextFit
     from "../../../../../teacher/training/tasks/mental/multi-anzan/exercise-setting/multiplication-block/TextFit";
 

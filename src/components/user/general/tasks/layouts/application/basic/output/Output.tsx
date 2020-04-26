@@ -8,7 +8,7 @@ interface OutputStyleProps extends React.HTMLAttributes<HTMLDivElement> {
     time: number;
 }
 
-const OutputWrapper: React.FC<OutputStyleProps> = styled.div<OutputStyleProps>`
+export const OutputWrapper: React.FC<OutputStyleProps> = styled.div<OutputStyleProps>`
   display: flex;
   align-items: center;
   justify-content: center;
