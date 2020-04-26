@@ -3,7 +3,7 @@ import {ArrowRightOutlined, FlagOutlined, HistoryOutlined} from '@ant-design/ico
 import {Button} from "antd";
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
-import {gameChangeCurrentTimes, gameChangeExecutionMode, gameChangeStatus} from "store/game/actions";
+import {gameChangeCurrentTimes, gameChangeExecutionMode, gameChangeStats, gameChangeStatus} from "store/game/actions";
 import {settingAnzan} from "store/tasks/setting/reducer";
 import {game} from "store/game/reducer";
 
@@ -55,12 +55,13 @@ interface ActionIntermediateProps {
 }
 
 const ActionIntermediate: React.FC<ActionIntermediateProps> = () => {
-    const {currentTimes} = useSelector(game);
+    const {currentTimes, stats} = useSelector(game);
     const setting = useSelector(settingAnzan);
 
     const dispatch = useDispatch();
 
     const repeatExercise = () => {
+        dispatch(gameChangeStats({success: stats.success - 1}));
         dispatch(gameChangeExecutionMode('repeat'));
         dispatch(gameChangeStatus('start'));
     };

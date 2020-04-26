@@ -129,7 +129,7 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
     }, [updateResultsTotals, ListForm]);
 
     // Сообщение при ранем завершении пользователем
-    const earlierCompletion = useCallback((values: any) => {
+    const earlierCompletion = useCallback((values?: any) => {
         Confirm = Modal.confirm({
             icon: <ExclamationCircleOutlined/>,
             title: "У вас еще осталось время, Вы уверены что хотите перейти дальше?",
@@ -158,7 +158,7 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
             <Double setting={setting} nextStatus={nextStatus} basicSound={basicSound} outputs={outputs}/>}
             {/* Карусель */}
             {displayType === 'carousel' &&
-            <Carousel topNumber={carouselSetting?.topNumbering} nextStatus={nextStatus} outputs={outputs}>
+            <Carousel topNumber={carouselSetting?.topNumbering} outputs={outputs} earlierCompletion={earlierCompletion}>
                 {carouselSetting && carouselSetting.item({outputs, setting})}
             </Carousel>}
             {/* Пользовательский */}

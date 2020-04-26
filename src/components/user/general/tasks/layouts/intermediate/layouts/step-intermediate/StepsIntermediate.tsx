@@ -42,18 +42,16 @@ const StepsIntermediate: React.FC<StepsIntermediateProps> = ({checkResult}) => {
         return 'wait';
     };
 
-    return (
-        <StepsWrapper current={currentTimes} width={setting.times * 80}>
-            {Array(setting.times).fill(2).map((val: any, key: number) =>
-                <Step
-                    key={key + 1}
-                    title={key + 1}
-                    icon={<TrophyOutlined/>}
-                    status={checkStatus(totals[key + 1], key)}
-                />
-            )}
-        </StepsWrapper>
-    );
+    return <StepsWrapper current={currentTimes} width={setting.times * 80}>
+        {Array(setting.times).fill(2).map((val: any, key: number) =>
+            <Step
+                key={key + 1}
+                title={key + 1}
+                icon={<TrophyOutlined/>}
+                status={checkStatus(totals[key + 1], key)}
+            />
+        )}
+    </StepsWrapper>
 };
 
 export default React.memo(StepsIntermediate);

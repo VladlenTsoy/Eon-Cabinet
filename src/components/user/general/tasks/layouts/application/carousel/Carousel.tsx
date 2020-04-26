@@ -1,11 +1,8 @@
-import React, {useCallback, useState} from 'react';
+import React, {useState} from 'react';
 import styled from "styled-components";
 import Number from "./number/Number";
-import {Button, Modal} from "antd";
+import {Button} from "antd";
 import {FlagOutlined} from '@ant-design/icons';
-import {gameChangeStatus} from "../../../../../../../store/game/actions";
-import {useDispatch} from "react-redux";
-import {StatusProps} from "../../../../../../../store/game/types";
 import CarouselLayout from "./Carousel.layout";
 
 const ButtonWrapper = styled.div`
@@ -19,42 +16,31 @@ const ButtonWrapper = styled.div`
 `;
 
 interface CarouselProps {
-    nextStatus: StatusProps;
     outputs: any[];
     topNumber?: boolean;
+    earlierCompletion: () => void;
 }
 
 const Carousel: React.FC<CarouselProps> = (
     {
         children,
         topNumber,
-        nextStatus,
         outputs,
+        earlierCompletion,
     }
 ) => {
     const [current, setCurrent] = useState(1);
-    const dispatch = useDispatch();
-
-    const checkTimerForAnswer = useCallback(() => {
-        Modal.confirm({
-            title: "У вас еще осталось время, Вы уверены что хотите перейти к ответам?",
-            onOk: () => {
-                dispatch(gameChangeStatus(nextStatus));
-            }
-        });
-    }, [dispatch]);
-
     return <>
         {topNumber ? <Number current={current}/> : null}
         <CarouselLayout
             outputs={outputs}
             setCurrent={setCurrent}
-            checkTimerForAnswer={checkTimerForAnswer}
+            checkTimerForAnswer={earlierCompletion}
         >
             {children}
         </CarouselLayout>
         <ButtonWrapper>
-            <Button type="primary" icon={<FlagOutlined/>} size="large" onClick={checkTimerForAnswer}>
+            <Button type="primary" icon={<FlagOutlined/>} size="large" onClick={earlierCompletion}>
                 Завершить
             </Button>
         </ButtonWrapper>

@@ -25,8 +25,7 @@ const Answer: React.FC = () => {
                 let result1 = total[0].answer === Number(values.answer1[key]);
                 let result2 = total[1].answer === Number(values.answer2[key]);
 
-                result1 && stats.success++;
-                result2 && stats.success++;
+                result1 && result2 && stats.success++;
 
                 return [
                     {...total[0], ...{user: Number(values.answer1[key]), result: result1}},
@@ -47,8 +46,7 @@ const Answer: React.FC = () => {
         if (isDouble) {
             let result1 = totals[currentTimes][0].answer === Number(values.answer1);
             let result2 = totals[currentTimes][1].answer === Number(values.answer2);
-            result1 && stats.success++;
-            result2 && stats.success++;
+            result1 && result2 && stats.success++;
 
             totals[currentTimes] = [
                 {...totals[currentTimes][0], ...{user: Number(values.answer1), result: result1}},

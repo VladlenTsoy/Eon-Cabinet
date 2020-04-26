@@ -6,6 +6,7 @@ import {appChangeTitleNavbar} from "../../../../../store/app/actions";
 import {useDispatch, useSelector} from "react-redux";
 import {withRouter} from "react-router";
 import {Titles} from './Titles';
+import {QuestionCircleOutlined} from '@ant-design/icons';
 
 const confirm = Modal.confirm;
 
@@ -89,6 +90,7 @@ const HeaderTitle: React.FC<any> = ({history, collapsed, toggleSidebar}) => {
 
     const cancelTasks = () =>
         confirm({
+            icon: <QuestionCircleOutlined/>,
             title: 'Остановить выполнения задания?',
             onOk: () => history.goBack(),
         });

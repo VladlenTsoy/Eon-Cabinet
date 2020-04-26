@@ -8,7 +8,7 @@ interface ListProps {
     outputs: any[];
     listForm: FormInstance;
     listSetting: ListSettingProps,
-    earlierCompletion?: (values: any) => void;
+    earlierCompletion: (values: any) => void;
 }
 
 const List: React.FC<ListProps> = (
