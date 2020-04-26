@@ -5,7 +5,7 @@ import {Switch, Route} from "react-router";
 import {useChangeActionNavbar} from "effects/use-change-action-navbar.effect";
 import {setCurrentUserData} from "../../../../../store/user/actions";
 import {Col, Row} from "antd";
-import {Card, Loader} from "lib";
+import {Card, LoadingBlock} from "lib";
 import styled from "styled-components";
 import {settingChange} from "../../../../../store/tasks/setting/action";
 
@@ -117,7 +117,7 @@ const Tasks: React.FC = () => {
         [history, discipline, task, dispatch, changeSetting, api.user_general, language.common]
     );
 
-    return <React.Suspense fallback={<Loader text="Загрузка упражнений..."/>}>
+    return <React.Suspense fallback={<LoadingBlock title="Загрузка упражнений..."/>}>
         <TasksWrapper
 
             justify="center"
