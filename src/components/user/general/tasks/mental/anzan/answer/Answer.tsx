@@ -3,13 +3,9 @@ import {useSelector} from "react-redux";
 import Double from "./double-answer/Double";
 import Basic from "./basic-answer/Basic";
 import AnswerLayout from "../../../layouts/answer/Answer.layout";
-import {Button, Typography} from "antd";
-import {ArrowRightOutlined} from '@ant-design/icons';
 import {game} from "../../../../../../../store/game/reducer";
 import {settingAnzan} from "../../../../../../../store/tasks/setting/reducer";
 import {totalsSelect} from "../../../../../../../store/tasks/totals/reducer";
-
-const {Title} = Typography;
 
 const Answer: React.FC = () => {
     const {stats, currentTimes} = useSelector(game);
@@ -76,11 +72,7 @@ const Answer: React.FC = () => {
         cols={cols}
         checkHandler={handleSubmit}
     >
-        <Title level={2}>Введите ответ</Title>
         {isDouble ? <Double/> : <Basic/>}
-        <Button type="primary" htmlType="submit" block size="large" icon={<ArrowRightOutlined/>}>
-            Далее
-        </Button>
     </AnswerLayout>;
 };
 

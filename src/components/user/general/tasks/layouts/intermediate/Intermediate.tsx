@@ -39,10 +39,12 @@ const Intermediate: React.FC = ({children}) => {
     const [, isBreakpoint] = useScreenWindow({breakpoint: 'sm'});
 
     const checkResult = useCallback((total: any) => {
-        if (setting.anzan === 'double')
-            return total[0].result === total[1].result;
-        else
-            return total.result;
+        if (total) {
+            if (setting.anzan === 'double')
+                return total[0].result === total[1].result;
+            else if (total?.result)
+                return total.result;
+        }
     }, [setting]);
 
     useEffect(() => {

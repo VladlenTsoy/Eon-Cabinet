@@ -36,6 +36,12 @@ const StepsIntermediate: React.FC<StepsIntermediateProps> = ({checkResult}) => {
     const setting = useSelector(settingAnzan);
     const totals = useSelector(totalsSelect);
 
+    const checkStatus = (total: any, key: number): 'wait' | 'finish' | 'error' => {
+        if (currentTimes > key)
+            return checkResult(total) ? 'finish' : 'error';
+        return 'wait';
+    };
+
     return (
         <StepsWrapper current={currentTimes} width={setting.times * 80}>
             {Array(setting.times).fill(2).map((val: any, key: number) =>
@@ -43,8 +49,7 @@ const StepsIntermediate: React.FC<StepsIntermediateProps> = ({checkResult}) => {
                     key={key + 1}
                     title={key + 1}
                     icon={<TrophyOutlined/>}
-                    status={!(totals[key + 1] && totals[key + 1].hasOwnProperty('result')) ?
-                        'wait' : checkResult(totals[key + 1]) ? 'finish' : 'error'}
+                    status={checkStatus(totals[key + 1], key)}
                 />
             )}
         </StepsWrapper>

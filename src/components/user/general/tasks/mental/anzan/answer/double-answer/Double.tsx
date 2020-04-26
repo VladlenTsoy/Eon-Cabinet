@@ -2,10 +2,13 @@ import React from 'react';
 import {Col, Row} from "antd";
 import {useSelector} from "react-redux";
 import FormInputAnswerLayout from "../../../../layouts/answer/form-input-answer/FormInputAnswer.layout";
+import {settingAnzan} from "../../../../../../../../store/tasks/setting/reducer";
+import {totalsSelect} from "../../../../../../../../store/tasks/totals/reducer";
 
 const Double: React.FC = () => {
-    const {game} = useSelector((state: any) => state);
-    const {setting, totals} = game;
+    const setting = useSelector(settingAnzan);
+    const totals: any = useSelector(totalsSelect);
+
     const isGroup = setting.extra && setting.extra.includes('group');
 
     return <Row justify="center" align="middle" gutter={15}>

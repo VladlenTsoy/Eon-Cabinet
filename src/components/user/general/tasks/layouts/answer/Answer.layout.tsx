@@ -1,10 +1,13 @@
 import React from 'react';
-import {Col, Row, Form} from "antd";
+import {Col, Row, Form, Button, Typography} from "antd";
 import styled from "styled-components";
 import {Card} from "lib";
 import {gameChangeStats, gameChangeStatus} from "../../../../../../store/game/actions";
 import {useDispatch} from "react-redux";
 import {totalsChange} from "../../../../../../store/tasks/totals/action";
+import {ArrowRightOutlined} from '@ant-design/icons';
+
+const {Title} = Typography;
 
 const RowWrapper = styled(Row)`
   height: 100%;
@@ -55,7 +58,11 @@ const AnswerLayout: React.FC<AnswerProps> = (
         <Col {...cols}>
             <CardWrapper>
                 <Form onFinish={submitHandler} layout={"vertical"}>
+                    <Title level={2}>Введите ответ</Title>
                     {children}
+                    <Button type="primary" htmlType="submit" block size="large" icon={<ArrowRightOutlined/>}>
+                        Далее
+                    </Button>
                 </Form>
             </CardWrapper>
         </Col>
