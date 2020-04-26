@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
 import {appChangeActionNavbar} from "../../../../store/app/actions";
 import {
-    gameChangeCurrentTimes,
+    gameChangeCurrentTimes, gameChangeExecutionMode,
     gameChangeStats,
     gameChangeStatus,
 } from "../../../../store/game/actions";
@@ -54,6 +54,7 @@ const Tasks = ({history, match}: any) => {
             dispatch(appChangeActionNavbar(null));
             dispatch(settingChange(null));
             dispatch(gameChangeStatus('start'));
+            dispatch(gameChangeExecutionMode('first'));
             dispatch(totalsChange([]));
             dispatch(gameChangeStats({all: 0, success: 0}));
             dispatch(gameChangeCurrentTimes(1));

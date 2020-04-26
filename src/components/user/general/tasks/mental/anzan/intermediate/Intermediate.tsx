@@ -1,10 +1,17 @@
 import React from 'react';
-import AnswerIntermediateWrapper from "../../../layouts/intermediate/layouts/answer-intermediate/AnwerIntermediate.layout";
+import AnswerIntermediateWrapper
+    from "../../../layouts/intermediate/layouts/answer-intermediate/AnwerIntermediate.layout";
 import {useSelector} from "react-redux";
 import {Col, Row} from "antd";
+import {game} from "../../../../../../../store/game/reducer";
+import {settingAnzan} from "../../../../../../../store/tasks/setting/reducer";
+import {totalsSelect} from "../../../../../../../store/tasks/totals/reducer";
 
 const IntermediateBlock = () => {
-    const {totals, currentTimes, setting} = useSelector((state: any) => state.game);
+    const {currentTimes} = useSelector(game);
+    const setting = useSelector(settingAnzan);
+    const totals: any = useSelector(totalsSelect);
+
     return <AnswerIntermediateWrapper>
         {setting.anzan === 'double' ?
             [

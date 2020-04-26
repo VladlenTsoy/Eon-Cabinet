@@ -13,10 +13,11 @@ import {gameChangeStats} from "../../../../../../store/game/actions";
 import {SettingAnzanProps} from "../../../../../../store/tasks/setting/games-types/anzan.types";
 import PreparationLayout from "./preparation/Preparation.layout";
 import List from "./list/List";
-import {Form} from "antd";
+import {Form, message} from "antd";
 import Double from "./double/Double";
 import ApplicationCardLayout from "./ApplicationCard.layout";
 import Carousel from "./carousel/Carousel";
+import {totalsSelect} from "../../../../../../store/tasks/totals/reducer";
 
 const BasicSound = require('assets/sounds/anzan.ogg');
 
@@ -55,6 +56,7 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
         CustomDisplay,
     }
 ) => {
+    const totals = useSelector(totalsSelect);
     const [outputs, setOutputs] = useState<any>([]);
     const [ListForm] = Form.useForm();
     const {executionMode, currentTimes} = useSelector(game);
@@ -64,19 +66,22 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
 
     // Загрузка картинок
     const picturesLoad = useCallback(async (data: any) => {
-        if (typeof pictures === "string" && pictures === 'abacus')
-            return await new Promise((resolve => {
-                const iconAbacus = new Image();
-                iconAbacus.onload = () => resolve(true);
-                iconAbacus.src = IconAbacus;
-            }));
+        try {
+            if (typeof pictures === "string" && pictures === 'abacus')
+                return await new Promise((resolve => {
+                    const iconAbacus = new Image();
+                    iconAbacus.onload = () => resolve(true);
+                    iconAbacus.src = IconAbacus;
+                }));
 
-        if (typeof pictures === "function")
-            return await preloadImage(pictures(data));
+            if (typeof pictures === "function")
+                return await preloadImage(pictures(data));
 
-        if (typeof pictures === "object")
-            return await preloadImage(pictures);
-
+            if (typeof pictures === "object")
+                return await preloadImage(pictures);
+        } catch (e) {
+            message.error("Ошибка, не удалось загрузить изображения!")
+        }
     }, [pictures]);
 
     // Загрузка звуков
@@ -95,10 +100,10 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
         if (pictures) await picturesLoad(data);
         if (setting.sound) await soundsLoad();
 
-        let totals = updateAnswersTotals(data, currentTimes);
-        dispatch(totalsChange(totals));
+        let _totals = updateAnswersTotals(data, currentTimes);
+        dispatch(totalsChange(_totals));
 
-        let outputsTotals = createOutputs(totals, currentTimes);
+        let outputsTotals = createOutputs(_totals, currentTimes);
         setOutputs(outputsTotals);
 
         let stats = updateStats();
@@ -115,9 +120,14 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
     });
 
     useEffect(() => {
-        if (!requestSetting)
+        if (executionMode === 'repeat') {
+            console.log(totals, currentTimes);
+            let outputsTotals = createOutputs(totals, currentTimes);
+            setOutputs(outputsTotals);
+        } else if (!requestSetting && executionMode === 'first') {
             afterRequest([]).then();
-    }, [requestSetting, afterRequest]);
+        }
+    }, [requestSetting, totals, currentTimes, afterRequest]);
 
     const afterMessage = useCallback(async () => {
         const answers = ListForm.getFieldValue('answer');
@@ -129,7 +139,6 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
     if (loading)
         return <LoadingBlock title="Загрузка чисел..."/>;
 
-    console.log(typeof displayType);
     return <PreparationLayout>
         <ApplicationCardLayout>
             {timer && <Timer time={setting.time} afterMessage={afterMessage}/>}

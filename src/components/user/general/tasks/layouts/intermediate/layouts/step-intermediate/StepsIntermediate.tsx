@@ -3,6 +3,9 @@ import {TrophyOutlined} from '@ant-design/icons';
 import {Steps} from "antd";
 import styled from "styled-components";
 import {useSelector} from "react-redux";
+import {game} from "../../../../../../../../store/game/reducer";
+import {settingAnzan} from "../../../../../../../../store/tasks/setting/reducer";
+import {totalsSelect} from "../../../../../../../../store/tasks/totals/reducer";
 
 const {Step} = Steps;
 
@@ -29,7 +32,9 @@ interface StepsIntermediateProps {
 }
 
 const StepsIntermediate: React.FC<StepsIntermediateProps> = ({checkResult}) => {
-    const {setting, currentTimes, totals} = useSelector((state: any) => state.game);
+    const {currentTimes} = useSelector(game);
+    const setting = useSelector(settingAnzan);
+    const totals = useSelector(totalsSelect);
 
     return (
         <StepsWrapper current={currentTimes} width={setting.times * 80}>
@@ -46,4 +51,4 @@ const StepsIntermediate: React.FC<StepsIntermediateProps> = ({checkResult}) => {
     );
 };
 
-export default StepsIntermediate;
+export default React.memo(StepsIntermediate);

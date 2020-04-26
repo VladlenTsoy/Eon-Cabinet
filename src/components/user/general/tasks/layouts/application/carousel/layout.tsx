@@ -35,7 +35,6 @@ const Layout: React.FC<CarouselProps> = (
         checkTimerForAnswer
     }
 ) => {
-    console.log(outputs);
     const carouselRef = useRef<any>();
 
     const beforeChange = (current: number, next: number) =>

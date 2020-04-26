@@ -3,7 +3,9 @@ import {ArrowRightOutlined, FlagOutlined, HistoryOutlined} from '@ant-design/ico
 import {Button} from "antd";
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
-import {gameChangeStatus} from "../../../../../../../store/game/actions";
+import {gameChangeCurrentTimes, gameChangeExecutionMode, gameChangeStatus} from "store/game/actions";
+import {settingAnzan} from "store/tasks/setting/reducer";
+import {game} from "store/game/reducer";
 
 const ActionWrapper = styled.div`
   text-align: center;
@@ -53,14 +55,20 @@ interface ActionIntermediateProps {
 }
 
 const ActionIntermediate: React.FC<ActionIntermediateProps> = () => {
-    const {game} = useSelector((state: any) => state);
-    const {setting, currentTimes, status} = game;
+    const {currentTimes} = useSelector(game);
+    const setting = useSelector(settingAnzan);
+
     const dispatch = useDispatch();
 
-    // const repeatExercise = () => dispatch(gameChangeStatus('refresh'));
-    // const nextExercise = () => dispatch(gameChangeStatus(status === 'repeat' ? 'repeat' : 'start'));
-    const repeatExercise = () => null;
-    const nextExercise = () => null;
+    const repeatExercise = () => {
+        dispatch(gameChangeExecutionMode('repeat'));
+        dispatch(gameChangeStatus('start'));
+    };
+    const nextExercise = () => {
+        dispatch(gameChangeExecutionMode('first'));
+        dispatch(gameChangeStatus('start'));
+        dispatch(gameChangeCurrentTimes(currentTimes + 1));
+    };
 
     const completionTask = () => setting.extra && setting.extra.includes('group') ?
         dispatch(gameChangeStatus('answer')) :

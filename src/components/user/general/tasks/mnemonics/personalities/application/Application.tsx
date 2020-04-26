@@ -8,7 +8,6 @@ const Application: React.FC = () => {
     let setting = useSelector(settingAnzan);
 
     const updateAnswersTotals = useCallback((data) => {
-        let pictures = data.map((exercise: any) => exercise.url_photo);
         return data.map((exercise: any) => ({exercise}));
     }, []);
 
@@ -20,9 +19,14 @@ const Application: React.FC = () => {
         return {all: 1};
     }, []);
 
+    const picturesLoad = useCallback((data) => {
+        return data.map((exercise: any) => exercise.url_photo);
+    }, []);
+
     return <ApplicationLayout
         createOutputs={createOutputs}
         timer
+        pictures={picturesLoad}
         setting={setting}
         updateAnswersTotals={updateAnswersTotals}
         updateStats={updateStats}

@@ -2,6 +2,9 @@ import React from 'react';
 import {useSelector} from "react-redux";
 import styled from "styled-components";
 import {CheckCircleOutlined, ExclamationCircleOutlined, FlagOutlined, ArrowRightOutlined} from '@ant-design/icons';
+import {game} from "../../../../../../../../store/game/reducer";
+import {settingAnzan} from "../../../../../../../../store/tasks/setting/reducer";
+import {totalsSelect} from "../../../../../../../../store/tasks/totals/reducer";
 
 const BgIconLeft = styled.div`
   display: inline-flex;
@@ -30,7 +33,9 @@ const BgIconRight = styled(BgIconLeft)`
 `;
 
 const BgIconsDownIntermediateLayout: React.FC = () => {
-    const {setting, currentTimes, totals} = useSelector((state: any) => state.game);
+    const {currentTimes} = useSelector(game);
+    const setting = useSelector(settingAnzan);
+    const totals = useSelector(totalsSelect);
     return <>
         <BgIconLeft>
             {totals[currentTimes].result ? <CheckCircleOutlined/> : <ExclamationCircleOutlined/>}
@@ -41,4 +46,4 @@ const BgIconsDownIntermediateLayout: React.FC = () => {
     </>
 };
 
-export default BgIconsDownIntermediateLayout;
+export default React.memo(BgIconsDownIntermediateLayout);
