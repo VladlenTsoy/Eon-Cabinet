@@ -6,7 +6,7 @@ import {FlagOutlined} from '@ant-design/icons';
 import {gameChangeStatus} from "../../../../../../../store/game/actions";
 import {useDispatch} from "react-redux";
 import {StatusProps} from "../../../../../../../store/game/types";
-import Layout from "./layout";
+import CarouselLayout from "./Carousel.layout";
 
 const ButtonWrapper = styled.div`
   position: absolute;
@@ -46,13 +46,13 @@ const Carousel: React.FC<CarouselProps> = (
 
     return <>
         {topNumber ? <Number current={current}/> : null}
-        <Layout
+        <CarouselLayout
             outputs={outputs}
             setCurrent={setCurrent}
             checkTimerForAnswer={checkTimerForAnswer}
         >
             {children}
-        </Layout>
+        </CarouselLayout>
         <ButtonWrapper>
             <Button type="primary" icon={<FlagOutlined/>} size="large" onClick={checkTimerForAnswer}>
                 Завершить

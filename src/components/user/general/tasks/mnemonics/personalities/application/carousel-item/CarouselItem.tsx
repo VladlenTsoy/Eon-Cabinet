@@ -47,7 +47,7 @@ interface CarouselProps {
     isBreakpoint?: boolean;
 }
 
-const Carousel: any = ({outputs, setting, isBreakpoint = false}: CarouselProps) => {
+const CarouselItem: any = ({outputs, setting, isBreakpoint = false}: CarouselProps) => {
     return outputs.map((output: any, key: number) =>
         <div key={key}>
             <ExerciseWrapper>
@@ -75,4 +75,4 @@ const Carousel: any = ({outputs, setting, isBreakpoint = false}: CarouselProps) 
     );
 };
 
-export default Carousel;
+export default CarouselItem;

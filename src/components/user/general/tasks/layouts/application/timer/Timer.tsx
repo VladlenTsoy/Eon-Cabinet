@@ -27,14 +27,28 @@ interface TimerBlockProps {
 }
 
 const TimerBlock: React.FC<TimerBlockProps> = ({time, afterMessage}) => {
-
     // Сообщение при завершении времени
     const timeIsRunningOut = () => {
-        return Modal.warning({
-            title: 'This is a warning message',
-            content: 'some messages...some messages...',
-            onOk : afterMessage
+        let secondsToGo = 5;
+
+        let modal = Modal.warning({
+            title: 'Время закончилось!',
+            content: 'Для продолжения нажмите ОК.',
+            onOk: afterMessage
         });
+
+        const timer = setInterval(() => {
+            secondsToGo -= 1;
+            modal.update({
+                okText: `ОК (${secondsToGo})`,
+            });
+        }, 1000);
+
+        setTimeout(() => {
+            clearInterval(timer);
+            modal.destroy();
+            afterMessage();
+        }, secondsToGo * 1000);
     };
 
     return <TimerWrapper>

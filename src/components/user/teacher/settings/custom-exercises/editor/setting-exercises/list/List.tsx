@@ -1,5 +1,5 @@
 import React from 'react';
-import {TableWrapper} from "../../../../../../general/tasks/layouts/application/list/tables-output/TablesOutput";
+import {TableLayout} from "../../../../../../general/tasks/layouts/application/list/tables-output/Table.layout";
 import HeaderTable from "../../../../../../general/tasks/layouts/application/list/tables-output/header/Header";
 import {Card} from "../../../../../../../../lib";
 import {Form} from "antd";
@@ -7,7 +7,7 @@ import SaveButton from "../layouts/save-button/SaveButton";
 import Table from "./table/Table";
 import styled from "styled-components";
 
-const TableStyleWrapper = styled(TableWrapper)`
+const TableStyleWrapper = styled(TableLayout)`
   td{
     padding: .5rem;
   }

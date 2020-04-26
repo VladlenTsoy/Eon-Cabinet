@@ -1,24 +1,7 @@
 import React, {useEffect, useRef} from 'react';
-import styled from "styled-components";
 import {Carousel} from "antd";
 import NextArrow from "./next-arrow/NextArrow";
 import PrevArrow from "./prev-arrow/PrevArrow";
-import TextFit
-    from "../../../../../teacher/training/tasks/mental/multi-anzan/exercise-setting/multiplication-block/TextFit";
-
-const ExerciseWrapper = styled.div`
-  height: 250px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  user-select: none;
-`;
-
-const TextFitWrapper = styled.div`
-  @media (max-width: 576px) {
-    padding: 1rem;
-  }
-`;
 
 interface CarouselProps {
     outputs: any[];
@@ -26,8 +9,7 @@ interface CarouselProps {
     setCurrent: (current: number) => void;
 }
 
-
-const Layout: React.FC<CarouselProps> = (
+const CarouselLayout: React.FC<CarouselProps> = (
     {
         outputs,
         children,
@@ -62,16 +44,8 @@ const Layout: React.FC<CarouselProps> = (
         nextArrow={NextArrow()}
         prevArrow={PrevArrow()}
     >
-        {children || outputs.map((output: any, key: number) =>
-            <TextFitWrapper key={key}>
-                <TextFit>
-                    <ExerciseWrapper>
-                        {output}
-                    </ExerciseWrapper>
-                </TextFit>
-            </TextFitWrapper>
-        )}
+        {children}
     </Carousel>;
 };
 
-export default Layout;
+export default CarouselLayout;

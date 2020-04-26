@@ -1,52 +1,11 @@
 import React, {useCallback} from 'react';
-import styled from "styled-components";
 import {useSelector} from "react-redux";
 import {random} from 'lodash';
-import {FlagOutlined} from '@ant-design/icons';
-import {Button} from "antd";
 import {useAddSpaceToString} from "effects/use-add-space-to-string";
-import TextFit
-    from "components/user/teacher/training/tasks/mental/multi-anzan/exercise-setting/multiplication-block/TextFit";
 import ApplicationLayout from "../../../layouts/application/Application.layout";
 import {settingAnzan} from "store/tasks/setting/reducer";
 import {totalsSelect} from "store/tasks/totals/reducer";
-
-const ApplicationWrapper = styled.div`
-  text-align: center;
-  width: 100%;
-`;
-
-const OutputWrapper = styled.div`
-  user-select: none;
-  text-align: center;
-  width: 100%;
-  font-weight: 600;
-  height: 250px;
-  margin: 3rem 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
-`;
-
-interface OutputProps {
-    outputs: string;
-    finishHandler: any;
-}
-
-const Output: React.FC<OutputProps> = ({outputs, finishHandler}) => {
-    console.log(outputs);
-    return <ApplicationWrapper>
-        <TextFit isLoading>
-            <OutputWrapper>
-                {outputs}
-            </OutputWrapper>
-        </TextFit>
-        <Button type="primary" size="large" icon={<FlagOutlined/>} onClick={finishHandler}>
-            Завершить
-        </Button>
-    </ApplicationWrapper>
-};
+import Custom from "./custom/Custom";
 
 const Application: React.FC = () => {
     let setting = useSelector(settingAnzan);
@@ -73,19 +32,13 @@ const Application: React.FC = () => {
         return addSpaceToString(totals[currentTimes].exercise)
     }, [setting]);
 
-    const updateStats = useCallback(() => {
-        return {all: 1};
-    }, []);
-
-
     return <ApplicationLayout
         displayType="custom"
         createOutputs={createOutputs}
         timer
         setting={setting}
         updateAnswersTotals={updateAnswersTotals}
-        updateStats={updateStats}
-        CustomDisplay={Output}
+        CustomDisplay={Custom}
         nextStatus="answer"
     />
 };

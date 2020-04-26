@@ -1,41 +1,46 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {useApiUserGeneral} from "effects/use-api-user-general.effect";
-import IconAbacus from "assets/images/tasks/abacus.svg";
 import {useDispatch, useSelector} from "react-redux";
 import {game} from "store/game/reducer";
 import {LoadingBlock} from "lib";
-import {usePreloadPictures} from "effects/use-preload-pictures.effect";
+import {ExclamationCircleOutlined} from "@ant-design/icons";
 import Basic from "./basic/Basic";
-import Timer from "./_old/timer/Timer";
+import Timer from "./timer/Timer";
 import {totalsChange} from "store/tasks/totals/action";
 import {StatsActionProps, StatusProps} from "store/game/types";
-import {gameChangeStats} from "../../../../../../store/game/actions";
+import {gameChangeStats, gameChangeStatus} from "../../../../../../store/game/actions";
 import {SettingAnzanProps} from "../../../../../../store/tasks/setting/games-types/anzan.types";
 import PreparationLayout from "./preparation/Preparation.layout";
 import List from "./list/List";
-import {Form, message} from "antd";
+import {Form, Modal} from "antd";
 import Double from "./double/Double";
 import ApplicationCardLayout from "./ApplicationCard.layout";
 import Carousel from "./carousel/Carousel";
 import {totalsSelect} from "../../../../../../store/tasks/totals/reducer";
-
-const BasicSound = require('assets/sounds/anzan.ogg');
+import {useLoadPicturesEffect} from "./use-load-pictures.effect";
+import {useLoadSoundsEffect} from "./use-load-sounds.effect";
+import {ListSettingProps} from "./list/tables-output/TablesOutput";
 
 type picturesFunction = (exercises: any) => any[];
+
+interface CarouselSettingProps {
+    topNumbering?: boolean;
+    item: React.FC<any>
+}
 
 interface ApplicationProps {
     setting: SettingAnzanProps;
     displayType: SettingAnzanProps['anzan'] | 'carousel' | 'custom';
     pictures?: string[] | 'abacus' | picturesFunction;
-    listSetting?: { column: any, list: any, leftNumbering: boolean }
+    listSetting?: ListSettingProps
+    carouselSetting?: CarouselSettingProps
     requestSetting?: { url: string, method?: 'post' | 'get', setting?: any };
     timer?: boolean;
     updateResultsTotals?: (answers: any[]) => any;
-    updateAnswersTotals: (data: any, currentTimes: number) => any;
-    createOutputs: (totals: any, currentTimes: number) => any;
-    updateStats: () => StatsActionProps;
+    updateAnswersTotals?: (data: any, currentTimes: number) => any;
+    createOutputs?: (totals: any, currentTimes: number) => any;
+    updateStats?: () => StatsActionProps;
     nextStatus?: StatusProps;
-    CarouselItem?: React.FC<any>;
     CustomDisplay?: React.FC<any>;
 }
 
@@ -52,7 +57,7 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
         updateResultsTotals,
         updateStats,
         nextStatus = 'answer',
-        CarouselItem,
+        carouselSetting,
         CustomDisplay,
     }
 ) => {
@@ -61,52 +66,30 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
     const [ListForm] = Form.useForm();
     const {executionMode, currentTimes} = useSelector(game);
     const dispatch = useDispatch();
-    const [, preloadImage] = usePreloadPictures();
-    const [basicSound] = useState<HTMLAudioElement>(new Audio(BasicSound));
 
     // Загрузка картинок
-    const picturesLoad = useCallback(async (data: any) => {
-        try {
-            if (typeof pictures === "string" && pictures === 'abacus')
-                return await new Promise((resolve => {
-                    const iconAbacus = new Image();
-                    iconAbacus.onload = () => resolve(true);
-                    iconAbacus.src = IconAbacus;
-                }));
-
-            if (typeof pictures === "function")
-                return await preloadImage(pictures(data));
-
-            if (typeof pictures === "object")
-                return await preloadImage(pictures);
-        } catch (e) {
-            message.error("Ошибка, не удалось загрузить изображения!")
-        }
-    }, [pictures]);
+    const [picturesLoad] = useLoadPicturesEffect({pictures});
 
     // Загрузка звуков
-    const soundsLoad = useCallback(async () => {
-        if (setting.sound === 'basic')
-            return await new Promise((resolve) => {
-                if (basicSound.readyState < 2)
-                    basicSound.oncanplaythrough = () => resolve(true);
-                else
-                    resolve(true);
-            });
-    }, [setting, basicSound]);
+    const [soundsLoad, basicSound] = useLoadSoundsEffect({setting});
 
     // После завершения примеров
     const afterRequest = useCallback(async (data: any) => {
         if (pictures) await picturesLoad(data);
         if (setting.sound) await soundsLoad();
 
-        let _totals = updateAnswersTotals(data, currentTimes);
+        let _totals = updateAnswersTotals ?
+            updateAnswersTotals(data, currentTimes) :
+            data.map((exercise: any) => ({exercise}));
         dispatch(totalsChange(_totals));
 
-        let outputsTotals = createOutputs(_totals, currentTimes);
+        let outputsTotals = createOutputs ?
+            createOutputs(_totals, currentTimes) :
+            Object.values(_totals).map((total: any) => total.exercise);
         setOutputs(outputsTotals);
 
-        let stats = updateStats();
+        let defaultStats = () => ({all: Object.values(totals).length});
+        let stats = updateStats ? updateStats() : defaultStats();
         dispatch(gameChangeStats(stats))
     }, [updateAnswersTotals, updateStats, setting, dispatch, currentTimes, soundsLoad, picturesLoad, pictures]);
 
@@ -120,46 +103,67 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
     });
 
     useEffect(() => {
+        // Повторение упраженения
         if (executionMode === 'repeat') {
-            console.log(totals, currentTimes);
-            let outputsTotals = createOutputs(totals, currentTimes);
+            let outputsTotals = createOutputs ?
+                createOutputs(totals, currentTimes) :
+                Object.values(totals).map((total: any) => total.exercise);
             setOutputs(outputsTotals);
-        } else if (!requestSetting && executionMode === 'first') {
+        }
+        // Генерация примеров
+        else if (!requestSetting && executionMode === 'first') {
             afterRequest([]).then();
         }
     }, [requestSetting, totals, currentTimes, afterRequest]);
 
-    const afterMessage = useCallback(async () => {
+    // Контейнер сообщения
+    let Confirm: any;
+
+    // После завершения таймера
+    const afterTimerMessage = useCallback(async () => {
         const answers = ListForm.getFieldValue('answer');
-        if (updateResultsTotals) {
+        Confirm && Confirm.destroy();
+        if (updateResultsTotals)
             await updateResultsTotals(answers);
-        }
+        dispatch(gameChangeStatus(nextStatus));
     }, [updateResultsTotals, ListForm]);
 
+    // Сообщение при ранем завершении пользователем
+    const earlierCompletion = useCallback((values: any) => {
+        Confirm = Modal.confirm({
+            icon: <ExclamationCircleOutlined/>,
+            title: "У вас еще осталось время, Вы уверены что хотите перейти дальше?",
+            onOk: () => {
+                updateResultsTotals && updateResultsTotals(values.answer);
+                dispatch(gameChangeStatus(nextStatus));
+            }
+        });
+    }, []);
+
     if (loading)
-        return <LoadingBlock title="Загрузка чисел..."/>;
+        return <LoadingBlock title="Настройка упражнения..."/>;
 
     return <PreparationLayout>
         <ApplicationCardLayout>
-            {timer && <Timer time={setting.time} afterMessage={afterMessage}/>}
-            {/**/}
+            {timer && <Timer time={setting.time} afterMessage={afterTimerMessage}/>}
+            {/* Обычний режим с числами*/}
             {(displayType === 'basic' || displayType === 'turbo') &&
             <Basic setting={setting} nextStatus={nextStatus} basicSound={basicSound} outputs={outputs}/>}
-            {/**/}
+            {/* Листы */}
             {displayType === 'list' && listSetting &&
-            <List listForm={ListForm} listSetting={listSetting} updateResultsTotals={updateResultsTotals}
+            <List listForm={ListForm} listSetting={listSetting} earlierCompletion={earlierCompletion}
                   outputs={outputs}/>}
-            {/**/}
+            {/* Двойной с числами */}
             {displayType === 'double' && setting.anzan === 'double' &&
             <Double setting={setting} nextStatus={nextStatus} basicSound={basicSound} outputs={outputs}/>}
-            {/**/}
+            {/* Карусель */}
             {displayType === 'carousel' &&
-            <Carousel topNumber nextStatus={nextStatus} outputs={outputs}>
-                {/*{CarouselItem && <CarouselItem outputs={outputs} setting={setting}/>}*/}
-                {CarouselItem && CarouselItem({outputs, setting})}
+            <Carousel topNumber={carouselSetting?.topNumbering} nextStatus={nextStatus} outputs={outputs}>
+                {carouselSetting && carouselSetting.item({outputs, setting})}
             </Carousel>}
-            {/**/}
-            {displayType === 'custom' && CustomDisplay && <CustomDisplay outputs={outputs} setting={setting} finishHandler={() => null}/>}
+            {/* Пользовательский */}
+            {displayType === 'custom' && CustomDisplay &&
+            <CustomDisplay outputs={outputs} setting={setting} finishHandler={afterTimerMessage}/>}
         </ApplicationCardLayout>
     </PreparationLayout>;
 };

@@ -71,8 +71,7 @@ const ExerciseWrapper = styled.div`
   }
 `;
 
-
-const Carousel = ({outputs, setting}: any) => {
+const CarouselItem = ({outputs, setting}: any) => {
     return outputs.map((output: any, key: number) =>
         <div key={key}
         >
@@ -100,4 +99,4 @@ const Carousel = ({outputs, setting}: any) => {
     );
 };
 
-export default Carousel;
+export default CarouselItem;

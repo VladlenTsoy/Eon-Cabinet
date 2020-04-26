@@ -1,7 +1,7 @@
 import React from 'react';
-import CardFlip from "../../../../layouts/application/_old/card-flip/CardFlip";
+import CardFlip from "../../../../layouts/application/output-component-layouts/card-flip/CardFlip";
 
-const Carousel = ({outputs}:any) => {
+const CarouselItem = ({outputs}:any) => {
     return outputs.map((output: any, key: number) =>
         <div key={key}>
             <CardFlip
@@ -18,4 +18,4 @@ const Carousel = ({outputs}:any) => {
     );
 };
 
-export default Carousel;
+export default CarouselItem;

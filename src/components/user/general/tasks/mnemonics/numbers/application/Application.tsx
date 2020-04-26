@@ -25,10 +25,6 @@ const Application: React.FC = () => {
         return shuffle(numbers.map((number: number) => ({exercise: number, answer: number})));
     }, [setting]);
 
-    const updateStats = useCallback(() => {
-        return {all: setting.count};
-    }, []);
-
     const createOutputs = useCallback((totals) => {
         if (setting['task-mode'] === 'list')
             return [chunk(Object.values(totals).map((total: any) => total.exercise), setting.column)];
@@ -43,7 +39,7 @@ const Application: React.FC = () => {
                 listSetting: {
                     column: setting.column,
                     leftNumbering: false,
-                    list: List
+                    layout: List
                 }
             }
         }
@@ -51,7 +47,6 @@ const Application: React.FC = () => {
         displayType={setting['task-mode']}
         setting={setting}
         updateAnswersTotals={updateAnswersTotals}
-        updateStats={updateStats}
         pictures="abacus"
     />
 };

@@ -70,8 +70,13 @@ const BasicWrapper = styled.div`
   }
 `;
 
-const BasicApplication = ({outputs, setting}: any) => {
-    console.log(outputs);
+interface CustomProps {
+    outputs: any[];
+    setting: any;
+    finishHandler: any;
+}
+
+const Custom: React.FC<CustomProps> = ({outputs, setting, finishHandler}) => {
     const [addInterval] = useAddInternal();
 
     // Вывод
@@ -80,7 +85,7 @@ const BasicApplication = ({outputs, setting}: any) => {
     useEffect((i = 1) => {
         addInterval(() => {
             if (i >= setting.count)
-                return null;
+                return finishHandler();
             setOutput(outputs[i++]);
         }, setting.time * 1000);
     }, [setting, addInterval, outputs]);
@@ -96,4 +101,4 @@ const BasicApplication = ({outputs, setting}: any) => {
     </BasicWrapper>;
 };
 
-export default BasicApplication;
+export default Custom;

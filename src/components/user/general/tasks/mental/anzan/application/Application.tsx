@@ -111,7 +111,7 @@ const Application: React.FC<ApplicationProps> = ({otherUrl}) => {
                 listSetting: {
                     column: setting.column,
                     leftNumbering: false,
-                    list: isMultiplication ? TbodyMultiplication : TbodyAddition
+                    layout: isMultiplication ? TbodyMultiplication : TbodyAddition
                 }
             }
         }
@@ -127,7 +127,9 @@ const Application: React.FC<ApplicationProps> = ({otherUrl}) => {
                 setting.anzan === 'list' ? '/algorithm/list' : setting.anzan === 'double' ? '/algorithm/double' : '/algorithm'
         }}
         pictures="abacus"
-        nextStatus={setting.extra.includes('group') ? "intermediate" : "answer"}
+        nextStatus={
+            setting.anzan === 'list' ? 'result' :
+                setting.extra.includes('group') ? "intermediate" : "answer"}
     />
 };
 
