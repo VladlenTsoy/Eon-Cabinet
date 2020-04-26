@@ -1,9 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {useDispatch, useSelector} from "react-redux";
-import ApplicationAnzanWrapper from "../../../../layouts/application/_old/anzan/Anzan.layout";
-import {gameChangeStatus} from "../../../../../../../../store/game/actions";
 import styled from "styled-components";
-import {Card} from "lib";
 import {useAddInternal} from "../../../../../../../../effects/use-add-interval.effect";
 
 const BasicWrapper = styled.div`
@@ -74,39 +70,30 @@ const BasicWrapper = styled.div`
   }
 `;
 
-const BasicApplication = () => {
-    const {game} = useSelector((state: any) => state);
-    const dispatch = useDispatch();
-
-    const {totals, setting} = game;
+const BasicApplication = ({outputs, setting}: any) => {
+    console.log(outputs);
     const [addInterval] = useAddInternal();
 
     // Вывод
-    const [output, setOutput] = useState();
+    const [output, setOutput] = useState(outputs[0]);
 
     useEffect((i = 1) => {
         addInterval(() => {
             if (i >= setting.count)
-                return dispatch(gameChangeStatus('answer'));
-            setOutput(totals[i++].exercise);
+                return null;
+            setOutput(outputs[i++]);
         }, setting.time * 1000);
-        setOutput(totals[0].exercise);
-    }, [setting, dispatch, addInterval, totals]);
+    }, [setting, addInterval, outputs]);
 
-    return <ApplicationAnzanWrapper>
-        <Card>
-            {output ?
-                <BasicWrapper key={output.number}>
-                    <div className="first">
-                        <img src={output.url_picture}
-                             alt={output.number}/>
-                    </div>
-                    <div className="second" style={{animationDelay: `${setting.time_card}s`}}>
-                        {output.number}
-                    </div>
-                </BasicWrapper> : null}
-        </Card>
-    </ApplicationAnzanWrapper>;
+    return <BasicWrapper key={output.number}>
+        <div className="first">
+            <img src={output.url_picture}
+                 alt={output.number}/>
+        </div>
+        <div className="second" style={{animationDelay: `${setting.time_card}s`}}>
+            {output.number}
+        </div>
+    </BasicWrapper>;
 };
 
 export default BasicApplication;

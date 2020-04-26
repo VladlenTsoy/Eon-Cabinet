@@ -1,44 +1,43 @@
-import React, {useCallback, useEffect, useState} from 'react';
-import {useDispatch, useSelector} from "react-redux";
-import {usePreloadPictures} from "../../../../../../../effects/use-preload-pictures.effect";
-import {LoadingBlock} from "lib";
+import React, {useCallback} from 'react';
+import {useSelector} from "react-redux";
+import {settingAnzan} from "../../../../../../../store/tasks/setting/reducer";
+import ApplicationLayout from "../../../layouts/application/Application.layout";
 import BasicApplication from "./basic-application/BasicApplication";
-import PreparationLayout from "../../../layouts/application/preparation/Preparation.layout";
-import {totalsChange} from "../../../../../../../store/tasks/totals/action";
 
 const Application: React.FC = () => {
-    const {game, api} = useSelector((state: any) => state);
-    const dispatch = useDispatch();
-    const [loading, setLoading] = useState(true);
+    let setting = useSelector(settingAnzan);
 
-    const [numberOfDownloaded, preloadImage] = usePreloadPictures();
-    const {setting, status} = game;
+    const updateAnswersTotals = useCallback((data) => {
+        return data.map((exercise: any) => ({exercise}));
+    }, []);
 
-    const fetch = useCallback(async (): Promise<any> => {
-        setLoading(true);
+    const createOutputs = useCallback((totals) => {
+        return Object.values(totals).map((total: any) => total.exercise);
+    }, [setting]);
 
-        let response = await api.user_general.post('/task/digital-picture', setting);
-        await preloadImage(response.data.map((exercise: any) => exercise.url_picture));
+    const updateStats = useCallback(() => {
+        return {all: 1};
+    }, []);
 
-        let _totals = response.data.map((exercise: any) => ({exercise}));
-        await dispatch(totalsChange(_totals));
+    const picturesLoad = useCallback((data) => {
+        return data.map((exercise: any) => exercise.url_picture);
+    }, []);
 
-        setLoading(false);
-    }, [dispatch, setting, api.user_general, preloadImage]);
-
-    useEffect(() => {
-        (async () => {
-            if (status !== 'refresh' && status !== 'repeat' && status !== 'answer' && status !== 'intermediate')
-                await fetch();
-        })();
-    }, [fetch, status]);
-
-
-    return loading ?
-        <LoadingBlock title={`Загруженно ${numberOfDownloaded} из ${setting.count}`}/> :
-        <PreparationLayout>
-            <BasicApplication/>
-        </PreparationLayout>;
+    return <ApplicationLayout
+        createOutputs={createOutputs}
+        pictures={picturesLoad}
+        setting={setting}
+        updateAnswersTotals={updateAnswersTotals}
+        updateStats={updateStats}
+        displayType="custom"
+        requestSetting={{
+            url: '/task/digital-picture',
+            method: 'post',
+            setting,
+        }}
+        CustomDisplay={BasicApplication}
+        nextStatus="answer"
+    />
 };
 
 export default Application;

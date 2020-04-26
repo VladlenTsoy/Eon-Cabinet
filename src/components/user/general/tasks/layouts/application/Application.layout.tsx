@@ -159,7 +159,7 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
                 {CarouselItem && CarouselItem({outputs, setting})}
             </Carousel>}
             {/**/}
-            {displayType === 'custom' && CustomDisplay && <CustomDisplay outputs={outputs} finishHandler={() => null}/>}
+            {displayType === 'custom' && CustomDisplay && <CustomDisplay outputs={outputs} setting={setting} finishHandler={() => null}/>}
         </ApplicationCardLayout>
     </PreparationLayout>;
 };

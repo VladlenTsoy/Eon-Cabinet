@@ -1,40 +1,44 @@
-import React, {useCallback, useEffect, useState} from 'react';
-import {LoadingBlock} from "lib";
-import BasicApplication from "./basic-application/BasicApplication";
-import {usePreloadPictures} from "../../../../../../../effects/use-preload-pictures.effect";
-import {useDispatch, useSelector} from "react-redux";
-import {totalsChange} from "../../../../../../../store/tasks/totals/action";
+import React, {useCallback} from 'react';
+import {useSelector} from "react-redux";
+import {settingAnzan} from "../../../../../../../store/tasks/setting/reducer";
+import ApplicationLayout from "../../../layouts/application/Application.layout";
+import Carousel from "./carousel/Carousel";
 
 const Application:React.FC = () => {
-    const {game, api} = useSelector((state: any) => state);
-    const dispatch = useDispatch();
-    const [loading, setLoading] = useState(false);
+    let setting = useSelector(settingAnzan);
 
-    const [numberOfDownloaded, preloadImage] = usePreloadPictures();
-    const {setting} = game;
+    const updateAnswersTotals = useCallback((data) => {
+        return data.map((exercise: any) => ({exercise}));
+    }, []);
 
-    const fetch = useCallback(async (): Promise<any> => {
-        setLoading(true);
+    const createOutputs = useCallback((totals) => {
+        return Object.values(totals).map((total: any) => total.exercise);
+    }, [setting]);
 
-        let response = await api.user_general.post('/task/digital-image', setting);
-        let pictures = response.data.map((exercise: any) => exercise.url_form);
-        await preloadImage(pictures);
+    const updateStats = useCallback(() => {
+        return {all: 1};
+    }, []);
 
-        let _totals = response.data.map((exercise: any) => ({exercise}));
-        await dispatch(totalsChange(_totals));
+    const picturesLoad = useCallback((data) => {
+        return data.map((exercise: any) => exercise.url_form);
+    }, []);
 
-        setLoading(false);
-    }, [dispatch, setting, api.user_general, preloadImage]);
-
-    useEffect(() => {
-        (async () => {
-            await fetch();
-        })();
-    }, [fetch]);
-
-    return loading ?
-        <LoadingBlock title={`Загруженно ${numberOfDownloaded}`}/>
-        : <BasicApplication/>;
+    return <ApplicationLayout
+        createOutputs={createOutputs}
+        timer
+        pictures={picturesLoad}
+        setting={setting}
+        updateAnswersTotals={updateAnswersTotals}
+        updateStats={updateStats}
+        displayType="carousel"
+        requestSetting={{
+            url: '/task/digital-image',
+            method: 'post',
+            setting,
+        }}
+        CarouselItem={Carousel}
+        nextStatus="answer"
+    />
 };
 
 export default Application;

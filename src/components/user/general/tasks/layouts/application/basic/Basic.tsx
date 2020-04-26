@@ -60,4 +60,4 @@ const Basic: React.FC<BasicProps> = (
     return <Output output={output.num} time={setting.time} key={output.key}/>;
 };
 
-export default Basic;
+export default React.memo(Basic);
