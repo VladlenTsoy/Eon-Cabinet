@@ -1,17 +1,18 @@
 import React, {useState} from 'react';
-import { EyeOutlined, ThunderboltOutlined } from '@ant-design/icons';
-import { Button } from "antd";
-import {Drawer} from "layouts/components";
-import {Card} from "lib";
+import {Card} from "../../../../../lib";
+import {Button} from "antd";
+import {Drawer} from "../../../../components";
+import {EyeOutlined, ThunderboltOutlined} from '@ant-design/icons';
 
-interface CurrentExerciseProps {
+
+interface CurrentExerciseDrawnBLockProps {
     stats: {
         all: number;
         success: number;
     };
 }
 
-const CurrentExercise: React.FC<CurrentExerciseProps> = (
+const CurrentExerciseDrawnBLock: React.FC<CurrentExerciseDrawnBLockProps> = (
     {
         stats,
         children
@@ -27,13 +28,13 @@ const CurrentExercise: React.FC<CurrentExerciseProps> = (
             <div className="title">Примеры текущего упражнения</div>
             <div className="container">
                 <div className="icon">
-                    <ThunderboltOutlined />
+                    <ThunderboltOutlined/>
                 </div>
                 <div className="content">
                     Выполнено <span className="active">{stats.success}</span> из {stats.all}
                 </div>
             </div>
-            <Button type="dashed" icon={<EyeOutlined />} block size="large" onClick={open}>Посмотреть ответы</Button>
+            <Button type="dashed" icon={<EyeOutlined/>} block size="large" onClick={open}>Посмотреть ответы</Button>
             <Drawer
                 title="Результат"
                 visible={visible}
@@ -46,4 +47,4 @@ const CurrentExercise: React.FC<CurrentExerciseProps> = (
     );
 };
 
-export default CurrentExercise;
+export default CurrentExerciseDrawnBLock;

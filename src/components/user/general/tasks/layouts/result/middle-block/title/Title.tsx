@@ -14,15 +14,19 @@ const TitleWrapper = styled.div`
   background: #fff;
   border-radius: 500rem;
   padding: 0.5rem 3rem;
+  
+  @media (max-width: 576px) {
+    font-size: 40px;
+  }
 `;
 
 interface TitleProps {
 
 }
 
-const Title:React.FC<TitleProps> = () => {
+const Title: React.FC<TitleProps> = () => {
     return <TitleWrapper>
-Победа
+        Победа
     </TitleWrapper>;
 };
 

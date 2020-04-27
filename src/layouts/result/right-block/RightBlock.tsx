@@ -15,10 +15,10 @@ const RightBlockLayout = styled(SideBlockLayout)`
   }
 `;
 
-
-const RightBlock:React.FC = () => {
-    return <RightBlockLayout>;
-    </RightBlockLayout>;
+const RightBlock:React.FC = ({children}) => {
+    return <RightBlockLayout>
+        {children}
+    </RightBlockLayout>
 };
 
 export default RightBlock;

@@ -8,6 +8,10 @@ const StarsWrapper = styled.div`
   transform: scale(1.5);
   animation: BackStars 1s 3.2s ease-in-out forwards;
   margin-bottom: 3rem;
+  
+  @media (max-width: 576px) {
+    transform: scale(1.1);
+  }
     
   width: 100%;
   display: grid;
@@ -17,63 +21,6 @@ const StarsWrapper = styled.div`
   @keyframes BackStars {
     100%{
       transform: scale(1);
-    }
-  }
-  
-  @keyframes scaleUpStar{
-    0%{
-      transform: scale(1.1);
-    }
-    50%{
-      transform: scale(1.15);
-    }
-    100%{
-      transform: scale(1.1);
-    }
-  }
-  
-  @keyframes shadowFadeOut {
-    30%{
-      filter: drop-shadow(0px 5px 3px #ff9800fc);
-    }
-    40%{
-      filter: drop-shadow(0px 5px 150px #ff9800fc);
-    }
-    65%{
-      filter: drop-shadow(0px 5px 150px #ff980000);
-    }
-    66%{
-      filter: drop-shadow(0px 5px 3px #ff980000);
-    }
-    100%{
-      filter: drop-shadow(0px 5px 3px #ff980050);
-    }
-  };
-
-  @keyframes fadeInLeftStar{
-    90%{
-      transform: scale(1.15) rotate(-10deg);
-    }
-    100%{
-      transform: scale(1.1) rotate(-10deg);
-    }
-  }
-
-  @keyframes fadeInMiddleStar{
-    90%{
-      transform: scale(1.15);
-    }
-    100%{
-      transform: scale(1.1);
-    }
-  }
-  
-  @keyframes fadeInRightStar{
-    90%{
-      transform: scale(1.15) rotate(10deg);
-    }
-    100%{
-      transform: scale(1.1) rotate(10deg);
     }
   }
 `;
