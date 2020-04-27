@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 import {useSelector} from "react-redux";
-import Intermediate from "../intermediate/Intermediate";
-import Result from "../result/Result";
 import {game} from "../../../../../../store/game/reducer";
+import Intermediate from "../../../../general/tasks/layouts/intermediate/Intermediate";
+import Result from "../layouts/result/Result";
 
 interface TaskProps {
     start: React.ReactNode;
@@ -22,7 +22,7 @@ const TaskLayout: React.FC<TaskProps> = (
     const {status} = useSelector(game);
 
     return <>
-        {status === 'start' && <Result>{result}</Result>}
+        {status === 'start' && start}
         {/*// TODO - возможен пустой экран*/}
         {status === 'answer' && answer && answer}
         {status === 'intermediate' && intermediate && <Intermediate>{intermediate}</Intermediate>}

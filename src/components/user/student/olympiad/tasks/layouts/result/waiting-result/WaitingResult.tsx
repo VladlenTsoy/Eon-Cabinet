@@ -4,6 +4,8 @@ import RightBlock from "./right-block/RightBlock";
 import {useSelector} from "react-redux";
 import {RouteComponentProps, withRouter} from "react-router";
 import {RouteOlympiadTaskProps} from "../Result";
+import {totalsSelect} from "../../../../../../../../store/tasks/totals/reducer";
+import {game} from "../../../../../../../../store/game/reducer";
 
 type WaitingResultProps = RouteComponentProps<RouteOlympiadTaskProps> & {
     loading: boolean;
@@ -19,11 +21,12 @@ const WaitingResult: React.FC<WaitingResultProps> = (
         setLoadingResult,
     }
 ) => {
-    const {api, game} = useSelector((state: any) => state);
-    const {totals, stats} = game;
+    const {api} = useSelector((state: any) => state);
+    const {stats} = useSelector(game);
+    const totals = useSelector(totalsSelect);
 
     const [resultData, setResultData] = useState();
-    const result: boolean = stats.all && stats.all === stats.success;
+    const result: boolean = stats.all !== 0 && stats.all === stats.success;
 
     const save = useCallback(async () => {
         return await api.user_general.post('/student/olympiad/result', {

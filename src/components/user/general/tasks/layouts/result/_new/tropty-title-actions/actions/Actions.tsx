@@ -5,9 +5,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {
     gameChangeCurrentTimes,
     gameChangeExecutionMode,
-} from "../../../../../../../../store/game/actions";
+} from "../../../../../../../../../store/game/actions";
 import {withRouter, RouteComponentProps} from "react-router";
-import {totalsChange} from "../../../../../../../../store/tasks/totals/action";
+import {totalsChange} from "../../../../../../../../../store/tasks/totals/action";
 
 const ActionsWrapper = styled.div`
     font-size: 25px;

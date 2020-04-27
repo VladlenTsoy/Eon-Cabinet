@@ -1,6 +1,6 @@
 import React from 'react';
 import {useSelector} from "react-redux";
-import Card from "../../../layouts/result/details/card/Card";
+import Card from "../../../layouts/result/_new/details/card/Card";
 
 interface ResultProps {
 

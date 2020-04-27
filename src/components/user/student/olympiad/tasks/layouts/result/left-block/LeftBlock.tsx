@@ -1,5 +1,5 @@
 import React from 'react';
-import SideBlockLayout from "../layouts/side-block/SideBlock.layout";
+import SideBlockLayout from "../../../../../../../../layouts/result/layouts/side-block/SideBlock.layout";
 import CurrentExercise from "./current-exercise/CurrentExercise";
 import ActionBack from "./action-back/ActionBack";
 import styled from "styled-components";

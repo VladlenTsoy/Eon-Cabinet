@@ -1,7 +1,7 @@
 import React from 'react';
 import {useSelector} from "react-redux";
 import styled from "styled-components";
-import {CardWrapper} from "../../../layouts/result/details/card/Card";
+import {CardWrapper} from "../../../layouts/result/_new/details/card/Card";
 import { TrophyOutlined } from '@ant-design/icons';
 import {useAddSpaceToString} from "../../../../../../../effects/use-add-space-to-string";
 

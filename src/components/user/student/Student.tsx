@@ -23,7 +23,7 @@ const Student = () => <Router>
             <Route path="/homework/:homeworkId/:id/:taskId" component={Tasks}/>
             <Route exact path="/olympiads" component={Olympiads}/>
             <Route exact path="/olympiads/:olympiadId" component={Olympiad}/>
-            <Route path="/olympiads/:sentOlympiadId/:taskOlympiadId/:taskId" component={TasksOlympiad}/>
+            <Route path="/olympiads/:disciplineId/:sentOlympiadId/:taskOlympiadId/:taskId" component={TasksOlympiad}/>
             <Route path="/result" component={Result}/>
         </Switch>
     </Layout>

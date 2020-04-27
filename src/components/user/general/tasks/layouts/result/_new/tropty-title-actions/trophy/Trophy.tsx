@@ -1,5 +1,5 @@
 import React from 'react';
-import ImageWin from "../../../../../../../../assets/images/illustrations/trophy.svg";
+import ImageWin from "../../../../../../../../../assets/images/illustrations/trophy.svg";
 import styled from "styled-components";
 
 const TrophyWrapper: any = styled.div<any>`

@@ -28,8 +28,9 @@ const Action: React.FC<ActionProps> = ({history, task, type}) => {
     };
 
     const startApplication = (_task: any) => {
+        console.log(task);
         dispatch(settingChange(_task.settings));
-        history.push(`/olympiads/${task.sent_id}/${_task.id}/${_task.task_id}`);
+        history.push(`/olympiads/1/${_task.sent_id}/${_task.id}/${_task.task_id}`);
     };
 
     return (

@@ -6,6 +6,7 @@ import {deleteCurrentUserData} from "../../../store/user/actions";
 import {useScreenWindow} from "../../../effects/use-screen-window.effect";
 import Mobile from "./mobile/Mobile";
 import Laptop from "./laptop/Laptop";
+import {QuestionCircleOutlined} from "@ant-design/icons";
 
 interface HeaderProps {
     collapsed: boolean;
@@ -22,6 +23,7 @@ const Header: React.FC<HeaderProps> = ({children, collapsed, toggleSidebar}) => 
     const logout = () => {
         confirm({
             title: 'Вы действительно хотите выйти?',
+            icon: <QuestionCircleOutlined/>,
             onOk: async () => {
                 await api.user_general.delete('/logout');
                 dispatch(apiDeleteAccessToken());
