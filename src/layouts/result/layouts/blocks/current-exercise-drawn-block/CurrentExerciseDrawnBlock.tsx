@@ -3,21 +3,13 @@ import {Card} from "../../../../../lib";
 import {Button} from "antd";
 import {Drawer} from "../../../../components";
 import {EyeOutlined, ThunderboltOutlined} from '@ant-design/icons';
+import {useSelector} from "react-redux";
+import {game} from "../../../../../store/game/reducer";
 
 
-interface CurrentExerciseDrawnBLockProps {
-    stats: {
-        all: number;
-        success: number;
-    };
-}
-
-const CurrentExerciseDrawnBLock: React.FC<CurrentExerciseDrawnBLockProps> = (
-    {
-        stats,
-        children
-    }
-) => {
+const CurrentExerciseDrawnBLock: React.FC = ({children}) => {
+    // const {stats} = useSelector(game);
+    const stats = {all: 0, success: 0};
     const [visible, setVisible] = useState(false);
 
     const open = () => setVisible(true);

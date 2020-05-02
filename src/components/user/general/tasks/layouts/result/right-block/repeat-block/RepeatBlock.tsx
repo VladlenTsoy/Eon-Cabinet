@@ -15,10 +15,10 @@ const RepeatBlock: React.FC<RepeatBlockProps> = () => {
                 <HistoryOutlined/>
             </div>
             <div className="content">
-                Сгенрировать новый примеры со старыми настройками
+
             </div>
         </div>
-        <Button icon={<HistoryOutlined/>} size="large" block>Повторить с новыми примерами</Button>
+        <Button icon={<HistoryOutlined/>} size="large" block>Повторить те же примеры</Button>
     </Card>
 };
 

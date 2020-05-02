@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
+import {useSelector} from "react-redux";
+import {game} from "../../../../../../../../store/game/reducer";
 
 const CounterWrapper = styled.div` 
   display: flex;
@@ -31,9 +33,11 @@ interface CounterProps {
 }
 
 const Counter:React.FC<CounterProps> = () => {
+    // const {stats} = useSelector(game);
+    const stats = {all: 0, success: 0};
     return <CounterWrapper>
         <div className="counter">
-            50 <span className="slash">/</span> 50
+            {stats.all} <span className="slash">/</span> {stats.success}
         </div>
         </CounterWrapper>
 };

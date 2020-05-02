@@ -1,9 +1,11 @@
 import React from 'react';
 import styled from "styled-components";
+import {useSelector} from "react-redux";
+import {game} from "../../../../../../../../store/game/reducer";
 
 const TitleWrapper = styled.div`
   text-align: center;
-  font-size: 100px;
+  font-size: 90px;
   font-weight: 600;
   line-height: 1;
   animation-name: fadeInUp;
@@ -25,8 +27,13 @@ interface TitleProps {
 }
 
 const Title: React.FC<TitleProps> = () => {
+    // const {stats} = useSelector(game);
+    const stats = {all: 0, success: 0};
+
+    const result: boolean = stats.all !== 0 && stats.all === stats.success;
+
     return <TitleWrapper>
-        Победа
+        {result ? 'Победа!' : 'Неудача!'}
     </TitleWrapper>;
 };
 

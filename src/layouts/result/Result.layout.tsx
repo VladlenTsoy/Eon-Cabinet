@@ -11,8 +11,9 @@ const ResultWrapper = styled.div`
   right: 0;
   top: 0;
   bottom: 0;
-  overflow-y: auto;
+  overflow: hidden;
   background: ${props => props.theme['@layout-body-background']};
+  overflow-y: auto;
 
   .result-info{
     position: relative;

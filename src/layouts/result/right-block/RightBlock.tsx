@@ -6,12 +6,20 @@ import SideBlockLayout
 const RightBlockLayout = styled(SideBlockLayout)`
   order: 3;
   
+  > div{
+    animation: fadeInRight 2s 0s both;
+  }
+  
   @media (max-width: 992px) {
     order: 3;
   }  
   
   @media (max-width: 576px) {
     order: 2;
+    
+    > div{
+      animation-name: fadeInUp;  
+    }
   }
 `;
 

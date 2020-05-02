@@ -15,10 +15,11 @@ const Result: React.FC = ({children}) => {
     const match = useRouteMatch<ResultMatchProps>();
 
     const {api} = useSelector((state: any) => state);
-    const {stats} = useSelector(game);
+    // const {stats} = useSelector(game);
+    const stats = {all: 0, success: 0};
 
     const result: boolean = stats.all !== 0 && stats.all === stats.success;
-    const [loading, setLoading] = useState<boolean>(Boolean(match.params.homeworkId));
+    const [loading, setLoading] = useState(true);
     const [isView, setIsView] = useState(!match.params.homeworkId);
     const [resultId, setResultId] = useState();
 
@@ -39,15 +40,21 @@ const Result: React.FC = ({children}) => {
                     totals
                 });
                 setResultId(response.data.id);
-                setLoading(false);
+                setTimeout(() => {
+                    setLoading(false);
+                }, 4000);
             })();
+        else
+            setTimeout(() => {
+                setLoading(false);
+            }, 4000);
     }, [match.params.homeworkId, match.params.id, api.user_general, stats, totals, result]);
 
     return <ResultLayout
         loading={loading}
         result={result}
         left={
-          !loading && <LeftBlock>
+            !loading && <LeftBlock>
                 {children}
             </LeftBlock>
         }

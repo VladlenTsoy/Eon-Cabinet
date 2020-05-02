@@ -50,7 +50,7 @@ const MiddleBlock: React.FC<MiddleBlockProps> = () => {
 
     return <MiddleWrapper>
         <Counter/>
-        <Stars/>
+        <Stars numberOfStars={1}/>
         <Title/>
     </MiddleWrapper>;
 };
