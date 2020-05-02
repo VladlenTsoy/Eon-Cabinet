@@ -24,12 +24,17 @@ export const StarWrapper: React.FC<StarStyle> = styled.div<StarStyle>`
   }
   
   .main{
+    opacity: 0;
     transform: scale(0) rotate(${props => props.rotate});
     width: 100%;
     animation: fadeIn${props => props.position}Star ${props => props.fadeInTime} ease-in-out forwards,
      shadowPunch${props => props.position}Star ${props => props.shadowPunchTime} ease-in-out forwards,
       zoom${props => props.position}Star ${props => props.zoomTime} ease-in-out forwards;
   }   
+  
+  .win{
+   opacity: 1;
+  }
   
   @keyframes zoom${props => props.position}Star{
     0%{
