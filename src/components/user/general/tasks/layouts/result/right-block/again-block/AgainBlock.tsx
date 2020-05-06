@@ -4,7 +4,7 @@ import {Card} from "lib";
 import {RedoOutlined} from '@ant-design/icons';
 import {
     gameChangeCurrentTimes,
-    gameChangeExecutionMode,
+    gameChangeExecutionMode, gameChangeStats,
     gameChangeStatus
 } from "store/game/actions";
 import {useDispatch} from "react-redux";
@@ -14,6 +14,7 @@ const AgainBlock = () => {
 
     const againHandler = () =>{
         dispatch(gameChangeCurrentTimes(1));
+        dispatch(gameChangeStats({all: 0, success: 0}));
         dispatch(gameChangeExecutionMode('first'));
         dispatch(gameChangeStatus('start'));
     };

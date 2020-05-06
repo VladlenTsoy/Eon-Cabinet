@@ -99,12 +99,12 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
         url: requestSetting && requestSetting.url || '',
         config: {params: requestSetting && requestSetting.setting || setting},
         afterRequest: afterRequest,
-        cancel: !requestSetting || executionMode === 'repeat'
+        cancel: !requestSetting || (executionMode === 'repeat' && !!totals[currentTimes]?.exercise)
     });
 
     useEffect(() => {
         // Повторение упраженения
-        if (executionMode === 'repeat') {
+        if (executionMode === 'repeat' && totals[currentTimes]?.exercise) {
             let outputsTotals = createOutputs ?
                 createOutputs(totals, currentTimes) :
                 Object.values(totals).map((total: any) => total.exercise);

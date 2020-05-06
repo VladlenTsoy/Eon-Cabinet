@@ -22,7 +22,7 @@ const TaskLayout: React.FC<TaskProps> = (
     const {status} = useSelector(game);
 
     return <>
-        {status === 'start' && <Result>{result}</Result>}
+        {status === 'start' && start}
         {/*// TODO - возможен пустой экран*/}
         {status === 'answer' && answer && answer}
         {status === 'intermediate' && intermediate && <Intermediate>{intermediate}</Intermediate>}

@@ -66,7 +66,6 @@ const ActionIntermediate: React.FC<ActionIntermediateProps> = () => {
         dispatch(gameChangeStatus('start'));
     };
     const nextExercise = () => {
-        dispatch(gameChangeExecutionMode('first'));
         dispatch(gameChangeStatus('start'));
         dispatch(gameChangeCurrentTimes(currentTimes + 1));
     };

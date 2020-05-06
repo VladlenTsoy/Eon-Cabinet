@@ -5,7 +5,7 @@ import {HistoryOutlined} from "@ant-design/icons";
 import {useDispatch} from "react-redux";
 import {
     gameChangeCurrentTimes,
-    gameChangeExecutionMode,
+    gameChangeExecutionMode, gameChangeStats,
     gameChangeStatus
 } from "store/game/actions";
 
@@ -14,6 +14,7 @@ const RepeatBlock: React.FC = () => {
 
     const repeatHandler = () => {
         dispatch(gameChangeCurrentTimes(1));
+        dispatch(gameChangeStats({all: 0, success: 0}));
         dispatch(gameChangeExecutionMode('repeat'));
         dispatch(gameChangeStatus('start'));
     };

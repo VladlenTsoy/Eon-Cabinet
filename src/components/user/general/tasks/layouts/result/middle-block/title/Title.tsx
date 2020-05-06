@@ -27,8 +27,7 @@ interface TitleProps {
 }
 
 const Title: React.FC<TitleProps> = () => {
-    // const {stats} = useSelector(game);
-    const stats = {all: 0, success: 0};
+    const {stats} = useSelector(game);
 
     const result: boolean = stats.all !== 0 && stats.all === stats.success;
 

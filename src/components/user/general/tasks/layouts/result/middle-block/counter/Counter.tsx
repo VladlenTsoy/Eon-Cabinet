@@ -33,11 +33,11 @@ interface CounterProps {
 }
 
 const Counter:React.FC<CounterProps> = () => {
-    // const {stats} = useSelector(game);
-    const stats = {all: 0, success: 0};
+    const {stats} = useSelector(game);
+
     return <CounterWrapper>
         <div className="counter">
-            {stats.all} <span className="slash">/</span> {stats.success}
+            {stats.success} <span className="slash">/</span> {stats.all}
         </div>
         </CounterWrapper>
 };
