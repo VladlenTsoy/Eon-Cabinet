@@ -1,26 +1,23 @@
 import React, {useEffect, useState} from 'react';
-import {useHistory, useRouteMatch} from "react-router";
+import {useRouteMatch} from "react-router";
 import {useSelector} from "react-redux";
 import ResultLayout from "../../../../../../layouts/result/Result.layout";
 import MiddleBlock from "./middle-block/MiddleBlock";
 import LeftBlock from "./left-block/LeftBlock";
 import RightBlock from "./right-block/RightBlock";
-import {game} from "../../../../../../store/game/reducer";
 import {totalsSelect} from "../../../../../../store/tasks/totals/reducer";
+import {game} from "../../../../../../store/game/reducer";
 
-type ResultMatchProps = { homeworkId?: string, id?: string };
+export type ResultMatchProps = { homeworkId?: string, id?: string };
 
 const Result: React.FC = ({children}) => {
-    const history = useHistory();
     const match = useRouteMatch<ResultMatchProps>();
 
     const {api} = useSelector((state: any) => state);
-    // const {stats} = useSelector(game);
-    const stats = {all: 0, success: 0};
+    const {stats} = useSelector(game);
 
     const result: boolean = stats.all !== 0 && stats.all === stats.success;
     const [loading, setLoading] = useState(true);
-    const [isView, setIsView] = useState(!match.params.homeworkId);
     const [resultId, setResultId] = useState();
 
     const totals = useSelector(totalsSelect);
@@ -54,7 +51,7 @@ const Result: React.FC = ({children}) => {
         loading={loading}
         result={result}
         left={
-            !loading && <LeftBlock>
+            !loading && <LeftBlock resultId={resultId}>
                 {children}
             </LeftBlock>
         }

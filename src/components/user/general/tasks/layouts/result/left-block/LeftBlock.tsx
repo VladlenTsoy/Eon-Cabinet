@@ -3,9 +3,17 @@ import CurrentExerciseDrawnBLock
     from "../../../../../../../layouts/result/layouts/blocks/current-exercise-drawn-block/CurrentExerciseDrawnBlock";
 import BackBlock from "./back-block/BackBlock";
 
-const LeftBlock: React.FC = ({children}) => {
+interface LeftBlockProps {
+    resultId?: number;}
+
+const LeftBlock: React.FC<LeftBlockProps> = (
+    {
+        children,
+        resultId
+    }
+) => {
     return <>
-        <CurrentExerciseDrawnBLock>
+        <CurrentExerciseDrawnBLock resultId={resultId}>
             {children}
         </CurrentExerciseDrawnBLock>
         <BackBlock/>

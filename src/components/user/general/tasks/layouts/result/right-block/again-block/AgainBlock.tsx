@@ -2,8 +2,22 @@ import React from 'react';
 import {Button} from "antd";
 import {Card} from "lib";
 import {RedoOutlined} from '@ant-design/icons';
+import {
+    gameChangeCurrentTimes,
+    gameChangeExecutionMode,
+    gameChangeStatus
+} from "store/game/actions";
+import {useDispatch} from "react-redux";
 
 const AgainBlock = () => {
+    const dispatch = useDispatch();
+
+    const againHandler = () =>{
+        dispatch(gameChangeCurrentTimes(1));
+        dispatch(gameChangeExecutionMode('first'));
+        dispatch(gameChangeStatus('start'));
+    };
+
     return <Card className="info">
         <div className="title">Новые примеры</div>
         <div className="container">
@@ -11,10 +25,10 @@ const AgainBlock = () => {
                 <RedoOutlined/>
             </div>
             <div className="content">
-                Сгенрировать новый примеры со старыми настройками
+                Новые примеры с текущими настройками
             </div>
         </div>
-        <Button icon={<RedoOutlined/>} size="large" block>Повторить с новыми примерами</Button>
+        <Button icon={<RedoOutlined/>} size="large" block onClick={againHandler}>Повторить с новыми примерами</Button>
     </Card>;
 };
 
