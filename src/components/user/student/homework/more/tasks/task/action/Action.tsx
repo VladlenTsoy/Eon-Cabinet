@@ -2,9 +2,11 @@ import React from 'react';
 import {FlagOutlined, RedoOutlined} from '@ant-design/icons';
 import {Button} from "antd";
 import {useDispatch} from "react-redux";
-import {gameChangeStatus} from "../../../../../../../../store/game/actions";
+import {gameChangeExecutionMode} from "store/game/actions";
 import {withRouter, RouteComponentProps} from "react-router";
 import styled from "styled-components";
+import {totalsChange} from "store/tasks/totals/action";
+import {settingChange} from "store/tasks/setting/action";
 
 export const ActionWrapper = styled.div<any>`
   display: grid;
@@ -74,7 +76,7 @@ const Action: React.FC<Action> = ({task, history, id, type}) => {
             }
         }
 
-        // dispatch(gameChangeSetting(_task.settings));
+        dispatch(settingChange(_task.settings));
         history.push(`/homework/${id}/${_task.id}/${_task.task_id}`);
     };
 
@@ -95,10 +97,10 @@ const Action: React.FC<Action> = ({task, history, id, type}) => {
             }
         }
 
-        // dispatch(gameChangeSetting(_task.settings));
+        dispatch(settingChange(_task.settings));
         if (Number(_task.first.view) !== 1) {
-            // dispatch(gameChangeStatus('refresh'));
-            // dispatch(gameChangeTotals(_task.first.totals));
+            dispatch(gameChangeExecutionMode('repeat'));
+            dispatch(totalsChange(_task.first.totals));
         }
         history.push(`/homework/${id}/${_task.id}/${_task.task_id}`);
     };

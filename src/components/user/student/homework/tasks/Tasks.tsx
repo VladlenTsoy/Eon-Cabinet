@@ -22,6 +22,7 @@ import MasterSystem from "../../../general/tasks/mnemonics/master-system/MasterS
 import CustomExercises from "../../../general/tasks/mental/custom-exercises/CustomExercises";
 import {settingChange} from "../../../../../store/tasks/setting/action";
 import {totalsChange} from "../../../../../store/tasks/totals/action";
+import {settingAnzan} from "../../../../../store/tasks/setting/reducer";
 
 interface MatchProps {
     homeworkId: string;
@@ -30,12 +31,12 @@ interface MatchProps {
 type TasksProps = RouteComponentProps<MatchProps>;
 
 const Tasks: React.FC<TasksProps> = ({history, match}) => {
-    const {game} = useSelector((state: any) => state);
+    const setting = useSelector(settingAnzan);
     const {homeworkId} = match.params;
 
     const dispatch = useDispatch();
 
-    if (!game.setting)
+    if (!setting)
         history.push(`/homework/${homeworkId}`);
 
     useChangeActionNavbar({action: 'cancel'});
