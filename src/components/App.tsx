@@ -31,39 +31,20 @@ const App: React.FC = () => {
     }, [api.token, dispatch]);
 
     useEffect(() => {
-        // let jivoSite = document.createElement('script');
-        // jivoSite.async = true;
-        // jivoSite.src = '//code.jivosite.com/widget/sgTNJpRrJZ';
-        // document.documentElement.appendChild(jivoSite);
-        //
-        // ReactGA.initialize('UA-129675719-1');
-        // ReactGA.pageview(window.location.pathname + window.location.search);
+        if (process.env.NODE_ENV === 'production')
+            window.onload = () => {
+                let jivoSite = document.createElement('script');
+                jivoSite.async = true;
+                jivoSite.src = '//code.jivosite.com/widget/sgTNJpRrJZ';
+                document.documentElement.appendChild(jivoSite);
+
+                ReactGA.initialize('UA-129675719-1');
+                ReactGA.pageview(window.location.pathname + window.location.search);
+            }
     }, []);
 
     useEffect(() => {
-        const darkHref: any = document.getElementById("app-theme-dark");
-        if (user && user.setting) {
-
-            if (user.setting.is_dark) {
-                let themeElement = document.createElement('link');
-                themeElement.href = darkHref.href;
-                themeElement.rel = 'stylesheet';
-                themeElement.id = 'theme-style';
-                document.body.append(themeElement);
-            } else {
-                let themeElement: any = document.getElementById('theme-style');
-                if (themeElement)
-                    themeElement.remove();
-            }
-
-            document.body.setAttribute("data-theme", user.setting.is_dark ? "dark" : "default");
-            setUserTheme(Object.assign(user.setting.is_dark ? blackTheme : whiteTheme, _theme[user.theme || 'default-theme-eon']));
-        } else {
-            let themeElement: any = document.getElementById('theme-style');
-            if (themeElement)
-                themeElement.remove();
-            document.body.setAttribute("data-theme", "default");
-        }
+        setUserTheme(Object.assign(user?.setting?.is_dark ? blackTheme : whiteTheme, _theme[user.theme || 'default-theme-eon']));
     }, [user]);
 
     // Fetch language and current user data

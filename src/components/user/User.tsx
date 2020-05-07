@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {useSelector} from "react-redux";
 import {Loader} from "lib";
 
@@ -10,7 +10,36 @@ const DirectorCenter = React.lazy(() => import("./director-center/DirectorCenter
 const DirectorFranchise = React.lazy(() => import("./director-franchise/DirectorFranchise"));
 
 const User = () => {
+    const [isDarkTheme, setIsDarkTheme] = useState(false);
     const {user} = useSelector((state: any) => state);
+
+    useEffect(() => {
+        const darkHref: any = document.getElementById("app-theme-dark");
+        const themeElement: any = document.getElementById('theme-style');
+
+        if (isDarkTheme && !themeElement) {
+            let themeElement = document.createElement('link');
+            themeElement.href = darkHref.href;
+            themeElement.rel = 'stylesheet';
+            themeElement.id = 'theme-style';
+            document.body.append(themeElement);
+        } else if (themeElement)
+            themeElement.remove();
+
+        document.body.setAttribute("data-theme", isDarkTheme ? "dark" : "default");
+
+        return () => {
+            let themeElement: any = document.getElementById('theme-style');
+            if (themeElement)
+                themeElement.remove();
+            document.body.setAttribute("data-theme", "default");
+        }
+    }, [isDarkTheme]);
+
+    useEffect(() => {
+        setIsDarkTheme(user?.setting?.is_dark);
+    }, [user]);
+
     return <>
         <React.Suspense fallback={<Loader text="Загрузка доступа..."/>}>
             {user.access === 'teacher' ? <Teacher/> :
