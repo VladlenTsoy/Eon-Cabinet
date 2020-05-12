@@ -53,7 +53,7 @@ const Double: React.FC<DoubleProps> = (
         setOutput({one, two, key: index});
         //
         play({time: setting.time, type: setting.sound})
-    }, [setting, basicSound]);
+    }, [setting, play]);
 
     // Вывод цифр
     const outputInterval = useCallback((outputs: any, i: number = 0) => {
@@ -66,7 +66,7 @@ const Double: React.FC<DoubleProps> = (
 
         // Первый вывод числа
         changeOutput(outputs[0][i], outputs[1][i], i++);
-    }, [dispatch, addInterval]);
+    }, [dispatch, addInterval, changeOutput, nextStatus]);
 
     useEffect(() => {
         outputInterval(outputs);
