@@ -51,7 +51,7 @@ const MiddleBlock: React.FC<MiddleBlockProps> = () => {
             await preloadImage([StarSvg]);
             setLoading(false);
         })()
-    }, []);
+    }, [preloadImage]);
 
     if (soundsLoading || loading)
         return <LoadingBlock/>;
