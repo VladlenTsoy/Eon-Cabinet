@@ -39,9 +39,9 @@ const Application: React.FC<ApplicationProps> = ({otherUrl}) => {
 
     const updateAnswersTotals = useCallback((data, currentTimes) => {
         if (setting.anzan === 'list') {
-            return data.map((exercises: any, key: number) => {
+            data.map((exercises: any, key: number) => {
                 exercises = setting.extra && setting.extra.includes('mirror') ? updateMirror(exercises) : exercises;
-                totals[key] = {
+                return totals[key] = {
                     exercise: exercises,
                     answer: addAnswerToTotals(exercises),
                 }
@@ -62,7 +62,7 @@ const Application: React.FC<ApplicationProps> = ({otherUrl}) => {
             };
         }
         return totals;
-    }, [isMultiplication, addAnswerToTotals, totals, setting]);
+    }, [addAnswerToTotals, totals, setting, updateMirror]);
 
     const updateResultsTotals = useCallback((answers: any) => {
         let success = 0;
@@ -102,7 +102,7 @@ const Application: React.FC<ApplicationProps> = ({otherUrl}) => {
         } else {
             return addOutputToTotals(totals[currentTimes].exercise);
         }
-    }, [isMultiplication, addOutputToTotals]);
+    }, [isMultiplication, addOutputToTotals, setting]);
 
     return <ApplicationLayout
         {
