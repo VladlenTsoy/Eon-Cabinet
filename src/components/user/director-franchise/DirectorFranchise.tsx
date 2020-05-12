@@ -4,9 +4,9 @@ import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import SidebarItems from "./layouts/sidebar-items/SidebarItems";
 import HeaderItems from "./layouts/header-items/HeaderItems";
 import Home from "./home/Home";
-import Centers from "./centers/Centers";
-import CentersStatistic from "./centers/Statistic/Statistic";
-import Center from "./center/Center";
+import Centers from "./centers/list/Centers";
+import CentersStatistic from "./centers/list/Statistic/Statistic";
+import Center from "./centers/more/Center";
 import Profile from "./profile/Profile";
 import Settings from "./settings/Settings";
 

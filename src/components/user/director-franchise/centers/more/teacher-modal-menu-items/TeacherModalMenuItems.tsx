@@ -1,8 +1,8 @@
 import React from 'react';
 import {ModalMenu} from "lib";
 import { EditOutlined } from '@ant-design/icons';
-import ItemBlock from "../../layouts/items/ItemBlock";
-import ItemDelete from "../../layouts/items/ItemDelete";
+import ItemBlock from "../../../layouts/items/ItemBlock";
+import ItemDelete from "../../../layouts/items/ItemDelete";
 import EditorTeacherDrawer from "../editor-teacher-drawer/EditorTeacherDrawer";
 
 interface TeacherModalMenuItemsProps {

@@ -1,7 +1,7 @@
 import React from 'react';
 
-import CenterItems from "../../../../../layouts/drawer-editor/editor-center/FormEditorCenterItems";
-import usingDrawerEditorNew from "../../../../../layouts/drawer-editor/usingDrawerEditor.new";
+import CenterItems from "../../../../../../layouts/drawer-editor/editor-center/FormEditorCenterItems";
+import usingDrawerEditorNew from "../../../../../../layouts/drawer-editor/usingDrawerEditor.new";
 import {useSelector} from "react-redux";
 import {message} from "antd";
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import {useSelector} from "react-redux";
 import {message} from "antd";
-import usingDrawerEditorNew from "../../../../../layouts/drawer-editor/usingDrawerEditor.new";
+import usingDrawerEditorNew from "../../../../../../layouts/drawer-editor/usingDrawerEditor.new";
 import TeacherItems from "./items/TeacherItems";
 
 const FormComponentData = usingDrawerEditorNew(TeacherItems);

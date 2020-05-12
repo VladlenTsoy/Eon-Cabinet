@@ -1,14 +1,14 @@
 import React from 'react';
-import {NavigationButton, UserImage} from "../../../../layouts/components";
+import {NavigationButton, UserImage} from "../../../../../layouts/components";
 import EditorTeacherDrawer from "./editor-teacher-drawer/EditorTeacherDrawer";
 import { MenuOutlined } from '@ant-design/icons';
 import { Badge } from "antd";
 import moment from "moment";
-import UsingTablePagination from "../../../../layouts/components/table-pagination/usingTablePagination";
-import {useChangeActionNavbar} from "../../../../effects/use-change-action-navbar.effect";
-import {useChangeTitle} from "../../../../effects/use-change-title.effect";
+import UsingTablePagination from "../../../../../layouts/components/table-pagination/usingTablePagination";
+import {useChangeActionNavbar} from "../../../../../effects/use-change-action-navbar.effect";
+import {useChangeTitle} from "../../../../../effects/use-change-title.effect";
 import TeacherModalMenuItems from "./teacher-modal-menu-items/TeacherModalMenuItems";
-import {useApiUserGeneral} from "../../../../effects/use-api-user-general.effect";
+import {useApiUserGeneral} from "../../../../../effects/use-api-user-general.effect";
 import styled from "styled-components";
 
 const UserImageWrapper = styled.div`

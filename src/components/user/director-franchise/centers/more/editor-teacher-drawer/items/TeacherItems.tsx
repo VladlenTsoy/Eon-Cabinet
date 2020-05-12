@@ -1,11 +1,11 @@
 import React from 'react';
 import {useSelector} from "react-redux";
-import {FormItem, InputEmail, InputLogin, InputPassword, SelectData} from "../../../../../../layouts/components";
-import EditorCenterButton from "../../../../admin/franchise/center-table/EditorCenterButton";
+import {FormItem, InputEmail, InputLogin, InputPassword, SelectData} from "../../../../../../../layouts/components";
+import EditorCenterButton from "../../../../../admin/franchise/center-table/EditorCenterButton";
 import { PlusOutlined } from '@ant-design/icons';
 import { Col, DatePicker, Row } from "antd";
-import SelectStatus from "../../../../../../layouts/drawer-editor/editor-teacher/SelectStatus";
-import InputPhoto from "../../../../../../layouts/components/form/InputPhoto";
+import SelectStatus from "../../../../../../../layouts/drawer-editor/editor-teacher/SelectStatus";
+import InputPhoto from "../../../../../../../layouts/components/form/InputPhoto";
 import {FormInstance} from "antd/es/form";
 
 interface TeacherItemsProps {

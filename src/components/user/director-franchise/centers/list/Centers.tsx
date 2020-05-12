@@ -5,6 +5,7 @@ import {Link} from "react-router-dom";
 import UsingTablePagination from "layouts/components/table-pagination/usingTablePagination";
 import CenterModalMenu from "./center-modal-menu/CenterModalMenu";
 import EditorCenterDrawer from "./editor-center-drawer/EditorCenterDrawer";
+import {BarChartOutlined, PlusOutlined} from "@ant-design/icons";
 
 const columns = (fetch: any, pagination: any) => [
     {
@@ -44,12 +45,12 @@ const columns = (fetch: any, pagination: any) => [
 
 const header = (fetch: any) => [
     <EditorCenterDrawer fetch={fetch} key="create">
-        <NavigationButton type="primary" icon="plus">
+        <NavigationButton type="primary" icon={<PlusOutlined/>}>
             Создать центр
         </NavigationButton>
     </EditorCenterDrawer>,
     <Link to="/centers/statistic" key="statistic">
-        <NavigationButton type="primary" icon="bar-chart">
+        <NavigationButton type="primary" icon={<BarChartOutlined/>}>
             Статистика
         </NavigationButton>
     </Link>

@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react';
 import {useDispatch} from "react-redux";
 import {Tabs} from "antd";
-import {appChangeActionNavbar} from "../../../../../store/app/actions";
+import {appChangeActionNavbar} from "../../../../../../store/app/actions";
 import TableCentersStatistic from "./Table";
-import {Navigation} from "../../../../../layouts/components";
+import {Navigation} from "../../../../../../layouts/components";
 import ExportToExcel from "./ExportToExcel";
 
 const {TabPane} = Tabs;
