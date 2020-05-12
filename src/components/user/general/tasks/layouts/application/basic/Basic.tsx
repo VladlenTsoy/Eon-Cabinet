@@ -33,7 +33,7 @@ const Basic: React.FC<BasicProps> = (
         setOutput({num: exercise, key: index});
         //
         play({time: setting.time, output: exercise, type: setting.sound})
-    }, [setting, basicSound]);
+    }, [setting, basicSound, play]);
 
     // Вывод цифр
     const outputInterval = useCallback((exercise: any, i: number = 0) => {
@@ -45,11 +45,11 @@ const Basic: React.FC<BasicProps> = (
 
         // Первый вывод числа
         changeOutput(exercise[i], i++);
-    }, [dispatch, addInterval]);
+    }, [dispatch, addInterval, changeOutput]);
 
     useEffect(() => {
         outputInterval(outputs);
-    }, [outputs]);
+    }, [outputs, outputInterval]);
 
     if (setting.extra && setting.extra.includes("abacus"))
         return <AbacusOutput setting={setting} output={output.num} key={output.key}/>;
