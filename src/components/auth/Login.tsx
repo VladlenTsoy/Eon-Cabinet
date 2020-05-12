@@ -1,11 +1,11 @@
 import React, {useState} from "react";
 import {LockOutlined, UserOutlined} from '@ant-design/icons';
-import {Alert, Button, Input, message, Form} from "antd";
+import {Button, Input, message, Form} from "antd";
 import {useHistory} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {apiChangeAccessToken} from "../../store/api/actions";
 import {Card} from "lib";
-import {FormItem, TextLink} from "../../layouts/components";
+import {FormItem} from "../../layouts/components";
 import {Title, SubTitle, FormWrapper} from "./AuthLayouts";
 
 const Login = () => {
