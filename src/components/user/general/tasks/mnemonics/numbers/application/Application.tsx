@@ -30,7 +30,7 @@ const Application: React.FC = () => {
             return [chunk(Object.values(totals).map((total: any) => total.exercise), setting.column)];
         else
             return Object.values(totals).map((total: any) => total.exercise);
-    }, []);
+    }, [setting]);
 
     return <ApplicationLayout
         {
