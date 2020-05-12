@@ -26,11 +26,11 @@ const Application: React.FC = () => {
         };
 
         return totals;
-    }, [setting]);
+    }, [setting, totals]);
 
     const createOutputs = useCallback((totals, currentTimes) => {
         return addSpaceToString(totals[currentTimes].exercise)
-    }, [setting]);
+    }, [addSpaceToString]);
 
     return <ApplicationLayout
         displayType="custom"
