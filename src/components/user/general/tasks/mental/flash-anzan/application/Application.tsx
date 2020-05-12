@@ -21,18 +21,14 @@ const Application: React.FC<any> = () => {
             };
         }
         return totals
-    }, [totals]);
+    }, [totals, setting]);
 
     const updateStats = useCallback(() => {
         return {all: setting.count};
-    }, []);
+    }, [setting]);
 
     const createOutputs = useCallback((totals) => {
-        let outputs: any = [];
-        Object.values(totals).map((total: any) => {
-            outputs.push(updaterOutput(total.exercise))
-        });
-        return outputs;
+        return Object.values(totals).map((total: any) => updaterOutput(total.exercise));
     }, []);
 
     useEffect(() => {
