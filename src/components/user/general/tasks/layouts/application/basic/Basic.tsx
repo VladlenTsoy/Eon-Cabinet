@@ -33,7 +33,7 @@ const Basic: React.FC<BasicProps> = (
         setOutput({num: exercise, key: index});
         //
         play({time: setting.time, output: exercise, type: setting.sound})
-    }, [setting, basicSound, play]);
+    }, [setting, play]);
 
     // Вывод цифр
     const outputInterval = useCallback((exercise: any, i: number = 0) => {
@@ -45,7 +45,7 @@ const Basic: React.FC<BasicProps> = (
 
         // Первый вывод числа
         changeOutput(exercise[i], i++);
-    }, [dispatch, addInterval, changeOutput]);
+    }, [dispatch, addInterval, changeOutput, nextStatus, setting]);
 
     useEffect(() => {
         outputInterval(outputs);
