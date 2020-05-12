@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React from 'react';
 import styled from "styled-components";
 import TextFit
     from "../../../../../../teacher/training/tasks/mental/multi-anzan/exercise-setting/multiplication-block/TextFit";
