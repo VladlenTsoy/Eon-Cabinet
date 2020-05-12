@@ -29,7 +29,7 @@ const Application: React.FC<any> = () => {
 
     const createOutputs = useCallback((totals) => {
         return Object.values(totals).map((total: any) => updaterOutput(total.exercise));
-    }, []);
+    }, [updaterOutput]);
 
     useEffect(() => {
         setting.extra.push('abacus');
