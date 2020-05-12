@@ -27,7 +27,7 @@ export const useUpdateOutputEffect: UpdateOutputEffectTypes = ({extra}) => {
 
     const updateExercises = useCallback((exercises) => {
         return exercises.map((exercise: any) => updaterOutput(exercise));
-    }, [updaterOutput, extra]);
+    }, [updaterOutput]);
 
     return [updateExercises, updateMirror, updaterOutput];
 };
