@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {FormItem, Upload} from "../../components";
 import SelectData from "../../components/form/select-data/SelectData";
 import {Col, Input, Row} from "antd";
@@ -9,10 +9,20 @@ const {TextArea} = Input;
 
 interface FormEditorCenterItemsProps {
     form: FormInstance;
+    setIsSaveBtn: (isSaveBtn: boolean) => void;
 }
 
-const FormEditorCenterItems: React.FC<FormEditorCenterItemsProps> = ({form}) => {
+const FormEditorCenterItems: React.FC<FormEditorCenterItemsProps> = (
+    {
+        form,
+        setIsSaveBtn,
+    }
+) => {
     const {user} = useSelector((state: any) => (state));
+
+    useEffect(() => {
+        setIsSaveBtn(true);
+    }, [setIsSaveBtn]);
 
     return <Row gutter={15}>
         {user.access === 'admin' ?

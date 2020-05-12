@@ -9,11 +9,11 @@ const TableWrapper: React.FC<TableProps<any>> = styled(Table)`
     background: transparent;
     //padding: 10px 16px;
     //color: ${props => props.theme['@text-color-secondary']};
-    text-align: center;
+    //text-align: center;
   }
 
   .ant-table-tbody {
-    text-align: center;
+    //text-align: center;
     
     tr:last-child > td {
       border: 0;

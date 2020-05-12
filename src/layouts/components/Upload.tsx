@@ -1,9 +1,7 @@
 import React, {useState} from "react";
-import { PlusOutlined } from '@ant-design/icons';
-import { Form } from '@ant-design/compatible';
-import '@ant-design/compatible/assets/index.css';
-import { Input } from "antd";
+import {PlusOutlined} from '@ant-design/icons';
 import styled from "styled-components";
+import {FormItem} from "./index";
 
 const UploadWrapper = styled.div`
   width: 100%;
@@ -12,8 +10,8 @@ const UploadWrapper = styled.div`
   label {
     display: flex;
     height: 136px;
-    background-color: #fafafa;
-    border: 1px dashed #d9d9d9;
+    background-color: ${props => props.theme['@layout-body-background']};
+    border: 1px dashed ${props => props.theme.light_color_border};
     border-radius: 4px;
     cursor: pointer;
     align-items: center;
@@ -52,11 +50,10 @@ interface UploadInputProps {
 }
 
 // TODO - Нужно просмотреть Form для изменения
-const UploadInput:React.FC<UploadInputProps> = ({form, name, label, requiredMsg, rules}) => {
+const UploadInput: React.FC<UploadInputProps> = ({form, name, label, requiredMsg, rules}) => {
     const [imageUrl, setImageUrl] = useState();
-    const {getFieldDecorator} = form;
 
-    const handleChange = (e: { target: { files: Blob[]; }; }) => {
+    const handleChange = (e: any) => {
         // Get this url from response in real world.
         return getBase64(e.target.files[0], (imageUrl: any) => {
             setImageUrl(imageUrl);
@@ -64,25 +61,19 @@ const UploadInput:React.FC<UploadInputProps> = ({form, name, label, requiredMsg,
         });
     };
 
-    return (
-        <Form.Item label={label}>
-            <UploadWrapper>
-                <label>
-                    {imageUrl || form.getFieldValue(name) ?
-                        <img src={imageUrl || form.getFieldValue(name)} alt="upload"/> :
-                        <PlusOutlined className="add-icon" />}
-                    <input type="file"
-                            // @ts-ignore
-                           onChange={handleChange} hidden/>
-                    {getFieldDecorator(name, {
-                        rules: rules || (requiredMsg ? [{required: true, message: requiredMsg}] : null),
-                    })(
-                        <Input/>
-                    )}
-                </label>
-            </UploadWrapper>
-        </Form.Item>
-    );
+    return <FormItem
+        label={label} name={name}
+        rules={rules || (requiredMsg ? [{required: true, message: requiredMsg}] : null)}
+    >
+        <UploadWrapper>
+            <label>
+                {imageUrl || form.getFieldValue(name) ?
+                    <img src={imageUrl || form.getFieldValue(name)} alt="upload"/> :
+                    <PlusOutlined className="add-icon"/>}
+                <input type="file" onChange={handleChange} hidden/>
+            </label>
+        </UploadWrapper>
+    </FormItem>
 };
 
 export default UploadInput;

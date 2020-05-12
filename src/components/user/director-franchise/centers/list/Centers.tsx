@@ -28,11 +28,11 @@ const columns = (fetch: any, pagination: any) => [
     },
     {
         title: 'Учителя',
-        dataIndex: 'count_teachers.open',
+        dataIndex: ['count_teachers', 'open'],
     },
     {
         title: 'Ученики',
-        dataIndex: 'count_students.open',
+        dataIndex: ['count_students', 'open'],
     },
     {
         render: (text: any, record: any) => <CenterModalMenu
