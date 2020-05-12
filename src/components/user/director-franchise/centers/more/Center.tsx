@@ -1,8 +1,9 @@
 import React from 'react';
 import {NavigationButton, UserImage} from "../../../../../layouts/components";
 import EditorTeacherDrawer from "./editor-teacher-drawer/EditorTeacherDrawer";
-import { MenuOutlined } from '@ant-design/icons';
-import { Badge } from "antd";
+import {MenuOutlined} from '@ant-design/icons';
+import {Badge} from "antd";
+import {PlusOutlined} from "@ant-design/icons";
 import moment from "moment";
 import UsingTablePagination from "../../../../../layouts/components/table-pagination/usingTablePagination";
 import {useChangeActionNavbar} from "../../../../../effects/use-change-action-navbar.effect";
@@ -46,7 +47,7 @@ const columns = (fetch: any, pagination: any, centerId: string) => [
         render: (text: any, record: any) => record.is_blocked ?
             <Badge status="warning" text="Заблокирован"/> :
             record.status === 'test' ?
-                <Badge status="processing" text={text > 0 ? `${record.left_test_days} д.` : 'Заблокирован'}/> :
+                <Badge status="processing" text={record.left_test_days > 0 ? `${record.left_test_days} д.` : 'Заблокирован'}/> :
                 <Badge status="success" text="Активный"/>
     },
     {
@@ -68,7 +69,7 @@ const columns = (fetch: any, pagination: any, centerId: string) => [
         render: (text: any) => text ? moment(text).format('DD/MM/YYYY HH:mm') : 'Пусто',
         sorter: true,
     }, {
-        title: <MenuOutlined />,
+        title: <MenuOutlined/>,
         render: (text: any, record: any) =>
             <TeacherModalMenuItems
                 record={record}
@@ -82,7 +83,7 @@ const columns = (fetch: any, pagination: any, centerId: string) => [
 const header = (fetch: any, centerId: string) =>
     [
         <EditorTeacherDrawer key="editor" fetch={fetch} center_id={centerId}>
-            <NavigationButton type="primary" icon="plus">
+            <NavigationButton type="primary" icon={<PlusOutlined/>}>
                 Создать учителя
             </NavigationButton>
         </EditorTeacherDrawer>
