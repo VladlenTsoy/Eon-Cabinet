@@ -35,11 +35,11 @@ const Application: React.FC<ApplicationProps> = ({otherUrl}) => {
         if (isMultiplication)
             return [exercise[0] + (setting.mode === 'multiply' ? ' * ' : ' / ') + exercise[1]];
         return updateExercises(exercise);
-    }, [isMultiplication, setting]);
+    }, [isMultiplication, setting, updateExercises]);
 
     const updateAnswersTotals = useCallback((data, currentTimes) => {
         if (setting.anzan === 'list') {
-            data.map((exercises: any, key: number) => {
+            return data.map((exercises: any, key: number) => {
                 exercises = setting.extra && setting.extra.includes('mirror') ? updateMirror(exercises) : exercises;
                 totals[key] = {
                     exercise: exercises,
@@ -62,7 +62,7 @@ const Application: React.FC<ApplicationProps> = ({otherUrl}) => {
             };
         }
         return totals;
-    }, [isMultiplication, addAnswerToTotals, totals]);
+    }, [isMultiplication, addAnswerToTotals, totals, setting]);
 
     const updateResultsTotals = useCallback((answers: any) => {
         let success = 0;
@@ -82,14 +82,14 @@ const Application: React.FC<ApplicationProps> = ({otherUrl}) => {
         dispatch(totalsChange(_totals));
         dispatch(gameChangeStats({success}));
         dispatch(gameChangeStatus('result'));
-    }, []);
+    }, [dispatch, totals]);
 
     const updateStats = useCallback(() => {
         if (setting.anzan === 'list')
             return {all: (isMultiplication ? setting.tables * setting.column * setting.rows : setting.tables * setting.column)};
         else
             return {all: setting.times};
-    }, []);
+    }, [setting, isMultiplication]);
 
     const createOutputs = useCallback((totals, currentTimes) => {
         if (setting.anzan === 'list') {
@@ -102,7 +102,7 @@ const Application: React.FC<ApplicationProps> = ({otherUrl}) => {
         } else {
             return addOutputToTotals(totals[currentTimes].exercise);
         }
-    }, [isMultiplication]);
+    }, [isMultiplication, addOutputToTotals]);
 
     return <ApplicationLayout
         {
