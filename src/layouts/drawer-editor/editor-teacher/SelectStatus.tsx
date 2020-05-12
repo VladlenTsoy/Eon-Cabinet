@@ -12,7 +12,7 @@ const AlertWrapper = styled(Alert)`
     color: #ffffff;
     margin-bottom: 1.5rem;
     
-    i{
+    .anticon{
       color: #ffffff;
     }
     
@@ -31,7 +31,7 @@ const RadioGroupWrapper = styled(Radio.Group)`
       width: 100%;
       text-align: center;
       
-      i{
+      .anticon{
         margin-right: 0.5rem;
       }
     }
