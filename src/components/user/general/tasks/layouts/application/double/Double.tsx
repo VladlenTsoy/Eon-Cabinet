@@ -66,7 +66,7 @@ const Double: React.FC<DoubleProps> = (
 
         // Первый вывод числа
         changeOutput(outputs[0][i], outputs[1][i], i++);
-    }, [dispatch, addInterval, changeOutput, nextStatus]);
+    }, [dispatch, addInterval, changeOutput, nextStatus, setting]);
 
     useEffect(() => {
         outputInterval(outputs);

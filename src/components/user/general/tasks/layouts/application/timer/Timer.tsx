@@ -34,7 +34,10 @@ const TimerBlock: React.FC<TimerBlockProps> = ({time, afterMessage}) => {
         let modal = Modal.warning({
             title: 'Время закончилось!',
             content: 'Для продолжения нажмите ОК.',
-            onOk: afterMessage
+            onOk: () => {
+                clearTimeout(timeout);
+                afterMessage();
+            }
         });
 
         const timer = setInterval(() => {
@@ -44,7 +47,7 @@ const TimerBlock: React.FC<TimerBlockProps> = ({time, afterMessage}) => {
             });
         }, 1000);
 
-        setTimeout(() => {
+        const timeout = setTimeout(() => {
             clearInterval(timer);
             modal.destroy();
             afterMessage();

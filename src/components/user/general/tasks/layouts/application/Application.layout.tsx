@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {useApiUserGeneral} from "effects/use-api-user-general.effect";
 import {useDispatch, useSelector} from "react-redux";
 import {game} from "store/game/reducer";
@@ -91,13 +91,13 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
         let defaultStats = () => ({all: Object.values(totals).length});
         let stats = updateStats ? updateStats() : defaultStats();
         dispatch(gameChangeStats(stats))
-    }, [updateAnswersTotals, updateStats, setting, dispatch, currentTimes, soundsLoad, picturesLoad, pictures]);
+    }, [updateAnswersTotals, updateStats, setting, dispatch, currentTimes, soundsLoad, picturesLoad, pictures, createOutputs, totals]);
 
     // Загрузка примеров
     const [loading] = useApiUserGeneral({
-        method: requestSetting && requestSetting.method || 'get',
-        url: requestSetting && requestSetting.url || '',
-        config: {params: requestSetting && requestSetting.setting || setting},
+        method: (requestSetting && requestSetting.method) || 'get',
+        url: (requestSetting && requestSetting.url) || '',
+        config: {params: (requestSetting && requestSetting.setting) || setting},
         afterRequest: afterRequest,
         cancel: !requestSetting || (executionMode === 'repeat' && !!totals[currentTimes]?.exercise)
     });
@@ -114,23 +114,23 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
         else if (!requestSetting && executionMode === 'first') {
             afterRequest([]).then();
         }
-    }, [requestSetting, totals, currentTimes, afterRequest]);
+    }, [requestSetting, totals, currentTimes, afterRequest, createOutputs, executionMode]);
 
     // Контейнер сообщения
-    let Confirm: any;
+    const confirmTime = useRef<any>();
 
     // После завершения таймера
     const afterTimerMessage = useCallback(async () => {
         const answers = ListForm.getFieldValue('answer');
-        Confirm && Confirm.destroy();
+        confirmTime.current && confirmTime.current.destroy();
         if (updateResultsTotals)
             await updateResultsTotals(answers);
         dispatch(gameChangeStatus(nextStatus));
-    }, [updateResultsTotals, ListForm]);
+    }, [updateResultsTotals, ListForm, dispatch, nextStatus, confirmTime]);
 
     // Сообщение при ранем завершении пользователем
     const earlierCompletion = useCallback((values?: any) => {
-        Confirm = Modal.confirm({
+        confirmTime.current = Modal.confirm({
             icon: <ExclamationCircleOutlined/>,
             title: "У вас еще осталось время, Вы уверены что хотите перейти дальше?",
             onOk: () => {
@@ -138,7 +138,7 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
                 dispatch(gameChangeStatus(nextStatus));
             }
         });
-    }, []);
+    }, [dispatch, nextStatus, updateResultsTotals]);
 
     if (loading)
         return <LoadingBlock title="Настройка упражнения..."/>;

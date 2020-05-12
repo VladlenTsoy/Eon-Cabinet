@@ -88,7 +88,7 @@ const Custom: React.FC<CustomProps> = ({outputs, setting, finishHandler}) => {
                 return finishHandler();
             setOutput(outputs[i++]);
         }, setting.time * 1000);
-    }, [setting, addInterval, outputs]);
+    }, [setting, addInterval, outputs, setOutput, finishHandler]);
 
     return <BasicWrapper key={output.number}>
         <div className="first">
