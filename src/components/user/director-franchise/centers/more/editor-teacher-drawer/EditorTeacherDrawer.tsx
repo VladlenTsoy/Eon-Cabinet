@@ -3,6 +3,7 @@ import {useSelector} from "react-redux";
 import {message} from "antd";
 import usingDrawerEditorNew from "../../../../../../layouts/drawer-editor/usingDrawerEditor.new";
 import TeacherItems from "./items/TeacherItems";
+import {useScreenWindow} from "../../../../../../effects/use-screen-window.effect";
 
 const FormComponentData = usingDrawerEditorNew(TeacherItems);
 
@@ -22,6 +23,7 @@ const EditorTeacherDrawer: React.FC<EditorDirectorDrawerProps> = (
         fetch
     }
 ) => {
+    const [, isBreakpoint] = useScreenWindow({breakpoint: 'md'});
     const {api} = useSelector((state: any) => (state));
 
     const request = async (values: any) => {
@@ -38,6 +40,7 @@ const EditorTeacherDrawer: React.FC<EditorDirectorDrawerProps> = (
         title={teacher ? 'Редактировать учителя' : 'Создать учителя'}
         sendData={request}
         fetch={fetch}
+        width={isBreakpoint ? '100%' : 650}
         pagination={pagination}
         data={teacher ? {
             status: teacher.status,

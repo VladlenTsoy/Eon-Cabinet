@@ -69,7 +69,7 @@ const columns = (fetch: any, pagination: any) => [
 const tableHeader = (fetch: any) =>
     <EditorTeacherDrawer fetch={fetch}>
         <Button type="primary" icon={<PlusOutlined />}>
-            Создать тестовый
+            Создать учителя
         </Button>
     </EditorTeacherDrawer>;
 

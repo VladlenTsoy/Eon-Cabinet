@@ -25,7 +25,7 @@ const ItemBlock: React.FC<ItemBlockProps> = ({user, afterAction}) => {
             okType: 'danger',
             async onOk() {
                 try {
-                    const response = await api.user_general.post(`teacher/${teacher.id}/activation`);
+                    const response = await api.user_general.post(`${teacher.id}/activation`);
                     if (response.data.status === 'success')
                         message.info(`Вы успешно активировали аккаунт ID: ${teacher.id}.`);
                 } catch (e) {
