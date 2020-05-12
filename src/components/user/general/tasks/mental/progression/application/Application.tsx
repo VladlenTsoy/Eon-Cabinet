@@ -21,15 +21,15 @@ const Application: React.FC = () => {
             answer: numbers.reduce((total: any, val: any) => total + val)
         };
         return totals
-    }, [totals]);
+    }, [totals, setting]);
 
     const updateStats = useCallback(() => {
         return {all: setting.count};
-    }, []);
+    }, [setting]);
 
     const createOutputs = useCallback((totals, currentTimes) => {
         return updateExercises(totals[currentTimes].exercise);
-    }, []);
+    }, [updateExercises]);
 
     return <ApplicationLayout
         createOutputs={createOutputs}
