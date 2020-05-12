@@ -33,7 +33,7 @@ export const useLoadPicturesEffect: LoadPicturesTypes = ({pictures}) => {
         } catch (e) {
             message.error("Ошибка, не удалось загрузить изображения!")
         }
-    }, [pictures]);
+    }, [pictures, preloadImage]);
 
     return [picturesLoad];
 };
