@@ -59,9 +59,9 @@ const Action: React.FC<Action> = ({task, history, id, type}) => {
         return true;
     };
 
-    const startApplication = (_task: any) => {
-        if (_task.settings.hasOwnProperty('task')) {
-            switch (Number(_task.settings.task)) {
+    const checkTaskTypeOldTask = (_task: any) => {
+        if (_task.settings?.task)
+            switch (Number(_task.settings?.task)) {
                 case 2:
                 case 4:
                     _task.settings.anzan = 'list';
@@ -74,28 +74,18 @@ const Action: React.FC<Action> = ({task, history, id, type}) => {
                     _task.settings.anzan = 'double';
                     break;
             }
-        }
+    };
+
+    const startApplication = (_task: any) => {
+        _task = checkTaskTypeOldTask(_task);
 
         dispatch(settingChange(_task.settings));
+        dispatch(gameChangeExecutionMode('first'));
         history.push(`/homework/${id}/${_task.id}/${_task.task_id}`);
     };
 
     const startSecondApplication = (_task: any) => {
-        if (_task.settings.hasOwnProperty('task')) {
-            switch (Number(_task.settings.task)) {
-                case 2:
-                case 4:
-                    _task.settings.anzan = 'list';
-                    break;
-                case 1:
-                case 3:
-                    _task.settings.anzan = 'basic';
-                    break;
-                case 5:
-                    _task.settings.anzan = 'double';
-                    break;
-            }
-        }
+        _task = checkTaskTypeOldTask(_task);
 
         dispatch(settingChange(_task.settings));
         if (Number(_task.first.view) !== 1) {
@@ -116,23 +106,23 @@ const Action: React.FC<Action> = ({task, history, id, type}) => {
                 <div className="time"><b>Время:</b> {task.settings.time} мин.</div>
             }
             {!task.first &&
-                    <Button
-                        shape="round"
-                        icon={<FlagOutlined/>}
-                        size="large"
-                        onClick={() => startApplication(task)}>
-                        Начать
-                    </Button>
+            <Button
+                shape="round"
+                icon={<FlagOutlined/>}
+                size="large"
+                onClick={() => startApplication(task)}>
+                Начать
+            </Button>
             }
             {task.first && !task.first.exodus && !task.second &&
-                    <Button
-                        shape="round"
-                        icon={<RedoOutlined/>}
-                        type={'danger'}
-                        size="large"
-                        onClick={() => startSecondApplication(task)}>
-                        Повторить
-                    </Button>
+            <Button
+                shape="round"
+                icon={<RedoOutlined/>}
+                type={'danger'}
+                size="large"
+                onClick={() => startSecondApplication(task)}>
+                Повторить
+            </Button>
             }
         </ActionWrapper>
     );
