@@ -37,18 +37,18 @@ const StepsIntermediate: React.FC<StepsIntermediateProps> = ({checkResult}) => {
     const totals = useSelector(totalsSelect);
 
     const checkStatus = (total: any, key: number): 'wait' | 'finish' | 'error' => {
-        if (currentTimes > key)
+        if (currentTimes >= key)
             return checkResult(total) ? 'finish' : 'error';
         return 'wait';
     };
 
-    return <StepsWrapper current={currentTimes} width={setting.times * 80}>
+    return <StepsWrapper current={currentTimes+1} width={setting.times * 80}>
         {Array(setting.times).fill(2).map((val: any, key: number) =>
             <Step
                 key={key + 1}
                 title={key + 1}
                 icon={<TrophyOutlined/>}
-                status={checkStatus(totals[key + 1], key)}
+                status={checkStatus(totals[key], key)}
             />
         )}
     </StepsWrapper>

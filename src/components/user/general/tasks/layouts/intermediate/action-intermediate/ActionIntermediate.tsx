@@ -83,14 +83,14 @@ const ActionIntermediate: React.FC<ActionIntermediateProps> = () => {
         <div className="counts-block">
             <div className="passed-block">
                 <span className="title">Пройдено</span>
-                <span className="desc">{currentTimes}</span>
+                <span className="desc">{currentTimes+1}</span>
             </div>
             <div className="left-block">
                 <span className="title">Всего</span>
                 <span className="desc">{setting.times}</span>
             </div>
         </div>
-        {currentTimes >= setting.times ?
+        {currentTimes+1 >= setting.times ?
             <Button type="primary" size="large" autoFocus icon={<FlagOutlined/>}
                     onClick={completionTask}>Завершить</Button> :
             <Button.Group size="large">

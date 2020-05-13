@@ -23,7 +23,7 @@ const NextBlock: React.FC<NextBlockProps> = ({nextTask}) => {
         history.push(`/homework/${match.params.homeworkId}/${nextTask.id}/${nextTask.task_id}`);
         dispatch(settingChange(nextTask.settings));
         dispatch(totalsChange([]));
-        dispatch(gameChangeCurrentTimes(1));
+        dispatch(gameChangeCurrentTimes(0));
         dispatch(gameChangeStatus('start'));
     };
 

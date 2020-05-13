@@ -35,7 +35,7 @@ const Tasks = ({history, match}: any) => {
             dispatch(gameChangeExecutionMode('first'));
             dispatch(totalsChange([]));
             dispatch(gameChangeStats({all: 0, success: 0}));
-            dispatch(gameChangeCurrentTimes(1));
+            dispatch(gameChangeCurrentTimes(0));
         }
     }, [dispatch]);
 

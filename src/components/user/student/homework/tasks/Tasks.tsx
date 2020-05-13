@@ -50,7 +50,7 @@ const Tasks: React.FC<TasksProps> = ({history, match}) => {
             dispatch(gameChangeStatus('start'));
             dispatch(totalsChange([]));
             dispatch(gameChangeStats({all: 0, success: 0}));
-            dispatch(gameChangeCurrentTimes(1));
+            dispatch(gameChangeCurrentTimes(0));
         }
     }, [dispatch]);
 

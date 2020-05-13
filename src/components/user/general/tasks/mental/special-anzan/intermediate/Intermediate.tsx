@@ -10,9 +10,9 @@ const IntermediateBlock = () => {
     const {currentTimes} = useSelector(game);
     return <AnswerIntermediateWrapper>
         <span className="title">Ваш ответ</span>
-        <span className="desc">{totals[currentTimes].user}</span>
+        <span className={`desc ${!totals[currentTimes].result && 'danger'}`}>{totals[currentTimes].user}</span>
         <span className="title">Правильный ответ</span>
-        <span className="desc">{totals[currentTimes].answer}</span>
+        <span className={`desc ${!totals[currentTimes].result && 'danger'}`}>{totals[currentTimes].answer}</span>
     </AnswerIntermediateWrapper>;
 };
 

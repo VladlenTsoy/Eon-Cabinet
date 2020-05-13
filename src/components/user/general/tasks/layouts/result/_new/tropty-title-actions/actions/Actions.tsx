@@ -66,7 +66,7 @@ const Actions: React.FC<ActionsProps> = ({match, history}) => {
     const again = () => dispatch(gameChangeExecutionMode('again'));
     const repeat = () => {
         let _totals = totals.map((total: any) => ({exercise: total.exercise, answer: total.answer}));
-        dispatch(gameChangeCurrentTimes(1));
+        dispatch(gameChangeCurrentTimes(0));
         dispatch(totalsChange(_totals));
         dispatch(gameChangeExecutionMode('repeat'));
     };

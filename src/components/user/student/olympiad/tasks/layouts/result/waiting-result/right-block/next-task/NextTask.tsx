@@ -30,7 +30,7 @@ const NextTask: React.FC<NextStepProps> = ({loading, nextTask, history, match}) 
         history.push(`/olympiads/${match.params.sentOlympiadId}/${nextTask.id}/${nextTask.task_id}`);
         dispatch(settingChange(nextTask.settings));
         dispatch(totalsChange([]));
-        dispatch(gameChangeCurrentTimes(1));
+        dispatch(gameChangeCurrentTimes(0));
         dispatch(gameChangeStatus('start'));
     };
 

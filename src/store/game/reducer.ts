@@ -13,7 +13,7 @@ export const gameReducer: GameReducerTypes = (state = {
     status: 'start',
     displayType: 'basic',
     executionMode: 'first',
-    currentTimes: 1,
+    currentTimes: 0,
     stats: {all: 0, success: 0},
 }, action) => {
     switch (action.type) {

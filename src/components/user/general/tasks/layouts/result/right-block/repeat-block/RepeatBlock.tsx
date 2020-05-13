@@ -13,7 +13,7 @@ const RepeatBlock: React.FC = () => {
     const dispatch = useDispatch();
 
     const repeatHandler = () => {
-        dispatch(gameChangeCurrentTimes(1));
+        dispatch(gameChangeCurrentTimes(0));
         dispatch(gameChangeStats({all: 0, success: 0}));
         dispatch(gameChangeExecutionMode('repeat'));
         dispatch(gameChangeStatus('start'));

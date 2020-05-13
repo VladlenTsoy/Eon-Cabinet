@@ -7,11 +7,15 @@ import LeftBlock from "./left-block/LeftBlock";
 import RightBlock from "./right-block/RightBlock";
 import {totalsSelect} from "../../../../../../store/tasks/totals/reducer";
 import {game} from "../../../../../../store/game/reducer";
+import {useChangeActionNavbar} from "../../../../../../effects/use-change-action-navbar.effect";
 
-export type ResultMatchProps = { homeworkId?: string, id?: string };
+export type ResultMatchProps = {
+    homeworkId?: string;
+    id?: string;
+};
 
 const Result: React.FC = ({children}) => {
-    const match = useRouteMatch<ResultMatchProps>();
+    const {params} = useRouteMatch<ResultMatchProps>();
 
     const {api} = useSelector((state: any) => state);
     const {stats} = useSelector(game);
@@ -22,13 +26,19 @@ const Result: React.FC = ({children}) => {
 
     const totals = useSelector(totalsSelect);
 
+    useChangeActionNavbar({
+        action: params?.homeworkId ?
+            `/homework/${params.homeworkId}` :
+            `back`
+    });
+
     useEffect(() => {
-        if (match.params.homeworkId && match.params.id)
+        if (params.homeworkId && params.id)
             (async () => {
                 setLoading(true);
                 const response = await api.user_general.post('/student/homework/result', {
-                    task_id: match.params.id,
-                    sent_id: match.params.homeworkId,
+                    task_id: params.id,
+                    sent_id: params.homeworkId,
                     result: {
                         countAll: stats.all,
                         countSuccess: stats.success,
@@ -45,13 +55,13 @@ const Result: React.FC = ({children}) => {
             setTimeout(() => {
                 setLoading(false);
             }, 4000);
-    }, [match.params.homeworkId, match.params.id, api.user_general, stats, totals, result]);
+    }, [params.homeworkId, params.id, api.user_general, stats, totals, result]);
 
     return <ResultLayout
         loading={loading}
         result={result}
         left={
-            !loading && <LeftBlock resultId={resultData.id}>
+            !loading && <LeftBlock resultId={resultData?.id}>
                 {children}
             </LeftBlock>
         }
