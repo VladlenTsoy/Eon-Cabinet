@@ -6,6 +6,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {gameChangeCurrentTimes, gameChangeExecutionMode, gameChangeStats, gameChangeStatus} from "store/game/actions";
 import {settingAnzan} from "store/tasks/setting/reducer";
 import {game} from "store/game/reducer";
+import {useRouteMatch} from "react-router-dom";
+import {ResultMatchProps} from "../../result/Result";
 
 const ActionWrapper = styled.div`
   text-align: center;
@@ -57,6 +59,7 @@ interface ActionIntermediateProps {
 const ActionIntermediate: React.FC<ActionIntermediateProps> = () => {
     const {currentTimes, stats} = useSelector(game);
     const setting = useSelector(settingAnzan);
+    const match = useRouteMatch<ResultMatchProps>();
 
     const dispatch = useDispatch();
 
@@ -74,32 +77,31 @@ const ActionIntermediate: React.FC<ActionIntermediateProps> = () => {
         dispatch(gameChangeStatus('answer')) :
         dispatch(gameChangeStatus('result'));
 
-    return (
-        <ActionWrapper>
-            <Button icon={<HistoryOutlined/>} size="large" onClick={repeatExercise}>Повторить текущий пример</Button>
-            <div className="counts-block">
-                <div className="passed-block">
-                    <span className="title">Пройдено</span>
-                    <span className="desc">{currentTimes}</span>
-                </div>
-                <div className="left-block">
-                    <span className="title">Всего</span>
-                    <span className="desc">{setting.times}</span>
-                </div>
+    return <ActionWrapper>
+        {!match.params.homeworkId &&
+        <Button icon={<HistoryOutlined/>} size="large" onClick={repeatExercise}>Повторить текущий пример</Button>}
+        <div className="counts-block">
+            <div className="passed-block">
+                <span className="title">Пройдено</span>
+                <span className="desc">{currentTimes}</span>
             </div>
-            {currentTimes >= setting.times ?
-                <Button type="primary" size="large" autoFocus icon={<FlagOutlined/>}
-                        onClick={completionTask}>Завершить</Button> :
-                <Button.Group size="large">
-                    <Button icon={<FlagOutlined/>} onClick={completionTask}>Завершить</Button>
-                    <Button type="primary" size="large" autoFocus onClick={nextExercise}>
-                        Следующее
-                        <ArrowRightOutlined/>
-                    </Button>
-                </Button.Group>
-            }
-        </ActionWrapper>
-    );
+            <div className="left-block">
+                <span className="title">Всего</span>
+                <span className="desc">{setting.times}</span>
+            </div>
+        </div>
+        {currentTimes >= setting.times ?
+            <Button type="primary" size="large" autoFocus icon={<FlagOutlined/>}
+                    onClick={completionTask}>Завершить</Button> :
+            <Button.Group size="large">
+                <Button icon={<FlagOutlined/>} onClick={completionTask}>Завершить</Button>
+                <Button type="primary" size="large" autoFocus onClick={nextExercise}>
+                    Следующее
+                    <ArrowRightOutlined/>
+                </Button>
+            </Button.Group>
+        }
+    </ActionWrapper>
 };
 
 export default ActionIntermediate;
