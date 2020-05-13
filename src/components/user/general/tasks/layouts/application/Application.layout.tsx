@@ -75,7 +75,6 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
 
     const checkAndUpdateStats = useCallback((_totals) => {
         let stats = updateStats ? updateStats() : {all: Object.values(_totals).length};
-        console.log(stats);
         dispatch(gameChangeStats(stats))
     }, [dispatch, updateStats]);
 
