@@ -48,12 +48,12 @@ interface CounterProps {
 const Counter: React.FC<CounterProps> = ({homework}) => {
     return <CounterWrapper>
         <div>
-            <span className="title">Всего</span>
-            <span className="count">{homework.count_tasks}</span>
-        </div>
-        <div>
             <span className="title">Выполенно</span>
             <span className="count">{homework.count_completed_tasks}</span>
+        </div>
+        <div>
+            <span className="title">Всего</span>
+            <span className="count">{homework.count_tasks}</span>
         </div>
     </CounterWrapper>;
 };
