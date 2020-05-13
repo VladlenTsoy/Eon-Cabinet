@@ -74,6 +74,7 @@ const Action: React.FC<Action> = ({task, history, id, type}) => {
                     _task.settings.anzan = 'double';
                     break;
             }
+        return _task;
     };
 
     const startApplication = (_task: any) => {
