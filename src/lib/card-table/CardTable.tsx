@@ -35,6 +35,7 @@ const TableWrapper = styled(Table)`
   }
 `;
 
+// TODO - возможно заменить на usingTable
 const CardTable: React.FC<any> = (props) =>
     <CardWrapper>
         <TableWrapper {...props}/>

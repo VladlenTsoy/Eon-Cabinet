@@ -23,6 +23,7 @@ interface TableProps {
     card?: boolean;
 }
 
+// TODO - возможно заменить на usingTable
 const TableComponent: React.FC<TableProps> = (
     {
         columns,
