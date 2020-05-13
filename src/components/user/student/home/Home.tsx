@@ -1,6 +1,6 @@
 import React from 'react';
 import {Col, Row} from "antd";
-import Rating from "./rating/Rating";
+// import Rating from "./rating/Rating";
 import Olympiad from "./olympiad/Olympiad";
 import Homework from "./homework/Homework";
 import Statistic from "./statistic/Statistic";
@@ -16,7 +16,7 @@ const Home: React.FC = () => {
                 <Olympiad/>
             </Col>
             <Col xl={6} lg={8} md={10} xs={24}>
-                <Rating/>
+                {/*<Rating/>*/}
             </Col>
         </Row>
     </>

@@ -18,7 +18,7 @@ const Result: React.FC = ({children}) => {
 
     const result: boolean = stats.all !== 0 && stats.all === stats.success;
     const [loading, setLoading] = useState(true);
-    const [resultId, setResultId] = useState();
+    const [resultData, setResultData] = useState();
 
     const totals = useSelector(totalsSelect);
 
@@ -36,7 +36,7 @@ const Result: React.FC = ({children}) => {
                     },
                     totals
                 });
-                setResultId(response.data.id);
+                setResultData(response.data);
                 setTimeout(() => {
                     setLoading(false);
                 }, 4000);
@@ -51,11 +51,11 @@ const Result: React.FC = ({children}) => {
         loading={loading}
         result={result}
         left={
-            !loading && <LeftBlock resultId={resultId}>
+            !loading && <LeftBlock resultId={resultData.id}>
                 {children}
             </LeftBlock>
         }
-        right={!loading && <RightBlock/>}
+        right={!loading && <RightBlock resultData={resultData}/>}
         middle={<MiddleBlock/>}
     />
 };
