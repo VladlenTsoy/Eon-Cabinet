@@ -2,7 +2,7 @@ import React, {useCallback, useState} from 'react';
 import {Card} from "../../../../../lib";
 import {Button, Modal} from "antd";
 import {Drawer} from "../../../../components";
-import {EyeOutlined, ThunderboltOutlined} from '@ant-design/icons';
+import {EyeOutlined, ThunderboltOutlined, QuestionCircleOutlined} from '@ant-design/icons';
 import {useSelector} from "react-redux";
 import {game} from "../../../../../store/game/reducer";
 import {useRouteMatch} from "react-router";
@@ -35,6 +35,7 @@ const CurrentExerciseDrawnBLock: React.FC<CurrentExerciseDrawnBlockProps> = (
     const open = () => {
         if (resultId && !isView) {
             Modal.confirm({
+                icon: <QuestionCircleOutlined/>,
                 title: 'Просмотреть ответы?',
                 content: 'После просмотра ответов вы не можете повторить упражнение с текущими примерами при следующем выполнении будут сгенерированы новые примеры.',
                 onOk: viewResult
