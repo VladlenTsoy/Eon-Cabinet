@@ -115,23 +115,24 @@ const Action: React.FC<Action> = ({task, history, id, type}) => {
                 <div className="time"><b>Скорость:</b> {task.settings.time} сек.</div> :
                 <div className="time"><b>Время:</b> {task.settings.time} мин.</div>
             }
-            {!task.second ?
-                !task.first ?
+            {!task.first &&
                     <Button
                         shape="round"
                         icon={<FlagOutlined/>}
                         size="large"
                         onClick={() => startApplication(task)}>
                         Начать
-                    </Button> :
+                    </Button>
+            }
+            {task.first && !task.first.exodus && !task.second &&
                     <Button
                         shape="round"
                         icon={<RedoOutlined/>}
-                        type={task.first.exodus ? 'default' : 'danger'}
+                        type={'danger'}
                         size="large"
                         onClick={() => startSecondApplication(task)}>
                         Повторить
-                    </Button> : null
+                    </Button>
             }
         </ActionWrapper>
     );
