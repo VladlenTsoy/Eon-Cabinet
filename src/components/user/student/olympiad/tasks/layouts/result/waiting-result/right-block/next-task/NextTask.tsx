@@ -9,6 +9,8 @@ import {
     gameChangeStatus,
 } from "../../../../../../../../../../store/game/actions";
 import {useDispatch} from "react-redux";
+import {totalsChange} from "../../../../../../../../../../store/tasks/totals/action";
+import {settingChange} from "../../../../../../../../../../store/tasks/setting/action";
 
 interface RouteProps {
     sentOlympiadId: string,
@@ -26,8 +28,8 @@ const NextTask: React.FC<NextStepProps> = ({loading, nextTask, history, match}) 
 
     const nextTaskStart = () => {
         history.push(`/olympiads/${match.params.sentOlympiadId}/${nextTask.id}/${nextTask.task_id}`);
-        // dispatch(gameChangeSetting(nextTask.settings));
-        // dispatch(gameChangeTotals([]));
+        dispatch(settingChange(nextTask.settings));
+        dispatch(totalsChange([]));
         dispatch(gameChangeCurrentTimes(1));
         dispatch(gameChangeStatus('start'));
     };
