@@ -73,6 +73,12 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
     // Загрузка звуков
     const [soundsLoad, basicSound] = useLoadSoundsEffect({setting});
 
+    const checkAndUpdateStats = useCallback((_totals) => {
+        let stats = updateStats ? updateStats() : {all: Object.values(_totals).length};
+        console.log(stats);
+        dispatch(gameChangeStats(stats))
+    }, [dispatch, updateStats]);
+
     // После завершения примеров
     const afterRequest = useCallback(async (data: any) => {
         if (pictures) await picturesLoad(data);
@@ -88,10 +94,8 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
             Object.values(_totals).map((total: any) => total.exercise);
         setOutputs(outputsTotals);
 
-        let defaultStats = () => ({all: Object.values(totals).length});
-        let stats = updateStats ? updateStats() : defaultStats();
-        dispatch(gameChangeStats(stats))
-    }, [updateAnswersTotals, updateStats, setting, dispatch, currentTimes, soundsLoad, picturesLoad, pictures, createOutputs, totals]);
+        checkAndUpdateStats(_totals);
+    }, [updateAnswersTotals, checkAndUpdateStats, setting, dispatch, currentTimes, soundsLoad, picturesLoad, pictures, createOutputs]);
 
     // Загрузка примеров
     const [loading] = useApiUserGeneral({
@@ -102,19 +106,27 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
         cancel: !requestSetting || (executionMode === 'repeat' && !!totals[currentTimes]?.exercise)
     });
 
+    // Повторение упраженения
+    const repeatTaskExercises = useCallback(() => {
+        let outputsTotals = createOutputs ?
+            createOutputs(totals, currentTimes) :
+            Object.values(totals).map((total: any) => total.exercise);
+        checkAndUpdateStats(totals);
+        setOutputs(outputsTotals);
+    }, [totals, currentTimes, createOutputs, checkAndUpdateStats]);
+
+    //
     useEffect(() => {
         // Повторение упраженения
-        if (executionMode === 'repeat' && totals[currentTimes]?.exercise) {
-            let outputsTotals = createOutputs ?
-                createOutputs(totals, currentTimes) :
-                Object.values(totals).map((total: any) => total.exercise);
-            setOutputs(outputsTotals);
-        }
+        if (executionMode === 'repeat' && totals[currentTimes]?.exercise)
+            repeatTaskExercises()
+    }, [executionMode, repeatTaskExercises, totals, currentTimes]);
+
+    useEffect(() => {
         // Генерация примеров
-        else if (!requestSetting && executionMode === 'first') {
+        if (!requestSetting && executionMode === 'first')
             afterRequest([]).then();
-        }
-    }, [requestSetting, totals, currentTimes, afterRequest, createOutputs, executionMode]);
+    }, [requestSetting, executionMode, afterRequest]);
 
     // Контейнер сообщения
     const confirmTime = useRef<any>();
