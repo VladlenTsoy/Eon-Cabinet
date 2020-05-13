@@ -27,20 +27,18 @@ const NextBlock: React.FC<NextBlockProps> = ({nextTask}) => {
         dispatch(gameChangeStatus('start'));
     };
 
-    return (
-        <Card className="info">
-            <div className="title">Следующее упражнение</div>
-            <div className="container">
-                <GrayIcon img={TaskSuccessSVG} alt="Звезда" percent={0} width={'100%'}/>
-                <div className="content">
-                    {nextTask.task_name} ({nextTask.count_all})
-                </div>
+    return <Card className="info">
+        <div className="title">Следующее упражнение</div>
+        <div className="container">
+            <GrayIcon img={TaskSuccessSVG} alt="Звезда" percent={0} width={'100%'}/>
+            <div className="content">
+                {nextTask.task_name} ({nextTask.count_all})
             </div>
-            <Button block icon={<FlagOutlined/>} size="large" onClick={nextTaskStart}>
-                Начать упражнение
-            </Button>
-        </Card>
-    );
+        </div>
+        <Button block icon={<FlagOutlined/>} size="large" onClick={nextTaskStart}>
+            Начать упражнение
+        </Button>
+    </Card>
 };
 
 export default NextBlock;

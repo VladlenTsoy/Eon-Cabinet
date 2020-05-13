@@ -16,7 +16,7 @@ const RightBlock: React.FC<RightBlockProps> = ({resultData}) => {
     if (match.params.homeworkId && match.params.id)
         return <>
             <CounterBlock resultData={resultData}/>
-            <NextBlock nextTask={resultData.next_task}/>
+            {resultData.next_task && <NextBlock nextTask={resultData.next_task}/>}
         </>;
 
     return <>
