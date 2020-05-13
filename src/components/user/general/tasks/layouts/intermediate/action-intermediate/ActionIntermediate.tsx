@@ -7,7 +7,7 @@ import {gameChangeCurrentTimes, gameChangeExecutionMode, gameChangeStats, gameCh
 import {settingAnzan} from "store/tasks/setting/reducer";
 import {game} from "store/game/reducer";
 import {useRouteMatch} from "react-router-dom";
-import {ResultMatchProps} from "../../result/Result";
+import {ResultMatchProps} from "../../result/homework/Result";
 
 const ActionWrapper = styled.div`
   text-align: center;

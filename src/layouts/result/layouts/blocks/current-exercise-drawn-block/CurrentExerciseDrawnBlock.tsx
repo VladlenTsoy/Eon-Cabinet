@@ -6,7 +6,7 @@ import {EyeOutlined, ThunderboltOutlined, QuestionCircleOutlined} from '@ant-des
 import {useSelector} from "react-redux";
 import {game} from "../../../../../store/game/reducer";
 import {useRouteMatch} from "react-router";
-import {ResultMatchProps} from "../../../../../components/user/general/tasks/layouts/result/Result";
+import {ResultMatchProps} from "../../../../../components/user/general/tasks/layouts/result/homework/Result";
 
 interface CurrentExerciseDrawnBlockProps {
     resultId?: number;

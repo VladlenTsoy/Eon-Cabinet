@@ -1,7 +1,7 @@
 import React from 'react';
 import CardFlip from "../../../../layouts/application/output-component-layouts/card-flip/CardFlip";
 import TextFit
-    from "../../../../../../teacher/training/tasks/mental/multi-anzan/exercise-setting/multiplication-block/TextFit";
+    from "../../../../../../teacher/training/settings/mental/multi-anzan/exercise-setting/multiplication-block/TextFit";
 
 const CarouselItem = ({outputs}: any) => {
     return outputs.map((output: any, key: number) =>

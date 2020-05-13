@@ -3,7 +3,7 @@ import styled from "styled-components";
 import {Card} from "lib";
 import {useAddTimeout} from "../../../../../../../effects/use-add-timeout.effect";
 import TextFit
-    from "../../../../../teacher/training/tasks/mental/multi-anzan/exercise-setting/multiplication-block/TextFit";
+    from "../../../../../teacher/training/settings/mental/multi-anzan/exercise-setting/multiplication-block/TextFit";
 
 const PreparationWrapper = styled(Card)`
   &.ant-card{

@@ -1,17 +1,17 @@
 import React from 'react';
 import {Empty} from "antd";
-import SettingAnzan from "../../../../training/tasks/mental/anzan/Anzan";
-import SettingSpecial from "../../../../training/tasks/mental/special-anzan/Special";
-import SettingFlash from "../../../../training/tasks/mental/flash-anzan/Flash";
-import SettingProgression from "../../../../training/tasks/mental/progression/Progression";
-import SettingWordList from "../../../../training/tasks/mnemonics/word-list/WordList";
-import SettingDigitalPicture from "../../../../training/tasks/mnemonics/digital-picture/DigitalPicture";
-import SettingCountries from "../../../../training/tasks/mnemonics/countries/Countries";
-import SettingMasterSystem from "../../../../training/tasks/mnemonics/master-system/MasterSystem";
-import SettingPersonalities from "../../../../training/tasks/mnemonics/personalities/Personalities";
-import SettingNumbers from "../../../../training/tasks/mnemonics/numbers/Numbers";
-import SettingDigitalRow from "../../../../training/tasks/mnemonics/digital-row/DigitalRow";
-import SettingCustomExercises from "../../../../training/tasks/mental/custom-exercises/CustomExercises";
+import SettingAnzan from "../../../../training/settings/mental/anzan/Anzan";
+import SettingSpecial from "../../../../training/settings/mental/special-anzan/Special";
+import SettingFlash from "../../../../training/settings/mental/flash-anzan/Flash";
+import SettingProgression from "../../../../training/settings/mental/progression/Progression";
+import SettingWordList from "../../../../training/settings/mnemonics/word-list/WordList";
+import SettingDigitalPicture from "../../../../training/settings/mnemonics/digital-picture/DigitalPicture";
+import SettingCountries from "../../../../training/settings/mnemonics/countries/Countries";
+import SettingMasterSystem from "../../../../training/settings/mnemonics/master-system/MasterSystem";
+import SettingPersonalities from "../../../../training/settings/mnemonics/personalities/Personalities";
+import SettingNumbers from "../../../../training/settings/mnemonics/numbers/Numbers";
+import SettingDigitalRow from "../../../../training/settings/mnemonics/digital-row/DigitalRow";
+import SettingCustomExercises from "../../../../training/settings/mental/custom-exercises/CustomExercises";
 
 interface FormSettingProps {
     sendSubmit: any;

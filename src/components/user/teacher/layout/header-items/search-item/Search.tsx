@@ -75,7 +75,7 @@ const Search = () => {
     const handleChange = async (value: any) => {
         if (value) {
             const list = data.find((item: any) => item.id === Number(value));
-            const {pdfRender} = await import("../../../training/tasks/print/general");
+            const {pdfRender} = await import("../../../training/settings/print/general");
             await pdfRender(list.settings, list, language.common);
         }
     };

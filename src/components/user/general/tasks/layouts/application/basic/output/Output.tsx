@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
 import TextFit
-    from "components/user/teacher/training/tasks/mental/multi-anzan/exercise-setting/multiplication-block/TextFit";
+    from "components/user/teacher/training/settings/mental/multi-anzan/exercise-setting/multiplication-block/TextFit";
 import {useSelector} from "react-redux";
 
 interface OutputStyleProps extends React.HTMLAttributes<HTMLDivElement> {

@@ -21,7 +21,7 @@ export const TableLayout: React.FC<TableProps> = styled.table<TableProps>`
         padding: .3rem;
       i{
         //color: ${props => props.theme.color_second};
-        background: #e9ecef;
+        background: ${props => props.theme.light_color_border};
         border-radius: 50%;
         display: inline-block;
         font-size: 14px;
@@ -34,7 +34,7 @@ export const TableLayout: React.FC<TableProps> = styled.table<TableProps>`
   td{
     padding: .3rem;
     vertical-align: top;
-    border: 1px ${props => props.borderStyle || 'solid'} #dee2e6;
+    border: 1px ${props => props.borderStyle || 'solid'} ${props => props.theme.light_color_border};
   }
   
   .not-border{
@@ -47,7 +47,7 @@ export const TableLayout: React.FC<TableProps> = styled.table<TableProps>`
   
     span{
       //color: ${props => props.theme.color_second};
-      background: #e9ecef;
+      background: ${props => props.theme.light_color_border};
       border-radius: 50%;
       display: inline-block;
       font-size: 14px;

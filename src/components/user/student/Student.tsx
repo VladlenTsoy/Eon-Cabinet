@@ -7,11 +7,11 @@ import Home from "./home/Home";
 import Profile from "./profile/Profile";
 import Homework from "./homework/list/Homework";
 import More from "./homework/more/More";
-import Tasks from "./homework/tasks/Tasks";
+import TasksHomework from "./homework/tasks/Tasks";
 import TasksOlympiad from "./olympiad/tasks/Tasks";
 import Olympiads from "./olympiad/list/Olympiads";
 import Olympiad from "./olympiad/more/Olympiad";
-import Result from "./olympiad/tasks/layouts/result/Result";
+import Result from "../general/tasks/layouts/result/olympiad/Result";
 
 const Student = () => <Router>
     <Layout sidebar={SidebarItems} header={HeaderItems}>
@@ -20,10 +20,10 @@ const Student = () => <Router>
             <Route path="/profile" component={Profile}/>
             <Route exact path="/homework" component={Homework}/>
             <Route exact path="/homework/:id" component={More}/>
-            <Route path="/homework/:homeworkId/:id/:taskId" component={Tasks}/>
+            <Route path="/homework/:homeworkId/:id/:disciplineId/:taskId" component={TasksHomework}/>
             <Route exact path="/olympiads" component={Olympiads}/>
             <Route exact path="/olympiads/:olympiadId" component={Olympiad}/>
-            <Route path="/olympiads/:disciplineId/:sentOlympiadId/:taskOlympiadId/:taskId" component={TasksOlympiad}/>
+            <Route path="/olympiads/:sentOlympiadId/:taskOlympiadId/:disciplineId/:taskId" component={TasksOlympiad}/>
             <Route path="/result" component={Result}/>
         </Switch>
     </Layout>

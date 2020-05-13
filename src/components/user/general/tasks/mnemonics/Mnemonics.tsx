@@ -10,16 +10,20 @@ import MasterSystem from "./master-system/MasterSystem";
 import Countries from "./countries/Countries";
 import DigitalPicture from "./digital-picture/DigitalPicture";
 
-const Mnemonics = () => {
+interface MnemonicsProps {
+    url: string;
+}
+
+const Mnemonics: React.FC<MnemonicsProps> = ({url}) => {
     return <Switch>
-        <Route exact path="/training/2/10" children={<DigitalRow/>}/>
-        <Route exact path="/training/2/15" children={<WordList/>}/>
-        <Route exact path="/training/2/16" children={<Numbers/>}/>
-        <Route exact path="/training/2/8" children={<Personalities/>}/>
-        <Route exact path="/training/2/13" children={<DigitalImage/>}/>
-        <Route exact path="/training/2/11" children={<MasterSystem/>}/>
-        <Route exact path="/training/2/9" children={<Countries/>}/>
-        <Route exact path="/training/2/19" children={<DigitalPicture/>}/>
+        <Route exact path={`${url}/2/10`} children={<DigitalRow/>}/>
+        <Route exact path={`${url}/2/15`} children={<WordList/>}/>
+        <Route exact path={`${url}/2/16`} children={<Numbers/>}/>
+        <Route exact path={`${url}/2/8`} children={<Personalities/>}/>
+        <Route exact path={`${url}/2/13`} children={<DigitalImage/>}/>
+        <Route exact path={`${url}/2/11`} children={<MasterSystem/>}/>
+        <Route exact path={`${url}/2/9`} children={<Countries/>}/>
+        <Route exact path={`${url}/2/19`} children={<DigitalPicture/>}/>
     </Switch>;
 };
 

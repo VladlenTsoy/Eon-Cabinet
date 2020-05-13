@@ -82,7 +82,7 @@ const Action: React.FC<Action> = ({task, history, id, type}) => {
 
         dispatch(settingChange(_task.settings));
         dispatch(gameChangeExecutionMode('first'));
-        history.push(`/homework/${id}/${_task.id}/${_task.task_id}`);
+        history.push(`/homework/${id}/${_task.id}/${_task.discipline_id}/${_task.task_id}`);
     };
 
     const startSecondApplication = (_task: any) => {
@@ -93,7 +93,7 @@ const Action: React.FC<Action> = ({task, history, id, type}) => {
             dispatch(gameChangeExecutionMode('repeat'));
             dispatch(totalsChange(_task.first.totals));
         }
-        history.push(`/homework/${id}/${_task.id}/${_task.task_id}`);
+        history.push(`/homework/${id}/${_task.id}/${_task.discipline_id}/${_task.task_id}`);
     };
 
     return (

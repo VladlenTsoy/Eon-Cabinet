@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import {CardWrapper} from "../../../../layouts/result/_new/details/card/Card";
+import {CardWrapper} from "../../../../layouts/result/homework/_new/details/card/Card";
 import { TrophyOutlined } from '@ant-design/icons';
 
 const DoubleResultWrapper = styled(CardWrapper)`

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
 import TextFit
-    from "../../../../../../teacher/training/tasks/mental/multi-anzan/exercise-setting/multiplication-block/TextFit";
+    from "../../../../../../teacher/training/settings/mental/multi-anzan/exercise-setting/multiplication-block/TextFit";
 
 const ExerciseWrapper = styled.div`
   height: 250px;
