@@ -14,15 +14,24 @@ export const TaskBlockWrapper = styled(Card)`
       background-size: 120%;
   }
   .content{  
-    display: grid;
-    grid-template-columns: 150px 1fr;
-    grid-gap: 1rem;
-    align-items: center;
-    
-    @media (max-width: 576px) {
-      grid-template-columns: 115px 1fr;
-    }
+
   }
+`;
+
+
+interface ContentProps {
+    isSecond: boolean;
+}
+
+const ContentWrapper: React.FC<ContentProps> = styled.div<ContentProps>`
+display: grid;
+grid-template-columns: ${props => props.isSecond ? '225px' : '150px'} 1fr;
+grid-gap: 1rem;
+align-items: center;
+
+@media (max-width: 576px) {
+  grid-template-columns: 175px 1fr;
+}
 `;
 
 interface TaskBlockProps {
@@ -34,10 +43,10 @@ const Task: React.FC<TaskBlockProps> = ({id, task}) => {
     const type = !task.first ? 'default' : task.first.exodus ? 'winner' : 'loser';
 
     return <TaskBlockWrapper type={type}>
-        <div className="content">
+        <ContentWrapper isSecond={!!task.second}>
             <Counter task={task} type={type}/>
             <Action task={task} id={id} type={type}/>
-        </div>
+        </ContentWrapper>
     </TaskBlockWrapper>;
 };
 

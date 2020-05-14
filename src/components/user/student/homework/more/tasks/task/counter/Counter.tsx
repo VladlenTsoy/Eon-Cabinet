@@ -87,7 +87,9 @@ const Counter: React.FC<CounterProps> = ({task, type}) => {
             </CounterWrapper>
             {task.second ?
                 <SecondCounterWrapper type={task.second.exodus ? 'winner' : 'loser'}>
+                    {taskMode() === 'list' ? <FileOutlined /> : null}
                     <span className="quantity">{task.second.count_success} / {task.count_all}</span>
+                    {taskMode() === 'list' ? <span className="task-mode">Листы</span> : null}
                 </SecondCounterWrapper> : null
             }
         </CountersWrapper>
