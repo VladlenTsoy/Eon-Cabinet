@@ -16,14 +16,14 @@ interface MnemonicsProps {
 
 const Mnemonics: React.FC<MnemonicsProps> = ({url}) => {
     return <Switch>
-        <Route exact path={`${url}/2/10`} children={<DigitalRow/>}/>
-        <Route exact path={`${url}/2/15`} children={<WordList/>}/>
-        <Route exact path={`${url}/2/16`} children={<Numbers/>}/>
-        <Route exact path={`${url}/2/8`} children={<Personalities/>}/>
-        <Route exact path={`${url}/2/13`} children={<DigitalImage/>}/>
-        <Route exact path={`${url}/2/11`} children={<MasterSystem/>}/>
-        <Route exact path={`${url}/2/9`} children={<Countries/>}/>
-        <Route exact path={`${url}/2/19`} children={<DigitalPicture/>}/>
+        <Route exact path={`${url}/:disciplineId/:taskId`} params={{disciplineId: 2, taskId: 10}} children={<DigitalRow/>}/>
+        <Route exact path={`${url}/:disciplineId/:taskId`} params={{disciplineId: 2, taskId: 15}} children={<WordList/>}/>
+        <Route exact path={`${url}/:disciplineId/:taskId`} params={{disciplineId: 2, taskId: 16}} children={<Numbers/>}/>
+        <Route exact path={`${url}/:disciplineId/:taskId`} params={{disciplineId: 2, taskId: 8}} children={<Personalities/>}/>
+        <Route exact path={`${url}/:disciplineId/:taskId`} params={{disciplineId: 2, taskId: 13}} children={<DigitalImage/>}/>
+        <Route exact path={`${url}/:disciplineId/:taskId`} params={{disciplineId: 2, taskId: 11}} children={<MasterSystem/>}/>
+        <Route exact path={`${url}/:disciplineId/:taskId`} params={{disciplineId: 2, taskId: 9}} children={<Countries/>}/>
+        <Route exact path={`${url}/:disciplineId/:taskId`} params={{disciplineId: 2, taskId: 19}} children={<DigitalPicture/>}/>
     </Switch>;
 };
 

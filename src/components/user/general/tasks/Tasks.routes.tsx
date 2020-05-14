@@ -46,9 +46,9 @@ const TasksRoutes: React.FC<TasksProps> = ({urlBack, urlRoute}) => {
         <Router>
             <Switch>
                 {/* Ментальная арифметика */}
-                <Route path={`${urlRoute}/1`} children={<Mental url={urlRoute}/>}/>
+                <Route path={`${urlRoute}/:disciplineId`} params={{disciplineId: 1}} children={<Mental url={urlRoute}/>}/>
                 {/* Мнемотехника */}
-                <Route path={`${urlRoute}/2`} children={<Mnemonics url={urlRoute}/>}/>
+                <Route path={`${urlRoute}/:disciplineId`} params={{disciplineId: 2}} children={<Mnemonics url={urlRoute}/>}/>
             </Switch>
         </Router>
     </React.Suspense>;
