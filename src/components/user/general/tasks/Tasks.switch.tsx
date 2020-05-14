@@ -8,7 +8,7 @@ const TasksSwitch = () => {
     const {params} = useRouteMatch();
     return <>
         {params.disciplineId === '1' && <Mental taskId={params.taskId}/>}
-        {params.disciplineId === 2 && <Mnemonics taskId={params.taskId}/>}
+        {params.disciplineId === '2' && <Mnemonics taskId={params.taskId}/>}
     </>;
 };
 
