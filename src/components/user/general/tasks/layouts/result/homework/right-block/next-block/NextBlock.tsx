@@ -15,12 +15,12 @@ interface NextBlockProps {
 }
 
 const NextBlock: React.FC<NextBlockProps> = ({nextTask}) => {
-    const match = useRouteMatch<ResultMatchProps>();
+    const {params} = useRouteMatch<ResultMatchProps>();
     const history = useHistory();
     const dispatch = useDispatch();
 
     const nextTaskStart = () => {
-        history.push(`/homework/${match.params.homeworkId}/${nextTask.id}/${nextTask.task_id}`);
+        history.push(`/homework/${params.homeworkId}/${nextTask.id}/${params.disciplineId}/${nextTask.task_id}`);
         dispatch(settingChange(nextTask.settings));
         dispatch(totalsChange([]));
         dispatch(gameChangeCurrentTimes(0));

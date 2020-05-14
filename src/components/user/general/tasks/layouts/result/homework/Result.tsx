@@ -12,11 +12,12 @@ import {useChangeActionNavbar} from "../../../../../../../effects/use-change-act
 export type ResultMatchProps = {
     homeworkId?: string;
     id?: string;
+    disciplineId?: string;
+    taskId?: string;
 };
 
 const Result: React.FC = ({children}) => {
     const {params} = useRouteMatch<ResultMatchProps>();
-
     const {api} = useSelector((state: any) => state);
     const {stats} = useSelector(game);
 
