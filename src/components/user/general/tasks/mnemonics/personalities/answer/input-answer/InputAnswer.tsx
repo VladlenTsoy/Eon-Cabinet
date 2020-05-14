@@ -4,6 +4,7 @@ import {FormItem, UserImage} from "../../../../../../../../layouts/components";
 import {DatePicker} from "antd";
 import {useSelector} from "react-redux";
 import {useScreenWindow} from "../../../../../../../../effects/use-screen-window.effect";
+import {settingAnzan} from "../../../../../../../../store/tasks/setting/reducer";
 
 const dateFormatList = ['DD/MM/YYYY', 'DD/MM/YY'];
 
@@ -39,8 +40,7 @@ interface InputAnswerProps {
 }
 
 const InputAnswer: React.FC<InputAnswerProps> = ({total, totalKey}) => {
-    const {game} = useSelector((state: any) => state);
-    const {setting} = game;
+    const setting = useSelector(settingAnzan);
     const [, isBreakpoint] = useScreenWindow({breakpoint: 'sm'});
 
     return <InputWrapper>

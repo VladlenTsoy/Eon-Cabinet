@@ -1,15 +1,11 @@
 import React from 'react';
 import AnswerLayout from "../../../layouts/answer/Answer.layout";
-import {ArrowRightOutlined} from '@ant-design/icons';
-import {Button, Typography} from "antd";
 import {useSelector} from "react-redux";
 import FormInputAnswerLayout from "../../../layouts/answer/form-input-answer/FormInputAnswer.layout";
-
-const {Title} = Typography;
+import {totalsSelect} from "../../../../../../../store/tasks/totals/reducer";
 
 const Answer: React.FC = () => {
-    const {game} = useSelector((state: any) => state);
-    const {totals} = game;
+    const totals:any = useSelector(totalsSelect);
 
     const checkHandler = (values: any) => {
         let _totals = totals.map((total: any, key: number) => ({
@@ -26,7 +22,6 @@ const Answer: React.FC = () => {
 
     return (
         <AnswerLayout cols={{xl: 10, md: 12, xs: 24}} checkHandler={checkHandler}>
-            <Title level={2}>Введите ответы</Title>
             {
                 totals.map((total: any, key: number) =>
                     <FormInputAnswerLayout
@@ -42,9 +37,6 @@ const Answer: React.FC = () => {
                     />
                 )
             }
-            <Button type="primary" htmlType="submit" block size="large" icon={<ArrowRightOutlined/>}>
-                Далее
-            </Button>
         </AnswerLayout>
     );
 };

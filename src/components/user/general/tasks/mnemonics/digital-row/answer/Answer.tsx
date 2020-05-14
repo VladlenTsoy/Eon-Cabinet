@@ -1,18 +1,16 @@
 import React from 'react';
 import AnswerLayout from "../../../layouts/answer/Answer.layout";
-import {ArrowRightOutlined} from '@ant-design/icons';
-import {Button, Typography} from "antd";
 import FormInputAnswerLayout from "../../../layouts/answer/form-input-answer/FormInputAnswer.layout";
 import {useSelector} from "react-redux";
-
-const {Title} = Typography;
+import {totalsSelect} from "../../../../../../../store/tasks/totals/reducer";
+import {game} from "../../../../../../../store/game/reducer";
 
 interface AnswerProps {
 }
 
 const Answer: React.FC<AnswerProps> = () => {
-    const {game} = useSelector((state: any) => state);
-    const {totals, currentTimes} = game;
+    const {currentTimes} = useSelector(game);
+    const totals:any = useSelector(totalsSelect);
 
     /**
      *
@@ -42,11 +40,7 @@ const Answer: React.FC<AnswerProps> = () => {
             cols={{xl: 10, md: 12, xs: 24}}
             checkHandler={checkHandler}
         >
-            <Title level={2}>Введите ответ</Title>
             <FormInputAnswerLayout index={0} autoFocus={0}/>
-            <Button type="primary" htmlType="submit" block size="large" icon={<ArrowRightOutlined/>}>
-                Далее
-            </Button>
         </AnswerLayout>
     );
 };

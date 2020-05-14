@@ -1,10 +1,10 @@
 import React from 'react';
-import {ArrowRightOutlined} from '@ant-design/icons';
-import {Button} from "antd";
 import {useSelector} from "react-redux";
 import AnswerLayout from "../../../layouts/answer/Answer.layout";
 import InputAnswer from "./input-answer/InputAnswer";
 import styled from "styled-components";
+import {totalsSelect} from "../../../../../../../store/tasks/totals/reducer";
+import {settingAnzan} from "../../../../../../../store/tasks/setting/reducer";
 
 const InputsWrapper = styled.div`
   display: grid;
@@ -18,8 +18,8 @@ const InputsWrapper = styled.div`
 `;
 
 const Answer: React.FC = () => {
-    const {game} = useSelector((state: any) => state);
-    const {totals, setting} = game;
+    const totals:any = useSelector(totalsSelect);
+    const setting = useSelector(settingAnzan);
 
     const checkHandler = (values: any) => {
         let _totals = totals.map((total: any, key: number) => {
@@ -45,9 +45,6 @@ const Answer: React.FC = () => {
                     <InputAnswer total={total} key={key} totalKey={key}/>)
                 }
             </InputsWrapper>
-            <Button type="primary" htmlType="submit" block size="large" icon={<ArrowRightOutlined/>}>
-                Далее
-            </Button>
         </AnswerLayout>
     );
 };

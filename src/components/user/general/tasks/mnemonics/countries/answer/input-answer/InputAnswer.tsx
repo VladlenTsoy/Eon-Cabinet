@@ -2,6 +2,7 @@ import React from 'react';
 import styled from "styled-components";
 import {FormItem} from "../../../../../../../../layouts/components";
 import {useSelector} from "react-redux";
+import {settingAnzan} from "../../../../../../../../store/tasks/setting/reducer";
 
 const InputWrapper = styled.div`
   display: grid;
@@ -43,8 +44,7 @@ interface InputAnswerProps {
 }
 
 const InputAnswer: React.FC<InputAnswerProps> = ({total, totalKey}) => {
-    const {game} = useSelector((state: any) => state);
-    const {setting} = game;
+    const setting = useSelector(settingAnzan);
 
     return <InputWrapper>
         <div className="flag">

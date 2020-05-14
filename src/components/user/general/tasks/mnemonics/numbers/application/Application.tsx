@@ -38,7 +38,7 @@ const Application: React.FC = () => {
             {
                 listSetting: {
                     column: setting.column,
-                    leftNumbering: false,
+                    leftNumbering: true,
                     layout: List
                 }
             }
