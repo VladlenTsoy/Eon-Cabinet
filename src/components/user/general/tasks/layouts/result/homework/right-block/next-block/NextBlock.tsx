@@ -1,6 +1,6 @@
 import React from 'react';
 import {useDispatch} from "react-redux";
-import {gameChangeCurrentTimes, gameChangeStatus} from "store/game/actions";
+import {gameChangeCurrentTimes, gameChangeExecutionMode, gameChangeStats, gameChangeStatus} from "store/game/actions";
 import {Card, GrayIcon} from "lib";
 import TaskSuccessSVG from "assets/images/olympiad/task_success.svg";
 import {Button} from "antd";
@@ -23,7 +23,9 @@ const NextBlock: React.FC<NextBlockProps> = ({nextTask}) => {
         dispatch(settingChange(nextTask.settings));
         dispatch(totalsChange([]));
         dispatch(gameChangeCurrentTimes(0));
+        dispatch(gameChangeStats({all: 0, success: 0}));
         dispatch(gameChangeStatus('start'));
+        dispatch(gameChangeExecutionMode('first'));
         history.replace(`/homework/${homeworkId}/${nextTask.id}/${disciplineId}/${nextTask.task_id}`);
     };
 

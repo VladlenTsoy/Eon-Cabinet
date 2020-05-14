@@ -41,7 +41,7 @@ const BgIconsDownIntermediateLayout: React.FC = () => {
             {totals[currentTimes].result ? <CheckCircleOutlined/> : <ExclamationCircleOutlined/>}
         </BgIconLeft>
         <BgIconRight>
-            {currentTimes >= setting.times ? <FlagOutlined/> : <ArrowRightOutlined/>}
+            {currentTimes + 1 >= setting.times ? <FlagOutlined/> : <ArrowRightOutlined/>}
         </BgIconRight>
     </>
 };

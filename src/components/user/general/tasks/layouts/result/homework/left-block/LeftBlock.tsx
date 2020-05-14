@@ -4,16 +4,21 @@ import CurrentExerciseDrawnBLock
 import BackBlock from "./back-block/BackBlock";
 
 interface LeftBlockProps {
-    resultId?: number;}
+    resultId?: number;
+    isView: boolean;
+    updateIsView: (state: boolean) => void;
+}
 
 const LeftBlock: React.FC<LeftBlockProps> = (
     {
         children,
-        resultId
+        resultId,
+        isView,
+        updateIsView
     }
 ) => {
     return <>
-        <CurrentExerciseDrawnBLock resultId={resultId}>
+        <CurrentExerciseDrawnBLock resultId={resultId} isView={isView} updateIsView={updateIsView}>
             {children}
         </CurrentExerciseDrawnBLock>
         <BackBlock/>
