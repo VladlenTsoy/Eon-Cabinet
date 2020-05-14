@@ -4,7 +4,7 @@ import {gameChangeCurrentTimes, gameChangeStatus} from "store/game/actions";
 import {Card, GrayIcon} from "lib";
 import TaskSuccessSVG from "assets/images/olympiad/task_success.svg";
 import {Button} from "antd";
-import {useHistory, useRouteMatch} from "react-router-dom";
+import {useHistory, useParams} from "react-router-dom";
 import {ResultMatchProps} from "../../Result";
 import {FlagOutlined} from '@ant-design/icons';
 import {settingChange} from "../../../../../../../../../store/tasks/setting/action";
@@ -15,16 +15,16 @@ interface NextBlockProps {
 }
 
 const NextBlock: React.FC<NextBlockProps> = ({nextTask}) => {
-    const {params} = useRouteMatch<ResultMatchProps>();
+    const {homeworkId, disciplineId} = useParams<ResultMatchProps>();
     const history = useHistory();
     const dispatch = useDispatch();
 
     const nextTaskStart = () => {
-        history.push(`/homework/${params.homeworkId}/${nextTask.id}/${params.disciplineId}/${nextTask.task_id}`);
         dispatch(settingChange(nextTask.settings));
         dispatch(totalsChange([]));
         dispatch(gameChangeCurrentTimes(0));
         dispatch(gameChangeStatus('start'));
+        history.replace(`/homework/${homeworkId}/${nextTask.id}/${disciplineId}/${nextTask.task_id}`);
     };
 
     return <Card className="info">

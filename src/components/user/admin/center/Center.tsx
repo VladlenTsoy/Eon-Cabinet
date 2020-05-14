@@ -1,9 +1,10 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {appChangeActionNavbar, appChangeTitleNavbar} from "../../../../store/app/actions";
+import {appChangeTitleNavbar} from "../../../../store/app/actions";
 import {Navigation, NavigationButton} from "../../../../layouts/components";
 import EditorCenterButton from "./EditorTeacherButton";
 import TeachersTable from "./teachers-table/TeachersTable";
+import {useChangeActionNavbar} from "../../../../effects/use-change-action-navbar.effect";
 
 const Center: React.FC<any> = ({match}) => {
     const {api} = useSelector((state: any) => (state));
@@ -19,12 +20,7 @@ const Center: React.FC<any> = ({match}) => {
         dispatch(appChangeTitleNavbar(center ? `Центр: ${center!.title}` : 'Центр: Загрузка...'));
     }, [center, dispatch]);
 
-    useEffect(() => {
-        dispatch(appChangeActionNavbar('back'));
-        return () => {
-            dispatch(appChangeActionNavbar(null));
-        };
-    }, [dispatch]);
+    useChangeActionNavbar({action: 'back'});
 
     const fetchCenters = useCallback(async () => {
         const response = await api.user_general.get(`admin/center/${match.params.center_id}`);

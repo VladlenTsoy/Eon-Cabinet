@@ -13,7 +13,6 @@ import {LoadingBlock} from "lib";
 import {useChangeActionNavbar} from "../../../../effects/use-change-action-navbar.effect";
 import TasksSwitch from "./Tasks.switch";
 
-
 interface TasksProps {
     urlBack: string;
     urlRoute: string;
@@ -24,7 +23,7 @@ const TasksRoutes: React.FC<TasksProps> = ({urlBack, urlRoute}) => {
     const setting = useSelector(settingAnzan);
     const dispatch = useDispatch();
 
-    if (!setting) history.push(urlBack);
+    if (!setting) history.replace(urlBack);
 
     useChangeActionNavbar({action: 'cancel'});
 
@@ -51,4 +50,4 @@ const TasksRoutes: React.FC<TasksProps> = ({urlBack, urlRoute}) => {
     </React.Suspense>;
 };
 
-export default TasksRoutes;
+export default React.memo(TasksRoutes);

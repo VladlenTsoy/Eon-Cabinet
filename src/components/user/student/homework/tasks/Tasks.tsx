@@ -1,5 +1,5 @@
 import React from "react";
-import {useRouteMatch} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import TasksRoutes from "../../../general/tasks/Tasks.routes";
 
 interface MatchProps {
@@ -7,8 +7,7 @@ interface MatchProps {
 }
 
 const Tasks: React.FC = () => {
-    const {params} = useRouteMatch<MatchProps>();
-    const {homeworkId} = params;
+    const {homeworkId} = useParams<MatchProps>();
     return <TasksRoutes urlBack={`/homework/${homeworkId}`} urlRoute="/homework/:homeworkId/:id"/>
 };
 

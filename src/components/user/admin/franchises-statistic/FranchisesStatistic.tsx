@@ -1,11 +1,11 @@
 import React, {useCallback, useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {Typography} from "antd";
 import {CardTable, LoadingBlock} from "lib";
 import {Navigation} from "../../../../layouts/components";
 import moment from "moment";
-import {appChangeActionNavbar} from "../../../../store/app/actions";
 import ExportToExcel from "./ExportToExcel";
+import {useChangeActionNavbar} from "../../../../effects/use-change-action-navbar.effect";
 
 const {Text} = Typography;
 
@@ -58,14 +58,8 @@ const FranchisesStatistic: React.FC = () => {
     const {api} = useSelector((state: any) => (state));
     const [teaches, setTeachers] = useState([]);
     const [loading, setLoading] = useState(false);
-    const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(appChangeActionNavbar('back'));
-        return () => {
-            dispatch(appChangeActionNavbar(null));
-        };
-    }, [dispatch]);
+    useChangeActionNavbar({action: 'back'});
 
     const fetchTeacher = useCallback(async () => {
         const response = await api.user_general.get(`/admin/check/teachers`);

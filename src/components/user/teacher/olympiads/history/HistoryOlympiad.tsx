@@ -1,10 +1,9 @@
-import React, {useEffect} from 'react';
-import {appChangeActionNavbar} from "../../../../../store/app/actions";
-import {useDispatch} from "react-redux";
+import React from 'react';
 import {Card} from "lib";
 import {ButtonLink, Table} from "lib";
 import {Badge, Tag} from "antd";
 import moment from "moment";
+import {useChangeActionNavbar} from "../../../../../effects/use-change-action-navbar.effect";
 
 interface HistoryOlympiadProps {
 }
@@ -66,14 +65,7 @@ const columns = [
 ];
 
 const HistoryOlympiad: React.FC<HistoryOlympiadProps> = () => {
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(appChangeActionNavbar('back'));
-        return () => {
-            dispatch(appChangeActionNavbar(null));
-        }
-    }, [dispatch]);
+    useChangeActionNavbar({action: 'back'});
 
     return <Card>
         <Card.Title title="Прошедшие олимпиады" level={4}/>

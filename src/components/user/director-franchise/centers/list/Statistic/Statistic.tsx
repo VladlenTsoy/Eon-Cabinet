@@ -1,24 +1,14 @@
-import React, {useEffect} from 'react';
-import {useDispatch} from "react-redux";
+import React from 'react';
 import {Tabs} from "antd";
-import {appChangeActionNavbar} from "../../../../../../store/app/actions";
 import TableCentersStatistic from "./Table";
 import {Navigation} from "../../../../../../layouts/components";
 import ExportToExcel from "./ExportToExcel";
+import {useChangeActionNavbar} from "../../../../../../effects/use-change-action-navbar.effect";
 
 const {TabPane} = Tabs;
 
 const CentersStatistic: React.FC = () => {
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(appChangeActionNavbar('back'));
-
-        return () => {
-            dispatch(appChangeActionNavbar(null));
-        };
-    }, [dispatch]);
-
+    useChangeActionNavbar({action: 'back'});
 
     return <>
         <Navigation>

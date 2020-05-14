@@ -1,9 +1,10 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {appChangeActionNavbar, appChangeTitleNavbar} from "../../../../store/app/actions";
+import {appChangeTitleNavbar} from "../../../../store/app/actions";
 import {Navigation, NavigationButton} from "../../../../layouts/components";
 import CenterTable from "./center-table/CenterTable";
 import EditorCenterButton from "./center-table/EditorCenterButton";
+import {useChangeActionNavbar} from "../../../../effects/use-change-action-navbar.effect";
 
 const Franchise: React.FC<any> = ({match}) => {
     const {api} = useSelector((state: any) => (state));
@@ -15,12 +16,7 @@ const Franchise: React.FC<any> = ({match}) => {
         dispatch(appChangeTitleNavbar(franchise ? `Франшиза: ${franchise.title}` : 'Франшиза: Загрузка...'));
     }, [franchise, dispatch]);
 
-    useEffect(() => {
-        dispatch(appChangeActionNavbar('back'));
-        return () => {
-            dispatch(appChangeActionNavbar(null));
-        };
-    }, [dispatch]);
+    useChangeActionNavbar({action: 'back'});
 
     const fetch = useCallback(async () => {
         const response = await api.user_general.get(`admin/franchise/${match.params.id}`);
