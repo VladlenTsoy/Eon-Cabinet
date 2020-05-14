@@ -1,6 +1,4 @@
 import React from 'react';
-import {Switch} from "react-router";
-import {Route} from "react-router-dom";
 import DigitalRow from "./digital-row/DigitalRow";
 import WordList from "./word-list/WordList";
 import Numbers from "./numbers/Numbers";
@@ -11,20 +9,33 @@ import Countries from "./countries/Countries";
 import DigitalPicture from "./digital-picture/DigitalPicture";
 
 interface MnemonicsProps {
-    url: string;
+    taskId: string;
 }
 
-const Mnemonics: React.FC<MnemonicsProps> = ({url}) => {
-    return <Switch>
-        <Route exact path={`${url}/:disciplineId/:taskId`} params={{disciplineId: 2, taskId: 10}} children={<DigitalRow/>}/>
-        <Route exact path={`${url}/:disciplineId/:taskId`} params={{disciplineId: 2, taskId: 15}} children={<WordList/>}/>
-        <Route exact path={`${url}/:disciplineId/:taskId`} params={{disciplineId: 2, taskId: 16}} children={<Numbers/>}/>
-        <Route exact path={`${url}/:disciplineId/:taskId`} params={{disciplineId: 2, taskId: 8}} children={<Personalities/>}/>
-        <Route exact path={`${url}/:disciplineId/:taskId`} params={{disciplineId: 2, taskId: 13}} children={<DigitalImage/>}/>
-        <Route exact path={`${url}/:disciplineId/:taskId`} params={{disciplineId: 2, taskId: 11}} children={<MasterSystem/>}/>
-        <Route exact path={`${url}/:disciplineId/:taskId`} params={{disciplineId: 2, taskId: 9}} children={<Countries/>}/>
-        <Route exact path={`${url}/:disciplineId/:taskId`} params={{disciplineId: 2, taskId: 19}} children={<DigitalPicture/>}/>
-    </Switch>;
+const Mnemonics: React.FC<MnemonicsProps> = ({taskId}) => {
+    const selectTaskById = (id: number) => {
+        switch (id) {
+            case 10:
+                return <DigitalRow/>;
+            case 15:
+                return <WordList/>;
+            case 16:
+                return <Numbers/>;
+            case 8:
+                return <Personalities/>;
+            case 13:
+                return <DigitalImage/>;
+            case 11:
+                return <MasterSystem/>;
+            case 9:
+                return <Countries/>;
+            case 19:
+                return <DigitalPicture/>;
+        }
+    };
+    return <>
+        {selectTaskById(Number(taskId))}
+    </>;
 };
 
 export default Mnemonics;

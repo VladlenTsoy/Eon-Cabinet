@@ -11,9 +11,7 @@ import {settingChange} from "store/tasks/setting/action";
 import {settingAnzan} from "store/tasks/setting/reducer";
 import {LoadingBlock} from "lib";
 import {useChangeActionNavbar} from "../../../../effects/use-change-action-navbar.effect";
-
-const Mental = React.lazy(() => import("./mental/Mental"));
-const Mnemonics = React.lazy(() => import("./mnemonics/Mnemonics"));
+import TasksSwitch from "./Tasks.switch";
 
 
 interface TasksProps {
@@ -46,9 +44,8 @@ const TasksRoutes: React.FC<TasksProps> = ({urlBack, urlRoute}) => {
         <Router>
             <Switch>
                 {/* Ментальная арифметика */}
-                <Route path={`${urlRoute}/:disciplineId`} params={{disciplineId: 1}} children={<Mental url={urlRoute}/>}/>
                 {/* Мнемотехника */}
-                <Route path={`${urlRoute}/:disciplineId`} params={{disciplineId: 2}} children={<Mnemonics url={urlRoute}/>}/>
+                <Route path={`${urlRoute}/:disciplineId/:taskId`} children={<TasksSwitch/>}/>
             </Switch>
         </Router>
     </React.Suspense>;

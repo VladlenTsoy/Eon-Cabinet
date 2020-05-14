@@ -1,6 +1,4 @@
 import React from 'react';
-import {Switch} from "react-router";
-import {Route} from "react-router-dom";
 import Anzan from "./anzan/Anzan";
 import FlashAnzan from "./flash-anzan/FlashAnzan";
 import SpecialAnzan from "./special-anzan/SpecialAnzan";
@@ -9,23 +7,40 @@ import Progression from "./progression/Progression";
 import CustomExercises from "./custom-exercises/CustomExercises";
 
 interface MentalProps {
-    url: string;
+    taskId: string;
 }
 
-const Mental:React.FC<MentalProps> = ({url}) => {
-    return <Switch>
-        <Route exact path={`${url}/:disciplineId/:taskId`} params={{disciplineId: 1, taskId: 1}} children={<Anzan/>}/>
-        <Route exact path={`${url}/:disciplineId/:taskId`} params={{disciplineId: 1, taskId: 2}} children={<Anzan/>}/>
-        <Route exact path={`${url}/:disciplineId/:taskId`} params={{disciplineId: 1, taskId: 3}} children={<Anzan/>}/>
-        <Route exact path={`${url}/:disciplineId/:taskId`} params={{disciplineId: 1, taskId: 4}} children={<Anzan/>}/>
-        <Route exact path={`${url}/:disciplineId/:taskId`} params={{disciplineId: 1, taskId: 6}} children={<FlashAnzan/>}/>
-        <Route exact path={`${url}/:disciplineId/:taskId`} params={{disciplineId: 1, taskId: 17}} children={<SpecialAnzan/>}/>
-        <Route exact path={`${url}/:disciplineId/:taskId`} params={{disciplineId: 1, taskId: 18}} children={<Anzan/>}/>
-        <Route exact path={`${url}/:disciplineId/:taskId`} params={{disciplineId: 1, taskId: 21}} children={<MultiAnzan/>}/>
-        <Route exact path={`${url}/:disciplineId/:taskId`} params={{disciplineId: 1, taskId: 22}} children={<Progression/>}/>
-        <Route exact path={`${url}/:disciplineId/:taskId`} params={{disciplineId: 1, taskId: 23}} children={<Anzan/>}/>
-        <Route exact path={`${url}/:disciplineId/:taskId`} params={{disciplineId: 1, taskId: 24}} children={<CustomExercises/>}/>
-    </Switch>;
+const Mental: React.FC<MentalProps> = ({taskId}) => {
+    const selectTaskById = (id: number) => {
+        switch (id) {
+            case 1:
+                return <Anzan/>;
+            case 2:
+                return <Anzan/>;
+            case 3:
+                return <Anzan/>;
+            case 4:
+                return <Anzan/>;
+            case 18:
+                return <Anzan/>;
+            case 23:
+                return <Anzan/>;
+            case 6:
+                return <FlashAnzan/>;
+            case 17:
+                return <SpecialAnzan/>;
+            case 21:
+                return <MultiAnzan/>;
+            case 22:
+                return <Progression/>;
+            case 24:
+                return <CustomExercises/>;
+        }
+    };
+
+    return <>
+        {selectTaskById(Number(taskId))}
+    </>;
 };
 
 export default Mental;
