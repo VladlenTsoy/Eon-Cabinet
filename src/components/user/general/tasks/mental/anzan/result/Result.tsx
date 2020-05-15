@@ -9,11 +9,12 @@ const ResultBlock: React.FC = () => {
     const totals: any = useSelector(totalsSelect);
     const setting = useSelector(settingAnzan);
     const isMultiplication = setting.mode === 'divide' || setting.mode === 'multiply';
-
     return totals.map((total: any, key: number) =>
         setting.anzan === 'double' ?
-            <DoubleResult total={total} setting={setting} isMultiplication={isMultiplication} key={key} keyExercise={key}/> :
-            <BasicResult total={total} setting={setting} isMultiplication={isMultiplication} key={key} keyExercise={key}/>);
+            <DoubleResult total={total} setting={setting} isMultiplication={isMultiplication} key={key}
+                          keyExercise={key}/> :
+            <BasicResult total={total} setting={setting} isMultiplication={isMultiplication} key={key}
+                         keyExercise={key}/>);
 
 };
 

@@ -51,7 +51,7 @@ const BasicResult: React.FC<BasicResultProps> = ({total, isMultiplication, keyEx
                     {total.answer}
                 </div>
                 <div className={`user ${total.result ? 'success' : 'danger'}`}>
-                    {total.user || 'Пусто'}
+                    {String(total.user) || 'Пусто'}
                 </div>
                 {!isMultiplication ?
                     <div className="exercises">

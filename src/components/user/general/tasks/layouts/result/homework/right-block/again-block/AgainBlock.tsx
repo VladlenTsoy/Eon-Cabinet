@@ -8,12 +8,14 @@ import {
     gameChangeStatus
 } from "store/game/actions";
 import {useDispatch} from "react-redux";
+import {totalsChange} from "../../../../../../../../../store/tasks/totals/action";
 
 const AgainBlock = () => {
     const dispatch = useDispatch();
 
     const againHandler = () =>{
-        dispatch(gameChangeCurrentTimes(1));
+        dispatch(gameChangeCurrentTimes(0));
+        dispatch(totalsChange([]));
         dispatch(gameChangeStats({all: 0, success: 0}));
         dispatch(gameChangeExecutionMode('first'));
         dispatch(gameChangeStatus('start'));
