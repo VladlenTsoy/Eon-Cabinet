@@ -1,49 +1,39 @@
 import React from 'react';
 import {useSelector} from "react-redux";
-import styled from "styled-components";
-import {CardWrapper} from "../../../layouts/result/homework/_new/details/card/Card";
-import { TrophyOutlined } from '@ant-design/icons';
+import {TrophyOutlined} from '@ant-design/icons';
 import {useAddSpaceToString} from "../../../../../../../effects/use-add-space-to-string";
-
-const ResultWrapper = styled(CardWrapper)`
-  .card{
-    grid-template-columns: 50px 80px 1fr;
-    grid-template-rows: 1fr 1fr;
-    
-    .number{
-      grid-row-start: 1;
-      grid-row-end: 3;
-    }
-    
-    .trophy{
-      grid-row-start: 1;
-      grid-row-end: 3;
-    }
-  }
-`;
+import {totalsSelect} from "../../../../../../../store/tasks/totals/reducer";
+import ResultMoreLayout from "../../../layouts/result/result-more/ResultMore.layout";
 
 const ResultBlock = () => {
-    const {totals} = useSelector((state: any) => state.game);
+    const totals: any = useSelector(totalsSelect);
     const addSpaceToString = useAddSpaceToString();
 
-    return totals.map((total: any, key: number) =>
-        <ResultWrapper key={key}>
-            <div className="card">
-                <div className="number">
-                    #{key}
-                </div>
-                <div className={`trophy ${total.result ? 'success' : 'danger'}`}>
-                    <TrophyOutlined />
-                </div>
-                <div className="answer">
-                    {addSpaceToString(total.answer)}
-                </div>
-                <div className={`user ${total.result ? 'success' : 'danger'}`}>
-                    {addSpaceToString(total.user) || 'Пусто'}
-                </div>
-            </div>
-        </ResultWrapper>
-    );
+    return <ResultMoreLayout
+        header={
+            <tr>
+                <td className="number">#</td>
+                <td>Результат</td>
+                <td className="exercises">Задание</td>
+            </tr>
+        }>
+        {totals.map((total: any, key: number) =>
+            [
+                <tr key={key}>
+                    <td className="number" rowSpan={2}>
+                        {key + 1}
+                    </td>
+                    <td className={`trophy ${total.result ? 'warning' : 'second'}`} rowSpan={2}>
+                        <TrophyOutlined/>
+                    </td>
+                    <td className="exercises">{addSpaceToString(total.answer)}</td>
+                </tr>,
+                <tr key={key + '-two'}>
+                    <td className="exercises">{addSpaceToString(total.user) || 'Пусто'}</td>
+                </tr>
+            ]
+        )}
+    </ResultMoreLayout>
 };
 
 export default ResultBlock;

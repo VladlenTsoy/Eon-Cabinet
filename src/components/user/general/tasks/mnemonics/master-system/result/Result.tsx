@@ -1,43 +1,44 @@
 import React from 'react';
 import {useSelector} from "react-redux";
-import styled from "styled-components";
-import {CardWrapper} from "../../../layouts/result/homework/_new/details/card/Card";
-import { TrophyOutlined } from '@ant-design/icons';
-
-const ResultWrapper = styled(CardWrapper)`
-  .card{
-    grid-template-columns: 50px 1fr 1fr 1fr 1fr;
-    
-    .exercise-number{
-      font-size: 50px;
-    }
-  }
-`;
+import {TrophyOutlined} from '@ant-design/icons';
+import {totalsSelect} from "../../../../../../../store/tasks/totals/reducer";
+import ResultMoreLayout from "../../../layouts/result/result-more/ResultMore.layout";
 
 const ResultBlock = () => {
-    const {totals} = useSelector((state: any) => state.game);
+    const totals: any = useSelector(totalsSelect);
 
-    return totals.map((total: any, key: any) =>
-        <ResultWrapper key={key}>
-            <div className="card">
-                <div className="number">
-                    #{key}
-                </div>
-                <div className={`trophy ${total.result ? 'success' : 'danger'}`}>
-                    <TrophyOutlined />
-                </div>
-                <div className="exercise-number">
-                    {total.exercise.number}
-                </div>
-                <div className="answer">
-                    {total.exercise.word}
-                </div>
-                <div className={`user ${total.result ? 'success' : 'danger'}`}>
-                    {total.user || 'Пусто'}
-                </div>
-            </div>
-        </ResultWrapper>
-    );
+    return <ResultMoreLayout
+        header={
+            <tr>
+                <td className="number">#</td>
+                <td>Результат</td>
+                <td>Цифра</td>
+                <td>Правильный ответ</td>
+                <td>Ваш ответ</td>
+            </tr>
+        }
+        children={
+            totals.map((total: any, key: number) =>
+                <tr key={key}>
+                    <td className="number">
+                        {key + 1}
+                    </td>
+                    <td className={`trophy ${total.result ? 'warning' : 'second'}`}>
+                        <TrophyOutlined/>
+                    </td>
+                    <td>
+                        {total.exercise.number}
+                    </td>
+                    <td className="answer">
+                        {total.exercise.word}
+                    </td>
+                    <td className={`user ${total.result ? 'success' : 'danger'}`}>
+                        {total.user || 'Пусто'}
+                    </td>
+                </tr>
+            )
+        }
+    />;
 };
 
 export default ResultBlock;

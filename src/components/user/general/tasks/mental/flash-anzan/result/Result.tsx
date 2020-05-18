@@ -1,11 +1,11 @@
 import React from 'react';
+import ResultMoreLayout from "../../../layouts/result/result-more/ResultMore.layout";
 import {useSelector} from "react-redux";
 import {totalsSelect} from "../../../../../../../store/tasks/totals/reducer";
-import ResultMoreLayout from "../../../layouts/result/result-more/ResultMore.layout";
 import {TrophyOutlined} from '@ant-design/icons';
 
-const ResultBlock = () => {
-    const totals:any = useSelector(totalsSelect);
+const Result = () => {
+    const totals: any = useSelector(totalsSelect);
 
     return <ResultMoreLayout
         header={
@@ -14,6 +14,7 @@ const ResultBlock = () => {
                 <td>Результат</td>
                 <td>Правильный ответ</td>
                 <td>Ваш ответ</td>
+                <td className="exercises">Задание</td>
             </tr>
         }>
         {
@@ -31,10 +32,13 @@ const ResultBlock = () => {
                     <td className={`user ${total.result ? 'success' : 'danger'}`}>
                         {total.user !== undefined ? total.user : 'Пусто'}
                     </td>
+                    <td className="exercises">
+                        {total.exercise}
+                    </td>
                 </tr>
             )
         }
     </ResultMoreLayout>;
 };
 
-export default ResultBlock;
+export default Result;

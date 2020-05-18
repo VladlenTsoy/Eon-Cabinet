@@ -9,26 +9,26 @@ interface BasicResultProps {
 }
 
 const BasicResult: React.FC<BasicResultProps> = ({total, isMultiplication, keyExercise, setting}) => {
-    return <div>
-        <div className="number">
+    return <tr>
+        <td className="number">
             {keyExercise + 1}
-        </div>
-        <div className={`trophy ${total.result ? 'warning' : 'second'}`}>
+        </td>
+        <td className={`trophy ${total.result ? 'warning' : 'second'}`}>
             <TrophyOutlined/>
-        </div>
-        <div className="answer">
+        </td>
+        <td className="answer">
             {total.answer}
-        </div>
-        <div className={`user ${total.result ? 'success' : 'danger'}`}>
+        </td>
+        <td className={`user ${total.result ? 'success' : 'danger'}`}>
             {total.user !== undefined ? total.user : 'Пусто'}
-        </div>
-        <div className="exercises">
+        </td>
+        <td className="exercises">
             {isMultiplication ?
                 total.exercise[0] + (setting.mode === 'multiply' ? ' * ' : ' / ') + total.exercise[1] :
                 total.exercise.join(', ')
             }
-        </div>
-    </div>
+        </td>
+    </tr>
 };
 
 export default BasicResult;

@@ -2,39 +2,59 @@ import React from 'react';
 import {useSelector} from "react-redux";
 import {totalsSelect} from "../../../../../../../store/tasks/totals/reducer";
 import ResultMoreLayout from "../../../layouts/result/result-more/ResultMore.layout";
+import styled from "styled-components";
 import {TrophyOutlined} from '@ant-design/icons';
 
-const ResultBlock = () => {
-    const totals:any = useSelector(totalsSelect);
+const ImageStyle = styled.div`
+  width: 200px;
+  height: 130px;
+  overflow: hidden;
+  border-radius: 10px;
+  margin-bottom: .5rem;
+  box-shadow: 0 5px 10px 0 rgba(0,0,0,0.1);
+
+  img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }  
+`;
+
+const Result = () => {
+    const totals: any = useSelector(totalsSelect);
 
     return <ResultMoreLayout
         header={
             <tr>
                 <td className="number">#</td>
                 <td>Результат</td>
+                <td/>
                 <td>Правильный ответ</td>
                 <td>Ваш ответ</td>
             </tr>
-        }>
-        {
-            totals.map((total: any, keyExercise: number) =>
-                <tr key={keyExercise}>
+        }
+        children={
+            totals.map((total: any, key: number) =>
+                <tr key={key}>
                     <td className="number">
-                        {keyExercise + 1}
+                        {key + 1}
                     </td>
                     <td className={`trophy ${total.result ? 'warning' : 'second'}`}>
                         <TrophyOutlined/>
                     </td>
+                    <td>
+                        <ImageStyle>
+                            <img src={total.exercise.url_picture} alt={total.exercise.number}/>
+                        </ImageStyle>
+                    </td>
                     <td className="answer">
-                        {total.answer}
+                        {total.exercise.number}
                     </td>
                     <td className={`user ${total.result ? 'success' : 'danger'}`}>
-                        {total.user !== undefined ? total.user : 'Пусто'}
+                        {total.user?.number || 'Пусто'}
                     </td>
-                </tr>
-            )
-        }
-    </ResultMoreLayout>;
+                </tr>)}
+    />;
 };
 
-export default ResultBlock;
+export default Result;
