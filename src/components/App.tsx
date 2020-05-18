@@ -9,6 +9,7 @@ import {fetchCurrentLanguage} from "store/language/actions";
 import {Spin} from "layouts/components";
 import {ThemeProvider} from "styled-components";
 import {_theme, blackTheme, whiteTheme} from '../styles/_theme';
+import {GlobalStyle} from '../styles/global';
 import {Loader} from "lib";
 import ReactGA from 'react-ga';
 import "styles/themes/default.less";
@@ -49,6 +50,7 @@ const App: React.FC = () => {
 
     // Fetch language and current user data
     return <ThemeProvider theme={userTheme}>
+        <GlobalStyle/>
         <Router>
             {app.loading ?
                 <Loader text="Загрузка..."/> :
