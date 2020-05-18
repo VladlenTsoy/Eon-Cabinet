@@ -1,32 +1,5 @@
 import React from 'react';
-import styled from "styled-components";
 import {TrophyOutlined} from '@ant-design/icons';
-
-const BasicResultWrapper = styled.div`
-  .number {
-    color: ${props => props.theme.color_second};
-    font-size: 30px;
-  }
-  .trophy {
-    font-size: 30px;
-  }
-  
-  .answer, .user{
-    font-size: 30px;  
-  }
-
-  .exercises{
-    font-size: 30px;
-    white-space: nowrap;
-    overflow-x: auto;
-    overflow-y: hidden;
-    background: ${props => props.theme.color_border}33;
-  }
-  
-  .exercises-multiplication{
-    font-size: 50px;
-  }
-`;
 
 interface BasicResultProps {
     total: any;
@@ -36,30 +9,26 @@ interface BasicResultProps {
 }
 
 const BasicResult: React.FC<BasicResultProps> = ({total, isMultiplication, keyExercise, setting}) => {
-    return <BasicResultWrapper>
+    return <div>
         <div className="number">
             {keyExercise + 1}
         </div>
-        <div className={`trophy ${total.result ? 'warning' : 'danger'}`}>
+        <div className={`trophy ${total.result ? 'warning' : 'second'}`}>
             <TrophyOutlined/>
         </div>
-        {isMultiplication &&
-        <div className="exercises-multiplication">
-            {total.exercise[0]}{setting.mode === 'multiply' ? ' * ' : ' / '}{total.exercise[1]}
-        </div>
-        }
         <div className="answer">
             {total.answer}
         </div>
         <div className={`user ${total.result ? 'success' : 'danger'}`}>
-            {String(total.user) || 'Пусто'}
+            {total.user !== undefined ? total.user : 'Пусто'}
         </div>
-        {!isMultiplication &&
         <div className="exercises">
-            {total.exercise.join(', ')}
+            {isMultiplication ?
+                total.exercise[0] + (setting.mode === 'multiply' ? ' * ' : ' / ') + total.exercise[1] :
+                total.exercise.join(', ')
+            }
         </div>
-        }
-    </BasicResultWrapper>
+    </div>
 };
 
 export default BasicResult;
