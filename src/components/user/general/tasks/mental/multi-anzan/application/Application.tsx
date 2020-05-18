@@ -61,7 +61,7 @@ const Application: React.FC = () => {
 
     //
     const [loading] = useApiUserGeneral({
-        cancel: executionMode === 'repeat',
+        cancel: executionMode === 'repeat' && totals[currentTimes]?.exercise,
         url: '/algorithm/multi',
         config: {params: {setting}},
         initValue: [],
@@ -98,7 +98,7 @@ const Application: React.FC = () => {
             >
                 {data.map((exercise: any, key: number) =>
                     <MultiOutput
-                        isWait={!setting.group && setting.windows[key].times < currentTimes}
+                        isWait={!setting.group && setting.windows[key].times < currentTimes + 1}
                         key={key}
                         isGroup={setting.group}
                         keyTask={key}

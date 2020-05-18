@@ -1,9 +1,15 @@
 import React from 'react';
 import styled from "styled-components";
-import { ArrowRightOutlined, FlagOutlined, HistoryOutlined } from '@ant-design/icons';
-import { Button } from "antd";
-import {gameChangeExecutionMode, gameChangeStatus} from "../../../../../../../../store/game/actions";
+import {ArrowRightOutlined, FlagOutlined, HistoryOutlined} from '@ant-design/icons';
+import {Button} from "antd";
+import {
+    gameChangeCurrentTimes,
+    gameChangeExecutionMode,
+    gameChangeStatus
+} from "../../../../../../../../store/game/actions";
 import {useDispatch, useSelector} from "react-redux";
+import {game} from "../../../../../../../../store/game/reducer";
+import {settingAnzan} from "../../../../../../../../store/tasks/setting/reducer";
 
 const HeaderWrapper = styled.div`
   display: flex;
@@ -20,46 +26,52 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = () => {
-    const {game} = useSelector((state: any) => state);
-    const {setting, currentTimes} = game;
+    const {currentTimes} = useSelector(game);
+    const setting = useSelector(settingAnzan);
     const dispatch = useDispatch();
     const times = setting.windows.reduce((arr: number, val: any) => arr < val.times ? val.times : arr, 0);
 
-    const repeatExercise = () => dispatch(gameChangeExecutionMode('repeat'));
-    const nextExercise = () => dispatch(gameChangeStatus('start'));
+    const repeatExercise = () => {
+        dispatch(gameChangeExecutionMode('repeat'));
+        dispatch(gameChangeStatus('start'));
+    };
+
+    const nextExercise = () => {
+        dispatch(gameChangeStatus('start'));
+        dispatch(gameChangeCurrentTimes(currentTimes + 1));
+    };
+
     const completionTask = () => dispatch(gameChangeStatus('result'));
 
-    return (
-        <HeaderWrapper>
+    return <HeaderWrapper>
+        <Button
+            icon={<HistoryOutlined/>}
+            size="large"
+            onClick={repeatExercise}
+        >
+            Повторить текущие примеры
+        </Button>
+        {currentTimes + 1 >= times ?
             <Button
-                icon={<HistoryOutlined />}
+                type="primary"
                 size="large"
-                onClick={repeatExercise}
+                icon={<FlagOutlined/>}
+                autoFocus
+                onClick={completionTask}
             >
-                Повторить текущие примеры
+                Завершить
+            </Button> :
+            <Button
+                type="primary"
+                size="large"
+                autoFocus
+                onClick={nextExercise}
+            >
+                <ArrowRightOutlined/>
+                Следующее
             </Button>
-            {currentTimes >= times ?
-                <Button
-                    type="primary"
-                    size="large"
-                    icon={<FlagOutlined />}
-                    autoFocus
-                    onClick={completionTask}
-                >
-                    Завершить
-                </Button> :
-                <Button
-                    type="primary"
-                    size="large"
-                    autoFocus
-                    onClick={nextExercise}
-                >
-                    <ArrowRightOutlined />
-                    Следующее
-                </Button>
-            }
-        </HeaderWrapper>
-    );
+        }
+    </HeaderWrapper>;
 };
 
 export default Header;

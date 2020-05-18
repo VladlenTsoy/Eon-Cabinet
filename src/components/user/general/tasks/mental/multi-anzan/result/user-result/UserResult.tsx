@@ -6,6 +6,8 @@ import {Button, Typography} from "antd";
 import {Modal} from "../../../../../../../../layouts/components";
 import {LoadingBlock} from "lib";
 import MoreModal from "./more-modal/MoreModal";
+import {totalsSelect} from "../../../../../../../../store/tasks/totals/reducer";
+import {settingAnzan} from "../../../../../../../../store/tasks/setting/reducer";
 
 const WinSound = require("assets/sounds/win.mp3");
 const LossSound = require("assets/sounds/loss.mp3");
@@ -77,8 +79,8 @@ const UserResult: React.FC<UserResultProps> = (
     const [loading, setLoading] = useState(true);
     const [visibleModal, setVisibleModal] = useState(false);
     const [visibleMore, setVisibleMore] = useState(false);
-    const {game} = useSelector((state: any) => state);
-    const {setting, totals} = game;
+    const totals:any = useSelector(totalsSelect);
+    const setting = useSelector(settingAnzan);
 
     const checkResult = useCallback((result: any) => {
         if (setting.group)

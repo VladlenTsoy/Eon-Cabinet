@@ -8,6 +8,7 @@ import {settingAnzan} from "store/tasks/setting/reducer";
 import {game} from "store/game/reducer";
 import {useRouteMatch} from "react-router-dom";
 import {ResultMatchProps} from "../../result/homework/Result";
+import {totalsSelect} from "../../../../../../../store/tasks/totals/reducer";
 
 const ActionWrapper = styled.div`
   text-align: center;
@@ -54,16 +55,19 @@ const ActionWrapper = styled.div`
 `;
 
 interface ActionIntermediateProps {
+    checkResult: (totals: any) => boolean
 }
 
-const ActionIntermediate: React.FC<ActionIntermediateProps> = () => {
+const ActionIntermediate: React.FC<ActionIntermediateProps> = ({checkResult}) => {
     const {currentTimes, stats} = useSelector(game);
     const setting = useSelector(settingAnzan);
+    const totals: any = useSelector(totalsSelect);
     const match = useRouteMatch<ResultMatchProps>();
 
     const dispatch = useDispatch();
 
     const repeatExercise = () => {
+        checkResult(totals[currentTimes]) &&
         dispatch(gameChangeStats({success: stats.success - 1}));
         dispatch(gameChangeExecutionMode('repeat'));
         dispatch(gameChangeStatus('start'));
@@ -83,14 +87,14 @@ const ActionIntermediate: React.FC<ActionIntermediateProps> = () => {
         <div className="counts-block">
             <div className="passed-block">
                 <span className="title">Пройдено</span>
-                <span className="desc">{currentTimes+1}</span>
+                <span className="desc">{currentTimes + 1}</span>
             </div>
             <div className="left-block">
                 <span className="title">Всего</span>
                 <span className="desc">{setting.times}</span>
             </div>
         </div>
-        {currentTimes+1 >= setting.times ?
+        {currentTimes + 1 >= setting.times ?
             <Button type="primary" size="large" autoFocus icon={<FlagOutlined/>}
                     onClick={completionTask}>Завершить</Button> :
             <Button.Group size="large">

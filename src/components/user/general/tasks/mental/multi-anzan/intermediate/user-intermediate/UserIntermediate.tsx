@@ -2,6 +2,8 @@ import React from 'react';
 import {TrophyOutlined} from '@ant-design/icons';
 import styled from "styled-components";
 import {useSelector} from "react-redux";
+import {game} from "../../../../../../../../store/game/reducer";
+import {settingAnzan} from "../../../../../../../../store/tasks/setting/reducer";
 
 const WaitWrapper = styled.div`
   display: flex;
@@ -57,7 +59,8 @@ const UserIntermediate: React.FC<UserIntermediateProps> = (
         result,
     }
 ) => {
-    const {currentTimes, setting} = useSelector((state: any) => state.game);
+    const {currentTimes} = useSelector(game);
+    const setting = useSelector(settingAnzan);
     return isWait ?
         <WaitWrapper>
             Ожидание...
@@ -67,7 +70,7 @@ const UserIntermediate: React.FC<UserIntermediateProps> = (
             <div className="counts-block">
                 <div className="passed-block">
                     <span className="title">Пройдено</span>
-                    <span className="desc">{currentTimes}</span>
+                    <span className="desc">{currentTimes + 1}</span>
                 </div>
                 <div className="left-block">
                     <span className="title">Всего</span>

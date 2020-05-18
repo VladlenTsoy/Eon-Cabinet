@@ -65,7 +65,7 @@ const Intermediate: React.FC = ({children}) => {
             </Col>
             }
             <Col lg={{span: 7, order: 3}} xs={{span: 24, order: 3}}>
-                <ActionIntermediate/>
+                <ActionIntermediate checkResult={checkResult}/>
             </Col>
         </RowWrapper>
         <BgIconsDownIntermediateLayout/>

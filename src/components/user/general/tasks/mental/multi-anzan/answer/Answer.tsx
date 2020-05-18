@@ -79,7 +79,7 @@ const Answer: React.FC = () => {
                 {(setting.group ? totals : totals[currentTimes])
                     .exercise.map((exercise: any, key: number) =>
                         <AnswerInput
-                            isWait={!setting.group && setting.windows[key].times < currentTimes}
+                            isWait={!setting.group && setting.windows[key].times < currentTimes + 1}
                             isAnswersOpen={isAnswersOpen}
                             form={form}
                             taskKey={key}

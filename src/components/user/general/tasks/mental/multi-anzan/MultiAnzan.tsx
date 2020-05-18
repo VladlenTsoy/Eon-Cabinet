@@ -1,17 +1,22 @@
 import React from 'react';
 import Application from "./application/Application";
 import Answer from "./answer/Answer";
-import TaskLayout from "../../layouts/task/Task.layout";
-import IntermediateBlock from "../anzan/intermediate/Intermediate";
-import ResultBlock from "../anzan/result/Result";
+import Intermediate from "./intermediate/Intermediate";
+import Result from "./result/Result";
+import {useSelector} from "react-redux";
+import {game} from "../../../../../../store/game/reducer";
+
 
 const MultiAnzan: React.FC = () => {
-    return <TaskLayout
-        start={<Application/>}
-        answer={<Answer/>}
-        intermediate={<IntermediateBlock/>}
-        result={<ResultBlock/>}
-    />;
+    const {status} = useSelector(game);
+
+    return <>
+        {status === 'start' && <Application/>}
+        {/*// TODO - возможен пустой экран*/}
+        {status === 'answer' && <Answer/>}
+        {status === 'intermediate' && <Intermediate/>}
+        {status === 'result' && <Result/>}
+    </>;
 };
 
 export default MultiAnzan;

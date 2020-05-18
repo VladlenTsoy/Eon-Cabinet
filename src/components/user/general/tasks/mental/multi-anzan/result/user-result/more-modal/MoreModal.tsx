@@ -1,14 +1,16 @@
 import React from 'react';
 import {useSelector} from "react-redux";
 import MoreBasic from "./more-basic/MoreBasic";
+import {totalsSelect} from "../../../../../../../../../store/tasks/totals/reducer";
+import {settingAnzan} from "../../../../../../../../../store/tasks/setting/reducer";
 
 interface MoreModalProps {
     taskKey: number;
 }
 
 const MoreModal: React.FC<MoreModalProps> = ({taskKey}) => {
-    const {game} = useSelector((state: any) => state);
-    const {setting, totals} = game;
+    const totals:any = useSelector(totalsSelect);
+    const setting = useSelector(settingAnzan);
 
     return setting.group ?
         totals.user[taskKey].map((val: any, key: number) =>
