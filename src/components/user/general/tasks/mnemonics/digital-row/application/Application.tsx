@@ -28,6 +28,10 @@ const Application: React.FC = () => {
         return totals;
     }, [setting, totals]);
 
+    const updateStats = useCallback(() => {
+        return {all: setting.count};
+    }, [setting]);
+
     const createOutputs = useCallback((totals, currentTimes) => {
         return addSpaceToString(totals[currentTimes].exercise)
     }, [addSpaceToString]);
@@ -36,6 +40,7 @@ const Application: React.FC = () => {
         displayType="custom"
         createOutputs={createOutputs}
         timer
+        updateStats={updateStats}
         setting={setting}
         updateAnswersTotals={updateAnswersTotals}
         CustomDisplay={Custom}
