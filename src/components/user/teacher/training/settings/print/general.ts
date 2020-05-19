@@ -17,7 +17,7 @@ const configTable = (startY: any) => ({
     startY: startY,
     pageBreak: 'auto',
     margin: {horizontal: 10, top: 10, bottom: 10},
-    headerStyles: {fillColor: [0, 188, 212], textColor: [255, 255, 255]},
+    headStyles: {fillColor: [0, 188, 212], textColor: [255, 255, 255]},
     styles: {
         font: 'museo',
         fontStyle: "normal",
@@ -283,9 +283,8 @@ export const renderTableTwo = ({doc, rows, settings,
                             0: {
                                 fillColor: [0, 188, 212],
                                 textColor: [255, 255, 255],
-                                fontStyle: 'bold',
-                                columnWidth: 10,
-                                lineWidth: 0
+                                cellWidth: 10,
+                                lineWidth: 0,
                             }
                         }
                     });
