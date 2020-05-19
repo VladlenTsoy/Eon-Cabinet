@@ -13,12 +13,12 @@ const Basic: React.FC = () => {
         return <>
             {
                 Object.keys(totals).map((times: any) =>
-                    <FormInputAnswerLayout index={times} autoFocus={1} group={times} key={times}/>
+                    <FormInputAnswerLayout type="number" index={times} autoFocus={1} group={times} key={times}/>
                 )
             }
         </>;
 
-    return <FormInputAnswerLayout index={1} autoFocus={1}/>;
+    return <FormInputAnswerLayout type="number" index={1} autoFocus={1}/>;
 };
 
 export default Basic;
