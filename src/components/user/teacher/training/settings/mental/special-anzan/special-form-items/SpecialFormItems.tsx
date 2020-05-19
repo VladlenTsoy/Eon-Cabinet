@@ -44,7 +44,7 @@ const SpecialFormItems: React.FC<SpecialFormItemsProps> = () => {
                 name="count"
                 label="Количество цифр"
                 requiredMsg="Введите количество цифр!">
-                <Stepper min={1} max={10}/>
+                <Stepper min={1} max={99}/>
             </FormItem>
         </Col>
         <Col span={8}>
@@ -52,7 +52,7 @@ const SpecialFormItems: React.FC<SpecialFormItemsProps> = () => {
                 name="times"
                 label="Количество раз"
                 requiredMsg="Введите количество раз!">
-                <Stepper min={1} max={10}/>
+                <Stepper min={1} max={99}/>
             </FormItem>
         </Col>
         <Col span={8}>
