@@ -24,8 +24,8 @@ const Application: React.FC = () => {
     }, [totals, setting]);
 
     const updateStats = useCallback(() => {
-        return {all: setting.count};
-    }, [setting]);
+        return {all: 1};
+    }, []);
 
     const createOutputs = useCallback((totals, currentTimes) => {
         return updateExercises(totals[currentTimes].exercise);
