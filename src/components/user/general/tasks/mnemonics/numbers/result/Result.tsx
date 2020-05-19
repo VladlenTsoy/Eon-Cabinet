@@ -29,7 +29,7 @@ const ResultBlock = () => {
                         {total.answer}
                     </td>
                     <td className={`user ${total.result ? 'success' : 'danger'}`}>
-                        {total.user !== undefined ? total.user : 'Пусто'}
+                        {total.user !== undefined && total.user || 'Пусто'}
                     </td>
                 </tr>
             )
