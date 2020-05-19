@@ -31,7 +31,7 @@ const Answer: React.FC = () => {
         <AnswerLayout cols={{xl: 10, md: 12, xs: 24}} checkHandler={checkHandler}>
             {
                 totals.map((total: any, key: number) =>
-                    <FormInputAnswerLayout group={key + 1} index={key} autoFocus={0} key={key}/>
+                    <FormInputAnswerLayout type="number" group={key + 1} index={key} autoFocus={0} key={key}/>
                 )
             }
         </AnswerLayout>

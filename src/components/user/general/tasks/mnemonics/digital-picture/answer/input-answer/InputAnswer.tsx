@@ -53,7 +53,8 @@ const InputAnswer: React.FC<InputAnswerProps> = ({total, totalKey}) => {
                 name={['answer', totalKey, 'number']}
                 marginBottom="0"
             >
-                <InputNumber style={{width: '100%'}} autoFocus={totalKey === 0} size="large" placeholder="Число"/>
+                <InputNumber type="number" style={{width: '100%'}} autoFocus={totalKey === 0} size="large"
+                             placeholder="Ответ"/>
             </FormItem>
         </div>
     </InputWrapper>;
