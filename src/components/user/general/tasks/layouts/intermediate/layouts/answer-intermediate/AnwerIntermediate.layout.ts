@@ -14,9 +14,14 @@ const AnswerIntermediateLayout = styled.div`
       color: ${props => props.theme.color_success};
       font-weight: bolder;
       
-      &.danger{
+      &.danger {
         color: ${props => props.theme.color_danger};
       }
+    }
+    
+    .double {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
     }
     
     @media (max-width: 576px) {
