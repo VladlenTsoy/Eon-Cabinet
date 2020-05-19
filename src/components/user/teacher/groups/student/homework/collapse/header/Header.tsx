@@ -1,6 +1,6 @@
 import React from "react";
-import { CheckCircleOutlined, ClockCircleOutlined, CloseCircleOutlined } from '@ant-design/icons';
-import { Typography } from "antd";
+import {CheckCircleOutlined, ClockCircleOutlined, CloseCircleOutlined} from '@ant-design/icons';
+import {Typography} from "antd";
 import styled from "styled-components";
 import moment from "moment";
 
@@ -50,27 +50,38 @@ interface HeaderCollapseHomeworkProps {
 }
 
 const Header: React.FC<HeaderCollapseHomeworkProps> = ({task}) => {
-    return (
-      <HeaderWrapper>
-          <div className="lead-time-title">
-              {
-                  !task.first ?
-                      <ClockCircleOutlined className="warning" /> :
-                      task.first.exodus ?
-                          <CheckCircleOutlined className="success" /> :
-                          <CloseCircleOutlined className="danger" />
-              }
-              {task.first ? moment(task.first.created_at).format('HH:mm DD/MM/YY') : 'Не выполнил'}
-          </div>
-          <div className="title">
-              {task.task_name}
-          </div>
-          <div>
-              <Text type="secondary">Всего:</Text> {task.count_all}
-              <Text type="secondary"> \ Выполнено:</Text> {task.first ? task.first.count_success : 0}
-          </div>
-      </HeaderWrapper>
-    );
+    const updateName = (_task: any) => {
+        switch (Number(_task.task_id)) {
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 23:
+            case 24:
+                return _task.task_name + ` (${_task.settings.anzan === 'double' ? 'Двойной' : _task.settings.anzan === 'turbo' ? 'Турбо' : _task.settings.anzan === 'list' ? 'Листы' : 'Обычный'})`;
+        }
+        return _task.task_name;
+    };
+
+    return <HeaderWrapper>
+        <div className="lead-time-title">
+            {
+                !task.first ?
+                    <ClockCircleOutlined className="warning"/> :
+                    task.first.exodus ?
+                        <CheckCircleOutlined className="success"/> :
+                        <CloseCircleOutlined className="danger"/>
+            }
+            {task.first ? moment(task.first.created_at).format('HH:mm DD/MM/YY') : 'Не выполнил'}
+        </div>
+        <div className="title">
+            {updateName(task)}
+        </div>
+        <div>
+            <Text type="secondary">Всего:</Text> {task.count_all}
+            <Text type="secondary"> \ Выполнено:</Text> {task.first ? task.first.count_success : 0}
+        </div>
+    </HeaderWrapper>
 };
 
 export default Header;

@@ -30,7 +30,7 @@ const DoubleResult: React.FC<DoubleResultProps> = ({total, isMultiplication, key
                 {total[0].answer}
             </td>
             <td className={`user ${total[0].result ? 'success' : 'danger'}`}>
-                {total[0].user !== undefined ? total.user : 'Пусто'}
+                {total[0].user !== undefined ? total[0].user : 'Пусто'}
             </td>
             <td className="exercises">
                 {isMultiplication ?
@@ -45,7 +45,7 @@ const DoubleResult: React.FC<DoubleResultProps> = ({total, isMultiplication, key
                 {total[1].answer}
             </td>
             <td className={`user ${total[1].result ? 'success' : 'danger'}`}>
-                {total[1].user !== undefined ? total.user : 'Пусто'}
+                {total[1].user !== undefined ? total[1].user : 'Пусто'}
             </td>
             <td className="exercises">
                 {isMultiplication ?
