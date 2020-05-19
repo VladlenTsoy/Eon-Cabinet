@@ -20,7 +20,7 @@ const List: React.FC = () => {
                 label="Столбцов"
                 requiredMsg="Введите кол-во столбцов!"
             >
-                <Stepper min={10} max={10}/>
+                <Stepper min={2} max={10}/>
             </FormItem>
         </Col>
         <Col sm={6} xs={12}>
@@ -29,7 +29,7 @@ const List: React.FC = () => {
                 label="Строк"
                 requiredMsg="Введите кол-во строк!"
             >
-                <Stepper min={4} max={20}/>
+                <Stepper min={2} max={20}/>
             </FormItem>
         </Col>
         <Col sm={6} xs={12}>
