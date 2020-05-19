@@ -62,7 +62,11 @@ const CounterWrapper = styled.div`
   line-height: 1;
     
   input{
-    display: none;
+    //display: none;
+    border: 0;
+    width: 100%;
+    text-align: center;
+    outline: none;
   }
 `;
 
@@ -81,21 +85,25 @@ const Stepper: React.FC<StepperProps> = (
         onChange,
         value = 0,
         step = 1,
-        min,
-        max,
+        min = -Infinity,
+        max = Infinity,
     }
 ) => {
     const up = (val: number) => step < 1 ? Math.round((val) * 10) / 10 : Math.round(val);
     const plusHandler = () => onChange ? onChange(up(value + step)) : null;
     const minusHandler = () => onChange ? onChange(up(value - step)) : null;
+    const onChangeHandler = (e: any) => {
+        const _value = e.currentTarget.value;
+        const value = _value > max ? max : _value < min ? min : _value;
+        return onChange ? onChange(up(value)) : null;
+    };
 
     return <StepperWrapper>
         <ButtonWrapper type="button" onClick={minusHandler} disabled={min && value <= min}>
             <MinusOutlined/>
         </ButtonWrapper>
         <CounterWrapper>
-            {value}
-            <input type="number" id={id || undefined}/>
+            <input type="number" id={id || undefined} value={value} onChange={onChangeHandler}/>
         </CounterWrapper>
         <ButtonWrapper type="button" onClick={plusHandler} disabled={max && value >= max}>
             <PlusOutlined/>
