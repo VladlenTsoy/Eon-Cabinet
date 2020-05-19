@@ -7,7 +7,6 @@ import {TrophyOutlined} from '@ant-design/icons';
 const ResultBlock = () => {
     const totals: any = useSelector(totalsSelect);
 
-    console.log(totals);
     return <ResultMoreLayout
         header={
             <tr>
