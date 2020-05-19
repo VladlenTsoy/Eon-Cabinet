@@ -5,8 +5,9 @@ import ResultMoreLayout from "../../../layouts/result/result-more/ResultMore.lay
 import {TrophyOutlined} from '@ant-design/icons';
 
 const ResultBlock = () => {
-    const totals:any = useSelector(totalsSelect);
+    const totals: any = useSelector(totalsSelect);
 
+    console.log(totals);
     return <ResultMoreLayout
         header={
             <tr>
@@ -29,7 +30,7 @@ const ResultBlock = () => {
                         {total.answer}
                     </td>
                     <td className={`user ${total.result ? 'success' : 'danger'}`}>
-                        {total.user !== undefined && total.user || 'Пусто'}
+                        {!isNaN(total.user) ? total.user : 'Пусто'}
                     </td>
                 </tr>
             )
