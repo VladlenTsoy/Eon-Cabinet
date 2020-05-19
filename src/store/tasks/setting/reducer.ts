@@ -7,10 +7,7 @@ export const gameSettingReducer: SettingReducerTypes = (
     state = null, action
 ) => {
     if (action.type === SETTING_CHANGE) {
-        return {
-            ...state,
-            ...action.payload
-        };
+        return action.payload;
     }
     return state;
 };
