@@ -29,6 +29,7 @@ const TasksRoutes: React.FC<TasksProps> = ({urlBack, urlRoute}) => {
 
     // Button cancel
     useEffect(() => {
+        speechSynthesis.getVoices();
         return () => {
             dispatch(settingChange(null));
             dispatch(gameChangeStatus('start'));
