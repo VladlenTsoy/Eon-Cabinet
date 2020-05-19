@@ -1,12 +1,12 @@
 import React from 'react';
-import ResultMoreLayout from "../../../layouts/result/result-more/ResultMore.layout";
-import {useSelector} from "react-redux";
-import {totalsSelect} from "../../../../../../../store/tasks/totals/reducer";
+import ResultMoreLayout from "../../../../../../../../../general/tasks/layouts/result/result-more/ResultMore.layout";
 import {TrophyOutlined} from '@ant-design/icons';
 
-const Result = () => {
-    const totals: any = useSelector(totalsSelect);
+interface FlashAnzanProps {
+    totals: any;
+}
 
+const FlashAnzan:React.FC<FlashAnzanProps> = ({totals}) => {
     return <ResultMoreLayout
         header={
             <tr>
@@ -41,4 +41,4 @@ const Result = () => {
     </ResultMoreLayout>;
 };
 
-export default Result;
+export default FlashAnzan;

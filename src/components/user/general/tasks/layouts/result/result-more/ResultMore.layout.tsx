@@ -24,13 +24,13 @@ const ContainerStyle = styled.table`
       padding: 0.5rem 1.5rem;
     }
     
-    > td:not(.number):not(.exercises){
+    > td:not(.number):not(.exercises), > th:not(.number):not(.exercises){
       text-align: center;
       justify-content: center;
     }
   }
   
-  .header tr td {
+  .header tr th {
     color: ${props => props.theme.color_second};
     font-size: 16px;
   }
@@ -55,7 +55,7 @@ const ContainerStyle = styled.table`
       }
     }
     
-    .header tr td{
+    .header tr th{
       font-size: 12px;
     }
   }

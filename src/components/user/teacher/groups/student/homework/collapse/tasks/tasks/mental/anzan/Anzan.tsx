@@ -8,7 +8,7 @@ interface AdditionProps {
 }
 
 const Anzan: React.FC<AdditionProps> = ({totals, setting}) => {
-    return setting.anzan === 'double' ?
+    return setting?.anzan && setting.anzan === 'double' ?
         <Double totals={totals} setting={setting}/> :
         <Basic totals={totals} setting={setting}/>
 };

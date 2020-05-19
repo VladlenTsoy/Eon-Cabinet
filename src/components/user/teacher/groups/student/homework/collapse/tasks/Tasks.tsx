@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Col, Row} from "antd";
 import styled from "styled-components";
-import Anzan from "./tasks/mental/Anzan";
+import Anzan from "./tasks/mental/anzan/Anzan";
 import Words from "./tasks/mnemonic/Words";
 import LeftBlock from "./left-block/LeftBlock";
 import DigitalRow from "./tasks/mnemonic/DigitalRow";
@@ -10,6 +10,7 @@ import Personalities from "./tasks/mnemonic/Personalities";
 import DigitalPicture from "./tasks/mnemonic/DigitalPicture";
 import Numbers from "./tasks/mnemonic/Numbers";
 import MasterySystem from "./tasks/mnemonic/MasterySystem";
+import FlashAnzan from "./tasks/mental/flash-anzan/FlashAnzan";
 
 const RowHomeworkTasksWrapper = styled(Row)`
   .totals-wrapper{
@@ -21,6 +22,7 @@ const RowHomeworkTasksWrapper = styled(Row)`
       white-space: nowrap;
 
       th{
+        font-size: 14px;
         border-bottom: 1px solid ${props => props.theme.color_border};
         padding: 0.5rem;
         color: ${props => props.theme.color_second}
@@ -69,7 +71,12 @@ const Tasks: React.FC<TasksProps> = ({task}) => {
             case 4:
             case 23:
             case 24:
+            case 17:
+            case 22:
                 return <Anzan totals={task[state].totals} setting={task.settings}/>;
+            case 6:
+                return <FlashAnzan totals={task[state].totals}/>;
+
             case 7:
             case 15:
                 return <Words totals={task[state].totals}/>;
