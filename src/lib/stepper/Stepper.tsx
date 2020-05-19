@@ -20,6 +20,7 @@ const ButtonWrapper: any = styled.button<any>`
   cursor: pointer;
   border: 2px solid ${props => props.theme['@component-background']};
   transition: all 0.2s ease-in-out;
+  z-index: 5;
 
   :focus{
     outline: none;
