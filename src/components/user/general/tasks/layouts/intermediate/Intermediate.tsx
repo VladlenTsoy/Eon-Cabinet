@@ -41,7 +41,7 @@ const Intermediate: React.FC = ({children}) => {
     const checkResult = useCallback((total: any) => {
         if (total) {
             if (setting.anzan === 'double')
-                return total[0].result === total[1].result;
+                return total[0].result && total[1].result;
             else if (total?.result)
                 return total.result;
         }
