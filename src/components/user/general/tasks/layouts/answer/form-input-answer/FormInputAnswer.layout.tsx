@@ -1,6 +1,6 @@
 import React from 'react';
 import '@ant-design/compatible/assets/index.css';
-import {Input} from "antd";
+import {Input, InputNumber} from "antd";
 import {Typography} from "antd";
 import styled from "styled-components";
 import {FormItem} from "layouts/components";
@@ -15,6 +15,15 @@ const AnswerInputWrapper = styled.div`
 
 const InputWrapper = styled(Input)`
     text-align: center;
+`;
+
+const InputNumberWrapper = styled(InputNumber)`
+    text-align: center;
+    width: 100%;
+    
+    input{
+      text-align: center;
+    }
 `;
 
 interface FormInputAnswer {
@@ -53,13 +62,21 @@ const FormInputAnswerLayout: React.FC<FormInputAnswer> = (
             name={group !== undefined ? [name, index] : name}
             requiredMsg={group !== undefined ? `Введите ответ №${group}!` : 'Введите ответ!'}
         >
-            <InputWrapper
-                type={type}
-                size="large"
-                placeholder="Ответ"
-                autoFocus={index === autoFocus}
-                autoComplete="off"
-            />
+            {type === 'number' ?
+                <InputNumberWrapper
+                    type={type}
+                    size="large"
+                    placeholder="Ответ"
+                    autoFocus={index === autoFocus}
+                    autoComplete="off"
+                /> :
+                <InputWrapper
+                    type={type}
+                    size="large"
+                    placeholder="Ответ"
+                    autoFocus={index === autoFocus}
+                    autoComplete="off"
+                />}
         </FormItem>
     </AnswerInputWrapper>;
 };
