@@ -23,27 +23,32 @@ export const useSoundEffect: UseSoundEffectTypes = (
             basicSound.playbackRate = 1;
             basicSound.play().then();
         } else if (type === 'ru' || type === 'en') {
-            if (window.speechSynthesis.getVoices().length !== 0) {
-                let msg = new SpeechSynthesisUtterance(output);
-                if (window.speechSynthesis.getVoices()[0].name.includes('Microsoft')) {
-                    let speed = output.length === 3 ? 8 : 4;
-                    msg.rate = time <= 1 ? speed / time : 3;
-                } else {
-                    let speed = output.length === 3 ? 3.5 : 2.5;
-                    msg.rate = time <= 1 ? speed / time : 1.5;
-                }
-                msg.lang = type === "ru" ? 'ru-RU' : 'en-US';
+            if (typeof output !== 'string' && typeof output !== 'number') return;
 
-                if (window.speechSynthesis.pending)
-                    window.speechSynthesis.cancel();
+            const urlAudio = require(`assets/sounds/numbers/${type}/${output}.mp3`);
+            const sound = new Audio(urlAudio);
+            sound.currentTime = type === 'en' ? 0.125 : 0.085;
+            let playbackRate = 1.5;
 
-                window.speechSynthesis.speak(msg);
-            }
+            const length = String(output).replace(/^\D+/g, '').length;
+            if (length === 1)
+                playbackRate = 0.3 < time && time < 0.6 ? 2 : 0.5 < time && time < 1 ? 1.8 : 1.5;
+
+            else if (length === 2)
+                playbackRate = 0.5 < time && time < 0.8 ? 2 : 0.7 < time && time < 1 ? 1.8 : 1.5;
+
+            else if (length === 3)
+                playbackRate = 0.8 < time && time < 1 ? 2 : 0.9 < time && time < 1.5 ? 1.8 : 1.5;
+
+            sound.playbackRate = playbackRate + (type === 'en' ? 0.2 : 0);
+
+            if (length <= 3)
+                sound.play().then();
         }
     }, [basicSound]);
 
     useEffect(() => {
-        if (window.speechSynthesis.getVoices().length === 0)
+        if (typeof window.Audio === "undefined")
             message.error("Произошла ошибка! Звук в данном браузере не доступен.")
     }, []);
 

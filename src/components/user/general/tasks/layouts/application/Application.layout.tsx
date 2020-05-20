@@ -81,7 +81,6 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
     // После завершения примеров
     const afterRequest = useCallback(async (data: any) => {
         if (pictures) await picturesLoad(data);
-        if (setting.sound) await soundsLoad();
 
         let _totals = updateAnswersTotals ?
             updateAnswersTotals(data, currentTimes) :
@@ -91,6 +90,8 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
         let outputsTotals = createOutputs ?
             createOutputs(_totals, currentTimes) :
             Object.values(_totals).map((total: any) => total.exercise);
+
+        if (setting.sound) await soundsLoad(outputsTotals);
         setOutputs(outputsTotals);
 
         checkAndUpdateStats(_totals);
