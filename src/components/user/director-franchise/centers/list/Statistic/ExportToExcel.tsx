@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {NavigationButton} from "../../../../../../layouts/components";
 import {useSelector} from "react-redux";
+import {SaveOutlined} from "@ant-design/icons";
 
 const ExportToExcel: React.FC = () => {
     const {api} = useSelector((state: any) => (state));
@@ -13,7 +14,7 @@ const ExportToExcel: React.FC = () => {
         setLoading(false);
     };
 
-    return <NavigationButton type="primary" onClick={saveStatistic} icon="save" loading={loading}>
+    return <NavigationButton type="primary" onClick={saveStatistic} icon={<SaveOutlined/>} loading={loading}>
         Сохранить в Excel
     </NavigationButton>
 };

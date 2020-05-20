@@ -6,7 +6,8 @@ import {Col, Input, message, Button, Row, Form} from "antd";
 
 const {TextArea} = Input;
 
-const FranchiseSettingFormData: React.FC<any> = ({form, franchise, update}) => {
+const FranchiseSettingFormData: React.FC<any> = ({franchise, update}) => {
+    const [form] = Form.useForm();
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -31,7 +32,7 @@ const FranchiseSettingFormData: React.FC<any> = ({form, franchise, update}) => {
     return (
         <Card>
             <Card.Title level={3} title="Информация"/>
-            <Form onFinish={handleSubmit}>
+            <Form form={form} onFinish={handleSubmit} layout="vertical">
                 <Row gutter={15} align="middle">
                     <Col xl={12}>
                         <Upload form={form} name="image" label="Лого"/>
