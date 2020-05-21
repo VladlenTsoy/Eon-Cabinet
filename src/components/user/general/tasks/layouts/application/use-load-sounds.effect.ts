@@ -1,12 +1,36 @@
 import {useCallback, useState} from "react";
 
 const BasicSound = require('assets/sounds/anzan.ogg');
+const EnReade = require('assets/sounds/preparation/en/reade.mp3');
+const EnSet = require('assets/sounds/preparation/en/set.mp3');
+const EnGo = require('assets/sounds/preparation/en/go.mp3');
+const RuReade = require('assets/sounds/preparation/ru/reade.mp3');
+const RuSet = require('assets/sounds/preparation/ru/set.mp3');
+const RuGo = require('assets/sounds/preparation/ru/go.mp3');
+
+const preparationEnObj = {
+    reade: new Audio(EnReade),
+    set: new Audio(EnSet),
+    go: new Audio(EnGo),
+};
+
+const preparationRuObj = {
+    reade: new Audio(RuReade),
+    set: new Audio(RuSet),
+    go: new Audio(RuGo),
+};
+
+export interface PreparationSoundProps {
+    reade: HTMLAudioElement;
+    set: HTMLAudioElement;
+    go: HTMLAudioElement;
+}
 
 interface Props {
     setting: any;
 }
 
-type ReturnType = [(numbers: number[]) => Promise<any>, HTMLAudioElement];
+type ReturnType = [(numbers: number[]) => Promise<any>, HTMLAudioElement, PreparationSoundProps];
 
 type LoadSoundTypes = (props: Props) => ReturnType;
 
@@ -21,28 +45,29 @@ export const useLoadSoundsEffect: LoadSoundTypes = ({setting}) => {
     }, [setting]);
 
     const soundsLoad = useCallback(async (numbers) => {
-        if (setting.sound === 'basic')
+        if (setting.sound === 'basic') {
             return await new Promise((resolve) => {
                 if (basicSound.readyState < 2)
                     basicSound.oncanplaythrough = () => resolve(true);
                 else
                     resolve(true);
             });
-
-        if (setting.sound === 'ru' || setting.sound === 'en') {
+        } else if (setting.sound === 'ru' || setting.sound === 'en') {
             let i = 0;
+            const preparation = Object.values(setting.sound === 'ru' ? preparationRuObj : preparationEnObj);
             const sounds = createAudios(numbers);
             return await new Promise((resolve: any) => {
-                sounds.map((value: HTMLAudioElement) => {
-                    value.oncanplaythrough = () => {
-                        i++;
-                        sounds.length <= i && resolve(true);
-                    };
-                    return value;
-                })
+                sounds.concat(preparation)
+                    .map((value: HTMLAudioElement) => {
+                        value.oncanplaythrough = () => {
+                            i++;
+                            sounds.length <= i && resolve(true);
+                        };
+                        return value;
+                    })
             })
         }
     }, [setting, basicSound, createAudios]);
 
-    return [soundsLoad, basicSound];
+    return [soundsLoad, basicSound, (setting.sound === 'ru' ? preparationRuObj : preparationEnObj)];
 };

@@ -71,7 +71,7 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
     const [picturesLoad] = useLoadPicturesEffect({pictures});
 
     // Загрузка звуков
-    const [soundsLoad, basicSound] = useLoadSoundsEffect({setting});
+    const [soundsLoad, basicSound, preparationSound] = useLoadSoundsEffect({setting});
 
     const checkAndUpdateStats = useCallback((_totals) => {
         let stats = updateStats ? updateStats() : {all: Object.values(_totals).length};
@@ -155,7 +155,7 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
     if (loading)
         return <LoadingBlock title="Настройка упражнения..."/>;
 
-    return <PreparationLayout>
+    return <PreparationLayout sounds={preparationSound} basicSound={basicSound} setting={setting}>
         <ApplicationCardLayout>
             {timer && <Timer time={setting.time} afterMessage={afterTimerMessage}/>}
             {/* Обычний режим с числами*/}

@@ -4,6 +4,8 @@ import {Card} from "lib";
 import {useAddTimeout} from "../../../../../../../effects/use-add-timeout.effect";
 import TextFit
     from "../../../../../teacher/training/settings/mental/multi-anzan/exercise-setting/multiplication-block/TextFit";
+import {PreparationSoundProps} from "../use-load-sounds.effect";
+import {SettingAnzanProps} from "../../../../../../../store/tasks/setting/games-types/anzan.types";
 
 const PreparationWrapper = styled(Card)`
   &.ant-card{
@@ -44,21 +46,47 @@ const OutputWrapper = styled.div`
   }
 `;
 
-const PreparationLayout: React.FC = ({children}) => {
+interface PreparationProps {
+    setting?: SettingAnzanProps;
+    sounds?: PreparationSoundProps;
+    basicSound?: HTMLAudioElement;
+}
+
+const PreparationLayout: React.FC<PreparationProps> = (
+    {
+        children,
+        setting,
+        sounds,
+        basicSound
+    }
+) => {
     const [startApplication, setStartApplication] = useState(false);
     const [output, setOutput] = useState('На старт');
 
     const [addTimeout] = useAddTimeout();
 
+    const updateOutput = useCallback((output: string) => {
+        if (setting) {
+            if (sounds && (setting.sound === 'ru' || setting.sound === 'en')) {
+                const sound = sounds[output === 'Внимание' ? 'set' : output === 'Марш' ? 'go' : 'reade'];
+                sound.playbackRate = 1.5;
+                sound.play().then()
+            } else if (basicSound && setting.sound === 'basic') {
+                basicSound.play().then();
+            }
+        }
+        setOutput(output);
+    }, [sounds]);
+
     // Start Application
     const startPreparation = useCallback(() => {
-        setOutput('На старт');
+        updateOutput('На старт');
         addTimeout([
-            setTimeout(() => setOutput('Внимание'), 1000),
-            setTimeout(() => setOutput('Марш'), 2000),
+            setTimeout(() => updateOutput('Внимание'), 1000),
+            setTimeout(() => updateOutput('Марш'), 2000),
             setTimeout(() => setStartApplication(true), 3000),
         ]);
-    }, [addTimeout]);
+    }, [addTimeout, updateOutput]);
 
     useEffect(() => {
         startPreparation();
