@@ -52,7 +52,7 @@ export const appChangeActiveDisciplineId = (action: string | undefined) =>
 
 interface ActionForSendingProps {
     studentsId?: any[],
-    groupId?: any,
+    group?: any,
     isSaved?: boolean,
 }
 

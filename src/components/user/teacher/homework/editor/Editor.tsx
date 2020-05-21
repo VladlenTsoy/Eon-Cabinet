@@ -18,7 +18,11 @@ interface EditorHomeworkProps {
 
 const EditorHomework: React.FC<EditorHomeworkProps> = ({match}) => {
     const {app} = useSelector((state: any) => state);
-    const [disabledDiscipline, setDisabledDiscipline] = useState(0);
+    //
+    const {dataForSending} = app;
+    const groupMethodId = dataForSending.isSaved && dataForSending.group?.method_id;
+    //
+    const [disabledDiscipline, setDisabledDiscipline] = useState(groupMethodId || 0);
     const [exercises, setExercises]: any = useState([]);
     const dispatch = useDispatch();
     const [loading, homework] = useApiUserGeneral({
@@ -34,10 +38,13 @@ const EditorHomework: React.FC<EditorHomeworkProps> = ({match}) => {
     };
 
     useEffect(() => {
-        setDisabledDiscipline(exercises.length ?
-            Number((homework ? homework.method_id : app.activeDisciplineId) || 1) : 0
+        setDisabledDiscipline(
+            exercises.length ?
+                Number((
+                    homework ? homework.method_id : app.activeDisciplineId
+                ) || 1) : groupMethodId || 0
         );
-    }, [exercises, app.activeDisciplineId, homework]);
+    }, [exercises, app.activeDisciplineId, homework, groupMethodId]);
 
     return !loading ?
         <Tabs

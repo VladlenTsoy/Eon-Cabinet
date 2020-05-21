@@ -8,18 +8,23 @@ import {useChangeActionNavbar} from "../../../../../effects/use-change-action-na
 import GroupNavigation from "./navigation/GroupNavigation";
 import {useDispatch, useSelector} from "react-redux";
 import {appChangeDataForSending} from "../../../../../store/app/actions";
+import {useParams} from "react-router-dom";
 
-interface GroupProps {
-    match: any;
+interface ParamsProps {
+    id: string;
 }
 
-const Group: React.FC<GroupProps> = ({match}) => {
+const Group: React.FC = () => {
+    const {id} = useParams<ParamsProps>();
     const {app} = useSelector((state: any) => state);
+    //
+    const {dataForSending} = app;
+    const isSaved = dataForSending.isSaved && Number(id) === dataForSending.group.id;
+
     const dispatch = useDispatch();
-    const isSaved = match.params.id === app.dataForSending.groupId && app.dataForSending.isSaved;
-    const [selectUsersId, setSelectUsersId] = useState<number[]>(isSaved ? app.dataForSending.studentsId : []);
-    const [loadingGroup, group, errorGroup] = useApiUserGeneral({url: `/teacher/group/${match.params.id}`});
-    const [loadingUsers, users, errorUsers, fetchUsers] = useApiUserGeneral({url: `/teacher/students/${match.params.id}`});
+    const [selectUsersId, setSelectUsersId] = useState<number[]>(isSaved ? dataForSending.studentsId : []);
+    const [loadingGroup, group, errorGroup] = useApiUserGeneral({url: `/teacher/group/${id}`});
+    const [loadingUsers, users, errorUsers, fetchUsers] = useApiUserGeneral({url: `/teacher/students/${id}`});
 
     useChangeActionNavbar({action: '/groups'});
     useChangeTitle({title: loadingGroup ? 'Группа: Загрузка...' : `Группа: ${group ? group.title : 'Недоступна'}`});
@@ -27,10 +32,10 @@ const Group: React.FC<GroupProps> = ({match}) => {
     const selectUsers = useCallback((ids: any) => {
         setSelectUsersId(ids);
         dispatch(appChangeDataForSending({
-            groupId: match.params.id,
+            group: group,
             studentsId: ids,
         }));
-    }, [dispatch, match]);
+    }, [dispatch, group]);
 
     if (errorGroup || errorUsers)
         return <Card>
@@ -49,7 +54,7 @@ const Group: React.FC<GroupProps> = ({match}) => {
         <GroupNavigation
             isVisible={isSaved}
             fetchUsers={fetchUsers}
-            groupId={match.params.id}
+            groupId={id}
             selectUsersId={selectUsersId}
         />
         <TableStudents

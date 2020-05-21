@@ -23,7 +23,7 @@ export const appReducer = (state = {
     categories: null,
     dataForSending: {
         studentsId: [],
-        groupId: null,
+        group: null,
         isSaved: false,
     },
 }, action: any) => {

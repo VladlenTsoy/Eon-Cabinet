@@ -1,12 +1,11 @@
-import React, {useCallback} from 'react';
-import { ArrowRightOutlined } from '@ant-design/icons';
-import {Button, message} from "antd";
-import usingModalEditor from "../../../../../../layouts/modal-editor/usingModalEditor";
-import SaveHomeworkItems from "./SaveHomeworkItems";
+import React, {useCallback, useState} from 'react';
+import {ArrowRightOutlined} from '@ant-design/icons';
+import {Button} from "antd";
+import {useHistory} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {RouteComponentProps, withRouter} from "react-router";
-
-const SaveButtonHandler = usingModalEditor(SaveHomeworkItems);
+import ModalEditor from "../../../../../../layouts/modal-editor/ModalEditor";
+import FormItems from "./form-items/FormItems";
 
 interface ButtonSaveHomeworkProps {
     homework?: any;
@@ -14,57 +13,35 @@ interface ButtonSaveHomeworkProps {
     disciplineId: any;
 }
 
-const ButtonSaveHomework: React.FC<ButtonSaveHomeworkProps & RouteComponentProps> = ({history, homework, exercises, disciplineId}) => {
-    const {app, api} = useSelector((state: any) => state);
+const ButtonSaveHomework: React.FC<ButtonSaveHomeworkProps & RouteComponentProps> = ({homework, exercises, disciplineId}) => {
+    const {app} = useSelector((state: any) => state);
+    const history = useHistory();
+    const [visible, setVisible] = useState(false);
 
-    const afterSaveHomework = useCallback(() => {
-        history.push(app.dataForSending.isSaved ? `/groups/${app.dataForSending.groupId}` : '/homework');
-    }, [history, app.dataForSending.isSaved, app.dataForSending.groupId]);
+    const fetch = useCallback(() => {
+        history.push(app.dataForSending.isSaved ? `/groups/${app.dataForSending.group.id}` : '/homework');
+    }, [history, app.dataForSending.isSaved, app.dataForSending.group.id]);
 
-    const saveHomework = async (data: any) => {
-        try {
-            if (homework) {
-                const response = await api.user_general.put(`teacher/homework/${homework.id}`, {
-                    ...data,
-                    discipline: disciplineId,
-                    exercises
-                });
-                if (response.data.status === 'success') {
-                    message.success("Вы успешно изменили домашнее задание!");
-                }
-            } else {
-                const response = await api.user_general.post('teacher/homework', {
-                    ...data,
-                    discipline: disciplineId,
-                    exercises
-                });
-                if (response.data.status === 'success') {
-                    message.success("Вы успешно создали домашнее задание!");
-                }
-            }
-        } catch (e) {
-            message.error("Неизвестная ошибка!");
-            console.log(e);
-        }
-    };
+    const open = () => setVisible(true);
+    const close = () => setVisible(false);
 
-    return (
-        <SaveButtonHandler
-            title="Сохранить"
-            fetch={afterSaveHomework}
+    return <>
+        <Button type="primary" icon={<ArrowRightOutlined/>} onClick={open} block>Далее</Button>
+        <ModalEditor
             width={550}
-            sendData={saveHomework}
-            disciplineId={disciplineId}
-            data={homework ? {
-                level: homework.level,
-                category: homework.category_id,
-                description: homework.description,
-            } : {}
-            }
+            title={app.dataForSending.isSaved ? `Сохранить для ${app.dataForSending.group.title}` : "Сохранить"}
+            visible={visible}
+            onCancel={close}
         >
-            <Button type="primary" icon={<ArrowRightOutlined />} block>Далее</Button>
-        </SaveButtonHandler>
-    );
+            <FormItems
+                homework={homework}
+                exercises={exercises}
+                disciplineId={disciplineId}
+                fetch={fetch}
+                close={close}
+            />
+        </ModalEditor>
+    </>
 };
 
 export default withRouter(ButtonSaveHomework);
