@@ -1,6 +1,6 @@
 import React from 'react';
 import TextFit
-    from "../../../../../../teacher/training/settings/mental/multi-anzan/exercise-setting/multiplication-block/TextFit";
+    from "../../../../../../teacher/pages/training/settings/mental/multi-anzan/exercise-setting/multiplication-block/TextFit";
 import {Button} from "antd";
 import styled from "styled-components";
 import {FlagOutlined} from '@ant-design/icons';

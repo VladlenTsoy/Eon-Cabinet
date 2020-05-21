@@ -4,7 +4,7 @@ import {ButtonLink} from "lib";
 import {useSelector} from "react-redux";
 import {AppstoreOutlined, TeamOutlined, FlagOutlined} from '@ant-design/icons';
 import styled from "styled-components";
-import ImageTimer from "../../../../teacher/olympiads/list/current/card/image-timer/ImageTimer";
+import ImageTimer from "../../../../teacher/pages/olympiads/list/current/card/image-timer/ImageTimer";
 
 const CardWrapper = styled(Card)`
   &.ant-card{

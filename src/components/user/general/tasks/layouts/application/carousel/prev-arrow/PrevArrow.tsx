@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import {PrevArrowWrapper} from "../../../../../../teacher/home/olympiad/olympiad-carousel/prev-arrow/PrevArrow";
+import {PrevArrowWrapper} from "../../../../../../teacher/pages/home/olympiad/olympiad-carousel/prev-arrow/PrevArrow";
 import { ArrowLeftOutlined } from '@ant-design/icons';
 
 const PrevArrowApplication = styled(PrevArrowWrapper)`

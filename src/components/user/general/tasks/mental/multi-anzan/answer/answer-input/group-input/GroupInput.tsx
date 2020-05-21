@@ -5,7 +5,7 @@ import {FormItem} from "../../../../../../../../../layouts/components";
 import {Typography} from "antd";
 import {useSelector} from "react-redux";
 import TextFit
-    from "../../../../../../../teacher/training/settings/mental/multi-anzan/exercise-setting/multiplication-block/TextFit";
+    from "../../../../../../../teacher/pages/training/settings/mental/multi-anzan/exercise-setting/multiplication-block/TextFit";
 import {totalsSelect} from "../../../../../../../../../store/tasks/totals/reducer";
 import {settingAnzan} from "../../../../../../../../../store/tasks/setting/reducer";
 
