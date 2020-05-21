@@ -72,6 +72,7 @@ const ResultLayout: React.FC<ResultProps> = (
     return <ResultWrapper>
         <div className="result-info">
             <BgRays
+                delay={2500}
                 loading={loading}
                 color={result ? 'rgba(255, 175, 56, 0.2)' : 'rgba(0,0,0,0.02)'}
             />

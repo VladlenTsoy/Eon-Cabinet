@@ -47,6 +47,14 @@ const SideBlockLayout = styled.div`
         .active{
           color: ${props => props.theme.color_warning};
         }
+        
+        @media (max-width: 576px) {
+          font-size: 16px;
+          
+          &.timer{
+            font-size: 20px;
+          }
+        }
       }
     }
   }

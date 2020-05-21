@@ -3,7 +3,11 @@ import styled from "styled-components";
 import {useSelector} from "react-redux";
 import {game} from "../../../../../../../../../store/game/reducer";
 
-const CounterWrapper = styled.div` 
+interface CounterStyleProps {
+    delay: number;
+}
+
+const CounterWrapper: React.FC<CounterStyleProps> = styled.div<CounterStyleProps>` 
   display: flex;
   justify-content: center;
   margin-bottom: 2rem;
@@ -16,7 +20,7 @@ const CounterWrapper = styled.div`
     color: #ffffff;
     background: #ff4755;
     animation-name: fadeInDown;
-    animation-delay: 4s;
+    animation-delay: ${props => props.delay}ms;
     animation-duration: 2s;
     animation-fill-mode: both;
     padding: 0.25rem 2rem;
@@ -29,17 +33,17 @@ const CounterWrapper = styled.div`
 `;
 
 interface CounterProps {
-
+    delay: number;
 }
 
-const Counter:React.FC<CounterProps> = () => {
+const Counter: React.FC<CounterProps> = ({delay}) => {
     const {stats} = useSelector(game);
 
-    return <CounterWrapper>
+    return <CounterWrapper delay={delay}>
         <div className="counter">
             {stats.success} <span className="slash">/</span> {stats.all}
         </div>
-        </CounterWrapper>
+    </CounterWrapper>
 };
 
 export default React.memo(Counter);

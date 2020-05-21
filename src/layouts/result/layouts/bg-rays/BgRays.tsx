@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 interface StyledProps {
     rayColor: string;
+    delay: number;
 }
 
 const Wrapper: React.FC<StyledProps> = styled.div<StyledProps>`
@@ -22,7 +23,7 @@ const Wrapper: React.FC<StyledProps> = styled.div<StyledProps>`
     overflow: hidden;
     bottom: 0;
     transform: scale(0);
-    animation: scaleBackground .5s 7500ms forwards;
+    animation: scaleBackground .5s ${props => props.delay}ms forwards;
   }
   
   @keyframes scaleBackground{
@@ -127,10 +128,11 @@ const Wrapper: React.FC<StyledProps> = styled.div<StyledProps>`
 interface BgRaysProps {
     loading?: boolean;
     color?: string;
+    delay?: number;
 }
 
-const BgRays: React.FC<BgRaysProps> = ({loading = false, color}) => {
-    return <Wrapper rayColor={color || 'rgba(0,0,0,0.02)'}>
+const BgRays: React.FC<BgRaysProps> = ({loading = false, color, delay= 7500}) => {
+    return <Wrapper rayColor={color || 'rgba(0,0,0,0.02)'} delay={delay}>
         {
             loading ? null :
                 <div className="container">

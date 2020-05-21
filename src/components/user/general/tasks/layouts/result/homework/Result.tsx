@@ -27,7 +27,7 @@ const Result: React.FC = ({children}) => {
 
     const totals = useSelector(totalsSelect);
 
-    const updateIsView = useCallback((state:boolean) => {
+    const updateIsView = useCallback((state: boolean) => {
         setIsView(state);
     }, []);
 
@@ -48,12 +48,12 @@ const Result: React.FC = ({children}) => {
                 setResultData(response.data);
                 setTimeout(() => {
                     setLoading(false);
-                }, 4000);
+                }, result ? 4000 : 2000);
             })();
         else
             setTimeout(() => {
                 setLoading(false);
-            }, 4000);
+            }, result ? 4000 : 2000);
     }, [homeworkId, id, api.user_general, stats, totals, result]);
 
     return <ResultLayout

@@ -3,10 +3,14 @@ import styled from "styled-components";
 import StarSvg from "assets/images/star.svg";
 import {StarWrapper} from "./Star.layout";
 
-const StarsWrapper = styled.div`
+interface StarsStyleProps {
+    delay: number;
+}
+
+const StarsWrapper: React.FC<StarsStyleProps> = styled.div<StarsStyleProps>`
   position: relative;
   transform: scale(1.5);
-  animation: BackStars 1s 3.2s ease-in-out forwards;
+  animation: BackStars 1s ${props => props.delay}ms ease-in-out forwards;
   margin-bottom: 3rem;
   
   @media (max-width: 576px) {
@@ -27,10 +31,11 @@ const StarsWrapper = styled.div`
 
 interface StarsProps {
     numberOfStars: number;
+    delay: number;
 }
 
-const Stars: React.FC<StarsProps> = ({numberOfStars}) => {
-    return <StarsWrapper>
+const Stars: React.FC<StarsProps> = ({numberOfStars, delay}) => {
+    return <StarsWrapper delay={delay}>
         <StarWrapper fadeInTime="1s 0.2s" position="left" rotate="-10deg"
                      shadowPunchTime="1s 0.9s" zoomTime="0.5s 6.4s">
             <img className="gray" src={StarSvg} alt="star"/>
