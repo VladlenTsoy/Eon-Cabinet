@@ -1,14 +1,13 @@
-import {createStore, combineReducers, applyMiddleware} from "redux";
-import thunk from "redux-thunk";
-import {apiReducer} from "./api/reducer";
-import {userReducer} from "./user/reducer";
-import {languageReducer} from "./language/reducer";
-import {appReducer} from "./app/reducer";
-import {gameReducer} from "./game/reducer";
+import {configureStore, combineReducers} from "@reduxjs/toolkit";
+import {apiReducer} from "./reducers/common/api/reducer";
+import {userReducer} from "./reducers/common/user/reducer";
+import {languageReducer} from "./reducers/common/language/reducer";
+import {appReducer} from "./reducers/common/app/reducer";
+import {gameReducer} from "./reducers/common/game/reducer";
 import {gameSettingReducer} from "./tasks/setting/reducer";
 import {gameTotalsReducer} from "./tasks/totals/reducer";
 
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers({
     app: appReducer,
     api: apiReducer,
     user: userReducer,
@@ -18,4 +17,4 @@ const rootReducer = combineReducers({
     gameTotals: gameTotalsReducer,
 });
 
-export const store = createStore(rootReducer, applyMiddleware(thunk));
+export const store = configureStore({reducer: rootReducer});

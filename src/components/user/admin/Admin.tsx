@@ -19,7 +19,7 @@ import WordNumbers from "./tasks/word-numbers/WordNumbers";
 import FranchisesStatistic from "./franchises-statistic/FranchisesStatistic";
 import Center from "./center/Center";
 import Directors from "./directors/Directors";
-import {appChangeDisciplines} from "../../../store/app/actions";
+import {appChangeDisciplines} from "../../../store/reducers/common/app/actions";
 import {useApiUserGeneral} from "../../../effects/use-api-user-general.effect";
 import {useDispatch} from "react-redux";
 

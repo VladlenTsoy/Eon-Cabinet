@@ -7,7 +7,7 @@ import {useChangeTitle} from "../../../../../../effects/use-change-title.effect"
 import {useChangeActionNavbar} from "../../../../../../effects/use-change-action-navbar.effect";
 import GroupNavigation from "./navigation/GroupNavigation";
 import {useDispatch, useSelector} from "react-redux";
-import {appChangeDataForSending} from "../../../../../../store/app/actions";
+import {appChangeDataForSending} from "../../../../../../store/reducers/common/app/actions";
 import {useParams} from "react-router-dom";
 
 interface ParamsProps {

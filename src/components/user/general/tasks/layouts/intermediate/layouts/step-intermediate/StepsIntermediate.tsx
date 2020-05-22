@@ -3,7 +3,7 @@ import {TrophyOutlined} from '@ant-design/icons';
 import {Steps} from "antd";
 import styled from "styled-components";
 import {useSelector} from "react-redux";
-import {game} from "../../../../../../../../store/game/reducer";
+import {game} from "../../../../../../../../store/reducers/common/game/reducer";
 import {settingAnzan} from "../../../../../../../../store/tasks/setting/reducer";
 import {totalsSelect} from "../../../../../../../../store/tasks/totals/reducer";
 

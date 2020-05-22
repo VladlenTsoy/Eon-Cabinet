@@ -3,7 +3,7 @@ import {useSelector} from "react-redux";
 import AnswerLayout from "../../../layouts/answer/Answer.layout";
 import FormInputAnswerLayout from "../../../layouts/answer/form-input-answer/FormInputAnswer.layout";
 import {totalsSelect} from "../../../../../../../store/tasks/totals/reducer";
-import {game} from "../../../../../../../store/game/reducer";
+import {game} from "../../../../../../../store/reducers/common/game/reducer";
 
 const Answer: React.FC = () => {
     const {stats} = useSelector(game);

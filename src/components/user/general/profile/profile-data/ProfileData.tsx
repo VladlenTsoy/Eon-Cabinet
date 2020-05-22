@@ -3,7 +3,7 @@ import {Button, Col, DatePicker, Form, message, Row, Typography} from "antd";
 import {Card} from "lib";
 import {FormItem} from "../../../../../layouts/components";
 import styled from "styled-components";
-import {setCurrentUserData} from "../../../../../store/user/actions";
+import {setCurrentUserData} from "../../../../../store/reducers/common/user/actions";
 import {useDispatch, useSelector} from "react-redux";
 import moment from 'moment';
 

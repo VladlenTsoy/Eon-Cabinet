@@ -8,7 +8,7 @@ import TablesOutput from "../../../../layouts/application/list/tables-output/Tab
 import Table from "./table/Table";
 import {chunk} from "lodash";
 import ApplicationCardLayout from "../../../../layouts/application/ApplicationCard.layout";
-import {gameChangeStats, gameChangeStatus} from "../../../../../../../../store/game/actions";
+import {gameChangeStats, gameChangeStatus} from "../../../../../../../../store/reducers/common/game/actions";
 import {totalsChange} from "../../../../../../../../store/tasks/totals/action";
 
 interface ListProps {

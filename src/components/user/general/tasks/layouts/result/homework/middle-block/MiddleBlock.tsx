@@ -8,7 +8,7 @@ import {LoadingBlock} from "lib";
 import StarSvg from "assets/images/star.svg";
 import {usePreloadPictures} from "../../../../../../../../effects/use-preload-pictures.effect";
 import {useSelector} from "react-redux";
-import {game} from "../../../../../../../../store/game/reducer";
+import {game} from "../../../../../../../../store/reducers/common/game/reducer";
 
 const TotalWinSound = require('assets/sounds/total_win.mp3');
 const TotalLoseSound = require('assets/sounds/loss.mp3');

@@ -5,7 +5,7 @@ import {
     gameChangeCurrentTimes, gameChangeExecutionMode,
     gameChangeStats,
     gameChangeStatus,
-} from "store/game/actions";
+} from "store/reducers/common/game/actions";
 import {totalsChange} from "store/tasks/totals/action";
 import {settingChange} from "store/tasks/setting/action";
 import {settingAnzan} from "store/tasks/setting/reducer";

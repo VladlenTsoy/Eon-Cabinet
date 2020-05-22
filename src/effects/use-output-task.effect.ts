@@ -1,7 +1,7 @@
 import {useCallback} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useAddInternal} from "./use-add-interval.effect";
-import {gameChangeStats, gameChangeStatus} from "../store/game/actions";
+import {gameChangeStats, gameChangeStatus} from "../store/reducers/common/game/actions";
 import {useAddTimeout} from "./use-add-timeout.effect";
 
 export const useOutputTask = ({times}: any) => {

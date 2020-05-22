@@ -1,6 +1,6 @@
 import React from 'react';
 import {useSelector} from "react-redux";
-import {game} from "../../../../../../../store/game/reducer";
+import {game} from "../../../../../../../store/reducers/common/game/reducer";
 import ApplicationAnzan from "../../anzan/application/Application";
 import {settingAnzan} from "../../../../../../../store/tasks/setting/reducer";
 

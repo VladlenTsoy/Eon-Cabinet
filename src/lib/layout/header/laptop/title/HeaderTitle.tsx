@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import styled from "styled-components";
 import {Modal} from "antd";
 import {StopOutlined, ArrowLeftOutlined, BarsOutlined, CloseOutlined} from "@ant-design/icons";
-import {appChangeTitleNavbar} from "../../../../../store/app/actions";
+import {appChangeTitleNavbar} from "../../../../../store/reducers/common/app/actions";
 import {useDispatch, useSelector} from "react-redux";
 import {withRouter} from "react-router";
 import {Titles} from './Titles';

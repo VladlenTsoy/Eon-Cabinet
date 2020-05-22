@@ -3,7 +3,7 @@ import { EditOutlined, LoadingOutlined } from '@ant-design/icons';
 import { message, Modal } from "antd";
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {setCurrentUserData} from "../../../store/user/actions";
+import {setCurrentUserData} from "../../../store/reducers/common/user/actions";
 import {IconsWrapper, IconWrapper, IconEditWrapper} from "./IconsWrapper";
 import AvatarLabelWrapper from "./Label";
 

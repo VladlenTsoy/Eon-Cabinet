@@ -7,7 +7,7 @@ import checkStudentGif from "assets/images/hints/check-student.gif";
 import {useDispatch, useSelector} from "react-redux";
 import {message, Modal} from "antd";
 import {useScreenWindow} from "effects/use-screen-window.effect";
-import {appChangeDataForSending} from "store/app/actions";
+import {appChangeDataForSending} from "store/reducers/common/app/actions";
 
 const SentDrawerButton = usingDrawerEditor(FormSentHomeworkItems);
 

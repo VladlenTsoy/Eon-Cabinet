@@ -6,7 +6,7 @@ import PhotoBlock from "../../../../../layouts/components/avatar/Photo";
 import ProfileBlockMenu from "./menu/ProfileBlockMenu";
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
-import {setCurrentUserData} from "../../../../../store/user/actions";
+import {setCurrentUserData} from "../../../../../store/reducers/common/user/actions";
 
 const {Title} = Typography;
 

@@ -6,9 +6,9 @@ import {
     gameChangeCurrentTimes,
     gameChangeExecutionMode,
     gameChangeStatus
-} from "../../../../../../../../store/game/actions";
+} from "../../../../../../../../store/reducers/common/game/actions";
 import {useDispatch, useSelector} from "react-redux";
-import {game} from "../../../../../../../../store/game/reducer";
+import {game} from "../../../../../../../../store/reducers/common/game/reducer";
 import {settingAnzan} from "../../../../../../../../store/tasks/setting/reducer";
 
 const HeaderWrapper = styled.div`

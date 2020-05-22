@@ -1,14 +1,14 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {useApiUserGeneral} from "effects/use-api-user-general.effect";
 import {useDispatch, useSelector} from "react-redux";
-import {game} from "store/game/reducer";
+import {game} from "store/reducers/common/game/reducer";
 import {LoadingBlock} from "lib";
 import {ExclamationCircleOutlined} from "@ant-design/icons";
 import Basic from "./basic/Basic";
 import Timer from "./timer/Timer";
 import {totalsChange} from "store/tasks/totals/action";
-import {StatsActionProps, StatusProps} from "store/game/types";
-import {gameChangeStats, gameChangeStatus} from "../../../../../../store/game/actions";
+import {StatsActionProps, StatusProps} from "store/reducers/common/game/types";
+import {gameChangeStats, gameChangeStatus} from "../../../../../../store/reducers/common/game/actions";
 import {SettingAnzanProps} from "../../../../../../store/tasks/setting/games-types/anzan.types";
 import PreparationLayout from "./preparation/Preparation.layout";
 import List from "./list/List";

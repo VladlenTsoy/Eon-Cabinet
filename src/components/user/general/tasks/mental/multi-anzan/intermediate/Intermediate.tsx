@@ -7,7 +7,7 @@ import Header from "./header/Header";
 import UserIntermediate from "./user-intermediate/UserIntermediate";
 import {totalsSelect} from "../../../../../../../store/tasks/totals/reducer";
 import {settingAnzan} from "../../../../../../../store/tasks/setting/reducer";
-import {game} from "../../../../../../../store/game/reducer";
+import {game} from "../../../../../../../store/reducers/common/game/reducer";
 
 const IntermediateWrapper = styled(Card)`
   &.ant-card{

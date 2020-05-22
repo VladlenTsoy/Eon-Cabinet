@@ -3,7 +3,7 @@ import {Modal} from "../../../../layouts/components";
 import {useDispatch, useSelector} from "react-redux";
 import EmailInput from "./EmailInput";
 import ConfirmEmail from "./confirm-email/ConfirmEmail";
-import {setCurrentUserData} from "../../../../store/user/actions";
+import {setCurrentUserData} from "../../../../store/reducers/common/user/actions";
 
 const EmailNotification: React.FC = () => {
     const {user} = useSelector((state: any) => state);

@@ -4,11 +4,11 @@ import styled from "styled-components";
 import AnswerInput from "./answer-input/AnswerInput";
 import {Card} from "lib";
 import {Form} from "antd";
-import {gameChangeStatus} from "../../../../../../../store/game/actions";
+import {gameChangeStatus} from "../../../../../../../store/reducers/common/game/actions";
 import MultiGridLayout from "../layouts/MultiGrid.layout";
 import Header from "./header/Header";
 import {totalsChange} from "../../../../../../../store/tasks/totals/action";
-import {game} from "../../../../../../../store/game/reducer";
+import {game} from "../../../../../../../store/reducers/common/game/reducer";
 import {totalsSelect} from "../../../../../../../store/tasks/totals/reducer";
 import {settingAnzan} from "../../../../../../../store/tasks/setting/reducer";
 

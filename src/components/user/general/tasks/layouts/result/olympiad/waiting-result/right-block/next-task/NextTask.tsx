@@ -7,7 +7,7 @@ import {RouteComponentProps, withRouter} from "react-router-dom";
 import {
     gameChangeCurrentTimes,
     gameChangeStatus,
-} from "../../../../../../../../../../store/game/actions";
+} from "../../../../../../../../../../store/reducers/common/game/actions";
 import {useDispatch} from "react-redux";
 import {totalsChange} from "../../../../../../../../../../store/tasks/totals/action";
 import {settingChange} from "../../../../../../../../../../store/tasks/setting/action";

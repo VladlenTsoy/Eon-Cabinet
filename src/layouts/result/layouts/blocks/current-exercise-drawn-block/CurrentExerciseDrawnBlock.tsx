@@ -4,7 +4,7 @@ import {Button, Modal} from "antd";
 import {Drawer} from "../../../../components";
 import {EyeOutlined, ThunderboltOutlined, QuestionCircleOutlined} from '@ant-design/icons';
 import {useSelector} from "react-redux";
-import {game} from "../../../../../store/game/reducer";
+import {game} from "../../../../../store/reducers/common/game/reducer";
 
 interface CurrentExerciseDrawnBlockProps {
     resultId?: number;

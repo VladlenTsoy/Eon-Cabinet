@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {appChangeTitleNavbar} from "../../../../store/app/actions";
+import {appChangeTitleNavbar} from "../../../../store/reducers/common/app/actions";
 import {Navigation, NavigationButton} from "../../../../layouts/components";
 import CenterTable from "./center-table/CenterTable";
 import EditorCenterButton from "./center-table/EditorCenterButton";

@@ -5,7 +5,7 @@ import {settingAnzan} from "../../../../../../../store/tasks/setting/reducer";
 import {totalsSelect} from "../../../../../../../store/tasks/totals/reducer";
 import {chunk, flattenDepth} from "lodash";
 import {totalsChange} from "../../../../../../../store/tasks/totals/action";
-import {gameChangeStats, gameChangeStatus} from "../../../../../../../store/game/actions";
+import {gameChangeStats, gameChangeStatus} from "../../../../../../../store/reducers/common/game/actions";
 import {useUpdateOutputEffect} from "../../../layouts/application/use-update-output.effect";
 import TbodyAddition from "./list/tbody-addition/TbodyAddition";
 import TbodyMultiplication from "./list/tbody-multiplication/TbodyMultiplication";

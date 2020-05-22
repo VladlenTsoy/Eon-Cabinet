@@ -3,7 +3,7 @@ import {LockOutlined, UserOutlined} from '@ant-design/icons';
 import {Button, Input, message, Form} from "antd";
 import {useHistory} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {apiChangeAccessToken} from "../../store/api/actions";
+import {apiChangeAccessToken} from "store/reducers/common/api/actions";
 import {Card} from "lib";
 import {FormItem} from "../../layouts/components";
 import {Title, SubTitle, FormWrapper} from "./AuthLayouts";

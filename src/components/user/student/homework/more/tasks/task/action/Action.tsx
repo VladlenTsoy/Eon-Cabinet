@@ -2,7 +2,7 @@ import React from 'react';
 import {FlagOutlined, RedoOutlined} from '@ant-design/icons';
 import {Button} from "antd";
 import {useDispatch} from "react-redux";
-import {gameChangeExecutionMode} from "store/game/actions";
+import {gameChangeExecutionMode} from "store/reducers/common/game/actions";
 import {withRouter, RouteComponentProps} from "react-router";
 import styled from "styled-components";
 import {totalsChange} from "store/tasks/totals/action";

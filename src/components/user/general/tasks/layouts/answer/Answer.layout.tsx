@@ -2,7 +2,7 @@ import React from 'react';
 import {Col, Row, Form, Button, Typography} from "antd";
 import styled from "styled-components";
 import {Card} from "lib";
-import {gameChangeStats, gameChangeStatus} from "../../../../../../store/game/actions";
+import {gameChangeStats, gameChangeStatus} from "../../../../../../store/reducers/common/game/actions";
 import {useDispatch} from "react-redux";
 import {totalsChange} from "../../../../../../store/tasks/totals/action";
 import {ArrowRightOutlined} from '@ant-design/icons';

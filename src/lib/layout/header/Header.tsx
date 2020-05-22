@@ -1,8 +1,8 @@
 import React from "react";
 import {Modal} from "antd";
 import {useDispatch, useSelector} from "react-redux";
-import {apiDeleteAccessToken} from "../../../store/api/actions";
-import {deleteCurrentUserData} from "../../../store/user/actions";
+import {apiDeleteAccessToken} from "../../../store/reducers/common/api/actions";
+import {deleteCurrentUserData} from "../../../store/reducers/common/user/actions";
 import {useScreenWindow} from "../../../effects/use-screen-window.effect";
 import Mobile from "./mobile/Mobile";
 import Laptop from "./laptop/Laptop";

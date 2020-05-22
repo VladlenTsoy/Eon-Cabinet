@@ -4,7 +4,7 @@ import GroupBlock from "./card-group/CardGroup";
 import {Navigation, NavigationButton, Spin, TabTitleCustom} from "../../../../../../layouts/components";
 import EditorButton from "./editor-button/EditorButton";
 import {useApiUserGeneral} from "../../../../../../effects/use-api-user-general.effect";
-import {appChangeActiveDisciplineId} from "../../../../../../store/app/actions";
+import {appChangeActiveDisciplineId} from "../../../../../../store/reducers/common/app/actions";
 import {useDispatch, useSelector} from "react-redux";
 import {PlusOutlined} from "@ant-design/icons";
 

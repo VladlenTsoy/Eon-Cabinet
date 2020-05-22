@@ -1,8 +1,8 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {gameChangeStatus} from "store/game/actions";
+import {gameChangeStatus} from "store/reducers/common/game/actions";
 import {useAddInternal} from "effects/use-add-interval.effect";
 import {useDispatch} from "react-redux";
-import {StatusProps} from "store/game/types";
+import {StatusProps} from "store/reducers/common/game/types";
 import Output from "./output/Output";
 import {SettingAnzanProps} from "store/tasks/setting/games-types/anzan.types";
 import AbacusOutput from "./abacus-output/AbacusOutput";

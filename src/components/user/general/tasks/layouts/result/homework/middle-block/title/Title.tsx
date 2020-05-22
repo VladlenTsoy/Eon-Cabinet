@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
 import {useSelector} from "react-redux";
-import {game} from "../../../../../../../../../store/game/reducer";
+import {game} from "../../../../../../../../../store/reducers/common/game/reducer";
 
 interface TitleStyleProps {
     delay: number;

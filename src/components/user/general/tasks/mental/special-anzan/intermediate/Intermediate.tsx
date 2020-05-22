@@ -3,7 +3,7 @@ import AnswerIntermediateWrapper
     from "../../../layouts/intermediate/layouts/answer-intermediate/AnwerIntermediate.layout";
 import {useSelector} from "react-redux";
 import {totalsSelect} from "../../../../../../../store/tasks/totals/reducer";
-import {game} from "../../../../../../../store/game/reducer";
+import {game} from "../../../../../../../store/reducers/common/game/reducer";
 
 const IntermediateBlock = () => {
     const totals = useSelector(totalsSelect);

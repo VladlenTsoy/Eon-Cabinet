@@ -3,7 +3,7 @@ import {BrowserRouter as Router, useHistory, useRouteMatch} from "react-router-d
 import {useDispatch, useSelector} from "react-redux";
 import {Switch, Route} from "react-router";
 import {useChangeActionNavbar} from "effects/use-change-action-navbar.effect";
-import {setCurrentUserData} from "../../../../../../store/user/actions";
+import {setCurrentUserData} from "../../../../../../store/reducers/common/user/actions";
 import {Col, Row} from "antd";
 import {Card, LoadingBlock} from "lib";
 import styled from "styled-components";

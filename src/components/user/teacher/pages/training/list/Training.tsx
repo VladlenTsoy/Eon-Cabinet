@@ -5,7 +5,7 @@ import {TabTitleCustom} from "../../../../../../layouts/components";
 import {LoadingBlock} from "lib";
 import TabDiscipline from "./tab-discipline/TabDiscipline";
 import {useApiUserGeneral} from "effects/use-api-user-general.effect";
-import {appChangeActiveDisciplineId} from "store/app/actions";
+import {appChangeActiveDisciplineId} from "store/reducers/common/app/actions";
 
 const {TabPane} = Tabs;
 

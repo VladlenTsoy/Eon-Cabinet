@@ -12,7 +12,7 @@ import {Button} from "antd";
 import styled from "styled-components";
 import {withRouter, RouteComponentProps} from "react-router";
 import {useDispatch, useSelector} from "react-redux";
-import {gameChangeExecutionMode} from "../../../../../../../../store/game/actions";
+import {gameChangeExecutionMode} from "../../../../../../../../store/reducers/common/game/actions";
 import {settingAnzan} from "../../../../../../../../store/tasks/setting/reducer";
 
 const HeaderWrapper = styled.div`

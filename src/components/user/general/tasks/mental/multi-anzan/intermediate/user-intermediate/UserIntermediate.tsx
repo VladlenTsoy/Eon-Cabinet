@@ -2,7 +2,7 @@ import React from 'react';
 import {TrophyOutlined} from '@ant-design/icons';
 import styled from "styled-components";
 import {useSelector} from "react-redux";
-import {game} from "../../../../../../../../store/game/reducer";
+import {game} from "../../../../../../../../store/reducers/common/game/reducer";
 import {settingAnzan} from "../../../../../../../../store/tasks/setting/reducer";
 
 const WaitWrapper = styled.div`

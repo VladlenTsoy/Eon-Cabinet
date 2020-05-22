@@ -8,7 +8,7 @@ import ExerciseLists from "../../../../../homework/editor/tabs-tasks/added-exerc
 import moment from "moment";
 import {useApiUserGeneral} from "../../../../../../../../../effects/use-api-user-general.effect";
 import HomeworkEmpty from "./homework-empty/HomeworkEmpty";
-import {appChangeDataForSending} from "../../../../../../../../../store/app/actions";
+import {appChangeDataForSending} from "../../../../../../../../../store/reducers/common/app/actions";
 import {useDispatch} from "react-redux";
 
 const {TextArea} = Input;

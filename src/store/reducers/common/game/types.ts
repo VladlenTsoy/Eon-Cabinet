@@ -1,5 +1,5 @@
 import {Reducer} from "redux";
-import {ActionFunctionTypes, State} from "../rootTypes";
+import {ActionFunctionTypes, State} from "../../../rootTypes";
 
 export const GAME_CHANGE_EXECUTION_MODE = "GAME_CHANGE_EXECUTION_MODE";
 export const GAME_CHANGE_DISPLAY_TYPE = "GAME_CHANGE_DISPLAY_TYPE";

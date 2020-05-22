@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react';
-import {useSelector} from "react-redux";
+import React, {useContext, useEffect, useState} from 'react';
 import {Loader} from "lib";
+import {UserContext} from "../App";
 
 const BlockedAccount = React.lazy(() => import("./blocked-account/BlockedAccount"));
 const Student = React.lazy(() => import("./student/Student"));
@@ -9,9 +9,9 @@ const Admin = React.lazy(() => import("./admin/Admin"));
 const DirectorCenter = React.lazy(() => import("./director-center/DirectorCenter"));
 const DirectorFranchise = React.lazy(() => import("./director-franchise/DirectorFranchise"));
 
-const User = () => {
+const User:React.FC = () => {
+    const user:any = useContext(UserContext);
     const [isDarkTheme, setIsDarkTheme] = useState(false);
-    const {user} = useSelector((state: any) => state);
 
     useEffect(() => {
         const darkHref: any = document.getElementById("app-theme-dark");
@@ -47,7 +47,8 @@ const User = () => {
                     user.access === 'director-franchise' ? <DirectorFranchise/> :
                         user.access === 'admin' ? <Admin/> :
                             user.access === 'student' ? <Student/> :
-                                <BlockedAccount/>}
+                                <BlockedAccount/>
+            }
         </React.Suspense>
         {/*{user.email_verified_at ? null : <ConfirmEmail/>}*/}
     </>;

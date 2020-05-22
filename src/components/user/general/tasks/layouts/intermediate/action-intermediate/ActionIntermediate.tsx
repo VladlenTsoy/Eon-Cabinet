@@ -3,9 +3,9 @@ import {ArrowRightOutlined, FlagOutlined, HistoryOutlined} from '@ant-design/ico
 import {Button} from "antd";
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
-import {gameChangeCurrentTimes, gameChangeExecutionMode, gameChangeStats, gameChangeStatus} from "store/game/actions";
+import {gameChangeCurrentTimes, gameChangeExecutionMode, gameChangeStats, gameChangeStatus} from "store/reducers/common/game/actions";
 import {settingAnzan} from "store/tasks/setting/reducer";
-import {game} from "store/game/reducer";
+import {game} from "store/reducers/common/game/reducer";
 import {useRouteMatch} from "react-router-dom";
 import {ResultMatchProps} from "../../result/homework/Result";
 import {totalsSelect} from "../../../../../../../store/tasks/totals/reducer";

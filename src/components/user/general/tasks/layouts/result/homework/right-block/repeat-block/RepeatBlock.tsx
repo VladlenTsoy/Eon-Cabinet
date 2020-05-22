@@ -7,7 +7,7 @@ import {
     gameChangeCurrentTimes,
     gameChangeExecutionMode, gameChangeStats,
     gameChangeStatus
-} from "store/game/actions";
+} from "store/reducers/common/game/actions";
 import {useParams} from "react-router-dom";
 import {ResultMatchProps} from "../../Result";
 import {totalsChange} from "../../../../../../../../../store/tasks/totals/action";

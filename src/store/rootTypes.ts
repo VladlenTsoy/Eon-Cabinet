@@ -1,5 +1,4 @@
 import {Action, Dispatch} from "redux";
-import {GameStateProps} from "./game/types";
 
 export type State = {
     game: any;

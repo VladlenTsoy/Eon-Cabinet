@@ -1,5 +1,5 @@
 import {useEffect} from "react";
-import {appChangeTitleNavbar} from "../store/app/actions";
+import {appChangeTitleNavbar} from "../store/reducers/common/app/actions";
 import {useDispatch} from "react-redux";
 
 export const useChangeTitle = ({title}: any) => {

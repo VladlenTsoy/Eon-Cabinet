@@ -5,7 +5,7 @@ import {useSelector} from "react-redux";
 import {RouteComponentProps, withRouter} from "react-router";
 import {RouteOlympiadTaskProps} from "../Result";
 import {totalsSelect} from "../../../../../../../../store/tasks/totals/reducer";
-import {game} from "../../../../../../../../store/game/reducer";
+import {game} from "../../../../../../../../store/reducers/common/game/reducer";
 
 type WaitingResultProps = RouteComponentProps<RouteOlympiadTaskProps> & {
     loading: boolean;

@@ -2,7 +2,7 @@ import React from 'react';
 import AnswerIntermediateWrapper
     from "../../../layouts/intermediate/layouts/answer-intermediate/AnwerIntermediate.layout";
 import {useSelector} from "react-redux";
-import {game} from "../../../../../../../store/game/reducer";
+import {game} from "../../../../../../../store/reducers/common/game/reducer";
 import {settingAnzan} from "../../../../../../../store/tasks/setting/reducer";
 import {totalsSelect} from "../../../../../../../store/tasks/totals/reducer";
 

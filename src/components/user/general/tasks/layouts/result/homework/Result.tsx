@@ -6,7 +6,7 @@ import MiddleBlock from "./middle-block/MiddleBlock";
 import LeftBlock from "./left-block/LeftBlock";
 import RightBlock from "./right-block/RightBlock";
 import {totalsSelect} from "../../../../../../../store/tasks/totals/reducer";
-import {game} from "../../../../../../../store/game/reducer";
+import {game} from "../../../../../../../store/reducers/common/game/reducer";
 
 export type ResultMatchProps = {
     homeworkId?: string;

@@ -8,7 +8,7 @@ import {Card} from "lib";
 import StepsIntermediate from "./layouts/step-intermediate/StepsIntermediate";
 import BgIconsDownIntermediateLayout from "./layouts/bg-icons-down/BgIconsDownIntermediate.layout";
 import {useScreenWindow} from "../../../../../../effects/use-screen-window.effect";
-import {game} from "../../../../../../store/game/reducer";
+import {game} from "../../../../../../store/reducers/common/game/reducer";
 import {totalsSelect} from "../../../../../../store/tasks/totals/reducer";
 import {settingAnzan} from "../../../../../../store/tasks/setting/reducer";
 

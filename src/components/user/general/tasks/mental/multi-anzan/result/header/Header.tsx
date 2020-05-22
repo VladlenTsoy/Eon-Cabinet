@@ -8,7 +8,7 @@ import {
     gameChangeCurrentTimes,
     gameChangeExecutionMode, gameChangeStats,
     gameChangeStatus
-} from "../../../../../../../../store/game/actions";
+} from "../../../../../../../../store/reducers/common/game/actions";
 import {totalsChange} from "../../../../../../../../store/tasks/totals/action";
 
 const HeaderWrapper = styled.div`

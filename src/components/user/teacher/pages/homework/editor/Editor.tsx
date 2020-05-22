@@ -8,7 +8,7 @@ import ButtonSaveHomework from "./save/ButtonSaveHomework";
 import {useChangeTitle} from "../../../../../../effects/use-change-title.effect";
 import {useChangeActionNavbar} from "../../../../../../effects/use-change-action-navbar.effect";
 import {useApiUserGeneral} from "../../../../../../effects/use-api-user-general.effect";
-import {appChangeActiveDisciplineId} from "../../../../../../store/app/actions";
+import {appChangeActiveDisciplineId} from "../../../../../../store/reducers/common/app/actions";
 
 const {TabPane} = Tabs;
 
