@@ -8,7 +8,8 @@ import ButtonSaveHomework from "./save/ButtonSaveHomework";
 import {useChangeTitle} from "../../../../../../effects/use-change-title.effect";
 import {useChangeActionNavbar} from "../../../../../../effects/use-change-action-navbar.effect";
 import {useApiUserGeneral} from "../../../../../../effects/use-api-user-general.effect";
-import {appChangeActiveDisciplineId} from "../../../../../../store/reducers/common/app/actions";
+import {changeActiveDisciplineId} from "../../../../../../store/reducers/common/app/appSlice";
+import {groupSelector} from "../../../../../../store/reducers/teacher/group/groupSlice";
 
 const {TabPane} = Tabs;
 
@@ -19,8 +20,8 @@ interface EditorHomeworkProps {
 const EditorHomework: React.FC<EditorHomeworkProps> = ({match}) => {
     const {app} = useSelector((state: any) => state);
     //
-    const {dataForSending} = app;
-    const groupMethodId = dataForSending.isSaved && dataForSending.group?.method_id;
+    const groupStore = useSelector(groupSelector);
+    const groupMethodId = groupStore.isSaved && groupStore.group?.method_id;
     //
     const [disabledDiscipline, setDisabledDiscipline] = useState(groupMethodId || 0);
     const [exercises, setExercises]: any = useState([]);
@@ -34,7 +35,7 @@ const EditorHomework: React.FC<EditorHomeworkProps> = ({match}) => {
     useChangeTitle({title: match.params.id ? 'Редактировать домашнее задание' : 'Создать домашнее задание'});
 
     const clickEventHandler = (disciplineId: string) => {
-        dispatch(appChangeActiveDisciplineId(disciplineId))
+        dispatch(changeActiveDisciplineId(disciplineId))
     };
 
     useEffect(() => {

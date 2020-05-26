@@ -1,4 +1,4 @@
-import {appReducer} from "./app/reducer";
+import appReducer from "./app/appSlice";
 import {gameReducer} from "./game/reducer";
 import {gameSettingReducer} from "./tasks/setting/reducer";
 import {gameTotalsReducer} from "./tasks/totals/reducer";

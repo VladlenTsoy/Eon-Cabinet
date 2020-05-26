@@ -19,7 +19,7 @@ import WordNumbers from "./tasks/word-numbers/WordNumbers";
 import FranchisesStatistic from "./franchises-statistic/FranchisesStatistic";
 import Center from "./center/Center";
 import Directors from "./directors/Directors";
-import {appChangeDisciplines} from "../../../store/reducers/common/app/actions";
+import {changeDisciplines} from "../../../store/reducers/common/app/appSlice";
 import {useApiUserGeneral} from "../../../effects/use-api-user-general.effect";
 import {useDispatch} from "react-redux";
 
@@ -27,7 +27,7 @@ const Admin: React.FC = () => {
     const dispatch = useDispatch();
     const [loading] = useApiUserGeneral({
         url: '/admin/disciplines',
-        afterRequest: async (data) => await dispatch(appChangeDisciplines(data))
+        afterRequest: async (data) => await dispatch(changeDisciplines(data))
     });
 
     return !loading ? <Router>

@@ -2,13 +2,13 @@ import React, {useEffect, useState} from "react";
 import {useHistory} from "react-router-dom";
 import {LoadingBlock} from "lib";
 import {FormItem, Spin} from "../../../../../../../../../layouts/components";
-import { FileAddOutlined } from '@ant-design/icons';
+import {FileAddOutlined} from '@ant-design/icons';
 import {Select, Divider, Input, Empty, Button} from "antd";
 import ExerciseLists from "../../../../../homework/editor/tabs-tasks/added-exercises/exercise-lists/ExerciseLists";
 import moment from "moment";
 import {useApiUserGeneral} from "../../../../../../../../../effects/use-api-user-general.effect";
 import HomeworkEmpty from "./homework-empty/HomeworkEmpty";
-import {appChangeDataForSending} from "../../../../../../../../../store/reducers/common/app/actions";
+import {changeIsSaved} from "../../../../../../../../../store/reducers/teacher/group/groupSlice";
 import {useDispatch} from "react-redux";
 
 const {TextArea} = Input;
@@ -33,7 +33,7 @@ const FormSentHomeworkItems: React.FC<FormSentHomeworkItems> = (
         setSelectHomework(homework.find((val: any) => val.id === id));
 
     const createHomeworkHandler = async () => {
-        await dispatch(appChangeDataForSending({isSaved: true}));
+        dispatch(changeIsSaved(true));
         history.push('/homework/create');
     };
 
@@ -41,7 +41,7 @@ const FormSentHomeworkItems: React.FC<FormSentHomeworkItems> = (
         if (homework.length)
             setIsSaveBtn(true);
 
-        dispatch(appChangeDataForSending({isSaved: false}));
+        dispatch(changeIsSaved(false));
 
     }, [homework, setIsSaveBtn, dispatch]);
 
@@ -53,7 +53,7 @@ const FormSentHomeworkItems: React.FC<FormSentHomeworkItems> = (
             tip="Загрузка..."
             spinning={loading}
         >
-            <Button block icon={<FileAddOutlined />} size="large" type="link" onClick={createHomeworkHandler}>
+            <Button block icon={<FileAddOutlined/>} size="large" type="link" onClick={createHomeworkHandler}>
                 Создать домашнее задание
             </Button>
             <FormItem
@@ -73,7 +73,8 @@ const FormSentHomeworkItems: React.FC<FormSentHomeworkItems> = (
                 name="message"
                 label="Сообщение"
             >
-                <TextArea rows={4} placeholder="Данное сообщение будет отображаться перед выполнением домашнего задания."/>
+                <TextArea rows={4}
+                          placeholder="Данное сообщение будет отображаться перед выполнением домашнего задания."/>
             </FormItem>
             {!loading ?
                 selectHomework ?

@@ -2,11 +2,11 @@ import React, {useEffect} from "react";
 import styled from "styled-components";
 import {Modal} from "antd";
 import {StopOutlined, ArrowLeftOutlined, BarsOutlined, CloseOutlined} from "@ant-design/icons";
-import {appChangeTitleNavbar} from "../../../../../store/reducers/common/app/actions";
 import {useDispatch, useSelector} from "react-redux";
 import {withRouter} from "react-router";
 import {Titles} from './Titles';
 import {QuestionCircleOutlined} from '@ant-design/icons';
+import {changeTitle} from 'store/reducers/common/app/appSlice';
 
 const confirm = Modal.confirm;
 
@@ -51,11 +51,11 @@ const HeaderTitle: React.FC<any> = ({history, collapsed, toggleSidebar}) => {
         if (history.listen) {
             history.listen((location: any) => {
                 if (Titles[location.pathname])
-                    dispatch(appChangeTitleNavbar(Titles[location.pathname]))
+                    dispatch(changeTitle(Titles[location.pathname]))
             });
 
             if (Titles[history.location.pathname])
-                dispatch(appChangeTitleNavbar(Titles[history.location.pathname]));
+                dispatch(changeTitle(Titles[history.location.pathname]));
 
             return () => {
                 history.listen = null;

@@ -7,7 +7,11 @@ import {useChangeTitle} from "../../../../../../effects/use-change-title.effect"
 import {useChangeActionNavbar} from "../../../../../../effects/use-change-action-navbar.effect";
 import GroupNavigation from "./navigation/GroupNavigation";
 import {useDispatch, useSelector} from "react-redux";
-import {appChangeDataForSending} from "../../../../../../store/reducers/common/app/actions";
+import {
+    changeGroup,
+    changeSelectedStudentsId,
+    groupSelector
+} from "../../../../../../store/reducers/teacher/group/groupSlice";
 import {useParams} from "react-router-dom";
 
 interface ParamsProps {
@@ -16,13 +20,12 @@ interface ParamsProps {
 
 const Group: React.FC = () => {
     const {id} = useParams<ParamsProps>();
-    const {app} = useSelector((state: any) => state);
+    const groupStore = useSelector(groupSelector);
     //
-    const {dataForSending} = app;
-    const isSaved = dataForSending.isSaved && Number(id) === dataForSending.group.id;
+    const isSaved = groupStore.isSaved && Number(id) === groupStore.group?.id;
 
     const dispatch = useDispatch();
-    const [selectUsersId, setSelectUsersId] = useState<number[]>(isSaved ? dataForSending.studentsId : []);
+    const [selectUsersId, setSelectUsersId] = useState<number[]>(isSaved ? groupStore.selectedStudentsId : []);
     const [loadingGroup, group, errorGroup] = useApiUserGeneral({url: `/teacher/group/${id}`});
     const [loadingUsers, users, errorUsers, fetchUsers] = useApiUserGeneral({url: `/teacher/students/${id}`});
 
@@ -31,10 +34,8 @@ const Group: React.FC = () => {
 
     const selectUsers = useCallback((ids: any) => {
         setSelectUsersId(ids);
-        dispatch(appChangeDataForSending({
-            group: group,
-            studentsId: ids,
-        }));
+        dispatch(changeGroup(group));
+        dispatch(changeSelectedStudentsId(ids));
     }, [dispatch, group]);
 
     if (errorGroup || errorUsers)

@@ -3,7 +3,7 @@ import {IoMdMoon, IoMdSunny} from "react-icons/all";
 import {useDispatch} from "react-redux";
 import styled from "styled-components";
 import {Switch} from "antd";
-import {appChangeSpin} from "../../../../../store/reducers/common/app/actions";
+import {changeSpin} from "../../../../../store/reducers/common/app/appSlice";
 import {useAppContext} from "../../../../../store/context/use-app-context";
 
 const SwitchWrapper = styled(Switch)`
@@ -18,10 +18,10 @@ const DarkSwitch: React.FC = () => {
     const dispatch = useDispatch();
 
     const handlerChange = async (state: boolean) => {
-        dispatch(appChangeSpin(true));
+        dispatch(changeSpin(true));
         const response = await api.user.patch(`/${user.id}`, {setting: {...user.setting, is_dark: state}});
         await updateUser(response.data);
-        setTimeout(() => dispatch(appChangeSpin(false)), 1000);
+        setTimeout(() => dispatch(changeSpin(false)), 1000);
     };
 
     return <SwitchWrapper

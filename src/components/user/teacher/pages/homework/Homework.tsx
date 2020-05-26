@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import {Navigation, NavigationButton, TabTitleCustom} from "layouts/components";
 import TabsCategories from "./tabs-categories/TabsCategories";
 import {useDispatch, useSelector} from "react-redux";
-import {appChangeActiveDisciplineId} from "store/reducers/common/app/actions";
+import {changeActiveDisciplineId} from "store/reducers/common/app/appSlice";
 import {PlusOutlined, AppstoreOutlined} from "@ant-design/icons";
 import {find} from "lodash";
 
@@ -16,7 +16,7 @@ const Homework: React.FC = () => {
     const isMental = app.disciplines && !!find(app.disciplines, {id: 1});
 
     const clickEventHandler = (disciplineId: string) => {
-        dispatch(appChangeActiveDisciplineId(disciplineId))
+        dispatch(changeActiveDisciplineId(disciplineId))
     };
 
     return <>

@@ -4,7 +4,7 @@ import {Empty, Button} from "antd";
 import {withRouter, RouteComponentProps} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {DescriptionTitle} from "../../../../../../../../../../layouts/components";
-import {appChangeDataForSending} from "../../../../../../../../../../store/reducers/common/app/actions";
+import {changeIsSaved} from "../../../../../../../../../../store/reducers/teacher/group/groupSlice";
 import {useAppContext} from "../../../../../../../../../../store/context/use-app-context";
 
 const HomeworkEmpty: React.FC<RouteComponentProps> = ({history}) => {
@@ -12,7 +12,7 @@ const HomeworkEmpty: React.FC<RouteComponentProps> = ({history}) => {
     const dispatch = useDispatch();
 
     const createHomeworkHandler = async () => {
-        await dispatch(appChangeDataForSending({isSaved: true}));
+        dispatch(changeIsSaved(true));
         history.push('/homework/create');
     };
 

@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {appChangeActionNavbar} from "../store/reducers/common/app/actions";
+import {changeAction} from "../store/reducers/common/app/appSlice";
 import {useDispatch} from "react-redux";
 
 type Props = (params: { action: string }) => void
@@ -9,9 +9,9 @@ export const useChangeActionNavbar: Props = ({action}) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(appChangeActionNavbar(appAction));
+        dispatch(changeAction(appAction));
         return () => {
-            dispatch(appChangeActionNavbar(null));
+            dispatch(changeAction(null));
         };
     }, [dispatch, appAction]);
 };

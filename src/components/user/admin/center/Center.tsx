@@ -1,14 +1,13 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {useDispatch, useSelector} from "react-redux";
-import {appChangeTitleNavbar} from "../../../../store/reducers/common/app/actions";
 import {Navigation, NavigationButton} from "../../../../layouts/components";
 import EditorCenterButton from "./EditorTeacherButton";
 import TeachersTable from "./teachers-table/TeachersTable";
 import {useChangeActionNavbar} from "../../../../effects/use-change-action-navbar.effect";
+import {useChangeTitle} from "../../../../effects/use-change-title.effect";
+import {useAppContext} from "../../../../store/context/use-app-context";
 
 const Center: React.FC<any> = ({match}) => {
-    const {api} = useSelector((state: any) => (state));
-    const dispatch = useDispatch();
+    const {api} = useAppContext();
     const [center, setCenter] = useState();
     const [loading, setLoading] = useState(true);
 
@@ -16,10 +15,7 @@ const Center: React.FC<any> = ({match}) => {
         setLoading(true);
     };
 
-    useEffect(() => {
-        dispatch(appChangeTitleNavbar(center ? `Центр: ${center!.title}` : 'Центр: Загрузка...'));
-    }, [center, dispatch]);
-
+    useChangeTitle({title: center ? `Центр: ${center!.title}` : 'Центр: Загрузка...'});
     useChangeActionNavbar({action: 'back'});
 
     const fetchCenters = useCallback(async () => {

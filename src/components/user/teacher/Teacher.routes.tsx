@@ -21,7 +21,7 @@ import Platform from "./pages/platform/Platform";
 import SidebarItems from "./layout/sidebar-items/SidebarItems";
 import {useDispatch, useSelector} from "react-redux";
 import {useApiUserGeneral} from "../../../effects/use-api-user-general.effect";
-import {appChangeBasicSettings} from "../../../store/reducers/common/app/actions";
+import {changeBasicSettings} from "../../../store/reducers/common/app/appSlice";
 import {Spin} from "../../../layouts/components";
 
 const TeacherRoutes: React.FC = () => {
@@ -29,7 +29,7 @@ const TeacherRoutes: React.FC = () => {
     const dispatch = useDispatch();
     const [loading] = useApiUserGeneral({
         url: '/teacher/basic-settings',
-        afterRequest: async (data) => await dispatch(appChangeBasicSettings(data))
+        afterRequest: async (data) => await dispatch(changeBasicSettings(data))
     });
 
     const sidebar = SidebarItems();

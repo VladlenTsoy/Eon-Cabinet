@@ -1,21 +1,17 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {useDispatch, useSelector} from "react-redux";
-import {appChangeTitleNavbar} from "../../../../store/reducers/common/app/actions";
 import {Navigation, NavigationButton} from "../../../../layouts/components";
 import CenterTable from "./center-table/CenterTable";
 import EditorCenterButton from "./center-table/EditorCenterButton";
 import {useChangeActionNavbar} from "../../../../effects/use-change-action-navbar.effect";
+import {useChangeTitle} from "../../../../effects/use-change-title.effect";
+import {useAppContext} from "../../../../store/context/use-app-context";
 
 const Franchise: React.FC<any> = ({match}) => {
-    const {api} = useSelector((state: any) => (state));
+    const {api} = useAppContext();
     const [loading, setLoading] = useState(false);
     const [franchise, setFranchise] = useState();
-    const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(appChangeTitleNavbar(franchise ? `Франшиза: ${franchise.title}` : 'Франшиза: Загрузка...'));
-    }, [franchise, dispatch]);
-
+    useChangeTitle({title: franchise ? `Франшиза: ${franchise.title}` : 'Франшиза: Загрузка...'});
     useChangeActionNavbar({action: 'back'});
 
     const fetch = useCallback(async () => {

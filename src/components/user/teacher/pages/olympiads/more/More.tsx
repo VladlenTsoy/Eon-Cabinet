@@ -1,6 +1,4 @@
-import React, {useEffect} from 'react';
-import {appChangeTitleNavbar} from "store/reducers/common/app/actions";
-import {useDispatch} from "react-redux";
+import React from 'react';
 import InfoDetails from "./info-details/InfoDetails";
 import {LoadingBlock} from "lib";
 import {Result} from "antd";
@@ -10,6 +8,7 @@ import styled from "styled-components";
 import StudentDetails from "./student-details/StudentDetails";
 import {Spin} from "layouts/components";
 import {useChangeActionNavbar} from "../../../../../../effects/use-change-action-navbar.effect";
+import {useChangeTitle} from "../../../../../../effects/use-change-title.effect";
 
 const MoreWrapper = styled.div`
   position: absolute;
@@ -33,14 +32,10 @@ interface MoreOlympiadProps {
 
 const MoreOlympiad: React.FC<MoreOlympiadProps> = ({match}) => {
     const [loading, olympiad, error, fetch] = useApiUserGeneral({url: `teacher/olympiad/${match.params.id}`});
-    const dispatch = useDispatch();
 
     useChangeActionNavbar({action: 'back'});
-
-    useEffect(() => {
-        if (match.params.id)
-            dispatch(appChangeTitleNavbar(loading ? 'Загрузка...' : `Олимпиада: ${olympiad ? olympiad.title : 'Недоступна'}`));
-    }, [loading, dispatch, match.params.id, olympiad]);
+    // todo - cancel 
+        useChangeTitle({title: match.params.id && loading ? 'Загрузка...' : `Олимпиада: ${olympiad ? olympiad.title : 'Недоступна'}`});
 
     if (loading && !olympiad)
         return <LoadingBlock/>;

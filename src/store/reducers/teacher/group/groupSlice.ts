@@ -1,4 +1,5 @@
-import {createSlice} from '@reduxjs/toolkit'
+import {createSlice, PayloadAction} from '@reduxjs/toolkit'
+import {TeacherState} from "../store";
 
 interface GroupProps {
     id: number;
@@ -22,7 +23,21 @@ const initialState: StateProps = {
 const groupSlice = createSlice({
     name: 'group',
     initialState,
-    reducers: {}
+    reducers: {
+        changeGroup(state, action: PayloadAction<GroupProps>) {
+            state.group = action.payload
+        },
+        changeIsSaved(state, action: PayloadAction<boolean>){
+            state.isSaved = action.payload
+        },
+        changeSelectedStudentsId(state, action: PayloadAction<number[]>){
+            state.selectedStudentsId = action.payload
+        }
+    }
 });
 
-export default groupSlice.reducer
+export const groupSelector = (state: TeacherState) => state.group;
+
+export const {changeGroup, changeIsSaved, changeSelectedStudentsId} = groupSlice.actions;
+
+export default groupSlice.reducer;

@@ -7,7 +7,7 @@ import checkStudentGif from "assets/images/hints/check-student.gif";
 import {useDispatch} from "react-redux";
 import {message, Modal} from "antd";
 import {useScreenWindow} from "effects/use-screen-window.effect";
-import {appChangeDataForSending} from "store/reducers/common/app/actions";
+import {changeIsSaved} from "store/reducers/teacher/group/groupSlice";
 import {useAppContext} from "../../../../../../../../store/context/use-app-context";
 
 const SentDrawerButton = usingDrawerEditor(FormSentHomeworkItems);
@@ -38,9 +38,7 @@ const SentHomeworkStudentButton: React.FC<SentHomeworkStudentButtonProps> = (
                 userIds: selectUsersId
             });
             if (response.data.status === 'success') {
-                dispatch(appChangeDataForSending({
-                    isSaved: false,
-                }));
+                dispatch(changeIsSaved(false));
                 fetch();
                 message.success('Вы успешно отправили домашнее задание!');
             }

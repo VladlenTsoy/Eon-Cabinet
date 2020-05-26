@@ -5,7 +5,7 @@ import {TabTitleCustom} from "../../../../../../layouts/components";
 import {LoadingBlock} from "lib";
 import TabDiscipline from "./tab-discipline/TabDiscipline";
 import {useApiUserGeneral} from "effects/use-api-user-general.effect";
-import {appChangeActiveDisciplineId} from "store/reducers/common/app/actions";
+import {changeActiveDisciplineId} from "store/reducers/common/app/appSlice";
 
 const {TabPane} = Tabs;
 
@@ -20,7 +20,7 @@ const Training: React.FC = () => {
     };
 
     const clickEventHandler = (disciplineId: string) => {
-        dispatch(appChangeActiveDisciplineId(disciplineId))
+        dispatch(changeActiveDisciplineId(disciplineId))
     };
 
     return loading ?
