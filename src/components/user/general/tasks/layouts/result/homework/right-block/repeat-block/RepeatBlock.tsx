@@ -10,7 +10,7 @@ import {
 } from "store/reducers/common/game/actions";
 import {useParams} from "react-router-dom";
 import {ResultMatchProps} from "../../Result";
-import {totalsChange} from "../../../../../../../../../store/tasks/totals/action";
+import {totalsChange} from "../../../../../../../../../store/reducers/common/tasks/totals/action";
 
 interface RepeatBlockProps {
     isView?: boolean;

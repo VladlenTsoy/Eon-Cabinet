@@ -2,8 +2,8 @@ import React from 'react';
 import {useSelector} from "react-redux";
 import AnswerLayout from "../../../layouts/answer/Answer.layout";
 import FormInputAnswerLayout from "../../../layouts/answer/form-input-answer/FormInputAnswer.layout";
-import {totalsSelect} from "../../../../../../../store/tasks/totals/reducer";
-import {settingAnzan} from "../../../../../../../store/tasks/setting/reducer";
+import {totalsSelect} from "../../../../../../../store/reducers/common/tasks/totals/reducer";
+import {settingAnzan} from "../../../../../../../store/reducers/common/tasks/setting/reducer";
 import List from "../../word-list/answer/list/List";
 import {flattenDepth} from "lodash";
 

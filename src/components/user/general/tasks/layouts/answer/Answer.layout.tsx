@@ -4,7 +4,7 @@ import styled from "styled-components";
 import {Card} from "lib";
 import {gameChangeStats, gameChangeStatus} from "../../../../../../store/reducers/common/game/actions";
 import {useDispatch} from "react-redux";
-import {totalsChange} from "../../../../../../store/tasks/totals/action";
+import {totalsChange} from "../../../../../../store/reducers/common/tasks/totals/action";
 import {ArrowRightOutlined} from '@ant-design/icons';
 
 const {Title} = Typography;

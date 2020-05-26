@@ -2,7 +2,7 @@ import React from 'react';
 import styled from "styled-components";
 import {FormItem} from "../../../../../../../../layouts/components";
 import {useSelector} from "react-redux";
-import {settingAnzan} from "../../../../../../../../store/tasks/setting/reducer";
+import {settingAnzan} from "../../../../../../../../store/reducers/common/tasks/setting/reducer";
 
 const InputWrapper = styled.div`
   display: grid;

@@ -2,9 +2,9 @@ import React from "react";
 import {ArrowLeftOutlined, UserOutlined} from '@ant-design/icons';
 import {Button, Input, Form} from "antd";
 import {useState} from "react";
-import {Title, FormWrapper} from "./AuthLayouts";
+import {Title, FormWrapper} from "../AuthLayouts";
 import {Card} from "lib";
-import {FormItem, TextLink} from "../../layouts/components";
+import {FormItem, TextLink} from "../../../layouts/components";
 
 const ForgotPasswordBlock = () => {
     const [loading, setLoading] = useState<boolean>(false);

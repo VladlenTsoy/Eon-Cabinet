@@ -3,7 +3,7 @@ import {useSelector} from "react-redux";
 import AnswerLayout from "../../../layouts/answer/Answer.layout";
 import FormInputAnswerLayout from "../../../layouts/answer/form-input-answer/FormInputAnswer.layout";
 import {game} from "../../../../../../../store/reducers/common/game/reducer";
-import {totalsSelect} from "../../../../../../../store/tasks/totals/reducer";
+import {totalsSelect} from "../../../../../../../store/reducers/common/tasks/totals/reducer";
 
 const Answer = () => {
     const {stats, currentTimes} = useSelector(game);

@@ -1,6 +1,6 @@
-import {useSelector} from "react-redux";
 import {useCallback, useEffect, useMemo, useState} from "react";
 import axios from "axios";
+import {useAppContext} from "../store/context/use-app-context";
 
 const CancelToken = axios.CancelToken;
 
@@ -29,7 +29,7 @@ export const useApiUserGeneral: FH = (
         afterRequest,
     }
 ) => {
-    const {api} = useSelector((state: any) => state);
+    const {api} = useAppContext();
     const [configuration] = useState<any>(config);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string>();
@@ -40,12 +40,12 @@ export const useApiUserGeneral: FH = (
         setLoading(true);
         (
             method === 'post' ?
-                api.user_general.post(url, configuration.params, {
+                api.user.post(url, configuration.params, {
                     ...configuration,
                     ...params ? {params} : {},
                     cancelToken: source.token
                 }) :
-                api.user_general.get(url, {
+                api.user.get(url, {
                     ...configuration,
                     ...params ? {params} : {},
                     cancelToken: source.token
@@ -66,7 +66,7 @@ export const useApiUserGeneral: FH = (
                 setLoading(false);
             }
         });
-    }, [api.user_general, url, source.token, configuration, method]);
+    }, [api.user, url, source.token, configuration, method]);
 
     useEffect(() => {
         if (!cancel) {

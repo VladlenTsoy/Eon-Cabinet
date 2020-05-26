@@ -1,24 +1,21 @@
-import * as React from "react";
-import { EditOutlined, LoadingOutlined } from '@ant-design/icons';
-import { message, Modal } from "antd";
+import React from "react";
+import {EditOutlined, LoadingOutlined} from '@ant-design/icons';
+import {message, Modal} from "antd";
 import {useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {setCurrentUserData} from "../../../store/reducers/common/user/actions";
 import {IconsWrapper, IconWrapper, IconEditWrapper} from "./IconsWrapper";
 import AvatarLabelWrapper from "./Label";
+import {useAppContext} from "../../../store/context/use-app-context";
 
 const {confirm} = Modal;
-
 
 interface PhotoBlockProps {
     currentUser: any;
     changeDataCurrentUser: any;
 }
 
-const PhotoBlock:React.FC<PhotoBlockProps> = ({currentUser, changeDataCurrentUser}: any) => {
-    const {api, language, user} = useSelector((state: any) => state);
+const PhotoBlock: React.FC<PhotoBlockProps> = ({currentUser, changeDataCurrentUser}: any) => {
+    const {user, api, language, updateUser} = useAppContext();
     const [loading, setLoading] = useState(false);
-    const dispatch = useDispatch();
 
     const handleChangeImage = (e: any) => {
         if (loading) return;
@@ -46,10 +43,10 @@ const PhotoBlock:React.FC<PhotoBlockProps> = ({currentUser, changeDataCurrentUse
         setLoading(true);
 
         try {
-            const response = await api.user_general.post(`/${currentUser.id}/image`, data);
+            const response = await api.user.post(`/${currentUser.id}/image`, data);
             message.success(language.common['youHaveSuccessfullyChangedThePhoto']);
             if (currentUser.id === user.id)
-                dispatch(setCurrentUserData(response.data.data));
+                updateUser(response.data.data);
             else
                 changeDataCurrentUser({...currentUser, ...response.data.data});
         } catch (e) {
@@ -58,17 +55,15 @@ const PhotoBlock:React.FC<PhotoBlockProps> = ({currentUser, changeDataCurrentUse
         setLoading(false);
     };
 
-    return (
-        <AvatarLabelWrapper>
+    return <AvatarLabelWrapper>
             <img src={currentUser.image} alt={`${currentUser.first_name} ${currentUser.last_name}`}/>
             <input type="file" accept="image/x-png,image/gif,image/jpeg" onChange={handleChangeImage}/>
             <IconsWrapper>
                 {loading ?
-                    <IconWrapper><LoadingOutlined /></IconWrapper> :
-                    <IconEditWrapper><EditOutlined /> Изменить</IconEditWrapper>}
+                    <IconWrapper><LoadingOutlined/></IconWrapper> :
+                    <IconEditWrapper><EditOutlined/> Изменить</IconEditWrapper>}
             </IconsWrapper>
         </AvatarLabelWrapper>
-    );
 };
 
 export default PhotoBlock;

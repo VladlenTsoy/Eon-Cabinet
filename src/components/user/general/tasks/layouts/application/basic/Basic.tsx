@@ -4,7 +4,7 @@ import {useAddInternal} from "effects/use-add-interval.effect";
 import {useDispatch} from "react-redux";
 import {StatusProps} from "store/reducers/common/game/types";
 import Output from "./output/Output";
-import {SettingAnzanProps} from "store/tasks/setting/games-types/anzan.types";
+import {SettingAnzanProps} from "store/reducers/common/tasks/setting/games-types/anzan.types";
 import AbacusOutput from "./abacus-output/AbacusOutput";
 import {useSoundEffect} from "../use-sound.effect";
 import TurboOutput from "./turbo-output/TurboOutput";

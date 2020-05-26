@@ -5,7 +5,7 @@ import ResultLayout from "../../../../../../../layouts/result/Result.layout";
 import MiddleBlock from "./middle-block/MiddleBlock";
 import LeftBlock from "./left-block/LeftBlock";
 import RightBlock from "./right-block/RightBlock";
-import {totalsSelect} from "../../../../../../../store/tasks/totals/reducer";
+import {totalsSelect} from "../../../../../../../store/reducers/common/tasks/totals/reducer";
 import {game} from "../../../../../../../store/reducers/common/game/reducer";
 
 export type ResultMatchProps = {

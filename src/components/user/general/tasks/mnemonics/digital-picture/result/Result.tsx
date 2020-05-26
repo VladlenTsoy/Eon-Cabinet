@@ -1,6 +1,6 @@
 import React from 'react';
 import {useSelector} from "react-redux";
-import {totalsSelect} from "../../../../../../../store/tasks/totals/reducer";
+import {totalsSelect} from "../../../../../../../store/reducers/common/tasks/totals/reducer";
 import ResultMoreLayout from "../../../layouts/result/result-more/ResultMore.layout";
 import styled from "styled-components";
 import {TrophyOutlined} from '@ant-design/icons';

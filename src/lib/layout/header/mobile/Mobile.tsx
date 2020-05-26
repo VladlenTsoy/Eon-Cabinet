@@ -3,9 +3,9 @@ import HeaderItemLayout from "../../../../layouts/header/HeaderItem.layout";
 import HeaderMenuLayout from "../../../../layouts/header/HeaderMenu.layout";
 import { UserOutlined } from '@ant-design/icons';
 import HeaderProfile from "../profile/HeaderProfile";
-import {useSelector} from "react-redux";
 import LeftMenuBtn from "./left-menu-btn/LeftMenuBtn";
 import RightDrawer from "./rigth-drawer/RightDrawer";
+import {useAppContext} from "../../../../store/context/use-app-context";
 
 interface MobileProps {
     toggleSidebar: () => void;
@@ -21,7 +21,7 @@ const Mobile: React.FC<MobileProps> = (
         children,
     }
 ) => {
-    const {user} = useSelector((state: any) => state);
+    const {user} = useAppContext();
     const [visible, setVisible] = useState(false);
 
     const open = (): void => setVisible(true);

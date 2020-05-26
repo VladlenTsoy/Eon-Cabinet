@@ -9,8 +9,8 @@ import {
     gameChangeStatus,
 } from "../../../../../../../../../../store/reducers/common/game/actions";
 import {useDispatch} from "react-redux";
-import {totalsChange} from "../../../../../../../../../../store/tasks/totals/action";
-import {settingChange} from "../../../../../../../../../../store/tasks/setting/action";
+import {totalsChange} from "../../../../../../../../../../store/reducers/common/tasks/totals/action";
+import {settingChange} from "../../../../../../../../../../store/reducers/common/tasks/setting/action";
 
 interface RouteProps {
     sentOlympiadId: string,

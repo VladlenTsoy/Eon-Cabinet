@@ -2,8 +2,8 @@ import React from 'react';
 import styled from "styled-components";
 import {TrophyOutlined} from '@ant-design/icons';
 import {useSelector} from "react-redux";
-import {totalsSelect} from "../../../../../../../store/tasks/totals/reducer";
-import {settingAnzan} from "../../../../../../../store/tasks/setting/reducer";
+import {totalsSelect} from "../../../../../../../store/reducers/common/tasks/totals/reducer";
+import {settingAnzan} from "../../../../../../../store/reducers/common/tasks/setting/reducer";
 import ResultMoreLayout from "../../../layouts/result/result-more/ResultMore.layout";
 
 const FlagStyle = styled.div`

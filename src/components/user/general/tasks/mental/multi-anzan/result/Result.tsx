@@ -6,8 +6,8 @@ import {Card} from "lib";
 import UserResult from "./user-result/UserResult";
 import Header from "./header/Header";
 import {game} from "../../../../../../../store/reducers/common/game/reducer";
-import {totalsSelect} from "../../../../../../../store/tasks/totals/reducer";
-import {settingAnzan} from "../../../../../../../store/tasks/setting/reducer";
+import {totalsSelect} from "../../../../../../../store/reducers/common/tasks/totals/reducer";
+import {settingAnzan} from "../../../../../../../store/reducers/common/tasks/setting/reducer";
 
 const ResultWrapper = styled(Card)`
   &.ant-card{

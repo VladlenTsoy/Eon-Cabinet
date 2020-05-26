@@ -7,12 +7,15 @@ import ruRU from 'antd/es/locale-provider/ru_RU';
 import {locale} from "moment";
 import 'moment/locale/ru';
 import './styles/index.less';
+import {AppProvider} from "./store/context/appContext";
 
 locale("ru");
 
 ReactDOM.render(
     <ConfigProvider locale={ruRU}>
-        <App/>
+        <AppProvider>
+            <App/>
+        </AppProvider>
     </ConfigProvider>, document.getElementById('root')
 );
 

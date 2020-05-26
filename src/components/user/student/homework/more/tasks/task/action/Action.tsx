@@ -5,8 +5,8 @@ import {useDispatch} from "react-redux";
 import {gameChangeExecutionMode} from "store/reducers/common/game/actions";
 import {withRouter, RouteComponentProps} from "react-router";
 import styled from "styled-components";
-import {totalsChange} from "store/tasks/totals/action";
-import {settingChange} from "store/tasks/setting/action";
+import {totalsChange} from "store/reducers/common/tasks/totals/action";
+import {settingChange} from "store/reducers/common/tasks/setting/action";
 
 export const ActionWrapper = styled.div<any>`
   display: grid;

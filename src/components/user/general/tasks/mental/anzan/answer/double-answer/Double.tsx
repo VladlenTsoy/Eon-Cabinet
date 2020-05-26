@@ -2,8 +2,8 @@ import React from 'react';
 import {Col, Row} from "antd";
 import {useSelector} from "react-redux";
 import FormInputAnswerLayout from "../../../../layouts/answer/form-input-answer/FormInputAnswer.layout";
-import {settingAnzan} from "../../../../../../../../store/tasks/setting/reducer";
-import {totalsSelect} from "../../../../../../../../store/tasks/totals/reducer";
+import {settingAnzan} from "../../../../../../../../store/reducers/common/tasks/setting/reducer";
+import {totalsSelect} from "../../../../../../../../store/reducers/common/tasks/totals/reducer";
 
 const Double: React.FC = () => {
     const setting = useSelector(settingAnzan);

@@ -3,8 +3,8 @@ import {useSelector} from "react-redux";
 import {random} from 'lodash';
 import {useAddSpaceToString} from "effects/use-add-space-to-string";
 import ApplicationLayout from "../../../layouts/application/Application.layout";
-import {settingAnzan} from "store/tasks/setting/reducer";
-import {totalsSelect} from "store/tasks/totals/reducer";
+import {settingAnzan} from "store/reducers/common/tasks/setting/reducer";
+import {totalsSelect} from "store/reducers/common/tasks/totals/reducer";
 import Custom from "./custom/Custom";
 
 const Application: React.FC = () => {

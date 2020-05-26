@@ -4,8 +4,8 @@ import Double from "./double-answer/Double";
 import Basic from "./basic-answer/Basic";
 import AnswerLayout from "../../../layouts/answer/Answer.layout";
 import {game} from "../../../../../../../store/reducers/common/game/reducer";
-import {settingAnzan} from "../../../../../../../store/tasks/setting/reducer";
-import {totalsSelect} from "../../../../../../../store/tasks/totals/reducer";
+import {settingAnzan} from "../../../../../../../store/reducers/common/tasks/setting/reducer";
+import {totalsSelect} from "../../../../../../../store/reducers/common/tasks/totals/reducer";
 
 const Answer: React.FC = () => {
     const {stats, currentTimes} = useSelector(game);

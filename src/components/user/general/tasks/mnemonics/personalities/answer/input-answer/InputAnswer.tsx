@@ -4,7 +4,7 @@ import {FormItem, UserImage} from "../../../../../../../../layouts/components";
 import {DatePicker} from "antd";
 import {useSelector} from "react-redux";
 import {useScreenWindow} from "../../../../../../../../effects/use-screen-window.effect";
-import {settingAnzan} from "../../../../../../../../store/tasks/setting/reducer";
+import {settingAnzan} from "../../../../../../../../store/reducers/common/tasks/setting/reducer";
 
 const dateFormatList = ['DD/MM/YYYY', 'DD/MM/YY'];
 

@@ -6,8 +6,8 @@ import {Button, Typography} from "antd";
 import {Modal} from "../../../../../../../../layouts/components";
 import {LoadingBlock} from "lib";
 import MoreModal from "./more-modal/MoreModal";
-import {totalsSelect} from "../../../../../../../../store/tasks/totals/reducer";
-import {settingAnzan} from "../../../../../../../../store/tasks/setting/reducer";
+import {totalsSelect} from "../../../../../../../../store/reducers/common/tasks/totals/reducer";
+import {settingAnzan} from "../../../../../../../../store/reducers/common/tasks/setting/reducer";
 
 const WinSound = require("assets/sounds/win.mp3");
 const LossSound = require("assets/sounds/loss.mp3");

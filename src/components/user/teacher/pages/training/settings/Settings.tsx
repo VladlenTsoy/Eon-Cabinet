@@ -7,7 +7,7 @@ import {setCurrentUserData} from "../../../../../../store/reducers/common/user/a
 import {Col, Row} from "antd";
 import {Card, LoadingBlock} from "lib";
 import styled from "styled-components";
-import {settingChange} from "../../../../../../store/tasks/setting/action";
+import {settingChange} from "../../../../../../store/reducers/common/tasks/setting/action";
 
 const Mental = React.lazy(() => import("./mental/Mental"));
 const Mnemonics = React.lazy(() => import("./mnemonics/Mnemonics"));

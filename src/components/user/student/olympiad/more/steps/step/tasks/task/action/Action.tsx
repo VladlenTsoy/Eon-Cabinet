@@ -4,7 +4,7 @@ import {useDispatch} from "react-redux";
 import {FlagOutlined} from '@ant-design/icons';
 import {Button} from "antd";
 import {useHistory} from "react-router";
-import {settingChange} from "../../../../../../../../../../store/tasks/setting/action";
+import {settingChange} from "../../../../../../../../../../store/reducers/common/tasks/setting/action";
 
 type ActionProps = {
     task: any;

@@ -2,10 +2,10 @@ import * as React from "react";
 import './Color.less';
 import {useState} from "react";
 import {message} from "antd";
-import {useSelector} from "react-redux";
+import {useAppContext} from "../../../../../../../../store/context/use-app-context";
 
 const ColorModalBlock = ({currentUser, changeDataCurrentUser}: any) => {
-    const {api, language} = useSelector((state: any) => state);
+    const {api, language} = useAppContext();
     const [currentColor, setCurrentColor] = useState(currentUser.setting.anzanColor);
 
     const changeColor = async (color: string) => {
@@ -13,7 +13,7 @@ const ColorModalBlock = ({currentUser, changeDataCurrentUser}: any) => {
         currentUser.setting.anzanColor = color;
 
         try{
-            const response = await api.user_general.patch(`/${currentUser.id}`, {setting: currentUser.setting});
+            const response = await api.user.patch(`/${currentUser.id}`, {setting: currentUser.setting});
             changeDataCurrentUser(response.data);
             message.success('Вы успешно изменили цвет!');
         } catch (e) {

@@ -2,15 +2,13 @@ import React, {useState} from "react";
 import {LockOutlined, UserOutlined} from '@ant-design/icons';
 import {Button, Input, message, Form} from "antd";
 import {useHistory} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
-import {apiChangeAccessToken} from "store/reducers/common/api/actions";
 import {Card} from "lib";
-import {FormItem} from "../../layouts/components";
-import {Title, SubTitle, FormWrapper} from "./AuthLayouts";
+import {FormItem} from "../../../layouts/components";
+import {Title, SubTitle, FormWrapper} from "../AuthLayouts";
+import {useAppContext} from "../../../store/context/use-app-context";
 
-const Login = () => {
-    const {api} = useSelector((state: any) => state);
-    const dispatch = useDispatch();
+const Login:React.FC = () => {
+    const {api, updateToken} = useAppContext();
     const history = useHistory();
     const [loading, setLoading] = useState(false);
 
@@ -18,7 +16,7 @@ const Login = () => {
         setLoading(true);
         try {
             const response = await api.guest.post('/login', values);
-            dispatch(apiChangeAccessToken(response.data.data.token));
+            updateToken(response.data.data.token);
             history.push('/');
         } catch (e) {
             if (e.response)

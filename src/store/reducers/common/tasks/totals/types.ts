@@ -1,4 +1,4 @@
-import {ActionFunctionTypes, State} from "../../rootTypes";
+import {ActionFunctionTypes, State} from "../../../../rootTypes";
 import {Reducer} from "redux";
 
 export const TOTALS_CHANGE = "TOTALS_CHANGE";

@@ -9,7 +9,7 @@ import {
 } from "../../../../../../../../store/reducers/common/game/actions";
 import {useDispatch, useSelector} from "react-redux";
 import {game} from "../../../../../../../../store/reducers/common/game/reducer";
-import {settingAnzan} from "../../../../../../../../store/tasks/setting/reducer";
+import {settingAnzan} from "../../../../../../../../store/reducers/common/tasks/setting/reducer";
 
 const HeaderWrapper = styled.div`
   display: flex;

@@ -8,9 +8,9 @@ import MultiOutput from "./multi-output/MultiOutput";
 import styled from "styled-components";
 import {gameChangeStatus} from "../../../../../../../store/reducers/common/game/actions";
 import MultiGridLayout from "../layouts/MultiGrid.layout";
-import {totalsChange} from "../../../../../../../store/tasks/totals/action";
-import {totalsSelect} from "../../../../../../../store/tasks/totals/reducer";
-import {settingAnzan} from "../../../../../../../store/tasks/setting/reducer";
+import {totalsChange} from "../../../../../../../store/reducers/common/tasks/totals/action";
+import {totalsSelect} from "../../../../../../../store/reducers/common/tasks/totals/reducer";
+import {settingAnzan} from "../../../../../../../store/reducers/common/tasks/setting/reducer";
 import {game} from "../../../../../../../store/reducers/common/game/reducer";
 
 const CardWrapper = styled(Card)`

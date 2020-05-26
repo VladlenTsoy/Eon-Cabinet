@@ -1,12 +1,10 @@
 import React from "react";
 import {Modal} from "antd";
-import {useDispatch, useSelector} from "react-redux";
-import {apiDeleteAccessToken} from "../../../store/reducers/common/api/actions";
-import {deleteCurrentUserData} from "../../../store/reducers/common/user/actions";
 import {useScreenWindow} from "../../../effects/use-screen-window.effect";
 import Mobile from "./mobile/Mobile";
 import Laptop from "./laptop/Laptop";
 import {QuestionCircleOutlined} from "@ant-design/icons";
+import {useAppContext} from "../../../store/context/use-app-context";
 
 interface HeaderProps {
     collapsed: boolean;
@@ -16,8 +14,7 @@ interface HeaderProps {
 const confirm = Modal.confirm;
 
 const Header: React.FC<HeaderProps> = ({children, collapsed, toggleSidebar}) => {
-    const {api} = useSelector((state: any) => state);
-    const dispatch = useDispatch();
+    const {api, updateUser, updateToken} = useAppContext();
 
     // Выход
     const logout = () => {
@@ -25,9 +22,9 @@ const Header: React.FC<HeaderProps> = ({children, collapsed, toggleSidebar}) => 
             title: 'Вы действительно хотите выйти?',
             icon: <QuestionCircleOutlined/>,
             onOk: async () => {
-                await api.user_general.delete('/logout');
-                dispatch(apiDeleteAccessToken());
-                dispatch(deleteCurrentUserData());
+                await api.user.delete('/logout');
+                updateUser(null);
+                updateToken('');
             },
         });
     };

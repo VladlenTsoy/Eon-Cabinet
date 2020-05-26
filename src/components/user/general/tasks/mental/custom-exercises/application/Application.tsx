@@ -2,7 +2,7 @@ import React from 'react';
 import {useSelector} from "react-redux";
 import {game} from "../../../../../../../store/reducers/common/game/reducer";
 import ApplicationAnzan from "../../anzan/application/Application";
-import {settingAnzan} from "../../../../../../../store/tasks/setting/reducer";
+import {settingAnzan} from "../../../../../../../store/reducers/common/tasks/setting/reducer";
 
 const Application = () => {
     const setting = useSelector(settingAnzan);

@@ -7,8 +7,8 @@ import {Button} from "antd";
 import {useHistory, useParams} from "react-router-dom";
 import {ResultMatchProps} from "../../Result";
 import {FlagOutlined} from '@ant-design/icons';
-import {settingChange} from "../../../../../../../../../store/tasks/setting/action";
-import {totalsChange} from "../../../../../../../../../store/tasks/totals/action";
+import {settingChange} from "../../../../../../../../../store/reducers/common/tasks/setting/action";
+import {totalsChange} from "../../../../../../../../../store/reducers/common/tasks/totals/action";
 
 interface NextBlockProps {
     nextTask: any;

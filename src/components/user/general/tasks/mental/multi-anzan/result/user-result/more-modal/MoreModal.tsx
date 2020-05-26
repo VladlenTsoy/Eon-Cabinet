@@ -1,8 +1,8 @@
 import React from 'react';
 import {useSelector} from "react-redux";
 import MoreBasic from "./more-basic/MoreBasic";
-import {totalsSelect} from "../../../../../../../../../store/tasks/totals/reducer";
-import {settingAnzan} from "../../../../../../../../../store/tasks/setting/reducer";
+import {totalsSelect} from "../../../../../../../../../store/reducers/common/tasks/totals/reducer";
+import {settingAnzan} from "../../../../../../../../../store/reducers/common/tasks/setting/reducer";
 
 interface MoreModalProps {
     taskKey: number;

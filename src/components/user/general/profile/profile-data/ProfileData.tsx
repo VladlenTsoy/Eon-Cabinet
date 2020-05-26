@@ -3,9 +3,8 @@ import {Button, Col, DatePicker, Form, message, Row, Typography} from "antd";
 import {Card} from "lib";
 import {FormItem} from "../../../../../layouts/components";
 import styled from "styled-components";
-import {setCurrentUserData} from "../../../../../store/reducers/common/user/actions";
-import {useDispatch, useSelector} from "react-redux";
 import moment from 'moment';
+import {useAppContext} from "../../../../../store/context/use-app-context";
 
 const {Title} = Typography;
 
@@ -14,15 +13,14 @@ const ProfileTitle = styled(Title)`
 `;
 
 const ProfileData: React.FC = () => {
-    const {api, user} = useSelector((state: any) => state);
+    const {user, api, updateUser} = useAppContext();
     const [loading, setLoading] = useState(false);
-    const dispatch = useDispatch();
 
     const handleSubmit = async (values: any) => {
         setLoading(true);
         try {
-            const response = await api.user_general.patch(`/${user.id}`, values);
-            dispatch(setCurrentUserData(response.data));
+            const response = await api.user.patch(`/${user.id}`, values);
+            updateUser(response.data);
             message.success('Вы успешно изменили данные!');
         } catch (e) {
             message.error(e.response.data.message);

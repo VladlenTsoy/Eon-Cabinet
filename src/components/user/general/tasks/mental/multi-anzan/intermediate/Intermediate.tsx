@@ -5,8 +5,8 @@ import MultiGridLayout from "../layouts/MultiGrid.layout";
 import {useSelector} from "react-redux";
 import Header from "./header/Header";
 import UserIntermediate from "./user-intermediate/UserIntermediate";
-import {totalsSelect} from "../../../../../../../store/tasks/totals/reducer";
-import {settingAnzan} from "../../../../../../../store/tasks/setting/reducer";
+import {totalsSelect} from "../../../../../../../store/reducers/common/tasks/totals/reducer";
+import {settingAnzan} from "../../../../../../../store/reducers/common/tasks/setting/reducer";
 import {game} from "../../../../../../../store/reducers/common/game/reducer";
 
 const IntermediateWrapper = styled(Card)`

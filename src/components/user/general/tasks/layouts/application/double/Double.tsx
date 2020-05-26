@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import styled from "styled-components";
 import Output from "../basic/output/Output";
-import {SettingAnzanBasicProps,} from "../../../../../../../store/tasks/setting/games-types/anzan.types";
+import {SettingAnzanBasicProps,} from "../../../../../../../store/reducers/common/tasks/setting/games-types/anzan.types";
 import {StatusProps} from "../../../../../../../store/reducers/common/game/types";
 import {useDispatch} from "react-redux";
 import {useAddInternal} from "../../../../../../../effects/use-add-interval.effect";

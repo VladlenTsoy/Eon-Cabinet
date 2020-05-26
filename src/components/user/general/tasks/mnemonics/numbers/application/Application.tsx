@@ -1,7 +1,7 @@
 import React, {useCallback} from 'react';
 import {useSelector} from "react-redux";
 import {chunk, random, shuffle} from 'lodash';
-import {settingAnzan} from "../../../../../../../store/tasks/setting/reducer";
+import {settingAnzan} from "../../../../../../../store/reducers/common/tasks/setting/reducer";
 import ApplicationLayout from "../../../layouts/application/Application.layout";
 import {useScreenWindow} from "../../../../../../../effects/use-screen-window.effect";
 import List from "../../word-list/application/list/List";

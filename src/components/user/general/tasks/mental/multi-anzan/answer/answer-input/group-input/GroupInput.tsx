@@ -6,8 +6,8 @@ import {Typography} from "antd";
 import {useSelector} from "react-redux";
 import TextFit
     from "../../../../../../../teacher/pages/training/settings/mental/multi-anzan/exercise-setting/multiplication-block/TextFit";
-import {totalsSelect} from "../../../../../../../../../store/tasks/totals/reducer";
-import {settingAnzan} from "../../../../../../../../../store/tasks/setting/reducer";
+import {totalsSelect} from "../../../../../../../../../store/reducers/common/tasks/totals/reducer";
+import {settingAnzan} from "../../../../../../../../../store/reducers/common/tasks/setting/reducer";
 
 const {Title} = Typography;
 

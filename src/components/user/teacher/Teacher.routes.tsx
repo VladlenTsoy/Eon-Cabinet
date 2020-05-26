@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from 'react';
+import React from 'react';
 import {Layout, Loader} from "../../../lib";
 import HeaderItems from "./layout/header-items/HeaderItems";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
@@ -23,13 +23,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {useApiUserGeneral} from "../../../effects/use-api-user-general.effect";
 import {appChangeBasicSettings} from "../../../store/reducers/common/app/actions";
 import {Spin} from "../../../layouts/components";
-import {UserContext} from "../../App";
-import {setCurrentUserData} from "../../../store/reducers/common/user/actions";
-import {fetchCurrentLanguage} from "../../../store/reducers/common/language/actions";
 
 const TeacherRoutes: React.FC = () => {
-    const user:any = useContext(UserContext);
-    const {app, language} = useSelector((state: any) => (state));
+    const {app} = useSelector((state: any) => (state));
     const dispatch = useDispatch();
     const [loading] = useApiUserGeneral({
         url: '/teacher/basic-settings',
@@ -38,21 +34,7 @@ const TeacherRoutes: React.FC = () => {
 
     const sidebar = SidebarItems();
 
-    useEffect(()=>{
-        // Проверка токена для авторизации
-        // dispatch(apiChangeAccessToken());
-
-        // Запрос текущего языка для платформы
-        dispatch(fetchCurrentLanguage());
-
-        // Запрос текущего пользователя
-        // dispatch(fetchCurrentUserData());
-        dispatch(setCurrentUserData(user));
-    },[user]);
-
-    console.log(language);
-
-    if (loading || !language?.common)
+    if (loading)
         return <Loader text="Загрузка настроек..."/>;
 
     return <Spin spinning={app.spin} tip="Изменяем тему...">

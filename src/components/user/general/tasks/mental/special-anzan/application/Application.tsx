@@ -1,8 +1,8 @@
 import React, {useCallback} from 'react';
 import {useSelector} from "react-redux";
 import {random} from 'lodash';
-import {settingAnzan} from "store/tasks/setting/reducer";
-import {totalsSelect} from "store/tasks/totals/reducer";
+import {settingAnzan} from "store/reducers/common/tasks/setting/reducer";
+import {totalsSelect} from "store/reducers/common/tasks/totals/reducer";
 import {useUpdateOutputEffect} from "../../../layouts/application/use-update-output.effect";
 import ApplicationLayout from "../../../layouts/application/Application.layout";
 

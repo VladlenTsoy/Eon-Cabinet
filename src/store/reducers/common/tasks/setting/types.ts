@@ -1,5 +1,5 @@
 import {Reducer} from "redux";
-import {ActionFunctionTypes} from "../../rootTypes";
+import {ActionFunctionTypes} from "../../../../rootTypes";
 // import {SettingAnzanProps} from "./games-types/anzan.types";
 
 export const SETTING_CHANGE = "SETTING_CHANGE";

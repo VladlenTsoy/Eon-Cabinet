@@ -9,8 +9,8 @@ import StepsIntermediate from "./layouts/step-intermediate/StepsIntermediate";
 import BgIconsDownIntermediateLayout from "./layouts/bg-icons-down/BgIconsDownIntermediate.layout";
 import {useScreenWindow} from "../../../../../../effects/use-screen-window.effect";
 import {game} from "../../../../../../store/reducers/common/game/reducer";
-import {totalsSelect} from "../../../../../../store/tasks/totals/reducer";
-import {settingAnzan} from "../../../../../../store/tasks/setting/reducer";
+import {totalsSelect} from "../../../../../../store/reducers/common/tasks/totals/reducer";
+import {settingAnzan} from "../../../../../../store/reducers/common/tasks/setting/reducer";
 
 const CardWrapper = styled(Card)`
   &.ant-card{

@@ -1,5 +1,5 @@
 import {ExtraTypes, SoundTypes} from "../types";
-import {State} from "../../../rootTypes";
+import {State} from "../../../../../rootTypes";
 
 export interface SettingAnzanBasicProps {
     anzan: 'basic' | 'turbo' | 'double'

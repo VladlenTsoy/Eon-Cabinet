@@ -9,7 +9,7 @@ import {
     gameChangeExecutionMode, gameChangeStats,
     gameChangeStatus
 } from "../../../../../../../../store/reducers/common/game/actions";
-import {totalsChange} from "../../../../../../../../store/tasks/totals/action";
+import {totalsChange} from "../../../../../../../../store/reducers/common/tasks/totals/action";
 
 const HeaderWrapper = styled.div`
   display: flex;

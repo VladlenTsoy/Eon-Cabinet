@@ -1,8 +1,8 @@
 import React, {useCallback} from "react";
 import {useSelector} from "react-redux";
 import ApplicationLayout from "../../../layouts/application/Application.layout";
-import {settingAnzan} from "../../../../../../../store/tasks/setting/reducer";
-import {totalsSelect} from "../../../../../../../store/tasks/totals/reducer";
+import {settingAnzan} from "../../../../../../../store/reducers/common/tasks/setting/reducer";
+import {totalsSelect} from "../../../../../../../store/reducers/common/tasks/totals/reducer";
 import {useUpdateOutputEffect} from "../../../layouts/application/use-update-output.effect";
 
 const Application: React.FC = () => {

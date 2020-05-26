@@ -1,6 +1,6 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Loader} from "lib";
-import {UserContext} from "../App";
+import {useAppContext} from "../../store/context/use-app-context";
 
 const BlockedAccount = React.lazy(() => import("./blocked-account/BlockedAccount"));
 const Student = React.lazy(() => import("./student/Student"));
@@ -10,7 +10,7 @@ const DirectorCenter = React.lazy(() => import("./director-center/DirectorCenter
 const DirectorFranchise = React.lazy(() => import("./director-franchise/DirectorFranchise"));
 
 const User:React.FC = () => {
-    const user:any = useContext(UserContext);
+    const {user} = useAppContext();
     const [isDarkTheme, setIsDarkTheme] = useState(false);
 
     useEffect(() => {
@@ -40,6 +40,7 @@ const User:React.FC = () => {
         setIsDarkTheme(user?.setting?.is_dark);
     }, [user]);
 
+    console.log(user);
     return <>
         <React.Suspense fallback={<Loader text="Загрузка доступа..."/>}>
             {user.access === 'teacher' ? <Teacher/> :

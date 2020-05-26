@@ -2,14 +2,14 @@ import React, {useCallback, useEffect, useState} from 'react';
 import {Button, Form} from "antd";
 import {ArrowRightOutlined} from '@ant-design/icons';
 import {useDispatch, useSelector} from "react-redux";
-import {totalsSelect} from "../../../../../../../../store/tasks/totals/reducer";
-import {settingAnzan} from "../../../../../../../../store/tasks/setting/reducer";
+import {totalsSelect} from "../../../../../../../../store/reducers/common/tasks/totals/reducer";
+import {settingAnzan} from "../../../../../../../../store/reducers/common/tasks/setting/reducer";
 import TablesOutput from "../../../../layouts/application/list/tables-output/TablesOutput";
 import Table from "./table/Table";
 import {chunk} from "lodash";
 import ApplicationCardLayout from "../../../../layouts/application/ApplicationCard.layout";
 import {gameChangeStats, gameChangeStatus} from "../../../../../../../../store/reducers/common/game/actions";
-import {totalsChange} from "../../../../../../../../store/tasks/totals/action";
+import {totalsChange} from "../../../../../../../../store/reducers/common/tasks/totals/action";
 
 interface ListProps {
     checkHandler: (values: any) => any | {

@@ -1,8 +1,8 @@
 import React from 'react';
 import FormInputAnswerLayout from "../../../../layouts/answer/form-input-answer/FormInputAnswer.layout";
 import {useSelector} from "react-redux";
-import {settingAnzan} from "../../../../../../../../store/tasks/setting/reducer";
-import {totalsSelect} from "../../../../../../../../store/tasks/totals/reducer";
+import {settingAnzan} from "../../../../../../../../store/reducers/common/tasks/setting/reducer";
+import {totalsSelect} from "../../../../../../../../store/reducers/common/tasks/totals/reducer";
 
 const Basic: React.FC = () => {
     const totals = useSelector(totalsSelect);

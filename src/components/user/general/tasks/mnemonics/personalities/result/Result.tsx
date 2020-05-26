@@ -3,9 +3,9 @@ import {useSelector} from "react-redux";
 import {TrophyOutlined} from '@ant-design/icons';
 import {UserImage} from "../../../../../../../layouts/components";
 import moment from "moment";
-import {totalsSelect} from "../../../../../../../store/tasks/totals/reducer";
+import {totalsSelect} from "../../../../../../../store/reducers/common/tasks/totals/reducer";
 import ResultMoreLayout from "../../../layouts/result/result-more/ResultMore.layout";
-import {settingAnzan} from "../../../../../../../store/tasks/setting/reducer";
+import {settingAnzan} from "../../../../../../../store/reducers/common/tasks/setting/reducer";
 
 const ResultBlock = () => {
     const totals: any = useSelector(totalsSelect);

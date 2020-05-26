@@ -1,7 +1,7 @@
 import React from 'react';
 import {useSelector} from "react-redux";
 import {TrophyOutlined} from '@ant-design/icons';
-import {totalsSelect} from "../../../../../../../store/tasks/totals/reducer";
+import {totalsSelect} from "../../../../../../../store/reducers/common/tasks/totals/reducer";
 import ResultMoreLayout from "../../../layouts/result/result-more/ResultMore.layout";
 
 const ResultBlock = () => {

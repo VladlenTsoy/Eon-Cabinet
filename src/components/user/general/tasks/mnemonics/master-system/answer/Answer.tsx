@@ -2,7 +2,7 @@ import React from 'react';
 import AnswerLayout from "../../../layouts/answer/Answer.layout";
 import {useSelector} from "react-redux";
 import FormInputAnswerLayout from "../../../layouts/answer/form-input-answer/FormInputAnswer.layout";
-import {totalsSelect} from "../../../../../../../store/tasks/totals/reducer";
+import {totalsSelect} from "../../../../../../../store/reducers/common/tasks/totals/reducer";
 
 const Answer: React.FC = () => {
     const totals:any = useSelector(totalsSelect);

@@ -6,9 +6,9 @@ import {
     gameChangeStats,
     gameChangeStatus,
 } from "store/reducers/common/game/actions";
-import {totalsChange} from "store/tasks/totals/action";
-import {settingChange} from "store/tasks/setting/action";
-import {settingAnzan} from "store/tasks/setting/reducer";
+import {totalsChange} from "store/reducers/common/tasks/totals/action";
+import {settingChange} from "store/reducers/common/tasks/setting/action";
+import {settingAnzan} from "store/reducers/common/tasks/setting/reducer";
 import {LoadingBlock} from "lib";
 import {useChangeActionNavbar} from "../../../../effects/use-change-action-navbar.effect";
 import TasksSwitch from "./Tasks.switch";

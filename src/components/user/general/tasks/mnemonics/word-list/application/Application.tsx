@@ -1,7 +1,7 @@
 import React, {useCallback} from 'react';
 import {useSelector} from "react-redux";
 import ApplicationLayout from "../../../layouts/application/Application.layout";
-import {settingAnzan} from "store/tasks/setting/reducer";
+import {settingAnzan} from "store/reducers/common/tasks/setting/reducer";
 import {useScreenWindow} from "effects/use-screen-window.effect";
 import {chunk} from "lodash";
 import List from "./list/List";

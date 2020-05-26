@@ -1,10 +1,10 @@
 import React from 'react';
 import {IoMdMoon, IoMdSunny} from "react-icons/all";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import styled from "styled-components";
 import {Switch} from "antd";
-import {setCurrentUserData} from "../../../../../store/reducers/common/user/actions";
 import {appChangeSpin} from "../../../../../store/reducers/common/app/actions";
+import {useAppContext} from "../../../../../store/context/use-app-context";
 
 const SwitchWrapper = styled(Switch)`
   .ant-switch-inner{
@@ -14,14 +14,13 @@ const SwitchWrapper = styled(Switch)`
 `;
 
 const DarkSwitch: React.FC = () => {
-    const {api, user} = useSelector((state: any) => (state));
+    const {api, user, updateUser} = useAppContext();
     const dispatch = useDispatch();
 
-    console.log(user);
     const handlerChange = async (state: boolean) => {
         dispatch(appChangeSpin(true));
-        const response = await api.user_general.patch(`/${user.id}`, {setting: {...user.setting, is_dark: state}});
-        await dispatch(setCurrentUserData(response.data));
+        const response = await api.user.patch(`/${user.id}`, {setting: {...user.setting, is_dark: state}});
+        await updateUser(response.data);
         setTimeout(() => dispatch(appChangeSpin(false)), 1000);
     };
 

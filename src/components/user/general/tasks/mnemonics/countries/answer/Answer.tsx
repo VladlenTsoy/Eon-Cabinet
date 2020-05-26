@@ -3,8 +3,8 @@ import {useSelector} from "react-redux";
 import AnswerLayout from "../../../layouts/answer/Answer.layout";
 import InputAnswer from "./input-answer/InputAnswer";
 import styled from "styled-components";
-import {totalsSelect} from "../../../../../../../store/tasks/totals/reducer";
-import {settingAnzan} from "../../../../../../../store/tasks/setting/reducer";
+import {totalsSelect} from "../../../../../../../store/reducers/common/tasks/totals/reducer";
+import {settingAnzan} from "../../../../../../../store/reducers/common/tasks/setting/reducer";
 
 const InputsWrapper = styled.div`
   display: grid;
