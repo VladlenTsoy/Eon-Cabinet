@@ -6,7 +6,7 @@ import {LoadingBlock} from "lib";
 import {DescriptionTitle} from "layouts/components";
 import styled from "styled-components";
 import CardPublic from "./card/CardPublic";
-import {useSelector} from "react-redux";
+import {useAppContext} from "store/context/use-app-context";
 
 const PublicWrapper = styled.div`
   display: grid;
@@ -30,7 +30,7 @@ const PublicWrapper = styled.div`
 `;
 
 const Public: React.FC = () => {
-    const {language} = useSelector((state: any) => state);
+    const {language} = useAppContext();
     const [loading, olympiads, , fetch] = useApiUserGeneral({url: '/student/olympiads/public/available/paginate'});
 
     const callback = () => {

@@ -60,9 +60,9 @@ const TableCentersStatistic: React.FC<any> = ({url}) => {
     const [loader, setLoader] = useState(false);
 
     const fetch = useCallback(async () => {
-        const response = await api.user_general.get(url);
+        const response = await api.user.get(url);
         setCenters(response.data);
-    }, [api.user_general, url]);
+    }, [api.user, url]);
 
     useEffect(() => {
         (async () => {

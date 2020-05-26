@@ -23,9 +23,9 @@ const Center: React.FC<any> = ({match}) => {
     useChangeActionNavbar({action: 'back'});
 
     const fetchCenters = useCallback(async () => {
-        const response = await api.user_general.get(`admin/center/${match.params.center_id}`);
+        const response = await api.user.get(`admin/center/${match.params.center_id}`);
         setCenter(response.data);
-    }, [match.params.center_id, api.user_general]);
+    }, [match.params.center_id, api.user]);
 
     useEffect(() => {
         (async () => {

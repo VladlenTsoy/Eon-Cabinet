@@ -1,6 +1,6 @@
 import React from 'react';
 import {Legend} from "../../../../../../layouts/components";
-import UsingTablePagination from "../../../../../../layouts/components/table-pagination/usingTablePagination";
+import UsingTablePagination from "../../../../../../lib/table-pagination/usingTablePagination";
 import Columns from "./Columns";
 
 // TODO - Настроить Props

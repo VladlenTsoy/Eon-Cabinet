@@ -5,7 +5,7 @@ import {MenuOutlined} from '@ant-design/icons';
 import {Badge} from "antd";
 import {PlusOutlined} from "@ant-design/icons";
 import moment from "moment";
-import UsingTablePagination from "../../../../../layouts/components/table-pagination/usingTablePagination";
+import UsingTablePagination from "../../../../../lib/table-pagination/usingTablePagination";
 import {useChangeActionNavbar} from "../../../../../effects/use-change-action-navbar.effect";
 import {useChangeTitle} from "../../../../../effects/use-change-title.effect";
 import TeacherModalMenuItems from "./teacher-modal-menu-items/TeacherModalMenuItems";

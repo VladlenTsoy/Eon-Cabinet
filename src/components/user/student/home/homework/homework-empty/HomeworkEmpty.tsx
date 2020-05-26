@@ -1,7 +1,7 @@
 import React from 'react';
 import { RedoOutlined } from '@ant-design/icons';
 import {Button, Empty} from "antd";
-import {useSelector} from "react-redux";
+import {useAppContext} from "store/context/use-app-context";
 import {DescriptionTitle} from "../../../../../../layouts/components";
 import styled from "styled-components";
 
@@ -19,7 +19,7 @@ interface HomeworkEmptyProps {
 }
 
 const HomeworkEmpty: React.FC<HomeworkEmptyProps> = ({fetch}) => {
-    const {language} = useSelector((state: any) => state);
+    const {language} = useAppContext();
     const updateHandler = () => fetch();
 
     return (

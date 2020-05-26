@@ -19,10 +19,10 @@ const EditorCenterButton: React.FC<EditorCenterButtonProps> = ({title, children,
 
     const request = async (values: any) => {
         if (center) {
-            await api.user_general.post(`admin/center/${center.id}`, values);
+            await api.user.post(`admin/center/${center.id}`, values);
             message.success("Вы успешно изменили центр!");
         } else {
-            await api.user_general.post(`admin/center`, values);
+            await api.user.post(`admin/center`, values);
             message.success("Вы успешно добавили центр!");
         }
     };

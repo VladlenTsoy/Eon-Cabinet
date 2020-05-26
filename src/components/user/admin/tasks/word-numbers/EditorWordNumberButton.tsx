@@ -17,10 +17,10 @@ const EditorWordNumberButton: React.FC<EditorWordNumberButtonProps> = ({title, c
 
     const request = async (values: any) => {
         if (wordNumber) {
-            await api.user_general.post(`admin/word-number/${wordNumber.id}`, values);
+            await api.user.post(`admin/word-number/${wordNumber.id}`, values);
             message.success("Вы успешно изменили Цифру-Слово!");
         } else {
-            await api.user_general.post(`admin/word-number`, values);
+            await api.user.post(`admin/word-number`, values);
             message.success("Вы успешно добавили Цифру-Слово!");
         }
     };

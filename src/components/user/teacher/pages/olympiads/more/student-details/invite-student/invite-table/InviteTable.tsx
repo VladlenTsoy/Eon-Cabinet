@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Input, Empty} from "antd";
-import {useSelector} from "react-redux";
+import {useAppContext} from "store/context/use-app-context";
 import styled from "styled-components";
 import {LoadingBlock} from "lib";
 import InviteColumn from "./column/InviteColumn";
@@ -72,7 +72,7 @@ interface InviteTableProps {
 }
 
 const InviteTable: React.FC<InviteTableProps> = ({olympiad, fetch}) => {
-    const {api, language} = useSelector((state: any) => state);
+    const {api, language} = useAppContext();
     const [timer, setTimer] = useState<any>(0);
     const [students, setStudents] = useState<never[]>([]);
     const [loading, setLoading] = useState(false);
@@ -81,7 +81,7 @@ const InviteTable: React.FC<InviteTableProps> = ({olympiad, fetch}) => {
     const searchStudent = async (search: string) => {
         if (search) {
             setLoading(true);
-            let response = await api.user_general.post(`teacher/olympiad/${olympiad.id}/search/students`, {search});
+            let response = await api.user.post(`teacher/olympiad/${olympiad.id}/search/students`, {search});
             setStudents(response.data);
             setLoading(false);
         }

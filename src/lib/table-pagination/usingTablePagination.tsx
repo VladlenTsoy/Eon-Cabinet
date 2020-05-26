@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {useApiUserGeneral} from "effects/use-api-user-general.effect";
-import {Navigation, TablePagination} from "../index";
-import {Card} from "lib";
+import {Navigation, TablePagination} from "../../layouts/components";
+import {Card} from "lib/index";
 
 interface UsingTablePaginationProps<RecordType = any> {
     url: string;

@@ -19,9 +19,9 @@ const Franchise: React.FC<any> = ({match}) => {
     useChangeActionNavbar({action: 'back'});
 
     const fetch = useCallback(async () => {
-        const response = await api.user_general.get(`admin/franchise/${match.params.id}`);
+        const response = await api.user.get(`admin/franchise/${match.params.id}`);
         setFranchise(response.data);
-    }, [api.user_general, match.params.id]);
+    }, [api.user, match.params.id]);
 
     useEffect(() => {
         (async () => {

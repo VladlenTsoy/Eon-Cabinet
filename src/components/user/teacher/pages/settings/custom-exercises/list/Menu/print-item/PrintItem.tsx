@@ -1,7 +1,7 @@
 import React from 'react';
 import {PrinterOutlined} from "@ant-design/icons";
 // import {pdfRender} from "../../../../../training/tasks/print/general";
-import {useSelector} from "react-redux";
+import {useAppContext} from "store/context/use-app-context";
 import {message} from "antd";
 
 interface PrintItemProps {
@@ -9,11 +9,11 @@ interface PrintItemProps {
 }
 
 const PrintItem: React.FC<PrintItemProps> = ({record}) => {
-    const {api, language} = useSelector((state: any) => state);
+    const {api, language} = useAppContext();
 
     const clickHandler = async () => {
         const hide = message.loading('Загрузка файла...', 0);
-        const response = await api.user_general.get(`custom-exercises/${record.id}/print`);
+        const response = await api.user.get(`custom-exercises/${record.id}/print`);
         const {pdfRender} = await import("../../../../../training/settings/print/general");
         await pdfRender(record.setting, response.data, language.common);
         hide();

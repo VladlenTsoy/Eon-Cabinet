@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import {useSelector} from "react-redux";
+import {useAppContext} from "store/context/use-app-context";
 
 const AdditionWrapper = styled.div`
   div{
@@ -28,7 +28,7 @@ interface AdditionProps {
 }
 
 const AdditionBlock: React.FC<AdditionProps> = ({setting}) => {
-    const {language} = useSelector((state: any) => state);
+    const {language} = useAppContext();
 
     return <AdditionWrapper>
         <ModeWrapper>

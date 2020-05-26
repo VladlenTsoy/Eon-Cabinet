@@ -18,10 +18,10 @@ const EditorPriceButton: React.FC<EditorPriceButtonProps> = ({title, children, p
 
     const request = async (values: any) => {
         if (price) {
-            await api.user_general.post(`admin/price/${price.id}`, values);
+            await api.user.post(`admin/price/${price.id}`, values);
             message.success("Вы успешно изменили цену!");
         } else {
-            await api.user_general.post(`admin/price`, values);
+            await api.user.post(`admin/price`, values);
             message.success("Вы успешно добавили цену!");
         }
     };

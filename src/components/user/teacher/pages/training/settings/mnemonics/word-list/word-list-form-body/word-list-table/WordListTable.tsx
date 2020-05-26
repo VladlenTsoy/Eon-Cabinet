@@ -3,7 +3,7 @@ import {DeleteOutlined, FlagOutlined, PlusOutlined, UndoOutlined} from '@ant-des
 import {Button, Empty, InputNumber, Form} from "antd";
 import {FormItem} from "../../../../../../../../../../layouts/components";
 import styled from "styled-components";
-import {useSelector} from "react-redux";
+import {useAppContext} from "store/context/use-app-context";
 import {FormInstance} from "antd/es/form";
 
 const TableWrapper = styled.div`
@@ -96,7 +96,7 @@ const WordListTable: React.FC<WordListTableProps> = (
         deleteSetting
     }
 ) => {
-    const {language} = useSelector((state: any) => state);
+    const {language} = useAppContext();
     const {common} = language;
 
     const [loading, setLoading] = useState(false);

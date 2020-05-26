@@ -1,7 +1,7 @@
 import React from "react";
 import {Divider, Select} from "antd";
-import {FormItem} from "../../index";
-import {useApiUserGeneral} from "../../../../effects/use-api-user-general.effect";
+import {FormItem} from "../../../layouts/components";
+import {useApiUserGeneral} from "../../../effects/use-api-user-general.effect";
 
 const {Option} = Select;
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { DeleteOutlined } from '@ant-design/icons';
 import { Modal, message } from "antd";
-import {useSelector} from "react-redux";
+import {useAppContext} from "store/context/use-app-context";
 
 interface DeleteGroupButtonProps {
     group: any;
@@ -11,7 +11,7 @@ interface DeleteGroupButtonProps {
 const {confirm} = Modal;
 
 const DeleteGroupButton: React.FC<DeleteGroupButtonProps> = ({group, fetch}) => {
-    const {api} = useSelector((state: any) => state);
+    const {api} = useAppContext();
     const deleteGroup = () => {
         if (group.count === 0)
             confirm({
@@ -21,7 +21,7 @@ const DeleteGroupButton: React.FC<DeleteGroupButtonProps> = ({group, fetch}) => 
                 cancelText: 'Нет',
                 async onOk() {
                     try {
-                        await api.user_general.delete(`teacher/group/${group.id}`);
+                        await api.user.delete(`teacher/group/${group.id}`);
                         fetch();
                         message.success('Вы успешно удалили группу!');
                     } catch (e) {

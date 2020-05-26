@@ -8,7 +8,7 @@ import {useApiUserGeneral} from "../../../../../../../effects/use-api-user-gener
 import PrevArrow from "./prev-arrow/PrevArrow";
 import NextArrow from "./next-arrow/NextArrow";
 import {DescriptionTitle} from "../../../../../../../layouts/components";
-import {useSelector} from "react-redux";
+import {useAppContext} from "store/context/use-app-context";
 import {useScreenWindow} from "../../../../../../../effects/use-screen-window.effect";
 
 const {Title} = Typography;
@@ -26,7 +26,7 @@ const CardsWrapper = styled.div`
 const CurrentOlympiads: React.FC = () => {
     const [, breakpoint] = useScreenWindow({breakpoint: 'sm'});
 
-    const {language} = useSelector((state: any) => state);
+    const {language} = useAppContext();
     const [update, setUpdate] = useState(false);
     const [loader, olympiads] = useApiUserGeneral({url: 'teacher/olympiads/current', initValue: []});
 

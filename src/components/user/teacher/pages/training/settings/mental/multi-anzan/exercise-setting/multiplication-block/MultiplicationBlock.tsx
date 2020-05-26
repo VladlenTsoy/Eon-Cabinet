@@ -1,5 +1,5 @@
 import React from 'react';
-import {useSelector} from "react-redux";
+import {useAppContext} from "store/context/use-app-context";
 import styled from "styled-components";
 import TextFit from "./TextFit";
 
@@ -33,7 +33,7 @@ interface MultiplicationProps {
 }
 
 const MultiplicationBlock: React.FC<MultiplicationProps> = ({setting}) => {
-    const {language} = useSelector((state: any) => state);
+    const {language} = useAppContext();
 
     return <MultiplicationWrapper>
         <span className="title">Режим</span>

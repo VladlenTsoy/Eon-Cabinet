@@ -19,7 +19,7 @@ const WordNumberTableDropdown: React.FC<WordNumberTableDropdownProps> = ({record
             title: 'Вы уверены, что хотите удалить?',
             okType: 'danger',
             onOk: async () => {
-                await api.user_general.delete(`admin/word-number/${record.id}`);
+                await api.user.delete(`admin/word-number/${record.id}`);
                 fetch();
             },
         });

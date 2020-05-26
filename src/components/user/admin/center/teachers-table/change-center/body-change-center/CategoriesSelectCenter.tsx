@@ -29,9 +29,9 @@ const CategoriesSelectCenter: React.FC<CategoriesSelectCenterProps> = ({teacher,
     const [categories, setCategories] = useState<any>([]);
 
     const fetch = useCallback(async () => {
-        let response = await api.user_general.get(`admin/categories/center/${centerId}`);
+        let response = await api.user.get(`admin/categories/center/${centerId}`);
         setCategories(response.data);
-    }, [api.user_general, centerId]);
+    }, [api.user, centerId]);
 
     useEffect(() => {
         (async () => {

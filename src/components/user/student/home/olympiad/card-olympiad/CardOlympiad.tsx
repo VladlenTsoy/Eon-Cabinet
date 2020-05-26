@@ -1,7 +1,7 @@
 import React from 'react';
 import {Card} from "lib";
 import {ButtonLink} from "lib";
-import {useSelector} from "react-redux";
+import {useAppContext} from "store/context/use-app-context";
 import {AppstoreOutlined, TeamOutlined, FlagOutlined} from '@ant-design/icons';
 import styled from "styled-components";
 import ImageTimer from "../../../../teacher/pages/olympiads/list/current/card/image-timer/ImageTimer";
@@ -62,7 +62,7 @@ interface CardOlympiadProps {
 }
 
 const CardOlympiad: React.FC<CardOlympiadProps> = ({olympiad, fetch}) => {
-    const {language} = useSelector((state: any) => state);
+    const {language} = useAppContext();
     return (
         <CardWrapper className="animated fadeIn">
             <OlympiadWrapper>

@@ -9,7 +9,7 @@ const ExportToExcel: React.FC = () => {
 
     const saveStatistic = async () => {
         setLoading(true);
-        const response = await api.user_general(`director-franchise/teachers/export/excel`);
+        const response = await api.user(`director-franchise/teachers/export/excel`);
         window.open(response.data.file_url);
         setLoading(false);
     };

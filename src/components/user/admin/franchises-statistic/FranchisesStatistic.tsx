@@ -62,9 +62,9 @@ const FranchisesStatistic: React.FC = () => {
     useChangeActionNavbar({action: 'back'});
 
     const fetchTeacher = useCallback(async () => {
-        const response = await api.user_general.get(`/admin/check/teachers`);
+        const response = await api.user.get(`/admin/check/teachers`);
         setTeachers(response.data);
-    }, [api.user_general]);
+    }, [api.user]);
 
     useEffect(() => {
         (async () => {

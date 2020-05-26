@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {Input, Switch} from "antd";
-import {FormItem} from "../index";
+import {FormItem} from "../../layouts/components";
 import styled from "styled-components";
 
 const InputPasswordWrapper = styled.div`

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Button} from "antd";
-import {useSelector} from "react-redux";
+import {useAppContext} from "../../../../../store/context/use-app-context";
 
 interface SendingMessageProps {
     updateIsSent: any;
@@ -8,13 +8,13 @@ interface SendingMessageProps {
 }
 
 const SendingMessage: React.FC<SendingMessageProps> = ({updateIsSent, close}) => {
-    const {api} = useSelector((state: any) => state);
+    const {api} = useAppContext();
     const [loading, setLoading] = useState(false);
 
     const sendingMessageHandler = async () => {
         try {
             setLoading(true);
-            let response = await api.user_general.post('/sending-message');
+            let response = await api.user.post('/sending-message');
             if (response.data.status === 'success') {
 
                 return updateIsSent(true);

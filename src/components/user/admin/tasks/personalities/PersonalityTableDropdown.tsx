@@ -19,7 +19,7 @@ const PersonalityTableDropdown: React.FC<PersonalityTableDropdownProps> = ({reco
             title: 'Вы уверены, что хотите удалить?',
             okType: 'danger',
             onOk: async () => {
-                await api.user_general.delete(`admin/personality/${record.id}`);
+                await api.user.delete(`admin/personality/${record.id}`);
                 fetch();
             },
         });

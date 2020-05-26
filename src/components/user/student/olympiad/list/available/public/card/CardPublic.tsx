@@ -53,7 +53,7 @@ const CardPublic: React.FC<CardPublicProps> = ({olympiad, callback}) => {
 
     const clickParticipateHandler = async () => {
         setLoading(true);
-        await api.user_general.post(`/student/olympiad/${olympiad.id}/participation`);
+        await api.user.post(`/student/olympiad/${olympiad.id}/participation`);
         setLoading(false);
         Modal.success({
             title: 'Поздравляем!',

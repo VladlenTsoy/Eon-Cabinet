@@ -12,7 +12,7 @@ const DeleteHomework: React.FC<any> = ({homework, setLoading}) => {
             title: 'Вы хотите удалить домашнее задание?',
             async onOk() {
                 try {
-                    const response = await api.user_general.delete(`teacher/homework/${homework.id}`);
+                    const response = await api.user.delete(`teacher/homework/${homework.id}`);
                     if (response.data.status === 'success') {
                         setLoading(true);
                         message.success('Вы успешно удалили домашнее задание!');

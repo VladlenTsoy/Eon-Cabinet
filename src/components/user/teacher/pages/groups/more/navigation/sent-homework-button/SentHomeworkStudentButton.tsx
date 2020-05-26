@@ -4,10 +4,11 @@ import {NavigationButton} from "layouts/components";
 import usingDrawerEditor from "layouts/drawer-editor/usingDrawerEditor";
 import FormSentHomeworkItems from "./form-items/FormSentHomeworkItems";
 import checkStudentGif from "assets/images/hints/check-student.gif";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {message, Modal} from "antd";
 import {useScreenWindow} from "effects/use-screen-window.effect";
 import {appChangeDataForSending} from "store/reducers/common/app/actions";
+import {useAppContext} from "../../../../../../../../store/context/use-app-context";
 
 const SentDrawerButton = usingDrawerEditor(FormSentHomeworkItems);
 
@@ -26,13 +27,13 @@ const SentHomeworkStudentButton: React.FC<SentHomeworkStudentButtonProps> = (
         isVisible
     }
 ) => {
-    const {api} = useSelector((state: any) => state);
+    const {api} = useAppContext();
     const dispatch = useDispatch();
     const [, breakpoint] = useScreenWindow({breakpoint: 'sm'});
 
     const sendHomework = useCallback(async (data: any) => {
         try {
-            const response = await api.user_general.post(`teacher/homework/send`, {
+            const response = await api.user.post(`teacher/homework/send`, {
                 ...data,
                 userIds: selectUsersId
             });
@@ -46,7 +47,7 @@ const SentHomeworkStudentButton: React.FC<SentHomeworkStudentButtonProps> = (
         } catch (e) {
             message.error('Неизвестная ошибка!');
         }
-    }, [selectUsersId, fetch, dispatch, api.user_general]);
+    }, [selectUsersId, fetch, dispatch, api.user]);
 
     const disabledHandler = () => {
         Modal.info({

@@ -1,14 +1,14 @@
 import React from 'react';
 import {Col, Form, InputNumber, Radio, Row} from "antd";
 import {FormItem} from "../../../../../../../../../layouts/components";
-import {useSelector} from "react-redux";
+import {useAppContext} from "store/context/use-app-context";
 import Stepper from "../../../../../../../../../lib/stepper/Stepper";
 
 interface SpecialFormItemsProps {
 }
 
 const SpecialFormItems: React.FC<SpecialFormItemsProps> = () => {
-    const {language} = useSelector((state: any) => state);
+    const {language} = useAppContext();
 
     return <Row gutter={15}>
         <Col span={24}>

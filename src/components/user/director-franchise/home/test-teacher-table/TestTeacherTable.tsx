@@ -3,7 +3,7 @@ import { PlusOutlined } from '@ant-design/icons';
 import {Typography, Button} from "antd";
 import {UserImage} from "../../../../../layouts/components";
 import moment from "moment";
-import UsingTablePagination from "../../../../../layouts/components/table-pagination/usingTablePagination";
+import UsingTablePagination from "../../../../../lib/table-pagination/usingTablePagination";
 import EditorTeacherDrawer from "../../centers/more/editor-teacher-drawer/EditorTeacherDrawer";
 import TeacherModalMenuItems from "../../centers/more/teacher-modal-menu-items/TeacherModalMenuItems";
 

@@ -1,6 +1,6 @@
 import React from "react";
 import {LoadingOutlined} from '@ant-design/icons';
-import Card from "../../lib/card/Card";
+import Card from "../card/Card";
 import styled from "styled-components";
 
 interface CardStatisticProps {

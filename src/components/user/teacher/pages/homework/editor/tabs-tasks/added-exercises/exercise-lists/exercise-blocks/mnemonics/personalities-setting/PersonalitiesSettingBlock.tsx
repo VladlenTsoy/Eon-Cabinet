@@ -1,12 +1,12 @@
 import React from 'react';
-import {useSelector} from "react-redux";
+import {useAppContext} from "store/context/use-app-context";
 
 interface PersonalitiesSettingBlockProps {
     setting: any;
 }
 
 const PersonalitiesSettingBlock:React.FC<PersonalitiesSettingBlockProps> = ({setting}) => {
-    const {language} = useSelector((state: any) => state);
+    const {language} = useAppContext();
     return <>
         <tr>
             <td className="text-mute">Мод:</td>

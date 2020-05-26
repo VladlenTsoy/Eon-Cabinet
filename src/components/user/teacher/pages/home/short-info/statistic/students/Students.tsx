@@ -11,7 +11,7 @@ import {
 
 import { Popover } from "antd";
 import {Card} from "lib";
-import {IconWrapper} from "../../../../../../../../layouts/components/CardStatistic";
+import {IconWrapper} from "../../../../../../../../lib/card-statistic/CardStatistic";
 
 const CardWrapper = styled(Card)`
    text-align: center;

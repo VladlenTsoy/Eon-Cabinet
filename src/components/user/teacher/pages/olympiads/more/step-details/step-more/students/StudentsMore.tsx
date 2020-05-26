@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from "styled-components";
 import moment from "moment";
-import Avatar from "../../../../../../../../../layouts/components/avatar/Avatar";
+import Avatar from "../../../../../../../../../lib/avatar/Avatar";
 import {Typography, Popover} from "antd";
-import UsingTablePagination from "../../../../../../../../../layouts/components/table-pagination/usingTablePagination";
+import UsingTablePagination from "../../../../../../../../../lib/table-pagination/usingTablePagination";
 import StepSuccess from "assets/images/olympiad/step_success.svg";
 
 const {Title} = Typography;

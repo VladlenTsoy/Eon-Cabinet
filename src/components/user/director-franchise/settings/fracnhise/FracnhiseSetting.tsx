@@ -2,19 +2,19 @@ import React, {useCallback, useEffect, useState} from 'react';
 import {Col, Row} from "antd";
 import FranchiseSettingFormData from "./FracnhiseSettingFormData";
 import FranchiseSettingTheme from "./FranchiseSettingTheme";
-import {useSelector} from "react-redux";
 import {LoadingBlock} from "lib";
+import {useAppContext} from "../../../../../store/context/use-app-context";
 
 
 const FranchiseSetting: React.FC<any> = () => {
-    const {api} = useSelector((state: any) => state);
+    const {api} = useAppContext();
     const [loading, setLoading] = useState(true);
     const [franchise, setFranchise] = useState();
 
     const fetch = useCallback(async () => {
-        const response = await api.user_general.get('/director-franchise/franchise');
+        const response = await api.user.get('/director-franchise/franchise');
         setFranchise(response.data);
-    }, [api.user_general]);
+    }, [api.user]);
 
     useEffect(() => {
         (async () => {
@@ -25,7 +25,7 @@ const FranchiseSetting: React.FC<any> = () => {
     }, [fetch]);
 
     const updateFranchise = async (data: any) => {
-        const response = await api.user_general.post(`/director-franchise/franchise/${franchise.id}`, data);
+        const response = await api.user.post(`/director-franchise/franchise/${franchise.id}`, data);
         setFranchise(response.data);
     };
 

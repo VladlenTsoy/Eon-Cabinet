@@ -49,7 +49,7 @@ const BodyChangeCenterTeacher: React.FC<BodyChangeCenterTeacherProps> = (
 
     const handlerSubmit = async (values: any) => {
         setButtonLoading(true);
-        await api.user_general.post(`admin/teacher/${teacher.id}/center/transfer`, values);
+        await api.user.post(`admin/teacher/${teacher.id}/center/transfer`, values);
         await afterAction();
         message.success("Вы успешно превели учителя в другой центр!");
     };

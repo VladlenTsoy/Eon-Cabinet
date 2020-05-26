@@ -33,11 +33,11 @@ const ButtonSaveOlympiad: React.FC<ButtonSaveOlympiadProps> = (
     const saveOlympiad = async (data: any) => {
         try {
             if (olympiad) {
-                const response = await api.user_general.patch(`teacher/olympiad/${olympiad.id}`, data);
+                const response = await api.user.patch(`teacher/olympiad/${olympiad.id}`, data);
                 if (response.data.status === 'success')
                     message.success("Вы успешно изменили олимпиаду!");
             } else {
-                const response = await api.user_general.post('teacher/olympiad', {
+                const response = await api.user.post('teacher/olympiad', {
                     ...data,
                     discipline: disciplineId,
                     exercises,

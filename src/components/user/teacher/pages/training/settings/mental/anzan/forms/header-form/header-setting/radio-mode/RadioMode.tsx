@@ -1,13 +1,13 @@
 import React from "react";
 import {Form, Radio} from "antd";
-import {useSelector} from "react-redux";
+import {useAppContext} from "store/context/use-app-context";
 
 interface RadioModeProps {
     mods?: string;
 }
 
 const RadioMode: React.FC<RadioModeProps> = ({mods}) => {
-    const {language} = useSelector((state: any) => state);
+    const {language} = useAppContext();
 
     return <Form.Item name="mode" required>
         <Radio.Group className="setting-mode" buttonStyle="solid">

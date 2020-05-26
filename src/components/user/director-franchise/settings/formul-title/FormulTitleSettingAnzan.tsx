@@ -1,11 +1,11 @@
 import React, {useMemo, useState} from "react";
 import {SaveOutlined} from '@ant-design/icons';
 import {Button, Form, Input, message} from "antd";
-import {useSelector} from "react-redux";
 import {FormItem} from "../../../../../layouts/components";
+import {useAppContext} from "../../../../../store/context/use-app-context";
 
 const FormulTitleSettingAnzan: React.FC<any> = ({form, defaultTypes}) => {
-    const {language} = useSelector((state: any) => state);
+    const {language} = useAppContext();
     const [btnLoading, setBtnLoading] = useState(false);
     const types = Object.entries(language.common.typeNames[0]);
 

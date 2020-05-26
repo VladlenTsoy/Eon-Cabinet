@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {useSelector} from "react-redux";
+import {useAppContext} from "store/context/use-app-context";
 import AnzanType from "../anzan-setting/anzan-type/AnzanType";
 import styled from "styled-components";
 
@@ -14,7 +14,7 @@ interface CustomExercisesSettingBlockProps {
 }
 
 const CustomExercisesSettingBlock: React.FC<CustomExercisesSettingBlockProps> = ({setting}) => {
-    const {language} = useSelector((state: any) => state);
+    const {language} = useAppContext();
     const [isMultiplication] = useState(setting.mode === 'divide' || setting.mode === 'multiply');
 
     return <>

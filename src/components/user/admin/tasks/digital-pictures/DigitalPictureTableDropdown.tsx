@@ -19,7 +19,7 @@ const DigitalPictureTableDropdown: React.FC<DigitalPictureTableDropdownProps> = 
             title: 'Вы уверены, что хотите удалить?',
             okType: 'danger',
             onOk: async () => {
-                await api.user_general.delete(`admin/digital-picture/${record.id}`);
+                await api.user.delete(`admin/digital-picture/${record.id}`);
                 fetch();
             },
         });

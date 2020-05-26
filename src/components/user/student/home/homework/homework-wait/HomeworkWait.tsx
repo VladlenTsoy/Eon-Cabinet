@@ -1,7 +1,7 @@
 import React from 'react';
 import {MoreWrapper} from "../homework-more/HomeworkMoreLink";
 import { HomeOutlined } from '@ant-design/icons';
-import {useSelector} from "react-redux";
+import {useAppContext} from "store/context/use-app-context";
 import styled from "styled-components";
 
 const WaitWrapper = styled(MoreWrapper)`
@@ -20,7 +20,7 @@ interface HomeworkWait {
 }
 
 const HomeworkWait:React.FC<HomeworkWait> = () => {
-    const {language} = useSelector((state: any) => state);
+    const {language} = useAppContext();
 
     return (
       <WaitWrapper to={''}>

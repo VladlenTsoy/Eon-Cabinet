@@ -1,5 +1,5 @@
 import React from 'react';
-import {useSelector} from "react-redux";
+import {useAppContext} from "store/context/use-app-context";
 import styled from "styled-components";
 import { FileOutlined } from '@ant-design/icons';
 
@@ -15,7 +15,7 @@ interface WordListSettingBlockProps {
 }
 
 const WordListSettingBlock: React.FC<WordListSettingBlockProps> = ({setting}) => {
-    const {language} = useSelector((state: any) => state);
+    const {language} = useAppContext();
     return <>
         <tr>
             <TdAnzanWrapper colSpan={6}>

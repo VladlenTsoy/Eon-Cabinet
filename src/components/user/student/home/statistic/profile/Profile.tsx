@@ -1,5 +1,5 @@
 import React from 'react';
-import {useSelector} from "react-redux";
+import {useAppContext} from "store/context/use-app-context";
 import ProfileBlock from "../../../layouts/profile-block/ProfileBlock";
 import {Card} from "lib";
 import Awards from "./awards/Awards";
@@ -31,7 +31,7 @@ const ProfileCardWrapper = styled(Card)`
 `;
 
 const Profile: React.FC = () => {
-    const {user} = useSelector((state: any) => state);
+    const {user} = useAppContext();
     return <ProfileCardWrapper>
         <ProfileBlock user={user}/>
         <Awards/>

@@ -17,10 +17,10 @@ const EditorCategoryButton: React.FC<EditorCategoryButtonProps> = ({title, child
 
     const request = async (values: any) => {
         if (category) {
-            await api.user_general.post(`admin/category/${category.id}`, values);
+            await api.user.post(`admin/category/${category.id}`, values);
             message.success("Вы успешно изменили категорию!");
         } else {
-            await api.user_general.post(`admin/category`, values);
+            await api.user.post(`admin/category`, values);
             message.success("Вы успешно добавили категорию!");
         }
     };

@@ -28,10 +28,10 @@ const FormItems: React.FC<FormItemsProps> = ({group, fetch, close}) => {
     const onFinishHandler = async (values: any) => {
         setLoading(true);
         if (group) {
-            await api.user_general.put(`teacher/group/${group.id}`, values);
+            await api.user.put(`teacher/group/${group.id}`, values);
             message.success("Вы успешно изменили группу!");
         } else {
-            await api.user_general.post(`teacher/group`, values);
+            await api.user.post(`teacher/group`, values);
             message.success("Вы успешно добавили группу!");
         }
         await fetch();

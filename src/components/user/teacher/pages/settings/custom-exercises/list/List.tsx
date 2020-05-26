@@ -3,7 +3,7 @@ import {Navigation, NavigationButton} from "layouts/components";
 import {Link} from "react-router-dom";
 import {Tabs, Tag} from "antd";
 import {PlusOutlined} from "@ant-design/icons";
-import UsingTablePagination from "layouts/components/table-pagination/usingTablePagination";
+import UsingTablePagination from "lib/table-pagination/usingTablePagination";
 import {ModalMenu} from "lib";
 import {useSelector} from "react-redux";
 import {useScreenWindow} from "effects/use-screen-window.effect";

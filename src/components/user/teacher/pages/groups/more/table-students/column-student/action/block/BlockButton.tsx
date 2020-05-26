@@ -1,5 +1,5 @@
 import React from 'react';
-import {useSelector} from "react-redux";
+import {useAppContext} from "store/context/use-app-context";
 import { LockOutlined } from '@ant-design/icons';
 import {Button, Modal, Popover} from "antd";
 import styled from "styled-components";
@@ -15,7 +15,7 @@ const PopoverContent = styled.div`
 `;
 
 const BlockButton: React.FC<BlockButtonProps> = ({student, fetch}) => {
-    const {api} = useSelector((state: any) => state);
+    const {api} = useAppContext();
     const [, isBreakpoint] = useScreenWindow({breakpoint: 'sm'});
 
     const clickHandler = () => {
@@ -25,7 +25,7 @@ const BlockButton: React.FC<BlockButtonProps> = ({student, fetch}) => {
             заблокирован доступ к его личному кабинету,
              разблокировать возможно только после 20 дней или оплаты.`,
             onOk: async () => {
-                await api.user_general.post(`/${student.id}/block`);
+                await api.user.post(`/${student.id}/block`);
                 fetch();
             }
         });

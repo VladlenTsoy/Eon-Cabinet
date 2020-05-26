@@ -1,5 +1,5 @@
 import React from 'react';
-import Avatar from "../../../../../../../../../../layouts/components/avatar/Avatar";
+import Avatar from "../../../../../../../../../../lib/avatar/Avatar";
 import {Button, Modal, notification} from "antd";
 import {useSelector} from "react-redux";
 
@@ -16,7 +16,7 @@ const RequestColumn: React.FC<RequestColumnProps> = ({student, fetch, setIsChang
         Modal.confirm({
             title: `Добавить (${student.first_name} ${student.last_name}) к участникам олимпиады?`,
             async onOk() {
-                await api.user_general.patch(
+                await api.user.patch(
                     `teacher/olympiad/request/${student.request_id}`,
                     {status: 'confirmed'}
                 );
@@ -32,7 +32,7 @@ const RequestColumn: React.FC<RequestColumnProps> = ({student, fetch, setIsChang
             title: `Отказать в участии ученику (${student.first_name} ${student.last_name})?`,
             okType: 'danger',
             async onOk() {
-                await api.user_general.patch(
+                await api.user.patch(
                     `teacher/olympiad/request/${student.request_id}`,
                     {status: 'denied'}
                 );

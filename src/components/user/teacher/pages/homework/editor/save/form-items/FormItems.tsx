@@ -22,7 +22,7 @@ const FormItems: React.FC<FormItemsProps> = ({homework, close, fetch, discipline
         setLoading(true);
         try {
             if (homework) {
-                const response = await api.user_general.put(`teacher/homework/${homework.id}`, {
+                const response = await api.user.put(`teacher/homework/${homework.id}`, {
                     ...values,
                     discipline: disciplineId,
                     exercises
@@ -31,7 +31,7 @@ const FormItems: React.FC<FormItemsProps> = ({homework, close, fetch, discipline
                     message.success("Вы успешно изменили домашнее задание!");
                 }
             } else {
-                const response = await api.user_general.post('teacher/homework', {
+                const response = await api.user.post('teacher/homework', {
                     ...values,
                     discipline: disciplineId,
                     exercises

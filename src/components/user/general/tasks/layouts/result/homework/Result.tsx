@@ -7,6 +7,7 @@ import LeftBlock from "./left-block/LeftBlock";
 import RightBlock from "./right-block/RightBlock";
 import {totalsSelect} from "../../../../../../../store/reducers/common/tasks/totals/reducer";
 import {game} from "../../../../../../../store/reducers/common/game/reducer";
+import {useAppContext} from "../../../../../../../store/context/use-app-context";
 
 export type ResultMatchProps = {
     homeworkId?: string;
@@ -17,7 +18,7 @@ export type ResultMatchProps = {
 
 const Result: React.FC = ({children}) => {
     const {homeworkId, id} = useParams<ResultMatchProps>();
-    const {api} = useSelector((state: any) => state);
+    const {api} = useAppContext();
     const {stats} = useSelector(game);
 
     const result: boolean = stats.all !== 0 && stats.all === stats.success;
@@ -35,7 +36,7 @@ const Result: React.FC = ({children}) => {
         if (homeworkId && id)
             (async () => {
                 setLoading(true);
-                const response = await api.user_general.post('/student/homework/result', {
+                const response = await api.user.post('/student/homework/result', {
                     task_id: id,
                     sent_id: homeworkId,
                     result: {
@@ -54,7 +55,7 @@ const Result: React.FC = ({children}) => {
             setTimeout(() => {
                 setLoading(false);
             }, result ? 4000 : 2000);
-    }, [homeworkId, id, api.user_general, stats, totals, result]);
+    }, [homeworkId, id, api.user, stats, totals, result]);
 
     return <ResultLayout
         loading={loading}

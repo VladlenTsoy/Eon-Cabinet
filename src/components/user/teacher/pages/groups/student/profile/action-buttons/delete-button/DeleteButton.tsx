@@ -1,5 +1,5 @@
 import React from 'react';
-import {useSelector} from "react-redux";
+import {useAppContext} from "store/context/use-app-context";
 import {Modal} from "antd";
 
 const {confirm} = Modal;
@@ -10,7 +10,7 @@ interface DeleteButtonProps {
 }
 
 const DeleteButton: React.FC<DeleteButtonProps> = ({student, fetch, children}) => {
-    const {api} = useSelector((state: any) => state);
+    const {api} = useAppContext();
 
     const deleteUsers = () => {
         confirm({
@@ -18,7 +18,7 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({student, fetch, children}) =
             okText: 'Да',
             okType: 'danger',
             async onOk() {
-                await api.user_general.delete(`teacher/student/${student.id}`);
+                await api.user.delete(`teacher/student/${student.id}`);
                 await fetch();
             },
         });

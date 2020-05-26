@@ -1,6 +1,6 @@
 import React from "react";
 import {Input} from "antd";
-import {FormItem} from "../index";
+import {FormItem} from "../../layouts/components";
 
 const InputLogin: React.FC = () => {
     const rules = [

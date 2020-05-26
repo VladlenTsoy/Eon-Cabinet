@@ -1,8 +1,8 @@
 import React from "react";
 import { PlusOutlined } from '@ant-design/icons';
 import { Divider } from "antd";
-import usingDrawerEditor from "../../../drawer-editor/usingDrawerEditor";
-import FormEditorCenterItems from "../../../drawer-editor/editor-center/FormEditorCenterItems";
+import usingDrawerEditor from "../../../layouts/drawer-editor/usingDrawerEditor";
+import FormEditorCenterItems from "../../../layouts/drawer-editor/editor-center/FormEditorCenterItems";
 
 const CreateCenterButton = usingDrawerEditor(FormEditorCenterItems);
 

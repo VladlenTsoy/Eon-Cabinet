@@ -19,10 +19,10 @@ const EditorTeacherButton: React.FC<EditorTeacherButtonProps> = ({title, childre
 
     const request = async (values: any) => {
         if (teacher) {
-            await api.user_general.post(`admin/teacher/${teacher.id}`, values);
+            await api.user.post(`admin/teacher/${teacher.id}`, values);
             message.success("Вы успешно изменили данные учителя!");
         } else {
-            await api.user_general.post(`admin/teacher`, values);
+            await api.user.post(`admin/teacher`, values);
             message.success("Вы успешно добавили учителя!");
         }
     };

@@ -21,7 +21,7 @@ const FormItems: React.FC<FormItemsProps> = ({exercises, setting}) => {
 
     const onFinishHandler = async (values: any) => {
         setLoading(true);
-        await api.user_general.post('/teacher/custom-exercises', {...values, setting, exercises});
+        await api.user.post('/teacher/custom-exercises', {...values, setting, exercises});
         message.success(`Вы успешно создали примеры!`);
         history.push('/settings/custom-exercises');
     };

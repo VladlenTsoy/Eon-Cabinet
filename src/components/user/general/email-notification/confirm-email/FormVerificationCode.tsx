@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Button, message, Form} from "antd";
 import {FormItem} from "../../../../../layouts/components";
-import {useSelector} from "react-redux";
+import {useAppContext} from "../../../../../store/context/use-app-context";
 
 interface FormVerificationCodeProps {
     changeDataCurrentUser: any;
@@ -9,13 +9,13 @@ interface FormVerificationCodeProps {
 }
 
 const FormVerificationCode: React.FC<FormVerificationCodeProps> = ({updateResult, changeDataCurrentUser}) => {
-    const {api} = useSelector((state: any) => state);
+    const {api} = useAppContext();
     const [loading, setLoading] = useState(false);
 
     const handleSubmit = async (values: any) => {
         setLoading(true);
         try {
-            let response = await api.user_general.post('/code-confirmation', values);
+            let response = await api.user.post('/code-confirmation', values);
             if (response.data.status === 'success')
                 changeDataCurrentUser(response.data.user);
             return updateResult(true);

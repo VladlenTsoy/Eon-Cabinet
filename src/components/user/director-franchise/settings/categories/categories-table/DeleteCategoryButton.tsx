@@ -18,7 +18,7 @@ const DeleteCategoryButton: React.FC<DeleteCategoryButtonProps> = ({category, fe
             okType: 'danger',
             async onOk() {
                 try {
-                    const response = await api.user_general.delete(`director-franchise/category/${category.id}`);
+                    const response = await api.user.delete(`director-franchise/category/${category.id}`);
                     if (response.data.status === 'success') {
                         message.info(`Вы успешно удалили категорию: ${category.title}.`);
                         fetch();

@@ -4,7 +4,7 @@ import {message, Modal} from "antd";
 import {useState} from "react";
 import {IconsWrapper, IconWrapper, IconEditWrapper} from "./IconsWrapper";
 import AvatarLabelWrapper from "./Label";
-import {useAppContext} from "../../../store/context/use-app-context";
+import {useAppContext} from "../../store/context/use-app-context";
 
 const {confirm} = Modal;
 

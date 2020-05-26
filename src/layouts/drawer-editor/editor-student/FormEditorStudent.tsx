@@ -1,9 +1,9 @@
 import React, {useEffect} from "react";
 import {Form, Col, DatePicker, Input, Row} from "antd";
 import moment from 'moment';
-import InputPhoto from "../../components/form/InputPhoto";
+import InputPhoto from "../../../lib/form/InputPhoto";
 import {FormItem, InputEmail, InputLogin, InputPassword} from "../../components";
-import SelectData from "../../components/form/select-data/SelectData";
+import SelectData from "../../../lib/form/select-data/SelectData";
 import ActionsFromEditorStudent from "./ActionsFormEditorStudent";
 
 interface FormEditorStudentProps {

@@ -2,7 +2,7 @@ import React from 'react';
 import {List} from "antd";
 import {Card} from "lib";
 import {UserImage, Legend} from "layouts/components";
-import {useSelector} from "react-redux";
+import {useAppContext} from "store/context/use-app-context";
 import styled from "styled-components";
 
 interface RatingProps {
@@ -64,7 +64,7 @@ const data = [
 ];
 
 const Rating: React.FC<RatingProps> = () => {
-    const {user} = useSelector((state: any) => state);
+    const {user} = useAppContext();
     return <>
         <Legend>Рейтинг</Legend>
         <Card className="animated fadeIn">

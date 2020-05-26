@@ -3,7 +3,7 @@ import moment from "moment";
 import { StopOutlined } from '@ant-design/icons';
 import { Modal } from "antd";
 import styled from "styled-components";
-import {useSelector} from "react-redux";
+import {useAppContext} from "store/context/use-app-context";
 
 const WrapperTitleLevel = styled.div`
   display: flex;
@@ -44,13 +44,13 @@ interface TitleProps {
 }
 
 const Title:React.FC<TitleProps> = ({homework, fetch}) => {
-    const {api} = useSelector((state: any) => state);
+    const {api} = useAppContext();
 
     const cancelHomeworkHandler = () => {
         Modal.confirm({
             title: `Отменить отправку домашнего задания (Уровень: ${homework.level}) ?`,
             async onOk() {
-                await api.user_general.post('teacher/homework/cancel', {sent_id: homework.id});
+                await api.user.post('teacher/homework/cancel', {sent_id: homework.id});
                 await fetch();
             }
         });

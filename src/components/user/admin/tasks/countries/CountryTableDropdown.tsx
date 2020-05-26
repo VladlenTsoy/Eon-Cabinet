@@ -19,7 +19,7 @@ const CountryTableDropdown: React.FC<CountryTableDropdownProps> = ({record, fetc
             title: 'Вы уверены, что хотите удалить?',
             okType: 'danger',
             onOk: async () => {
-                await api.user_general.delete(`admin/country/${record.id}`);
+                await api.user.delete(`admin/country/${record.id}`);
                 fetch();
             },
         });

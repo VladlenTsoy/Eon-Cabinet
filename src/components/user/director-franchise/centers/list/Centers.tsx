@@ -2,7 +2,7 @@ import React from 'react';
 import {NavigationButton} from "layouts/components";
 import {Image} from "lib";
 import {Link} from "react-router-dom";
-import UsingTablePagination from "layouts/components/table-pagination/usingTablePagination";
+import UsingTablePagination from "lib/table-pagination/usingTablePagination";
 import CenterModalMenu from "./center-modal-menu/CenterModalMenu";
 import EditorCenterDrawer from "./editor-center-drawer/EditorCenterDrawer";
 import {BarChartOutlined, PlusOutlined} from "@ant-design/icons";

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {useSelector} from "react-redux";
+import {useAppContext} from "store/context/use-app-context";
 import AnzanType from "./anzan-type/AnzanType";
 
 interface AnzanSettingBlockProps {
@@ -7,7 +7,7 @@ interface AnzanSettingBlockProps {
 }
 
 const AnzanSettingBlock: React.FC<AnzanSettingBlockProps> = ({setting}) => {
-    const {language} = useSelector((state: any) => state);
+    const {language} = useAppContext();
     const [isMultiplication] = useState(setting.mode === 'divide' || setting.mode === 'multiply');
 
     return <>

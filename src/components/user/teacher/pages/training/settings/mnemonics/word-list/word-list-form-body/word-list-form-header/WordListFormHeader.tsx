@@ -3,7 +3,7 @@ import {PlusOutlined} from '@ant-design/icons';
 import {Button, Col, Row, Select, Form} from "antd";
 import {FormItem} from "../../../../../../../../../../layouts/components";
 import styled from "styled-components";
-import {useSelector} from "react-redux";
+import {useAppContext} from "store/context/use-app-context";
 import {useScreenWindow} from "../../../../../../../../../../effects/use-screen-window.effect";
 
 const {Option} = Select;
@@ -34,7 +34,7 @@ interface WordListFormHeaderProps {
 
 const WordListFormHeader: React.FC<WordListFormHeaderProps> = ({addSetting}) => {
     const [isBreakpoint] = useScreenWindow({breakpoint: 'md'});
-    const {language} = useSelector((state: any) => state);
+    const {language} = useAppContext();
     const {common} = language;
 
     const submitHandler = (values: any) => {

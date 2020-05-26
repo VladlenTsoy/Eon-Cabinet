@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import {FormItem, Upload} from "../../components";
-import SelectData from "../../components/form/select-data/SelectData";
+import SelectData from "../../../lib/form/select-data/SelectData";
 import {Col, Input, Row} from "antd";
 import {useSelector} from "react-redux";
 import {FormInstance} from "antd/es/form";

@@ -4,7 +4,19 @@ import {Button, Input, Form} from "antd";
 import {useState} from "react";
 import {Title, FormWrapper} from "../AuthLayouts";
 import {Card} from "lib";
-import {FormItem, TextLink} from "../../../layouts/components";
+import {FormItem} from "../../../layouts/components";
+import styled from "styled-components";
+import {Link} from "react-router-dom";
+
+const TextLink = styled(Link)<any>`
+  float: ${props => props.position || 'inherit'}
+  vertical-align: center;
+
+  i{
+    vertical-align: center;
+    margin-right: 0.5rem;
+  }
+`;
 
 const ForgotPasswordBlock = () => {
     const [loading, setLoading] = useState<boolean>(false);

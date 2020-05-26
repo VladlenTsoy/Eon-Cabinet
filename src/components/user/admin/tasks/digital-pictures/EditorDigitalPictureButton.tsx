@@ -17,10 +17,10 @@ const EditorDigitalPictureButton: React.FC<EditorDigitalPictureButtonProps> = ({
 
     const request = async (values: any) => {
         if (digitalPicture) {
-            await api.user_general.post(`admin/digital-picture/${digitalPicture.id}`, values);
+            await api.user.post(`admin/digital-picture/${digitalPicture.id}`, values);
             message.success("Вы успешно изменили Цифру-Картинку!");
         } else {
-            await api.user_general.post(`admin/digital-picture`, values);
+            await api.user.post(`admin/digital-picture`, values);
             message.success("Вы успешно добавили Цифру-Картинку!");
         }
     };

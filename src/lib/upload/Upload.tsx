@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {PlusOutlined} from '@ant-design/icons';
 import styled from "styled-components";
-import {FormItem} from "./index";
+import {FormItem} from "../../layouts/components";
 
 const UploadWrapper = styled.div`
   width: 100%;

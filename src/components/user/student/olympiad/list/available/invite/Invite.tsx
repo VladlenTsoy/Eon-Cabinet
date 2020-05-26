@@ -1,5 +1,5 @@
 import React from 'react';
-import UsingTablePagination from "layouts/components/table-pagination/usingTablePagination";
+import UsingTablePagination from "lib/table-pagination/usingTablePagination";
 import {Tag} from "antd";
 import moment from "moment";
 import Timer from "react-compound-timer";

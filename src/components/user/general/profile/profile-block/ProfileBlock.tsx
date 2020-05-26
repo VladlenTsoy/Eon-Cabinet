@@ -2,11 +2,9 @@ import * as React from "react";
 import {Typography} from "antd";
 import {Card} from "lib";
 import {useEffect, useState} from "react";
-import PhotoBlock from "../../../../../layouts/components/avatar/Photo";
+import PhotoBlock from "../../../../../lib/avatar/Photo";
 import ProfileBlockMenu from "./menu/ProfileBlockMenu";
 import styled from "styled-components";
-import {useDispatch} from "react-redux";
-import {setCurrentUserData} from "../../../../../store/reducers/common/user/actions";
 import {useAppContext} from "../../../../../store/context/use-app-context";
 
 const {Title} = Typography;
@@ -31,8 +29,7 @@ const ProfileBlockWrapper = styled(Card)`
 
 const ProfileBlock: React.FC<ProfileBlockProps> = ({user: userData, settingMenu}) => {
     const [currentUser, setCurrentUser] = useState(userData);
-    const {user} = useAppContext();
-    const dispatch = useDispatch();
+    const {user, updateUser} = useAppContext();
 
     useEffect(() => {
         setCurrentUser(user);
@@ -42,7 +39,7 @@ const ProfileBlock: React.FC<ProfileBlockProps> = ({user: userData, settingMenu}
     const changeDataCurrentUser = (updateDataUser: any) => {
         setCurrentUser(updateDataUser);
         if (updateDataUser.id === user.id)
-            dispatch(setCurrentUserData(updateDataUser));
+            updateUser(updateDataUser);
     };
 
     return <ProfileBlockWrapper>

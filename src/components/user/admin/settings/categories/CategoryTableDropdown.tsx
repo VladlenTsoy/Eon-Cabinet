@@ -19,7 +19,7 @@ const CategoryTableDropdown: React.FC<CityTableDropdownProps> = ({record, fetch}
             title: 'Вы уверены, что хотите удалить?',
             okType: 'danger',
             onOk: async () => {
-                await api.user_general.delete(`admin/category/${record.id}`);
+                await api.user.delete(`admin/category/${record.id}`);
                 fetch();
             },
         });

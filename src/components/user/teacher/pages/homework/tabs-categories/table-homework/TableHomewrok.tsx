@@ -5,7 +5,7 @@ import moment from "moment";
 import {Link} from "react-router-dom";
 import MoreHomeworkDrawer from "./more-homework/MoreHomeworkDrawer";
 import DeleteHomework from "./DeleteHomework";
-import UsingTablePagination from "layouts/components/table-pagination/usingTablePagination";
+import UsingTablePagination from "lib/table-pagination/usingTablePagination";
 
 interface TableHomeworkProps {
     discipline_id: number;

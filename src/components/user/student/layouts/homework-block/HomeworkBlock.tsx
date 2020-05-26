@@ -4,7 +4,7 @@ import { FlagOutlined, HomeOutlined } from '@ant-design/icons';
 import {Link} from "react-router-dom";
 import {Card} from "lib";
 import {Button} from "antd";
-import {useSelector} from "react-redux";
+import {useAppContext} from "store/context/use-app-context";
 
 const HomeworkWrapper = styled.div`
   display: block;
@@ -46,7 +46,7 @@ interface HomeworkBlockProps {
 }
 
 const HomeworkBlock: React.FC<HomeworkBlockProps> = ({homework}) => {
-    const {language} = useSelector((state: any) => state);
+    const {language} = useAppContext();
     return (
         <Card className="animated fadeIn">
             <HomeworkWrapper>

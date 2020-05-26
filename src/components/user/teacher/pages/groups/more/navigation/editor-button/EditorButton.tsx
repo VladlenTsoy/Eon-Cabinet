@@ -21,10 +21,10 @@ const EditorButton: React.FC<EditorStudentButtonProps> = ({title, children, stud
 
     const request = async (values: any) => {
         if (student) {
-            await api.user_general.post(`teacher/student/${student.id}`, values);
+            await api.user.post(`teacher/student/${student.id}`, values);
             message.success("Вы успешно изменили данные ученика!");
         } else {
-            await api.user_general.post(`teacher/student`, values);
+            await api.user.post(`teacher/student`, values);
             message.success("Вы успешно добавили ученика!");
         }
     };

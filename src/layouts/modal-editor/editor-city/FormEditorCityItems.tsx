@@ -1,6 +1,6 @@
 import React from "react";
 import {FormItem} from "../../components";
-import SelectData from "../../components/form/select-data/SelectData";
+import SelectData from "../../../lib/form/select-data/SelectData";
 
 interface FormEditorCityItemsProps {
 }

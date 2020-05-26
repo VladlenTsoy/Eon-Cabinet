@@ -5,7 +5,7 @@ import EditorCenterButton from "../../../../../admin/franchise/center-table/Edit
 import {PlusOutlined} from '@ant-design/icons';
 import {Col, DatePicker, Row} from "antd";
 import SelectStatus from "../../../../../../../layouts/drawer-editor/editor-teacher/SelectStatus";
-import InputPhoto from "../../../../../../../layouts/components/form/InputPhoto";
+import InputPhoto from "../../../../../../../lib/form/InputPhoto";
 import {FormInstance} from "antd/es/form";
 
 interface TeacherItemsProps {

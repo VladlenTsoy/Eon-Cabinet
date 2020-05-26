@@ -1,5 +1,5 @@
 import React from 'react';
-import Coins from "../../../../../../../../layouts/components/Coins";
+import Coins from "../../../../../../../../lib/coins/Coins";
 import styled from "styled-components";
 import moment from "moment";
 

@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 import moment from "moment";
 import DirectorModalMenuItems from "./director-modal-menu-items/DirectorModalMenuItems";
 import EditorDirectorDrawer from "./editor-director-drawer/EditorDirectorDrawer";
-import UsingTablePagination from "../../../../layouts/components/table-pagination/usingTablePagination";
+import UsingTablePagination from "../../../../lib/table-pagination/usingTablePagination";
 
 const {Text} = Typography;
 

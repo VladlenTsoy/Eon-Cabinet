@@ -3,7 +3,7 @@ import styled from "styled-components";
 import ConfirmEmailBg from "../../../../assets/images/pages/confirm_email.svg";
 import {Button, Typography, Form} from "antd";
 import {FormItem} from "../../../../layouts/components";
-import {useSelector} from "react-redux";
+import {useAppContext} from "../../../../store/context/use-app-context";
 
 const {Title} = Typography;
 
@@ -23,13 +23,13 @@ interface EmailInputProps {
 }
 
 const EmailInput: React.FC<EmailInputProps> = ({changeDataCurrentUser, currentUser}) => {
-    const {api} = useSelector((state: any) => state);
+    const {api} = useAppContext();
     const [loading, setLoading] = useState(false);
 
     const handlerSubmit = async (values: any) => {
         setLoading(true);
         try {
-            const response = await api.user_general.patch(`/${currentUser.id}`, values);
+            const response = await api.user.patch(`/${currentUser.id}`, values);
             return changeDataCurrentUser(response.data);
         } catch (e) {
             console.log(e);

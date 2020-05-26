@@ -6,6 +6,7 @@ import {RouteComponentProps, withRouter} from "react-router";
 import {RouteOlympiadTaskProps} from "../Result";
 import {totalsSelect} from "../../../../../../../../store/reducers/common/tasks/totals/reducer";
 import {game} from "../../../../../../../../store/reducers/common/game/reducer";
+import {useAppContext} from "../../../../../../../../store/context/use-app-context";
 
 type WaitingResultProps = RouteComponentProps<RouteOlympiadTaskProps> & {
     loading: boolean;
@@ -21,7 +22,7 @@ const WaitingResult: React.FC<WaitingResultProps> = (
         setLoadingResult,
     }
 ) => {
-    const {api} = useSelector((state: any) => state);
+    const {api} = useAppContext();
     const {stats} = useSelector(game);
     const totals = useSelector(totalsSelect);
 
@@ -29,7 +30,7 @@ const WaitingResult: React.FC<WaitingResultProps> = (
     const result: boolean = stats.all !== 0 && stats.all === stats.success;
 
     const save = useCallback(async () => {
-        return await api.user_general.post('/student/olympiad/result', {
+        return await api.user.post('/student/olympiad/result', {
             task_id: match.params.taskOlympiadId,
             sent_id: match.params.sentOlympiadId,
             result: {
@@ -39,7 +40,7 @@ const WaitingResult: React.FC<WaitingResultProps> = (
             },
             totals
         });
-    }, [api.user_general, match.params.sentOlympiadId, match.params.taskOlympiadId, result, stats.all, stats.success, totals]);
+    }, [api.user, match.params.sentOlympiadId, match.params.taskOlympiadId, result, stats.all, stats.success, totals]);
 
     useEffect(() => {
         if (match.params.sentOlympiadId && match.params.taskOlympiadId)

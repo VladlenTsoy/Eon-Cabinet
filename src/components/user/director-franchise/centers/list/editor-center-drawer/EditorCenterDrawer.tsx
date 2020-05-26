@@ -25,10 +25,10 @@ const EditorCenterDrawer: React.FC<EditorCenterDrawerProps> = (
 
     const request = async (values: any) => {
         if (center) {
-            await api.user_general.post(`director-franchise/center/${center.id}`, values);
+            await api.user.post(`director-franchise/center/${center.id}`, values);
             message.success("Вы успешно изменили центр!");
         } else {
-            await api.user_general.post(`director-franchise/center`, values);
+            await api.user.post(`director-franchise/center`, values);
             message.success("Вы успешно добавили центр!");
         }
     };

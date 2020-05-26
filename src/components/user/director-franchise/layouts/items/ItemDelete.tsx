@@ -15,7 +15,7 @@ const ItemDelete: React.FC<any> = ({user, afterAction}) => {
             okType: 'danger',
             async onOk() {
                 try {
-                    const response = await api.user_general.delete(`/${teacher.id}`);
+                    const response = await api.user.delete(`/${teacher.id}`);
                     if (response.data.status === 'success')
                         message.info(`Вы успешно удалили аккаунт ID: ${teacher.id}.`);
                 } catch (e) {

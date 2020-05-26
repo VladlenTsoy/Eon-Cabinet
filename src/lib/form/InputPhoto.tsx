@@ -1,10 +1,10 @@
 import * as React from "react";
 import AvatarLabelWrapper from "../avatar/Label";
-import {getBase64} from "../Upload";
+import {getBase64} from "../upload/Upload";
 import {useState} from "react";
 import { EditOutlined } from '@ant-design/icons';
 import {IconsWrapper, IconEditWrapper} from "../avatar/IconsWrapper";
-import {FormItem} from "../index";
+import {FormItem} from "../../layouts/components";
 import {FormInstance} from "antd/es/form";
 
 interface InputPhotoProps {

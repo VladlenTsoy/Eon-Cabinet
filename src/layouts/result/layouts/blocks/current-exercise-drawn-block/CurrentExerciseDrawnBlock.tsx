@@ -5,6 +5,7 @@ import {Drawer} from "../../../../components";
 import {EyeOutlined, ThunderboltOutlined, QuestionCircleOutlined} from '@ant-design/icons';
 import {useSelector} from "react-redux";
 import {game} from "../../../../../store/reducers/common/game/reducer";
+import {useAppContext} from "../../../../../store/context/use-app-context";
 
 interface CurrentExerciseDrawnBlockProps {
     resultId?: number;
@@ -20,16 +21,16 @@ const CurrentExerciseDrawnBLock: React.FC<CurrentExerciseDrawnBlockProps> = (
         updateIsView
     }
 ) => {
-    const {api} = useSelector((state: any) => state);
+    const {api} = useAppContext();
     const {stats} = useSelector(game);
 
     const [visible, setVisible] = useState(false);
 
     const viewResult = useCallback(async () => {
-        await api.user_general.post(`/student/homework/result/${resultId}/view`);
+        await api.user.post(`/student/homework/result/${resultId}/view`);
         updateIsView(true);
         setVisible(true);
-    }, [updateIsView, api.user_general, resultId]);
+    }, [updateIsView, api.user, resultId]);
 
     const open = () => {
         if (resultId && !isView) {

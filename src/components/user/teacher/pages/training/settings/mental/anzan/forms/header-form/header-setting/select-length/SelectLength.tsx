@@ -1,7 +1,7 @@
 import React from 'react';
 import {Col, Select} from "antd";
 import {FormItem} from "../../../../../../../../../../../../layouts/components";
-import {useSelector} from "react-redux";
+import {useAppContext} from "store/context/use-app-context";
 
 const {Option} = Select;
 
@@ -20,7 +20,7 @@ const SelectLength: React.FC<SelectLengthProps> = (
         isThemes,
     }
 ) => {
-    const {language} = useSelector((state: any) => state);
+    const {language} = useAppContext();
 
     return <Col sm={isMultiplication && !isThemes ? 12 : 8} xs={12}>
         <FormItem

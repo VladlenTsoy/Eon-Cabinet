@@ -1,7 +1,7 @@
 import React from 'react';
 import {Modal} from "antd";
 import {DeleteOutlined} from "@ant-design/icons";
-import {useSelector} from "react-redux";
+import {useAppContext} from "store/context/use-app-context";
 import {NavigationButton} from "layouts/components";
 
 const {confirm} = Modal;
@@ -12,7 +12,7 @@ interface DeleteStudentButtonProps {
 }
 
 const DeleteStudentButton: React.FC<DeleteStudentButtonProps> = ({fetch, selectUsersId}) => {
-    const {api} = useSelector((state: any) => state);
+    const {api} = useAppContext();
 
     const deleteUsers = () => {
         confirm({
@@ -21,7 +21,7 @@ const DeleteStudentButton: React.FC<DeleteStudentButtonProps> = ({fetch, selectU
             okType: 'danger',
             async onOk() {
                 for (const id of selectUsersId)
-                    await api.user_general.delete(`teacher/student/${id}`);
+                    await api.user.delete(`teacher/student/${id}`);
                 await fetch();
             },
         });

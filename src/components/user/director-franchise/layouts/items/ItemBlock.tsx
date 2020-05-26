@@ -25,7 +25,7 @@ const ItemBlock: React.FC<ItemBlockProps> = ({user, afterAction}) => {
             okType: 'danger',
             async onOk() {
                 try {
-                    const response = await api.user_general.post(`${teacher.id}/activation`);
+                    const response = await api.user.post(`${teacher.id}/activation`);
                     if (response.data.status === 'success')
                         message.info(`Вы успешно активировали аккаунт ID: ${teacher.id}.`);
                 } catch (e) {
@@ -46,7 +46,7 @@ const ItemBlock: React.FC<ItemBlockProps> = ({user, afterAction}) => {
                 okType: 'danger',
                 async onOk() {
                     try {
-                        const response = await api.user_general.post(`${teacher.id}/block`);
+                        const response = await api.user.post(`${teacher.id}/block`);
                         if (response.data.status === 'success')
                             message.info(`Вы успешно заблокировали аккаунт ID: ${teacher.id}.`);
                     } catch (e) {
@@ -73,7 +73,7 @@ const ItemBlock: React.FC<ItemBlockProps> = ({user, afterAction}) => {
                 okType: 'danger',
                 async onOk() {
                     try {
-                        const response = await api.user_general.post(`${teacher.id}/unblock`);
+                        const response = await api.user.post(`${teacher.id}/unblock`);
                         if (response.data.status === 'success')
                             message.info(`Вы успешно заблокировали аккаунт ID: ${teacher.id}.`);
                     } catch (e) {

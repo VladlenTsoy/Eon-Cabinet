@@ -17,7 +17,7 @@ const DeleteItem: React.FC<DeleteItemProps> = ({record, fetch}) => {
             icon: <QuestionCircleOutlined/>,
             okType: 'danger',
             onOk: async () => {
-                await api.user_general.delete(`teacher/custom-exercises/${record.id}`);
+                await api.user.delete(`teacher/custom-exercises/${record.id}`);
                 message.success(`Вы успешно удалили (${record.title})!`);
                 fetch();
             }

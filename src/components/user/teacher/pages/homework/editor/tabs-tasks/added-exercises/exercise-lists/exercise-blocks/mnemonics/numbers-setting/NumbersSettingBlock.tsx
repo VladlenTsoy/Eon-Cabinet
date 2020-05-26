@@ -1,5 +1,5 @@
 import React from 'react';
-import {useSelector} from "react-redux";
+import {useAppContext} from "store/context/use-app-context";
 import { FileOutlined } from '@ant-design/icons';
 import styled from "styled-components";
 
@@ -16,7 +16,7 @@ interface NumbersSettingBlockProps {
 }
 
 const NumbersSettingBlock:React.FC<NumbersSettingBlockProps> = ({setting}) => {
-    const {language} = useSelector((state: any) => state);
+    const {language} = useAppContext();
     return <>
         <tr>
             <TdAnzanWrapper colSpan={6}>

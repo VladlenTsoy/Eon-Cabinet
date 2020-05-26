@@ -24,10 +24,10 @@ const EditorDirectorDrawer: React.FC<EditorDirectorDrawerProps> = (
 
     const request = async (values: any) => {
         if (director) {
-            await api.user_general.post(`admin/franchise-director/${director.id}`, values);
+            await api.user.post(`admin/franchise-director/${director.id}`, values);
             message.success("Вы успешно изменили директора!");
         } else {
-            await api.user_general.post(`admin/franchise-director`, values);
+            await api.user.post(`admin/franchise-director`, values);
             message.success("Вы успешно добавили директора!");
         }
     };

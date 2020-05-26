@@ -17,10 +17,10 @@ const EditorCountryButton: React.FC<EditorCountryButtonProps> = ({title, childre
 
     const request = async (values: any) => {
         if (country) {
-            await api.user_general.post(`admin/country/${country.id}`, values);
+            await api.user.post(`admin/country/${country.id}`, values);
             message.success("Вы успешно изменили страну!");
         } else {
-            await api.user_general.post(`admin/country`, values);
+            await api.user.post(`admin/country`, values);
             message.success("Вы успешно добавили страну!");
         }
     };

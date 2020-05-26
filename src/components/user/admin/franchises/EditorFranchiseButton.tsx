@@ -17,10 +17,10 @@ const EditorFranchiseButton: React.FC<EditorFranchiseButtonProps> = ({title, chi
 
     const request = async (values: any) => {
         if (franchise) {
-            await api.user_general.post(`admin/franchise/${franchise.id}`, values);
+            await api.user.post(`admin/franchise/${franchise.id}`, values);
             message.success("Вы успешно изменили франшизу!");
         } else {
-            await api.user_general.post(`admin/franchise`, values);
+            await api.user.post(`admin/franchise`, values);
             message.success("Вы успешно добавили франшизу!");
         }
     };

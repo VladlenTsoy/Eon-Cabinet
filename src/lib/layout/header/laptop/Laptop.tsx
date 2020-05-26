@@ -5,7 +5,7 @@ import HeaderItemLayout from "../../../../layouts/header/HeaderItem.layout";
 import DarkSwitch from "../items/dark-switch/DarkSwitch";
 import { PoweroffOutlined } from '@ant-design/icons';
 import HeaderMenuLayout from "../../../../layouts/header/HeaderMenu.layout";
-import {useSelector} from "react-redux";
+import {useAppContext} from "../../../../store/context/use-app-context";
 
 interface LaptopProps {
     toggleSidebar: () => void;
@@ -21,7 +21,7 @@ const Laptop: React.FC<LaptopProps> = (
         logout
     }
 ) => {
-    const {user} = useSelector((state: any) => state);
+    const {user} = useAppContext();
     return (
         <HeaderMenuLayout mode="horizontal">
             <HeaderTitle collapsed={collapsed} toggleSidebar={toggleSidebar}/>

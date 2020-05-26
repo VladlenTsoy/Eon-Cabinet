@@ -4,14 +4,14 @@ import {LoadingBlock} from "lib";
 import {DescriptionTitle} from "../../../../../../layouts/components";
 import Task from "./task/Task";
 import {useApiUserGeneral} from "../../../../../../effects/use-api-user-general.effect";
-import {useSelector} from "react-redux";
+import {useAppContext} from "store/context/use-app-context";
 
 interface Tasks {
     id: number;
 }
 
 const TasksMoreHomework: React.FC<Tasks> = ({id}) => {
-    const {language} = useSelector((state: any) => state);
+    const {language} = useAppContext();
     const [loading, tasks] = useApiUserGeneral({url: `student/homework/send/${id}/tasks`, initValue: []});
 
     // Загрузка

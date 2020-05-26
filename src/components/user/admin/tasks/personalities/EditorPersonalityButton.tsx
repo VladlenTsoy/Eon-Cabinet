@@ -18,10 +18,10 @@ const EditorPersonalityButton: React.FC<EditorPersonalityButtonProps> = ({title,
 
     const request = async (values: any) => {
         if (personality) {
-            await api.user_general.post(`admin/personality/${personality.id}`, values);
+            await api.user.post(`admin/personality/${personality.id}`, values);
             message.success("Вы успешно изменили личность!");
         } else {
-            await api.user_general.post(`admin/personality`, values);
+            await api.user.post(`admin/personality`, values);
             message.success("Вы успешно добавили личность!");
         }
     };

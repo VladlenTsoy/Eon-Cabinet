@@ -3,7 +3,7 @@ import {FormItem, InputEmail, InputLogin, InputPassword, SelectData} from "../..
 import {PlusOutlined} from '@ant-design/icons';
 import {Col, DatePicker, Row} from "antd";
 import SelectStatus from "./SelectStatus";
-import InputPhoto from "../../components/form/InputPhoto";
+import InputPhoto from "../../../lib/form/InputPhoto";
 import {useSelector} from "react-redux";
 import EditorCenterButton from "../../../components/user/admin/franchise/center-table/EditorCenterButton";
 import {FormInstance} from "antd/es/form";

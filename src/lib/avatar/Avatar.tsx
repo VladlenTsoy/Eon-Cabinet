@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import styled from "styled-components";
 import {useEffect, useState} from "react";
 import DefaultImage from 'assets/images/profile/default.svg'
