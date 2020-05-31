@@ -13,7 +13,7 @@ interface User {
     image: string;
 }
 
-const DOMAIN_API = process.env.NODE_ENV === 'production' ? 'https://api.eon.uz/api' : 'http://192.168.1.105:8000/api';
+const DOMAIN_API = process.env.NODE_ENV === 'production' ? 'https://api.eon.uz/api' : 'http://192.168.1.37:8000/api';
 
 const apiInitial = {
     token: localStorage.getItem('EON_API_TOKEN_ACCESS') || '',

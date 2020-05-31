@@ -97,5 +97,4 @@ module.exports = override(
         'tools': path.resolve(__dirname, './src/tools'),
         'store': path.resolve(__dirname, './src/store')
     }),
-)
-;
+);
