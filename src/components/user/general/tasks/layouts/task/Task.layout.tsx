@@ -3,7 +3,7 @@ import {useSelector} from "react-redux";
 import Intermediate from "../intermediate/Intermediate";
 import ResultHomework from "../result/homework/Result";
 import ResultOlympiad from "../result/olympiad/Result";
-import {game} from "../../../../../../store/reducers/common/game/reducer";
+import {gameSelector} from "../../../../../../store/reducers/common/game/gameSplice";
 import {useRouteMatch} from "react-router-dom";
 
 interface TaskProps {
@@ -22,7 +22,7 @@ const TaskLayout: React.FC<TaskProps> = (
     }
 ) => {
     const {params} = useRouteMatch();
-    const {status} = useSelector(game);
+    const {status} = useSelector(gameSelector);
 
     return <>
         {status === 'start' && start}

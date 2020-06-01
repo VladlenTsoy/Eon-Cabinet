@@ -2,10 +2,9 @@ import React, {useCallback, useEffect, useState} from 'react';
 import styled from "styled-components";
 import Output from "../basic/output/Output";
 import {SettingAnzanBasicProps,} from "../../../../../../../store/reducers/common/tasks/setting/games-types/anzan.types";
-import {StatusProps} from "../../../../../../../store/reducers/common/game/types";
 import {useDispatch} from "react-redux";
 import {useAddInternal} from "../../../../../../../effects/use-add-interval.effect";
-import {gameChangeStatus} from "../../../../../../../store/reducers/common/game/actions";
+import {changeStatus,StatusProps} from "../../../../../../../store/reducers/common/game/gameSplice";
 import {useSoundEffect} from "../use-sound.effect";
 
 const DoubleWrapper = styled.div`
@@ -59,7 +58,7 @@ const Double: React.FC<DoubleProps> = (
     const outputInterval = useCallback((outputs: any, i: number = 0) => {
         addInterval(() => {
             if (i >= outputs[1].length)
-                return dispatch(gameChangeStatus(nextStatus));
+                return dispatch(changeStatus(nextStatus));
 
             changeOutput(outputs[0][i], outputs[1][i], i++);
         }, setting.time * 1000);

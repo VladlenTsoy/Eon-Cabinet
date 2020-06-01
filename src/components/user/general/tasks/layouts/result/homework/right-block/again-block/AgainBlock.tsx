@@ -2,11 +2,7 @@ import React from 'react';
 import {Button} from "antd";
 import {Card} from "lib";
 import {RedoOutlined} from '@ant-design/icons';
-import {
-    gameChangeCurrentTimes,
-    gameChangeExecutionMode, gameChangeStats,
-    gameChangeStatus
-} from "store/reducers/common/game/actions";
+import {clearGame} from "store/reducers/common/game/gameSplice";
 import {useDispatch} from "react-redux";
 import {totalsChange} from "../../../../../../../../../store/reducers/common/tasks/totals/action";
 
@@ -14,11 +10,8 @@ const AgainBlock = () => {
     const dispatch = useDispatch();
 
     const againHandler = () =>{
-        dispatch(gameChangeCurrentTimes(0));
         dispatch(totalsChange([]));
-        dispatch(gameChangeStats({all: 0, success: 0}));
-        dispatch(gameChangeExecutionMode('first'));
-        dispatch(gameChangeStatus('start'));
+        dispatch(clearGame());
     };
 
     return <Card className="info">

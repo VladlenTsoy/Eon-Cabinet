@@ -2,11 +2,11 @@ import React from 'react';
 import {useSelector} from "react-redux";
 import AnswerLayout from "../../../layouts/answer/Answer.layout";
 import FormInputAnswerLayout from "../../../layouts/answer/form-input-answer/FormInputAnswer.layout";
-import {game} from "../../../../../../../store/reducers/common/game/reducer";
+import {gameSelector} from "../../../../../../../store/reducers/common/game/gameSplice";
 import {totalsSelect} from "../../../../../../../store/reducers/common/tasks/totals/reducer";
 
 const Answer = () => {
-    const {stats, currentTimes} = useSelector(game);
+    const {stats, currentTimes} = useSelector(gameSelector);
     const totals = useSelector(totalsSelect);
 
     const onFinishSubmit = (values: any) => {

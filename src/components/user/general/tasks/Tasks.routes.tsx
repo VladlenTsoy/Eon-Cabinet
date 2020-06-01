@@ -1,11 +1,7 @@
 import React, {useEffect} from 'react';
 import {BrowserRouter as Router, Route, Switch, useHistory} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
-import {
-    gameChangeCurrentTimes, gameChangeExecutionMode,
-    gameChangeStats,
-    gameChangeStatus,
-} from "store/reducers/common/game/actions";
+import {clearGame} from "store/reducers/common/game/gameSplice";
 import {totalsChange} from "store/reducers/common/tasks/totals/action";
 import {settingChange} from "store/reducers/common/tasks/setting/action";
 import {settingAnzan} from "store/reducers/common/tasks/setting/reducer";
@@ -31,11 +27,8 @@ const TasksRoutes: React.FC<TasksProps> = ({urlBack, urlRoute}) => {
     useEffect(() => {
         return () => {
             dispatch(settingChange(null));
-            dispatch(gameChangeStatus('start'));
-            dispatch(gameChangeExecutionMode('first'));
             dispatch(totalsChange([]));
-            dispatch(gameChangeStats({all: 0, success: 0}));
-            dispatch(gameChangeCurrentTimes(0));
+            dispatch(clearGame());
         }
     }, [dispatch]);
 

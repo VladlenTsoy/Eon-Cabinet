@@ -5,7 +5,7 @@ import styled from "styled-components";
 import {Card} from "lib";
 import UserResult from "./user-result/UserResult";
 import Header from "./header/Header";
-import {game} from "../../../../../../../store/reducers/common/game/reducer";
+import {gameSelector} from "../../../../../../../store/reducers/common/game/gameSplice";
 import {totalsSelect} from "../../../../../../../store/reducers/common/tasks/totals/reducer";
 import {settingAnzan} from "../../../../../../../store/reducers/common/tasks/setting/reducer";
 
@@ -27,7 +27,7 @@ const BodyWrapper = styled.div`
 `;
 
 const Result: React.FC = () => {
-    const {currentTimes} = useSelector(game);
+    const {currentTimes} = useSelector(gameSelector);
     const totals:any = useSelector(totalsSelect);
     const setting = useSelector(settingAnzan);
 

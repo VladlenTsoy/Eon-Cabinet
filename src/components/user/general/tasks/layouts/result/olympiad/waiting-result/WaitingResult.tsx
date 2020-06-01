@@ -5,7 +5,7 @@ import {useSelector} from "react-redux";
 import {RouteComponentProps, withRouter} from "react-router";
 import {RouteOlympiadTaskProps} from "../Result";
 import {totalsSelect} from "../../../../../../../../store/reducers/common/tasks/totals/reducer";
-import {game} from "../../../../../../../../store/reducers/common/game/reducer";
+import {gameSelector} from "../../../../../../../../store/reducers/common/game/gameSplice";
 import {useAppContext} from "../../../../../../../../store/context/use-app-context";
 
 type WaitingResultProps = RouteComponentProps<RouteOlympiadTaskProps> & {
@@ -23,7 +23,7 @@ const WaitingResult: React.FC<WaitingResultProps> = (
     }
 ) => {
     const {api} = useAppContext();
-    const {stats} = useSelector(game);
+    const {stats} = useSelector(gameSelector);
     const totals = useSelector(totalsSelect);
 
     const [resultData, setResultData] = useState();

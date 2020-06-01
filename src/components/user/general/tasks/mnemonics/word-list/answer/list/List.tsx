@@ -8,7 +8,7 @@ import TablesOutput from "../../../../layouts/application/list/tables-output/Tab
 import Table from "./table/Table";
 import {chunk} from "lodash";
 import ApplicationCardLayout from "../../../../layouts/application/ApplicationCard.layout";
-import {gameChangeStats, gameChangeStatus} from "../../../../../../../../store/reducers/common/game/actions";
+import {changeStats, changeStatus} from "../../../../../../../../store/reducers/common/game/gameSplice";
 import {totalsChange} from "../../../../../../../../store/reducers/common/tasks/totals/action";
 
 interface ListProps {
@@ -29,9 +29,9 @@ const List: React.FC<ListProps> = ({checkHandler}) => {
     const submitHandler = (values: any) => {
         const {status, totals, stats} = checkHandler(values);
 
-        dispatch(gameChangeStats(stats));
         dispatch(totalsChange(totals));
-        dispatch(gameChangeStatus(status));
+        dispatch(changeStats(stats));
+        dispatch(changeStatus(status));
     };
 
     const createOutputs = useCallback((totals) => {

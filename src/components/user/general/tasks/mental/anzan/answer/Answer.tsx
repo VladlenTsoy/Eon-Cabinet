@@ -3,12 +3,12 @@ import {useSelector} from "react-redux";
 import Double from "./double-answer/Double";
 import Basic from "./basic-answer/Basic";
 import AnswerLayout from "../../../layouts/answer/Answer.layout";
-import {game} from "../../../../../../../store/reducers/common/game/reducer";
+import {gameSelector} from "../../../../../../../store/reducers/common/game/gameSplice";
 import {settingAnzan} from "../../../../../../../store/reducers/common/tasks/setting/reducer";
 import {totalsSelect} from "../../../../../../../store/reducers/common/tasks/totals/reducer";
 
 const Answer: React.FC = () => {
-    const {stats, currentTimes} = useSelector(game);
+    const {stats, currentTimes} = useSelector(gameSelector);
     const setting = useSelector(settingAnzan);
     const totals: any = useSelector(totalsSelect);
 

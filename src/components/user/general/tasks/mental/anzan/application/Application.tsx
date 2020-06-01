@@ -5,7 +5,7 @@ import {settingAnzan} from "../../../../../../../store/reducers/common/tasks/set
 import {totalsSelect} from "../../../../../../../store/reducers/common/tasks/totals/reducer";
 import {chunk, flattenDepth} from "lodash";
 import {totalsChange} from "../../../../../../../store/reducers/common/tasks/totals/action";
-import {gameChangeStats, gameChangeStatus} from "../../../../../../../store/reducers/common/game/actions";
+import {changeStats, changeStatus} from "../../../../../../../store/reducers/common/game/gameSplice";
 import {useUpdateOutputEffect} from "../../../layouts/application/use-update-output.effect";
 import TbodyAddition from "./list/tbody-addition/TbodyAddition";
 import TbodyMultiplication from "./list/tbody-multiplication/TbodyMultiplication";
@@ -80,8 +80,8 @@ const Application: React.FC<ApplicationProps> = ({otherUrl}) => {
         });
 
         dispatch(totalsChange(_totals));
-        dispatch(gameChangeStats({success}));
-        dispatch(gameChangeStatus('result'));
+        dispatch(changeStats({success}));
+        dispatch(changeStatus('result'));
     }, [dispatch, totals]);
 
     const updateStats = useCallback(() => {

@@ -3,9 +3,9 @@ import {ArrowRightOutlined, FlagOutlined, HistoryOutlined} from '@ant-design/ico
 import {Button} from "antd";
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
-import {gameChangeCurrentTimes, gameChangeExecutionMode, gameChangeStats, gameChangeStatus} from "store/reducers/common/game/actions";
+import {nextGame, repeatGame, completionGame} from "store/reducers/common/game/gameSplice";
 import {settingAnzan} from "store/reducers/common/tasks/setting/reducer";
-import {game} from "store/reducers/common/game/reducer";
+import {gameSelector} from "store/reducers/common/game/gameSplice";
 import {useRouteMatch} from "react-router-dom";
 import {ResultMatchProps} from "../../result/homework/Result";
 import {totalsSelect} from "../../../../../../../store/reducers/common/tasks/totals/reducer";
@@ -59,27 +59,16 @@ interface ActionIntermediateProps {
 }
 
 const ActionIntermediate: React.FC<ActionIntermediateProps> = ({checkResult}) => {
-    const {currentTimes, stats} = useSelector(game);
+    const {currentTimes} = useSelector(gameSelector);
     const setting = useSelector(settingAnzan);
     const totals: any = useSelector(totalsSelect);
     const match = useRouteMatch<ResultMatchProps>();
 
     const dispatch = useDispatch();
 
-    const repeatExercise = () => {
-        checkResult(totals[currentTimes]) &&
-        dispatch(gameChangeStats({success: stats.success - 1}));
-        dispatch(gameChangeExecutionMode('repeat'));
-        dispatch(gameChangeStatus('start'));
-    };
-    const nextExercise = () => {
-        dispatch(gameChangeStatus('start'));
-        dispatch(gameChangeCurrentTimes(currentTimes + 1));
-    };
-
-    const completionTask = () => setting.extra && setting.extra.includes('group') ?
-        dispatch(gameChangeStatus('answer')) :
-        dispatch(gameChangeStatus('result'));
+    const repeatExercise = () => dispatch(repeatGame(checkResult(totals[currentTimes])));
+    const nextExercise = () => dispatch(nextGame());
+    const completionTask = () => dispatch(completionGame(setting?.extra.includes('group')));
 
     return <ActionWrapper>
         {!match.params.homeworkId &&

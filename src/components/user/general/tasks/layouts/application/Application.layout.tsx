@@ -1,14 +1,12 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {useApiUserGeneral} from "effects/use-api-user-general.effect";
 import {useDispatch, useSelector} from "react-redux";
-import {game} from "store/reducers/common/game/reducer";
 import {LoadingBlock} from "lib";
 import {ExclamationCircleOutlined} from "@ant-design/icons";
 import Basic from "./basic/Basic";
 import Timer from "./timer/Timer";
 import {totalsChange} from "store/reducers/common/tasks/totals/action";
-import {StatsActionProps, StatusProps} from "store/reducers/common/game/types";
-import {gameChangeStats, gameChangeStatus} from "../../../../../../store/reducers/common/game/actions";
+import {changeStats, changeStatus, gameSelector,StatsActionProps, StatusProps} from "../../../../../../store/reducers/common/game/gameSplice";
 import {SettingAnzanProps} from "../../../../../../store/reducers/common/tasks/setting/games-types/anzan.types";
 import PreparationLayout from "./preparation/Preparation.layout";
 import List from "./list/List";
@@ -64,7 +62,7 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
     const totals = useSelector(totalsSelect);
     const [outputs, setOutputs] = useState<any>([]);
     const [ListForm] = Form.useForm();
-    const {executionMode, currentTimes} = useSelector(game);
+    const {executionMode, currentTimes} = useSelector(gameSelector);
     const dispatch = useDispatch();
 
     // Загрузка картинок
@@ -75,7 +73,7 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
 
     const checkAndUpdateStats = useCallback((_totals) => {
         let stats = updateStats ? updateStats() : {all: Object.values(_totals).length};
-        dispatch(gameChangeStats(stats))
+        dispatch(changeStats(stats))
     }, [dispatch, updateStats]);
 
     // После завершения примеров
@@ -137,7 +135,7 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
         confirmTime.current && confirmTime.current.destroy();
         if (updateResultsTotals)
             await updateResultsTotals(answers);
-        dispatch(gameChangeStatus(nextStatus));
+        dispatch(changeStatus(nextStatus));
     }, [updateResultsTotals, ListForm, dispatch, nextStatus, confirmTime]);
 
     // Сообщение при ранем завершении пользователем
@@ -147,7 +145,7 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
             title: "У вас еще осталось время, Вы уверены что хотите перейти дальше?",
             onOk: () => {
                 updateResultsTotals && updateResultsTotals(values.answer);
-                dispatch(gameChangeStatus(nextStatus));
+                dispatch(changeStatus(nextStatus));
             }
         });
     }, [dispatch, nextStatus, updateResultsTotals]);

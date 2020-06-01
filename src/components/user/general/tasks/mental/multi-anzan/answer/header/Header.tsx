@@ -12,7 +12,7 @@ import {Button} from "antd";
 import styled from "styled-components";
 import {withRouter, RouteComponentProps} from "react-router";
 import {useDispatch, useSelector} from "react-redux";
-import {gameChangeExecutionMode} from "../../../../../../../../store/reducers/common/game/actions";
+import {changeExecutionMode} from "../../../../../../../../store/reducers/common/game/gameSplice";
 import {settingAnzan} from "../../../../../../../../store/reducers/common/tasks/setting/reducer";
 
 const HeaderWrapper = styled.div`
@@ -46,8 +46,8 @@ const Header: React.FC<HeaderProps & RouteComponentProps> = (
     const dispatch = useDispatch();
 
     const back = () => history.goBack();
-    const again = () => dispatch(gameChangeExecutionMode('again'));
-    const repeat = () => dispatch(gameChangeExecutionMode('repeat'));
+    const again = () => dispatch(changeExecutionMode('again'));
+    const repeat = () => dispatch(changeExecutionMode('repeat'));
 
     return (
         <HeaderWrapper>

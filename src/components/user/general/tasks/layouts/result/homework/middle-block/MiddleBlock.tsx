@@ -8,7 +8,7 @@ import {LoadingBlock} from "lib";
 import StarSvg from "assets/images/star.svg";
 import {usePreloadPictures} from "../../../../../../../../effects/use-preload-pictures.effect";
 import {useSelector} from "react-redux";
-import {game} from "../../../../../../../../store/reducers/common/game/reducer";
+import {gameSelector} from "../../../../../../../../store/reducers/common/game/gameSplice";
 
 const TotalWinSound = require('assets/sounds/total_win.mp3');
 const TotalLoseSound = require('assets/sounds/loss.mp3');
@@ -23,7 +23,7 @@ interface MiddleBlockProps {
 }
 
 const MiddleBlock: React.FC<MiddleBlockProps> = () => {
-    const {stats} = useSelector(game);
+    const {stats} = useSelector(gameSelector);
 
     const [loading, setLoading] = useState();
     const result: boolean = stats.all !== 0 && stats.all === stats.success;

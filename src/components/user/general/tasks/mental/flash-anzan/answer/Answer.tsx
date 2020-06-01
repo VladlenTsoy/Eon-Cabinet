@@ -3,10 +3,10 @@ import {useSelector} from "react-redux";
 import AnswerLayout from "../../../layouts/answer/Answer.layout";
 import FormInputAnswerLayout from "../../../layouts/answer/form-input-answer/FormInputAnswer.layout";
 import {totalsSelect} from "../../../../../../../store/reducers/common/tasks/totals/reducer";
-import {game} from "../../../../../../../store/reducers/common/game/reducer";
+import {gameSelector} from "../../../../../../../store/reducers/common/game/gameSplice";
 
 const Answer: React.FC = () => {
-    const {stats} = useSelector(game);
+    const {stats} = useSelector(gameSelector);
     const totals: any = useSelector(totalsSelect);
 
     const onFinishSubmit = useCallback((values: any) => {

@@ -2,12 +2,12 @@ import React from 'react';
 import AnswerIntermediateWrapper
     from "../../../layouts/intermediate/layouts/answer-intermediate/AnwerIntermediate.layout";
 import {useSelector} from "react-redux";
-import {game} from "../../../../../../../store/reducers/common/game/reducer";
+import {gameSelector} from "../../../../../../../store/reducers/common/game/gameSplice";
 import {settingAnzan} from "../../../../../../../store/reducers/common/tasks/setting/reducer";
 import {totalsSelect} from "../../../../../../../store/reducers/common/tasks/totals/reducer";
 
 const IntermediateBlock = () => {
-    const {currentTimes} = useSelector(game);
+    const {currentTimes} = useSelector(gameSelector);
     const setting = useSelector(settingAnzan);
     const totals: any = useSelector(totalsSelect);
 

@@ -7,7 +7,7 @@ import Header from "./header/Header";
 import UserIntermediate from "./user-intermediate/UserIntermediate";
 import {totalsSelect} from "../../../../../../../store/reducers/common/tasks/totals/reducer";
 import {settingAnzan} from "../../../../../../../store/reducers/common/tasks/setting/reducer";
-import {game} from "../../../../../../../store/reducers/common/game/reducer";
+import {gameSelector} from "../../../../../../../store/reducers/common/game/gameSplice";
 
 const IntermediateWrapper = styled(Card)`
   &.ant-card{
@@ -21,7 +21,7 @@ const IntermediateWrapper = styled(Card)`
 `;
 
 const Intermediate: React.FC = () => {
-    const {currentTimes} = useSelector(game);
+    const {currentTimes} = useSelector(gameSelector);
     const totals: any = useSelector(totalsSelect);
     const setting = useSelector(settingAnzan);
 

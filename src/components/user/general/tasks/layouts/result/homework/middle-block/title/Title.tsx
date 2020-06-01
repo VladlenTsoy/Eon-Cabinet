@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
 import {useSelector} from "react-redux";
-import {game} from "../../../../../../../../../store/reducers/common/game/reducer";
+import {gameSelector} from "../../../../../../../../../store/reducers/common/game/gameSplice";
 
 interface TitleStyleProps {
     delay: number;
@@ -31,7 +31,7 @@ interface TitleProps {
 }
 
 const Title: React.FC<TitleProps> = ({delay}) => {
-    const {stats} = useSelector(game);
+    const {stats} = useSelector(gameSelector);
 
     const result: boolean = stats.all !== 0 && stats.all === stats.success;
 

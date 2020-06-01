@@ -2,7 +2,7 @@ import React from 'react';
 import {Col, Row, Form, Button, Typography} from "antd";
 import styled from "styled-components";
 import {Card} from "lib";
-import {gameChangeStats, gameChangeStatus} from "../../../../../../store/reducers/common/game/actions";
+import {changeStats, changeStatus} from "../../../../../../store/reducers/common/game/gameSplice";
 import {useDispatch} from "react-redux";
 import {totalsChange} from "../../../../../../store/reducers/common/tasks/totals/action";
 import {ArrowRightOutlined} from '@ant-design/icons';
@@ -49,9 +49,9 @@ const AnswerLayout: React.FC<AnswerProps> = (
     const submitHandler = (values: any) => {
         const {status, totals, stats} = checkHandler(values);
 
-        dispatch(gameChangeStats(stats));
         dispatch(totalsChange(totals));
-        dispatch(gameChangeStatus(status));
+        dispatch(changeStats(stats));
+        dispatch(changeStatus(status));
     };
 
     return <RowWrapper justify="center" align="middle" gutter={15}>

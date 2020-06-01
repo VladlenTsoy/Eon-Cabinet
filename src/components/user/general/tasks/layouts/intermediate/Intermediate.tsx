@@ -8,7 +8,7 @@ import {Card} from "lib";
 import StepsIntermediate from "./layouts/step-intermediate/StepsIntermediate";
 import BgIconsDownIntermediateLayout from "./layouts/bg-icons-down/BgIconsDownIntermediate.layout";
 import {useScreenWindow} from "../../../../../../effects/use-screen-window.effect";
-import {game} from "../../../../../../store/reducers/common/game/reducer";
+import {gameSelector} from "../../../../../../store/reducers/common/game/gameSplice";
 import {totalsSelect} from "../../../../../../store/reducers/common/tasks/totals/reducer";
 import {settingAnzan} from "../../../../../../store/reducers/common/tasks/setting/reducer";
 
@@ -33,7 +33,7 @@ const RowWrapper = styled(Row)`
 `;
 
 const Intermediate: React.FC = ({children}) => {
-    const {currentTimes} = useSelector(game);
+    const {currentTimes} = useSelector(gameSelector);
     const totals = useSelector(totalsSelect);
     const setting = useSelector(settingAnzan);
     const [, isBreakpoint] = useScreenWindow({breakpoint: 'sm'});

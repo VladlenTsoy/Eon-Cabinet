@@ -4,11 +4,11 @@ import Answer from "./answer/Answer";
 import Intermediate from "./intermediate/Intermediate";
 import Result from "./result/Result";
 import {useSelector} from "react-redux";
-import {game} from "../../../../../../store/reducers/common/game/reducer";
+import {gameSelector} from "../../../../../../store/reducers/common/game/gameSplice";
 
 
 const MultiAnzan: React.FC = () => {
-    const {status} = useSelector(game);
+    const {status} = useSelector(gameSelector);
 
     return <>
         {status === 'start' && <Application/>}

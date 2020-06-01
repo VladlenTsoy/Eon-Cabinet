@@ -1,6 +1,6 @@
 import React from 'react';
 import {useDispatch} from "react-redux";
-import {gameChangeCurrentTimes, gameChangeExecutionMode, gameChangeStats, gameChangeStatus} from "store/reducers/common/game/actions";
+import {clearGame} from "store/reducers/common/game/gameSplice";
 import {Card, GrayIcon} from "lib";
 import TaskSuccessSVG from "assets/images/olympiad/task_success.svg";
 import {Button} from "antd";
@@ -22,10 +22,7 @@ const NextBlock: React.FC<NextBlockProps> = ({nextTask}) => {
     const nextTaskStart = () => {
         dispatch(settingChange(nextTask.settings));
         dispatch(totalsChange([]));
-        dispatch(gameChangeCurrentTimes(0));
-        dispatch(gameChangeStats({all: 0, success: 0}));
-        dispatch(gameChangeStatus('start'));
-        dispatch(gameChangeExecutionMode('first'));
+        dispatch(clearGame());
         history.replace(`/homework/${homeworkId}/${nextTask.id}/${disciplineId}/${nextTask.task_id}`);
     };
 

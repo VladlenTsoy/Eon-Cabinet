@@ -2,7 +2,7 @@ import React from 'react';
 import {TrophyOutlined} from '@ant-design/icons';
 import styled from "styled-components";
 import {useSelector} from "react-redux";
-import {game} from "../../../../../../../../store/reducers/common/game/reducer";
+import {gameSelector} from "../../../../../../../../store/reducers/common/game/gameSplice";
 import {settingAnzan} from "../../../../../../../../store/reducers/common/tasks/setting/reducer";
 
 const WaitWrapper = styled.div`
@@ -59,7 +59,7 @@ const UserIntermediate: React.FC<UserIntermediateProps> = (
         result,
     }
 ) => {
-    const {currentTimes} = useSelector(game);
+    const {currentTimes} = useSelector(gameSelector);
     const setting = useSelector(settingAnzan);
     return isWait ?
         <WaitWrapper>

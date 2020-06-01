@@ -3,11 +3,7 @@ import {Card} from "lib";
 import {Button} from "antd";
 import {HistoryOutlined} from "@ant-design/icons";
 import {useDispatch} from "react-redux";
-import {
-    gameChangeCurrentTimes,
-    gameChangeExecutionMode, gameChangeStats,
-    gameChangeStatus
-} from "store/reducers/common/game/actions";
+import {clearGame, refreshGame} from "store/reducers/common/game/gameSplice";
 import {useParams} from "react-router-dom";
 import {ResultMatchProps} from "../../Result";
 import {totalsChange} from "../../../../../../../../../store/reducers/common/tasks/totals/action";
@@ -21,14 +17,11 @@ const RepeatBlock: React.FC<RepeatBlockProps> = ({isView}) => {
     const dispatch = useDispatch();
 
     const repeatHandler = () => {
-        dispatch(gameChangeCurrentTimes(0));
-        dispatch(gameChangeStats({all: 0, success: 0}));
-        dispatch(gameChangeStatus('start'));
         if (isView) {
             dispatch(totalsChange([]));
-            dispatch(gameChangeExecutionMode('first'));
+            dispatch(clearGame());
         } else
-            dispatch(gameChangeExecutionMode('repeat'));
+            dispatch(refreshGame());
     };
 
     return <Card className="info">

@@ -4,7 +4,7 @@ import {Button, Modal} from "antd";
 import {Drawer} from "../../../../components";
 import {EyeOutlined, ThunderboltOutlined, QuestionCircleOutlined} from '@ant-design/icons';
 import {useSelector} from "react-redux";
-import {game} from "../../../../../store/reducers/common/game/reducer";
+import {gameSelector} from "../../../../../store/reducers/common/game/gameSplice";
 import {useAppContext} from "../../../../../store/context/use-app-context";
 
 interface CurrentExerciseDrawnBlockProps {
@@ -22,7 +22,7 @@ const CurrentExerciseDrawnBLock: React.FC<CurrentExerciseDrawnBlockProps> = (
     }
 ) => {
     const {api} = useAppContext();
-    const {stats} = useSelector(game);
+    const {stats} = useSelector(gameSelector);
 
     const [visible, setVisible] = useState(false);
 

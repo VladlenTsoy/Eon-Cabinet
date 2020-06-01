@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
 import {useSelector} from "react-redux";
-import {game} from "../../../../../../../../../store/reducers/common/game/reducer";
+import {gameSelector} from "../../../../../../../../../store/reducers/common/game/gameSplice";
 
 interface CounterStyleProps {
     delay: number;
@@ -37,7 +37,7 @@ interface CounterProps {
 }
 
 const Counter: React.FC<CounterProps> = ({delay}) => {
-    const {stats} = useSelector(game);
+    const {stats} = useSelector(gameSelector);
 
     return <CounterWrapper delay={delay}>
         <div className="counter">

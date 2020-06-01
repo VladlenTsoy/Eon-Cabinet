@@ -1,8 +1,7 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {gameChangeStatus} from "store/reducers/common/game/actions";
+import {changeStatus, StatusProps} from "store/reducers/common/game/gameSplice";
 import {useAddInternal} from "effects/use-add-interval.effect";
 import {useDispatch} from "react-redux";
-import {StatusProps} from "store/reducers/common/game/types";
 import Output from "./output/Output";
 import {SettingAnzanProps} from "store/reducers/common/tasks/setting/games-types/anzan.types";
 import AbacusOutput from "./abacus-output/AbacusOutput";
@@ -39,7 +38,7 @@ const Basic: React.FC<BasicProps> = (
     const outputInterval = useCallback((exercise: any, i: number = 0) => {
         addInterval(() => {
             if (i >= exercise.length)
-                return dispatch(gameChangeStatus(nextStatus));
+                return dispatch(changeStatus(nextStatus));
             changeOutput(exercise[i], i++);
         }, setting.time * 1000);
 

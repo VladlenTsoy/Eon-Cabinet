@@ -3,7 +3,7 @@ import {TrophyOutlined} from '@ant-design/icons';
 import {Steps} from "antd";
 import styled from "styled-components";
 import {useSelector} from "react-redux";
-import {game} from "../../../../../../../../store/reducers/common/game/reducer";
+import {gameSelector} from "../../../../../../../../store/reducers/common/game/gameSplice";
 import {settingAnzan} from "../../../../../../../../store/reducers/common/tasks/setting/reducer";
 import {totalsSelect} from "../../../../../../../../store/reducers/common/tasks/totals/reducer";
 
@@ -32,7 +32,7 @@ interface StepsIntermediateProps {
 }
 
 const StepsIntermediate: React.FC<StepsIntermediateProps> = ({checkResult}) => {
-    const {currentTimes} = useSelector(game);
+    const {currentTimes} = useSelector(gameSelector);
     const setting = useSelector(settingAnzan);
     const totals = useSelector(totalsSelect);
 

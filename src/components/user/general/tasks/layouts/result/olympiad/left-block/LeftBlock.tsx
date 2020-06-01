@@ -4,6 +4,7 @@ import CurrentExercise from "./current-exercise/CurrentExercise";
 import ActionBack from "./action-back/ActionBack";
 import styled from "styled-components";
 import {useSelector} from "react-redux";
+import {gameSelector} from "store/reducers/common/game/gameSplice";
 
 const LeftBlockLayout = styled(SideBlockLayout)`
   order: 1;
@@ -18,8 +19,7 @@ const LeftBlockLayout = styled(SideBlockLayout)`
 `;
 
 const LeftBlock: React.FC = ({children}) => {
-    const {game} = useSelector((state: any) => state);
-    const {stats} = game;
+    const {stats} = useSelector(gameSelector);
 
     return <LeftBlockLayout>
         {/* Примеры текущего упражнения */}

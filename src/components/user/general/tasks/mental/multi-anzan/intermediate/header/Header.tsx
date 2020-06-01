@@ -2,13 +2,9 @@ import React from 'react';
 import styled from "styled-components";
 import {ArrowRightOutlined, FlagOutlined, HistoryOutlined} from '@ant-design/icons';
 import {Button} from "antd";
-import {
-    gameChangeCurrentTimes,
-    gameChangeExecutionMode,
-    gameChangeStatus
-} from "../../../../../../../../store/reducers/common/game/actions";
+import {nextGame, completionGame, repeatGame} from "../../../../../../../../store/reducers/common/game/gameSplice";
 import {useDispatch, useSelector} from "react-redux";
-import {game} from "../../../../../../../../store/reducers/common/game/reducer";
+import {gameSelector} from "../../../../../../../../store/reducers/common/game/gameSplice";
 import {settingAnzan} from "../../../../../../../../store/reducers/common/tasks/setting/reducer";
 
 const HeaderWrapper = styled.div`
@@ -26,22 +22,14 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = () => {
-    const {currentTimes} = useSelector(game);
+    const {currentTimes} = useSelector(gameSelector);
     const setting = useSelector(settingAnzan);
     const dispatch = useDispatch();
     const times = setting.windows.reduce((arr: number, val: any) => arr < val.times ? val.times : arr, 0);
 
-    const repeatExercise = () => {
-        dispatch(gameChangeExecutionMode('repeat'));
-        dispatch(gameChangeStatus('start'));
-    };
-
-    const nextExercise = () => {
-        dispatch(gameChangeStatus('start'));
-        dispatch(gameChangeCurrentTimes(currentTimes + 1));
-    };
-
-    const completionTask = () => dispatch(gameChangeStatus('result'));
+    const repeatExercise = () => dispatch(repeatGame(false));
+    const nextExercise = () => dispatch(nextGame());
+    const completionTask = () => dispatch(completionGame(false));
 
     return <HeaderWrapper>
         <Button

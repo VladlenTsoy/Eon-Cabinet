@@ -6,7 +6,7 @@ import MiddleBlock from "./middle-block/MiddleBlock";
 import LeftBlock from "./left-block/LeftBlock";
 import RightBlock from "./right-block/RightBlock";
 import {totalsSelect} from "../../../../../../../store/reducers/common/tasks/totals/reducer";
-import {game} from "../../../../../../../store/reducers/common/game/reducer";
+import {gameSelector} from "../../../../../../../store/reducers/common/game/gameSplice";
 import {useAppContext} from "../../../../../../../store/context/use-app-context";
 
 export type ResultMatchProps = {
@@ -19,7 +19,7 @@ export type ResultMatchProps = {
 const Result: React.FC = ({children}) => {
     const {homeworkId, id} = useParams<ResultMatchProps>();
     const {api} = useAppContext();
-    const {stats} = useSelector(game);
+    const {stats} = useSelector(gameSelector);
 
     const result: boolean = stats.all !== 0 && stats.all === stats.success;
     const [loading, setLoading] = useState(true);

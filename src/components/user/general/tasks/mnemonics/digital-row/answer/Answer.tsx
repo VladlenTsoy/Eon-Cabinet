@@ -3,13 +3,13 @@ import AnswerLayout from "../../../layouts/answer/Answer.layout";
 import FormInputAnswerLayout from "../../../layouts/answer/form-input-answer/FormInputAnswer.layout";
 import {useSelector} from "react-redux";
 import {totalsSelect} from "../../../../../../../store/reducers/common/tasks/totals/reducer";
-import {game} from "../../../../../../../store/reducers/common/game/reducer";
+import {gameSelector} from "../../../../../../../store/reducers/common/game/gameSplice";
 
 interface AnswerProps {
 }
 
 const Answer: React.FC<AnswerProps> = () => {
-    const {currentTimes} = useSelector(game);
+    const {currentTimes} = useSelector(gameSelector);
     const totals:any = useSelector(totalsSelect);
 
     /**
