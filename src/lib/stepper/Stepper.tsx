@@ -63,6 +63,7 @@ const CounterWrapper = styled.div`
   line-height: 1;
     
   input{
+    background: none;
     //display: none;
     border: 0;
     width: 100%;

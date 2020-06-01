@@ -18,12 +18,14 @@ const InputWrapper = styled(Input)`
 `;
 
 const InputNumberWrapper = styled(InputNumber)`
+  &.ant-input-number{
     text-align: center;
     width: 100%;
     
     input{
       text-align: center;
     }
+  }
 `;
 
 interface FormInputAnswer {
