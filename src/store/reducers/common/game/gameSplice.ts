@@ -1,5 +1,6 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {TeacherState} from "../../teacher/store";
+import {merge} from "lodash";
 
 export type StatusProps = "start" | "answer" | 'intermediate' | 'result';
 export type ExecutionModeProps = 'first' | 'repeat' | 'again';
@@ -42,8 +43,10 @@ const gameSlice = createSlice({
             state.currentTimes = action.payload;
         },
         changeStats(state, action: PayloadAction<StatsActionProps>){
-            console.log(action.payload)
             state.stats = {...state.stats, ...action.payload};
+        },
+        addSuccessStats(state, action: PayloadAction<number>){
+            state.stats.success += action.payload;
         },
         changeSetting(state, action: PayloadAction<any>){
             state.setting = action.payload;
@@ -51,8 +54,11 @@ const gameSlice = createSlice({
         changeTotals(state, action: PayloadAction<any[]>){
             state.totals = action.payload;
         },
-        addTotals(state, action: PayloadAction<any[]>){
+        addTotal(state, action: PayloadAction<any[]>){
             state.totals = [...state.totals, action.payload];
+        },
+        updateCurrentTotal(state, action: PayloadAction<any>){
+            state.totals[state.currentTimes] = merge(state.totals[state.currentTimes], action.payload);
         },
         clearGame(state){
             state.stats = {all: 0, success: 0};
@@ -83,6 +89,6 @@ const gameSlice = createSlice({
 
 export const gameSelector = (state:TeacherState) => state.game;
 
-export const {changeStatus, changeExecutionMode, changeCurrentTimes, changeStats, changeSetting, changeTotals, clearGame, nextGame, repeatGame, completionGame, refreshGame, addTotals} = gameSlice.actions;
+export const {changeStatus, changeExecutionMode, changeCurrentTimes, changeStats, changeSetting, changeTotals, clearGame, nextGame, repeatGame, completionGame, refreshGame, addTotal, updateCurrentTotal, addSuccessStats} = gameSlice.actions;
 
 export default gameSlice.reducer;

@@ -2,7 +2,12 @@ import React from 'react';
 import {Col, Row, Form, Button, Typography} from "antd";
 import styled from "styled-components";
 import {Card} from "lib";
-import {changeStats, changeStatus, changeTotals} from "../../../../../../store/reducers/common/game/gameSplice";
+import {
+    addSuccessStats,
+    changeStatus,
+    changeTotals,
+    updateCurrentTotal
+} from "../../../../../../store/reducers/common/game/gameSplice";
 import {useDispatch} from "react-redux";
 import {ArrowRightOutlined} from '@ant-design/icons';
 
@@ -46,10 +51,10 @@ const AnswerLayout: React.FC<AnswerProps> = (
     const dispatch = useDispatch();
 
     const submitHandler = (values: any) => {
-        const {status, totals, stats} = checkHandler(values);
-
-        dispatch(changeTotals(totals));
-        dispatch(changeStats(stats));
+        const {status, success, total, totals} = checkHandler(values);
+        total && changeTotals(totals);
+        total && dispatch(updateCurrentTotal(total))
+        dispatch(addSuccessStats(success));
         dispatch(changeStatus(status));
     };
 

@@ -8,7 +8,7 @@ import Timer from "./timer/Timer";
 import {
     changeStats,
     changeStatus,
-    addTotals,
+    addTotal,
     gameSelector,
     StatsActionProps,
     StatusProps
@@ -86,7 +86,7 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
 
         let _totals = updateAnswersTotals ? updateAnswersTotals(data, currentTimes) : data.map((exercise: any) => ({exercise}));
 
-        dispatch(addTotals(_totals));
+        dispatch(addTotal(_totals));
 
         let outputsTotals = createOutputs ?
             createOutputs(_totals, currentTimes) :
