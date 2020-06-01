@@ -2,10 +2,8 @@ import React from 'react';
 import styled from "styled-components";
 import {ArrowRightOutlined, FlagOutlined, HistoryOutlined} from '@ant-design/icons';
 import {Button} from "antd";
-import {nextGame, completionGame, repeatGame} from "../../../../../../../../store/reducers/common/game/gameSplice";
+import {nextGame, completionGame, repeatGame, gameSelector} from "store/reducers/common/game/gameSplice";
 import {useDispatch, useSelector} from "react-redux";
-import {gameSelector} from "../../../../../../../../store/reducers/common/game/gameSplice";
-import {settingAnzan} from "../../../../../../../../store/reducers/common/tasks/setting/reducer";
 
 const HeaderWrapper = styled.div`
   display: flex;
@@ -22,8 +20,7 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = () => {
-    const {currentTimes} = useSelector(gameSelector);
-    const setting = useSelector(settingAnzan);
+    const {currentTimes, setting} = useSelector(gameSelector);
     const dispatch = useDispatch();
     const times = setting.windows.reduce((arr: number, val: any) => arr < val.times ? val.times : arr, 0);
 

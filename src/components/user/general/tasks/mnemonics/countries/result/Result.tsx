@@ -2,9 +2,8 @@ import React from 'react';
 import styled from "styled-components";
 import {TrophyOutlined} from '@ant-design/icons';
 import {useSelector} from "react-redux";
-import {totalsSelect} from "../../../../../../../store/reducers/common/tasks/totals/reducer";
-import {settingAnzan} from "../../../../../../../store/reducers/common/tasks/setting/reducer";
 import ResultMoreLayout from "../../../layouts/result/result-more/ResultMore.layout";
+import {gameSelector} from "../../../../../../../store/reducers/common/game/gameSplice";
 
 const FlagStyle = styled.div`
   width: 200px;
@@ -22,8 +21,7 @@ const FlagStyle = styled.div`
 `;
 
 const ResultBlock = () => {
-    const totals: any = useSelector(totalsSelect);
-    const setting = useSelector(settingAnzan);
+    const {setting, totals} = useSelector(gameSelector);
     const mode = Number(setting.mode);
 
     return <ResultMoreLayout

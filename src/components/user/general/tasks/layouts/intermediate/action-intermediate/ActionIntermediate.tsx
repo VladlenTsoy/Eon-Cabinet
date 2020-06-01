@@ -3,12 +3,9 @@ import {ArrowRightOutlined, FlagOutlined, HistoryOutlined} from '@ant-design/ico
 import {Button} from "antd";
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
-import {nextGame, repeatGame, completionGame} from "store/reducers/common/game/gameSplice";
-import {settingAnzan} from "store/reducers/common/tasks/setting/reducer";
-import {gameSelector} from "store/reducers/common/game/gameSplice";
+import {nextGame, repeatGame, completionGame, gameSelector} from "store/reducers/common/game/gameSplice";
 import {useRouteMatch} from "react-router-dom";
 import {ResultMatchProps} from "../../result/homework/Result";
-import {totalsSelect} from "../../../../../../../store/reducers/common/tasks/totals/reducer";
 
 const ActionWrapper = styled.div`
   text-align: center;
@@ -59,9 +56,7 @@ interface ActionIntermediateProps {
 }
 
 const ActionIntermediate: React.FC<ActionIntermediateProps> = ({checkResult}) => {
-    const {currentTimes} = useSelector(gameSelector);
-    const setting = useSelector(settingAnzan);
-    const totals: any = useSelector(totalsSelect);
+    const {currentTimes, setting, totals} = useSelector(gameSelector);
     const match = useRouteMatch<ResultMatchProps>();
 
     const dispatch = useDispatch();

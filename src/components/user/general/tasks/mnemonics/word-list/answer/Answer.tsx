@@ -2,14 +2,12 @@ import React from 'react';
 import {useSelector} from "react-redux";
 import FormInputAnswerLayout from "../../../layouts/answer/form-input-answer/FormInputAnswer.layout";
 import AnswerLayout from "../../../layouts/answer/Answer.layout";
-import {totalsSelect} from "../../../../../../../store/reducers/common/tasks/totals/reducer";
-import {settingAnzan} from "../../../../../../../store/reducers/common/tasks/setting/reducer";
 import List from "./list/List";
 import {flattenDepth} from "lodash";
+import {gameSelector} from "../../../../../../../store/reducers/common/game/gameSplice";
 
 const Answer: React.FC = () => {
-    const totals = useSelector(totalsSelect);
-    const setting = useSelector(settingAnzan);
+    const {totals, setting} = useSelector(gameSelector);
 
     const checkHandler = (_values: any) => {
         const values = setting.mode === 'list' ? flattenDepth(_values.answer, 2) : _values.answer;

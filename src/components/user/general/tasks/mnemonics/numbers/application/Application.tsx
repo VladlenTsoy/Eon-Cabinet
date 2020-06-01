@@ -1,13 +1,13 @@
 import React, {useCallback} from 'react';
 import {useSelector} from "react-redux";
 import {chunk, random, shuffle} from 'lodash';
-import {settingAnzan} from "../../../../../../../store/reducers/common/tasks/setting/reducer";
 import ApplicationLayout from "../../../layouts/application/Application.layout";
 import {useScreenWindow} from "../../../../../../../effects/use-screen-window.effect";
 import List from "../../word-list/application/list/List";
+import {gameSelector} from "../../../../../../../store/reducers/common/game/gameSplice";
 
 const Application: React.FC = () => {
-    let setting = useSelector(settingAnzan);
+    const {setting} = useSelector(gameSelector);
     const [, isBreakpoint] = useScreenWindow({breakpoint: 'sm'});
 
     setting.column = isBreakpoint ? 5 : 10;

@@ -1,11 +1,11 @@
 import React from 'react';
 import ResultMoreLayout from "../../../layouts/result/result-more/ResultMore.layout";
 import {useSelector} from "react-redux";
-import {totalsSelect} from "../../../../../../../store/reducers/common/tasks/totals/reducer";
+import {gameSelector} from "../../../../../../../store/reducers/common/game/gameSplice";
 import {TrophyOutlined} from '@ant-design/icons';
 
 const Result = () => {
-    const totals: any = useSelector(totalsSelect);
+    const {totals} = useSelector(gameSelector);
 
     return <ResultMoreLayout
         header={

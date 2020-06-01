@@ -1,7 +1,7 @@
 import React from 'react';
 import {useSelector} from "react-redux";
 import styled from "styled-components";
-import {settingAnzan} from "../../../../../../../../../store/reducers/common/tasks/setting/reducer";
+import {gameSelector} from "../../../../../../../../../store/reducers/common/game/gameSplice";
 
 const TextFontSetWrapper: any = styled.div<any>`
   color: ${props => props.isWait ? props.theme.color_minimal : props.isEven ? props.theme.color_main : props.theme.color_primary}
@@ -13,7 +13,7 @@ interface TextFontSet {
 }
 
 const TextFontSet: React.FC<TextFontSet> = ({text, keyTask}) => {
-    const setting: any = useSelector(settingAnzan);
+    const {setting} = useSelector(gameSelector);
 
     let fontSize: any = 1;
     let textLength = text ? String(text).replace(/\s/g, '').length : 'Ожидание...'.length;

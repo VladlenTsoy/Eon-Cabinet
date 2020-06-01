@@ -2,11 +2,9 @@ import React from 'react';
 import {FlagOutlined, RedoOutlined} from '@ant-design/icons';
 import {Button} from "antd";
 import {useDispatch} from "react-redux";
-import {changeExecutionMode} from "store/reducers/common/game/gameSplice";
+import {changeExecutionMode, changeTotals, changeSetting} from "store/reducers/common/game/gameSplice";
 import {withRouter, RouteComponentProps} from "react-router";
 import styled from "styled-components";
-import {totalsChange} from "store/reducers/common/tasks/totals/action";
-import {settingChange} from "store/reducers/common/tasks/setting/action";
 
 export const ActionWrapper = styled.div<any>`
   display: grid;
@@ -80,7 +78,7 @@ const Action: React.FC<Action> = ({task, history, id, type}) => {
     const startApplication = (_task: any) => {
         _task = checkTaskTypeOldTask(_task);
 
-        dispatch(settingChange(_task.settings));
+        dispatch(changeSetting(_task.settings));
         dispatch(changeExecutionMode('first'));
         history.push(`/homework/${id}/${_task.id}/${_task.discipline_id}/${_task.task_id}`);
     };
@@ -88,10 +86,10 @@ const Action: React.FC<Action> = ({task, history, id, type}) => {
     const startSecondApplication = (_task: any) => {
         _task = checkTaskTypeOldTask(_task);
 
-        dispatch(settingChange(_task.settings));
+        dispatch(changeSetting(_task.settings));
         if (Number(_task.first.view) !== 1) {
             dispatch(changeExecutionMode('repeat'));
-            dispatch(totalsChange(_task.first.totals));
+            dispatch(changeTotals(_task.first.totals));
         }
         history.push(`/homework/${id}/${_task.id}/${_task.discipline_id}/${_task.task_id}`);
     };

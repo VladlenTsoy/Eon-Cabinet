@@ -2,7 +2,7 @@ import React from 'react';
 import styled from "styled-components";
 import {FormItem} from "../../../../../../../../layouts/components";
 import {useSelector} from "react-redux";
-import {settingAnzan} from "../../../../../../../../store/reducers/common/tasks/setting/reducer";
+import {gameSelector} from "../../../../../../../../store/reducers/common/game/gameSplice";
 
 const InputWrapper = styled.div`
   display: grid;
@@ -44,7 +44,7 @@ interface InputAnswerProps {
 }
 
 const InputAnswer: React.FC<InputAnswerProps> = ({total, totalKey}) => {
-    const setting = useSelector(settingAnzan);
+    const {setting} = useSelector(gameSelector);
 
     return <InputWrapper>
         <div className="flag">

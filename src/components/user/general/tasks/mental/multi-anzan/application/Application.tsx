@@ -6,12 +6,8 @@ import {LoadingBlock} from "lib";
 import {Card} from "lib";
 import MultiOutput from "./multi-output/MultiOutput";
 import styled from "styled-components";
-import {changeStatus} from "../../../../../../../store/reducers/common/game/gameSplice";
+import {changeStatus, gameSelector, changeTotals} from "../../../../../../../store/reducers/common/game/gameSplice";
 import MultiGridLayout from "../layouts/MultiGrid.layout";
-import {totalsChange} from "../../../../../../../store/reducers/common/tasks/totals/action";
-import {totalsSelect} from "../../../../../../../store/reducers/common/tasks/totals/reducer";
-import {settingAnzan} from "../../../../../../../store/reducers/common/tasks/setting/reducer";
-import {gameSelector} from "../../../../../../../store/reducers/common/game/gameSplice";
 
 const CardWrapper = styled(Card)`
   &.ant-card{
@@ -24,9 +20,7 @@ const CardWrapper = styled(Card)`
 `;
 
 const Application: React.FC = () => {
-    const {currentTimes, executionMode} = useSelector(gameSelector);
-    const totals: any = useSelector(totalsSelect);
-    const setting = useSelector(settingAnzan);
+    const {currentTimes, executionMode, totals, setting} = useSelector(gameSelector);
     const [completed, setCompleted] = useState([]);
     const dispatch = useDispatch();
 
@@ -66,7 +60,7 @@ const Application: React.FC = () => {
         config: {params: {setting}},
         initValue: [],
         afterRequest: async (data: any) => {
-            dispatch(totalsChange(addAnswer(data)));
+            dispatch(changeTotals(addAnswer(data)));
 
             if (setting.map((val: any) => val.extra.includes('abacus')).includes(true)) {
                 return new Promise((resolve => {

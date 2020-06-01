@@ -4,13 +4,9 @@ import Double from "./double-answer/Double";
 import Basic from "./basic-answer/Basic";
 import AnswerLayout from "../../../layouts/answer/Answer.layout";
 import {gameSelector} from "../../../../../../../store/reducers/common/game/gameSplice";
-import {settingAnzan} from "../../../../../../../store/reducers/common/tasks/setting/reducer";
-import {totalsSelect} from "../../../../../../../store/reducers/common/tasks/totals/reducer";
 
 const Answer: React.FC = () => {
-    const {stats, currentTimes} = useSelector(gameSelector);
-    const setting = useSelector(settingAnzan);
-    const totals: any = useSelector(totalsSelect);
+    const {stats, currentTimes, setting, totals} = useSelector(gameSelector);
 
     const isDouble = setting.anzan === 'double';
     const isGroup = setting.extra && setting.extra.includes('group');

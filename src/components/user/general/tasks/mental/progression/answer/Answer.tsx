@@ -3,11 +3,9 @@ import {useSelector} from "react-redux";
 import AnswerLayout from "../../../layouts/answer/Answer.layout";
 import FormInputAnswerLayout from "../../../layouts/answer/form-input-answer/FormInputAnswer.layout";
 import {gameSelector} from "../../../../../../../store/reducers/common/game/gameSplice";
-import {totalsSelect} from "../../../../../../../store/reducers/common/tasks/totals/reducer";
 
 const Answer = () => {
-    const {stats, currentTimes} = useSelector(gameSelector);
-    const totals = useSelector(totalsSelect);
+    const {stats, currentTimes, totals} = useSelector(gameSelector);
 
     const onFinishSubmit = (values: any) => {
         let result = totals[currentTimes].answer === Number(values.answer);

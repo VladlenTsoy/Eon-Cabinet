@@ -3,8 +3,6 @@ import {useSelector} from "react-redux";
 import styled from "styled-components";
 import {CheckCircleOutlined, ExclamationCircleOutlined, FlagOutlined, ArrowRightOutlined} from '@ant-design/icons';
 import {gameSelector} from "../../../../../../../../store/reducers/common/game/gameSplice";
-import {settingAnzan} from "../../../../../../../../store/reducers/common/tasks/setting/reducer";
-import {totalsSelect} from "../../../../../../../../store/reducers/common/tasks/totals/reducer";
 
 const BgIconLeft = styled.div`
   display: inline-flex;
@@ -33,9 +31,8 @@ const BgIconRight = styled(BgIconLeft)`
 `;
 
 const BgIconsDownIntermediateLayout: React.FC = () => {
-    const {currentTimes} = useSelector(gameSelector);
-    const setting = useSelector(settingAnzan);
-    const totals = useSelector(totalsSelect);
+    const {currentTimes, setting, totals} = useSelector(gameSelector);
+
     return <>
         <BgIconLeft>
             {totals[currentTimes].result ? <CheckCircleOutlined/> : <ExclamationCircleOutlined/>}

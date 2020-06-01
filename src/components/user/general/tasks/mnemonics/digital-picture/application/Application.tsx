@@ -1,11 +1,11 @@
 import React, {useCallback} from 'react';
 import {useSelector} from "react-redux";
-import {settingAnzan} from "../../../../../../../store/reducers/common/tasks/setting/reducer";
 import ApplicationLayout from "../../../layouts/application/Application.layout";
 import Custom from "./custom/Custom";
+import {gameSelector} from "../../../../../../../store/reducers/common/game/gameSplice";
 
 const Application: React.FC = () => {
-    let setting = useSelector(settingAnzan);
+    const {setting} = useSelector(gameSelector);
 
     const picturesLoad = useCallback((data) => {
         return data.map((exercise: any) => exercise.url_picture);

@@ -1,11 +1,12 @@
 import React from 'react';
 import {useSelector} from "react-redux";
-import {settingAnzan} from "../../../../../../../store/reducers/common/tasks/setting/reducer";
 import ApplicationLayout from "../../../layouts/application/Application.layout";
 import CarouselItem from "./carousel-item/CarouselItem";
+import {gameSelector} from "../../../../../../../store/reducers/common/game/gameSplice";
 
 const Application: React.FC = () => {
-    let setting = useSelector(settingAnzan);
+    const {setting} = useSelector(gameSelector);
+
     return <ApplicationLayout
         timer
         setting={setting}

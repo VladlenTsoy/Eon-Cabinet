@@ -2,11 +2,11 @@ import React from 'react';
 import {useSelector} from "react-redux";
 import {TrophyOutlined} from '@ant-design/icons';
 import {useAddSpaceToString} from "../../../../../../../effects/use-add-space-to-string";
-import {totalsSelect} from "../../../../../../../store/reducers/common/tasks/totals/reducer";
 import ResultMoreLayout from "../../../layouts/result/result-more/ResultMore.layout";
+import {gameSelector} from "../../../../../../../store/reducers/common/game/gameSplice";
 
 const ResultBlock = () => {
-    const totals: any = useSelector(totalsSelect);
+    const {totals} = useSelector(gameSelector);
     const addSpaceToString = useAddSpaceToString();
 
     return <ResultMoreLayout

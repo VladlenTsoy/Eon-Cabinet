@@ -3,8 +3,7 @@ import {useSelector} from "react-redux";
 import AnswerLayout from "../../../layouts/answer/Answer.layout";
 import InputAnswer from "./input-answer/InputAnswer";
 import styled from "styled-components";
-import {totalsSelect} from "../../../../../../../store/reducers/common/tasks/totals/reducer";
-import {settingAnzan} from "../../../../../../../store/reducers/common/tasks/setting/reducer";
+import {gameSelector} from "../../../../../../../store/reducers/common/game/gameSplice";
 
 const InputsWrapper = styled.div`
   display: grid;
@@ -18,8 +17,7 @@ const InputsWrapper = styled.div`
 `;
 
 const Answer: React.FC = () => {
-    const totals:any = useSelector(totalsSelect);
-    const setting = useSelector(settingAnzan);
+    const {setting, totals} = useSelector(gameSelector);
 
     const namePreparation = (name: string): string => {
         return String(name)

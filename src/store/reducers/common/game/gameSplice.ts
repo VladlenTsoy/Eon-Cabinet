@@ -14,6 +14,8 @@ interface StateProps {
     executionMode: ExecutionModeProps,
     stats: StatsProps
     currentTimes: CurrentTimesProps;
+    setting: any;
+    totals: any;
 }
 
 const initialState: StateProps = {
@@ -22,6 +24,8 @@ const initialState: StateProps = {
     executionMode: 'first',
     currentTimes: 0,
     stats: {all: 0, success: 0},
+    setting: null,
+    totals: [],
 };
 
 const gameSlice = createSlice({
@@ -39,6 +43,12 @@ const gameSlice = createSlice({
         },
         changeStats(state, action: PayloadAction<StatsActionProps>){
             state.stats = {...state.stats, ...action.payload};
+        },
+        changeSetting(state, action: PayloadAction<any>){
+            state.setting = action.payload;
+        },
+        changeTotals(state, action: PayloadAction<any>){
+            state.totals = action.payload;
         },
         clearGame(state){
             state = initialState;
@@ -66,6 +76,6 @@ const gameSlice = createSlice({
 
 export const gameSelector = (state:TeacherState) => state.game;
 
-export const {changeStatus, changeExecutionMode, changeCurrentTimes, changeStats, clearGame, nextGame, repeatGame, completionGame, refreshGame} = gameSlice.actions;
+export const {changeStatus, changeExecutionMode, changeCurrentTimes, changeStats, changeSetting, changeTotals, clearGame, nextGame, repeatGame, completionGame, refreshGame} = gameSlice.actions;
 
 export default gameSlice.reducer;

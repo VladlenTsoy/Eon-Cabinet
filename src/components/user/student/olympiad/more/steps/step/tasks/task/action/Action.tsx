@@ -4,7 +4,7 @@ import {useDispatch} from "react-redux";
 import {FlagOutlined} from '@ant-design/icons';
 import {Button} from "antd";
 import {useHistory} from "react-router";
-import {settingChange} from "../../../../../../../../../../store/reducers/common/tasks/setting/action";
+import {changeSetting} from "../../../../../../../../../../store/reducers/common/game/gameSplice";
 
 type ActionProps = {
     task: any;
@@ -29,7 +29,7 @@ const Action: React.FC<ActionProps> = ({task, type}) => {
     };
 
     const startApplication = (_task: any) => {
-        dispatch(settingChange(_task.settings));
+        dispatch(changeSetting(_task.settings));
         history.push(`/olympiads/${_task.sent_id}/${_task.id}/${_task.discipline_id}/${_task.task_id}`);
     };
 

@@ -1,9 +1,9 @@
 import React from 'react';
 import {useSelector} from "react-redux";
-import {totalsSelect} from "../../../../../../../store/reducers/common/tasks/totals/reducer";
 import ResultMoreLayout from "../../../layouts/result/result-more/ResultMore.layout";
 import styled from "styled-components";
 import {TrophyOutlined} from '@ant-design/icons';
+import {gameSelector} from "../../../../../../../store/reducers/common/game/gameSplice";
 
 const ImageStyle = styled.div`
   width: 200px;
@@ -21,7 +21,7 @@ const ImageStyle = styled.div`
 `;
 
 const Result = () => {
-    const totals: any = useSelector(totalsSelect);
+    const {totals} = useSelector(gameSelector);
 
     return <ResultMoreLayout
         header={

@@ -1,14 +1,14 @@
 import React, {useCallback} from 'react';
 import {useSelector} from "react-redux";
 import ApplicationLayout from "../../../layouts/application/Application.layout";
-import {settingAnzan} from "store/reducers/common/tasks/setting/reducer";
 import {useScreenWindow} from "effects/use-screen-window.effect";
 import {chunk} from "lodash";
 import List from "./list/List";
 import CarouselItem from "./carousel-item/CarouselItem";
+import {gameSelector} from "../../../../../../../store/reducers/common/game/gameSplice";
 
 const Application: React.FC = () => {
-    let setting = useSelector(settingAnzan);
+    const {setting} = useSelector(gameSelector);
     const [, isBreakpoint] = useScreenWindow({breakpoint: 'sm'});
 
     setting.column = isBreakpoint ? 2 : 5;

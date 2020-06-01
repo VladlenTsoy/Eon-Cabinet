@@ -4,10 +4,8 @@ import TaskSuccessSVG from "assets/images/olympiad/task_success.svg";
 import { FlagOutlined } from '@ant-design/icons';
 import {Button} from "antd";
 import {RouteComponentProps, withRouter} from "react-router-dom";
-import {changeStatus, changeCurrentTimes} from "../../../../../../../../../../store/reducers/common/game/gameSplice";
+import {changeStatus, changeCurrentTimes, changeSetting, changeTotals} from "../../../../../../../../../../store/reducers/common/game/gameSplice";
 import {useDispatch} from "react-redux";
-import {totalsChange} from "../../../../../../../../../../store/reducers/common/tasks/totals/action";
-import {settingChange} from "../../../../../../../../../../store/reducers/common/tasks/setting/action";
 
 interface RouteProps {
     sentOlympiadId: string,
@@ -25,8 +23,8 @@ const NextTask: React.FC<NextStepProps> = ({loading, nextTask, history, match}) 
 
     const nextTaskStart = () => {
         history.push(`/olympiads/${match.params.sentOlympiadId}/${nextTask.id}/${nextTask.task_id}`);
-        dispatch(settingChange(nextTask.settings));
-        dispatch(totalsChange([]));
+        dispatch(changeSetting(nextTask.settings));
+        dispatch(changeTotals([]));
         dispatch(changeCurrentTimes(0));
         dispatch(changeStatus('start'));
     };

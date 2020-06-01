@@ -1,5 +1,4 @@
 import {ExtraTypes, SoundTypes} from "../types";
-import {State} from "../../../../../rootTypes";
 
 export interface SettingAnzanBasicProps {
     anzan: 'basic' | 'turbo' | 'double'
@@ -64,5 +63,3 @@ export type SettingAnzanProps =
     | SettingAnzanListProps)
     | (SettingCustomExercisesBasicProps
     | SettingCustomExercisesListProps);
-
-export type SelectAnzanTypes = (state: State) => any;

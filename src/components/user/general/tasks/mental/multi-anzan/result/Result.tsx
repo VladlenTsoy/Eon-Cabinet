@@ -6,8 +6,6 @@ import {Card} from "lib";
 import UserResult from "./user-result/UserResult";
 import Header from "./header/Header";
 import {gameSelector} from "../../../../../../../store/reducers/common/game/gameSplice";
-import {totalsSelect} from "../../../../../../../store/reducers/common/tasks/totals/reducer";
-import {settingAnzan} from "../../../../../../../store/reducers/common/tasks/setting/reducer";
 
 const ResultWrapper = styled(Card)`
   &.ant-card{
@@ -27,9 +25,7 @@ const BodyWrapper = styled.div`
 `;
 
 const Result: React.FC = () => {
-    const {currentTimes} = useSelector(gameSelector);
-    const totals:any = useSelector(totalsSelect);
-    const setting = useSelector(settingAnzan);
+    const {currentTimes, setting, totals} = useSelector(gameSelector);
 
     return <ResultWrapper>
         <Header/>

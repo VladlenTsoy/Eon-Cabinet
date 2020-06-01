@@ -2,14 +2,11 @@ import React, {useCallback, useEffect, useState} from 'react';
 import {Button, Form} from "antd";
 import {ArrowRightOutlined} from '@ant-design/icons';
 import {useDispatch, useSelector} from "react-redux";
-import {totalsSelect} from "../../../../../../../../store/reducers/common/tasks/totals/reducer";
-import {settingAnzan} from "../../../../../../../../store/reducers/common/tasks/setting/reducer";
 import TablesOutput from "../../../../layouts/application/list/tables-output/TablesOutput";
 import Table from "./table/Table";
 import {chunk} from "lodash";
 import ApplicationCardLayout from "../../../../layouts/application/ApplicationCard.layout";
-import {changeStats, changeStatus} from "../../../../../../../../store/reducers/common/game/gameSplice";
-import {totalsChange} from "../../../../../../../../store/reducers/common/tasks/totals/action";
+import {changeStats, changeStatus, changeTotals,gameSelector} from "../../../../../../../../store/reducers/common/game/gameSplice";
 
 interface ListProps {
     checkHandler: (values: any) => any | {
@@ -20,8 +17,7 @@ interface ListProps {
 }
 
 const List: React.FC<ListProps> = ({checkHandler}) => {
-    const totals = useSelector(totalsSelect);
-    const setting = useSelector(settingAnzan);
+    const {totals, setting} = useSelector(gameSelector);
     const dispatch = useDispatch();
 
     const [outputs, setOutputs] = useState();
@@ -29,7 +25,7 @@ const List: React.FC<ListProps> = ({checkHandler}) => {
     const submitHandler = (values: any) => {
         const {status, totals, stats} = checkHandler(values);
 
-        dispatch(totalsChange(totals));
+        dispatch(changeTotals(totals));
         dispatch(changeStats(stats));
         dispatch(changeStatus(status));
     };

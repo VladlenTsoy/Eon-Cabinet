@@ -2,12 +2,10 @@ import React, {useCallback} from 'react';
 import {useSelector} from "react-redux";
 import AnswerLayout from "../../../layouts/answer/Answer.layout";
 import FormInputAnswerLayout from "../../../layouts/answer/form-input-answer/FormInputAnswer.layout";
-import {totalsSelect} from "../../../../../../../store/reducers/common/tasks/totals/reducer";
 import {gameSelector} from "../../../../../../../store/reducers/common/game/gameSplice";
 
 const Answer: React.FC = () => {
-    const {stats} = useSelector(gameSelector);
-    const totals: any = useSelector(totalsSelect);
+    const {stats, totals} = useSelector(gameSelector);
 
     const onFinishSubmit = useCallback((values: any) => {
         let _totals = totals.map((total: any, key: number) => {

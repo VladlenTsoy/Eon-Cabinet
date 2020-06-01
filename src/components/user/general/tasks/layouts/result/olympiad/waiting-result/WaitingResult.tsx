@@ -4,7 +4,6 @@ import RightBlock from "./right-block/RightBlock";
 import {useSelector} from "react-redux";
 import {RouteComponentProps, withRouter} from "react-router";
 import {RouteOlympiadTaskProps} from "../Result";
-import {totalsSelect} from "../../../../../../../../store/reducers/common/tasks/totals/reducer";
 import {gameSelector} from "../../../../../../../../store/reducers/common/game/gameSplice";
 import {useAppContext} from "../../../../../../../../store/context/use-app-context";
 
@@ -23,8 +22,7 @@ const WaitingResult: React.FC<WaitingResultProps> = (
     }
 ) => {
     const {api} = useAppContext();
-    const {stats} = useSelector(gameSelector);
-    const totals = useSelector(totalsSelect);
+    const {stats, totals} = useSelector(gameSelector);
 
     const [resultData, setResultData] = useState();
     const result: boolean = stats.all !== 0 && stats.all === stats.success;

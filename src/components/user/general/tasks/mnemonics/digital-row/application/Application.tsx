@@ -3,13 +3,11 @@ import {useSelector} from "react-redux";
 import {random} from 'lodash';
 import {useAddSpaceToString} from "effects/use-add-space-to-string";
 import ApplicationLayout from "../../../layouts/application/Application.layout";
-import {settingAnzan} from "store/reducers/common/tasks/setting/reducer";
-import {totalsSelect} from "store/reducers/common/tasks/totals/reducer";
 import Custom from "./custom/Custom";
+import {gameSelector} from "../../../../../../../store/reducers/common/game/gameSplice";
 
 const Application: React.FC = () => {
-    let setting = useSelector(settingAnzan);
-    let totals: any = useSelector(totalsSelect);
+    const {setting, totals} = useSelector(gameSelector);
     const addSpaceToString = useAddSpaceToString();
 
     const updateAnswersTotals = useCallback((data, currentTimes) => {

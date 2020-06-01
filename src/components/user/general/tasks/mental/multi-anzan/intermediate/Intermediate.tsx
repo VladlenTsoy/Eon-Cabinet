@@ -5,8 +5,6 @@ import MultiGridLayout from "../layouts/MultiGrid.layout";
 import {useSelector} from "react-redux";
 import Header from "./header/Header";
 import UserIntermediate from "./user-intermediate/UserIntermediate";
-import {totalsSelect} from "../../../../../../../store/reducers/common/tasks/totals/reducer";
-import {settingAnzan} from "../../../../../../../store/reducers/common/tasks/setting/reducer";
 import {gameSelector} from "../../../../../../../store/reducers/common/game/gameSplice";
 
 const IntermediateWrapper = styled(Card)`
@@ -21,9 +19,7 @@ const IntermediateWrapper = styled(Card)`
 `;
 
 const Intermediate: React.FC = () => {
-    const {currentTimes} = useSelector(gameSelector);
-    const totals: any = useSelector(totalsSelect);
-    const setting = useSelector(settingAnzan);
+    const {currentTimes, totals, setting} = useSelector(gameSelector);
 
     return <IntermediateWrapper>
         <Header/>

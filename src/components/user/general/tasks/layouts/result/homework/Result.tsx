@@ -5,7 +5,6 @@ import ResultLayout from "../../../../../../../layouts/result/Result.layout";
 import MiddleBlock from "./middle-block/MiddleBlock";
 import LeftBlock from "./left-block/LeftBlock";
 import RightBlock from "./right-block/RightBlock";
-import {totalsSelect} from "../../../../../../../store/reducers/common/tasks/totals/reducer";
 import {gameSelector} from "../../../../../../../store/reducers/common/game/gameSplice";
 import {useAppContext} from "../../../../../../../store/context/use-app-context";
 
@@ -19,14 +18,12 @@ export type ResultMatchProps = {
 const Result: React.FC = ({children}) => {
     const {homeworkId, id} = useParams<ResultMatchProps>();
     const {api} = useAppContext();
-    const {stats} = useSelector(gameSelector);
+    const {stats, totals} = useSelector(gameSelector);
 
     const result: boolean = stats.all !== 0 && stats.all === stats.success;
     const [loading, setLoading] = useState(true);
     const [resultData, setResultData] = useState();
     const [isView, setIsView] = useState(!homeworkId);
-
-    const totals = useSelector(totalsSelect);
 
     const updateIsView = useCallback((state: boolean) => {
         setIsView(state);

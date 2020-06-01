@@ -3,13 +3,12 @@ import {useSelector} from "react-redux";
 import {TrophyOutlined} from '@ant-design/icons';
 import {UserImage} from "../../../../../../../layouts/components";
 import moment from "moment";
-import {totalsSelect} from "../../../../../../../store/reducers/common/tasks/totals/reducer";
 import ResultMoreLayout from "../../../layouts/result/result-more/ResultMore.layout";
-import {settingAnzan} from "../../../../../../../store/reducers/common/tasks/setting/reducer";
+import {gameSelector} from "../../../../../../../store/reducers/common/game/gameSplice";
 
 const ResultBlock = () => {
-    const totals: any = useSelector(totalsSelect);
-    const setting = useSelector(settingAnzan);
+    const {setting, totals} = useSelector(gameSelector);
+
     const mode = Number(setting.mode);
 
     return <ResultMoreLayout

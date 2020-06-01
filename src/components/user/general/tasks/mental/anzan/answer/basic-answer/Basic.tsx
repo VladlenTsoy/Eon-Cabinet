@@ -1,12 +1,10 @@
 import React from 'react';
 import FormInputAnswerLayout from "../../../../layouts/answer/form-input-answer/FormInputAnswer.layout";
 import {useSelector} from "react-redux";
-import {settingAnzan} from "../../../../../../../../store/reducers/common/tasks/setting/reducer";
-import {totalsSelect} from "../../../../../../../../store/reducers/common/tasks/totals/reducer";
+import {gameSelector} from "../../../../../../../../store/reducers/common/game/gameSplice";
 
 const Basic: React.FC = () => {
-    const totals = useSelector(totalsSelect);
-    const setting = useSelector(settingAnzan);
+    const {totals, setting} = useSelector(gameSelector);
     const isGroup = setting.extra && setting.extra.includes('group');
 
     if (isGroup)

@@ -5,8 +5,7 @@ import {LoadingBlock} from "lib";
 import {ExclamationCircleOutlined} from "@ant-design/icons";
 import Basic from "./basic/Basic";
 import Timer from "./timer/Timer";
-import {totalsChange} from "store/reducers/common/tasks/totals/action";
-import {changeStats, changeStatus, gameSelector,StatsActionProps, StatusProps} from "../../../../../../store/reducers/common/game/gameSplice";
+import {changeStats, changeStatus, changeTotals, gameSelector,StatsActionProps, StatusProps} from "../../../../../../store/reducers/common/game/gameSplice";
 import {SettingAnzanProps} from "../../../../../../store/reducers/common/tasks/setting/games-types/anzan.types";
 import PreparationLayout from "./preparation/Preparation.layout";
 import List from "./list/List";
@@ -14,7 +13,6 @@ import {Form, Modal} from "antd";
 import Double from "./double/Double";
 import ApplicationCardLayout from "./ApplicationCard.layout";
 import Carousel from "./carousel/Carousel";
-import {totalsSelect} from "../../../../../../store/reducers/common/tasks/totals/reducer";
 import {useLoadPicturesEffect} from "./use-load-pictures.effect";
 import {useLoadSoundsEffect} from "./use-load-sounds.effect";
 import {ListSettingProps} from "./list/tables-output/TablesOutput";
@@ -59,10 +57,9 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
         CustomDisplay,
     }
 ) => {
-    const totals = useSelector(totalsSelect);
     const [outputs, setOutputs] = useState<any>([]);
     const [ListForm] = Form.useForm();
-    const {executionMode, currentTimes} = useSelector(gameSelector);
+    const {executionMode, currentTimes, totals} = useSelector(gameSelector);
     const dispatch = useDispatch();
 
     // Загрузка картинок
@@ -83,7 +80,7 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
         let _totals = updateAnswersTotals ?
             updateAnswersTotals(data, currentTimes) :
             data.map((exercise: any) => ({exercise}));
-        dispatch(totalsChange(_totals));
+        dispatch(changeTotals(_totals));
 
         let outputsTotals = createOutputs ?
             createOutputs(_totals, currentTimes) :

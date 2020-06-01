@@ -40,7 +40,6 @@ const User:React.FC = () => {
         setIsDarkTheme(user?.setting?.is_dark);
     }, [user]);
 
-    console.log(user);
     return <>
         <React.Suspense fallback={<Loader text="Загрузка доступа..."/>}>
             {user.access === 'teacher' ? <Teacher/> :

@@ -1,13 +1,11 @@
 import React, {useCallback} from "react";
 import {useSelector} from "react-redux";
 import ApplicationLayout from "../../../layouts/application/Application.layout";
-import {settingAnzan} from "../../../../../../../store/reducers/common/tasks/setting/reducer";
-import {totalsSelect} from "../../../../../../../store/reducers/common/tasks/totals/reducer";
 import {useUpdateOutputEffect} from "../../../layouts/application/use-update-output.effect";
+import {gameSelector} from "../../../../../../../store/reducers/common/game/gameSplice";
 
 const Application: React.FC = () => {
-    let setting = useSelector(settingAnzan);
-    const totals = useSelector(totalsSelect);
+    const {totals, setting} = useSelector(gameSelector);
 
     const [updateExercises] = useUpdateOutputEffect({extra: setting.extra});
 

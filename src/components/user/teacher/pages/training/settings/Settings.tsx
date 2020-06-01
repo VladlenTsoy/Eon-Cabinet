@@ -6,8 +6,8 @@ import {useChangeActionNavbar} from "effects/use-change-action-navbar.effect";
 import {Col, Row} from "antd";
 import {Card, LoadingBlock} from "lib";
 import styled from "styled-components";
-import {settingChange} from "../../../../../../store/reducers/common/tasks/setting/action";
 import {useAppContext} from "../../../../../../store/context/use-app-context";
+import {changeSetting} from "store/reducers/common/game/gameSplice";
 
 const Mental = React.lazy(() => import("./mental/Mental"));
 const Mnemonics = React.lazy(() => import("./mnemonics/Mnemonics"));
@@ -61,7 +61,7 @@ const Tasks: React.FC = () => {
      *
      * @param setting
      */
-    const changeSetting = useCallback(async (setting: any) => {
+    const updateSetting = useCallback(async (setting: any) => {
         try {
             let userSetting = Object.keys(user.setting).length ? user.setting : {};
             userSetting.tasks = userSetting.tasks && userSetting.tasks[0] && userSetting.tasks[0].hasOwnProperty('discipline') ?
@@ -82,7 +82,7 @@ const Tasks: React.FC = () => {
     }, [user.setting, updateUser, api.user, discipline, task, user.id]);
 
     // Очистка настроек для текущего упражнения
-    const clearSaveSetting = useCallback(async () => await changeSetting({}), [changeSetting]);
+    const clearSaveSetting = useCallback(async () => await updateSetting({}), [updateSetting]);
 
 
     /**
@@ -93,8 +93,8 @@ const Tasks: React.FC = () => {
      */
     const startOrPrintAndSaveSetting = useCallback(
         async (setting: any, print?: boolean) => {
-            await dispatch(settingChange(setting));
-            await changeSetting(setting);
+            dispatch(changeSetting(setting));
+            await updateSetting(setting);
             if (print) {
                 let url = '/algorithm/list';
                 let _setting = setting;
@@ -114,7 +114,7 @@ const Tasks: React.FC = () => {
             } else
                 history.push(`/training/${discipline}/${task}`);
         },
-        [history, discipline, task, dispatch, changeSetting, api.user, language.common]
+        [history, discipline, task, dispatch, updateSetting, api.user, language.common]
     );
 
     return <React.Suspense fallback={<LoadingBlock title="Загрузка упражнений..."/>}>

@@ -4,8 +4,6 @@ import {Steps} from "antd";
 import styled from "styled-components";
 import {useSelector} from "react-redux";
 import {gameSelector} from "../../../../../../../../store/reducers/common/game/gameSplice";
-import {settingAnzan} from "../../../../../../../../store/reducers/common/tasks/setting/reducer";
-import {totalsSelect} from "../../../../../../../../store/reducers/common/tasks/totals/reducer";
 
 const {Step} = Steps;
 
@@ -32,9 +30,7 @@ interface StepsIntermediateProps {
 }
 
 const StepsIntermediate: React.FC<StepsIntermediateProps> = ({checkResult}) => {
-    const {currentTimes} = useSelector(gameSelector);
-    const setting = useSelector(settingAnzan);
-    const totals = useSelector(totalsSelect);
+    const {currentTimes, setting, totals} = useSelector(gameSelector);
 
     const checkStatus = (total: any, key: number): 'wait' | 'finish' | 'error' => {
         if (currentTimes >= key)

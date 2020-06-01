@@ -4,13 +4,9 @@ import styled from "styled-components";
 import AnswerInput from "./answer-input/AnswerInput";
 import {Card} from "lib";
 import {Form} from "antd";
-import {changeStatus} from "../../../../../../../store/reducers/common/game/gameSplice";
+import {changeStatus, gameSelector, changeTotals} from "../../../../../../../store/reducers/common/game/gameSplice";
 import MultiGridLayout from "../layouts/MultiGrid.layout";
 import Header from "./header/Header";
-import {totalsChange} from "../../../../../../../store/reducers/common/tasks/totals/action";
-import {gameSelector} from "../../../../../../../store/reducers/common/game/gameSplice";
-import {totalsSelect} from "../../../../../../../store/reducers/common/tasks/totals/reducer";
-import {settingAnzan} from "../../../../../../../store/reducers/common/tasks/setting/reducer";
 
 const CardWrapper = styled(Card)`
   &.ant-card {
@@ -30,9 +26,7 @@ const FormWrapper = styled(Form)`
 `;
 
 const Answer: React.FC = () => {
-    const {currentTimes} = useSelector(gameSelector);
-    let totals: any = useSelector(totalsSelect);
-    const setting = useSelector(settingAnzan);
+    let {currentTimes, totals, setting} = useSelector(gameSelector);
     const [isAnswersOpen, setIsAnswersOpen] = useState(false);
     const dispatch = useDispatch();
     const [form] = Form.useForm();
@@ -53,7 +47,7 @@ const Answer: React.FC = () => {
         else
             totals[currentTimes] = {...totals[currentTimes], user: values.answer, result};
 
-        dispatch(totalsChange(totals));
+        dispatch(changeTotals(totals));
         dispatch(changeStatus(setting.mode === 'multiplication' && !setting.group ? 'intermediate' : 'result'));
     };
 

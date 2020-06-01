@@ -3,7 +3,7 @@ import styled from "styled-components";
 import {useSelector} from "react-redux";
 import BasicInput from "./basic-input/BasicInput";
 import GroupInput from "./group-input/GroupInput";
-import {settingAnzan} from "../../../../../../../../store/reducers/common/tasks/setting/reducer";
+import {gameSelector} from "../../../../../../../../store/reducers/common/game/gameSplice";
 
 const AnswerWrapper = styled.div`
   height: 100%;
@@ -30,7 +30,7 @@ const AnswerInput: React.FC<AnswerInputProps> = (
         taskKey
     }
 ) => {
-    const setting: any = useSelector(settingAnzan);
+    const {setting} = useSelector(gameSelector);
 
     return <AnswerWrapper>
         {setting.group ?

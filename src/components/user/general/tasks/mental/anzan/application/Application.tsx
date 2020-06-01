@@ -1,11 +1,8 @@
 import React, {useCallback, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import ApplicationLayout from "../../../layouts/application/Application.layout";
-import {settingAnzan} from "../../../../../../../store/reducers/common/tasks/setting/reducer";
-import {totalsSelect} from "../../../../../../../store/reducers/common/tasks/totals/reducer";
 import {chunk, flattenDepth} from "lodash";
-import {totalsChange} from "../../../../../../../store/reducers/common/tasks/totals/action";
-import {changeStats, changeStatus} from "../../../../../../../store/reducers/common/game/gameSplice";
+import {changeStats, changeStatus, gameSelector, changeTotals} from "../../../../../../../store/reducers/common/game/gameSplice";
 import {useUpdateOutputEffect} from "../../../layouts/application/use-update-output.effect";
 import TbodyAddition from "./list/tbody-addition/TbodyAddition";
 import TbodyMultiplication from "./list/tbody-multiplication/TbodyMultiplication";
@@ -16,8 +13,7 @@ interface ApplicationProps {
 
 const Application: React.FC<ApplicationProps> = ({otherUrl}) => {
     const dispatch = useDispatch();
-    const setting = useSelector(settingAnzan);
-    const totals = useSelector(totalsSelect);
+    const {setting, totals} = useSelector(gameSelector);
     const [isMultiplication] = useState(setting.mode === 'divide' || setting.mode === 'multiply');
 
     // Update exercise mirror
@@ -79,7 +75,7 @@ const Application: React.FC<ApplicationProps> = ({otherUrl}) => {
             };
         });
 
-        dispatch(totalsChange(_totals));
+        dispatch(changeTotals(_totals));
         dispatch(changeStats({success}));
         dispatch(changeStatus('result'));
     }, [dispatch, totals]);

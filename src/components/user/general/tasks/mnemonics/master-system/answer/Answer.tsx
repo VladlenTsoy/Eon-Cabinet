@@ -2,10 +2,10 @@ import React from 'react';
 import AnswerLayout from "../../../layouts/answer/Answer.layout";
 import {useSelector} from "react-redux";
 import FormInputAnswerLayout from "../../../layouts/answer/form-input-answer/FormInputAnswer.layout";
-import {totalsSelect} from "../../../../../../../store/reducers/common/tasks/totals/reducer";
+import {gameSelector} from "../../../../../../../store/reducers/common/game/gameSplice";
 
 const Answer: React.FC = () => {
-    const totals:any = useSelector(totalsSelect);
+    const {totals} = useSelector(gameSelector);
 
     const checkHandler = (values: any) => {
         let _totals = totals.map((total: any, key: number) => ({
