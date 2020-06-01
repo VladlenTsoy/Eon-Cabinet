@@ -3,7 +3,7 @@ import {changeStatus, StatusProps} from "store/reducers/common/game/gameSplice";
 import {useAddInternal} from "effects/use-add-interval.effect";
 import {useDispatch} from "react-redux";
 import Output from "./output/Output";
-import {SettingAnzanProps} from "store/reducers/common/tasks/setting/games-types/anzan.types";
+import {SettingAnzanProps} from "store/reducers/common/game/setting/games-types/anzan.types";
 import AbacusOutput from "./abacus-output/AbacusOutput";
 import {useSoundEffect} from "../use-sound.effect";
 import TurboOutput from "./turbo-output/TurboOutput";

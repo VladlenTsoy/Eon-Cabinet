@@ -6,7 +6,7 @@ import {ExclamationCircleOutlined} from "@ant-design/icons";
 import Basic from "./basic/Basic";
 import Timer from "./timer/Timer";
 import {changeStats, changeStatus, changeTotals, gameSelector,StatsActionProps, StatusProps} from "../../../../../../store/reducers/common/game/gameSplice";
-import {SettingAnzanProps} from "../../../../../../store/reducers/common/tasks/setting/games-types/anzan.types";
+import {SettingAnzanProps} from "../../../../../../store/reducers/common/game/setting/games-types/anzan.types";
 import PreparationLayout from "./preparation/Preparation.layout";
 import List from "./list/List";
 import {Form, Modal} from "antd";

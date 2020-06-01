@@ -1,5 +1,5 @@
 import {useCallback, useEffect} from "react";
-import {SoundTypes} from "../../../../../../store/reducers/common/tasks/setting/types";
+import {SoundTypes} from "../../../../../../store/reducers/common/game/setting/types";
 import {message} from "antd";
 
 interface SettingProps {
