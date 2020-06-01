@@ -2,7 +2,12 @@ import React, {useCallback, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import ApplicationLayout from "../../../layouts/application/Application.layout";
 import {chunk, flattenDepth} from "lodash";
-import {changeStats, changeStatus, gameSelector, changeTotals} from "../../../../../../../store/reducers/common/game/gameSplice";
+import {
+    changeStats,
+    changeStatus,
+    gameSelector,
+    changeTotals
+} from "../../../../../../../store/reducers/common/game/gameSplice";
 import {useUpdateOutputEffect} from "../../../layouts/application/use-update-output.effect";
 import TbodyAddition from "./list/tbody-addition/TbodyAddition";
 import TbodyMultiplication from "./list/tbody-multiplication/TbodyMultiplication";
@@ -19,52 +24,42 @@ const Application: React.FC<ApplicationProps> = ({otherUrl}) => {
     // Update exercise mirror
     const [updateExercises, updateMirror] = useUpdateOutputEffect({extra: setting.extra});
 
-    const addAnswerToTotals = useCallback((exercises) => {
-        // Count the answer
-        if (isMultiplication)
-            return setting.mode === 'multiply' ? exercises[0] * exercises[1] : exercises[0] / exercises[1];
-        else
-            return exercises.reduce((total: any, val: any) => total + val);
-    }, [isMultiplication, setting]);
+    /**
+     * Добавление ответа в Total
+     */
+    const addAnswerToTotal = useCallback((exercise: number[]) =>
+            isMultiplication ?
+                setting.mode === 'multiply' ? exercise[0] * exercise[1] : exercise[0] / exercise[1] :
+                exercise.reduce((acc, val) => acc + val),
+        [isMultiplication, setting]);
 
-    const addOutputToTotals = useCallback((exercise) => {
-        if (isMultiplication)
-            return [exercise[0] + (setting.mode === 'multiply' ? ' * ' : ' / ') + exercise[1]];
-        return updateExercises(exercise);
-    }, [isMultiplication, setting, updateExercises]);
-
-    const updateAnswersTotals = useCallback((data, currentTimes) => {
-        if (setting.anzan === 'list') {
-            data.map((exercises: any, key: number) => {
-                exercises = setting.extra && setting.extra.includes('mirror') ? updateMirror(exercises) : exercises;
-                return totals[key] = {
-                    exercise: exercises,
-                    answer: addAnswerToTotals(exercises),
-                }
-            });
-        } else if (setting.anzan === 'double') {
-            totals[currentTimes] = data.map((exercises: any) => {
-                exercises = setting.extra && setting.extra.includes('mirror') ? updateMirror(exercises) : exercises;
-                return {
-                    exercise: exercises,
-                    answer: addAnswerToTotals(exercises),
-                };
-            });
-        } else {
-            const exercises = setting.extra && setting.extra.includes('mirror') ? updateMirror(data) : data;
-            totals[currentTimes] = {
-                exercise: exercises,
-                answer: addAnswerToTotals(exercises),
-            };
+    /**
+     * Создание Total и добавление ответов
+     */
+    const createTotal = useCallback((exercise) => {
+        exercise = setting?.extra.includes('mirror') ? updateMirror(exercise) : exercise;
+        return {
+            exercise,
+            answer: addAnswerToTotal(exercise)
         }
-        return totals;
-    }, [addAnswerToTotals, totals, setting, updateMirror]);
+    }, [setting, updateMirror, addAnswerToTotal]);
 
+    /**
+     * Создание Totals
+     */
+    const updateAnswersTotals = useCallback((data) =>
+            setting.anzan === 'list' || setting.anzan === 'double' ?
+                data.map((exercise: any) => createTotal(exercise)) : createTotal(data),
+        [setting, createTotal]);
+
+    /**
+     *
+     */
     const updateResultsTotals = useCallback((answers: any) => {
         let success = 0;
-        let flattenAnswers = flattenDepth(answers, 2);
+        const flattenAnswers = flattenDepth(answers, 2);
 
-        const _totals = Object.values(totals).map((total: any, key: number) => {
+        const _totals = totals.map((total: any, key: number) => {
             if (Number(total.answer) === Number(flattenAnswers[key]))
                 success++;
 
@@ -80,24 +75,38 @@ const Application: React.FC<ApplicationProps> = ({otherUrl}) => {
         dispatch(changeStatus('result'));
     }, [dispatch, totals]);
 
+    /**
+     *
+     */
     const updateStats = useCallback(() => {
         if (setting.anzan === 'list')
-            return {all: (isMultiplication ? setting.tables * setting.column * setting.rows : setting.tables * setting.column)};
+            return {all: isMultiplication ? setting.tables * setting.column * setting.rows : setting.tables * setting.column};
         else
             return {all: setting.times};
     }, [setting, isMultiplication]);
 
-    const createOutputs = useCallback((totals, currentTimes) => {
+    /**
+     *
+     */
+    const addOutputToTotals = useCallback((exercise) =>
+            isMultiplication ?
+                [exercise[0] + (setting.mode === 'multiply' ? ' * ' : ' / ') + exercise[1]] :
+                updateExercises(exercise),
+        [isMultiplication, setting, updateExercises]);
+
+    /**
+     *
+     */
+    const createOutputs = useCallback((totals) => {
         if (setting.anzan === 'list') {
             let outputs = Object.values(totals).map((total: any) => addOutputToTotals(total.exercise));
             return isMultiplication ?
                 chunk(chunk(outputs, setting.column), setting.rows) :
                 chunk(outputs, setting.column);
         } else if (setting.anzan === 'double') {
-            return [addOutputToTotals(totals[currentTimes][0].exercise), addOutputToTotals(totals[currentTimes][1].exercise)];
-        } else {
-            return addOutputToTotals(totals[currentTimes].exercise);
+            return [addOutputToTotals(totals[0].exercise), addOutputToTotals(totals[1].exercise)];
         }
+        return addOutputToTotals(totals.exercise);
     }, [isMultiplication, addOutputToTotals, setting]);
 
     return <ApplicationLayout

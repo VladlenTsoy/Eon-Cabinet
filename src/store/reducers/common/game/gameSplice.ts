@@ -42,16 +42,23 @@ const gameSlice = createSlice({
             state.currentTimes = action.payload;
         },
         changeStats(state, action: PayloadAction<StatsActionProps>){
+            console.log(action.payload)
             state.stats = {...state.stats, ...action.payload};
         },
         changeSetting(state, action: PayloadAction<any>){
             state.setting = action.payload;
         },
-        changeTotals(state, action: PayloadAction<any>){
+        changeTotals(state, action: PayloadAction<any[]>){
             state.totals = action.payload;
         },
+        addTotals(state, action: PayloadAction<any[]>){
+            state.totals = [...state.totals, action.payload];
+        },
         clearGame(state){
-            state = initialState;
+            state.stats = {all: 0, success: 0};
+            state.status = 'start';
+            state.executionMode = 'first';
+            state.currentTimes = 0;
         },
         nextGame(state){
             state.status = 'start';
@@ -76,6 +83,6 @@ const gameSlice = createSlice({
 
 export const gameSelector = (state:TeacherState) => state.game;
 
-export const {changeStatus, changeExecutionMode, changeCurrentTimes, changeStats, changeSetting, changeTotals, clearGame, nextGame, repeatGame, completionGame, refreshGame} = gameSlice.actions;
+export const {changeStatus, changeExecutionMode, changeCurrentTimes, changeStats, changeSetting, changeTotals, clearGame, nextGame, repeatGame, completionGame, refreshGame, addTotals} = gameSlice.actions;
 
 export default gameSlice.reducer;

@@ -5,7 +5,14 @@ import {LoadingBlock} from "lib";
 import {ExclamationCircleOutlined} from "@ant-design/icons";
 import Basic from "./basic/Basic";
 import Timer from "./timer/Timer";
-import {changeStats, changeStatus, changeTotals, gameSelector,StatsActionProps, StatusProps} from "../../../../../../store/reducers/common/game/gameSplice";
+import {
+    changeStats,
+    changeStatus,
+    addTotals,
+    gameSelector,
+    StatsActionProps,
+    StatusProps
+} from "../../../../../../store/reducers/common/game/gameSplice";
 import {SettingAnzanProps} from "../../../../../../store/reducers/common/game/setting/games-types/anzan.types";
 import PreparationLayout from "./preparation/Preparation.layout";
 import List from "./list/List";
@@ -77,18 +84,18 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
     const afterRequest = useCallback(async (data: any) => {
         if (pictures) await picturesLoad(data);
 
-        let _totals = updateAnswersTotals ?
-            updateAnswersTotals(data, currentTimes) :
-            data.map((exercise: any) => ({exercise}));
-        dispatch(changeTotals(_totals));
+        let _totals = updateAnswersTotals ? updateAnswersTotals(data, currentTimes) : data.map((exercise: any) => ({exercise}));
+
+        dispatch(addTotals(_totals));
 
         let outputsTotals = createOutputs ?
             createOutputs(_totals, currentTimes) :
             Object.values(_totals).map((total: any) => total.exercise);
 
-        if (setting.sound) await soundsLoad(outputsTotals);
-        setOutputs(outputsTotals);
+        if (setting.sound)
+            await soundsLoad(outputsTotals);
 
+        setOutputs(outputsTotals);
         checkAndUpdateStats(_totals);
     }, [updateAnswersTotals, checkAndUpdateStats, setting, dispatch, currentTimes, soundsLoad, picturesLoad, pictures, createOutputs]);
 
