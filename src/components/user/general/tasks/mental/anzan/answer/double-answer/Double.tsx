@@ -15,7 +15,7 @@ const Double: React.FC = () => {
                 isGroup ?
                     totals.map((total: any, key: any) =>
                         <FormInputAnswerLayout
-                            key={key} group={key} autoFocus={1}
+                            key={key} group={key + 1} autoFocus={0}
                             type="number" index={key} name="answer1"/>
                     ) :
                     <FormInputAnswerLayout
@@ -29,7 +29,7 @@ const Double: React.FC = () => {
                     totals.map((total: any, key: any) =>
                         <FormInputAnswerLayout
                             type="number" index={key}
-                            group={key} key={key} name="answer2"/>
+                            group={key + 1} key={key} name="answer2"/>
                     ) :
                     <FormInputAnswerLayout
                         type="number" index={1} name="answer2"/>
