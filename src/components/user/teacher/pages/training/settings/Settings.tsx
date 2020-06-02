@@ -7,7 +7,7 @@ import {Col, Row} from "antd";
 import {Card, LoadingBlock} from "lib";
 import styled from "styled-components";
 import {useAppContext} from "../../../../../../store/context/use-app-context";
-import {changeSetting} from "store/reducers/common/game/gameSplice";
+import {changeSetting, changeExecutionMode} from "store/reducers/common/game/gameSplice";
 
 const Mental = React.lazy(() => import("./mental/Mental"));
 const Mnemonics = React.lazy(() => import("./mnemonics/Mnemonics"));
@@ -93,6 +93,7 @@ const Tasks: React.FC = () => {
      */
     const startOrPrintAndSaveSetting = useCallback(
         async (setting: any, print?: boolean) => {
+            dispatch(changeExecutionMode('fetch'));
             dispatch(changeSetting(setting));
             await updateSetting(setting);
             if (print) {

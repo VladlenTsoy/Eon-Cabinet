@@ -14,23 +14,16 @@ const Answer: React.FC<AnswerProps> = () => {
      *
      *
      * @param values
+     * @param success
      */
-    const checkHandler = (values: any) => {
-        let success = 0;
-        totals[currentTimes].user = values.answer.replace(/\s/g, '');
-        totals[currentTimes].result = totals[currentTimes].exercise === totals[currentTimes].user;
+    const checkHandler = (values: any, success = 0) => {
+        const user = values.answer.replace(/\s/g, '');
+        const createTotal = {user, result: totals[currentTimes].exercise === user}
 
         totals[currentTimes].exercise.split('')
-            .map((val: any, key: number) => {
-                if (totals[currentTimes].user[key] === val) success++;
-                return success;
-            });
+            .map((val: any, key: number) => user[key] === val && success++);
 
-        return {
-            totals: totals,
-            stats: {success},
-            status: 'result',
-        };
+        return {total: createTotal, success, status: 'result',};
     };
 
     return (

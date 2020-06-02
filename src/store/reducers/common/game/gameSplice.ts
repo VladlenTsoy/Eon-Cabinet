@@ -3,7 +3,7 @@ import {TeacherState} from "../../teacher/store";
 import {merge} from "lodash";
 
 export type StatusProps = "start" | "answer" | 'intermediate' | 'result';
-export type ExecutionModeProps = 'first' | 'repeat' | 'again';
+export type ExecutionModeProps = 'first' | 'repeat' | 'again' | 'fetch';
 export type DisplayTypeProps = 'basic' | 'list' | 'carousel';
 export type StatsProps = { all: number; success: number };
 export type StatsActionProps = { all?: number; success?: number };

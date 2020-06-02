@@ -8,7 +8,7 @@ import Timer from "./timer/Timer";
 import {
     changeStats,
     changeStatus,
-    addTotal,
+    changeTotals,
     gameSelector,
     StatsActionProps,
     StatusProps
@@ -23,6 +23,7 @@ import Carousel from "./carousel/Carousel";
 import {useLoadPicturesEffect} from "./use-load-pictures.effect";
 import {useLoadSoundsEffect} from "./use-load-sounds.effect";
 import {ListSettingProps} from "./list/tables-output/TablesOutput";
+import {requestSetting, useStartApplication} from "./use-start-application.effect";
 
 type picturesFunction = (exercises: any) => any[];
 
@@ -37,7 +38,7 @@ interface ApplicationProps {
     pictures?: string[] | 'abacus' | picturesFunction;
     listSetting?: ListSettingProps
     carouselSetting?: CarouselSettingProps
-    requestSetting?: { url: string, method?: 'post' | 'get', setting?: any };
+    requestSetting?: requestSetting;
     timer?: boolean;
     updateResultsTotals?: (answers: any[]) => any;
     updateAnswersTotals?: (data: any, currentTimes: number) => any;
@@ -64,71 +65,25 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
         CustomDisplay,
     }
 ) => {
-    const [outputs, setOutputs] = useState<any>([]);
+    // const [outputs, setOutputs] = useState<any>([]);
     const [ListForm] = Form.useForm();
-    const {executionMode, currentTimes, totals} = useSelector(gameSelector);
+    // const {executionMode, currentTimes, totals} = useSelector(gameSelector);
     const dispatch = useDispatch();
-
-    // Загрузка картинок
-    const [picturesLoad] = useLoadPicturesEffect({pictures});
-
-    // Загрузка звуков
-    const [soundsLoad, basicSound, preparationSound] = useLoadSoundsEffect({setting});
-
-    const checkAndUpdateStats = useCallback((_totals) => {
-        let stats = updateStats ? updateStats() : {all: Object.values(_totals).length};
-        dispatch(changeStats(stats))
-    }, [dispatch, updateStats]);
-
-    // После завершения примеров
-    const afterRequest = useCallback(async (data: any) => {
-        if (pictures) await picturesLoad(data);
-
-        let _totals = updateAnswersTotals ? updateAnswersTotals(data, currentTimes) : data.map((exercise: any) => ({exercise}));
-
-        dispatch(addTotal(_totals));
-
-        let outputsTotals = createOutputs ?
-            createOutputs(_totals, currentTimes) :
-            Object.values(_totals).map((total: any) => total.exercise);
-
-        if (setting.sound)
-            await soundsLoad(outputsTotals);
-
-        setOutputs(outputsTotals);
-        checkAndUpdateStats(_totals);
-    }, [updateAnswersTotals, checkAndUpdateStats, setting, dispatch, currentTimes, soundsLoad, picturesLoad, pictures, createOutputs]);
-
-    // Загрузка примеров
-    const [loading] = useApiUserGeneral({
-        method: (requestSetting && requestSetting.method) || 'get',
-        url: (requestSetting && requestSetting.url) || '',
-        config: {params: (requestSetting && requestSetting.setting) || setting},
-        afterRequest: afterRequest,
-        cancel: !requestSetting || (executionMode === 'repeat' && !!totals[currentTimes]?.exercise)
+    const {loading, outputs} = useStartApplication({
+        updateStats,
+        requestSetting,
+        pictures,
+        setting,
+        createTotals: updateAnswersTotals,
+        createOutputs
     });
-
-    // Повторение упраженения
-    const repeatTaskExercises = useCallback(() => {
-        let outputsTotals = createOutputs ?
-            createOutputs(totals, currentTimes) :
-            Object.values(totals).map((total: any) => total.exercise);
-        checkAndUpdateStats(totals);
-        setOutputs(outputsTotals);
-    }, [totals, currentTimes, createOutputs, checkAndUpdateStats]);
-
     //
-    useEffect(() => {
-        // Повторение упраженения
-        if (executionMode === 'repeat' && totals[currentTimes]?.exercise)
-            repeatTaskExercises()
-    }, [executionMode, repeatTaskExercises, totals, currentTimes]);
+    // // Загрузка картинок
+    // const [picturesLoad] = useLoadPicturesEffect({pictures});
+    //
+    // // Загрузка звуков
+    const [, basicSound, preparationSound] = useLoadSoundsEffect({setting});
 
-    useEffect(() => {
-        // Генерация примеров
-        if (!requestSetting && executionMode === 'first')
-            afterRequest([]).then();
-    }, [requestSetting, executionMode, afterRequest]);
 
     // Контейнер сообщения
     const confirmTime = useRef<any>();
@@ -154,6 +109,7 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
         });
     }, [dispatch, nextStatus, updateResultsTotals]);
 
+    console.log(1);
     if (loading)
         return <LoadingBlock title="Настройка упражнения..."/>;
 

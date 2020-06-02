@@ -47,10 +47,10 @@ const Application: React.FC<ApplicationProps> = ({otherUrl}) => {
     /**
      * Создание Totals
      */
-    const updateAnswersTotals = useCallback((data) =>
-            setting.anzan === 'list' || setting.anzan === 'double' ?
-                data.map((exercise: any) => createTotal(exercise)) : createTotal(data),
-        [setting, createTotal]);
+    const createTotals = useCallback((data) => {
+        console.log(data)
+            return data.map((exercise: any) => createTotal(exercise));
+        }, [createTotal]);
 
     /**
      *
@@ -97,7 +97,7 @@ const Application: React.FC<ApplicationProps> = ({otherUrl}) => {
     /**
      *
      */
-    const createOutputs = useCallback((totals) => {
+    const createOutputs = useCallback((totals, currentTimes) => {
         if (setting.anzan === 'list') {
             let outputs = Object.values(totals).map((total: any) => addOutputToTotals(total.exercise));
             return isMultiplication ?
@@ -106,7 +106,10 @@ const Application: React.FC<ApplicationProps> = ({otherUrl}) => {
         } else if (setting.anzan === 'double') {
             return [addOutputToTotals(totals[0].exercise), addOutputToTotals(totals[1].exercise)];
         }
-        return addOutputToTotals(totals.exercise);
+
+        console.log(totals)
+        // basic
+        return totals[currentTimes].exercise;
     }, [isMultiplication, addOutputToTotals, setting]);
 
     return <ApplicationLayout
@@ -123,7 +126,7 @@ const Application: React.FC<ApplicationProps> = ({otherUrl}) => {
         createOutputs={createOutputs}
         timer={setting.anzan === 'list'}
         setting={setting}
-        updateAnswersTotals={updateAnswersTotals}
+        updateAnswersTotals={createTotals}
         updateResultsTotals={updateResultsTotals}
         updateStats={updateStats}
         displayType={setting.anzan}
@@ -138,4 +141,4 @@ const Application: React.FC<ApplicationProps> = ({otherUrl}) => {
     />
 };
 
-export default Application;
+export default React.memo(Application);
