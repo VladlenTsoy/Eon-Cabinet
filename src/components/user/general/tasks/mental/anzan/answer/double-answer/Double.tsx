@@ -38,4 +38,4 @@ const Double: React.FC = () => {
     </Row>;
 };
 
-export default Double;
+export default React.memo(Double);

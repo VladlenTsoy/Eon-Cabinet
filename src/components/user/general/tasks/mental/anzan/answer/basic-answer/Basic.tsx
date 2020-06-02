@@ -19,4 +19,4 @@ const Basic: React.FC = () => {
     return <FormInputAnswerLayout type="number" index={1} autoFocus={1}/>;
 };
 
-export default Basic;
+export default React.memo(Basic);
