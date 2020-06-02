@@ -6,7 +6,6 @@ import {
     addSuccessStats,
     changeStatus,
     changeTotals,
-    updateCurrentTotal
 } from "../../../../../../store/reducers/common/game/gameSplice";
 import {useDispatch} from "react-redux";
 import {ArrowRightOutlined} from '@ant-design/icons';
@@ -51,9 +50,8 @@ const AnswerLayout: React.FC<AnswerProps> = (
     const dispatch = useDispatch();
 
     const submitHandler = (values: any) => {
-        const {status, success, total, totals} = checkHandler(values);
-        total && changeTotals(totals);
-        total && dispatch(updateCurrentTotal(total))
+        const {status, success, totals} = checkHandler(values);
+        dispatch(changeTotals(totals));
         dispatch(addSuccessStats(success));
         dispatch(changeStatus(status));
     };
