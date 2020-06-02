@@ -5,16 +5,12 @@ import {gameSelector} from "../../../../../../../../store/reducers/common/game/g
 
 const Basic: React.FC = () => {
     const {totals, setting} = useSelector(gameSelector);
-    const isGroup = setting.extra && setting.extra.includes('group');
+    const isGroup = setting?.extra.includes('group');
 
     if (isGroup)
-        return <>
-            {
-                Object.keys(totals).map((times: any) =>
-                    <FormInputAnswerLayout type="number" index={times} autoFocus={1} group={times} key={times}/>
-                )
-            }
-        </>;
+        return totals.map((total: any, key: number) =>
+            <FormInputAnswerLayout type="number" index={key} autoFocus={0} group={key + 1} key={key}/>
+        )
 
     return <FormInputAnswerLayout type="number" index={1} autoFocus={1}/>;
 };
