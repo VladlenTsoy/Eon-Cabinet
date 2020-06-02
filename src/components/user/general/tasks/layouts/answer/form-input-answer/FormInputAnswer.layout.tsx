@@ -83,4 +83,4 @@ const FormInputAnswerLayout: React.FC<FormInputAnswer> = (
     </AnswerInputWrapper>;
 };
 
-export default FormInputAnswerLayout;
+export default React.memo(FormInputAnswerLayout);
