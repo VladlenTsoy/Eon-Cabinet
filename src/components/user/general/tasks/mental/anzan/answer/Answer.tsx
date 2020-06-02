@@ -10,14 +10,26 @@ const Answer: React.FC = () => {
     const isDouble = setting.anzan === 'double';
     const isGroup = setting.extra && setting.extra.includes('group');
 
-    const a = (answer: number, user: number, success: number) => {
-        const result = answer === Number(user);
+    let success = 0;
+
+    /**
+     *
+     * @param total
+     * @param user
+     */
+    const singleCheck = (total: { answer: number }, user: number) => {
+        const result = total.answer === Number(user);
         result && success++;
 
-        return {user: Number(user), result: result};
+        return {...total, user: Number(user), result: result};
     };
 
-    const b = (total: { answer: number }[], users: number[], success: number) => {
+    /**
+     *
+     * @param total
+     * @param users
+     */
+    const doubleCheck = (total: { answer: number }[], users: number[]) => {
         const result1 = total[0].answer === Number(users[0]);
         const result2 = total[1].answer === Number(users[1]);
         result1 && result2 && success++;
@@ -28,30 +40,36 @@ const Answer: React.FC = () => {
         ];
     };
 
-    const checkAnswerGroup = (values: any, success = 0) => {
-        let _totals = isDouble ?
-            totals.map((total: any, key: number) => b(total, [values.answer1[key], values.answer2[key]], success)) :
-            totals.map((total: any, key: number) => ({...total, ...a(total.answer, values.answer[key], success)}));
+    /**
+     *
+     * @param values
+     */
+    const checkAnswerGroup = (values: any) => {
+        const createTotals = isDouble ?
+            totals.map((total: any, key: number) => doubleCheck(total, [values.answer1[key], values.answer2[key]])) :
+            totals.map((total: any, key: number) => singleCheck(total, values.answer[key]));
 
-        return {totals: _totals, status: 'result', success}
+        return {totals: createTotals, status: 'result', success}
     };
 
-    const checkAnswer = (values: any, success = 0, total = {}) => {
-        total = isDouble ?
-            b(totals[currentTimes], [values.answer1, values.answer2], success):
-            a(totals[currentTimes].answer, values.answer, success);
-        return {status: 'intermediate', success, total}
+    /**
+     *
+     * @param values
+     */
+    const checkAnswer = (values: any) => {
+        const createTotal = isDouble ?
+            doubleCheck(totals[currentTimes], [values.answer1, values.answer2]) :
+            singleCheck(totals[currentTimes], values.answer);
+        return {status: 'intermediate', success, total: createTotal}
     };
-
-    const handleSubmit = isGroup ? checkAnswerGroup : checkAnswer;
 
     return <AnswerLayout
         cols={
             isDouble ?
-                {xl: 12, md: 14, sm: 16, xs: 24} :
-                {xl: 10, md: 12, sm: 14, xs: 24}
+                {xxl: 10, xl: 12, md: 14, sm: 16, xs: 24} :
+                {xxl: 8, xl: 10, md: 12, sm: 14, xs: 24}
         }
-        checkHandler={handleSubmit}
+        checkHandler={isGroup ? checkAnswerGroup : checkAnswer}
     >
         {isDouble ? <Double/> : <Basic/>}
     </AnswerLayout>;
