@@ -84,29 +84,28 @@ const Application: React.FC<ApplicationProps> = ({otherUrl}) => {
             return {all: setting.times};
     }, [setting, isMultiplication]);
 
-    /**
-     *
-     */
+    // Обновление вывода цифр
     const addOutputToTotals = useCallback((exercise) =>
             isMultiplication ?
                 [exercise[0] + (setting.mode === 'multiply' ? ' * ' : ' / ') + exercise[1]] :
                 updateExercises(exercise),
         [isMultiplication, setting, updateExercises]);
 
-    /**
-     *
-     */
+    // Создание отоюражения цифр
     const createOutputs = useCallback((totals, currentTimes) => {
+        // Для листов
         if (setting.anzan === 'list') {
             let outputs = Object.values(totals).map((total: any) => addOutputToTotals(total.exercise));
             return isMultiplication ?
                 chunk(chunk(outputs, setting.column), setting.rows) :
                 chunk(outputs, setting.column);
-        } else if (setting.anzan === 'double') {
-            return [addOutputToTotals(totals[0].exercise), addOutputToTotals(totals[1].exercise)];
         }
 
-        // basic
+        // Для Двойной
+        else if (setting.anzan === 'double')
+            return [addOutputToTotals(totals[0].exercise), addOutputToTotals(totals[1].exercise)];
+
+        // Для Обычный и Турбо
         return totals[currentTimes].exercise;
     }, [isMultiplication, addOutputToTotals, setting]);
 
