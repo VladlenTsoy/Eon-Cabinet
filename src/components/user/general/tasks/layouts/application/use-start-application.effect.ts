@@ -2,7 +2,6 @@ import {useCallback, useEffect, useMemo, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {changeStats, changeTotals, gameSelector} from "../../../../../../store/reducers/common/game/gameSplice";
 import {useLoadPicturesEffect} from "./use-load-pictures.effect";
-import {useLoadSoundsEffect} from "./use-load-sounds.effect";
 import axios from "axios";
 import {useAppContext} from "../../../../../../store/context/use-app-context";
 
@@ -18,6 +17,7 @@ export const useStartApplication = (
         setting,
         createTotals = (data: any) => data.map((exercise: any) => ({exercise})),
         createOutputs = (totals: any) => totals.map((total: any) => total.exercise),
+        soundsLoad
     }: any
 ) => {
     const {api} = useAppContext();
@@ -26,18 +26,25 @@ export const useStartApplication = (
     const {executionMode, currentTimes, totals} = useSelector(gameSelector);
     const dispatch = useDispatch();
     const source = useMemo(() => CancelToken.source(), []);
+    const sourceCancel = useMemo(() => source.cancel, [source]);
 
     // Загрузка картинок
     const [picturesLoad] = useLoadPicturesEffect({pictures});
 
-    // Загрузка звуков
-    const [soundsLoad] = useLoadSoundsEffect({setting});
+    const checkAndUpdateStats = useCallback((_totals) => {
+        let stats = updateStats ? updateStats() : {all: Object.values(_totals).length};
+        dispatch(changeStats(stats))
+    }, [dispatch, updateStats]);
 
     const fetch = useCallback(async () => {
         const {method, url} = requestSetting;
-        return method === 'post' ?
-            await api.user.post(url, setting, {cancelToken: source.token}) :
-            await api.user.get(url, {params: setting, cancelToken: source.token});
+        try {
+            return method === 'post' ?
+                await api.user.post(url, setting, {cancelToken: source.token}) :
+                await api.user.get(url, {params: setting, cancelToken: source.token});
+        } catch (e) {
+
+        }
     }, [api.user, requestSetting, setting, source.token]);
 
     const createAndUpdateTotals = useCallback(async (data) => {
@@ -55,34 +62,36 @@ export const useStartApplication = (
 
     const fetchAndCreateAndUpdateOutputs = useCallback(async () => {
         const response = await fetch();
+        if(!response) return null;
         const createdTotals = await createAndUpdateTotals(response.data);
+        checkAndUpdateStats(createdTotals);
         const createdOutputs = await createAndUpdateOutputs(createdTotals);
         setOutputs(createdOutputs);
-    },[createAndUpdateOutputs, createAndUpdateTotals, fetch]);
+    }, [fetch, createAndUpdateTotals, checkAndUpdateStats, createAndUpdateOutputs]);
 
-    const checkAndUpdateStats = useCallback((_totals) => {
-        let stats = updateStats ? updateStats() : {all: Object.values(_totals).length};
-        dispatch(changeStats(stats))
-    }, [dispatch, updateStats]);
+    const createOutputsReadyTotals = useCallback(async() =>{
+        checkAndUpdateStats(totals);
+        const createdOutputs = await createAndUpdateOutputs(totals);
+        setOutputs(createdOutputs);
+    }, [checkAndUpdateStats, createAndUpdateOutputs, totals]);
+
 
     useEffect(() => {
         (async () => {
             setLoading(true);
-            if (requestSetting && executionMode === 'fetch') {
+            if (requestSetting && executionMode === 'fetch')
                 await fetchAndCreateAndUpdateOutputs();
-            } else {
-                const createdOutputs = await createAndUpdateOutputs(totals);
-                setOutputs(createdOutputs);
-            }
-            checkAndUpdateStats(totals);
+             else
+                await createOutputsReadyTotals();
+
             setLoading(false);
         })();
 
         console.log(2)
-        // return () => {
-        //     source.cancel();
-        // }
-    }, [checkAndUpdateStats, createAndUpdateOutputs, executionMode, fetchAndCreateAndUpdateOutputs, requestSetting, source, totals]);
+        return () => {
+            sourceCancel();
+        }
+    }, [createOutputsReadyTotals, executionMode, fetchAndCreateAndUpdateOutputs, requestSetting, sourceCancel]);
 
     return {outputs, loading};
 }

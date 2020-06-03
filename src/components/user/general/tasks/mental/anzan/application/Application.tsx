@@ -47,10 +47,9 @@ const Application: React.FC<ApplicationProps> = ({otherUrl}) => {
     /**
      * Создание Totals
      */
-    const createTotals = useCallback((data) => {
-        console.log(data)
-            return data.map((exercise: any) => createTotal(exercise));
-        }, [createTotal]);
+    const createTotals = useCallback((data) =>
+            data.map((exercise: any) => createTotal(exercise)),
+        [createTotal]);
 
     /**
      *
@@ -107,7 +106,6 @@ const Application: React.FC<ApplicationProps> = ({otherUrl}) => {
             return [addOutputToTotals(totals[0].exercise), addOutputToTotals(totals[1].exercise)];
         }
 
-        console.log(totals)
         // basic
         return totals[currentTimes].exercise;
     }, [isMultiplication, addOutputToTotals, setting]);

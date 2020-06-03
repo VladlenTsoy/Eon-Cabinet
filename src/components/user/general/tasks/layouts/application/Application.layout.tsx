@@ -1,15 +1,11 @@
-import React, {useCallback, useEffect, useRef, useState} from 'react';
-import {useApiUserGeneral} from "effects/use-api-user-general.effect";
-import {useDispatch, useSelector} from "react-redux";
+import React, {useCallback, useRef, useState} from 'react';
+import {useDispatch} from "react-redux";
 import {LoadingBlock} from "lib";
 import {ExclamationCircleOutlined} from "@ant-design/icons";
 import Basic from "./basic/Basic";
 import Timer from "./timer/Timer";
 import {
-    changeStats,
     changeStatus,
-    changeTotals,
-    gameSelector,
     StatsActionProps,
     StatusProps
 } from "../../../../../../store/reducers/common/game/gameSplice";
@@ -20,7 +16,6 @@ import {Form, Modal} from "antd";
 import Double from "./double/Double";
 import ApplicationCardLayout from "./ApplicationCard.layout";
 import Carousel from "./carousel/Carousel";
-import {useLoadPicturesEffect} from "./use-load-pictures.effect";
 import {useLoadSoundsEffect} from "./use-load-sounds.effect";
 import {ListSettingProps} from "./list/tables-output/TablesOutput";
 import {requestSetting, useStartApplication} from "./use-start-application.effect";
@@ -65,25 +60,22 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
         CustomDisplay,
     }
 ) => {
-    // const [outputs, setOutputs] = useState<any>([]);
     const [ListForm] = Form.useForm();
-    // const {executionMode, currentTimes, totals} = useSelector(gameSelector);
     const dispatch = useDispatch();
+    const [requestConfig] = useState(requestSetting);
+
+    // Загрузка звуков
+    const [soundsLoad, basicSound, preparationSound] = useLoadSoundsEffect({setting});
+
     const {loading, outputs} = useStartApplication({
         updateStats,
-        requestSetting,
+        requestSetting: requestConfig,
         pictures,
         setting,
         createTotals: updateAnswersTotals,
-        createOutputs
+        createOutputs,
+        soundsLoad
     });
-    //
-    // // Загрузка картинок
-    // const [picturesLoad] = useLoadPicturesEffect({pictures});
-    //
-    // // Загрузка звуков
-    const [, basicSound, preparationSound] = useLoadSoundsEffect({setting});
-
 
     // Контейнер сообщения
     const confirmTime = useRef<any>();
