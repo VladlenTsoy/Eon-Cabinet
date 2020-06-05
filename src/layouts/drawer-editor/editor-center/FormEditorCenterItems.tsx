@@ -2,8 +2,8 @@ import React, {useEffect} from "react";
 import {FormItem, Upload} from "../../components";
 import SelectData from "../../../lib/form/select-data/SelectData";
 import {Col, Input, Row} from "antd";
-import {useSelector} from "react-redux";
 import {FormInstance} from "antd/es/form";
+import {useAppContext} from "../../../store/context/use-app-context";
 
 const {TextArea} = Input;
 
@@ -18,7 +18,7 @@ const FormEditorCenterItems: React.FC<FormEditorCenterItemsProps> = (
         setIsSaveBtn,
     }
 ) => {
-    const {user} = useSelector((state: any) => (state));
+    const {user} = useAppContext();
 
     useEffect(() => {
         setIsSaveBtn(true);

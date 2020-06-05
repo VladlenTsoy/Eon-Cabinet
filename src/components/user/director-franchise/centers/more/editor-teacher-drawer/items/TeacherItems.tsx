@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react';
-import {useSelector} from "react-redux";
 import {FormItem, InputEmail, InputLogin, InputPassword, SelectData} from "../../../../../../../layouts/components";
 import EditorCenterButton from "../../../../../admin/franchise/center-table/EditorCenterButton";
 import {PlusOutlined} from '@ant-design/icons';
@@ -7,6 +6,7 @@ import {Col, DatePicker, Row} from "antd";
 import SelectStatus from "../../../../../../../layouts/drawer-editor/editor-teacher/SelectStatus";
 import InputPhoto from "../../../../../../../lib/form/InputPhoto";
 import {FormInstance} from "antd/es/form";
+import {useAppContext} from "../../../../../../../store/context/use-app-context";
 
 interface TeacherItemsProps {
     form: FormInstance;
@@ -23,7 +23,7 @@ const TeacherItems: React.FC<TeacherItemsProps> = (
         setIsSaveBtn,
     }
 ) => {
-    const {user} = useSelector((state: any) => (state));
+    const {user} = useAppContext();
 
     useEffect(() => {
         setIsSaveBtn(true);

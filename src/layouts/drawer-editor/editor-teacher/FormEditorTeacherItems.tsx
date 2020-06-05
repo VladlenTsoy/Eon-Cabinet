@@ -4,9 +4,9 @@ import {PlusOutlined} from '@ant-design/icons';
 import {Col, DatePicker, Row} from "antd";
 import SelectStatus from "./SelectStatus";
 import InputPhoto from "../../../lib/form/InputPhoto";
-import {useSelector} from "react-redux";
 import EditorCenterButton from "../../../components/user/admin/franchise/center-table/EditorCenterButton";
 import {FormInstance} from "antd/es/form";
+import {useAppContext} from "../../../store/context/use-app-context";
 
 interface FormEditorTeacherItemsProps {
     form: FormInstance;
@@ -15,7 +15,7 @@ interface FormEditorTeacherItemsProps {
 }
 
 const FormEditorTeacherItems: React.FC<FormEditorTeacherItemsProps> = ({form, data, franchise_id}) => {
-    const {user} = useSelector((state: any) => (state));
+    const {user} = useAppContext();
     const centerItems =
         <SelectData
             url={user.access === 'admin' ? `admin/centers/franchise/${franchise_id}` : 'director-franchise/centers'}
