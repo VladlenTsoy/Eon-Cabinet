@@ -7,27 +7,30 @@ import {gameSubSelector, changeTotals} from "../../../../../../../store/reducers
 
 const Application: React.FC<any> = () => {
     const setting = useSelector(gameSubSelector('setting'));
+    const executionMode = useSelector(gameSubSelector('executionMode'));
     const dispatch = useDispatch();
 
     const [, , updaterOutput] = useUpdateOutputEffect({extra: setting.extra});
 
     useEffect((data = []) => {
-        for (let i = 0; i < setting.count; i++) {
-            let number = random(setting.from, setting.to);
-            data[i] = {
-                exercise: number,
-                answer: number
-            };
+        if (executionMode === 'fetch') {
+            for (let i = 0; i < setting.count; i++) {
+                let number = random(setting.from, setting.to);
+                data[i] = {
+                    exercise: number,
+                    answer: number
+                };
+            }
+            dispatch(changeTotals(data))
         }
-        dispatch(changeTotals(data))
-    }, [dispatch, setting.count, setting.from, setting.to]);
+    }, [dispatch, executionMode, setting.count, setting.from, setting.to]);
 
     const updateStats = useCallback(() => {
         return {all: setting.count};
     }, [setting]);
 
     const createOutputs = useCallback((totals) => {
-        return Object.values(totals).map((total: any) => updaterOutput(total.exercise));
+        return totals.map((total: any) => updaterOutput(total.exercise));
     }, [updaterOutput]);
 
     return <ApplicationLayout

@@ -1,26 +1,30 @@
-import React, {useCallback} from 'react';
-import {useSelector} from "react-redux";
+import React, {useCallback, useEffect} from 'react';
+import {useDispatch, useSelector} from "react-redux";
 import {random} from 'lodash';
 import {useUpdateOutputEffect} from "../../../layouts/application/application-output/use-update-output.effect";
 import ApplicationLayout from "../../../layouts/application/Application.layout";
-import {gameSelector} from "../../../../../../../store/reducers/common/game/gameSplice";
+import {gameSubSelector, changeTotals} from "../../../../../../../store/reducers/common/game/gameSplice";
 
 const Application: React.FC = () => {
-    const {totals, setting} = useSelector(gameSelector);
+    const setting = useSelector(gameSubSelector('setting'));
+    const executionMode = useSelector(gameSubSelector('executionMode'));
+    const dispatch = useDispatch();
 
     const [updateExercises] = useUpdateOutputEffect({extra: setting.extra});
 
-    const updateAnswersTotals = useCallback((data, currentTimes) => {
-        let numbers = [];
-        for (let i = 0; i < setting.count; i++) {
-            numbers.push(random(setting.from, setting.to));
+    useEffect(() => {
+        if (executionMode === 'fetch') {
+            const createdTotals = [];
+            for (let times = 0; times < setting.times; times++) {
+                const numbers = Array(setting.count).fill(0).map(() => random(setting.from, setting.to));
+                createdTotals[times] = {
+                    exercise: numbers,
+                    answer: numbers.reduce((total: any, val: any) => total + val, 0)
+                };
+            }
+            dispatch(changeTotals(createdTotals));
         }
-        totals[currentTimes] = {
-            exercise: numbers,
-            answer: numbers.reduce((total: any, val: any) => total + val)
-        };
-        return totals
-    }, [totals, setting]);
+    }, [dispatch, executionMode, setting.count, setting.from, setting.times, setting.to]);
 
     const updateStats = useCallback(() => {
         return {all: setting.count};
@@ -33,8 +37,6 @@ const Application: React.FC = () => {
     return <ApplicationLayout
         createOutputs={createOutputs}
         displayType="basic"
-        setting={setting}
-        updateAnswersTotals={updateAnswersTotals}
         updateStats={updateStats}
         pictures="abacus"
     />

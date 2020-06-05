@@ -23,33 +23,20 @@ const Application: React.FC<ApplicationProps> = ({otherUrl}) => {
 
     // Update exercise mirror
     const [updateExercises, updateMirror] = useUpdateOutputEffect({extra: setting.extra});
-
-    /**
-     * Добавление ответа в Total
-     */
-    const addAnswerToTotal = useCallback((exercise: number[]) =>
-            isMultiplication ?
-                setting.mode === 'multiply' ? exercise[0] * exercise[1] : exercise[0] / exercise[1] :
-                exercise.reduce((acc, val) => acc + val),
-        [isMultiplication, setting]);
-
-    /**
-     * Создание Total и добавление ответов
-     */
-    const createTotal = useCallback((exercise) => {
-        exercise = setting?.extra.includes('mirror') ? updateMirror(exercise) : exercise;
-        return {
-            exercise,
-            answer: addAnswerToTotal(exercise)
-        }
-    }, [setting, updateMirror, addAnswerToTotal]);
-
+    
     /**
      * Создание Totals
      */
     const createTotals = useCallback((data) =>
-            data.map((exercise: any) => createTotal(exercise)),
-        [createTotal]);
+            data.map((exercise: number[]) => {
+                exercise = setting?.extra.includes('mirror') ? updateMirror(exercise) : exercise;
+                return {
+                    exercise,
+                    answer: isMultiplication ?
+                        setting.mode === 'multiply' ? exercise[0] * exercise[1] : exercise[0] / exercise[1] :
+                        exercise.reduce((acc, val) => acc + val)
+                }
+            }), [isMultiplication, setting, updateMirror]);
 
     /**
      *
