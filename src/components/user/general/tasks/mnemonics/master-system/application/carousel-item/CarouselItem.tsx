@@ -1,5 +1,5 @@
 import React from 'react';
-import CardFlip from "../../../../layouts/application/output-component-layouts/card-flip/CardFlip";
+import CardFlip from "../../../../layouts/application/application-output/output-component-layouts/card-flip/CardFlip";
 import TextFit
     from "../../../../../../teacher/pages/training/settings/mental/multi-anzan/exercise-setting/multiplication-block/TextFit";
 

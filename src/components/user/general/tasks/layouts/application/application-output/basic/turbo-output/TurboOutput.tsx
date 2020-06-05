@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
 import TextFit
-    from "../../../../../../teacher/pages/training/settings/mental/multi-anzan/exercise-setting/multiplication-block/TextFit";
+    from "../../../../../../../teacher/pages/training/settings/mental/multi-anzan/exercise-setting/multiplication-block/TextFit";
 import {useAppContext} from "store/context/use-app-context";
 import {random} from "lodash";
 

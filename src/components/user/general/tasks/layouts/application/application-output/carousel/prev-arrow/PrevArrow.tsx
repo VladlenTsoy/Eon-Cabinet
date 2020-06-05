@@ -1,16 +1,16 @@
 import React from 'react';
-import { ArrowRightOutlined } from '@ant-design/icons';
 import styled from "styled-components";
-import {NextArrowWrapper} from "../../../../../../teacher/pages/home/olympiad/olympiad-carousel/next-arrow/NextArrow";
+import {PrevArrowWrapper} from "../../../../../../../teacher/pages/home/olympiad/olympiad-carousel/prev-arrow/PrevArrow";
+import { ArrowLeftOutlined } from '@ant-design/icons';
 
-const NextArrowApplication = styled(NextArrowWrapper)`
-  .ant-carousel &.slick-next{
+const PrevArrowApplication = styled(PrevArrowWrapper)`
+  .ant-carousel &.slick-prev{
     font-size: 70px;
     height: 100px;
     width: 100px;
-    right: -90px;
+    left: -90px;
     top: calc(50% - 25px);
-  
+    
     @media (max-width: 1200px) {
     }
     
@@ -25,19 +25,19 @@ const NextArrowApplication = styled(NextArrowWrapper)`
       font-size: 35px;
       height: 50px;
       width: 50px;
-      right: -48px;
+      left: -48px;
     }
   }
 `;
 
-const NextArrow = () => {
+const PrevArrow = () => {
     return (
-      <NextArrowApplication>
+      <PrevArrowApplication>
           <div className="icon-wrapper">
-              <ArrowRightOutlined />
+              <ArrowLeftOutlined />
           </div>
-      </NextArrowApplication>
+      </PrevArrowApplication>
     );
 };
 
-export default NextArrow;
+export default PrevArrow;

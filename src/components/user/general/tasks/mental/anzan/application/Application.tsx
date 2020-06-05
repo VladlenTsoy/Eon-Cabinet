@@ -5,10 +5,9 @@ import {chunk, flattenDepth} from "lodash";
 import {
     changeStats,
     changeStatus,
-    gameSelector,
-    changeTotals
+    changeTotals, gameSubSelector
 } from "../../../../../../../store/reducers/common/game/gameSplice";
-import {useUpdateOutputEffect} from "../../../layouts/application/use-update-output.effect";
+import {useUpdateOutputEffect} from "../../../layouts/application/application-output/use-update-output.effect";
 import TbodyAddition from "./list/tbody-addition/TbodyAddition";
 import TbodyMultiplication from "./list/tbody-multiplication/TbodyMultiplication";
 
@@ -18,7 +17,8 @@ interface ApplicationProps {
 
 const Application: React.FC<ApplicationProps> = ({otherUrl}) => {
     const dispatch = useDispatch();
-    const {setting, totals} = useSelector(gameSelector);
+    const setting = useSelector(gameSubSelector('setting'));
+    const totals = useSelector(gameSubSelector( 'totals'));
     const [isMultiplication] = useState(setting.mode === 'divide' || setting.mode === 'multiply');
 
     // Update exercise mirror
@@ -109,32 +109,27 @@ const Application: React.FC<ApplicationProps> = ({otherUrl}) => {
         return totals[currentTimes].exercise;
     }, [isMultiplication, addOutputToTotals, setting]);
 
+    const [listSetting] = useState({
+        column: setting.column,
+        leftNumbering: false,
+        layout: isMultiplication ? TbodyMultiplication : TbodyAddition
+    });
+
+    // console.log('anzan')
+
     return <ApplicationLayout
-        {
-            ...setting.anzan === 'list' &&
-            {
-                listSetting: {
-                    column: setting.column,
-                    leftNumbering: false,
-                    layout: isMultiplication ? TbodyMultiplication : TbodyAddition
-                }
-            }
-        }
         createOutputs={createOutputs}
-        timer={setting.anzan === 'list'}
-        setting={setting}
         updateAnswersTotals={createTotals}
-        updateResultsTotals={updateResultsTotals}
         updateStats={updateStats}
-        displayType={setting.anzan}
         requestSetting={{
             url: otherUrl ? otherUrl :
                 setting.anzan === 'list' ? '/algorithm/list' : setting.anzan === 'double' ? '/algorithm/double' : '/algorithm'
         }}
         pictures="abacus"
-        nextStatus={
-            setting.anzan === 'list' ? 'result' :
-                setting.extra.includes('group') ? "intermediate" : "answer"}
+
+        listSetting={listSetting} updateResultsTotals={updateResultsTotals}
+        timer={setting.anzan === 'list'} nextStatus={setting.anzan === 'list' ? 'result' :
+        setting.extra.includes('group') ? "intermediate" : "answer"} displayType={setting.anzan}
     />
 };
 

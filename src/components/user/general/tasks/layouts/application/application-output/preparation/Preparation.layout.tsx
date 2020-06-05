@@ -1,11 +1,11 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import styled from "styled-components";
 import {Card} from "lib";
-import {useAddTimeout} from "../../../../../../../effects/use-add-timeout.effect";
+import {useAddTimeout} from "../../../../../../../../effects/use-add-timeout.effect";
 import TextFit
-    from "../../../../../teacher/pages/training/settings/mental/multi-anzan/exercise-setting/multiplication-block/TextFit";
+    from "../../../../../../teacher/pages/training/settings/mental/multi-anzan/exercise-setting/multiplication-block/TextFit";
 import {PreparationSoundProps} from "../use-load-sounds.effect";
-import {SettingAnzanProps} from "../../../../../../../store/reducers/common/game/setting/games-types/anzan.types";
+import {SettingAnzanProps} from "../../../../../../../../store/reducers/common/game/setting/games-types/anzan.types";
 
 const PreparationWrapper = styled(Card)`
   &.ant-card{

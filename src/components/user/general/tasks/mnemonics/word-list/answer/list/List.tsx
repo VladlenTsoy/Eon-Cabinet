@@ -2,10 +2,10 @@ import React, {useCallback, useEffect, useState} from 'react';
 import {Button, Form} from "antd";
 import {ArrowRightOutlined} from '@ant-design/icons';
 import {useDispatch, useSelector} from "react-redux";
-import TablesOutput from "../../../../layouts/application/list/tables-output/TablesOutput";
+import TablesOutput from "../../../../layouts/application/application-output/list/tables-output/TablesOutput";
 import Table from "./table/Table";
 import {chunk} from "lodash";
-import ApplicationCardLayout from "../../../../layouts/application/ApplicationCard.layout";
+import ApplicationCardLayout from "../../../../layouts/application/application-output/ApplicationCard.layout";
 import {changeStats, changeStatus, changeTotals,gameSelector} from "../../../../../../../../store/reducers/common/game/gameSplice";
 
 interface ListProps {

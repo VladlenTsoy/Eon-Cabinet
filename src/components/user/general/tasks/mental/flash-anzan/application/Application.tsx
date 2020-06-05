@@ -2,7 +2,7 @@ import React, {useCallback, useEffect} from 'react';
 import {random} from 'lodash';
 import {useSelector} from "react-redux";
 import ApplicationLayout from "../../../layouts/application/Application.layout";
-import {useUpdateOutputEffect} from "../../../layouts/application/use-update-output.effect";
+import {useUpdateOutputEffect} from "../../../layouts/application/application-output/use-update-output.effect";
 import {gameSelector} from "../../../../../../../store/reducers/common/game/gameSplice";
 
 const Application: React.FC<any> = () => {

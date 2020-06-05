@@ -1,5 +1,5 @@
 import React from 'react';
-import CardFlip from "../../../../layouts/application/output-component-layouts/card-flip/CardFlip";
+import CardFlip from "../../../../layouts/application/application-output/output-component-layouts/card-flip/CardFlip";
 
 const CarouselItem = ({outputs}:any) => {
     return outputs.map((output: any, key: number) =>
