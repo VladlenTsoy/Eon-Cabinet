@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useState} from 'react';
 import {useSelector} from "react-redux";
 import {chunk, random, shuffle} from 'lodash';
 import ApplicationLayout from "../../../layouts/application/Application.layout";
@@ -10,7 +10,7 @@ const Application: React.FC = () => {
     const {setting} = useSelector(gameSelector);
     const [, isBreakpoint] = useScreenWindow({breakpoint: 'sm'});
 
-    setting.column = isBreakpoint ? 5 : 10;
+    const [column] = useState(isBreakpoint ? 5 : 10);
 
     const updateAnswersTotals = useCallback(() => {
         let numbers = [];
@@ -27,17 +27,17 @@ const Application: React.FC = () => {
 
     const createOutputs = useCallback((totals) => {
         if (setting['task-mode'] === 'list')
-            return [chunk(Object.values(totals).map((total: any) => total.exercise), setting.column)];
+            return [chunk(Object.values(totals).map((total: any) => total.exercise), column)];
         else
             return Object.values(totals).map((total: any) => total.exercise);
-    }, [setting]);
+    }, [column, setting]);
 
     return <ApplicationLayout
         {
             ...setting['task-mode'] === 'list' &&
             {
                 listSetting: {
-                    column: setting.column,
+                    column: column,
                     leftNumbering: true,
                     layout: List
                 }
