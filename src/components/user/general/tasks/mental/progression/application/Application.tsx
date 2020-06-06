@@ -5,21 +5,20 @@ import {useUpdateOutputEffect} from "../../../layouts/application/application-ou
 import {gameSelector} from "../../../../../../../store/reducers/common/game/gameSplice";
 
 const Application: React.FC = () => {
-    const {totals, setting} = useSelector(gameSelector);
+    const {setting} = useSelector(gameSelector);
 
     const [updateExercises] = useUpdateOutputEffect({extra: setting.extra});
 
-    const updateAnswersTotals = useCallback((data, currentTimes) => {
+    const updateAnswersTotals = useCallback(() => {
         const numbers = [];
         for (let i = 1; i <= setting.count; i++) {
             numbers.push(i);
         }
-        totals[currentTimes] = {
+        return [{
             exercise: numbers,
             answer: numbers.reduce((total: any, val: any) => total + val)
-        };
-        return totals
-    }, [totals, setting]);
+        }]
+    }, [setting.count]);
 
     const updateStats = useCallback(() => {
         return {all: 1};
@@ -32,7 +31,6 @@ const Application: React.FC = () => {
     return <ApplicationLayout
         createOutputs={createOutputs}
         displayType="basic"
-        setting={setting}
         updateAnswersTotals={updateAnswersTotals}
         updateStats={updateStats}
         pictures="abacus"

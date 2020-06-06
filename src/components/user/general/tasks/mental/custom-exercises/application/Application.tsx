@@ -4,13 +4,9 @@ import {gameSelector} from "../../../../../../../store/reducers/common/game/game
 import ApplicationAnzan from "../../anzan/application/Application";
 
 const Application = () => {
-    const {currentTimes, setting} = useSelector(gameSelector);
+    const {setting} = useSelector(gameSelector);
 
-    return <ApplicationAnzan otherUrl={
-        setting.type_task === 'list' ?
-            `/custom-exercises/${setting.custom_exercises_id}` :
-            `/custom-exercises/${setting.custom_exercises_id}?currentTimes=${currentTimes}`
-    }/>
+    return <ApplicationAnzan otherUrl={`/custom-exercises/${setting.custom_exercises_id}`}/>
 };
 
 export default Application;

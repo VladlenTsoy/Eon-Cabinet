@@ -1,13 +1,12 @@
 import React, {useCallback} from 'react';
 import {random} from 'lodash';
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import ApplicationLayout from "../../../layouts/application/Application.layout";
 import {useUpdateOutputEffect} from "../../../layouts/application/application-output/use-update-output.effect";
-import {gameSubSelector, changeTotals} from "../../../../../../../store/reducers/common/game/gameSplice";
+import {gameSubSelector} from "../../../../../../../store/reducers/common/game/gameSplice";
 
 const Application: React.FC<any> = () => {
     const setting = useSelector(gameSubSelector('setting'));
-    const dispatch = useDispatch();
 
     const [, , updaterOutput] = useUpdateOutputEffect({extra: setting.extra});
 
@@ -19,9 +18,8 @@ const Application: React.FC<any> = () => {
                 answer: number
             };
         }
-        dispatch(changeTotals(data))
         return data;
-    }, [dispatch, setting.count, setting.from, setting.to]);
+    }, [setting.count, setting.from, setting.to]);
 
     const updateStats = useCallback(() => {
         return {all: setting.count};

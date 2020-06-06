@@ -4,6 +4,7 @@ import {
     changeOutputs,
     changeStats,
     gameSubSelector,
+    changeTotals,
     StatsActionProps,
 } from "../../../../../../../store/reducers/common/game/gameSplice";
 import {LoadingBlock} from "../../../../../../../lib";
@@ -49,6 +50,7 @@ const ApplicationTotals: React.FC<ApplicationTotalsProps> = (
         (async () => {
             setLoading(true);
             const createdTotals = createTotals();
+            dispatch(changeTotals(createdTotals));
             checkAndUpdateStats(createdTotals);
             const createdOutputs = await createAndUpdateOutputs(createdTotals);
             dispatch(changeOutputs(createdOutputs));

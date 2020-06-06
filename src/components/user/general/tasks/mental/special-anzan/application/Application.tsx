@@ -1,13 +1,12 @@
 import React, {useCallback} from 'react';
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {random} from 'lodash';
 import {useUpdateOutputEffect} from "../../../layouts/application/application-output/use-update-output.effect";
 import ApplicationLayout from "../../../layouts/application/Application.layout";
-import {gameSubSelector, changeTotals} from "../../../../../../../store/reducers/common/game/gameSplice";
+import {gameSubSelector} from "../../../../../../../store/reducers/common/game/gameSplice";
 
 const Application: React.FC = () => {
     const setting = useSelector(gameSubSelector('setting'));
-    const dispatch = useDispatch();
 
     const [updateExercises] = useUpdateOutputEffect({extra: setting.extra});
 
@@ -20,9 +19,8 @@ const Application: React.FC = () => {
                 answer: numbers.reduce((total: any, val: any) => total + val, 0)
             };
         }
-        dispatch(changeTotals(createdTotals));
         return createdTotals;
-    }, [dispatch, setting.count, setting.from, setting.times, setting.to]);
+    }, [setting.count, setting.from, setting.times, setting.to]);
 
     const updateStats = useCallback(() => {
         return {all: setting.count};
