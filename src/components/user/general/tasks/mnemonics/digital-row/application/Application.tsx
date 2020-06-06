@@ -7,10 +7,10 @@ import Custom from "./custom/Custom";
 import {gameSelector} from "../../../../../../../store/reducers/common/game/gameSplice";
 
 const Application: React.FC = () => {
-    const {setting, totals} = useSelector(gameSelector);
+    const {setting} = useSelector(gameSelector);
     const addSpaceToString = useAddSpaceToString();
 
-    const updateAnswersTotals = useCallback((data, currentTimes) => {
+    const updateAnswersTotals = useCallback(() => {
         let fromIntRand = '', toIntRand = '';
         for (let i = 0; i < setting.count; i++) {
             fromIntRand += '1';
@@ -18,13 +18,11 @@ const Application: React.FC = () => {
         }
         let exercise = random(Number(fromIntRand), Number(toIntRand)).toPrecision(setting.count);
 
-        totals[currentTimes] = {
+        return [{
             exercise: exercise,
             answer: exercise,
-        };
-
-        return totals;
-    }, [setting, totals]);
+        }];
+    }, [setting]);
 
     const updateStats = useCallback(() => {
         return {all: setting.count};
