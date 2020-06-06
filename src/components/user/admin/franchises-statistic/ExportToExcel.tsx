@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {NavigationButton} from "../../../../layouts/components";
+import {NavigationButton} from "../../../../lib";
 import {useSelector} from "react-redux";
 
 const ExportToExcel: React.FC = () => {

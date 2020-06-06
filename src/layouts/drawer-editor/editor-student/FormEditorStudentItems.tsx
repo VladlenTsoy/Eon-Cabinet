@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import {Col, DatePicker, Row} from "antd";
 import InputPhoto from "../../../lib/form/InputPhoto";
-import {FormItem, InputEmail, InputLogin, InputPassword} from "../../components";
+import {FormItem, InputEmail, InputLogin, InputPassword} from "lib";
 import SelectData from "../../../lib/form/select-data/SelectData";
 import {FormInstance} from "antd/es/form";
 

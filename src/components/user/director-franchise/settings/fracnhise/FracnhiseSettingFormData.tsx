@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {FormItem, Upload} from "../../../../../layouts/components";
+import {FormItem, Upload} from "../../../../../lib";
 import {Card} from "lib";
 import {SaveOutlined} from '@ant-design/icons';
 import {Col, Input, message, Button, Row, Form} from "antd";

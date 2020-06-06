@@ -1,6 +1,6 @@
 import React from 'react';
 import {withRouter} from "react-router";
-import {Alert} from "../../../../layouts/components";
+import {Alert} from "../../../../lib";
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import { Collapse } from "antd";
 import styled from "styled-components";
@@ -17,7 +17,7 @@ const CollapseWrapper = styled(Collapse)`
   }
 `;
 
-const Help: React.FC<HelpProps> = ({history}) => {
+const Help: React.FC<HelpProps> = () => {
     const text = (
         <p style={{ paddingLeft: 24 }}>
             A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found

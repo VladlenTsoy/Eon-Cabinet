@@ -3,7 +3,7 @@ import styled from "styled-components";
 import {useSelector} from "react-redux";
 import TrophyResultIntermediate from "../../../../layouts/intermediate/result-intermediate/trophy-result/TrophyResultIntermediate";
 import {Button, Typography} from "antd";
-import {Modal} from "../../../../../../../../layouts/components";
+import {Modal} from "../../../../../../../../lib";
 import {LoadingBlock} from "lib";
 import MoreModal from "./more-modal/MoreModal";
 import {gameSelector} from "../../../../../../../../store/reducers/common/game/gameSplice";

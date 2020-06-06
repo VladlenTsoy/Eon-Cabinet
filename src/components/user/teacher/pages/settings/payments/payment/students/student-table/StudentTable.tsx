@@ -1,5 +1,5 @@
 import React from 'react';
-import {UserImage} from "../../../../../../../../../layouts/components";
+import {UserImage} from "../../../../../../../../../lib";
 import { MinusOutlined } from '@ant-design/icons';
 import {Button} from "antd";
 import styled from "styled-components";

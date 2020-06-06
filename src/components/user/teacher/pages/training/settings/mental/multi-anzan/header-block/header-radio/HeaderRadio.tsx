@@ -1,5 +1,5 @@
 import React from 'react';
-import {FormItem} from "../../../../../../../../../../layouts/components";
+import {FormItem} from "../../../../../../../../../../lib";
 import {Radio, Switch} from "antd";
 import {QuestionCircleOutlined} from '@ant-design/icons';
 import styled from "styled-components";

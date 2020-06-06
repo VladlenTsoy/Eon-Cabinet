@@ -22,7 +22,7 @@ import SidebarItems from "./layout/sidebar-items/SidebarItems";
 import {useDispatch, useSelector} from "react-redux";
 import {useApiUserGeneral} from "../../../effects/use-api-user-general.effect";
 import {changeBasicSettings} from "../../../store/reducers/common/app/appSlice";
-import {Spin} from "../../../layouts/components";
+import {Spin} from "../../../lib";
 
 const TeacherRoutes: React.FC = () => {
     const {app} = useSelector((state: any) => (state));

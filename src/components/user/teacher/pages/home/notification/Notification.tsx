@@ -1,6 +1,6 @@
 import React from 'react';
 import {useApiUserGeneral} from "../../../../../../effects/use-api-user-general.effect";
-import {Alert} from "../../../../../../layouts/components";
+import {Alert} from "../../../../../../lib";
 
 const Notification: React.FC = () => {
     const [loading, notification] = useApiUserGeneral({url: 'teacher/notification'});

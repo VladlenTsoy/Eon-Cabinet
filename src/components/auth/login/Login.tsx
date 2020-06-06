@@ -3,7 +3,7 @@ import {LockOutlined, UserOutlined} from '@ant-design/icons';
 import {Button, Input, message, Form} from "antd";
 import {useHistory} from "react-router-dom";
 import {Card} from "lib";
-import {FormItem} from "../../../layouts/components";
+import {FormItem} from "../../../lib";
 import {Title, SubTitle, FormWrapper} from "../AuthLayouts";
 import {useAppContext} from "../../../store/context/use-app-context";
 

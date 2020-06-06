@@ -1,6 +1,6 @@
 import React from "react";
 import { InfoCircleOutlined } from '@ant-design/icons';
-import {HeaderItem} from "../../../../../layouts/components";
+import {HeaderItem} from "../../../../../lib";
 
 const HeaderItems = [
     <HeaderItem key="help">

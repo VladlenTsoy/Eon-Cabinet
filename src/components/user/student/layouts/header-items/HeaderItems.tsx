@@ -1,7 +1,7 @@
 import React from "react";
 import { BulbOutlined, InfoCircleOutlined } from '@ant-design/icons';
 import { Typography } from "antd";
-import {HeaderItem} from "../../../../../layouts/components";
+import {HeaderItem} from "../../../../../lib";
 import Coins from "../../../../../lib/coins/Coins";
 
 const {Text} = Typography;

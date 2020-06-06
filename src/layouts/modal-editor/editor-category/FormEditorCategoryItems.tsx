@@ -1,5 +1,5 @@
 import React from 'react';
-import {FormItem, SelectData} from "../../components";
+import {FormItem, SelectData} from "lib";
 
 const FormEditorCategoryItems: React.FC = () => {
     return <>

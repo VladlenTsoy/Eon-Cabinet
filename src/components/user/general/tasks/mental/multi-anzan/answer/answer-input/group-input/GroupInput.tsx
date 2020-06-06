@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
 import {BasicWrapper} from "../basic-input/BasicInput";
-import {FormItem} from "../../../../../../../../../layouts/components";
+import {FormItem} from "../../../../../../../../../lib";
 import {Typography} from "antd";
 import {useSelector} from "react-redux";
 import TextFit

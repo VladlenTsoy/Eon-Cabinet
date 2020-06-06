@@ -1,6 +1,6 @@
 import React from 'react';
 import {Col, Row} from "antd";
-import {FormItem} from "layouts/components";
+import {FormItem} from "lib";
 import Stepper from "lib/stepper/Stepper";
 
 const ProgressionFormItems: React.FC = () => {

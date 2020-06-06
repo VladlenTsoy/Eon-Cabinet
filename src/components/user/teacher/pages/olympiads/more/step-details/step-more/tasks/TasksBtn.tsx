@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Drawer} from "../../../../../../../../../layouts/components";
+import {Drawer} from "../../../../../../../../../lib";
 import DrawerTasks from "./drawer/DrawerTasks";
 import { InfoCircleOutlined } from '@ant-design/icons';
 import {Button} from "antd";

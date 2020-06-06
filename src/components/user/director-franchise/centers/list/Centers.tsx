@@ -1,5 +1,5 @@
 import React from 'react';
-import {NavigationButton} from "layouts/components";
+import {NavigationButton} from "lib";
 import {Image} from "lib";
 import {Link} from "react-router-dom";
 import UsingTablePagination from "lib/table-pagination/usingTablePagination";

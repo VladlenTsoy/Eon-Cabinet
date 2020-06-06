@@ -7,7 +7,7 @@ import styled from "styled-components";
 import {useApiUserGeneral} from "../../../../../../../effects/use-api-user-general.effect";
 import PrevArrow from "./prev-arrow/PrevArrow";
 import NextArrow from "./next-arrow/NextArrow";
-import {DescriptionTitle} from "../../../../../../../layouts/components";
+import {DescriptionTitle} from "../../../../../../../lib";
 import {useAppContext} from "store/context/use-app-context";
 import {useScreenWindow} from "../../../../../../../effects/use-screen-window.effect";
 

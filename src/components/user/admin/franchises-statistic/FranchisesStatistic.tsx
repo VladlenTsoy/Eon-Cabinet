@@ -2,7 +2,7 @@ import React, {useCallback, useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 import {Typography} from "antd";
 import {CardTable, LoadingBlock} from "lib";
-import {Navigation} from "../../../../layouts/components";
+import {Navigation} from "../../../../lib";
 import moment from "moment";
 import ExportToExcel from "./ExportToExcel";
 import {useChangeActionNavbar} from "../../../../effects/use-change-action-navbar.effect";

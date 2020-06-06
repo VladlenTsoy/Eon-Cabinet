@@ -5,7 +5,7 @@ import { SettingOutlined } from '@ant-design/icons';
 import {Button} from "antd";
 import styled from "styled-components";
 import ExerciseLists from "../../../../../../homework/editor/tabs-tasks/added-exercises/exercise-lists/ExerciseLists";
-import {Modal} from "layouts/components";
+import {Modal} from "lib";
 
 const LeftBlockWrapper = styled.div`
   display: grid;

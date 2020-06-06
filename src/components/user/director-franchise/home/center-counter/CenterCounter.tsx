@@ -1,6 +1,6 @@
 import React from 'react';
 import {BankOutlined} from "@ant-design/icons";
-import {CardStatistic} from "../../../../../layouts/components";
+import {CardStatistic} from "../../../../../lib";
 import {useApiUserGeneral} from "../../../../../effects/use-api-user-general.effect";
 import {useAppContext} from "../../../../../store/context/use-app-context";
 

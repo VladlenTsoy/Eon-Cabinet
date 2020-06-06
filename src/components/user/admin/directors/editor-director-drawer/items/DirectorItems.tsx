@@ -1,5 +1,5 @@
 import React from "react";
-import {FormItem, InputPhoto, InputEmail, InputLogin, InputPassword, SelectData} from "layouts/components";
+import {FormItem, InputPhoto, InputEmail, InputLogin, InputPassword, SelectData} from "lib";
 import {Col, DatePicker, Input, Row} from "antd";
 import {FormInstance} from "antd/es/form";
 

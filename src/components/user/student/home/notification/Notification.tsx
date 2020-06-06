@@ -1,5 +1,5 @@
 import React from 'react';
-import {Alert} from "../../../../../layouts/components";
+import {Alert} from "../../../../../lib";
 
 const Notification = () => {
     return true ? <Alert

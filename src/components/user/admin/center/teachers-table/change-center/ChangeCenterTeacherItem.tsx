@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { RetweetOutlined } from '@ant-design/icons';
-import {Modal} from "../../../../../../layouts/components";
+import {Modal} from "../../../../../../lib";
 import BodyChangeCenterTeacher from "./body-change-center/BodyChangeCenterTeacher";
 
 interface ChangeCenterTeacherItemProps {

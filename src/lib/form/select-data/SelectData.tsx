@@ -1,6 +1,6 @@
 import React from "react";
 import {Select} from "antd";
-import {FormItem} from "../../../layouts/components";
+import {FormItem} from "../../../lib";
 import {useApiUserGeneral} from "../../../effects/use-api-user-general.effect";
 
 const {Option} = Select;

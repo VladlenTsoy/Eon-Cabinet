@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {useSelector} from "react-redux";
-import {Alert} from "../../../../../../../layouts/components";
+import {Alert} from "../../../../../../../lib";
 import {Row} from "antd";
 import styled from "styled-components";
 import FormItemWrapper from "./FormItemWrapper";

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Alert} from "layouts/components";
+import {Alert} from "lib";
 import {Card} from "lib";
 
 const Update = () => {

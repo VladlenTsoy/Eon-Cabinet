@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Tabs} from "antd";
 import {useDispatch, useSelector} from "react-redux";
 import {LoadingBlock} from "lib";
-import {TabTitleCustom} from "../../../../../../layouts/components";
+import {TabTitleCustom} from "../../../../../../lib";
 import TabsTasks from "./tabs-tasks/TabsTasks";
 import ButtonSaveHomework from "./save/ButtonSaveHomework";
 import {useChangeTitle} from "../../../../../../effects/use-change-title.effect";

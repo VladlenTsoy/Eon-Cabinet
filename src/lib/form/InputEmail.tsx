@@ -1,6 +1,6 @@
 import React from "react";
 import {Input} from "antd";
-import {FormItem} from "../../layouts/components";
+import {FormItem} from "../../lib";
 
 const InputEmail: React.FC = () => {
     const rules: any = [

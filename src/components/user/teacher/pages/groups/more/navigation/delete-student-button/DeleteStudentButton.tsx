@@ -2,7 +2,7 @@ import React from 'react';
 import {Modal} from "antd";
 import {DeleteOutlined} from "@ant-design/icons";
 import {useAppContext} from "store/context/use-app-context";
-import {NavigationButton} from "layouts/components";
+import {NavigationButton} from "lib";
 
 const {confirm} = Modal;
 

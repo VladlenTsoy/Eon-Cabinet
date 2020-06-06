@@ -1,7 +1,7 @@
 import React from 'react';
 import {Tabs} from "antd";
 import {Link} from "react-router-dom";
-import {Navigation, NavigationButton, TabTitleCustom} from "layouts/components";
+import {Navigation, NavigationButton, TabTitleCustom} from "lib";
 import TabsCategories from "./tabs-categories/TabsCategories";
 import {useDispatch, useSelector} from "react-redux";
 import {changeActiveDisciplineId} from "store/reducers/common/app/appSlice";

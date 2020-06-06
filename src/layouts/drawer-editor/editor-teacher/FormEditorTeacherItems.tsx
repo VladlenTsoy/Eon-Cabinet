@@ -1,5 +1,5 @@
 import React from "react";
-import {FormItem, InputEmail, InputLogin, InputPassword, SelectData} from "../../components";
+import {FormItem, InputEmail, InputLogin, InputPassword, SelectData} from "lib";
 import {PlusOutlined} from '@ant-design/icons';
 import {Col, DatePicker, Row} from "antd";
 import SelectStatus from "./SelectStatus";

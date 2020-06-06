@@ -3,7 +3,7 @@ import {useApiUserGeneral} from "effects/use-api-user-general.effect";
 import { RedoOutlined } from '@ant-design/icons';
 import {Button, Empty} from "antd";
 import {LoadingBlock} from "lib";
-import {DescriptionTitle} from "layouts/components";
+import {DescriptionTitle} from "lib";
 import styled from "styled-components";
 import CardPublic from "./card/CardPublic";
 import {useAppContext} from "store/context/use-app-context";

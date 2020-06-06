@@ -1,5 +1,5 @@
 import React from 'react';
-import {Avatar} from "../../../../../../../../layouts/components";
+import {Avatar} from "../../../../../../../../lib";
 import moment from "moment";
 import styled from "styled-components";
 

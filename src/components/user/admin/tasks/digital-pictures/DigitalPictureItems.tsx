@@ -1,5 +1,5 @@
 import React from "react";
-import {FormItem, Upload} from "../../../../../layouts/components";
+import {FormItem, Upload} from "../../../../../lib";
 
 interface PersonalityItemsProps {
     form: any;

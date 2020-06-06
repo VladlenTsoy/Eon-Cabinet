@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {FormItem} from "../../../../../../layouts/components";
+import {FormItem} from "../../../../../../lib";
 import {Select, Radio} from "antd";
 import {useSelector} from "react-redux";
 import CategoryItemCenters from "./CategoryItemCenters";

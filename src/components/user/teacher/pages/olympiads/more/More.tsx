@@ -6,7 +6,7 @@ import {useApiUserGeneral} from "effects/use-api-user-general.effect";
 import StepsDetails from "./step-details/StepsDetails";
 import styled from "styled-components";
 import StudentDetails from "./student-details/StudentDetails";
-import {Spin} from "layouts/components";
+import {Spin} from "lib";
 import {useChangeActionNavbar} from "../../../../../../effects/use-change-action-navbar.effect";
 import {useChangeTitle} from "../../../../../../effects/use-change-title.effect";
 

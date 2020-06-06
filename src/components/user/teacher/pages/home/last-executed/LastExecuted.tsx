@@ -1,5 +1,5 @@
 import React from 'react';
-import {Legend} from "../../../../../../layouts/components";
+import {Legend} from "../../../../../../lib";
 import UsingTablePagination from "../../../../../../lib/table-pagination/usingTablePagination";
 import Columns from "./Columns";
 

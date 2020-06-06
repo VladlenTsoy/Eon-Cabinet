@@ -1,5 +1,5 @@
 import React from 'react';
-import {NavigationButton, UserImage} from "../../../../../layouts/components";
+import {NavigationButton, UserImage} from "../../../../../lib";
 import EditorTeacherDrawer from "./editor-teacher-drawer/EditorTeacherDrawer";
 import {MenuOutlined} from '@ant-design/icons';
 import {Badge} from "antd";

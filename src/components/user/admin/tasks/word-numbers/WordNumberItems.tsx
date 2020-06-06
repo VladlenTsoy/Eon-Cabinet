@@ -1,5 +1,5 @@
 import React from "react";
-import {FormItem} from "../../../../../layouts/components";
+import {FormItem} from "../../../../../lib";
 
 interface WordNumberItemsProps {
 }

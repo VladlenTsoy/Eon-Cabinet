@@ -7,7 +7,7 @@ import {LoadingBlock} from "lib";
 import NextArrow from "../../../../teacher/pages/home/olympiad/olympiad-carousel/next-arrow/NextArrow";
 import {useApiUserGeneral} from "../../../../../../effects/use-api-user-general.effect";
 import CardOlympiad from "./card/CardOlympiad";
-import {DescriptionTitle} from "../../../../../../layouts/components";
+import {DescriptionTitle} from "../../../../../../lib";
 import {useAppContext} from "store/context/use-app-context";
 import {useScreenWindow} from "../../../../../../effects/use-screen-window.effect";
 import {useWindowSize} from "react-use";

@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {FormItem, InputEmail, InputLogin, InputPassword, SelectData} from "../../../../../../../layouts/components";
+import {FormItem, InputEmail, InputLogin, InputPassword, SelectData} from "../../../../../../../lib";
 import EditorCenterButton from "../../../../../admin/franchise/center-table/EditorCenterButton";
 import {PlusOutlined} from '@ant-design/icons';
 import {Col, DatePicker, Row} from "antd";

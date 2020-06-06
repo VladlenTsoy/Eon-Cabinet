@@ -1,6 +1,6 @@
 import React from 'react';
 import {InputNumber} from "antd";
-import {FormItem} from "layouts/components";
+import {FormItem} from "lib";
 import styled from "styled-components";
 
 const InputWrapper = styled.div`

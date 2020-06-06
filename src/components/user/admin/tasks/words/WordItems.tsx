@@ -1,6 +1,6 @@
 import React from "react";
 import {Input, Select} from "antd";
-import {FormItem} from "../../../../../layouts/components";
+import {FormItem} from "../../../../../lib";
 import {useSelector} from "react-redux";
 
 const {TextArea} = Input;

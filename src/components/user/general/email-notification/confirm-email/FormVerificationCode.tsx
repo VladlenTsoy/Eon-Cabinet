@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Button, message, Form} from "antd";
-import {FormItem} from "../../../../../layouts/components";
+import {FormItem} from "../../../../../lib";
 import {useAppContext} from "../../../../../store/context/use-app-context";
 
 interface FormVerificationCodeProps {

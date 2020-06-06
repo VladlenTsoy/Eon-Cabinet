@@ -1,9 +1,9 @@
 import React, {useState} from "react";
 import {SaveOutlined} from '@ant-design/icons';
 import {Button, message} from "antd";
-import {DrawerActions} from "../../components";
 import {useAppContext} from "../../../store/context/use-app-context";
 import {FormInstance} from "antd/es/form";
+import {DrawerActions} from "lib";
 
 interface ActionsFromEditorStudentProps {
     form: FormInstance;

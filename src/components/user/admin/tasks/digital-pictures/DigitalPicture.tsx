@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {Table, Image} from "lib";
-import {Navigation, NavigationButton} from "../../../../../layouts/components";
+import {Navigation, NavigationButton} from "../../../../../lib";
 import EditorDigitalPictureButton from "./EditorDigitalPictureButton";
 import { MenuOutlined } from '@ant-design/icons';
 import DigitalPictureTableDropdown from "./DigitalPictureTableDropdown";

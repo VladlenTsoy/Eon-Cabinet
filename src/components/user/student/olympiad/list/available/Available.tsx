@@ -1,6 +1,6 @@
 import React from 'react';
 import Public from "./public/Public";
-import {Legend} from "layouts/components";
+import {Legend} from "lib";
 import Invite from "./invite/Invite";
 
 const Available = () => {

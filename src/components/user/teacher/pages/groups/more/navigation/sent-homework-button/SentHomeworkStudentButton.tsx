@@ -1,6 +1,6 @@
 import React, {useCallback} from "react";
 import {SendOutlined} from "@ant-design/icons";
-import {NavigationButton} from "layouts/components";
+import {NavigationButton} from "lib";
 import usingDrawerEditor from "layouts/drawer-editor/usingDrawerEditor";
 import FormSentHomeworkItems from "./form-items/FormSentHomeworkItems";
 import checkStudentGif from "assets/images/hints/check-student.gif";

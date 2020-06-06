@@ -1,7 +1,7 @@
 import React from 'react';
 import {List} from "antd";
 import {Card} from "lib";
-import {UserImage, Legend} from "layouts/components";
+import {UserImage, Legend} from "lib";
 import {useAppContext} from "store/context/use-app-context";
 import styled from "styled-components";
 

@@ -1,5 +1,5 @@
 import React from "react";
-import {CardStatistic} from "../../../../../layouts/components";
+import {CardStatistic} from "../../../../../lib";
 import {useApiUserGeneral} from "../../../../../effects/use-api-user-general.effect";
 import {TeamOutlined} from "@ant-design/icons";
 import {useAppContext} from "../../../../../store/context/use-app-context";

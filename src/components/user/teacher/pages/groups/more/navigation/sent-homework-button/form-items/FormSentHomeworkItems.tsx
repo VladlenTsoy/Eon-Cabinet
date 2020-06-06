@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {useHistory} from "react-router-dom";
 import {LoadingBlock} from "lib";
-import {FormItem, Spin} from "../../../../../../../../../layouts/components";
+import {FormItem, Spin} from "../../../../../../../../../lib";
 import {FileAddOutlined} from '@ant-design/icons';
 import {Select, Divider, Input, Empty, Button} from "antd";
 import ExerciseLists from "../../../../../homework/editor/tabs-tasks/added-exercises/exercise-lists/ExerciseLists";

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Tabs} from "antd";
 import {useDispatch, useSelector} from "react-redux";
-import {TabTitleCustom} from "../../../../../../layouts/components";
+import {TabTitleCustom} from "../../../../../../lib";
 import {LoadingBlock} from "lib";
 import TabDiscipline from "./tab-discipline/TabDiscipline";
 import {useApiUserGeneral} from "effects/use-api-user-general.effect";

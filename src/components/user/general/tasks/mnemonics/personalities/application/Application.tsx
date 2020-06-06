@@ -14,7 +14,6 @@ const Application: React.FC = () => {
     return <ApplicationLayout
         timer
         pictures={picturesLoad}
-        setting={setting}
         displayType="carousel"
         requestSetting={{
             url: '/task/personalities',

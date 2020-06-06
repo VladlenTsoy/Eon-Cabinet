@@ -2,7 +2,7 @@ import React from 'react';
 import { DeleteOutlined, PlusOutlined } from '@ant-design/icons';
 import {Button, Typography} from "antd";
 import styled from "styled-components";
-import {Alert} from "../../../../../../../layouts/components";
+import {Alert} from "../../../../../../../lib";
 import {Card} from "lib";
 
 const {Title} = Typography;

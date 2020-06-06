@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {Table} from "lib";
-import {Navigation, NavigationButton} from "../../../../../layouts/components";
+import {Navigation, NavigationButton} from "../../../../../lib";
 import PriceTableDropdown from "./PriceTableDropdown";
 import EditorPriceButton from "./EditorPriceButton";
 

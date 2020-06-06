@@ -4,7 +4,7 @@ import {Form, Radio} from "antd";
 import FormSettingWordsList from "./word-list-form-header/WordListFormHeader";
 import WordListFormBodyTable from "./word-list-table/WordListTable";
 import {RadioWrapper} from "../../../mental/anzan/forms/type-form/TypeForm";
-import {FormItem} from "../../../../../../../../../layouts/components";
+import {FormItem} from "../../../../../../../../../lib";
 // import WordListModeInformation from "./word-list-mode-information/WordListModeInformation";
 
 type WordListFormBodyProps = {

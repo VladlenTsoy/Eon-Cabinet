@@ -1,5 +1,5 @@
 import React from "react";
-import {FormItem, SelectData, Upload} from "../../../../layouts/components";
+import {FormItem, SelectData, Upload} from "../../../../lib";
 import { PlusOutlined } from '@ant-design/icons';
 import { Col, Input, Row } from "antd";
 import EditorPriceButton from "../settings/prices/EditorPriceButton";

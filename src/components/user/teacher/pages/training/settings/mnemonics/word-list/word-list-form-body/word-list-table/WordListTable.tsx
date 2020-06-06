@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {DeleteOutlined, FlagOutlined, PlusOutlined, UndoOutlined} from '@ant-design/icons';
 import {Button, Empty, InputNumber, Form} from "antd";
-import {FormItem} from "../../../../../../../../../../layouts/components";
+import {FormItem} from "../../../../../../../../../../lib";
 import styled from "styled-components";
 import {useAppContext} from "store/context/use-app-context";
 import {FormInstance} from "antd/es/form";

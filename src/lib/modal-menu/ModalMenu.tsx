@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { MenuOutlined } from '@ant-design/icons';
 import {Button} from "antd";
-import {Modal} from "../../layouts/components";
+import Modal from "../../lib/modal/Modal";
 import styled from "styled-components";
 
 const ModalWrapper = styled(Modal)`

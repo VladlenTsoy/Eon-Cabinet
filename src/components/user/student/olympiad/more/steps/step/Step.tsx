@@ -1,6 +1,6 @@
 import React from 'react';
 import {Typography} from 'antd';
-import {Legend} from 'layouts/components';
+import {Legend} from 'lib';
 import styled from "styled-components";
 import Info from "./info/Info";
 import Tasks from "./tasks/Tasks";

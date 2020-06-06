@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { ClockCircleOutlined, DollarOutlined } from '@ant-design/icons';
 import { Radio, Alert } from "antd";
-import {FormItem} from "../../components";
+import {FormItem} from "lib";
 import styled from "styled-components";
 
 const AlertWrapper = styled(Alert)`

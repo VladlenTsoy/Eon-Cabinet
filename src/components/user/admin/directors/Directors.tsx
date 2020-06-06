@@ -1,5 +1,5 @@
 import React from "react";
-import {NavigationButton, UserImage} from "../../../../layouts/components";
+import {NavigationButton, UserImage} from "../../../../lib";
 import { EyeInvisibleOutlined, LockOutlined } from '@ant-design/icons';
 import { Typography } from "antd";
 import {Link} from "react-router-dom";

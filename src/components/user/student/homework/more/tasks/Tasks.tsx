@@ -1,7 +1,7 @@
 import React from "react";
 import {Col, Row, Empty} from "antd";
 import {LoadingBlock} from "lib";
-import {DescriptionTitle} from "../../../../../../layouts/components";
+import {DescriptionTitle} from "../../../../../../lib";
 import Task from "./task/Task";
 import {useApiUserGeneral} from "../../../../../../effects/use-api-user-general.effect";
 import {useAppContext} from "store/context/use-app-context";

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {UserImage} from "../../../../../../layouts/components";
+import {UserImage} from "../../../../../../lib";
 import {Card, Table} from "lib";
 import moment from "moment";
 import {Typography} from "antd";

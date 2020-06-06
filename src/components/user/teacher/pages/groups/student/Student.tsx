@@ -8,7 +8,7 @@ import Profile from "./profile/Profile";
 import Homework from "./homework/Homework";
 import Notification from "./notification/Notification";
 import Tournaments from "../../home/short-info/tournaments/Tournaments";
-import {Spin} from "../../../../../../layouts/components";
+import {Spin} from "../../../../../../lib";
 
 interface StudentProps {
     match: any;

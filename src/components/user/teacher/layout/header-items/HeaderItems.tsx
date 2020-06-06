@@ -1,6 +1,6 @@
 import React from "react";
 import Search from "./search-item/Search";
-import {HeaderItem} from "../../../../../layouts/components";
+import {HeaderItem} from "../../../../../lib";
 import HelpItem from "./help-item/HelpItem";
 import NewsItem from "./news-item/NewsItem";
 

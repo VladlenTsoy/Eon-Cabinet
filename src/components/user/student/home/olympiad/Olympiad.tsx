@@ -1,5 +1,5 @@
 import React from 'react';
-import {Legend} from "../../../../../layouts/components";
+import {Legend} from "../../../../../lib";
 import {LoadingBlock} from "lib";
 import OlympiadEmpty from "./olympiad-empty/OlympiadEmpty";
 import {useApiUserGeneral} from "../../../../../effects/use-api-user-general.effect";

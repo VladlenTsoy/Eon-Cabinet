@@ -1,6 +1,6 @@
 import React from 'react';
 import {Col, InputNumber, Row} from "antd";
-import {FormItem} from "../../../../../../../../../../layouts/components";
+import {FormItem} from "../../../../../../../../../../lib";
 
 interface BasicProps {
     isMultiplication: boolean;

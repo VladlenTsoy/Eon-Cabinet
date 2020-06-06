@@ -2,7 +2,7 @@ import { PlusOutlined } from '@ant-design/icons';
 import { Col, Divider, Empty, Select } from "antd";
 import styled from "styled-components";
 import React from "react";
-import {FormItem} from "../../../../../../../layouts/components";
+import {FormItem} from "../../../../../../../lib";
 import EditorCategoryButton from "../../../../settings/categories/EditorCategoryButton";
 
 const {Option} = Select;

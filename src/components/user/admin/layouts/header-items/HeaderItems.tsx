@@ -1,5 +1,5 @@
 import React from "react";
-import {HeaderItem} from "../../../../../layouts/components";
+import {HeaderItem} from "../../../../../lib";
 
 const HeaderItems = [
     <HeaderItem key="mr" mr="auto"/>,

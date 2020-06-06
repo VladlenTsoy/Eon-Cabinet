@@ -1,6 +1,6 @@
 import React from 'react';
 import {Col, Row} from "antd";
-import {Navigation, NavigationButton} from "../../../../../../layouts/components";
+import {Navigation, NavigationButton} from "../../../../../../lib";
 import {Link} from "react-router-dom";
 import {PlusOutlined} from "@ant-design/icons";
 import CurrentOlympiads from "./current/CurrentOlympiads";

@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {Table, Image} from "lib";
-import {Navigation, NavigationButton} from "../../../../../layouts/components";
+import {Navigation, NavigationButton} from "../../../../../lib";
 import EditorPersonalityButton from "./EditorPersonalityButton";
 import { MenuOutlined } from '@ant-design/icons';
 import PersonalityTableDropdown from "./PersonalityTableDropdown";

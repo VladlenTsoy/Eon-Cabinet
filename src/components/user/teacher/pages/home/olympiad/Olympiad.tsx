@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
 import {Card} from "lib";
-import {Legend} from "../../../../../../layouts/components";
+import {Legend} from "../../../../../../lib";
 import {Col, Row} from "antd";
 import OlympiadCarousel from "./olympiad-carousel/OlympiadCarousel";
 import OlympiadCreate from "./olympiad-create/OlympiadCreate";

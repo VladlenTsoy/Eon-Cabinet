@@ -1,6 +1,6 @@
 import React from "react";
 import {Col, Input, Row} from "antd";
-import {FormItem, Upload} from "../../../../../layouts/components";
+import {FormItem, Upload} from "../../../../../lib";
 
 const {TextArea} = Input;
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Navigation, NavigationButton} from "layouts/components";
+import {Navigation, NavigationButton} from "lib";
 import {Link} from "react-router-dom";
 import {Tabs, Tag} from "antd";
 import {PlusOutlined} from "@ant-design/icons";

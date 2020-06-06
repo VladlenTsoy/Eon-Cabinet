@@ -2,7 +2,7 @@ import React from 'react';
 import { ClockCircleOutlined, HistoryOutlined, TeamOutlined, UserOutlined } from '@ant-design/icons';
 import { Tabs } from "antd";
 import {Card} from "lib";
-import {Alert, TabTitleCustom} from "../../../../../../../layouts/components";
+import {Alert, TabTitleCustom} from "../../../../../../../lib";
 import styled from "styled-components";
 import Students from "./students/Students";
 import Account from "./account/Account";

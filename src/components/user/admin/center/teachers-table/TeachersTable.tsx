@@ -1,7 +1,7 @@
 import React from "react";
 import TableComponent from "../../../../../lib/table/Table";
 import {Card} from "lib";
-import {UserImage} from "../../../../../layouts/components";
+import {UserImage} from "../../../../../lib";
 import { MenuOutlined, UserOutlined } from '@ant-design/icons';
 import { Typography, Badge } from "antd";
 import moment from "moment";

@@ -1,7 +1,7 @@
 import React, {useMemo, useState} from "react";
 import {SaveOutlined} from '@ant-design/icons';
 import {Button, Form, Input, message} from "antd";
-import {FormItem} from "../../../../../layouts/components";
+import {FormItem} from "../../../../../lib";
 import {useAppContext} from "../../../../../store/context/use-app-context";
 
 const FormulTitleSettingAnzan: React.FC<any> = ({form, defaultTypes}) => {

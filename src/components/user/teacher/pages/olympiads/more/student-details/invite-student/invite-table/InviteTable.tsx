@@ -4,7 +4,7 @@ import {useAppContext} from "store/context/use-app-context";
 import styled from "styled-components";
 import {LoadingBlock} from "lib";
 import InviteColumn from "./column/InviteColumn";
-import {DescriptionTitle} from "../../../../../../../../../layouts/components";
+import {DescriptionTitle} from "../../../../../../../../../lib";
 
 const {Search} = Input;
 

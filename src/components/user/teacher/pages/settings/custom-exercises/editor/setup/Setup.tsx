@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Card} from "lib";
 import {ArrowRightOutlined} from "@ant-design/icons";
 import {Button, Col, Form, Row} from "antd";
-import {Alert} from "layouts/components";
+import {Alert} from "lib";
 import {Link} from "react-router-dom";
 import FormHeadItems from "./form-head-items/FormHeadItems";
 import FormBodyItems from "./form-body-items/FormBodyItems";

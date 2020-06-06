@@ -1,5 +1,5 @@
 import React from "react";
-import {Drawer} from "../components";
+import {Drawer} from "lib";
 
 interface DrawerEditorProps {
     visible: boolean;

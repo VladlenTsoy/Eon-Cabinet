@@ -2,7 +2,7 @@ import React from 'react';
 import { RedoOutlined } from '@ant-design/icons';
 import {Button, Empty} from "antd";
 import {useAppContext} from "store/context/use-app-context";
-import {DescriptionTitle} from "../../../../../../layouts/components";
+import {DescriptionTitle} from "../../../../../../lib";
 import styled from "styled-components";
 
 const EmptyWrapper = styled.div`

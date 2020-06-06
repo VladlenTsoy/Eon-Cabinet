@@ -1,6 +1,6 @@
 import React from "react";
 import { MessageOutlined } from '@ant-design/icons';
-import {Alert} from "layouts/components";
+import {Alert} from "lib";
 import moment from 'moment'
 import styled from "styled-components";
 import {AlertProps} from "antd/es/alert";

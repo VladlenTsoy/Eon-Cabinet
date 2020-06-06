@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Modal} from "../../../../layouts/components";
+import {Modal} from "../../../../lib";
 import EmailInput from "./EmailInput";
 import ConfirmEmail from "./confirm-email/ConfirmEmail";
 import {useAppContext} from "../../../../store/context/use-app-context";

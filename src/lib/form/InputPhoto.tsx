@@ -4,7 +4,7 @@ import {getBase64} from "../upload/Upload";
 import {useState} from "react";
 import { EditOutlined } from '@ant-design/icons';
 import {IconsWrapper, IconEditWrapper} from "../avatar/IconsWrapper";
-import {FormItem} from "../../layouts/components";
+import {FormItem} from "../../lib";
 import {FormInstance} from "antd/es/form";
 
 interface InputPhotoProps {

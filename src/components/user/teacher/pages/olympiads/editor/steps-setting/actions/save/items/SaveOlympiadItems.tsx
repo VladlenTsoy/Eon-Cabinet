@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {Input, Select} from "antd";
-import {FormItem} from "layouts/components";
+import {FormItem} from "lib";
 
 const {TextArea} = Input;
 const {Option} = Select;

@@ -3,7 +3,7 @@ import {PlusOutlined} from "@ant-design/icons";
 import EditorButton from "./editor-button/EditorButton";
 import SentHomeworkStudentButton from "./sent-homework-button/SentHomeworkStudentButton";
 import DeleteStudentButton from "./delete-student-button/DeleteStudentButton";
-import {Navigation, NavigationButton} from "layouts/components";
+import {Navigation, NavigationButton} from "lib";
 
 interface NavigationProps {
     fetchUsers: () => void;

@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import {FormItem, Upload} from "../../components";
+import {FormItem, Upload} from "lib";
 import SelectData from "../../../lib/form/select-data/SelectData";
 import {Col, Input, Row} from "antd";
 import {FormInstance} from "antd/es/form";

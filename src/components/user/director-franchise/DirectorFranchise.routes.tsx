@@ -1,6 +1,6 @@
 import React from 'react';
 import {useSelector} from "react-redux";
-import {Spin} from "../../../layouts/components";
+import {Spin} from "../../../lib";
 import {Layout} from "../../../lib";
 import SidebarItems from "./layouts/sidebar-items/SidebarItems";
 import HeaderItems from "./layouts/header-items/HeaderItems";

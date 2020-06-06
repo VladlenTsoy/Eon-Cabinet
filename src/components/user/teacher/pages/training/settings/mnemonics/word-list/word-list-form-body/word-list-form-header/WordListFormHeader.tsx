@@ -1,7 +1,7 @@
 import React from 'react';
 import {PlusOutlined} from '@ant-design/icons';
 import {Button, Col, Row, Select, Form} from "antd";
-import {FormItem} from "../../../../../../../../../../layouts/components";
+import {FormItem} from "../../../../../../../../../../lib";
 import styled from "styled-components";
 import {useAppContext} from "store/context/use-app-context";
 import {useScreenWindow} from "../../../../../../../../../../effects/use-screen-window.effect";

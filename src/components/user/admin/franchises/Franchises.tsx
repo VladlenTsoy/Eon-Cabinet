@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Navigation, NavigationButton} from "../../../../layouts/components";
+import {Navigation, NavigationButton} from "../../../../lib";
 import {Link} from "react-router-dom";
 import FranchiseTable from "./franchise-table/FranchiseTable";
 import EditorFranchiseButton from "./EditorFranchiseButton";

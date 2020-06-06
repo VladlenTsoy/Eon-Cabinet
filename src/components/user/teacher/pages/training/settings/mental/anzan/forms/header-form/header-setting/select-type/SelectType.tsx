@@ -1,5 +1,5 @@
 import React from 'react';
-import {FormItem} from "../../../../../../../../../../../../layouts/components";
+import {FormItem} from "../../../../../../../../../../../../lib";
 import {Col, Select} from "antd";
 import {useAppContext} from "store/context/use-app-context";
 

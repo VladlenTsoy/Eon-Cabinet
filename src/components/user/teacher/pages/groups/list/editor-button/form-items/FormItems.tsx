@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {Select, Form, message, Button} from "antd";
 import {useSelector} from "react-redux";
-import {FormItem} from "../../../../../../../../layouts/components";
+import {FormItem} from "../../../../../../../../lib";
 
 const {Option} = Select;
 

@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {Navigation, NavigationButton} from "../../../../layouts/components";
+import {Navigation, NavigationButton} from "../../../../lib";
 import EditorCenterButton from "./EditorTeacherButton";
 import TeachersTable from "./teachers-table/TeachersTable";
 import {useChangeActionNavbar} from "../../../../effects/use-change-action-navbar.effect";

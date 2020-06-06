@@ -1,6 +1,6 @@
 import React from "react";
 import { TrophyOutlined } from '@ant-design/icons';
-import {UserImage} from "../../../../../../../../../../../layouts/components";
+import {UserImage} from "../../../../../../../../../../../lib";
 
 const Personalities = ({totals}: any) => {
     return (

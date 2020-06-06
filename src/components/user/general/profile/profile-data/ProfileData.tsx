@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Button, Col, DatePicker, Form, message, Row, Typography} from "antd";
 import {Card} from "lib";
-import {FormItem} from "../../../../../layouts/components";
+import {FormItem} from "../../../../../lib";
 import styled from "styled-components";
 import moment from 'moment';
 import {useAppContext} from "../../../../../store/context/use-app-context";

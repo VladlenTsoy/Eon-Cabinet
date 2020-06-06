@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { HistoryOutlined } from '@ant-design/icons';
 import {Button, Col, Empty, Tabs} from "antd";
-import {Legend, Spin} from "../../../../../../../layouts/components";
+import {Legend, Spin} from "../../../../../../../lib";
 import {Card} from "lib";
 import {useApiUserGeneral} from "../../../../../../../effects/use-api-user-general.effect";
 import Tab from "./tab/Tab";

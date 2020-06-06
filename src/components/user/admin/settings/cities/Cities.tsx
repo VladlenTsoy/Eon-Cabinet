@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Navigation, NavigationButton,} from "../../../../../layouts/components";
+import {Navigation, NavigationButton,} from "../../../../../lib";
 import {Table} from "lib";
 import EditorCityButton from "./EditorCityButton";
 import { MenuOutlined } from '@ant-design/icons';

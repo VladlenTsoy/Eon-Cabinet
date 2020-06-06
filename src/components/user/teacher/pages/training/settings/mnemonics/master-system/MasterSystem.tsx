@@ -1,6 +1,6 @@
 import React from "react";
 import {Col, Row, Select} from "antd";
-import {FormItem} from "layouts/components";
+import {FormItem} from "lib";
 import FormSettingLayout from "../../mental/layout/form-setting/FormSetting.layout";
 import Stepper from "../../../../../../../../lib/stepper/Stepper";
 

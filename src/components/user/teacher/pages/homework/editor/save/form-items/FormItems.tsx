@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Button, Col, Form, Input, message, Row, Select} from "antd";
-import {FormItem} from "../../../../../../../../layouts/components";
+import {FormItem} from "../../../../../../../../lib";
 import {useSelector} from "react-redux";
 import {SaveOutlined} from "@ant-design/icons";
 

@@ -1,6 +1,6 @@
 import {Tag, Typography} from "antd";
 import styled from "styled-components";
-import {UserImage} from "../../../../../../layouts/components";
+import {UserImage} from "../../../../../../lib";
 import {Link} from "react-router-dom";
 import moment from "moment";
 import React from "react";

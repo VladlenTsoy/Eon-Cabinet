@@ -5,7 +5,7 @@ import {LoadingBlock} from "lib";
 import RequestColumn from "./column/RequestColumn";
 import {ScrollWrapper, TableWrapper} from "../../invite-student/invite-table/InviteTable";
 import {useApiUserGeneral} from "../../../../../../../../../effects/use-api-user-general.effect";
-import {DescriptionTitle, Spin} from "../../../../../../../../../layouts/components";
+import {DescriptionTitle, Spin} from "../../../../../../../../../lib";
 import {useSelector} from "react-redux";
 
 interface RequestTableProps {

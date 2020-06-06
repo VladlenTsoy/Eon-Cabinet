@@ -4,7 +4,7 @@ import {Button, Input, Form} from "antd";
 import {useState} from "react";
 import {Title, FormWrapper} from "../AuthLayouts";
 import {Card} from "lib";
-import {FormItem} from "../../../layouts/components";
+import {FormItem} from "../../../lib";
 import styled from "styled-components";
 import {Link} from "react-router-dom";
 
