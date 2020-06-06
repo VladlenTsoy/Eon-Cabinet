@@ -7,6 +7,7 @@ import Table from "./table/Table";
 import {chunk} from "lodash";
 import ApplicationCardLayout from "../../../../layouts/application/application-output/ApplicationCard.layout";
 import {changeStats, changeStatus, changeTotals,gameSelector} from "../../../../../../../../store/reducers/common/game/gameSplice";
+import {useScreenWindow} from "../../../../../../../../effects/use-screen-window.effect";
 
 interface ListProps {
     checkHandler: (values: any) => any | {
@@ -17,8 +18,10 @@ interface ListProps {
 }
 
 const List: React.FC<ListProps> = ({checkHandler}) => {
-    const {totals, setting} = useSelector(gameSelector);
+    const {totals} = useSelector(gameSelector);
     const dispatch = useDispatch();
+    const [, isBreakpoint] = useScreenWindow({breakpoint: 'sm'});
+    const [column] = useState(isBreakpoint ? 2 : 5);
 
     const [outputs, setOutputs] = useState();
 
@@ -31,8 +34,8 @@ const List: React.FC<ListProps> = ({checkHandler}) => {
     };
 
     const createOutputs = useCallback((totals) => {
-        return [chunk(Object.values(totals).map((total: any) => total.exercise.word), setting.column)];
-    }, [setting]);
+        return [chunk(Object.values(totals).map((total: any) => total.exercise.word), column)];
+    }, [column]);
 
     useEffect(() => {
         const _outputs = createOutputs(totals);
@@ -44,7 +47,7 @@ const List: React.FC<ListProps> = ({checkHandler}) => {
             {outputs && <TablesOutput
                 outputs={outputs}
                 listSetting={{
-                    column: setting.column,
+                    column: column,
                     leftNumbering: true,
                     layout: Table
                 }}

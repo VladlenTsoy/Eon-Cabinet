@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useState} from 'react';
 import {useSelector} from "react-redux";
 import ApplicationLayout from "../../../layouts/application/Application.layout";
 import {useScreenWindow} from "effects/use-screen-window.effect";
@@ -10,8 +10,7 @@ import {gameSelector} from "../../../../../../../store/reducers/common/game/game
 const Application: React.FC = () => {
     const {setting} = useSelector(gameSelector);
     const [, isBreakpoint] = useScreenWindow({breakpoint: 'sm'});
-
-    setting.column = isBreakpoint ? 2 : 5;
+    const [column] = useState(isBreakpoint ? 2 : 5);
 
     const updateAnswersTotals = useCallback((data) => {
         return data.map((exercise: any) => ({exercise}));
@@ -21,8 +20,8 @@ const Application: React.FC = () => {
         if (setting.mode === 'basic')
             return Object.values(totals).map((total: any) => total.exercise.word);
         else
-            return [chunk(Object.values(totals).map((total: any) => total.exercise.word), setting.column)];
-    }, [setting]);
+            return [chunk(Object.values(totals).map((total: any) => total.exercise.word), column)];
+    }, [column, setting.mode]);
 
     const createSeveral = () => {
         let data = [];
@@ -36,7 +35,7 @@ const Application: React.FC = () => {
             ...setting.mode === 'list' &&
             {
                 listSetting: {
-                    column: setting.column,
+                    column: column,
                     leftNumbering: true,
                     layout: List
                 }
