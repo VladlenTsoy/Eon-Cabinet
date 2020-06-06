@@ -56,7 +56,7 @@ const gameSlice = createSlice({
         changeOutputs(state, action: PayloadAction<any[]>) {
             state.outputs = action.payload;
         },
-        changeTotals(state, action: PayloadAction<any[]>) {
+        changeTotals(state, action: PayloadAction<any>) {
             state.totals = action.payload;
         },
         updateCurrentTotal(state, action: PayloadAction<any>) {

@@ -6,7 +6,7 @@ import {LoadingBlock} from "lib";
 import {Card} from "lib";
 import MultiOutput from "./multi-output/MultiOutput";
 import styled from "styled-components";
-import {changeStatus, gameSelector, changeTotals} from "../../../../../../../store/reducers/common/game/gameSplice";
+import {changeStatus, changeTotals, gameSelector, updateCurrentTotal} from "../../../../../../../store/reducers/common/game/gameSplice";
 import MultiGridLayout from "../layouts/MultiGrid.layout";
 
 const CardWrapper = styled(Card)`
@@ -27,7 +27,7 @@ const Application: React.FC = () => {
     const addAnswer = useCallback(
         (exercises) => {
             if (setting.mode !== 'multiplication')
-                totals[currentTimes] = {
+                return {
                     exercise: exercises,
                     answer: exercises.map((exercise: any) =>
                         exercise.reduce((acc: number, i: number) => acc + i, 0))
@@ -41,16 +41,13 @@ const Application: React.FC = () => {
                     )
                 };
 
-            else
-                totals[currentTimes] = {
-                    exercise: exercises,
-                    answer: exercises.map((val: any, key: number) =>
-                        setting.windows[key].mode === 'multiply' ? val[0] * val[1] : val[0] / val[1])
-                };
-
-            return totals;
+            return {
+                exercise: exercises,
+                answer: exercises.map((val: any, key: number) =>
+                    setting.windows[key].mode === 'multiply' ? val[0] * val[1] : val[0] / val[1])
+            };
         },
-        [setting, totals, currentTimes]
+        [setting]
     );
 
     //
@@ -60,7 +57,9 @@ const Application: React.FC = () => {
         config: {params: {setting}},
         initValue: [],
         afterRequest: async (data: any) => {
-            dispatch(changeTotals(addAnswer(data)));
+            setting.group?
+            dispatch(changeTotals(addAnswer(data))):
+            dispatch(updateCurrentTotal(addAnswer(data)));
 
             if (setting.map((val: any) => val.extra.includes('abacus')).includes(true)) {
                 return new Promise((resolve => {
