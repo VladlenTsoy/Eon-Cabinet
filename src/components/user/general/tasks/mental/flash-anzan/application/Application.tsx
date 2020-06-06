@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect} from 'react';
+import React, {useCallback} from 'react';
 import {random} from 'lodash';
 import {useDispatch, useSelector} from "react-redux";
 import ApplicationLayout from "../../../layouts/application/Application.layout";
@@ -7,23 +7,21 @@ import {gameSubSelector, changeTotals} from "../../../../../../../store/reducers
 
 const Application: React.FC<any> = () => {
     const setting = useSelector(gameSubSelector('setting'));
-    const executionMode = useSelector(gameSubSelector('executionMode'));
     const dispatch = useDispatch();
 
     const [, , updaterOutput] = useUpdateOutputEffect({extra: setting.extra});
 
-    useEffect((data = []) => {
-        if (executionMode === 'fetch') {
-            for (let i = 0; i < setting.count; i++) {
-                let number = random(setting.from, setting.to);
-                data[i] = {
-                    exercise: number,
-                    answer: number
-                };
-            }
-            dispatch(changeTotals(data))
+    const createTotals = useCallback((data = []) => {
+        for (let i = 0; i < setting.count; i++) {
+            let number = random(setting.from, setting.to);
+            data[i] = {
+                exercise: number,
+                answer: number
+            };
         }
-    }, [dispatch, executionMode, setting.count, setting.from, setting.to]);
+        dispatch(changeTotals(data))
+        return data;
+    }, [dispatch, setting.count, setting.from, setting.to]);
 
     const updateStats = useCallback(() => {
         return {all: setting.count};
@@ -35,6 +33,7 @@ const Application: React.FC<any> = () => {
 
     return <ApplicationLayout
         createOutputs={createOutputs}
+        updateAnswersTotals={createTotals}
         displayType="basic"
         updateStats={updateStats}
         pictures="abacus"

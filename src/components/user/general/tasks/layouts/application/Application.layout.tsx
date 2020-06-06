@@ -7,6 +7,7 @@ import ApplicationTotals from "./application-totals/ApplicationTotals";
 import ApplicationOutput from "./application-output/ApplicationOutput";
 import {isEqual} from "lodash";
 import {TeacherState} from "../../../../../../store/reducers/teacher/store";
+import ApplicationRepeat from "./application-repeat/ApplicationRepeat";
 
 export type picturesFunction = (exercises: any) => any[];
 
@@ -27,7 +28,7 @@ interface ApplicationProps {
 
     pictures?: string[] | 'abacus' | picturesFunction;
     requestSetting?: { url: string, method?: 'post' | 'get', setting?: any };
-    updateAnswersTotals?: (data: any, currentTimes?: number) => any;
+    updateAnswersTotals?: any;
     createOutputs?: (totals: any, currentTimes: number) => any;
     updateStats?: () => StatsActionProps;
 }
@@ -49,7 +50,7 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
         displayType,
     }
 ) => {
-    const executionMode = useSelector((state:TeacherState) => state.game.executionMode);
+    const executionMode = useSelector((state: TeacherState) => state.game.executionMode);
     // console.log('layout')
 
     const output = <ApplicationOutput
@@ -69,13 +70,23 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
             {output}
         </ApplicationFetch>
 
-    return <ApplicationTotals
+    if (updateAnswersTotals && !requestSetting && executionMode === 'fetch')
+        return <ApplicationTotals
+            createOutputs={createOutputs}
+            pictures={pictures}
+            createTotals={updateAnswersTotals}
+            updateStats={updateStats}
+        >
+            {output}
+        </ApplicationTotals>;
+
+    return <ApplicationRepeat
         createOutputs={createOutputs}
         pictures={pictures}
         updateStats={updateStats}
     >
         {output}
-    </ApplicationTotals>;
+    </ApplicationRepeat>;
 };
 
 const areEqual = (prevProps: any, nextProps: any) => {

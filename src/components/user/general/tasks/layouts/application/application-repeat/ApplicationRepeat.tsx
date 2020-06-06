@@ -1,33 +1,32 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {picturesFunction} from "../Application.layout";
+import {useDispatch, useSelector} from "react-redux";
 import {
     changeOutputs,
     changeStats,
     gameSubSelector,
-    StatsActionProps,
+    StatsActionProps
 } from "../../../../../../../store/reducers/common/game/gameSplice";
-import {LoadingBlock} from "../../../../../../../lib";
 import {useLoadSoundsEffect} from "../application-output/use-load-sounds.effect";
-import {useDispatch, useSelector} from "react-redux";
+import {LoadingBlock} from "../../../../../../../lib";
+import {picturesFunction} from "../Application.layout";
 
-interface ApplicationTotalsProps {
+interface ApplicationRepeatProps {
     pictures?: string[] | 'abacus' | picturesFunction;
     createOutputs?: (totals: any, currentTimes: number) => any;
     updateStats?: () => StatsActionProps;
-    createTotals: () => any;
 }
 
-const ApplicationTotals: React.FC<ApplicationTotalsProps> = (
+const ApplicationRepeat:React.FC<ApplicationRepeatProps> = (
     {
         updateStats,
         createOutputs = (totals: any) => totals.map((total: any) => total.exercise),
-        createTotals,
         children,
     }
 ) => {
     const [loading, setLoading] = useState(true);
     const dispatch = useDispatch();
 
+    const totals = useSelector(gameSubSelector('totals'));
     const currentTimes = useSelector(gameSubSelector('currentTimes'));
     const setting = useSelector(gameSubSelector( 'setting'));
 
@@ -48,15 +47,14 @@ const ApplicationTotals: React.FC<ApplicationTotalsProps> = (
     useEffect(() => {
         (async () => {
             setLoading(true);
-            const createdTotals = createTotals();
-            checkAndUpdateStats(createdTotals);
-            const createdOutputs = await createAndUpdateOutputs(createdTotals);
+            checkAndUpdateStats(totals);
+            const createdOutputs = await createAndUpdateOutputs(totals);
             dispatch(changeOutputs(createdOutputs));
             setLoading(false);
         })();
-    }, [checkAndUpdateStats, createAndUpdateOutputs, createTotals, dispatch]);
+    }, [checkAndUpdateStats, createAndUpdateOutputs, dispatch, totals]);
 
-    // console.log('Totals');
+    console.log('Totals');
 
     if (loading)
         return <LoadingBlock title="Настройка упражнения..."/>;
@@ -64,4 +62,4 @@ const ApplicationTotals: React.FC<ApplicationTotalsProps> = (
     return <>{children}</>;
 };
 
-export default ApplicationTotals;
+export default ApplicationRepeat;
