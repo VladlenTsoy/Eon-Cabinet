@@ -1,5 +1,6 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import WordListFormBody from "./word-list-form-body/WordListFormBody";
+import {useScreenWindow} from "../../../../../../../../effects/use-screen-window.effect";
 
 interface SettingWordsListProps {
     userSetting?: any;
@@ -45,6 +46,21 @@ const WordList: React.FC<SettingWordsListProps> = (
             Object.values(userSetting.several).map((several: any) => addSetting(several));
     }, [userSetting, addSetting]);
 
+    /****/
+    const [, isBreakpoint] = useScreenWindow({breakpoint: 'sm'});
+
+    const updateSettingForSend = useCallback((setting: any) => {
+        setting.column = isBreakpoint ? 2 : 5;
+        return setting;
+    }, [isBreakpoint]);
+
+    const startTraining = useCallback(async (setting: any, print?) => {
+        addSettingHomework && await addSettingHomework(updateSettingForSend(setting));
+        startApplication && await startApplication(updateSettingForSend(setting), print);
+        return setting;
+    }, [addSettingHomework, startApplication, updateSettingForSend])
+    
+
     return <WordListFormBody
         initialValues={{
             mode: 'basic',
@@ -52,8 +68,8 @@ const WordList: React.FC<SettingWordsListProps> = (
             ...userSetting
         }}
         clearSaveSetting={clearSaveSetting}
-        startApplication={startApplication}
-        addSettingHomework={addSettingHomework}
+        startApplication={startApplication && startTraining}
+        addSettingHomework={addSettingHomework && startTraining}
         deleteSetting={deleteSetting}
         addSetting={addSetting}
         fields={fields}
