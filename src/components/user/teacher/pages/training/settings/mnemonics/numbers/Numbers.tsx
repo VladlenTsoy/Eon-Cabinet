@@ -1,6 +1,7 @@
-import React, {useState} from "react";
+import React, {useCallback, useState} from "react";
 import FormSettingLayout from "../../mental/layout/form-setting/FormSetting.layout";
 import FormItems from "./form-items/FormItems";
+import {useScreenWindow} from "../../../../../../../../effects/use-screen-window.effect";
 
 interface NumbersProps {
     userSetting?: any;
@@ -25,6 +26,19 @@ const Numbers: React.FC<NumbersProps> = (
     const onChangeHandler = (changeValues: any, allValues: any) => {
         setTypeTask(allValues['task-mode']);
     };
+    /****/
+    const [, isBreakpoint] = useScreenWindow({breakpoint: 'sm'});
+
+    const updateSettingForSend = useCallback((setting: any) => {
+        setting.column = isBreakpoint ? 2 : 5;
+        return setting;
+    }, [isBreakpoint]);
+
+    const startTraining = useCallback(async (setting: any, print?) => {
+        addSettingHomework && await addSettingHomework(updateSettingForSend(setting));
+        startApplication && await startApplication(updateSettingForSend(setting), print);
+        return setting;
+    }, [addSettingHomework, startApplication, updateSettingForSend])
 
     return <FormSettingLayout
         initialValues={{
@@ -38,8 +52,8 @@ const Numbers: React.FC<NumbersProps> = (
         onValuesChange={onChangeHandler}
         userSetting={setting}
         clearSaveSetting={clearSaveSetting}
-        startApplication={startApplication}
-        addSettingHomework={addSettingHomework}
+        startApplication={startApplication && startTraining}
+        addSettingHomework={addSettingHomework && startTraining}
     >
         <FormItems typeTask={typeTask}/>
     </FormSettingLayout>
