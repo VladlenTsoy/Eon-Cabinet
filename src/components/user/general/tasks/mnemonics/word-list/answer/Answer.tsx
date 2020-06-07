@@ -11,7 +11,7 @@ const Answer: React.FC = () => {
 
     const checkHandler = (_values: any) => {
         const values = setting.mode === 'list' ? flattenDepth(_values.answer, 2) : _values.answer;
-        const _totals = Object.values(totals).map((total: any, key: number) => ({
+        const createdTotals = Object.values(totals).map((total: any, key: number) => ({
             ...total,
             user: values[key],
             result: String(total.exercise.word)
@@ -22,9 +22,9 @@ const Answer: React.FC = () => {
         }));
 
         return {
-            totals: _totals,
+            totals: createdTotals,
             status: 'result',
-            stats: {all: _totals.length, success: _totals.filter((val: any) => val.result).length},
+            success: createdTotals.filter((val: any) => val.result).length,
         };
     };
 

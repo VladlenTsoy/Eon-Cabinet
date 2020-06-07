@@ -27,20 +27,20 @@ const Answer: React.FC = () => {
     };
 
     const checkHandler = (values: any) => {
-        let _totals = totals.map((total: any, key: number) => {
+        const createdTotals = totals.map((total: any, key: number) => {
             let user = values.answer[key];
             let result = namePreparation(total.exercise.country) === namePreparation(values.answer[key].country);
 
-            if (Number(setting.mode) > 1) {
+            if (Number(setting.mode) > 1)
                 result = result && namePreparation(total.exercise.capital) === namePreparation(values.answer[key].capital);
-            }
+
             return {...total, user, result};
         });
 
         return {
-            totals: _totals,
+            totals: createdTotals,
             status: 'result',
-            stats: {all: setting.count, success: _totals.filter((val: any) => val.result).length},
+            success: createdTotals.filter((val: any) => val.result).length,
         };
     };
 

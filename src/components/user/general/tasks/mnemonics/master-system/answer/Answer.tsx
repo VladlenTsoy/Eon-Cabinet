@@ -8,15 +8,15 @@ const Answer: React.FC = () => {
     const {totals} = useSelector(gameSelector);
 
     const checkHandler = (values: any) => {
-        let _totals = totals.map((total: any, key: number) => ({
+        const createdTotals = totals.map((total: any, key: number) => ({
             ...total,
             user: values.answer[key],
             result: String(total.exercise.word).toLowerCase() === String(values.answer[key]).toLowerCase()
         }));
         return {
             status: 'result',
-            totals: _totals,
-            stats: {all: totals.length, success: _totals.filter((val: any) => val.result).length},
+            totals: createdTotals,
+            success: createdTotals.filter((val: any) => val.result).length,
         };
     };
 

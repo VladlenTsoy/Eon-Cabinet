@@ -17,19 +17,19 @@ const InputsWrapper = styled.div`
 `;
 
 const Answer: React.FC = () => {
-    const {setting, totals} = useSelector(gameSelector);
+    const {totals} = useSelector(gameSelector);
 
     const checkHandler = (values: any) => {
-        let _totals = totals.map((total: any, key: number) => {
-            let user = values.answer[key];
-            let result = Number(total.exercise.number) === Number(values.answer[key].number);
+        const createdTotals = totals.map((total: any, key: number) => {
+            const user = values.answer[key];
+            const result = Number(total.exercise.number) === Number(values.answer[key].number);
             return {...total, user, result};
         });
 
         return {
             status: 'result',
-            totals: _totals,
-            stats: {all: setting.count, success: _totals.filter((val: any) => val.result).length},
+            totals: createdTotals,
+            success: createdTotals.filter((val: any) => val.result).length,
         };
     };
 

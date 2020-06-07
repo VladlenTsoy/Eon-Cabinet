@@ -28,7 +28,7 @@ const Answer: React.FC = () => {
     };
 
     const checkHandler = (values: any) => {
-        let _totals = totals.map((total: any, key: number) => {
+        let createdTotals = totals.map((total: any, key: number) => {
             let user = values.answer[key];
             let result = namePreparation(total.exercise.full_name) === namePreparation(values.answer[key].full_name);
 
@@ -41,9 +41,9 @@ const Answer: React.FC = () => {
         });
 
         return {
-            totals: _totals,
+            totals: createdTotals,
             status: 'result',
-            stats: {all: setting.count, success: _totals.filter((val: any) => val.result).length},
+            success: createdTotals.filter((val: any) => val.result).length,
         };
     };
 

@@ -5,15 +5,13 @@ import FormInputAnswerLayout from "../../../layouts/answer/form-input-answer/For
 import {gameSelector} from "../../../../../../../store/reducers/common/game/gameSplice";
 
 const Answer = () => {
-    const {stats, currentTimes, totals} = useSelector(gameSelector);
+    const {currentTimes, totals} = useSelector(gameSelector);
 
-    const onFinishSubmit = (values: any) => {
+    const onFinishSubmit = (values: any, success = 0) => {
         let result = totals[currentTimes].answer === Number(values.answer);
-        result && stats.success++;
-        totals[currentTimes] = {
-            ...totals[currentTimes], ...{user: Number(values.answer), result: result}
-        };
-        return {status: 'result', stats, totals};
+        result && success++;
+        const total = {user: Number(values.answer), result: result};
+        return {status: 'result', success, total};
     };
 
 
