@@ -19,8 +19,8 @@ const CancelToken = axios.CancelToken;
 interface ApplicationFetchProps {
     pictures?: string[] | 'abacus' | picturesFunction;
     requestSetting: { url: string, method?: 'post' | 'get', setting?: any };
-    createTotals?: (data: any, currentTimes?: number) => any;
-    createOutputs?: (totals: any, currentTimes: number) => any;
+    createTotals: (data: any, currentTimes?: number) => any;
+    createOutputs: (totals: any, currentTimes: number) => any;
     updateStats?: () => StatsActionProps;
 }
 
@@ -29,8 +29,8 @@ const ApplicationFetch: React.FC<ApplicationFetchProps> = (
         updateStats,
         requestSetting,
         pictures,
-        createTotals = (data: any) => data.map((exercise: any) => ({ exercise })),
-        createOutputs = (totals: any) => totals.map((total: any) => total.exercise),
+        createTotals ,
+        createOutputs,
         children,
     }
 ) => {

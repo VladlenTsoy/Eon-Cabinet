@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {StatsActionProps} from "store/reducers/common/game/gameSplice";
 import {SettingAnzanProps} from "../../../../../../store/reducers/common/game/setting/games-types/anzan.types";
 import ApplicationFetch from './application-fetch/ApplicationFetch';
@@ -51,6 +51,17 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
     }
 ) => {
     const executionMode = useSelector((state: TeacherState) => state.game.executionMode);
+
+    const selectCreateOutputs = useCallback(
+        (totals: any, currentTimes: number) =>
+            createOutputs ? createOutputs(totals, currentTimes) : totals.map((total: any) => total.exercise),
+        [createOutputs]);
+
+    const selectCreateTotals = useCallback(
+        (data?: any, currentTimes?: number) =>
+            updateAnswersTotals ? updateAnswersTotals(data, currentTimes) : data.map((exercise: any) => ({exercise})),
+        [updateAnswersTotals]);
+
     // console.log('layout')
 
     const output = <ApplicationOutput
@@ -62,8 +73,8 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
     if (requestSetting && executionMode === 'fetch')
         return <ApplicationFetch
             requestSetting={requestSetting}
-            createOutputs={createOutputs}
-            createTotals={updateAnswersTotals}
+            createOutputs={selectCreateOutputs}
+            createTotals={selectCreateTotals}
             pictures={pictures}
             updateStats={updateStats}
         >
@@ -72,16 +83,16 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
 
     if (updateAnswersTotals && !requestSetting && executionMode === 'fetch')
         return <ApplicationTotals
-            createOutputs={createOutputs}
+            createOutputs={selectCreateOutputs}
             pictures={pictures}
-            createTotals={updateAnswersTotals}
+            createTotals={selectCreateTotals}
             updateStats={updateStats}
         >
             {output}
         </ApplicationTotals>;
 
     return <ApplicationRepeat
-        createOutputs={createOutputs}
+        createOutputs={selectCreateOutputs}
         pictures={pictures}
         updateStats={updateStats}
     >
