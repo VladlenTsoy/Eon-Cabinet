@@ -45,7 +45,7 @@ const Application: React.FC<ApplicationProps> = ({otherUrl}) => {
         let success = 0;
         const flattenAnswers = flattenDepth(answers, 2);
 
-        const _totals = totals.map((total: any, key: number) => {
+        const createdTotals = totals.map((total: any, key: number) => {
             if (Number(total.answer) === Number(flattenAnswers[key]))
                 success++;
 
@@ -56,7 +56,7 @@ const Application: React.FC<ApplicationProps> = ({otherUrl}) => {
             };
         });
 
-        dispatch(changeTotals(_totals));
+        dispatch(changeTotals(createdTotals));
         dispatch(changeStats({success}));
         dispatch(changeStatus('result'));
     }, [dispatch, totals]);

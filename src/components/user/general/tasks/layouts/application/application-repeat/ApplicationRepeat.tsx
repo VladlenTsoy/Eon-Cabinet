@@ -54,7 +54,7 @@ const ApplicationRepeat:React.FC<ApplicationRepeatProps> = (
         })();
     }, [checkAndUpdateStats, createAndUpdateOutputs, dispatch, totals]);
 
-    console.log('Totals');
+    // console.log('Repeat');
 
     if (loading)
         return <LoadingBlock title="Настройка упражнения..."/>;

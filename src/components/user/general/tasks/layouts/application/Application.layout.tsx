@@ -1,12 +1,11 @@
 import React, {useCallback} from 'react';
-import {StatsActionProps} from "store/reducers/common/game/gameSplice";
+import {gameSubSelector, StatsActionProps} from "store/reducers/common/game/gameSplice";
 import {SettingAnzanProps} from "../../../../../../store/reducers/common/game/setting/games-types/anzan.types";
 import ApplicationFetch from './application-fetch/ApplicationFetch';
 import {useSelector} from "react-redux";
 import ApplicationTotals from "./application-totals/ApplicationTotals";
 import ApplicationOutput from "./application-output/ApplicationOutput";
 import {isEqual} from "lodash";
-import {TeacherState} from "../../../../../../store/reducers/teacher/store";
 import ApplicationRepeat from "./application-repeat/ApplicationRepeat";
 
 export type picturesFunction = (exercises: any) => any[];
@@ -50,7 +49,8 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
         displayType,
     }
 ) => {
-    const executionMode = useSelector((state: TeacherState) => state.game.executionMode);
+    const executionMode = useSelector(gameSubSelector("executionMode"));
+    const currentTimes = useSelector(gameSubSelector("currentTimes"));
 
     const selectCreateOutputs = useCallback(
         (totals: any, currentTimes: number) =>
@@ -70,7 +70,7 @@ const ApplicationLayout: React.FC<ApplicationProps> = (
         carouselSetting={carouselSetting} CustomDisplay={CustomDisplay}
     />;
 
-    if (requestSetting && executionMode === 'fetch')
+    if (requestSetting && executionMode === 'fetch' && currentTimes === 0)
         return <ApplicationFetch
             requestSetting={requestSetting}
             createOutputs={selectCreateOutputs}
