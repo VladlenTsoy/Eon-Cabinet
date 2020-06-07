@@ -45,7 +45,6 @@ const Buttons: React.FC<ButtonsProps> = (
             })
             .catch(() => {
                 setLoading(false);
-
             })
     };
 
@@ -83,9 +82,9 @@ const Buttons: React.FC<ButtonsProps> = (
         {
             addSettingHomework ?
                 isEdit ?
-                    <Button htmlType="submit" type="primary" onClick={onFinish}
+                    <Button htmlType="submit" type="primary" loading={loading} onClick={onFinish}
                             icon={<EditOutlined/>}>Изменить</Button> :
-                    <Button htmlType="submit" type="primary" onClick={onFinish}
+                    <Button htmlType="submit" type="primary" loading={loading} onClick={onFinish}
                             icon={<PlusOutlined/>}>Добавить</Button> :
                 <>
                     <Button icon={<UndoOutlined/>} loading={loading} onClick={clearSetting}>Очистить</Button>
