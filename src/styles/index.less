@@ -128,7 +128,7 @@ span.ant-input-affix-wrapper {
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: textfield;
+  -webkit-appearance: none;
   margin: 0;
 }
 
@@ -139,7 +139,14 @@ input[type=number] {
 
 body {
   input[type="text"], input[type="password"], input[type="number"], textarea {
-    -webkit-appearance: textfield;
+    -webkit-appearance: none;
     -moz-appearance: textfield;
+    margin: 0;
+
+    :hover{
+      -webkit-appearance: none;
+      -moz-appearance: textfield;
+      margin: 0;
+    }
   }
 }
