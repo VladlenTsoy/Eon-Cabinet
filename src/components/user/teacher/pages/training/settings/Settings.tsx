@@ -12,7 +12,6 @@ import {changeSetting, changeExecutionMode} from "store/reducers/common/game/gam
 const Mental = React.lazy(() => import("./mental/Mental"));
 const Mnemonics = React.lazy(() => import("./mnemonics/Mnemonics"));
 
-
 const TasksWrapper: any = styled<any>(Row)`
   height: ${(props: any) => props.max === 'true' ? '100%' : 'auto'};
   
@@ -120,7 +119,6 @@ const Tasks: React.FC = () => {
 
     return <React.Suspense fallback={<LoadingBlock title="Загрузка упражнений..."/>}>
         <TasksWrapper
-
             justify="center"
             align="middle"
             gutter={15}
@@ -150,7 +148,6 @@ const Tasks: React.FC = () => {
             </Col>
         </TasksWrapper>
     </React.Suspense>
-
 };
 
 export default Tasks;

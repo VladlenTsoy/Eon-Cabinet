@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import FlashFormItems from "./flash-form-items/FlashFormItems";
 import ConfigBlock from "../../config/Config";
 import FormSettingLayout from "../layout/form-setting/FormSetting.layout";
@@ -20,6 +20,17 @@ const Flash: React.FC<FlashProps> = (
         isEdit,
     }
 ) => {
+    const updateSettingForSend = useCallback((setting: any) => {
+        setting.extra.push('abacus');
+        return setting;
+    }, []);
+
+    const startTraining = useCallback(async (setting: any, print?) => {
+        addSettingHomework && await addSettingHomework(updateSettingForSend(setting));
+        startApplication && await startApplication(updateSettingForSend(setting), print);
+        return setting;
+    }, [addSettingHomework, startApplication, updateSettingForSend])
+
     return <FormSettingLayout
         initialValues={{
             from: 1,
@@ -32,8 +43,8 @@ const Flash: React.FC<FlashProps> = (
         userSetting={userSetting}
         isEdit={isEdit}
         clearSaveSetting={clearSaveSetting}
-        startApplication={startApplication}
-        addSettingHomework={addSettingHomework}>
+        startApplication={startApplication && startTraining}
+        addSettingHomework={addSettingHomework && startTraining}>
         <FlashFormItems/>
         <ConfigBlock
             sounds={{

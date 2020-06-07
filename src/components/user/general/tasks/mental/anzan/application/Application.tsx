@@ -113,7 +113,6 @@ const Application: React.FC<ApplicationProps> = ({otherUrl}) => {
                 setting.anzan === 'list' ? '/algorithm/list' : setting.anzan === 'double' ? '/algorithm/double' : '/algorithm'
         }}
         pictures="abacus"
-
         listSetting={listSetting} updateResultsTotals={updateResultsTotals}
         timer={setting.anzan === 'list'} nextStatus={setting.anzan === 'list' ? 'result' :
         setting.extra.includes('group') ? "intermediate" : "answer"} displayType={setting.anzan}
