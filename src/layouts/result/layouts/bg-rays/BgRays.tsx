@@ -70,7 +70,7 @@ const Wrapper: React.FC<StyledProps> = styled.div<StyledProps>`
     border-color: transparent ${props => props.rayColor};
     width: 0;
     height: 0;
-    font-size: 40px;
+    font-size: 40rem;
   }
   li {
     left: -20em;
