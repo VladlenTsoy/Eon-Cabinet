@@ -11,7 +11,7 @@ const StarsWrapper: React.FC<StarsStyleProps> = styled.div<StarsStyleProps>`
   position: relative;
   transform: scale(1.5);
   animation: BackStars 1s ${props => props.delay}ms ease-in-out forwards;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
   
   @media (max-width: 576px) {
     transform: scale(1.1);

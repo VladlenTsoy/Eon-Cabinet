@@ -19,6 +19,7 @@ const ResultWrapper = styled.div`
     position: relative;
     padding: 1.5rem;
     min-height: 100%;
+    display: grid;
     
     @media (max-width: 768px) {
       padding: 1rem;
@@ -29,6 +30,8 @@ const ResultWrapper = styled.div`
     }
     
     > .container{
+      max-width: 1350px;
+      margin: 0 auto;
       position: relative;
       z-index: 10;
       display: grid;
@@ -36,6 +39,7 @@ const ResultWrapper = styled.div`
       align-items: center;
       height: 100%;
       gap: 1.5rem;
+      width: 100%;
       
       @media (max-width: 992px) {
         grid-template-columns: 1fr 1fr;

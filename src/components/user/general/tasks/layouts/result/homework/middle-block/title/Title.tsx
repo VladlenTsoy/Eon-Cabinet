@@ -9,7 +9,7 @@ interface TitleStyleProps {
 
 const TitleWrapper:React.FC<TitleStyleProps> = styled.div<TitleStyleProps>`
   text-align: center;
-  font-size: 90px;
+  font-size: 70px;
   font-weight: 600;
   line-height: 1;
   animation-name: fadeInUp;
@@ -20,6 +20,8 @@ const TitleWrapper:React.FC<TitleStyleProps> = styled.div<TitleStyleProps>`
   background: ${props => props.theme['@component-background']};
   border-radius: 500rem;
   padding: 0.5rem 3rem;
+  margin: 0 auto;
+  max-width: 450px;
   
   @media (max-width: 576px) {
     font-size: 40px;

@@ -10,7 +10,7 @@ interface CounterStyleProps {
 const CounterWrapper: React.FC<CounterStyleProps> = styled.div<CounterStyleProps>` 
   display: flex;
   justify-content: center;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
   margin-top: 2rem;
   
   .counter{
