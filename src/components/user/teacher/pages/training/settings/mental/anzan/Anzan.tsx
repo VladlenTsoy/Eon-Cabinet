@@ -43,6 +43,7 @@ const Anzan: React.FC<AnzanProps> = (
     const [isClearForm, setIsClearForm] = useState(false);
     const [initialValue, setInitialValue] = useState(userSetting);
     const [loading, setLoading] = useState(false);
+    const [mode, setMode] = useState('plus');
     const [typeTask, setTypeTask] = useState(mods === 'addition' ? 'basic' : 'multiply');
     const [length, setLength] = useState('1');
     const [isMultiplication, setIsMultiplication] = useState(Boolean(mods && mods === 'multiplication'));
@@ -54,6 +55,7 @@ const Anzan: React.FC<AnzanProps> = (
         if (!isMultiAnzan)
             setTypeTask(types.getFieldValue('anzan'));
         setIsMultiplication(mode === 'divide' || mode === 'multiply');
+        setMode(mode);
         setLength(header.getFieldValue('length'));
     };
 
@@ -114,6 +116,7 @@ const Anzan: React.FC<AnzanProps> = (
             isClearForm={isClearForm}
             initialValues={initialValue}
             mods={mods}
+            mode={mode}
             isMultiAnzan={isMultiAnzan}
             sound={sound}
             typeTask={typeTask}

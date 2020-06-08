@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import ConfigBlock from "../../../../config/Config";
 import ListSetting from "./list/List";
 import BasicSetting from "./basic/Basic";
@@ -13,6 +13,7 @@ interface AnzanFormBodyProps {
     mods?: string;
 
     typeTask: string;
+    mode: string;
     length: string;
     isMultiplication: boolean;
 }
@@ -27,15 +28,26 @@ const BodyForm: React.FC<AnzanFormBodyProps> = (
 
         isMultiplication,
         typeTask,
+        mode,
         length,
     }
 ) => {
     const [form] = Form.useForm();
+    const [disabledSoundLang, setDisabledSoundLang] = useState(false);
 
     useEffect(() => {
         if (isClearForm)
             form.resetFields()
     }, [form, isClearForm]);
+
+    useEffect(() => {
+        if ((typeTask !== 'basic' && typeTask !== 'turbo')|| (mode !== 'plus' && mode !== 'plus-minus' && mode !== 'minus') || (Number(length) > 3)) {
+            form.setFieldsValue({sound: 'basic'});
+            setDisabledSoundLang(true);
+        } else {
+            setDisabledSoundLang(true);
+        }
+    }, [length, typeTask, mode, form])
 
     return <Form
         form={form}
@@ -67,7 +79,7 @@ const BodyForm: React.FC<AnzanFormBodyProps> = (
             sounds={
                 typeTask !== 'list' && sound ?
                     {
-                        language: !isMultiplication && typeTask !== 'double',
+                        language: !isMultiplication && typeTask !== 'double' && Number(length) <= 3,
                     } : false
             }
             mods={
