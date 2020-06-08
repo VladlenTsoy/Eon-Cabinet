@@ -44,7 +44,7 @@ const Anzan: React.FC<AnzanProps> = (
     const [initialValue, setInitialValue] = useState(userSetting);
     const [loading, setLoading] = useState(false);
     const [mode, setMode] = useState('plus');
-    const [typeTask, setTypeTask] = useState(mods === 'addition' ? 'basic' : 'multiply');
+    const [typeTask, setTypeTask] = useState(mods === 'multiplication' ? 'multiply' : 'basic');
     const [length, setLength] = useState('1');
     const [isMultiplication, setIsMultiplication] = useState(Boolean(mods && mods === 'multiplication'));
 
