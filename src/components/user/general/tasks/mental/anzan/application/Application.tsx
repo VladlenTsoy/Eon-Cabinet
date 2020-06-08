@@ -18,17 +18,30 @@ interface ApplicationProps {
 const Application: React.FC<ApplicationProps> = ({otherUrl}) => {
     const dispatch = useDispatch();
     const setting = useSelector(gameSubSelector('setting'));
-    const totals = useSelector(gameSubSelector( 'totals'));
+    const totals = useSelector(gameSubSelector('totals'));
     const [isMultiplication] = useState(setting.mode === 'divide' || setting.mode === 'multiply');
 
     // Update exercise mirror
     const [updateExercises, updateMirror] = useUpdateOutputEffect({extra: setting.extra});
-    
+
     /**
      * Создание Totals
      */
-    const createTotals = useCallback((data) =>
-            data.map((exercise: number[]) => {
+    const createTotals = useCallback((data) => {
+        if (setting.anzan === 'double')
+            return data.map((exercises: any[]) => {
+                return exercises.map((exercise: number[]) => {
+                    exercise = setting?.extra.includes('mirror') ? updateMirror(exercise) : exercise;
+                    return {
+                        exercise,
+                        answer: isMultiplication ?
+                            setting.mode === 'multiply' ? exercise[0] * exercise[1] : exercise[0] / exercise[1] :
+                            exercise.reduce((acc, val) => acc + val)
+                    }
+                })
+            });
+        else
+            return data.map((exercise: number[]) => {
                 exercise = setting?.extra.includes('mirror') ? updateMirror(exercise) : exercise;
                 return {
                     exercise,
@@ -36,7 +49,8 @@ const Application: React.FC<ApplicationProps> = ({otherUrl}) => {
                         setting.mode === 'multiply' ? exercise[0] * exercise[1] : exercise[0] / exercise[1] :
                         exercise.reduce((acc, val) => acc + val)
                 }
-            }), [isMultiplication, setting, updateMirror]);
+            })
+    }, [isMultiplication, setting, updateMirror]);
 
     /**
      *
@@ -80,6 +94,7 @@ const Application: React.FC<ApplicationProps> = ({otherUrl}) => {
 
     // Создание отоюражения цифр
     const createOutputs = useCallback((totals, currentTimes) => {
+
         // Для листов
         if (setting.anzan === 'list') {
             let outputs = Object.values(totals).map((total: any) => addOutputToTotals(total.exercise));
@@ -90,7 +105,7 @@ const Application: React.FC<ApplicationProps> = ({otherUrl}) => {
 
         // Для Двойной
         else if (setting.anzan === 'double')
-            return [addOutputToTotals(totals[0].exercise), addOutputToTotals(totals[1].exercise)];
+            return [addOutputToTotals(totals[currentTimes][0].exercise), addOutputToTotals(totals[currentTimes][1].exercise)];
 
         // Для Обычный и Турбо
         return addOutputToTotals(totals[currentTimes].exercise);
