@@ -47,15 +47,17 @@ const Anzan: React.FC<AnzanProps> = (
     const [typeTask, setTypeTask] = useState(mods === 'multiplication' ? 'multiply' : 'basic');
     const [length, setLength] = useState('1');
     const [isMultiplication, setIsMultiplication] = useState(Boolean(mods && mods === 'multiplication'));
+    const [isMirror, setIsMirror] = useState(false);
 
     const onFormChangeHandler = (formName: string, info: any) => {
-        const {types, header} = info.forms;
+        const {types, header, body} = info.forms;
         const mode = header.getFieldValue('mode');
 
         if (!isMultiAnzan)
             setTypeTask(types.getFieldValue('anzan'));
         setIsMultiplication(mode === 'divide' || mode === 'multiply');
         setMode(mode);
+        setIsMirror(body.getFieldValue('extra').includes('mirror'));
         setLength(header.getFieldValue('length'));
     };
 
@@ -93,6 +95,8 @@ const Anzan: React.FC<AnzanProps> = (
         if (typeof initialValue === 'object' && Object.keys(initialValue).length) {
             setTypeTask(initialValue.anzan);
             setIsMultiplication(initialValue.mode === 'divide' || initialValue.mode === 'multiply');
+            setMode(initialValue.mode);
+            setIsMirror(initialValue.extra.includes('mirror'));
             setLength(initialValue.length);
         }
     }, [initialValue]);
@@ -117,6 +121,7 @@ const Anzan: React.FC<AnzanProps> = (
             initialValues={initialValue}
             mods={mods}
             mode={mode}
+            isMirror={isMirror}
             isMultiAnzan={isMultiAnzan}
             sound={sound}
             typeTask={typeTask}

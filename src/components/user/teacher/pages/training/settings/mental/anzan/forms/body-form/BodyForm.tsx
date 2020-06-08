@@ -12,6 +12,7 @@ interface AnzanFormBodyProps {
     isMultiAnzan: boolean;
     mods?: string;
 
+    isMirror: boolean;
     typeTask: string;
     mode: string;
     length: string;
@@ -27,6 +28,7 @@ const BodyForm: React.FC<AnzanFormBodyProps> = (
         mods,
 
         isMultiplication,
+        isMirror,
         typeTask,
         mode,
         length,
@@ -40,10 +42,10 @@ const BodyForm: React.FC<AnzanFormBodyProps> = (
     }, [form, isClearForm]);
 
     useEffect(() => {
-        if ((typeTask !== 'basic' && typeTask !== 'turbo')|| (mode !== 'plus' && mode !== 'plus-minus' && mode !== 'minus') || (Number(length) > 3))
+        if ((typeTask !== 'basic' && typeTask !== 'turbo') || (mode !== 'plus' && mode !== 'plus-minus' && mode !== 'minus') || (Number(length) * (isMirror ? 2 : 1) > 3))
             form.setFieldsValue({sound: 'basic'});
 
-    }, [length, typeTask, mode, form])
+    }, [length, typeTask, mode, form, isMirror])
 
     return <Form
         form={form}
@@ -75,7 +77,7 @@ const BodyForm: React.FC<AnzanFormBodyProps> = (
             sounds={
                 typeTask !== 'list' && sound ?
                     {
-                        language: !isMultiplication && typeTask !== 'double' && Number(length) <= 3,
+                        language: !isMultiplication && typeTask !== 'double' && Number(length) * (isMirror ? 2 : 1) <= 3,
                     } : false
             }
             mods={
