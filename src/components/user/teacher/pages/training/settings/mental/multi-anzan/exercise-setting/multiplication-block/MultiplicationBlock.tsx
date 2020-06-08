@@ -13,6 +13,12 @@ const MultiplicationWrapper = styled.div`
     color: ${props => props.theme.color_second};
   }
   
+  .fit{
+    width: 50%;
+    line-height: 1;
+    margin: 0 auto;
+  }
+  
   .desc{
     font-weight: 900;
     margin-bottom: 1rem;
@@ -20,7 +26,7 @@ const MultiplicationWrapper = styled.div`
     //padding: 0 1rem;
     display: inline-block;
     overflow: hidden;
-    line-height: 100px;
+    line-height: 0.7;
       
     span{
       color: ${props => props.theme.color_warning};
@@ -37,6 +43,7 @@ const MultiplicationBlock: React.FC<MultiplicationProps> = ({setting}) => {
 
     return <MultiplicationWrapper>
         <span className="title">Режим</span>
+        <div className="fit">
         <TextFit>
             <div className="desc">
                 {language.common.lengthNames[setting.length]}&nbsp;
@@ -44,6 +51,7 @@ const MultiplicationBlock: React.FC<MultiplicationProps> = ({setting}) => {
                 {setting.type === 'o' ? setting.theme : language.common.typeNames[1][setting.type]}
             </div>
         </TextFit>
+        </div>
     </MultiplicationWrapper>;
 };
 
