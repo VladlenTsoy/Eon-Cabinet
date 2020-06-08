@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {BrowserRouter as Router, Route, Switch, useHistory} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
-import {clearGame, gameSelector, changeSetting, changeTotals} from "store/reducers/common/game/gameSplice";
+import {clearGame, gameSelector, changeSetting} from "store/reducers/common/game/gameSplice";
 import {LoadingBlock} from "lib";
 import {useChangeActionNavbar} from "../../../../effects/use-change-action-navbar.effect";
 import TasksSwitch from "./Tasks.switch";
@@ -24,7 +24,6 @@ const TasksRoutes: React.FC<TasksProps> = ({urlBack, urlRoute}) => {
     useEffect(() => {
         return () => {
             dispatch(changeSetting(null));
-            dispatch(changeTotals([]));
             dispatch(clearGame());
         }
     }, [dispatch]);

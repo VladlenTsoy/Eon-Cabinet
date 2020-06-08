@@ -4,7 +4,7 @@ import {Button} from "antd";
 import styled from "styled-components";
 import {useHistory} from "react-router";
 import {useDispatch} from "react-redux";
-import {clearGame, refreshGame, changeTotals} from "../../../../../../../../store/reducers/common/game/gameSplice";
+import {clearGame, refreshGame} from "../../../../../../../../store/reducers/common/game/gameSplice";
 
 const HeaderWrapper = styled.div`
   display: flex;
@@ -27,7 +27,6 @@ const Header: React.FC = () => {
 
     const back = () => history.goBack();
     const again = () => {
-        dispatch(changeTotals([]));
         dispatch(clearGame());
     };
 

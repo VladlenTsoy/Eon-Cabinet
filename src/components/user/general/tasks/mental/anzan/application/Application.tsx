@@ -93,7 +93,7 @@ const Application: React.FC<ApplicationProps> = ({otherUrl}) => {
             return [addOutputToTotals(totals[0].exercise), addOutputToTotals(totals[1].exercise)];
 
         // Для Обычный и Турбо
-        return totals[currentTimes].exercise;
+        return addOutputToTotals(totals[currentTimes].exercise);
     }, [isMultiplication, addOutputToTotals, setting]);
 
     const [listSetting] = useState({

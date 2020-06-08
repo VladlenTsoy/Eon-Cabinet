@@ -63,9 +63,10 @@ const gameSlice = createSlice({
             state.totals[state.currentTimes] = merge(state.totals[state.currentTimes], action.payload);
         },
         clearGame(state) {
+            state.totals = [];
             state.stats = {all: 0, success: 0};
             state.status = 'start';
-            state.executionMode = 'first';
+            state.executionMode = 'fetch';
             state.currentTimes = 0;
         },
         nextGame(state) {

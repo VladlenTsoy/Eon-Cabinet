@@ -3,7 +3,7 @@ import {Card} from "lib";
 import {Button} from "antd";
 import {HistoryOutlined} from "@ant-design/icons";
 import {useDispatch} from "react-redux";
-import {clearGame, refreshGame, changeTotals} from "store/reducers/common/game/gameSplice";
+import {clearGame, refreshGame} from "store/reducers/common/game/gameSplice";
 import {useParams} from "react-router-dom";
 import {ResultMatchProps} from "../../Result";
 
@@ -17,7 +17,6 @@ const RepeatBlock: React.FC<RepeatBlockProps> = ({isView}) => {
 
     const repeatHandler = () => {
         if (isView) {
-            dispatch(changeTotals([]));
             dispatch(clearGame());
         } else
             dispatch(refreshGame());

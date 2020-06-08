@@ -2,14 +2,13 @@ import React from 'react';
 import {Button} from "antd";
 import {Card} from "lib";
 import {RedoOutlined} from '@ant-design/icons';
-import {clearGame, changeTotals} from "store/reducers/common/game/gameSplice";
+import {clearGame} from "store/reducers/common/game/gameSplice";
 import {useDispatch} from "react-redux";
 
 const AgainBlock = () => {
     const dispatch = useDispatch();
 
     const againHandler = () =>{
-        dispatch(changeTotals([]));
         dispatch(clearGame());
     };
 
