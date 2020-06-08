@@ -2,10 +2,9 @@ import React from 'react';
 import {Button} from "antd";
 import EditorExercises from "../editor-exercise/EditorExercises";
 import {FlagOutlined, UndoOutlined, UserAddOutlined} from '@ant-design/icons';
-import {FormInstance} from "antd/es/form";
 
 interface HeaderActionProps {
-    form: FormInstance;
+    mode: string;
     isMaxStudent?: boolean;
     addExercise: (setting: any) => void;
     loading: boolean;
@@ -15,7 +14,7 @@ interface HeaderActionProps {
 const HeaderAction: React.FC<HeaderActionProps> = (
     {
         loading,
-        form,
+        mode,
         addExercise,
         handlerClear,
         isMaxStudent
@@ -26,7 +25,7 @@ const HeaderAction: React.FC<HeaderActionProps> = (
             isMaxStudent ? null :
                 <EditorExercises
                     updateExercise={addExercise}
-                    mods={form.getFieldValue('mode')}
+                    mods={mode}
                 >
                     <Button icon={<UserAddOutlined/>} size="large">
                         Добавить участника

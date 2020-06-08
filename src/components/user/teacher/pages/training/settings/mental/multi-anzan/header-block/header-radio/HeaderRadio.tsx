@@ -3,7 +3,6 @@ import {FormItem} from "../../../../../../../../../../lib";
 import {Radio, Switch} from "antd";
 import {QuestionCircleOutlined} from '@ant-design/icons';
 import styled from "styled-components";
-import {FormInstance} from "antd/es/form";
 
 const SwitchWrapper = styled.div`
   display: flex;
@@ -18,16 +17,16 @@ const SwitchWrapper = styled.div`
 `;
 
 interface HeaderRadioProps {
-    form: FormInstance;
+    mode: string;
     isDisabledMode: boolean;
 }
 
-const HeaderRadio: React.FC<HeaderRadioProps> = ({form, isDisabledMode}) => {
+const HeaderRadio: React.FC<HeaderRadioProps> = ({mode, isDisabledMode}) => {
     return <>
         <FormItem name="mode">
             <Radio.Group
                 disabled={isDisabledMode}
-                value={form.getFieldValue('mode')}
+                value={mode}
                 buttonStyle="solid"
                 size="large"
             >
@@ -36,7 +35,7 @@ const HeaderRadio: React.FC<HeaderRadioProps> = ({form, isDisabledMode}) => {
             </Radio.Group>
         </FormItem>
         {
-            form.getFieldValue('mode') === 'multiplication' ?
+            mode === 'multiplication' ?
                 <SwitchWrapper>
                     <span>Примеры подряд <QuestionCircleOutlined/></span>
                     <FormItem

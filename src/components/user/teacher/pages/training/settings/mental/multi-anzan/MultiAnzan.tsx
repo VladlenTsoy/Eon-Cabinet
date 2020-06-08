@@ -106,7 +106,7 @@ const MultiAnzan: React.FC<MultiAnzanProps> = (
 
     useEffect(() => {
         try {
-            if (userSetting && userSetting.mode) {
+            if (userSetting?.mode) {
                 setFields([
                     {name: ['mode'], value: userSetting.mode},
                     {name: ['group'], value: userSetting.group},
@@ -120,6 +120,7 @@ const MultiAnzan: React.FC<MultiAnzanProps> = (
 
     return <Wrapper>
         <HeaderBlock
+            initialValues={userSetting}
             fields={fields}
             isMaxStudent={exercises.length >= 8}
             isDisabledMode={!!exercises.length}

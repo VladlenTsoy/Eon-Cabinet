@@ -28,6 +28,7 @@ const FormWrapper: React.FC<FormProps> = styled(Form)`
 
 interface HeaderBlockProps {
     fields: any;
+    initialValues: any;
     isDisabledMode: boolean;
     isMaxStudent?: boolean;
     onChange: (changedFields: any[], allFields: any[]) => void;
@@ -38,6 +39,7 @@ interface HeaderBlockProps {
 
 const HeaderBlock: React.FC<HeaderBlockProps> = (
     {
+        initialValues,
         fields,
         isDisabledMode,
         isMaxStudent,
@@ -47,6 +49,7 @@ const HeaderBlock: React.FC<HeaderBlockProps> = (
         clearExercise,
     }
 ) => {
+    const [mode, setMode] = useState(initialValues?.mode || 'addition');
     const [form] = Form.useForm();
     const [loading, setLoading] = useState(false);
 
@@ -62,6 +65,11 @@ const HeaderBlock: React.FC<HeaderBlockProps> = (
         }
     };
 
+    const onChangeForm = (changedValues: any) => {
+        if (changedValues.mode)
+            setMode(changedValues.mode);
+    }
+
     const handlerClear = () => {
         form.resetFields();
         clearExercise();
@@ -74,14 +82,15 @@ const HeaderBlock: React.FC<HeaderBlockProps> = (
                 fields={fields}
                 onFieldsChange={onChange}
                 id="multi-from"
+                onValuesChange={onChangeForm}
                 onFinish={handlerSubmit}
-                initialValues={{
+                initialValues={initialValues || {
                     mode: 'addition',
                     group: false
                 }}
             >
                 <HeaderRadio
-                    form={form}
+                    mode={mode}
                     isDisabledMode={isDisabledMode}
                 />
             </FormWrapper>
@@ -89,7 +98,7 @@ const HeaderBlock: React.FC<HeaderBlockProps> = (
                 loading={loading}
                 isMaxStudent={isMaxStudent}
                 handlerClear={handlerClear}
-                form={form}
+                mode={mode}
                 addExercise={addExercise}
             />
         </HeaderBlockWrapper>
