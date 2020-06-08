@@ -4,8 +4,9 @@ import Output from "../basic/output/Output";
 import {SettingAnzanBasicProps,} from "../../../../../../../../store/reducers/common/game/setting/games-types/anzan.types";
 import {useDispatch} from "react-redux";
 import {useAddInternal} from "../../../../../../../../effects/use-add-interval.effect";
-import {changeStatus,StatusProps} from "../../../../../../../../store/reducers/common/game/gameSplice";
+import {changeStatus, StatusProps} from "../../../../../../../../store/reducers/common/game/gameSplice";
 import {useSoundEffect} from "../use-sound.effect";
+import AbacusOutput from "../basic/abacus-output/AbacusOutput";
 
 const DoubleWrapper = styled.div`
   display: grid;
@@ -26,6 +27,12 @@ const DoubleWrapper = styled.div`
       }
     }
   } 
+`;
+
+const DoubleAbacusWrapper = styled.div`
+  display: flex;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
 `;
 
 interface DoubleProps {
@@ -70,6 +77,12 @@ const Double: React.FC<DoubleProps> = (
     useEffect(() => {
         outputInterval(outputs);
     }, [outputInterval, outputs]);
+
+    if (setting.extra && setting.extra.includes("abacus"))
+        return <DoubleAbacusWrapper>
+            <AbacusOutput setting={setting} output={output.one} key={`one-${output.key}`}/>
+            <AbacusOutput setting={setting} output={output.two} key={`two-${output.key}`}/>
+        </DoubleAbacusWrapper>;
 
     return <DoubleWrapper>
         <Output time={setting.time} output={output.one} key={`one-${output.key}`}/>

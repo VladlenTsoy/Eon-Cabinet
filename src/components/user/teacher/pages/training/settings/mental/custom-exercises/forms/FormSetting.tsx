@@ -96,7 +96,7 @@ const FormSetting: React.FC<FormSettingProps> = (
             let changeField = changedFields[0];
             if (fields.length) {
                 let selectFields = fields.find((field: any) => field.name.includes(changeField.name[0]));
-                if (changeField.value === selectFields.value)
+                if (changeField.value === selectFields?.value)
                     return false;
             }
 
