@@ -52,7 +52,7 @@ const Application: React.FC = () => {
 
     //
     const [loading] = useApiUserGeneral({
-        cancel: executionMode === 'repeat' && totals[currentTimes]?.exercise,
+        cancel: executionMode === 'repeat' && (totals[currentTimes]?.exercise || totals?.exercise),
         url: '/algorithm/multi',
         config: {params: {setting}},
         initValue: [],

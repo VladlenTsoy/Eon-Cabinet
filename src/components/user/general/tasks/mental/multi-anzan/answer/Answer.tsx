@@ -32,7 +32,8 @@ const Answer: React.FC = () => {
     const [form] = Form.useForm();
 
     const submitHandler = (values: any) => {
-        let result = (setting.group ? totals : totals[currentTimes]).answer
+        let createdTotals = [];
+        const result = (setting.group ? totals : totals[currentTimes]).answer
             .map(function (answer: any, key: number) {
                 if (setting.group)
                     return answer.map((val: any, answKey: number) =>
@@ -43,11 +44,11 @@ const Answer: React.FC = () => {
             });
 
         if (setting.group)
-            totals = {...totals, user: values.answer, result};
+            createdTotals = {...totals, user: values.answer, result};
         else
-            totals[currentTimes] = {...totals[currentTimes], user: values.answer, result};
+            createdTotals[currentTimes] = {...totals[currentTimes], user: values.answer, result};
 
-        dispatch(changeTotals(totals));
+        dispatch(changeTotals(createdTotals));
         dispatch(changeStatus(setting.mode === 'multiplication' && !setting.group ? 'intermediate' : 'result'));
     };
 

@@ -12,7 +12,11 @@ import {Button} from "antd";
 import styled from "styled-components";
 import {withRouter, RouteComponentProps} from "react-router";
 import {useDispatch, useSelector} from "react-redux";
-import {changeExecutionMode, gameSelector} from "../../../../../../../../store/reducers/common/game/gameSplice";
+import {
+    clearGame,
+    gameSelector,
+    refreshGame
+} from "../../../../../../../../store/reducers/common/game/gameSplice";
 
 const HeaderWrapper = styled.div`
   display: flex;
@@ -45,8 +49,8 @@ const Header: React.FC<HeaderProps & RouteComponentProps> = (
     const dispatch = useDispatch();
 
     const back = () => history.goBack();
-    const again = () => dispatch(changeExecutionMode('again'));
-    const repeat = () => dispatch(changeExecutionMode('repeat'));
+    const again = () => dispatch(clearGame());
+    const repeat = () => dispatch(refreshGame());
 
     return (
         <HeaderWrapper>
@@ -54,7 +58,7 @@ const Header: React.FC<HeaderProps & RouteComponentProps> = (
                 <>
                     {setting.group ?
                         <Button
-                            icon={<EyeOutlined />}
+                            icon={<EyeOutlined/>}
                             size="large"
                             onClick={openAnswer}
                         >
@@ -64,16 +68,16 @@ const Header: React.FC<HeaderProps & RouteComponentProps> = (
                         htmlType="submit"
                         type="primary"
                         size="large"
-                        icon={<ArrowRightOutlined />}
+                        icon={<ArrowRightOutlined/>}
                         form="form-answer"
                     >
                         Проверить ответы
                     </Button>
                 </> :
                 <>
-                    <Button icon={<HistoryOutlined />} size="large" onClick={repeat}>Повторить те же примеры</Button>
-                    <Button icon={<ReloadOutlined />} onClick={again} size="large">Еще раз</Button>
-                    <Button type="primary" icon={<FlagOutlined />} onClick={back} size="large">Завершить</Button>
+                    <Button icon={<HistoryOutlined/>} size="large" onClick={repeat}>Повторить те же примеры</Button>
+                    <Button icon={<ReloadOutlined/>} onClick={again} size="large">Еще раз</Button>
+                    <Button type="primary" icon={<FlagOutlined/>} onClick={back} size="large">Завершить</Button>
                 </>
             }
 
