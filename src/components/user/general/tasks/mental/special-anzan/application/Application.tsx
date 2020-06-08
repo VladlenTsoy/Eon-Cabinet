@@ -23,7 +23,7 @@ const Application: React.FC = () => {
     }, [setting.count, setting.from, setting.times, setting.to]);
 
     const updateStats = useCallback(() => {
-        return {all: setting.count};
+        return {all: setting.times};
     }, [setting]);
 
     const createOutputs = useCallback((totals, currentTimes) => {
