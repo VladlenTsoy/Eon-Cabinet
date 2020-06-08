@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import ConfigBlock from "../../../../config/Config";
 import ListSetting from "./list/List";
 import BasicSetting from "./basic/Basic";
@@ -33,7 +33,6 @@ const BodyForm: React.FC<AnzanFormBodyProps> = (
     }
 ) => {
     const [form] = Form.useForm();
-    const [disabledSoundLang, setDisabledSoundLang] = useState(false);
 
     useEffect(() => {
         if (isClearForm)
@@ -41,12 +40,9 @@ const BodyForm: React.FC<AnzanFormBodyProps> = (
     }, [form, isClearForm]);
 
     useEffect(() => {
-        if ((typeTask !== 'basic' && typeTask !== 'turbo')|| (mode !== 'plus' && mode !== 'plus-minus' && mode !== 'minus') || (Number(length) > 3)) {
+        if ((typeTask !== 'basic' && typeTask !== 'turbo')|| (mode !== 'plus' && mode !== 'plus-minus' && mode !== 'minus') || (Number(length) > 3))
             form.setFieldsValue({sound: 'basic'});
-            setDisabledSoundLang(true);
-        } else {
-            setDisabledSoundLang(true);
-        }
+
     }, [length, typeTask, mode, form])
 
     return <Form
