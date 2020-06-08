@@ -12,12 +12,17 @@ import {gameSelector} from "../../../../../../store/reducers/common/game/gameSpl
 
 const CardWrapper = styled(Card)`
   &.ant-card{
-    min-height: 100%;
+    height: 100%;
     margin: 0;
     overflow: hidden;
     
-    .ant-card-body{
+    @media (max-width: 768px) {
+      height: auto;
       min-height: 100%;    
+    }
+    
+    .ant-card-body{
+      height: 100%;    
       
       .ant-col{
         z-index: 5;
