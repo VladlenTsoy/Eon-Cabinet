@@ -6,6 +6,7 @@ import {useSelector} from "react-redux";
 import {RouteComponentProps, withRouter} from "react-router";
 import ModalEditor from "../../../../../../../layouts/modal-editor/ModalEditor";
 import FormItems from "./form-items/FormItems";
+import {groupSelector} from "../../../../../../../store/reducers/teacher/group/groupSlice";
 
 interface ButtonSaveHomeworkProps {
     homework?: any;
@@ -14,13 +15,13 @@ interface ButtonSaveHomeworkProps {
 }
 
 const ButtonSaveHomework: React.FC<ButtonSaveHomeworkProps & RouteComponentProps> = ({homework, exercises, disciplineId}) => {
-    const {app} = useSelector((state: any) => state);
+    const {group, isSaved} = useSelector(groupSelector);
     const history = useHistory();
     const [visible, setVisible] = useState(false);
 
     const fetch = useCallback(() => {
-        history.push(app.dataForSending.isSaved ? `/groups/${app.dataForSending.group.id}` : '/homework');
-    }, [history, app.dataForSending.isSaved, app.dataForSending.group.id]);
+        history.push(isSaved ? `/groups/${group?.id}` : '/homework');
+    }, [history, isSaved, group]);
 
     const open = () => setVisible(true);
     const close = () => setVisible(false);
@@ -29,7 +30,7 @@ const ButtonSaveHomework: React.FC<ButtonSaveHomeworkProps & RouteComponentProps
         <Button type="primary" icon={<ArrowRightOutlined/>} onClick={open} block>Далее</Button>
         <ModalEditor
             width={550}
-            title={app.dataForSending.isSaved ? `Сохранить для ${app.dataForSending.group.title}` : "Сохранить"}
+            title={isSaved ? `Сохранить для ${group?.title}` : "Сохранить"}
             visible={visible}
             onCancel={close}
         >

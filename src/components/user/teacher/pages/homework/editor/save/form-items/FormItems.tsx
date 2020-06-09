@@ -3,6 +3,9 @@ import {Button, Col, Form, Input, message, Row, Select} from "antd";
 import {FormItem} from "../../../../../../../../lib";
 import {useSelector} from "react-redux";
 import {SaveOutlined} from "@ant-design/icons";
+import {groupSelector} from "../../../../../../../../store/reducers/teacher/group/groupSlice";
+import {useAppContext} from "../../../../../../../../store/context/use-app-context";
+import {appSelector} from "../../../../../../../../store/reducers/common/app/appSlice";
 
 const {TextArea} = Input;
 
@@ -15,7 +18,9 @@ interface FormItemsProps {
 }
 
 const FormItems: React.FC<FormItemsProps> = ({homework, close, fetch, disciplineId, exercises}) => {
-    const {app, api} = useSelector((state: any) => state);
+    const {api} = useAppContext();
+    const app = useSelector(appSelector);
+    const {group, isSaved} = useSelector(groupSelector);
     const [loading, setLoading] = useState(false);
 
     const onFinishHandler = async (values: any) => {
@@ -56,8 +61,8 @@ const FormItems: React.FC<FormItemsProps> = ({homework, close, fetch, discipline
                 level: homework.level,
                 category: homework.category_id,
                 description: homework.description,
-            } : app.dataForSending.isSaved ? {
-                category: app.dataForSending.group?.category_id,
+            } : isSaved ? {
+                category: group?.category_id,
             } : {}
         }
     >
@@ -71,7 +76,7 @@ const FormItems: React.FC<FormItemsProps> = ({homework, close, fetch, discipline
                     label="Категория"
                     requiredMsg="Введите категорию!"
                 >
-                    <Select disabled>
+                    <Select disabled={isSaved}>
                         {app.categories.filter((category: any) => category.discipline_id === disciplineId)
                             .map((category: any, key: number) =>
                                 <Select.Option value={category.id} key={key}>{category.title}</Select.Option>
