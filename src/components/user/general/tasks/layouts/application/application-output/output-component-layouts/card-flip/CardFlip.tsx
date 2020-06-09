@@ -52,19 +52,28 @@ const CardFlipWrapper: any = styled.div<any>`
       align-items: center;
       justify-content: center;
       height: 100%;
-      width: 600px;
       color: #ffffff;
-      font-size: 180px;
       font-weight: 600;
+      width: 600px;      
       
       @media (max-width: 768px) {
         width: 400px;
-        font-size: 150px;
+      }
+
+      @media (max-width: 576px) {
+        width: 200px;
       }
       
-      @media (max-width: 576px) {
-        font-size: 100px;
-        width: 200px;
+      &.numbers{
+        font-size: 180px;
+          
+        @media (max-width: 768px) {
+          font-size: 150px;
+        }
+          
+        @media (max-width: 576px) {
+          font-size: 100px;
+        }
       }
     }
   }

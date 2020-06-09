@@ -16,6 +16,7 @@ import { Textfit } from 'react-textfit';
 // `;
 //
 interface TextFitProps {
+    mode?: string;
     widthOnly?: boolean;
     isLoading?: boolean;
     minFontSize?: number;
@@ -137,13 +138,14 @@ interface TextFitProps {
 
 const TextFit:React.FC<TextFitProps> = (
     {
+        mode="single",
         children,
         widthOnly,
         minFontSize = 6,
         maxFontSize = 200,
     }
 ) => {
-    return <Textfit mode="single" forceSingleModeWidth={widthOnly} min={minFontSize} max={maxFontSize}>
+    return <Textfit mode={mode} forceSingleModeWidth={widthOnly} min={minFontSize} max={maxFontSize}>
         {children}
     </Textfit>;
 };

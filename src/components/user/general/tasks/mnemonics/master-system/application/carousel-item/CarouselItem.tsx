@@ -9,12 +9,12 @@ const CarouselItem = ({outputs}: any) => {
             <CardFlip
                 isMasterSystem
                 front={
-                    <div className="text-fit">
+                    <div className="text-fit numbers">
                         {output.number < 10 ? `0${output.number}` : output.number}
                     </div>
                 }
                 back={
-                    <TextFit isLoading>
+                    <TextFit isLoading key={key} widthOnly>
                         <div className="text-fit">
                             {output.word}
                         </div>
