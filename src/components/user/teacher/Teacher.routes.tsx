@@ -48,6 +48,7 @@ const TeacherRoutes: React.FC = () => {
                     <Route path="/groups/:groupId/student/:id" component={Student}/>
                     <Route exact path="/homework" component={Homework}/>
                     <Route path="/homework/create" component={EditorHomework}/>
+                    <Route path="/homework/:id/:duplicate" component={EditorHomework}/>
                     <Route path="/homework/:id" component={EditorHomework}/>
                     <Route exact path="/training" component={Training}/>
                     <Route path="/training/:discipline/:task/setting" component={TasksSetting}/>

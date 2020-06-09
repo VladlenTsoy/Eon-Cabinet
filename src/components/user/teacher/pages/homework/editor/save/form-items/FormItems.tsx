@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
 import {Button, Col, Form, Input, message, Row, Select} from "antd";
-import {FormItem} from "../../../../../../../../lib";
+import {FormItem} from "lib";
 import {useSelector} from "react-redux";
 import {SaveOutlined} from "@ant-design/icons";
-import {groupSelector} from "../../../../../../../../store/reducers/teacher/group/groupSlice";
-import {useAppContext} from "../../../../../../../../store/context/use-app-context";
-import {appSelector} from "../../../../../../../../store/reducers/common/app/appSlice";
+import {groupSelector} from "store/reducers/teacher/group/groupSlice";
+import {useAppContext} from "store/context/use-app-context";
+import {appSelector} from "store/reducers/common/app/appSlice";
+import {useParams} from "react-router";
 
 const {TextArea} = Input;
 
@@ -20,13 +21,14 @@ interface FormItemsProps {
 const FormItems: React.FC<FormItemsProps> = ({homework, close, fetch, disciplineId, exercises}) => {
     const {api} = useAppContext();
     const app = useSelector(appSelector);
+    const {duplicate} = useParams();
     const {group, isSaved} = useSelector(groupSelector);
     const [loading, setLoading] = useState(false);
 
     const onFinishHandler = async (values: any) => {
         setLoading(true);
         try {
-            if (homework) {
+            if (homework && !duplicate) {
                 const response = await api.user.put(`teacher/homework/${homework.id}`, {
                     ...values,
                     discipline: disciplineId,
@@ -42,7 +44,11 @@ const FormItems: React.FC<FormItemsProps> = ({homework, close, fetch, discipline
                     exercises
                 });
                 if (response.data.status === 'success') {
-                    message.success("Вы успешно создали домашнее задание!");
+                    message.success(
+                        duplicate ?
+                            "Вы успешно продублировали домашнее задание!" :
+                            "Вы успешно создали домашнее задание!"
+                    );
                 }
             }
         } catch (e) {

@@ -1,14 +1,17 @@
 import React from 'react';
-import {Divider, Row, Col} from 'antd';
+import {Divider, Row, Col, Empty} from 'antd';
 import ExerciseLists from "../../../../../editor/tabs-tasks/added-exercises/exercise-lists/ExerciseLists";
 import styled from "styled-components";
 import moment from "moment";
+import {useApiUserGeneral} from "effects/use-api-user-general.effect";
+import {LoadingBlock} from "lib";
 
 const SubTitle = styled.p`
   color: ${props => props.theme.color_second};
 `;
 
 const MoreHomeworkItem: React.FC<any> = ({homework}) => {
+    const [loading, tasks] = useApiUserGeneral({url: `/teacher/tasks/homework/${homework.id}`, initValue: []});
     return <>
         <Row>
             <Col span={12}>
@@ -25,9 +28,14 @@ const MoreHomeworkItem: React.FC<any> = ({homework}) => {
         {homework.description}
         <Divider/>
         <SubTitle>Настройки:</SubTitle>
-        {homework.tasks ? homework.tasks.map((task: any, key: number) =>
-            <ExerciseLists exercise={task} key={key}/>
-        ) : null}
+        {
+            loading ? <LoadingBlock maxHeight="250px"/> :
+                tasks.length ?
+                    tasks.map((task: any, key: number) =>
+                        <ExerciseLists exercise={task} key={key}/>
+                    ) :
+                    <Empty/>
+        }
     </>
 };
 

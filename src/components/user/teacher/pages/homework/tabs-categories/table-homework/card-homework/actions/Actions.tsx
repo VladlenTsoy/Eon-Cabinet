@@ -69,7 +69,7 @@ const Actions: React.FC<ActionsProps> = ({homework, fetch}) => {
             <Link to={`/homework/${homework.id}`}>
                 <EditOutlined/> Редактировать
             </Link>
-            <Link to={`/homework/duplicate/${homework.id}`}>
+            <Link to={`/homework/${homework.id}/duplicate`}>
                 <CopyOutlined/> Дублировать
             </Link>
             <DeleteHomework homework={homework} fetch={fetch}>
@@ -94,7 +94,7 @@ const Actions: React.FC<ActionsProps> = ({homework, fetch}) => {
                 <span className="title">Редактировать</span>
             </ActionStyled>
         </Link>
-        <Link to={`/homework/duplicate/${homework.id}`}>
+        <Link to={`/homework/${homework.id}/duplicate`}>
             <ActionStyled>
                 <CopyOutlined/>
                 <span className="title">Дублировать</span>

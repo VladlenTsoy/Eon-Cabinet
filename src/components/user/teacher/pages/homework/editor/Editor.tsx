@@ -32,7 +32,13 @@ const EditorHomework: React.FC<EditorHomeworkProps> = ({match}) => {
     });
 
     useChangeActionNavbar({action: 'back'});
-    useChangeTitle({title: match.params.id ? 'Редактировать домашнее задание' : 'Создать домашнее задание'});
+    useChangeTitle({
+        title: match.params.id ?
+            match.params.duplication ?
+                'Дублировать домашнее задание' :
+                'Редактировать домашнее задание' :
+            'Создать домашнее задание'
+    });
 
     const clickEventHandler = (disciplineId: string) => {
         dispatch(changeActiveDisciplineId(disciplineId))
