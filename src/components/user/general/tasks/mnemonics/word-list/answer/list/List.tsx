@@ -6,7 +6,7 @@ import TablesOutput from "../../../../layouts/application/application-output/lis
 import Table from "./table/Table";
 import {chunk} from "lodash";
 import ApplicationCardLayout from "../../../../layouts/application/application-output/ApplicationCard.layout";
-import {changeStats, changeStatus, changeTotals,gameSelector} from "../../../../../../../../store/reducers/common/game/gameSplice";
+import {changeStatus, addSuccessStats, changeTotals,gameSelector} from "../../../../../../../../store/reducers/common/game/gameSplice";
 
 interface ListProps {
     checkHandler: (values: any) => any | {
@@ -23,10 +23,10 @@ const List: React.FC<ListProps> = ({checkHandler}) => {
     const [outputs, setOutputs] = useState();
 
     const submitHandler = (values: any) => {
-        const {status, totals, stats} = checkHandler(values);
+        const {status, totals, success} = checkHandler(values);
 
         dispatch(changeTotals(totals));
-        dispatch(changeStats(stats));
+        dispatch(addSuccessStats(success));
         dispatch(changeStatus(status));
     };
 

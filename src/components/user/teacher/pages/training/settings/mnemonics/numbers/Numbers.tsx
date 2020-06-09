@@ -30,7 +30,7 @@ const Numbers: React.FC<NumbersProps> = (
     const [, isBreakpoint] = useScreenWindow({breakpoint: 'sm'});
 
     const updateSettingForSend = useCallback((setting: any) => {
-        setting.column = isBreakpoint ? 2 : 5;
+        setting.column = isBreakpoint ? 2 : 10;
         return setting;
     }, [isBreakpoint]);
 
