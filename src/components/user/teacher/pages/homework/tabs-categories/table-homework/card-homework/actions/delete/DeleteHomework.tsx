@@ -1,20 +1,26 @@
 import React from "react";
 import {useSelector} from "react-redux";
-import { DeleteOutlined } from '@ant-design/icons';
 import { message, Modal } from "antd";
+import { QuestionCircleOutlined } from "@ant-design/icons";
 
-const DeleteHomework: React.FC<any> = ({homework, setLoading}) => {
+interface DeleteHomeworkProps {
+    homework: any;
+    fetch: any;
+}
+
+const DeleteHomework: React.FC<DeleteHomeworkProps> = ({homework, fetch, children}) => {
     const {api} = useSelector((state: any) => state);
 
     const handler = () => {
         Modal.confirm({
+            icon: <QuestionCircleOutlined/>,
             type: 'error',
             title: 'Вы хотите удалить домашнее задание?',
             async onOk() {
                 try {
                     const response = await api.user.delete(`teacher/homework/${homework.id}`);
                     if (response.data.status === 'success') {
-                        setLoading(true);
+                        fetch();
                         message.success('Вы успешно удалили домашнее задание!');
                     }
                 } catch (e) {
@@ -26,7 +32,7 @@ const DeleteHomework: React.FC<any> = ({homework, setLoading}) => {
 
     return (
         <div onClick={handler}>
-            <DeleteOutlined /> Удалить
+            {children}
         </div>
     );
 };

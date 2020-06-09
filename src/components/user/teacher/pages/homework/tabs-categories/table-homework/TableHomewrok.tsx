@@ -1,56 +1,35 @@
 import React from 'react';
-import {EditOutlined, MenuOutlined} from '@ant-design/icons';
-import {ModalMenu} from "lib";
-import moment from "moment";
-import {Link} from "react-router-dom";
-import MoreHomeworkDrawer from "./more-homework/MoreHomeworkDrawer";
-import DeleteHomework from "./DeleteHomework";
-import UsingTablePagination from "lib/table-pagination/usingTablePagination";
+import {LoadingBlock} from "lib";
+import {useApiUserGeneral} from "../../../../../../../effects/use-api-user-general.effect";
+import styled from "styled-components";
+import CardHomework from "./card-homework/CardHomework";
 
 interface TableHomeworkProps {
     discipline_id: number;
     category_id: number;
 }
 
+const ListStyled = styled.div`
+  display: grid;
+  gap: 2rem;
+  padding: 1rem 0;
+  
+  @media (max-width: 992px) {
+    gap: 1rem;  
+  }
+`;
+
 const TableHomework: React.FC<TableHomeworkProps> = ({discipline_id, category_id}) => {
-    const columns = (fetch: any) => [
-        {
-            title: 'Создано',
-            dataIndex: 'created_at',
-            sorter: true,
-            defaultSortOrder: 'descend',
-            render: (text: any) => moment(text).format('DD/MM/YYYY')
-        },
-        {
-            title: 'Уровень',
-            dataIndex: 'level',
-            sorter: true,
-            render: (text: string) => <span>Уровень {text}</span>
-        },
-        {
-            title: 'Описание',
-            dataIndex: 'description',
-        },
-        {
-            title: <MenuOutlined/>,
-            render: (text: string, record: any) => menu(record, fetch)
-        }
-    ];
+    const [loading, homework,, fetch] = useApiUserGeneral({url: `/teacher/homework/${discipline_id}/${category_id}`});
 
-    const menu = (homework: any, fetch: any) => (
-        <ModalMenu>
-            <MoreHomeworkDrawer homework={homework}/>
-            <Link to={`homework/${homework.id}`}>
-                <EditOutlined/> Редактировать
-            </Link>
-            <DeleteHomework homework={homework} setLoading={fetch}/>
-        </ModalMenu>
-    );
+    if (loading)
+        return <LoadingBlock/>;
 
-    return <UsingTablePagination
-        url={`/teacher/homework/${discipline_id}/${category_id}`}
-        columns={columns}
-    />
+    return <ListStyled>
+        {homework.data.map((val: any, key: number) =>
+            <CardHomework homework={val} fetch={fetch} key={key}/>
+        )}
+    </ListStyled>;
 };
 
 export default TableHomework;

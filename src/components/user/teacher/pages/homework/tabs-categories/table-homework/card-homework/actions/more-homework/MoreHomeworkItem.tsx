@@ -1,6 +1,6 @@
 import React from 'react';
 import {Divider, Row, Col} from 'antd';
-import ExerciseLists from "../../../editor/tabs-tasks/added-exercises/exercise-lists/ExerciseLists";
+import ExerciseLists from "../../../../../editor/tabs-tasks/added-exercises/exercise-lists/ExerciseLists";
 import styled from "styled-components";
 import moment from "moment";
 

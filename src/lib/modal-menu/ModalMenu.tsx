@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { MenuOutlined } from '@ant-design/icons';
+import {MenuOutlined} from '@ant-design/icons';
 import {Button} from "antd";
 import Modal from "../../lib/modal/Modal";
 import styled from "styled-components";
@@ -39,7 +39,11 @@ const ModalWrapper = styled(Modal)`
   }
 `;
 
-const ModalMenu: React.FC = ({children}) => {
+interface ModalMenuProps {
+    button?: React.ReactNode
+}
+
+const ModalMenu: React.FC<ModalMenuProps> = ({children, button}) => {
     const [visible, setVisible] = useState(false);
     const open = () => setVisible(true);
     const close = () => setVisible(false);
@@ -57,7 +61,7 @@ const ModalMenu: React.FC = ({children}) => {
                 {children}
             </div>
         </ModalWrapper>
-        <Button type="primary" shape="circle" icon={<MenuOutlined />} onClick={open}/>
+        <span onClick={open}>{button || <Button type="primary" shape="circle" icon={<MenuOutlined/>}/>}</span>
     </>;
 };
 

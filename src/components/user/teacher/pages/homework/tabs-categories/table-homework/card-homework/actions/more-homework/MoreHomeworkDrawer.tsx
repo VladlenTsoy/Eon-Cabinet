@@ -1,10 +1,13 @@
 import React, {useState} from "react";
-import { InfoCircleOutlined } from '@ant-design/icons';
-import {Drawer} from "../../../../../../../../lib";
+import {Drawer} from "../../../../../../../../../../lib";
 import MoreHomeworkItem from "./MoreHomeworkItem";
-import {useScreenWindow} from "../../../../../../../../effects/use-screen-window.effect";
+import {useScreenWindow} from "../../../../../../../../../../effects/use-screen-window.effect";
 
-const MoreHomeworkDrawer: React.FC<any> = ({homework}) => {
+interface MoreHomeworkDrawerProps {
+    homework: any;
+}
+
+const MoreHomeworkDrawer: React.FC<MoreHomeworkDrawerProps> = ({homework, children}) => {
     const [visible, setVisible] = useState(false);
     const [, isBreakpoint] = useScreenWindow({breakpoint: 'md'});
 
@@ -13,7 +16,7 @@ const MoreHomeworkDrawer: React.FC<any> = ({homework}) => {
 
     return <>
         <div onClick={handler}>
-            <InfoCircleOutlined /> Подробнее
+            {children}
         </div>
         <Drawer
             title={`Домашнее задание. Уровень №${homework.level}`}
