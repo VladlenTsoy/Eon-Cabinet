@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {FormItem, InputPhoto, InputEmail, InputLogin, InputPassword, SelectData} from "lib";
 import {Col, DatePicker, Input, Row} from "antd";
 import {FormInstance} from "antd/es/form";
@@ -7,9 +7,15 @@ interface DirectorItemsProps {
     form: FormInstance;
     data: any;
     isFranchise?: boolean;
+    setIsSaveBtn: (isSaveBtn: boolean) => void;
 }
 
-const DirectorItems: React.FC<DirectorItemsProps> = ({form, data, isFranchise}) => {
+const DirectorItems: React.FC<DirectorItemsProps> = ({form, data, isFranchise, setIsSaveBtn}) => {
+
+    useEffect(() => {
+        setIsSaveBtn(true);
+    },[setIsSaveBtn]);
+
     return <Row gutter={15}>
         <Col span={24}>
             <InputPhoto form={form}/>

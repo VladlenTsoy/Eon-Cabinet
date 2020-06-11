@@ -1,8 +1,8 @@
 import React from "react";
 import DirectorItems from "./items/DirectorItems";
 import {message} from "antd";
-import {useSelector} from "react-redux";
 import usingDrawerEditorNew from "../../../../../layouts/drawer-editor/usingDrawerEditor.new";
+import {useAppContext} from "../../../../../store/context/use-app-context";
 
 const FormComponentData = usingDrawerEditorNew(DirectorItems);
 
@@ -20,7 +20,7 @@ const EditorDirectorDrawer: React.FC<EditorDirectorDrawerProps> = (
         children
     }
 ) => {
-    const {api} = useSelector((state: any) => (state));
+    const {api} = useAppContext();
 
     const request = async (values: any) => {
         if (director) {
