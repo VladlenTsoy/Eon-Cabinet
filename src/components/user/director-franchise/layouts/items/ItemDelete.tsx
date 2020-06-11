@@ -1,11 +1,11 @@
 import React from "react";
 import { DeleteOutlined } from '@ant-design/icons';
 import { message, Modal } from "antd";
-import {useSelector} from "react-redux";
 import {QuestionCircleOutlined } from "@ant-design/icons";
+import {useAppContext} from "../../../../../store/context/use-app-context";
 
 const ItemDelete: React.FC<any> = ({user, afterAction}) => {
-    const {api} = useSelector((state: any) => (state));
+    const {api} = useAppContext();
 
     const deleteAccount = async (teacher: any) => {
         Modal.confirm({
