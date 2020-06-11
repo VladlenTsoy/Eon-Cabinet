@@ -2,8 +2,8 @@ import React from 'react';
 
 import CenterItems from "../../../../../../layouts/drawer-editor/editor-center/FormEditorCenterItems";
 import usingDrawerEditorNew from "../../../../../../layouts/drawer-editor/usingDrawerEditor.new";
-import {useSelector} from "react-redux";
 import {message} from "antd";
+import {useAppContext} from "../../../../../../store/context/use-app-context";
 
 const EditorButton = usingDrawerEditorNew(CenterItems);
 
@@ -21,8 +21,7 @@ const EditorCenterDrawer: React.FC<EditorCenterDrawerProps> = (
         children
     }
 ) => {
-    const {api} = useSelector((state: any) => (state));
-
+    const {api} = useAppContext();
     const request = async (values: any) => {
         if (center) {
             await api.user.post(`director-franchise/center/${center.id}`, values);

@@ -1,9 +1,9 @@
 import React from 'react';
-import {useSelector} from "react-redux";
 import {message} from "antd";
 import usingDrawerEditorNew from "../../../../../../layouts/drawer-editor/usingDrawerEditor.new";
 import TeacherItems from "./items/TeacherItems";
 import {useScreenWindow} from "../../../../../../effects/use-screen-window.effect";
+import {useAppContext} from "../../../../../../store/context/use-app-context";
 
 const FormComponentData = usingDrawerEditorNew(TeacherItems);
 
@@ -24,7 +24,7 @@ const EditorTeacherDrawer: React.FC<EditorDirectorDrawerProps> = (
     }
 ) => {
     const [, isBreakpoint] = useScreenWindow({breakpoint: 'md'});
-    const {api} = useSelector((state: any) => (state));
+    const {api} = useAppContext();
 
     const request = async (values: any) => {
         if (teacher) {

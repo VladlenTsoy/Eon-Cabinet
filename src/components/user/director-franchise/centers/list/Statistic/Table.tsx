@@ -2,7 +2,7 @@ import React, {useCallback, useEffect, useState} from "react";
 import {CardTable} from "lib";
 import {Table, Typography} from "antd";
 import moment from "moment";
-import {useSelector} from "react-redux";
+import {useAppContext} from "../../../../../../store/context/use-app-context";
 
 const {Text} = Typography;
 
@@ -55,7 +55,7 @@ const expandedRowRender = (data: any) => {
 };
 
 const TableCentersStatistic: React.FC<any> = ({url}) => {
-    const {api} = useSelector((state: any) => (state));
+    const {api} = useAppContext();
     const [centers, setCenters] = useState([]);
     const [loader, setLoader] = useState(false);
 
