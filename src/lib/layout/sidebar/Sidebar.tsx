@@ -6,6 +6,7 @@ import {withRouter, RouteComponentProps} from "react-router";
 import Logo from "./logo/Logo";
 import LogoEon from "../../../assets/images/logo.svg";
 import {useScreenWindow} from "../../../effects/use-screen-window.effect";
+import {appSelector} from "../../../store/reducers/common/app/appSlice";
 
 const DrawerWrapper = styled(Drawer)`
   .ant-drawer-close{
@@ -46,7 +47,7 @@ const Sidebar: React.FC<SidebarProps> = (
         toggleSidebar
     }
 ) => {
-    const {app} = useSelector((state: any) => state);
+    const app = useSelector(appSelector);
     const [hide, setHide] = useState(false);
 
     const [, isBreakpoint] = useScreenWindow({breakpoint: 'md'});
