@@ -7,7 +7,7 @@ import {
     ExclamationCircleOutlined
 } from '@ant-design/icons';
 import {message, Modal} from "antd";
-import {useSelector} from "react-redux";
+import {useAppContext} from "../../../../../store/context/use-app-context";
 
 interface ItemBlockProps {
     user: any;
@@ -15,7 +15,7 @@ interface ItemBlockProps {
 }
 
 const ItemBlock: React.FC<ItemBlockProps> = ({user, afterAction}) => {
-    const [api, currentUser] = useSelector((state: any) => [state.api, state.user]);
+    const {api, user:currentUser} = useAppContext();
 
     const activationAccount = async (teacher: any) => {
         Modal.confirm({
