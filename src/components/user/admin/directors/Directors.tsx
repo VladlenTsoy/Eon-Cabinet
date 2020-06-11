@@ -1,6 +1,6 @@
 import React from "react";
 import {NavigationButton, UserImage} from "../../../../lib";
-import { EyeInvisibleOutlined, LockOutlined } from '@ant-design/icons';
+import { EyeInvisibleOutlined, LockOutlined, PlusOutlined } from '@ant-design/icons';
 import { Typography } from "antd";
 import {Link} from "react-router-dom";
 import moment from "moment";
@@ -76,7 +76,7 @@ const columns = (fetch: any, pagination: any) => [
 const header = (fetch: any) =>
     [
         <EditorDirectorDrawer key="editor" fetch={fetch}>
-            <NavigationButton type="primary" icon="plus">
+            <NavigationButton type="primary" icon={<PlusOutlined/>}>
                 Создать директора
             </NavigationButton>
         </EditorDirectorDrawer>
