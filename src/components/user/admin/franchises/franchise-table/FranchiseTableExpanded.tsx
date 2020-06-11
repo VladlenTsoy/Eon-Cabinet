@@ -6,7 +6,6 @@ tr.ant-table-expanded-row, tr.ant-table-expanded-row:hover{
   //background: none;
 }
 
-.ant-table-scroll &{
   border-collapse: collapse;
   background: white;
 
@@ -24,22 +23,7 @@ tr.ant-table-expanded-row, tr.ant-table-expanded-row:hover{
       color: ${props => props.theme.color_second};
     }
   }
-}
 
-.success{
-  color: ${props => props.theme.color_success};
-}
-.danger{
-  color: ${props => props.theme.color_danger};
-}
-
-.warning{
-  color: ${props => props.theme.color_warning};
-}
-
-.primary{
-  color: ${props => props.theme.color_primary};
-}
 `;
 
 const FranchiseTableExpanded: React.FC<any> = ({record}) => {

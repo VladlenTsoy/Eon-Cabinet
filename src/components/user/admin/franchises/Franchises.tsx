@@ -3,6 +3,7 @@ import {Navigation, NavigationButton} from "../../../../lib";
 import {Link} from "react-router-dom";
 import FranchiseTable from "./franchise-table/FranchiseTable";
 import EditorFranchiseButton from "./EditorFranchiseButton";
+import {PlusOutlined, BarChartOutlined} from "@ant-design/icons";
 
 
 const Franchises: React.FC = () => {
@@ -15,12 +16,12 @@ const Franchises: React.FC = () => {
     return <>
         <Navigation>
             <EditorFranchiseButton fetch={fetchFranchises} title="Создать франшизу">
-                <NavigationButton type="primary" icon="plus">
+                <NavigationButton type="primary" icon={<PlusOutlined/>}>
                     Создать франшизу
                 </NavigationButton>
             </EditorFranchiseButton>
             <Link to="/franchises/statistic">
-                <NavigationButton type="primary" icon="bar-chart">
+                <NavigationButton type="primary" icon={<BarChartOutlined/>}>
                     Статистика
                 </NavigationButton>
             </Link>
