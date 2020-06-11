@@ -1,8 +1,8 @@
 import React from "react";
 import TableComponent from "../../../../../lib/table/Table";
 import {Card, Image} from "lib";
-import { LockOutlined } from '@ant-design/icons';
-import { Typography } from "antd";
+import {LockOutlined} from '@ant-design/icons';
+import {Typography} from "antd";
 import moment from "moment";
 import CenterTableDropdown from "./CenterTableDropdown";
 
@@ -21,7 +21,7 @@ const CenterTable: React.FC<CenterTableProps> = ({id, fetch, loader}) => {
             dataIndex: 'id',
             defaultSortOrder: 'descend',
             render: (text: any, record: any) => record.status ? text :
-                <Text type="danger">{text} <LockOutlined /></Text>,
+                <Text type="danger">{text} <LockOutlined/></Text>,
             sorter: true,
         }, {
             title: 'Название',
@@ -36,10 +36,10 @@ const CenterTable: React.FC<CenterTableProps> = ({id, fetch, loader}) => {
             render: (text: any, record: any) => record.city,
         }, {
             title: 'Учителей',
-            dataIndex: 'number_of_teachers.open',
+            dataIndex: ['number_of_teachers', 'open'],
         }, {
             title: 'Учеников',
-            dataIndex: 'number_of_students.open',
+            dataIndex: ['number_of_students', 'open'],
         }, {
             title: 'Создан',
             dataIndex: 'created_at',
@@ -52,7 +52,8 @@ const CenterTable: React.FC<CenterTableProps> = ({id, fetch, loader}) => {
     ];
 
     return <Card>
-        <TableComponent columns={columns} url={`admin/centers/franchise/${id}/table`} loader={loader} setLoader={fetch}/>
+        <TableComponent columns={columns} url={`admin/centers/franchise/${id}/table`} loader={loader}
+                        setLoader={fetch}/>
     </Card>
 };
 

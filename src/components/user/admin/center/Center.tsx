@@ -5,6 +5,7 @@ import TeachersTable from "./teachers-table/TeachersTable";
 import {useChangeActionNavbar} from "../../../../effects/use-change-action-navbar.effect";
 import {useChangeTitle} from "../../../../effects/use-change-title.effect";
 import {useAppContext} from "../../../../store/context/use-app-context";
+import {PlusOutlined} from "@ant-design/icons";
 
 const Center: React.FC<any> = ({match}) => {
     const {api} = useAppContext();
@@ -36,7 +37,7 @@ const Center: React.FC<any> = ({match}) => {
                 franchise_id={match.params.franchise_id}
                 center_id={match.params.center_id}
                 fetch={fetch}>
-                <NavigationButton type="primary" icon="plus">
+                <NavigationButton type="primary" icon={<PlusOutlined/>}>
                     Создать учителя
                 </NavigationButton>
             </EditorCenterButton>

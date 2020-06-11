@@ -5,6 +5,7 @@ import EditorCenterButton from "./center-table/EditorCenterButton";
 import {useChangeActionNavbar} from "../../../../effects/use-change-action-navbar.effect";
 import {useChangeTitle} from "../../../../effects/use-change-title.effect";
 import {useAppContext} from "../../../../store/context/use-app-context";
+import {PlusOutlined} from "@ant-design/icons";
 
 const Franchise: React.FC<any> = ({match}) => {
     const {api} = useAppContext();
@@ -32,7 +33,7 @@ const Franchise: React.FC<any> = ({match}) => {
     return <>
         <Navigation>
             <EditorCenterButton title="Создать центр" franchise_id={match.params.id} fetch={fetchCenters}>
-                <NavigationButton type="primary" icon="plus">
+                <NavigationButton type="primary" icon={<PlusOutlined/>}>
                     Создать центр
                 </NavigationButton>
             </EditorCenterButton>
