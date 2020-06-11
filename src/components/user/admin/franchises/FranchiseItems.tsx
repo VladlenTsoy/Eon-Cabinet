@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {FormItem, SelectData, Upload} from "../../../../lib";
 import { PlusOutlined } from '@ant-design/icons';
 import { Col, Input, Row } from "antd";
@@ -8,9 +8,16 @@ const {TextArea} = Input;
 
 interface FranchiseItemsProps {
     form: any;
+    setIsSaveBtn: (isSaveBtn: boolean) => void;
 }
 
-const FranchiseItems: React.FC<FranchiseItemsProps> = ({form}) => {
+const FranchiseItems: React.FC<FranchiseItemsProps> = ({form, setIsSaveBtn}) => {
+
+    useEffect(() => {
+        setIsSaveBtn(true);
+    },[setIsSaveBtn]);
+
+
     return (
         <Row gutter={15}>
             <Col span={24}>
@@ -18,7 +25,7 @@ const FranchiseItems: React.FC<FranchiseItemsProps> = ({form}) => {
             </Col>
             <Col span={12}>
                 <SelectData
-                    url="/admin/directors"
+                    url="/admin/franchise-directors"
                     name="director_id"
                     label="Директор"
                     optRender={(item: any) => `${item.first_name} ${item.last_name}`}

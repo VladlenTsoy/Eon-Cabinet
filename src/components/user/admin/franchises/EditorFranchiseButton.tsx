@@ -1,8 +1,8 @@
 import React from "react";
 import FranchiseItems from "./FranchiseItems";
 import {message} from "antd";
-import {useSelector} from "react-redux";
 import usingDrawerEditor from "../../../../layouts/drawer-editor/usingDrawerEditor";
+import {useAppContext} from "../../../../store/context/use-app-context";
 
 const EditorButton = usingDrawerEditor(FranchiseItems);
 
@@ -13,7 +13,7 @@ interface EditorFranchiseButtonProps {
 }
 
 const EditorFranchiseButton: React.FC<EditorFranchiseButtonProps> = ({title, children, franchise, fetch}) => {
-    const {api} = useSelector((state: any) => (state));
+    const {api} = useAppContext();
 
     const request = async (values: any) => {
         if (franchise) {
