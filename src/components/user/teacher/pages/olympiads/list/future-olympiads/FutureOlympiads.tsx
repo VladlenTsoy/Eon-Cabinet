@@ -63,7 +63,7 @@ const FutureOlympiads: React.FC<FutureOlympiadsProps> = () => {
             render: (text: string, record: any) => record.discipline
         }, {
             title: 'Дата начала',
-            dataIndex: 'current_step.start_at',
+            dataIndex: ['current_step','start_at'],
             render: (text: string) => <TimeDateWrapper>
                 <span className="time">{moment(text).format('HH:mm')}</span>
                 <span className="slash">/</span>
