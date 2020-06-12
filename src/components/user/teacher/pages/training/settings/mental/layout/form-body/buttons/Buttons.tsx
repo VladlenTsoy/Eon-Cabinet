@@ -42,6 +42,7 @@ const Buttons: React.FC<ButtonsProps> = (
                     await addSettingHomework(values);
                 else if (startApplication)
                     await startApplication(values, false);
+                setLoading(false);
             })
             .catch(() => {
                 setLoading(false);
