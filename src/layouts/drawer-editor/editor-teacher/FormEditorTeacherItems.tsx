@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {FormItem, InputEmail, InputLogin, InputPassword, SelectData} from "lib";
 import {PlusOutlined} from '@ant-design/icons';
 import {Col, DatePicker, Row} from "antd";
@@ -12,10 +12,16 @@ interface FormEditorTeacherItemsProps {
     form: FormInstance;
     data: any;
     franchise_id?: any;
+    setIsSaveBtn: (isSaveBtn: boolean) => void;
 }
 
-const FormEditorTeacherItems: React.FC<FormEditorTeacherItemsProps> = ({form, data, franchise_id}) => {
+const FormEditorTeacherItems: React.FC<FormEditorTeacherItemsProps> = ({form, data, franchise_id, setIsSaveBtn}) => {
     const {user} = useAppContext();
+
+    useEffect(() => {
+        setIsSaveBtn(true);
+    },[setIsSaveBtn]);
+
     const centerItems =
         <SelectData
             url={user.access === 'admin' ? `admin/centers/franchise/${franchise_id}` : 'director-franchise/centers'}
