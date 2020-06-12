@@ -52,7 +52,12 @@ export const AppProvider: React.FC = ({children}) => {
     }, []);
 
     const updateUser = useCallback((data) => {
-        setUser(data);
+        setUser(prevState => {
+            if(prevState)
+                return {...prevState, ...data};
+            else
+                return data;
+        });
     }, []);
 
     const updateLanguage = useCallback((data) => {
