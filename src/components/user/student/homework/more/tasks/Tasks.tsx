@@ -29,7 +29,7 @@ const TasksMoreHomework: React.FC<Tasks> = ({id}) => {
 
     return <Row  gutter={15}>
         {tasks.map((item: any, key: number) =>
-            <Col xl={8} md={12} sm={24} xs={24} key={key}>
+            <Col xxl={6} xl={8} md={12} sm={24} xs={24} key={key}>
                 <Task id={id} task={item}/>
             </Col>
         )}

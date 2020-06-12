@@ -79,7 +79,7 @@ const Action: React.FC<Action> = ({task, history, id, type}) => {
         _task = checkTaskTypeOldTask(_task);
 
         dispatch(changeSetting(_task.settings));
-        dispatch(changeExecutionMode('first'));
+        dispatch(changeExecutionMode('fetch'));
         history.push(`/homework/${id}/${_task.id}/${_task.discipline_id}/${_task.task_id}`);
     };
 
