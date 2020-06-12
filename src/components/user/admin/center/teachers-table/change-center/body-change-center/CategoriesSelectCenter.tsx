@@ -1,9 +1,9 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {useSelector} from "react-redux";
 import {Alert} from "../../../../../../../lib";
 import {Row} from "antd";
 import styled from "styled-components";
 import FormItemWrapper from "./FormItemWrapper";
+import {useAppContext} from "../../../../../../../store/context/use-app-context";
 
 const CategoriesWrapper = styled.div`
   width: 100%;
@@ -24,7 +24,7 @@ interface CategoriesSelectCenterProps {
 }
 
 const CategoriesSelectCenter: React.FC<CategoriesSelectCenterProps> = ({teacher, centerId, currentCenterId, categoriesCurrentCenter}) => {
-    const {api} = useSelector((state: any) => (state));
+    const {api} = useAppContext();
     const [loading, setLoading] = useState(false);
     const [categories, setCategories] = useState<any>([]);
 

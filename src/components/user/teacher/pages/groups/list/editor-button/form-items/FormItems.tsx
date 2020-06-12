@@ -2,6 +2,8 @@ import React, {useEffect, useState} from "react";
 import {Select, Form, message, Button} from "antd";
 import {useSelector} from "react-redux";
 import {FormItem} from "../../../../../../../../lib";
+import {appSelector} from "../../../../../../../../store/reducers/common/app/appSlice";
+import {useAppContext} from "../../../../../../../../store/context/use-app-context";
 
 const {Option} = Select;
 
@@ -13,7 +15,8 @@ interface FormItemsProps {
 
 const FormItems: React.FC<FormItemsProps> = ({group, fetch, close}) => {
     const [form] = Form.useForm();
-    const {app, api} = useSelector((state: any) => state);
+    const app = useSelector(appSelector);
+    const {api} = useAppContext();
     const {disciplines, categories} = app;
     const [loading, setLoading] = useState(false);
     const [disciplineCategories, setDisciplineCategories] = useState([]);
@@ -36,6 +39,7 @@ const FormItems: React.FC<FormItemsProps> = ({group, fetch, close}) => {
         }
         await fetch();
         close();
+        setLoading(false);
     };
 
     //

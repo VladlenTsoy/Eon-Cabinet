@@ -2,8 +2,8 @@ import React from "react";
 import PersonalityItems from "./PersonalityItems";
 import usingDrawerEditor from "../../../../../layouts/drawer-editor/usingDrawerEditor";
 import {message} from "antd";
-import {useSelector} from "react-redux";
 import moment from 'moment';
+import {useAppContext} from "../../../../../store/context/use-app-context";
 
 const EditorButton = usingDrawerEditor(PersonalityItems);
 
@@ -14,7 +14,7 @@ interface EditorPersonalityButtonProps {
 }
 
 const EditorPersonalityButton: React.FC<EditorPersonalityButtonProps> = ({title, children, personality, fetch}) => {
-    const {api} = useSelector((state: any) => (state));
+    const {api} = useAppContext();
 
     const request = async (values: any) => {
         if (personality) {

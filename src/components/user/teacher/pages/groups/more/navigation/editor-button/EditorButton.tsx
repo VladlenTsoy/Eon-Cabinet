@@ -1,10 +1,10 @@
 import usingDrawerEditor from "../../../../../../../../layouts/drawer-editor/usingDrawerEditor";
 import StudentItems from "../../../../../../../../layouts/drawer-editor/editor-student/FormEditorStudentItems";
 import React from "react";
-import {useSelector} from "react-redux";
 import {message} from "antd";
 import moment from 'moment';
 import {useScreenWindow} from "../../../../../../../../effects/use-screen-window.effect";
+import {useAppContext} from "../../../../../../../../store/context/use-app-context";
 
 const EditorDrawer = usingDrawerEditor(StudentItems);
 
@@ -16,7 +16,7 @@ interface EditorStudentButtonProps {
 }
 
 const EditorButton: React.FC<EditorStudentButtonProps> = ({title, children, student, fetch, group_id}) => {
-    const {api} = useSelector((state: any) => (state));
+    const {api} = useAppContext();
     const [, breakpoint] = useScreenWindow({breakpoint: 'sm'});
 
     const request = async (values: any) => {

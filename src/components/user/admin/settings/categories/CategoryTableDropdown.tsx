@@ -2,7 +2,7 @@ import React from 'react';
 import { DeleteOutlined, EditOutlined, MoreOutlined } from '@ant-design/icons';
 import { Button, Dropdown, Menu, Modal } from "antd";
 import EditorCategoryButton from "./EditorCategoryButton";
-import {useSelector} from "react-redux";
+import {useAppContext} from "../../../../../store/context/use-app-context";
 
 const confirm = Modal.confirm;
 
@@ -12,7 +12,7 @@ interface CityTableDropdownProps {
 }
 
 const CategoryTableDropdown: React.FC<CityTableDropdownProps> = ({record, fetch}) => {
-    const {api} = useSelector((state: any) => (state));
+    const {api} = useAppContext();
 
     const deleteCategory = () =>
         confirm({

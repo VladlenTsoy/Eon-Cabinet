@@ -1,8 +1,8 @@
 import React from 'react';
 import { DeleteOutlined, EditOutlined, MoreOutlined } from '@ant-design/icons';
 import { Button, Dropdown, Menu, Modal } from "antd";
-import {useSelector} from "react-redux";
 import EditorWordButton from "./EditorWordButton";
+import {useAppContext} from "../../../../../store/context/use-app-context";
 
 const confirm = Modal.confirm;
 
@@ -12,7 +12,7 @@ interface WordTableDropdownProps {
 }
 
 const WordTableDropdown: React.FC<WordTableDropdownProps> = ({record, fetch}) => {
-    const {api} = useSelector((state: any) => (state));
+    const {api} = useAppContext();
 
     const deleteWord = () =>
         confirm({

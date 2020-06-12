@@ -1,7 +1,7 @@
 import React from 'react';
 import { DeleteOutlined } from '@ant-design/icons';
 import { message, Modal } from "antd";
-import {useSelector} from "react-redux";
+import {useAppContext} from "../../../../../../store/context/use-app-context";
 
 interface DeleteCategoryButtonProps {
     category: any;
@@ -9,7 +9,7 @@ interface DeleteCategoryButtonProps {
 }
 
 const DeleteCategoryButton: React.FC<DeleteCategoryButtonProps> = ({category, fetch}) => {
-    const {api} = useSelector((state: any) => (state));
+    const {api} = useAppContext();
 
     const deleteCategory = async (category: any) => {
         Modal.confirm({

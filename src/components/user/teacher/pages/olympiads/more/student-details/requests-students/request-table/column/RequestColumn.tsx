@@ -1,7 +1,7 @@
 import React from 'react';
 import Avatar from "../../../../../../../../../../lib/avatar/Avatar";
 import {Button, Modal, notification} from "antd";
-import {useSelector} from "react-redux";
+import {useAppContext} from "../../../../../../../../../../store/context/use-app-context";
 
 interface RequestColumnProps {
     student: any;
@@ -10,7 +10,7 @@ interface RequestColumnProps {
 }
 
 const RequestColumn: React.FC<RequestColumnProps> = ({student, fetch, setIsChange}) => {
-    const {api} = useSelector((state: any) => (state));
+    const {api} = useAppContext();
 
     const acceptRequestStudent = async () => {
         Modal.confirm({

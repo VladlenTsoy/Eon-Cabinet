@@ -1,8 +1,8 @@
 import React from "react";
 import CityItems from "./CityItems";
 import {message} from "antd";
-import {useSelector} from "react-redux";
 import usingModalEditor from "../../../../../layouts/modal-editor/usingModalEditor";
+import {useAppContext} from "../../../../../store/context/use-app-context";
 
 const EditorButton = usingModalEditor(CityItems);
 
@@ -13,7 +13,7 @@ interface EditorCountryButtonProps {
 }
 
 const EditorCityButton: React.FC<EditorCountryButtonProps> = ({title, children, city, fetch}) => {
-    const {api} = useSelector((state: any) => (state));
+    const {api} = useAppContext();
 
     const request = async (values: any) => {
         if (city) {

@@ -1,7 +1,7 @@
 import React from 'react';
 import {DeleteOutlined, QuestionCircleOutlined} from "@ant-design/icons";
 import {message, Modal} from "antd";
-import {useSelector} from "react-redux";
+import {useAppContext} from "../../../../../../../../../store/context/use-app-context";
 
 interface DeleteItemProps {
     record: any;
@@ -9,7 +9,7 @@ interface DeleteItemProps {
 }
 
 const DeleteItem: React.FC<DeleteItemProps> = ({record, fetch}) => {
-    const {api} = useSelector((state: any) => state);
+    const {api} = useAppContext();
 
     const handlerClick = () => {
         Modal.confirm({

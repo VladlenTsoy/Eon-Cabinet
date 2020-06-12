@@ -1,8 +1,8 @@
 import React from "react";
 import {message} from "antd";
-import {useSelector} from "react-redux";
 import usingDrawerEditor from "../../../../layouts/drawer-editor/usingDrawerEditor";
 import FormEditorTeacherItems from "../../../../layouts/drawer-editor/editor-teacher/FormEditorTeacherItems";
+import {useAppContext} from "../../../../store/context/use-app-context";
 
 const EditorButton = usingDrawerEditor(FormEditorTeacherItems);
 
@@ -15,7 +15,7 @@ interface EditorTeacherButtonProps {
 }
 
 const EditorTeacherButton: React.FC<EditorTeacherButtonProps> = ({title, children, teacher, fetch, franchise_id, center_id}) => {
-    const {api} = useSelector((state: any) => (state));
+    const {api} = useAppContext();
 
     const request = async (values: any) => {
         if (teacher) {

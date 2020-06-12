@@ -6,7 +6,7 @@ import Timer from "react-compound-timer";
 import moment from "moment";
 import styled from "styled-components";
 import Fire from "../../../../../../../../lib/fire/Fire";
-import {useSelector} from "react-redux";
+import {useAppContext} from "../../../../../../../../store/context/use-app-context";
 
 const CardWrapper = styled(Card)`
   &.ant-card {
@@ -47,7 +47,7 @@ interface CardPublicProps {
 }
 
 const CardPublic: React.FC<CardPublicProps> = ({olympiad, callback}) => {
-    const {api} = useSelector((state: any) => (state));
+    const {api} = useAppContext();
     const currentTime = moment().valueOf();
     const [loading, setLoading] = useState(false);
 

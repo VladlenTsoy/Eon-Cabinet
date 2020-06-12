@@ -1,8 +1,8 @@
 import React from 'react';
 import { DeleteOutlined, EditOutlined, MoreOutlined } from '@ant-design/icons';
 import { Button, Dropdown, Menu, Modal } from "antd";
-import {useSelector} from "react-redux";
 import EditorCountryButton from "./EditorCountryButton";
+import {useAppContext} from "../../../../../store/context/use-app-context";
 
 const confirm = Modal.confirm;
 
@@ -12,7 +12,7 @@ interface CountryTableDropdownProps {
 }
 
 const CountryTableDropdown: React.FC<CountryTableDropdownProps> = ({record, fetch}) => {
-    const {api} = useSelector((state: any) => (state));
+    const {api} = useAppContext();
 
     const deleteCountry = () =>
         confirm({

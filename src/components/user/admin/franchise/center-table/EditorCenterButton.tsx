@@ -1,8 +1,8 @@
 import React from "react";
 import CenterItems from "../../../../../layouts/drawer-editor/editor-center/FormEditorCenterItems";
 import {message} from "antd";
-import {useSelector} from "react-redux";
 import usingDrawerEditor from "../../../../../layouts/drawer-editor/usingDrawerEditor";
+import {useAppContext} from "../../../../../store/context/use-app-context";
 
 const EditorButton = usingDrawerEditor(CenterItems);
 
@@ -15,7 +15,7 @@ interface EditorCenterButtonProps {
 }
 
 const EditorCenterButton: React.FC<EditorCenterButtonProps> = ({title, children, center, fetch, franchise_id, isMouseDown}) => {
-    const {api} = useSelector((state: any) => (state));
+    const {api} = useAppContext();
 
     const request = async (values: any) => {
         if (center) {

@@ -4,10 +4,10 @@ import {Table} from "lib";
 import EditorWordButton from "./EditorWordButton";
 import { MenuOutlined } from '@ant-design/icons';
 import WordTableDropdown from "./WordTableDropdown";
-import {useSelector} from "react-redux";
+import {useAppContext} from "../../../../../store/context/use-app-context";
 
 const Words = () => {
-    const {language} = useSelector((state: any) => (state));
+    const {language} = useAppContext();
     const [loader, setLoader] = useState(false);
 
     const fetchWords = () => {

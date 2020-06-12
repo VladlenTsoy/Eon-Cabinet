@@ -1,11 +1,11 @@
 import React from 'react';
-import {useSelector} from "react-redux";
 import SaveOlympiadItems from "./items/SaveOlympiadItems";
 import {EditOutlined, FlagOutlined} from '@ant-design/icons';
 import {Button, message} from "antd";
 import usingDrawerEditor from "../../../../../../../../../layouts/drawer-editor/usingDrawerEditor";
 import {useHistory} from "react-router";
 import {useScreenWindow} from "../../../../../../../../../effects/use-screen-window.effect";
+import {useAppContext} from "../../../../../../../../../store/context/use-app-context";
 
 const SaveButtonHandler = usingDrawerEditor(SaveOlympiadItems);
 
@@ -27,7 +27,7 @@ const ButtonSaveOlympiad: React.FC<ButtonSaveOlympiadProps> = (
     }
 ) => {
     const history = useHistory();
-    const {api} = useSelector((state: any) => state);
+    const {api} = useAppContext();
     const [, breakpoint] = useScreenWindow({breakpoint: 'sm'});
 
     const saveOlympiad = async (data: any) => {

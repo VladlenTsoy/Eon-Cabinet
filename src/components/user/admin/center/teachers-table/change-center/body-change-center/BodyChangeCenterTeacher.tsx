@@ -6,9 +6,9 @@ import CategoriesSelectCenter from "./CategoriesSelectCenter";
 import {useParams} from "react-router";
 import {LoadingBlock} from "lib";
 import styled from "styled-components";
-import {useSelector} from "react-redux";
 import {useApiUserGeneral} from "effects/use-api-user-general.effect";
 import {FormProps} from "antd/es/form";
+import {useAppContext} from "../../../../../../../store/context/use-app-context";
 
 const FormWrapper: React.FC<FormProps> = styled(Form)`
     margin-bottom: 0.5rem;
@@ -36,7 +36,7 @@ const BodyChangeCenterTeacher: React.FC<BodyChangeCenterTeacherProps> = (
     }
 ) => {
     const {center_id} = useParams<ParamsProps>();
-    const {api} = useSelector((state: any) => (state));
+    const {api} = useAppContext();
     const [centerId, setCenterId] = useState();
     const [currentCenterId] = useState(center_id);
     const [btnLoading, setButtonLoading] = useState(false);

@@ -1,7 +1,7 @@
 import React from "react";
-import {useSelector} from "react-redux";
 import { message, Modal } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
+import {useAppContext} from "../../../../../../../../../../store/context/use-app-context";
 
 interface DeleteHomeworkProps {
     homework: any;
@@ -9,7 +9,7 @@ interface DeleteHomeworkProps {
 }
 
 const DeleteHomework: React.FC<DeleteHomeworkProps> = ({homework, fetch, children}) => {
-    const {api} = useSelector((state: any) => state);
+    const {api} = useAppContext();
 
     const handler = () => {
         Modal.confirm({

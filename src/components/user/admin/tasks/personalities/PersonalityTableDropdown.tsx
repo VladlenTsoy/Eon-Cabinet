@@ -1,8 +1,8 @@
 import React from 'react';
 import { DeleteOutlined, EditOutlined, MoreOutlined } from '@ant-design/icons';
 import { Button, Dropdown, Menu, Modal } from "antd";
-import {useSelector} from "react-redux";
 import EditorPersonalityButton from "./EditorPersonalityButton";
+import {useAppContext} from "../../../../../store/context/use-app-context";
 
 const confirm = Modal.confirm;
 
@@ -12,7 +12,7 @@ interface PersonalityTableDropdownProps {
 }
 
 const PersonalityTableDropdown: React.FC<PersonalityTableDropdownProps> = ({record, fetch}) => {
-    const {api} = useSelector((state: any) => (state));
+    const {api} = useAppContext();
 
     const deletePersonality = () =>
         confirm({

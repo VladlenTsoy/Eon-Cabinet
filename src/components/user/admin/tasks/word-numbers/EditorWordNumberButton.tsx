@@ -1,8 +1,8 @@
 import React from "react";
 import WordNumberItems from "./WordNumberItems";
 import {message} from "antd";
-import {useSelector} from "react-redux";
 import usingModalEditor from "../../../../../layouts/modal-editor/usingModalEditor";
+import {useAppContext} from "../../../../../store/context/use-app-context";
 
 const EditorButton = usingModalEditor(WordNumberItems);
 
@@ -13,7 +13,7 @@ interface EditorWordNumberButtonProps {
 }
 
 const EditorWordNumberButton: React.FC<EditorWordNumberButtonProps> = ({title, children, wordNumber, fetch}) => {
-    const {api} = useSelector((state: any) => (state));
+    const {api} = useAppContext();
 
     const request = async (values: any) => {
         if (wordNumber) {

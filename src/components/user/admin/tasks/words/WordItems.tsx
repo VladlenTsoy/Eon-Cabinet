@@ -1,7 +1,7 @@
 import React from "react";
 import {Input, Select} from "antd";
 import {FormItem} from "../../../../../lib";
-import {useSelector} from "react-redux";
+import {useAppContext} from "../../../../../store/context/use-app-context";
 
 const {TextArea} = Input;
 const {Option} = Select;
@@ -10,7 +10,7 @@ interface PersonalityItemsProps {
 }
 
 const WordItems: React.FC<PersonalityItemsProps> = () => {
-    const {language} = useSelector((state: any) => (state));
+    const {language} = useAppContext();
     const types = language.common.tasksTraining.wordsList.mode;
     const levels = language.common.tasksTraining.wordsList.type;
 

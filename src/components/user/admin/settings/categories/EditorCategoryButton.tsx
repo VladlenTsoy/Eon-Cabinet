@@ -1,8 +1,8 @@
 import React from "react";
 import CategoryItems from "./category-items/CategoryItems";
 import {message} from "antd";
-import {useSelector} from "react-redux";
 import usingModalEditor from "../../../../../layouts/modal-editor/usingModalEditor";
+import {useAppContext} from "../../../../../store/context/use-app-context";
 
 const EditorButton = usingModalEditor(CategoryItems);
 
@@ -13,7 +13,7 @@ interface EditorCategoryButtonProps {
 }
 
 const EditorCategoryButton: React.FC<EditorCategoryButtonProps> = ({title, children, category, fetch}) => {
-    const {api} = useSelector((state: any) => (state));
+    const {api} = useAppContext();
 
     const request = async (values: any) => {
         if (category) {

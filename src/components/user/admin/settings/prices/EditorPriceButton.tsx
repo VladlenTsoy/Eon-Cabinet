@@ -1,8 +1,8 @@
 import React from "react";
 import PriceItems from "./PriceItems";
 import {message} from "antd";
-import {useSelector} from "react-redux";
 import usingModalEditor from "../../../../../layouts/modal-editor/usingModalEditor";
+import {useAppContext} from "../../../../../store/context/use-app-context";
 
 const EditorButton = usingModalEditor(PriceItems);
 
@@ -14,7 +14,7 @@ interface EditorPriceButtonProps {
 }
 
 const EditorPriceButton: React.FC<EditorPriceButtonProps> = ({title, children, price, fetch, isMouseDown}) => {
-    const {api} = useSelector((state: any) => (state));
+    const {api} = useAppContext();
 
     const request = async (values: any) => {
         if (price) {

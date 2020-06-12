@@ -2,7 +2,7 @@ import React from "react";
 import CountryItems from "./CountryItems";
 import usingDrawerEditor from "../../../../../layouts/drawer-editor/usingDrawerEditor";
 import {message} from "antd";
-import {useSelector} from "react-redux";
+import {useAppContext} from "../../../../../store/context/use-app-context";
 
 const EditorButton = usingDrawerEditor(CountryItems);
 
@@ -13,7 +13,7 @@ interface EditorCountryButtonProps {
 }
 
 const EditorCountryButton: React.FC<EditorCountryButtonProps> = ({title, children, country, fetch}) => {
-    const {api} = useSelector((state: any) => (state));
+    const {api} = useAppContext();
 
     const request = async (values: any) => {
         if (country) {

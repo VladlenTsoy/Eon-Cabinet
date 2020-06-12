@@ -1,10 +1,10 @@
 import React, {useState} from "react";
 import {NavigationButton} from "../../../../lib";
-import {useSelector} from "react-redux";
 import {SaveOutlined} from "@ant-design/icons";
+import {useAppContext} from "../../../../store/context/use-app-context";
 
 const ExportToExcel: React.FC = () => {
-    const {api} = useSelector((state: any) => (state));
+    const {api} = useAppContext();
     const [loading, setLoading] = useState(false);
 
     const saveStatistic = async () => {
