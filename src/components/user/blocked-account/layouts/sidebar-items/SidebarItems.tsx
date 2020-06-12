@@ -10,12 +10,12 @@ const SidebarItems = [
             <span>Главная страница</span>
         </Link>
     </SidebarItem>,
-    <SidebarItem key="/settings/payments">
-        <Link to="/settings/payments">
-            <CreditCardOutlined />
-            <span>Оплата</span>
-        </Link>
-    </SidebarItem>,
+    // <SidebarItem key="/settings/payments">
+    //     <Link to="/settings/payments">
+    //         <CreditCardOutlined />
+    //         <span>Оплата</span>
+    //     </Link>
+    // </SidebarItem>,
 ];
 
 export default SidebarItems;
