@@ -53,7 +53,7 @@ export const AppProvider: React.FC = ({children}) => {
 
     const updateUser = useCallback((data) => {
         setUser(prevState => {
-            if(prevState)
+            if(prevState && data)
                 return {...prevState, ...data};
             else
                 return data;
