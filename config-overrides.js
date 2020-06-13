@@ -11,23 +11,23 @@ const addMinimizer = (config) => {
     config.plugins[0].options.inject = false;
 
     if (isEnvProduction) {
-        config.optimization.minimizer.push(
-            new UglifyJsPlugin({
-                sourceMap: false,
-                uglifyOptions: {
-                    mangle: true,
-                    output: {
-                        beautify: false,
-                    },
-                    compress: {
-                        unsafe: true,
-                        inline: true,
-                        passes: 2,
-                        keep_fargs: false,
-                    },
-                },
-            })
-        );
+        // config.optimization.minimizer.push(
+        //     new UglifyJsPlugin({
+        //         sourceMap: false,
+        //         uglifyOptions: {
+        //             mangle: true,
+        //             output: {
+        //                 beautify: false,
+        //             },
+        //             compress: {
+        //                 unsafe: true,
+        //                 inline: true,
+        //                 passes: 2,
+        //                 keep_fargs: false,
+        //             },
+        //         },
+        //     })
+        // );
     } else {
         config.module.rules.push({
             test: /(dark|default).(less)$/,
