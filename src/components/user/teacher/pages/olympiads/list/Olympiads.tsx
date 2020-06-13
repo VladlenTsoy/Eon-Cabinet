@@ -1,13 +1,22 @@
 import React from 'react';
-import {Col, Row} from "antd";
-import {Navigation, NavigationButton} from "../../../../../../lib";
+import {Navigation, NavigationButton, TabTitleCustom} from "lib";
 import {Link} from "react-router-dom";
 import {PlusOutlined} from "@ant-design/icons";
-import CurrentOlympiads from "./current/CurrentOlympiads";
-import FutureOlympiads from "./future-olympiads/FutureOlympiads";
-import PastOlympiads from "./past-olympiads/PastOlympiads";
+import {useDispatch, useSelector} from "react-redux";
+import {appSelector, changeActiveDisciplineId} from "store/reducers/common/app/appSlice";
+import {Tabs} from "antd";
+import Discipline from "./disipline/Discipline";
+
+const {TabPane} = Tabs;
 
 const Olympiads = () => {
+    const app = useSelector(appSelector);
+    const dispatch = useDispatch();
+
+    const clickEventHandler = (disciplineId: string) => {
+        dispatch(changeActiveDisciplineId(disciplineId))
+    };
+
     return <>
         <Navigation>
             <Link to="/olympiad/create">
@@ -16,17 +25,26 @@ const Olympiads = () => {
                 </NavigationButton>
             </Link>
         </Navigation>
-        <Row  align="middle" gutter={15}>
-            <Col xl={18} xs={24}>
-                <CurrentOlympiads/>
-            </Col>
-            <Col xl={6} xs={24}>
-                <PastOlympiads/>
-            </Col>
-            <Col xl={24} xs={24}>
-                <FutureOlympiads/>
-            </Col>
-        </Row>
+        {
+            <Tabs
+                defaultActiveKey={app.activeDisciplineId}
+                size="large"
+                onTabClick={clickEventHandler}
+            >
+                {app.disciplines.map((discipline: any) =>
+                    <TabPane
+                        tab={
+                            <TabTitleCustom>
+                                {discipline.title}
+                            </TabTitleCustom>
+                        }
+                        key={discipline.id}
+                    >
+                        <Discipline disciplineId={discipline.id}/>
+                    </TabPane>
+                )}
+            </Tabs>
+        }
     </>;
 };
 
