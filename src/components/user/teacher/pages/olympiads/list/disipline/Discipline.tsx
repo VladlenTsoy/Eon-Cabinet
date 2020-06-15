@@ -41,7 +41,7 @@ const Discipline: React.FC<DisciplineProps> = ({disciplineId}) => {
                 }
                 key={tab.key}
             >
-                <Olympiads keyFetch={tab.key}/>
+                <Olympiads keyFetch={tab.key} disciplineId={disciplineId}/>
             </TabPane>
         )}
     </Tabs>;
