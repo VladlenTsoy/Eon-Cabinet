@@ -1,9 +1,13 @@
 import React from 'react';
 import styled from "styled-components";
 import {Tag, Typography} from "antd";
-import {ButtonLink} from "../../../../../../../../../lib";
+import {ButtonLink, GrayIcon} from "../../../../../../../../../lib";
 import Timer from "react-compound-timer";
 import moment from "moment";
+import OlympiadImage from "assets/images/olympiad/step_success_finally.svg";
+import {ClockCircleOutlined, InfoCircleOutlined} from "@ant-design/icons";
+import LeftToOlympiad
+    from "../../../../../../../../../_components/teacher/olympiads/card-olympiad/left-to-olympiad/LeftToOlympiad";
 
 const {Title} = Typography;
 
@@ -22,13 +26,49 @@ const OlympiadStyled = styled.div`
   padding: 1rem;
   border-radius: 10px;
   margin-bottom: 1rem;
-
+  
+  .image{
+    display: flex;
+    align-items: center;
+    
+    img{
+      width: 100%;  
+    }
+  }
+  
   .info{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 1fr 1fr;
-    gap: 0.5rem;
     margin-bottom: 1rem;
+    
+    .title{
+      color: ${props => props.theme.color_second};
+    }
+    
+    .content{
+      font-size: 20px;
+    }
+  }
+  
+  .actions{
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr 1fr;
+    
+    .timer{
+      background: ${props => props.theme['@layout-body-background']};
+      border-radius: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      
+      .anticon {
+        margin-right: 0.5rem;
+      }
+      
+      .space{
+        margin: 0 0.1rem;
+      }
+    }
   }
 `;
 
@@ -38,13 +78,13 @@ interface CurrentsProps {
 
 const Currents: React.FC<CurrentsProps> = ({olympiads}) => {
     return <OlympiadsStyled>
-        {olympiads.map((olympiad) =>
-            <OlympiadStyled>
-                <div>
-                    img
+        {olympiads.map((olympiad, key) =>
+            <OlympiadStyled key={key}>
+                <div className="image">
+                    <GrayIcon img={OlympiadImage} alt={olympiad.title} width="100%" percent={100}/>
                 </div>
                 <div className="content">
-                    <Title level={3}>
+                    <Title level={3} className="title">
                         {olympiad.title}
                         {olympiad.access === 'public' ?
                             <Tag color="#5cb860">Открытый</Tag> :
@@ -53,34 +93,19 @@ const Currents: React.FC<CurrentsProps> = ({olympiads}) => {
                                 <Tag color="#f55a4e">Закрытый</Tag>}
                     </Title>
                     <div className="info">
-                        <div>Осталось</div>
-                        <div>Этап</div>
-                        <div>Участвующих</div>
-                        <div>
-                            <Timer
-                                formatValue={(value: any) => value < 10 ? `0${value}` : value}
-                                initialTime={moment(olympiad.current_step.end_at).valueOf() - moment().valueOf()}
-                                direction="backward"
-                                checkpoints={[
-                                    {
-                                        time: 1000,
-                                        callback: () => null,
-                                    }
-                                ]}
-                            >
-                                <Timer.Days/>д. <Timer.Hours/>:<Timer.Minutes/>:<Timer.Seconds/>
-                            </Timer>
-                        </div>
-                        <div>{olympiad.current_step.step + 1} из {olympiad.steps_count}</div>
-                        <div>{olympiad.students_count}</div>
+                        <div className="title">Этап</div>
+                        <div className="title">Участвующих</div>
+                        <div className="content">{olympiad.current_step.step + 1} из {olympiad.steps_count}</div>
+                        <div className="content">{olympiad.students_count}</div>
                     </div>
-                    <ButtonLink
-                        block
-                        type="default"
-                        to={`olympiad/${olympiad.id}`}
-                    >
-                        Подробнее
-                    </ButtonLink>
+                    <div className="actions">
+                        <div className="timer">
+                            <ClockCircleOutlined/>
+                            <LeftToOlympiad end={olympiad.current_step.end_at}/>
+                        </div>
+                        <ButtonLink to={`/olympiad/${olympiad.id}`} type="dashed" shape="round" block
+                                    icon={<InfoCircleOutlined/>} size="large">Подробнее</ButtonLink>
+                    </div>
                 </div>
             </OlympiadStyled>
         )}

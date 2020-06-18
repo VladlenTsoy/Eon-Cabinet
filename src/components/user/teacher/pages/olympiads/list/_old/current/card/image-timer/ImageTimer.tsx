@@ -1,9 +1,9 @@
 import React from 'react';
-import OlympiadImage from "../../../../../../../../../assets/images/icons/winner.svg";
+import OlympiadImage from "../../../../../../../../../../assets/images/icons/winner.svg";
 import Timer from "react-compound-timer";
 import moment from "moment";
 import styled from "styled-components";
-import TextFit from "../../../../../training/settings/mental/multi-anzan/exercise-setting/multiplication-block/TextFit";
+import TextFit from "../../../../../../training/settings/mental/multi-anzan/exercise-setting/multiplication-block/TextFit";
 
 const TimerWrapper = styled.div`
     text-align: center;

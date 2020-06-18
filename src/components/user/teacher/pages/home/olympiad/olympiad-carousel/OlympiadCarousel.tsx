@@ -2,7 +2,7 @@ import React from 'react';
 import styled from "styled-components";
 import {Carousel} from "antd";
 import {chunk} from "lodash";
-import CardOlympiad from "../../../olympiads/list/current/card/CardOlympiad";
+import CardOlympiad from "../../../olympiads/list/_old/current/card/CardOlympiad";
 import NextArrow from "./next-arrow/NextArrow";
 import PrevArrow from "./prev-arrow/PrevArrow";
 import {useApiUserGeneral} from "../../../../../../../effects/use-api-user-general.effect";
