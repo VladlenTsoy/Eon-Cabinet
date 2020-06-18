@@ -31,13 +31,7 @@ const Olympiad: React.FC = () => {
 
     return <>
         <Legend styled={{marginTop: 0}}>Олимпиады</Legend>
-        <OlympiadWrapper>
-            {
-                olympiads.map((olympiad: any, key: number) =>
-                    <CardOlympiad olympiad={olympiad} key={key} fetch={fetch}/>
-                )
-            }
-        </OlympiadWrapper>
+
     </>
 };
 

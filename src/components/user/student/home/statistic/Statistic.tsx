@@ -5,6 +5,7 @@ import styled from "styled-components";
 import {useScreenWindow} from "../../../../../effects/use-screen-window.effect";
 import {Carousel} from "antd";
 import NextArrow from "../../../teacher/pages/home/olympiad/olympiad-carousel/next-arrow/NextArrow";
+import Olympiad from "./olympiad/Olympiad";
 
 const Wrapper = styled.div`
   display: grid;
@@ -47,8 +48,8 @@ const Statistic: React.FC = () => {
     return wrapper(
         [
             <Profile key="profile"/>,
-            <Homework key="homework-1"/>,
-            <Homework key="homework-2"/>
+            <Olympiad key="olympiad"/>,
+            <Homework key="homework"/>
         ]
     );
 };
