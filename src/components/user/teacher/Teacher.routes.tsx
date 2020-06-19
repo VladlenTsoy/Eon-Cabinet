@@ -14,7 +14,6 @@ import TasksSetting from "./pages/training/settings/Settings";
 import TasksApplication from "./pages/training/tasks/Tasks";
 import Olympiads from "./pages/olympiads/list/Olympiads";
 import EditorOlympiad from "./pages/olympiads/editor/Editor";
-import HistoryOlympiad from "./pages/olympiads/history/HistoryOlympiad";
 import MoreOlympiad from "./pages/olympiads/more/More";
 import Settings from "./pages/settings/Settings";
 import Platform from "./pages/platform/Platform";
@@ -55,7 +54,6 @@ const TeacherRoutes: React.FC = () => {
                     <Route path="/training/:discipline/:task" component={TasksApplication}/>
                     <Route exact path="/olympiad" component={Olympiads}/>
                     <Route path="/olympiad/create" component={EditorOlympiad}/>
-                    <Route path="/olympiad/history" component={HistoryOlympiad}/>
                     <Route path="/olympiad/:id" component={MoreOlympiad}/>
                     <Route path="/settings" component={Settings}/>
                     <Route path="/platform" component={Platform}/>

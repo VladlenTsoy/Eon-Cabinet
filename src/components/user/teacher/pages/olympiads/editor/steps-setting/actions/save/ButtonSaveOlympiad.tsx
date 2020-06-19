@@ -1,11 +1,13 @@
 import React from 'react';
 import SaveOlympiadItems from "./items/SaveOlympiadItems";
 import {EditOutlined, FlagOutlined} from '@ant-design/icons';
-import {Button, message} from "antd";
+import {Button} from "antd";
 import usingDrawerEditor from "../../../../../../../../../layouts/drawer-editor/usingDrawerEditor";
 import {useHistory} from "react-router";
 import {useScreenWindow} from "../../../../../../../../../effects/use-screen-window.effect";
-import {useAppContext} from "../../../../../../../../../store/context/use-app-context";
+import {useDispatch} from "react-redux";
+import {createOlympiad} from "store/reducers/teacher/olympiad/createOlympiad";
+import {updateOlympiad} from "store/reducers/teacher/olympiad/updateOlympiad";
 
 const SaveButtonHandler = usingDrawerEditor(SaveOlympiadItems);
 
@@ -27,30 +29,14 @@ const ButtonSaveOlympiad: React.FC<ButtonSaveOlympiadProps> = (
     }
 ) => {
     const history = useHistory();
-    const {api} = useAppContext();
     const [, breakpoint] = useScreenWindow({breakpoint: 'sm'});
+    const dispatch = useDispatch();
 
     const saveOlympiad = async (data: any) => {
-        try {
-            if (olympiad) {
-                const response = await api.user.patch(`teacher/olympiad/${olympiad.id}`, data);
-                if (response.data.status === 'success')
-                    message.success("Вы успешно изменили олимпиаду!");
-            } else {
-                const response = await api.user.post('teacher/olympiad', {
-                    ...data,
-                    discipline: disciplineId,
-                    exercises,
-                    steps,
-                });
-                if (response.data.status === 'success') {
-                    message.success("Вы успешно создали олимпиаду!");
-                }
-            }
-        } catch (e) {
-            message.error("Неизвестная ошибка!");
-            console.log(e);
-        }
+        if (olympiad)
+            await dispatch(updateOlympiad({olympiadId: olympiad.id, data}))
+        else
+            await dispatch(createOlympiad({...data, discipline: disciplineId, exercises, steps}));
     };
 
     const afterSaveOlympiad = () => {

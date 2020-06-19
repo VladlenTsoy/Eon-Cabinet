@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useState} from "react";
-import axios from "axios";
 import {Loader} from "../../lib";
+import {api, updateToken} from "utils/api";
 
 interface User {
     id: number;
@@ -13,18 +13,10 @@ interface User {
     image: string;
 }
 
-const DOMAIN_API = process.env.NODE_ENV === 'production' ? 'https://api.eon.uz/api' : 'http://192.168.1.37:8000/api';
-
-const apiInitial = {
-    token: localStorage.getItem('EON_API_TOKEN_ACCESS') || '',
-    guest: axios.create({baseURL: DOMAIN_API}),
-    user: axios.create({baseURL: DOMAIN_API + '/user'}),
-};
-
 interface InitialState {
     user: User | any;
     language: any;
-    api: typeof apiInitial;
+    api: typeof api;
     updateToken: (token: string) => void;
     updateUser: (data: User | null) => void;
     updateLanguage: (language: any) => void;
@@ -33,7 +25,7 @@ interface InitialState {
 const initialState: InitialState = {
     user: null,
     language: null,
-    api: apiInitial,
+    api: api,
     updateToken: (token) => token,
     updateUser: (data) => data,
     updateLanguage: (data) => data
@@ -47,13 +39,13 @@ export const AppProvider: React.FC = ({children}) => {
     const [language, setLanguage] = useState(initialState.language);
     const [api, setApi] = useState(initialState.api);
 
-    const updateToken = useCallback((token) => {
+    const updateApiToken = useCallback((token) => {
         setApi((prevState) => ({...prevState, token}));
     }, []);
 
     const updateUser = useCallback((data) => {
         setUser(prevState => {
-            if(prevState && data)
+            if (prevState && data)
                 return {...prevState, ...data};
             else
                 return data;
@@ -84,7 +76,8 @@ export const AppProvider: React.FC = ({children}) => {
 
     useEffect(() => {
         localStorage.setItem('EON_API_TOKEN_ACCESS', api.token);
-        api.user.defaults.headers.common["Authorization"] = "Bearer " + api.token;
+        updateToken(api.token);
+        // api.user.defaults.headers.common["Authorization"] = "Bearer " + api.token;
 
         (async () => {
             setLoading(true);
@@ -94,7 +87,7 @@ export const AppProvider: React.FC = ({children}) => {
         })();
     }, [api.token, api.user, fetchUser, fetchLanguage]);
 
-    return <AppContext.Provider value={{user, api, language, updateToken, updateUser, updateLanguage}}>
+    return <AppContext.Provider value={{user, api, language, updateToken: updateApiToken, updateUser, updateLanguage}}>
         {loading ? <Loader text="Загрузка..."/> : children}
     </AppContext.Provider>
 };
