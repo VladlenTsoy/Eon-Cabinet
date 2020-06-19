@@ -1,5 +1,5 @@
 import React from 'react';
-import {useApiUserGeneral} from "effects/use-api-user-general.effect";
+import {useApiUserGeneral} from "hooks/use-api-user-general.effect";
 import {LoadingBlock} from "lib";
 import Task from "./task/Task";
 import styled from "styled-components";

@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { BulbOutlined } from '@ant-design/icons';
 import {Drawer} from "../../../../../../lib";
 import News from "../../../../general/news/News";
-import {useScreenWindow} from "../../../../../../effects/use-screen-window.effect";
+import {useScreenWindow} from "../../../../../../hooks/use-screen-window.effect";
 
 const NewsItem: React.FC = () => {
     const [visible, setVisible] = useState(false);

@@ -2,7 +2,7 @@ import React from 'react';
 import {message} from "antd";
 import usingDrawerEditorNew from "../../../../../../layouts/drawer-editor/usingDrawerEditor.new";
 import TeacherItems from "./items/TeacherItems";
-import {useScreenWindow} from "../../../../../../effects/use-screen-window.effect";
+import {useScreenWindow} from "../../../../../../hooks/use-screen-window.effect";
 import {useAppContext} from "../../../../../../store/context/use-app-context";
 
 const FormComponentData = usingDrawerEditorNew(TeacherItems);

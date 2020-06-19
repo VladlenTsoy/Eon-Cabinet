@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Drawer} from "../../../../../../../../../../lib";
 import MoreHomeworkItem from "./MoreHomeworkItem";
-import {useScreenWindow} from "../../../../../../../../../../effects/use-screen-window.effect";
+import {useScreenWindow} from "../../../../../../../../../../hooks/use-screen-window.effect";
 
 interface MoreHomeworkDrawerProps {
     homework: any;

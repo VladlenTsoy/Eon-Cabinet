@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from "react";
 import {Table} from 'antd';
 import HeaderTable from "./Header";
 import {Card} from "lib";
-import {useApiUserGeneral} from "../../effects/use-api-user-general.effect";
+import {useApiUserGeneral} from "../../hooks/use-api-user-general.effect";
 
 const Wrapper: React.FC<any> = ({card, children}) => card ? <Card>{children}</Card> : <>{children}</>;
 

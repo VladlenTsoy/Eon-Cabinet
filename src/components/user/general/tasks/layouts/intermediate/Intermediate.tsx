@@ -7,7 +7,7 @@ import styled from "styled-components";
 import {Card} from "lib";
 import StepsIntermediate from "./layouts/step-intermediate/StepsIntermediate";
 import BgIconsDownIntermediateLayout from "./layouts/bg-icons-down/BgIconsDownIntermediate.layout";
-import {useScreenWindow} from "../../../../../../effects/use-screen-window.effect";
+import {useScreenWindow} from "../../../../../../hooks/use-screen-window.effect";
 import {gameSelector} from "../../../../../../store/reducers/common/game/gameSplice";
 
 const CardWrapper = styled(Card)`

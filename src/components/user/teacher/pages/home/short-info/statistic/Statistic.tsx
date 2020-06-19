@@ -1,6 +1,6 @@
 import React from 'react';
 import {CardStatistic} from "../../../../../../../lib";
-import {useApiUserGeneral} from "../../../../../../../effects/use-api-user-general.effect";
+import {useApiUserGeneral} from "../../../../../../../hooks/use-api-user-general.effect";
 import Students from "./students/Students";
 import styled from "styled-components";
 import {HomeOutlined, TeamOutlined} from "@ant-design/icons";

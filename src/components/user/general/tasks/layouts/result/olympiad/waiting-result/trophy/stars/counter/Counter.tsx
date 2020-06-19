@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import styled from "styled-components";
-import {useAddTimeout} from "../../../../../../../../../../../effects/use-add-timeout.effect";
+import {useAddTimeout} from "../../../../../../../../../../../hooks/use-add-timeout.effect";
 import CountActive from "../../counter/count-active/CountActive";
 
 interface StyledProps {

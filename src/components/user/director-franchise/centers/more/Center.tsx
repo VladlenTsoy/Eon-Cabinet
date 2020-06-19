@@ -6,10 +6,10 @@ import {Badge} from "antd";
 import {PlusOutlined} from "@ant-design/icons";
 import moment from "moment";
 import UsingTablePagination from "../../../../../lib/table-pagination/usingTablePagination";
-import {useChangeActionNavbar} from "../../../../../effects/use-change-action-navbar.effect";
-import {useChangeTitle} from "../../../../../effects/use-change-title.effect";
+import {useChangeActionNavbar} from "../../../../../hooks/use-change-action-navbar.effect";
+import {useChangeTitle} from "../../../../../hooks/use-change-title.effect";
 import TeacherModalMenuItems from "./teacher-modal-menu-items/TeacherModalMenuItems";
-import {useApiUserGeneral} from "../../../../../effects/use-api-user-general.effect";
+import {useApiUserGeneral} from "../../../../../hooks/use-api-user-general.effect";
 import styled from "styled-components";
 
 const UserImageWrapper = styled.div`

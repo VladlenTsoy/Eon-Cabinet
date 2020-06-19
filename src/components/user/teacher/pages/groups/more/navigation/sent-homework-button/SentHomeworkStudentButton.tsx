@@ -6,7 +6,7 @@ import FormSentHomeworkItems from "./form-items/FormSentHomeworkItems";
 import checkStudentGif from "assets/images/hints/check-student.gif";
 import {useDispatch} from "react-redux";
 import {message, Modal} from "antd";
-import {useScreenWindow} from "effects/use-screen-window.effect";
+import {useScreenWindow} from "hooks/use-screen-window.effect";
 import {changeIsSaved} from "store/reducers/teacher/group/groupSlice";
 import {useAppContext} from "../../../../../../../../store/context/use-app-context";
 

@@ -2,7 +2,7 @@ import React from 'react';
 import {Legend} from "../../../../../lib";
 import {LoadingBlock} from "lib";
 import OlympiadEmpty from "./olympiad-empty/OlympiadEmpty";
-import {useApiUserGeneral} from "../../../../../effects/use-api-user-general.effect";
+import {useApiUserGeneral} from "../../../../../hooks/use-api-user-general.effect";
 import CardOlympiad from "./card-olympiad/CardOlympiad";
 import styled from "styled-components";
 

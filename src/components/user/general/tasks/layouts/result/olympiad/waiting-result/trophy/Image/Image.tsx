@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
 import StepSuccessSVG from "assets/images/olympiad/step_success.svg";
 import {GrayIcon} from "lib";
-import {useScreenWindow} from "effects/use-screen-window.effect";
-import {useAddTimeout} from "effects/use-add-timeout.effect";
+import {useScreenWindow} from "hooks/use-screen-window.effect";
+import {useAddTimeout} from "hooks/use-add-timeout.effect";
 import styled from "styled-components";
 
 interface StyledProps {

@@ -2,7 +2,7 @@ import React, {useCallback, useState} from 'react';
 import {BrowserRouter as Router, useHistory, useRouteMatch} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {Switch, Route} from "react-router";
-import {useChangeActionNavbar} from "effects/use-change-action-navbar.effect";
+import {useChangeActionNavbar} from "hooks/use-change-action-navbar.effect";
 import {Col, Row} from "antd";
 import {Card, LoadingBlock} from "lib";
 import styled from "styled-components";

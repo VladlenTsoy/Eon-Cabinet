@@ -2,8 +2,8 @@ import React, {useCallback, useEffect, useState} from 'react';
 import {Navigation, NavigationButton} from "../../../../lib";
 import CenterTable from "./center-table/CenterTable";
 import EditorCenterButton from "./center-table/EditorCenterButton";
-import {useChangeActionNavbar} from "../../../../effects/use-change-action-navbar.effect";
-import {useChangeTitle} from "../../../../effects/use-change-title.effect";
+import {useChangeActionNavbar} from "../../../../hooks/use-change-action-navbar.effect";
+import {useChangeTitle} from "../../../../hooks/use-change-title.effect";
 import {useAppContext} from "../../../../store/context/use-app-context";
 import {PlusOutlined} from "@ant-design/icons";
 

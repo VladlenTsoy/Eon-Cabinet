@@ -4,7 +4,7 @@ import {Button, Col, Row, Select, Form} from "antd";
 import {FormItem} from "../../../../../../../../../../lib";
 import styled from "styled-components";
 import {useAppContext} from "store/context/use-app-context";
-import {useScreenWindow} from "../../../../../../../../../../effects/use-screen-window.effect";
+import {useScreenWindow} from "../../../../../../../../../../hooks/use-screen-window.effect";
 
 const {Option} = Select;
 

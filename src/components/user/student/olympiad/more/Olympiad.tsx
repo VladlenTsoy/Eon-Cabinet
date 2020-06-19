@@ -1,11 +1,11 @@
 import React from 'react';
 import {RouteComponentProps} from "react-router-dom";
 import styled from "styled-components";
-import {useApiUserGeneral} from "effects/use-api-user-general.effect";
+import {useApiUserGeneral} from "hooks/use-api-user-general.effect";
 import {LoadingBlock} from "lib";
 import {Typography} from "antd";
-import {useChangeActionNavbar} from "effects/use-change-action-navbar.effect";
-import {useChangeTitle} from "effects/use-change-title.effect";
+import {useChangeActionNavbar} from "hooks/use-change-action-navbar.effect";
+import {useChangeTitle} from "hooks/use-change-title.effect";
 import Steps from "./steps/Steps";
 import Info from "./info/Info";
 

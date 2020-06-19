@@ -1,7 +1,7 @@
 import React, {useCallback} from 'react';
 import {useSelector} from "react-redux";
 import {random} from 'lodash';
-import {useAddSpaceToString} from "effects/use-add-space-to-string";
+import {useAddSpaceToString} from "hooks/use-add-space-to-string";
 import ApplicationLayout from "../../../layouts/application/Application.layout";
 import Custom from "./custom/Custom";
 import {gameSelector} from "../../../../../../../store/reducers/common/game/gameSplice";

@@ -2,13 +2,13 @@ import React from "react";
 import {Legend} from "../../../../../lib";
 import {LoadingBlock} from "lib";
 import HomeworkBlock from "../../layouts/homework-block/HomeworkBlock";
-import {useApiUserGeneral} from "../../../../../effects/use-api-user-general.effect";
+import {useApiUserGeneral} from "../../../../../hooks/use-api-user-general.effect";
 import HomeworkEmpty from "./homework-empty/HomeworkEmpty";
 import HomeworkMoreLink from "./homework-more/HomeworkMoreLink";
 import HomeworkWait from "./homework-wait/HomeworkWait";
 import styled from "styled-components";
 import {useWindowSize} from "react-use";
-import {useScreenWindow} from "../../../../../effects/use-screen-window.effect";
+import {useScreenWindow} from "../../../../../hooks/use-screen-window.effect";
 import {Carousel} from "antd";
 import NextArrow from "../../../teacher/pages/home/olympiad/olympiad-carousel/next-arrow/NextArrow";
 

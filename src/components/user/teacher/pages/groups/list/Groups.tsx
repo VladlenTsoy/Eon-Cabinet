@@ -3,7 +3,7 @@ import {Col, Row, Empty, Tabs} from "antd";
 import GroupBlock from "./card-group/CardGroup";
 import {Navigation, NavigationButton, Spin, TabTitleCustom} from "../../../../../../lib";
 import EditorButton from "./editor-button/EditorButton";
-import {useApiUserGeneral} from "../../../../../../effects/use-api-user-general.effect";
+import {useApiUserGeneral} from "../../../../../../hooks/use-api-user-general.effect";
 import {changeActiveDisciplineId} from "../../../../../../store/reducers/common/app/appSlice";
 import {useDispatch, useSelector} from "react-redux";
 import {PlusOutlined} from "@ant-design/icons";

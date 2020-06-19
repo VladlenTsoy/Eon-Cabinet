@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {changeStatus, StatusProps} from "store/reducers/common/game/gameSplice";
-import {useAddInternal} from "effects/use-add-interval.effect";
+import {useAddInternal} from "hooks/use-add-interval.effect";
 import {useDispatch} from "react-redux";
 import Output from "./output/Output";
 import {SettingAnzanProps} from "store/reducers/common/game/setting/games-types/anzan.types";

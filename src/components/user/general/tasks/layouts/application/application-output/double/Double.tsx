@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Output from "../basic/output/Output";
 import {SettingAnzanBasicProps,} from "../../../../../../../../store/reducers/common/game/setting/games-types/anzan.types";
 import {useDispatch} from "react-redux";
-import {useAddInternal} from "../../../../../../../../effects/use-add-interval.effect";
+import {useAddInternal} from "../../../../../../../../hooks/use-add-interval.effect";
 import {changeStatus, StatusProps} from "../../../../../../../../store/reducers/common/game/gameSplice";
 import {useSoundEffect} from "../use-sound.effect";
 import AbacusOutput from "../basic/abacus-output/AbacusOutput";

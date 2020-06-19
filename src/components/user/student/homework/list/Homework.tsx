@@ -3,7 +3,7 @@ import {Row, Col} from 'antd';
 import Rating from "./rating/Rating";
 import HomeworkBlock from "../../layouts/homework-block/HomeworkBlock";
 import {LoadingBlock} from "lib";
-import {useApiUserGeneral} from "../../../../../effects/use-api-user-general.effect";
+import {useApiUserGeneral} from "../../../../../hooks/use-api-user-general.effect";
 
 const Homework = () => {
     const [loading, homework] = useApiUserGeneral({url: 'student/homework/all'});

@@ -5,10 +5,10 @@ import {chunk} from "lodash";
 import CardOlympiad from "../../../olympiads/list/_old/current/card/CardOlympiad";
 import NextArrow from "./next-arrow/NextArrow";
 import PrevArrow from "./prev-arrow/PrevArrow";
-import {useApiUserGeneral} from "../../../../../../../effects/use-api-user-general.effect";
+import {useApiUserGeneral} from "../../../../../../../hooks/use-api-user-general.effect";
 import OlympiadEmpty from "./olympiad-empty/OlympiadEmpty";
 import {LoadingBlock} from "lib";
-import {useScreenWindow} from "../../../../../../../effects/use-screen-window.effect";
+import {useScreenWindow} from "../../../../../../../hooks/use-screen-window.effect";
 
 const CardsWrapper = styled.div`
   display: grid;

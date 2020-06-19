@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import styled from "styled-components";
 import {Card} from "lib";
-import {useAddTimeout} from "../../../../../../../../effects/use-add-timeout.effect";
+import {useAddTimeout} from "../../../../../../../../hooks/use-add-timeout.effect";
 import TextFit
     from "../../../../../../teacher/pages/training/settings/mental/multi-anzan/exercise-setting/multiplication-block/TextFit";
 import {PreparationSoundProps} from "../use-load-sounds.effect";

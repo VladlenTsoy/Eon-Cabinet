@@ -3,7 +3,7 @@ import {Drawer} from "../../../../../../../../../lib";
 import DrawerTasks from "./drawer/DrawerTasks";
 import { InfoCircleOutlined } from '@ant-design/icons';
 import {Button} from "antd";
-import {useScreenWindow} from "../../../../../../../../../effects/use-screen-window.effect";
+import {useScreenWindow} from "../../../../../../../../../hooks/use-screen-window.effect";
 
 interface TasksBtnProps {
     tasks: any[];

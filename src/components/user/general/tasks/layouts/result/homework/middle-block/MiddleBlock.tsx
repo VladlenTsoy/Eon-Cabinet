@@ -3,10 +3,10 @@ import styled from "styled-components";
 import Stars from "./starts/Stars";
 import Counter from "./counter/Counter";
 import Title from "./title/Title";
-import {usePreloadSounds} from "effects/use-preload-sounds.effect";
+import {usePreloadSounds} from "hooks/use-preload-sounds.effect";
 import {LoadingBlock} from "lib";
 import StarSvg from "assets/images/star.svg";
-import {usePreloadPictures} from "../../../../../../../../effects/use-preload-pictures.effect";
+import {usePreloadPictures} from "../../../../../../../../hooks/use-preload-pictures.effect";
 import {useSelector} from "react-redux";
 import {gameSelector} from "../../../../../../../../store/reducers/common/game/gameSplice";
 

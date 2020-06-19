@@ -1,9 +1,9 @@
 import React from "react";
 import {Col, Result, Row,} from "antd";
 import {LoadingBlock, Card} from "lib";
-import {useChangeTitle} from "../../../../../../effects/use-change-title.effect";
-import {useChangeActionNavbar} from "../../../../../../effects/use-change-action-navbar.effect";
-import {useApiUserGeneral} from "../../../../../../effects/use-api-user-general.effect";
+import {useChangeTitle} from "../../../../../../hooks/use-change-title.effect";
+import {useChangeActionNavbar} from "../../../../../../hooks/use-change-action-navbar.effect";
+import {useApiUserGeneral} from "../../../../../../hooks/use-api-user-general.effect";
 import Profile from "./profile/Profile";
 import Homework from "./homework/Homework";
 import Notification from "./notification/Notification";

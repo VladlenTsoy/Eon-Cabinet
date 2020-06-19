@@ -2,13 +2,13 @@ import React from 'react';
 import InfoDetails from "./info-details/InfoDetails";
 import {LoadingBlock} from "lib";
 import {Result} from "antd";
-import {useApiUserGeneral} from "effects/use-api-user-general.effect";
+import {useApiUserGeneral} from "hooks/use-api-user-general.effect";
 import StepsDetails from "./step-details/StepsDetails";
 import styled from "styled-components";
 import StudentDetails from "./student-details/StudentDetails";
 import {Spin} from "lib";
-import {useChangeActionNavbar} from "../../../../../../effects/use-change-action-navbar.effect";
-import {useChangeTitle} from "../../../../../../effects/use-change-title.effect";
+import {useChangeActionNavbar} from "../../../../../../hooks/use-change-action-navbar.effect";
+import {useChangeTitle} from "../../../../../../hooks/use-change-title.effect";
 
 const MoreWrapper = styled.div`
   position: absolute;

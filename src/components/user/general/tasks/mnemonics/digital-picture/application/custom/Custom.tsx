@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import styled from "styled-components";
-import {useAddInternal} from "../../../../../../../../effects/use-add-interval.effect";
+import {useAddInternal} from "../../../../../../../../hooks/use-add-interval.effect";
 
 const BasicWrapper = styled.div`
   display: flex;

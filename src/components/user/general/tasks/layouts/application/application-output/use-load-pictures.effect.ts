@@ -1,7 +1,7 @@
 import {useCallback} from "react";
 import IconAbacus from "../../../../../../../assets/images/tasks/abacus.svg";
 import {message} from "antd";
-import {usePreloadPictures} from "../../../../../../../effects/use-preload-pictures.effect";
+import {usePreloadPictures} from "../../../../../../../hooks/use-preload-pictures.effect";
 
 type picturesFunction = (exercises: any) => any[];
 

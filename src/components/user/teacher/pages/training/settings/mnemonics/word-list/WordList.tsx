@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import WordListFormBody from "./word-list-form-body/WordListFormBody";
-import {useScreenWindow} from "../../../../../../../../effects/use-screen-window.effect";
+import {useScreenWindow} from "../../../../../../../../hooks/use-screen-window.effect";
 
 interface SettingWordsListProps {
     userSetting?: any;

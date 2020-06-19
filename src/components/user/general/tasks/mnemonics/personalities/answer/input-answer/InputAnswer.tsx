@@ -3,7 +3,7 @@ import styled from "styled-components";
 import {FormItem, UserImage} from "../../../../../../../../lib";
 import {DatePicker} from "antd";
 import {useSelector} from "react-redux";
-import {useScreenWindow} from "../../../../../../../../effects/use-screen-window.effect";
+import {useScreenWindow} from "../../../../../../../../hooks/use-screen-window.effect";
 import {gameSelector} from "../../../../../../../../store/reducers/common/game/gameSplice";
 
 const dateFormatList = ['DD/MM/YYYY', 'DD/MM/YY'];

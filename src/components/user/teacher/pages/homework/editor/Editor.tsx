@@ -5,9 +5,9 @@ import {LoadingBlock} from "lib";
 import {TabTitleCustom} from "../../../../../../lib";
 import TabsTasks from "./tabs-tasks/TabsTasks";
 import ButtonSaveHomework from "./save/ButtonSaveHomework";
-import {useChangeTitle} from "../../../../../../effects/use-change-title.effect";
-import {useChangeActionNavbar} from "../../../../../../effects/use-change-action-navbar.effect";
-import {useApiUserGeneral} from "../../../../../../effects/use-api-user-general.effect";
+import {useChangeTitle} from "../../../../../../hooks/use-change-title.effect";
+import {useChangeActionNavbar} from "../../../../../../hooks/use-change-action-navbar.effect";
+import {useApiUserGeneral} from "../../../../../../hooks/use-api-user-general.effect";
 import {changeActiveDisciplineId} from "../../../../../../store/reducers/common/app/appSlice";
 import {groupSelector} from "../../../../../../store/reducers/teacher/group/groupSlice";
 

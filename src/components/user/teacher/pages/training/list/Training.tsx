@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {TabTitleCustom} from "../../../../../../lib";
 import {LoadingBlock} from "lib";
 import TabDiscipline from "./tab-discipline/TabDiscipline";
-import {useApiUserGeneral} from "effects/use-api-user-general.effect";
+import {useApiUserGeneral} from "hooks/use-api-user-general.effect";
 import {changeActiveDisciplineId} from "store/reducers/common/app/appSlice";
 
 const {TabPane} = Tabs;

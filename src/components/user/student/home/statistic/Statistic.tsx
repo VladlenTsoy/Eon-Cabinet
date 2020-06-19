@@ -2,7 +2,7 @@ import React from 'react';
 import Profile from "./profile/Profile";
 import Homework from "./homework/Homework";
 import styled from "styled-components";
-import {useScreenWindow} from "../../../../../effects/use-screen-window.effect";
+import {useScreenWindow} from "../../../../../hooks/use-screen-window.effect";
 import {Carousel} from "antd";
 import NextArrow from "../../../teacher/pages/home/olympiad/olympiad-carousel/next-arrow/NextArrow";
 import Olympiad from "./olympiad/Olympiad";

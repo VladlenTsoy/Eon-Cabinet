@@ -1,7 +1,7 @@
 import React from 'react';
 import {Tabs} from "antd";
 import TableHomework from "./table-homework/TableHomewrok";
-import {useScreenWindow} from "../../../../../../effects/use-screen-window.effect";
+import {useScreenWindow} from "../../../../../../hooks/use-screen-window.effect";
 
 const {TabPane} = Tabs;
 

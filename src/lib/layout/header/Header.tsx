@@ -1,6 +1,6 @@
 import React from "react";
 import {Modal} from "antd";
-import {useScreenWindow} from "../../../effects/use-screen-window.effect";
+import {useScreenWindow} from "../../../hooks/use-screen-window.effect";
 import Mobile from "./mobile/Mobile";
 import Laptop from "./laptop/Laptop";
 import {QuestionCircleOutlined} from "@ant-design/icons";

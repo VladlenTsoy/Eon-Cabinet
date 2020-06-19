@@ -5,7 +5,7 @@ import BgRays from "layouts/result/layouts/bg-rays/BgRays";
 import LeftBlock from "./left-block/LeftBlock";
 import WaitingResult from "./waiting-result/WaitingResult";
 import TaskSuccessSVG from "../../../../../../../assets/images/olympiad/task_success.svg";
-import {usePreloadSounds} from "../../../../../../../effects/use-preload-sounds.effect";
+import {usePreloadSounds} from "../../../../../../../hooks/use-preload-sounds.effect";
 
 const PointSound = require('assets/sounds/olympiad/export_1.wav');
 const WinSound = require('assets/sounds/win.mp3');

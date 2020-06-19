@@ -6,7 +6,7 @@ import CategoriesSelectCenter from "./CategoriesSelectCenter";
 import {useParams} from "react-router";
 import {LoadingBlock} from "lib";
 import styled from "styled-components";
-import {useApiUserGeneral} from "effects/use-api-user-general.effect";
+import {useApiUserGeneral} from "hooks/use-api-user-general.effect";
 import {FormProps} from "antd/es/form";
 import {useAppContext} from "../../../../../../../store/context/use-app-context";
 

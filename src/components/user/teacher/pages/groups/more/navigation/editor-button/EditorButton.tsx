@@ -3,7 +3,7 @@ import StudentItems from "../../../../../../../../layouts/drawer-editor/editor-s
 import React from "react";
 import {message} from "antd";
 import moment from 'moment';
-import {useScreenWindow} from "../../../../../../../../effects/use-screen-window.effect";
+import {useScreenWindow} from "../../../../../../../../hooks/use-screen-window.effect";
 import {useAppContext} from "../../../../../../../../store/context/use-app-context";
 
 const EditorDrawer = usingDrawerEditor(StudentItems);

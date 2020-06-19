@@ -3,7 +3,7 @@ import {useAppContext} from "store/context/use-app-context";
 import { LockOutlined } from '@ant-design/icons';
 import {Button, Modal, Popover} from "antd";
 import styled from "styled-components";
-import {useScreenWindow} from "../../../../../../../../../../effects/use-screen-window.effect";
+import {useScreenWindow} from "../../../../../../../../../../hooks/use-screen-window.effect";
 
 interface BlockButtonProps {
     student: any;

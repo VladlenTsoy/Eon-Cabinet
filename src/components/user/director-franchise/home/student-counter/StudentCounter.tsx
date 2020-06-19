@@ -1,7 +1,7 @@
 import React from "react";
 import {TeamOutlined} from "@ant-design/icons";
 import {CardStatistic} from "../../../../../lib";
-import {useApiUserGeneral} from "../../../../../effects/use-api-user-general.effect";
+import {useApiUserGeneral} from "../../../../../hooks/use-api-user-general.effect";
 import {useAppContext} from "../../../../../store/context/use-app-context";
 
 const StudentCounter: React.FC<any> = () => {

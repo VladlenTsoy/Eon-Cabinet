@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import Setup from "./setup/Setup";
 import SettingExercises from "./setting-exercises/SettingExercises";
-import {useChangeActionNavbar} from "../../../../../../../effects/use-change-action-navbar.effect";
+import {useChangeActionNavbar} from "../../../../../../../hooks/use-change-action-navbar.effect";
 
 const Editor: React.FC = () => {
     const [setupSetting, setSetupSetting] = useState();

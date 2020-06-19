@@ -2,9 +2,9 @@ import React, {useCallback, useState} from 'react';
 import TableStudents from "./table-students/TableStudents";
 import {Card} from "lib";
 import {Result} from "antd";
-import {useApiUserGeneral} from "../../../../../../effects/use-api-user-general.effect";
-import {useChangeTitle} from "../../../../../../effects/use-change-title.effect";
-import {useChangeActionNavbar} from "../../../../../../effects/use-change-action-navbar.effect";
+import {useApiUserGeneral} from "../../../../../../hooks/use-api-user-general.effect";
+import {useChangeTitle} from "../../../../../../hooks/use-change-title.effect";
+import {useChangeActionNavbar} from "../../../../../../hooks/use-change-action-navbar.effect";
 import GroupNavigation from "./navigation/GroupNavigation";
 import {useDispatch, useSelector} from "react-redux";
 import {

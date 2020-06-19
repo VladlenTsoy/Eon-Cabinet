@@ -21,7 +21,7 @@ import Cities from "./settings/cities/Cities";
 import Categories from "./settings/categories/Categories";
 import Prices from "./settings/prices/Prices";
 import Disciplines from "./settings/disciplines/Disciplines";
-import {useApiUserGeneral} from "../../../effects/use-api-user-general.effect";
+import {useApiUserGeneral} from "../../../hooks/use-api-user-general.effect";
 import {changeDisciplines} from "../../../store/reducers/common/app/appSlice";
 
 const AdminRoutes = () => {

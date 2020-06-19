@@ -1,6 +1,6 @@
 import React from 'react';
 import {LoadingBlock} from "lib";
-import {useApiUserGeneral} from "../../../../../../../effects/use-api-user-general.effect";
+import {useApiUserGeneral} from "../../../../../../../hooks/use-api-user-general.effect";
 import styled from "styled-components";
 import CardHomework from "./card-homework/CardHomework";
 

@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {useApiUserGeneral} from "../../../../../../../effects/use-api-user-general.effect";
+import {useApiUserGeneral} from "../../../../../../../hooks/use-api-user-general.effect";
 import IconAbacus from "../../../../../../../assets/images/tasks/abacus.svg";
 import {LoadingBlock} from "lib";
 import {Card} from "lib";

@@ -3,7 +3,7 @@ import {Col, Row, Empty} from "antd";
 import {LoadingBlock} from "lib";
 import {DescriptionTitle} from "../../../../../../lib";
 import Task from "./task/Task";
-import {useApiUserGeneral} from "../../../../../../effects/use-api-user-general.effect";
+import {useApiUserGeneral} from "../../../../../../hooks/use-api-user-general.effect";
 import {useAppContext} from "store/context/use-app-context";
 
 interface Tasks {

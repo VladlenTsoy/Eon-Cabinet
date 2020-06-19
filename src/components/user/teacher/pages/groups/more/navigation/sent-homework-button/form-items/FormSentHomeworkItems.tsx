@@ -6,7 +6,7 @@ import {FileAddOutlined} from '@ant-design/icons';
 import {Select, Divider, Input, Empty, Button} from "antd";
 import ExerciseLists from "../../../../../homework/editor/tabs-tasks/added-exercises/exercise-lists/ExerciseLists";
 import moment from "moment";
-import {useApiUserGeneral} from "../../../../../../../../../effects/use-api-user-general.effect";
+import {useApiUserGeneral} from "../../../../../../../../../hooks/use-api-user-general.effect";
 import HomeworkEmpty from "./homework-empty/HomeworkEmpty";
 import {changeIsSaved} from "../../../../../../../../../store/reducers/teacher/group/groupSlice";
 import {useDispatch} from "react-redux";

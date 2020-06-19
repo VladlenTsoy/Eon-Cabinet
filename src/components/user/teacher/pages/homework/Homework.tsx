@@ -7,7 +7,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {appSelector, changeActiveDisciplineId} from "store/reducers/common/app/appSlice";
 import {PlusOutlined, AppstoreOutlined} from "@ant-design/icons";
 import {find} from "lodash";
-import {useApiUserGeneral} from "../../../../../effects/use-api-user-general.effect";
+import {useApiUserGeneral} from "../../../../../hooks/use-api-user-general.effect";
 
 const {TabPane} = Tabs;
 

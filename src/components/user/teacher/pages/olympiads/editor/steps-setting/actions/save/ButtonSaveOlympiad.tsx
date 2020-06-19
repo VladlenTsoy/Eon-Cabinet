@@ -4,7 +4,7 @@ import {EditOutlined, FlagOutlined} from '@ant-design/icons';
 import {Button} from "antd";
 import usingDrawerEditor from "../../../../../../../../../layouts/drawer-editor/usingDrawerEditor";
 import {useHistory} from "react-router";
-import {useScreenWindow} from "../../../../../../../../../effects/use-screen-window.effect";
+import {useScreenWindow} from "../../../../../../../../../hooks/use-screen-window.effect";
 import {useDispatch} from "react-redux";
 import {createOlympiad} from "store/reducers/teacher/olympiad/createOlympiad";
 import {updateOlympiad} from "store/reducers/teacher/olympiad/updateOlympiad";

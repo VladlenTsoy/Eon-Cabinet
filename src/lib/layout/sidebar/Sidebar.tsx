@@ -5,7 +5,7 @@ import React, {useState} from "react";
 import {withRouter, RouteComponentProps} from "react-router";
 import Logo from "./logo/Logo";
 import LogoEon from "../../../assets/images/logo.svg";
-import {useScreenWindow} from "../../../effects/use-screen-window.effect";
+import {useScreenWindow} from "../../../hooks/use-screen-window.effect";
 import {appSelector} from "../../../store/reducers/common/app/appSlice";
 
 const DrawerWrapper = styled(Drawer)`

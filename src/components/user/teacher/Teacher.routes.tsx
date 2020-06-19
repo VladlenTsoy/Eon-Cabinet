@@ -19,7 +19,7 @@ import Settings from "./pages/settings/Settings";
 import Platform from "./pages/platform/Platform";
 import SidebarItems from "./layout/sidebar-items/SidebarItems";
 import {useDispatch, useSelector} from "react-redux";
-import {useApiUserGeneral} from "../../../effects/use-api-user-general.effect";
+import {useApiUserGeneral} from "../../../hooks/use-api-user-general.effect";
 import {changeBasicSettings} from "../../../store/reducers/common/app/appSlice";
 import {Spin} from "../../../lib";
 

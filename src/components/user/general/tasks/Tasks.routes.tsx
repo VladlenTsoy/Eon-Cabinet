@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Route, Switch, useHistory} from 'react-router-d
 import {useDispatch, useSelector} from "react-redux";
 import {clearGame, gameSelector, changeSetting} from "store/reducers/common/game/gameSplice";
 import {LoadingBlock} from "lib";
-import {useChangeActionNavbar} from "../../../../effects/use-change-action-navbar.effect";
+import {useChangeActionNavbar} from "../../../../hooks/use-change-action-navbar.effect";
 import TasksSwitch from "./Tasks.switch";
 
 interface TasksProps {

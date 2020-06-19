@@ -6,7 +6,7 @@ import {PlusOutlined} from "@ant-design/icons";
 import UsingTablePagination from "lib/table-pagination/usingTablePagination";
 import {ModalMenu} from "lib";
 import {useSelector} from "react-redux";
-import {useScreenWindow} from "effects/use-screen-window.effect";
+import {useScreenWindow} from "hooks/use-screen-window.effect";
 import DeleteItem from "./Menu/delete-item/DeleteItem";
 import PrintItem from "./Menu/print-item/PrintItem";
 

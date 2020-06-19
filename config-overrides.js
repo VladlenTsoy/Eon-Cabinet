@@ -92,7 +92,7 @@ module.exports = override(
         'components': path.resolve(__dirname, './src/components'),
         'layouts': path.resolve(__dirname, './src/layouts'),
         'lib': path.resolve(__dirname, './src/lib'),
-        'effects': path.resolve(__dirname, './src/effects'),
+        'effects': path.resolve(__dirname, './src/hooks'),
         'assets': path.resolve(__dirname, './src/assets'),
         'tools': path.resolve(__dirname, './src/tools'),
         'store': path.resolve(__dirname, './src/store')

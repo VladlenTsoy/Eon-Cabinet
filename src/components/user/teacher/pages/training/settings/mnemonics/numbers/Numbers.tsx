@@ -1,7 +1,7 @@
 import React, {useCallback, useState} from "react";
 import FormSettingLayout from "../../mental/layout/form-setting/FormSetting.layout";
 import FormItems from "./form-items/FormItems";
-import {useScreenWindow} from "../../../../../../../../effects/use-screen-window.effect";
+import {useScreenWindow} from "../../../../../../../../hooks/use-screen-window.effect";
 
 interface NumbersProps {
     userSetting?: any;

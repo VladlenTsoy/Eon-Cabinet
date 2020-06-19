@@ -4,7 +4,7 @@ import {Card} from "lib";
 import {Typography, Empty} from "antd";
 import {InfoCircleOutlined} from "@ant-design/icons";
 import styled from "styled-components";
-import {useApiUserGeneral} from "../../../../../../../effects/use-api-user-general.effect";
+import {useApiUserGeneral} from "../../../../../../../hooks/use-api-user-general.effect";
 
 const {Title, Text} = Typography;
 

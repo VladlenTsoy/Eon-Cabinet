@@ -3,7 +3,7 @@ import {Card} from "lib";
 import {ButtonLink, Table} from "lib";
 import {Badge, Tag} from "antd";
 import moment from "moment";
-import {useChangeActionNavbar} from "../../../../../../../../effects/use-change-action-navbar.effect";
+import {useChangeActionNavbar} from "../../../../../../../../hooks/use-change-action-navbar.effect";
 
 interface HistoryOlympiadProps {
 }

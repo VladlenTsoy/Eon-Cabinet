@@ -4,7 +4,7 @@ import {CardTable, LoadingBlock} from "lib";
 import {Navigation} from "../../../../lib";
 import moment from "moment";
 import ExportToExcel from "./ExportToExcel";
-import {useChangeActionNavbar} from "../../../../effects/use-change-action-navbar.effect";
+import {useChangeActionNavbar} from "../../../../hooks/use-change-action-navbar.effect";
 import {useAppContext} from "../../../../store/context/use-app-context";
 
 const {Text} = Typography;

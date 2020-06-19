@@ -3,8 +3,8 @@ import {Col, Row, Tabs} from "antd";
 import {Card} from "lib";
 import FormSetting from "./from-setting/FormSetting";
 import AddedExercises from "./added-exercises/AddedExercises";
-import {useApiUserGeneral} from "../../../../../../../effects/use-api-user-general.effect";
-import {useScreenWindow} from "../../../../../../../effects/use-screen-window.effect";
+import {useApiUserGeneral} from "../../../../../../../hooks/use-api-user-general.effect";
+import {useScreenWindow} from "../../../../../../../hooks/use-screen-window.effect";
 
 const {TabPane} = Tabs;
 

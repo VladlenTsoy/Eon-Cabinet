@@ -1,7 +1,7 @@
 import React from 'react';
 import {Select} from "antd";
 import {FormItem} from "../../../../../../lib";
-import {useApiUserGeneral} from "../../../../../../effects/use-api-user-general.effect";
+import {useApiUserGeneral} from "../../../../../../hooks/use-api-user-general.effect";
 
 const {Option, OptGroup} = Select;
 

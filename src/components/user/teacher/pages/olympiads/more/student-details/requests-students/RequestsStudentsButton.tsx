@@ -3,7 +3,7 @@ import { EyeOutlined } from '@ant-design/icons';
 import {Button} from "antd";
 import RequestTable from "./request-table/RequestTable";
 import {Drawer} from "lib";
-import {useScreenWindow} from "../../../../../../../../effects/use-screen-window.effect";
+import {useScreenWindow} from "../../../../../../../../hooks/use-screen-window.effect";
 
 interface RequestsStudentsButtonProps {
     olympiad: any;

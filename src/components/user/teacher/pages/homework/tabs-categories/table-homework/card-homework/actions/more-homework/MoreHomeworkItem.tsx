@@ -3,7 +3,7 @@ import {Divider, Row, Col, Empty} from 'antd';
 import ExerciseLists from "../../../../../editor/tabs-tasks/added-exercises/exercise-lists/ExerciseLists";
 import styled from "styled-components";
 import moment from "moment";
-import {useApiUserGeneral} from "effects/use-api-user-general.effect";
+import {useApiUserGeneral} from "hooks/use-api-user-general.effect";
 import {LoadingBlock} from "lib";
 
 const SubTitle = styled.p`

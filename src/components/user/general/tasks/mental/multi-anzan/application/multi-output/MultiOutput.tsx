@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import Output from "./output/Output";
-import {useAddTimeout} from "../../../../../../../../effects/use-add-timeout.effect";
-import {useAddInternal} from "../../../../../../../../effects/use-add-interval.effect";
+import {useAddTimeout} from "../../../../../../../../hooks/use-add-timeout.effect";
+import {useAddInternal} from "../../../../../../../../hooks/use-add-interval.effect";
 
 interface MultiOutputProps {
     isWait: boolean;

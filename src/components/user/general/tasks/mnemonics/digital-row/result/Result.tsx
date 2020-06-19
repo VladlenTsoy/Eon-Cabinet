@@ -1,7 +1,7 @@
 import React from 'react';
 import {useSelector} from "react-redux";
 import {TrophyOutlined} from '@ant-design/icons';
-import {useAddSpaceToString} from "../../../../../../../effects/use-add-space-to-string";
+import {useAddSpaceToString} from "../../../../../../../hooks/use-add-space-to-string";
 import ResultMoreLayout from "../../../layouts/result/result-more/ResultMore.layout";
 import {gameSelector} from "../../../../../../../store/reducers/common/game/gameSplice";
 

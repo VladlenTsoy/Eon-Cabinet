@@ -1,5 +1,5 @@
 import React from "react";
-import {useScreenWindow} from "effects/use-screen-window.effect";
+import {useScreenWindow} from "hooks/use-screen-window.effect";
 import ColumnHomework from "./column-student/homework/ColumnHomework";
 import TableStudentsLayout from "./table-layout/TableStudents.layout";
 import ProfileColumn from "./column-student/profile/ProfileColumn";
