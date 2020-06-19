@@ -1,6 +1,4 @@
 import React from 'react';
-import { Form } from '@ant-design/compatible';
-import '@ant-design/compatible/assets/index.css';
 import { Col, Row } from "antd";
 import ProfileBlock from "../../general/profile/profile-block/ProfileBlock";
 import ProfileData from "../../general/profile/profile-data/ProfileData";
@@ -18,4 +16,4 @@ const Profile:React.FC = () => {
     </Row>;
 };
 
-export default Form.create<any>()(Profile);
+export default Profile;

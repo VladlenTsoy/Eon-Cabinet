@@ -1,5 +1,4 @@
 import React from 'react';
-import '@ant-design/compatible/assets/index.css';
 import {Input, InputNumber} from "antd";
 import {Typography} from "antd";
 import styled from "styled-components";
