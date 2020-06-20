@@ -7,17 +7,16 @@ import moment from "moment";
 
 interface CardGroupProps {
     group: any;
-    fetchGroups: any;
 }
 
-const CardGroup: React.FC<CardGroupProps> = ({group, fetchGroups}) => {
+const CardGroup: React.FC<CardGroupProps> = ({group}) => {
     return (
         <Card>
             <Card.Header title="Группа" icons>
-                <EditorButton title="Редактировать группу" fetch={fetchGroups} group={group}>
+                <EditorButton title="Редактировать группу" group={group}>
                     <EditOutlined />
                 </EditorButton>
-                <DeleteGroupButton group={group} fetch={fetchGroups}/>
+                <DeleteGroupButton group={group}/>
             </Card.Header>
             <Card.Title title={group.title}/>
             <Card.List list={[

@@ -4,7 +4,6 @@ import ModalEditor from "../../../../../../../layouts/modal-editor/ModalEditor";
 
 interface EditorButtonProps {
     title: string;
-    fetch: () => void;
     group?: any;
 }
 
@@ -13,7 +12,6 @@ const EditorButton: React.FC<EditorButtonProps> = (
         title,
         children,
         group,
-        fetch
     }
 ) => {
     const [visible, setVisible] = useState(false);
@@ -32,7 +30,6 @@ const EditorButton: React.FC<EditorButtonProps> = (
         >
             <FormItems
                 group={group}
-                fetch={fetch}
                 close={close}
             />
         </ModalEditor>
