@@ -16,13 +16,13 @@ import {Menu} from "antd";
 import {Link} from "react-router-dom";
 import {SidebarItem, SidebarSubItem} from "layouts";
 import {useSelector} from "react-redux";
-import {find} from "lodash";
+import {disciplineSelector} from "../../../../../store/reducers/teacher/discipline/disciplineSlice";
 
 const Item = Menu.Item;
 
 const SidebarItems = () => {
-    const {app} = useSelector((state: any) => state);
-    const isMental = app.disciplines && !!find(app.disciplines, {id: 1});
+    const {activeDisciplineId} = useSelector(disciplineSelector);
+    const isMental = Number(activeDisciplineId) === 1;
 
     return [
         <SidebarItem key="/">

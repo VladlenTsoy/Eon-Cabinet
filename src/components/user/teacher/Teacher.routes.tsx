@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Layout, Loader} from "../../../lib";
 import HeaderItems from "./layout/header-items/HeaderItems";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
@@ -19,19 +19,38 @@ import Settings from "./pages/settings/Settings";
 import Platform from "./pages/platform/Platform";
 import SidebarItems from "./layout/sidebar-items/SidebarItems";
 import {useDispatch, useSelector} from "react-redux";
-import {useApiUserGeneral} from "../../../hooks/use-api-user-general.effect";
-import {changeBasicSettings} from "../../../store/reducers/common/app/appSlice";
+import {appSelector} from "../../../store/reducers/common/app/appSlice";
 import {Spin} from "../../../lib";
+import {fetchDisciplines} from "../../../store/reducers/teacher/discipline/fetchDisciplines";
+import {fetchCategories} from "../../../store/reducers/teacher/category/fetchCategories";
+import {disciplineSelector} from "../../../store/reducers/teacher/discipline/disciplineSlice";
+import {fetchAlgorithms} from "../../../store/reducers/teacher/algorithm/fetchAlgorithms";
 
 const TeacherRoutes: React.FC = () => {
-    const {app} = useSelector((state: any) => (state));
+    const app = useSelector(appSelector);
+    const {activeDisciplineId} = useSelector(disciplineSelector);
     const dispatch = useDispatch();
-    const [loading] = useApiUserGeneral({
-        url: '/teacher/basic-settings',
-        afterRequest: async (data) => await dispatch(changeBasicSettings(data))
-    });
+    const [loading, setLoading] = useState(false);
 
+    //
     const sidebar = SidebarItems();
+
+    useEffect(() => {
+        (async () => {
+            setLoading(true);
+            await dispatch(fetchDisciplines());
+            setLoading(false);
+        })();
+    }, [dispatch]);
+
+    useEffect(() => {
+        (async () => {
+            await dispatch(fetchCategories(activeDisciplineId));
+            if(Number(activeDisciplineId) === 1)
+                await dispatch(fetchAlgorithms());
+        })();
+    }, [dispatch, activeDisciplineId]);
+
 
     if (loading)
         return <Loader text="Загрузка настроек..."/>;

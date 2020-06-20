@@ -1,5 +1,6 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {TeacherState} from "../../teacher/store";
+import {updateDiscipline} from "../../../../utils/api";
 
 interface StateProps {
     title: string;
@@ -40,6 +41,7 @@ const appSlice = createSlice({
             state.disciplines = action.payload
         },
         changeActiveDisciplineId(state, action: PayloadAction<string | undefined>) {
+            updateDiscipline(action.payload);
             state.activeDisciplineId = action.payload
         },
         changeBasicSettings(state, action: PayloadAction<any>) {

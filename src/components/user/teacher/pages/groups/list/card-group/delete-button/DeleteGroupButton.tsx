@@ -1,42 +1,37 @@
 import React from 'react';
-import { DeleteOutlined } from '@ant-design/icons';
-import { Modal, message } from "antd";
-import {useAppContext} from "store/context/use-app-context";
+import {DeleteOutlined} from '@ant-design/icons';
+import {Modal} from "antd";
+import {useDispatch} from "react-redux";
+import {deleteGroup} from "store/reducers/teacher/group/deleteGroup";
+import {ExclamationCircleOutlined} from "@ant-design/icons";
 
 interface DeleteGroupButtonProps {
     group: any;
-    fetch: any;
 }
 
-const {confirm} = Modal;
+const {confirm, warning} = Modal;
 
-const DeleteGroupButton: React.FC<DeleteGroupButtonProps> = ({group, fetch}) => {
-    const {api} = useAppContext();
-    const deleteGroup = () => {
+const DeleteGroupButton: React.FC<DeleteGroupButtonProps> = ({group}) => {
+    const dispatch = useDispatch();
+
+    const deleteGroupHandler = () => {
         if (group.count === 0)
             confirm({
+                icon: <ExclamationCircleOutlined />,
                 title: `Вы действительно хотите удалить группу ${group.title}?`,
                 okText: 'Да',
                 okType: 'danger',
                 cancelText: 'Нет',
-                async onOk() {
-                    try {
-                        await api.user.delete(`teacher/group/${group.id}`);
-                        fetch();
-                        message.success('Вы успешно удалили группу!');
-                    } catch (e) {
-                        message.error('Ой! Произошла ошибка. Попробуйте еще раз позже.');
-                    }
-                },
+                onOk: async () => await dispatch(deleteGroup(group.id)),
             });
         else
-            Modal.warning({
+            warning({
                 title: 'Удаление невозможно!',
                 content: (<div>Вы не можете удалить группу с активными учениками.</div>),
             });
     };
 
-    return <DeleteOutlined onClick={deleteGroup} />;
+    return <DeleteOutlined onClick={deleteGroupHandler}/>;
 };
 
 export default DeleteGroupButton;

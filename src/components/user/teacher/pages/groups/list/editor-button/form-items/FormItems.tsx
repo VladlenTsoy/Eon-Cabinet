@@ -1,70 +1,42 @@
-import React, {useEffect, useState} from "react";
-import {Select, Form, message, Button} from "antd";
-import {useSelector} from "react-redux";
-import {FormItem} from "../../../../../../../../lib";
-import {appSelector} from "../../../../../../../../store/reducers/common/app/appSlice";
-import {useAppContext} from "../../../../../../../../store/context/use-app-context";
+import React, {useState} from "react";
+import {Select, Form, Button} from "antd";
+import {useDispatch, useSelector} from "react-redux";
+import {FormItem} from "lib";
+import {categorySelector} from "store/reducers/teacher/category/categorySlice";
+import {updateGroup} from "store/reducers/teacher/group/updateGroup";
+import {createGroup} from "store/reducers/teacher/group/createGroup";
 
 const {Option} = Select;
 
 interface FormItemsProps {
     group: any;
-    fetch: () => void;
     close: () => void;
 }
 
-const FormItems: React.FC<FormItemsProps> = ({group, fetch, close}) => {
-    const [form] = Form.useForm();
-    const app = useSelector(appSelector);
-    const {api} = useAppContext();
-    const {disciplines, categories} = app;
+const FormItems: React.FC<FormItemsProps> = ({group, close}) => {
+    const {categories} = useSelector(categorySelector);
     const [loading, setLoading] = useState(false);
-    const [disciplineCategories, setDisciplineCategories] = useState([]);
-
-    useEffect(() => {
-        if (group)
-            setDisciplineCategories(
-                categories.filter((category: any) => category.discipline_id === group.method_id)
-            )
-    }, [group, categories]);
+    const dispatch = useDispatch();
 
     const onFinishHandler = async (values: any) => {
         setLoading(true);
-        if (group) {
-            await api.user.put(`teacher/group/${group.id}`, values);
-            message.success("Вы успешно изменили группу!");
-        } else {
-            await api.user.post(`teacher/group`, values);
-            message.success("Вы успешно добавили группу!");
-        }
-        await fetch();
+        if (group)
+            await dispatch(updateGroup({groupId: group.id, data: values}));
+        else
+            await dispatch(createGroup(values));
+
         close();
         setLoading(false);
     };
 
-    //
-    const changeDiscipline = (value: number) => {
-        if (categories.length) {
-            let sortCategories = categories.filter((category: any) => category.discipline_id === value);
-            setDisciplineCategories(sortCategories);
-            //
-            if (sortCategories[0])
-                form.setFieldsValue({
-                    category_id: sortCategories[0].id,
-                });
-        }
-    };
-
     return <Form
         layout="vertical"
-        form={form}
         onFinish={onFinishHandler}
         initialValues={
             group ?
                 {
                     title: group.title,
-                    method_id: group.method_id || undefined,
-                    category_id: group.category_id || undefined,
+                    category_id: group.category_id,
                 } : undefined
         }
     >
@@ -74,24 +46,13 @@ const FormItems: React.FC<FormItemsProps> = ({group, fetch, close}) => {
             requiredMsg="Введите название!"
         />
         <FormItem
-            name="method_id"
-            label="Метод"
-            requiredMsg="Выберите дисциплину!"
-        >
-            <Select onChange={changeDiscipline}>
-                {disciplines.map((discipline: any) =>
-                    <Option key={discipline.id} value={discipline.id}>{discipline.title}</Option>)}
-            </Select>
-        </FormItem>
-        <FormItem
             name="category_id"
             label="Категория"
             requiredMsg="Выберите категорию!"
-            shouldUpdate={(prevValues, currentValues) => prevValues.method_id !== currentValues.method_id}
         >
             <Select>
                 {
-                    disciplineCategories
+                    categories
                         .map((category: any) =>
                             <Option key={category.id} value={category.id}>
                                 {category.title}

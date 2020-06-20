@@ -11,8 +11,6 @@ const initialState: StateProps = {
     list: [],
 };
 
-
-
 const olympiadSlice = createSlice({
     name: 'olympiad',
     initialState,
