@@ -5,11 +5,17 @@ import {updateGroup} from "./updateGroup";
 import {createGroup} from "./createGroup";
 import {deleteGroup} from "./deleteGroup";
 
-interface GroupProps {
+export interface GroupProps {
     id: number;
     title: string;
     method_id: number;
-    category_id: number;
+    category: {
+        id: number;
+        title: string;
+    };
+    count: number;
+    last_activity: string;
+    created_at: string;
 }
 
 interface StateProps {

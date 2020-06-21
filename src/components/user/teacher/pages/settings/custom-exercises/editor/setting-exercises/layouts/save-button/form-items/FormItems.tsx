@@ -5,7 +5,7 @@ import {FormItem} from "../../../../../../../../../../../lib";
 import {SaveOutlined} from "@ant-design/icons";
 import {useHistory} from "react-router-dom";
 import {useAppContext} from "../../../../../../../../../../../store/context/use-app-context";
-import {appSelector} from "../../../../../../../../../../../store/reducers/common/app/appSlice";
+import {categorySelector} from "../../../../../../../../../../../store/reducers/teacher/category/categorySlice";
 
 const {TextArea} = Input;
 const {Option} = Select;
@@ -17,9 +17,8 @@ interface FormItemsProps {
 
 const FormItems: React.FC<FormItemsProps> = ({exercises, setting}) => {
     const history = useHistory();
-    const app = useSelector(appSelector);
+    const {categories} = useSelector(categorySelector);
     const {api} = useAppContext();
-    const {categories} = app;
     const [loading, setLoading] = useState(false);
 
     const onFinishHandler = async (values: any) => {

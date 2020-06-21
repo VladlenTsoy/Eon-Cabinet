@@ -1,24 +1,35 @@
-import {createSlice} from '@reduxjs/toolkit'
+import {createSlice, PayloadAction} from '@reduxjs/toolkit'
 import {TeacherState} from "../store";
 import {fetchCategories} from "./fetchCategories";
 
+interface CategoryProps {
+    id: number;
+    title: string;
+    active: boolean;
+}
+
 interface StateProps {
-    categories: object[]
+    categories: CategoryProps[];
+    fetchLoading: boolean;
 }
 
 const initialState: StateProps = {
-    categories: []
+    categories: [],
+    fetchLoading: false,
 };
 
 const categorySlice = createSlice({
     name: 'category',
     initialState,
-    reducers: {
-    },
+    reducers: {},
     extraReducers: {
-        [fetchCategories.fulfilled]: (state, action) => {
+        [fetchCategories.pending]: (state) => {
+            state.fetchLoading = true;
+        },
+        [fetchCategories.fulfilled]: (state, action: PayloadAction<CategoryProps[]>) => {
             // Add user to the state array
             state.categories = action.payload;
+            state.fetchLoading = false;
         }
     }
 });

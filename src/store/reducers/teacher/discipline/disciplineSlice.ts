@@ -4,12 +4,14 @@ import {fetchDisciplines} from "./fetchDisciplines";
 import {updateDiscipline} from "../../../../utils/api";
 
 interface StateProps {
-    activeDisciplineId: string | undefined;
+    activeDisciplineId: number;
     disciplines: object[]
+    fetchLoading: boolean;
 }
 
 const initialState: StateProps = {
-    activeDisciplineId: undefined,
+    fetchLoading: false,
+    activeDisciplineId: 1,
     disciplines: []
 };
 
@@ -17,12 +19,15 @@ const disciplineSlice = createSlice({
     name: 'discipline',
     initialState,
     reducers: {
-        changeActiveDisciplineId(state, action: PayloadAction<string | undefined>) {
+        changeActiveDisciplineId(state, action: PayloadAction<number>) {
             updateDiscipline(action.payload);
             state.activeDisciplineId = action.payload
         },
     },
     extraReducers: {
+        [fetchDisciplines.pending]: (state) => {
+            state.fetchLoading = true;
+        },
         [fetchDisciplines.fulfilled]: (state, action) => {
             // Add user to the state array
             if (action.payload.length) {
@@ -31,6 +36,7 @@ const disciplineSlice = createSlice({
                 state.activeDisciplineId = discipline.id
             }
             state.disciplines = action.payload;
+            state.fetchLoading = false;
         }
     }
 });

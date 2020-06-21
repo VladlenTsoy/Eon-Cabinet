@@ -5,11 +5,12 @@ import {FormItem} from "lib";
 import {categorySelector} from "store/reducers/teacher/category/categorySlice";
 import {updateGroup} from "store/reducers/teacher/group/updateGroup";
 import {createGroup} from "store/reducers/teacher/group/createGroup";
+import {GroupProps} from "../../../../../../../../../store/reducers/teacher/group/groupSlice";
 
 const {Option} = Select;
 
 interface FormItemsProps {
-    group: any;
+    group?: GroupProps;
     close: () => void;
 }
 
@@ -36,7 +37,7 @@ const FormItems: React.FC<FormItemsProps> = ({group, close}) => {
             group ?
                 {
                     title: group.title,
-                    category_id: group.category_id,
+                    category_id: group.category.id,
                 } : undefined
         }
     >

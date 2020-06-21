@@ -1,48 +1,27 @@
-import React from 'react';
-import {Tabs} from "antd";
+import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {TabTitleCustom} from "../../../../../../lib";
 import {LoadingBlock} from "lib";
 import TabDiscipline from "./tab-discipline/TabDiscipline";
-import {useApiUserGeneral} from "hooks/use-api-user-general.effect";
-import {changeActiveDisciplineId} from "store/reducers/common/app/appSlice";
-
-const {TabPane} = Tabs;
+import {fetchTasks} from "../../../../../../store/reducers/teacher/tasks/fetchTasks";
+import {disciplineSelector} from "../../../../../../store/reducers/teacher/discipline/disciplineSlice";
+import {tasksSelector} from "../../../../../../store/reducers/teacher/tasks/tasksSlice";
 
 const Training: React.FC = () => {
-    const {app} = useSelector((state: any) => state);
+    const tasks = useSelector(tasksSelector);
+    const {activeDisciplineId} = useSelector(disciplineSelector);
     const dispatch = useDispatch();
-    const [loading, tasks] = useApiUserGeneral({url: '/teacher/tasks'});
 
-    const findTitle = (disciplineId: number) => {
-        const discipline = app.disciplines.find((discipline: any) => Number(discipline.id) === Number(disciplineId));
-        return discipline ? discipline.title : 'Пусто';
-    };
+    useEffect(() => {
+        const promise = dispatch(fetchTasks({activeDisciplineId}));
+        return () => {
+            promise.abort();
+        }
+    }, [activeDisciplineId, dispatch]);
 
-    const clickEventHandler = (disciplineId: string) => {
-        dispatch(changeActiveDisciplineId(disciplineId))
-    };
+    if (tasks.fetchLoading)
+        return <LoadingBlock/>;
 
-    return loading ?
-        <LoadingBlock/> :
-        <Tabs
-            defaultActiveKey={app.activeDisciplineId}
-            size="large"
-            onTabClick={clickEventHandler}
-        >
-            {Object.entries(tasks).map(([disciplineId, values]: any) =>
-                <TabPane
-                    key={disciplineId}
-                    tab={
-                        <TabTitleCustom>
-                            {findTitle(disciplineId)}
-                        </TabTitleCustom>
-                    }
-                >
-                    <TabDiscipline tasks={values}/>
-                </TabPane>
-            )}
-        </Tabs>;
+    return <TabDiscipline tasks={tasks.all}/>
 };
 
 export default Training;

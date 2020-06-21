@@ -2,6 +2,8 @@ import React, {useCallback, useEffect, useState} from 'react';
 import {Form} from "antd";
 import {useSelector} from "react-redux";
 import HeaderSetting from "./header-setting/HeaderSetting";
+import {algorithmSelector} from "../../../../../../../../../../store/reducers/teacher/algorithm/algorithmSlice";
+import {LoadingBlock} from "../../../../../../../../../../lib";
 
 interface FormHeaderProps {
     isClearForm: boolean;
@@ -17,12 +19,8 @@ const FormHeader: React.FC<FormHeaderProps> = (
     }
 ) => {
     const [form] = Form.useForm();
-    const {app} = useSelector((state: any) => state);
+    const {algorithms, fetchLoading} = useSelector(algorithmSelector);
     const [fields, setFields] = useState<any[]>([]);
-
-    const checkAlgorithms = useCallback(() => {
-        return app.algorithms;
-    }, [app.algorithms]);
 
     const [isMultiplication, setIsMultiplication] = useState(false);
     const [isThemes, setIsTheme] = useState(true);
@@ -51,7 +49,7 @@ const FormHeader: React.FC<FormHeaderProps> = (
         (allFields, modeValue = "plus", lengthValue = "1", typeValue = "p", user?) => {
             setIsTheme((modeValue === 'divide' || modeValue === 'multiply') && typeValue === 'o');
 
-            const _themes = Object.keys(checkAlgorithms()[modeValue][lengthValue][typeValue]);
+            const _themes = Object.keys(algorithms[modeValue][lengthValue][typeValue]);
             setThemes(_themes);
 
             let theme = user ? String(user.theme) : _themes[0] || 'o';
@@ -68,7 +66,7 @@ const FormHeader: React.FC<FormHeaderProps> = (
                 return field;
             });
         },
-        [checkAlgorithms]
+        [algorithms]
     );
 
     /**
@@ -81,14 +79,14 @@ const FormHeader: React.FC<FormHeaderProps> = (
      */
     const updateTypesByLength = useCallback(
         (allFields, modeValue = "plus", lengthValue = "1", user?) => {
-            const _types = Object.keys(checkAlgorithms()[modeValue][lengthValue]);
+            const _types = Object.keys(algorithms[modeValue][lengthValue]);
             setTypes(_types);
 
             let type = user ? String(user.type) : _types[0];
             // Обновление тем
             return updateThemesByType(allFields, modeValue, lengthValue, type, user);
         },
-        [checkAlgorithms, updateThemesByType]
+        [algorithms, updateThemesByType]
     );
 
     /**
@@ -100,19 +98,19 @@ const FormHeader: React.FC<FormHeaderProps> = (
      */
     const updateLengthsByMode = useCallback(
         (allFields, modeValue = 'plus', user?) => {
-            if (!checkAlgorithms().hasOwnProperty(modeValue))
+            if (!algorithms.hasOwnProperty(modeValue))
                 return false;
 
             setIsMultiplication(modeValue === 'divide' || modeValue === 'multiply');
 
-            const _lengths = Object.keys(checkAlgorithms()[modeValue]);
+            const _lengths = Object.keys(algorithms[modeValue]);
             setLengths(_lengths);
 
             let length = user ? String(user.length) : _lengths[0];
             // Обновление типов
             return updateTypesByLength(allFields, modeValue, length, user)
         },
-        [checkAlgorithms, updateTypesByLength]
+        [algorithms, updateTypesByLength]
     );
 
     /**
@@ -171,8 +169,12 @@ const FormHeader: React.FC<FormHeaderProps> = (
         let _fields = Object.keys(initValue).map(
             (key: string) => ({name: [key], value: initValue[key]})
         );
-        updateLengthsByMode(_fields, initValue.mode, initValue);
-    }, [updateLengthsByMode, initValue]);
+        if (!fetchLoading)
+            updateLengthsByMode(_fields, initValue.mode, initValue);
+    }, [updateLengthsByMode, initValue, fetchLoading]);
+
+    if (fetchLoading)
+        return <LoadingBlock/>;
 
     return <Form
         name="header"

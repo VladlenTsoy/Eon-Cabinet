@@ -17,7 +17,7 @@ export const updateToken = (token: string) => {
     api.teacher.defaults.headers.common["Authorization"] = "Bearer " + token
 }
 
-export const updateDiscipline = (disciplineId = '1') => {
+export const updateDiscipline = (disciplineId: number) => {
     api.teacher.defaults.baseURL = DOMAIN_API + '/user/teacher/' + disciplineId
 }
 

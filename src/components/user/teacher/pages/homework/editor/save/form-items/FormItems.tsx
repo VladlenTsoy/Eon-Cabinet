@@ -5,8 +5,8 @@ import {useSelector} from "react-redux";
 import {SaveOutlined} from "@ant-design/icons";
 import {groupSelector} from "store/reducers/teacher/group/groupSlice";
 import {useAppContext} from "store/context/use-app-context";
-import {appSelector} from "store/reducers/common/app/appSlice";
 import {useParams} from "react-router";
+import {categorySelector} from "../../../../../../../../store/reducers/teacher/category/categorySlice";
 
 const {TextArea} = Input;
 
@@ -20,7 +20,7 @@ interface FormItemsProps {
 
 const FormItems: React.FC<FormItemsProps> = ({homework, close, fetch, disciplineId, exercises}) => {
     const {api} = useAppContext();
-    const app = useSelector(appSelector);
+    const {categories} = useSelector(categorySelector);
     const {duplicate} = useParams();
     const {group, isSaved} = useSelector(groupSelector);
     const [loading, setLoading] = useState(false);
@@ -68,7 +68,7 @@ const FormItems: React.FC<FormItemsProps> = ({homework, close, fetch, discipline
                 category: homework.category_id,
                 description: homework.description,
             } : isSaved ? {
-                category: group?.category_id,
+                category: group?.category.id,
             } : {}
         }
     >
@@ -83,7 +83,7 @@ const FormItems: React.FC<FormItemsProps> = ({homework, close, fetch, discipline
                     requiredMsg="Введите категорию!"
                 >
                     <Select disabled={isSaved}>
-                        {app.categories.filter((category: any) => category.discipline_id === disciplineId)
+                        {categories.filter((category: any) => category.discipline_id === disciplineId)
                             .map((category: any, key: number) =>
                                 <Select.Option value={category.id} key={key}>{category.title}</Select.Option>
                             )}

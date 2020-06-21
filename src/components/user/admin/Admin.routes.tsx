@@ -1,5 +1,5 @@
 import React from 'react';
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {Spin} from "../../../lib";
 import {Layout, Loader} from "../../../lib";
 import SidebarItems from "./layouts/sidebar-items/SidebarItems";
@@ -22,14 +22,13 @@ import Categories from "./settings/categories/Categories";
 import Prices from "./settings/prices/Prices";
 import Disciplines from "./settings/disciplines/Disciplines";
 import {useApiUserGeneral} from "../../../hooks/use-api-user-general.effect";
-import {changeDisciplines} from "../../../store/reducers/common/app/appSlice";
 
 const AdminRoutes = () => {
     const {app} = useSelector((state: any) => (state));
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     const [loading] = useApiUserGeneral({
         url: '/admin/disciplines',
-        afterRequest: async (data) => await dispatch(changeDisciplines(data))
+        // afterRequest: async (data) => await dispatch(changeDisciplines(data))
     });
 
     if (loading)

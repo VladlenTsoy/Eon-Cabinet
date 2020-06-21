@@ -1,7 +1,7 @@
 import React from "react";
 import { message, Modal } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
-import {useAppContext} from "../../../../../../../../../../store/context/use-app-context";
+import {useAppContext} from "../../../../../../../../../../../store/context/use-app-context";
 
 interface DeleteHomeworkProps {
     homework: any;

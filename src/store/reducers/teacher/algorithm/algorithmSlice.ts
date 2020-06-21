@@ -3,11 +3,13 @@ import {TeacherState} from "../store";
 import {fetchAlgorithms} from "./fetchAlgorithms";
 
 interface StateProps {
-    algorithms: object[]
+    algorithms: any;
+    fetchLoading: boolean;
 }
 
 const initialState: StateProps = {
-    algorithms: []
+    algorithms: null,
+    fetchLoading: false,
 };
 
 const algorithmSlice = createSlice({
@@ -16,8 +18,12 @@ const algorithmSlice = createSlice({
     reducers: {
     },
     extraReducers: {
+        [fetchAlgorithms.pending]: (state) => {
+            state.fetchLoading = true;
+        },
         [fetchAlgorithms.fulfilled]: (state, action) => {
             state.algorithms = action.payload;
+            state.fetchLoading = false;
         }
     }
 });

@@ -1,18 +1,18 @@
 import React from 'react';
 import {Empty, Tabs} from "antd";
-import {ButtonLink, DescriptionTitle, LoadingBlock, TabTitleCustom} from "lib";
+import {ButtonLink, DescriptionTitle, LoadingBlock} from "lib";
 import {PlusOutlined} from "@ant-design/icons";
 import {useApiUserGeneral} from "hooks/use-api-user-general.effect";
-import Olympiads from "./olympiads/Olympiads";
+import {useScreenWindow} from "../../../../../../../hooks/use-screen-window.effect";
 
 const {TabPane} = Tabs;
 
 interface DisciplineProps {
-    disciplineId: any;
 }
 
-const Discipline: React.FC<DisciplineProps> = ({disciplineId}) => {
-    const [loading, tabs] = useApiUserGeneral({url: `/teacher/olympiad/tabs/${disciplineId}`, initValue: []});
+const Discipline: React.FC<DisciplineProps> = () => {
+    const [, isBreakpoint] = useScreenWindow({breakpoint: 'sm'});
+    const [loading, tabs] = useApiUserGeneral({url: `/teacher/olympiad/tabs/${1}`, initValue: []});
 
     if (loading)
         return <LoadingBlock/>
@@ -31,17 +31,9 @@ const Discipline: React.FC<DisciplineProps> = ({disciplineId}) => {
             </ButtonLink>
         </Empty>;
 
-    return <Tabs defaultActiveKey={'current'}>
+    return <Tabs defaultActiveKey={'current'} tabPosition={isBreakpoint ? 'top' : 'left'} style={{minHeight: '200px'}}>
         {tabs.map((tab: any) =>
-            <TabPane
-                tab={
-                    <TabTitleCustom>
-                        {tab.name}
-                    </TabTitleCustom>
-                }
-                key={tab.key}
-            >
-                <Olympiads keyFetch={tab.key} disciplineId={disciplineId}/>
+            <TabPane tab={tab.name} key={tab.key}>
             </TabPane>
         )}
     </Tabs>;

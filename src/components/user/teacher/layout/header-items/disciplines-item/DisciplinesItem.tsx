@@ -27,14 +27,14 @@ const DisciplinesItem = () => {
     const {disciplines, activeDisciplineId} = useSelector(disciplineSelector)
     const dispatch = useDispatch();
 
-    const handleChange = (disciplineId: string) => {
+    const handleChange = (disciplineId: number) => {
         dispatch(changeActiveDisciplineId(disciplineId))
     };
 
     return <DisciplinesStyled>
-        <Select defaultValue={String(activeDisciplineId) || '1'} onChange={handleChange}>
+        <Select defaultValue={activeDisciplineId} onChange={handleChange}>
             {disciplines.map((discipline: any) =>
-                <Option value={`${discipline.id}`} key={discipline.id}>
+                <Option value={discipline.id} key={discipline.id}>
                     {discipline.id === 1 && <TiSortNumericallyOutline className="ricon"/>}
                     {discipline.id === 2 && <FaBrain className="ricon"/>}
                     {discipline.title}

@@ -1,12 +1,12 @@
 import React from 'react';
 import {Provider} from "react-redux";
 import {store} from "store/reducers/teacher/store";
-import TeacherRoutes from "./Teacher.routes";
+import TeacherSetting from "./TeacherSetting";
 
-const Teacher: React.FC = () => {
+const TeacherProvider: React.FC = () => {
     return <Provider store={store}>
-        <TeacherRoutes/>
+        <TeacherSetting/>
     </Provider>
 };
 
-export default Teacher;
+export default TeacherProvider;

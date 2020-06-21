@@ -4,11 +4,21 @@ import {createOlympiad} from './createOlympiad';
 import {updateOlympiad} from "./updateOlympiad";
 
 export interface StateProps {
-    list: any[]
+    fetchCurrentLoading: boolean;
+    fetchFutureLoading: boolean;
+    fetchPastLoading: boolean;
+    futures: any[];
+    pasts: any[];
+    currents: any[];
 }
 
 const initialState: StateProps = {
-    list: [],
+    fetchCurrentLoading: false,
+    fetchFutureLoading: false,
+    fetchPastLoading: false,
+    futures: [],
+    pasts: [],
+    currents: [],
 };
 
 const olympiadSlice = createSlice({

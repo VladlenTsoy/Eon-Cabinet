@@ -41,16 +41,16 @@ const OlympiadWrapper = styled(Card)`
 const Olympiad: React.FC = () => {
     return <>
         <Legend>Мои текущие олимпиады</Legend>
-        <OlympiadWrapper>
-            <Row  gutter={15}>
-                <Col xl={19} xs={24}>
-                    <OlympiadCarousel/>
-                </Col>
-                <Col xl={5} xs={24}>
-                    <OlympiadCreate/>
-                </Col>
-            </Row>
-        </OlympiadWrapper>
+        {/*<OlympiadWrapper>*/}
+        {/*    <Row  gutter={15}>*/}
+        {/*        <Col xl={19} xs={24}>*/}
+        {/*            <OlympiadCarousel/>*/}
+        {/*        </Col>*/}
+        {/*        <Col xl={5} xs={24}>*/}
+        {/*            <OlympiadCreate/>*/}
+        {/*        </Col>*/}
+        {/*    </Row>*/}
+        {/*</OlympiadWrapper>*/}
     </>
 };
 

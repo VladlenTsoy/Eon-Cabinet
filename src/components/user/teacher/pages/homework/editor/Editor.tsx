@@ -1,31 +1,17 @@
-import React, {useEffect, useState} from 'react';
-import {Tabs} from "antd";
-import {useDispatch, useSelector} from "react-redux";
+import React, {useState} from 'react';
 import {LoadingBlock} from "lib";
-import {TabTitleCustom} from "../../../../../../lib";
 import TabsTasks from "./tabs-tasks/TabsTasks";
 import ButtonSaveHomework from "./save/ButtonSaveHomework";
 import {useChangeTitle} from "../../../../../../hooks/use-change-title.effect";
 import {useChangeActionNavbar} from "../../../../../../hooks/use-change-action-navbar.effect";
 import {useApiUserGeneral} from "../../../../../../hooks/use-api-user-general.effect";
-import {changeActiveDisciplineId} from "../../../../../../store/reducers/common/app/appSlice";
-import {groupSelector} from "../../../../../../store/reducers/teacher/group/groupSlice";
-
-const {TabPane} = Tabs;
 
 interface EditorHomeworkProps {
     match: any;
 }
 
 const EditorHomework: React.FC<EditorHomeworkProps> = ({match}) => {
-    const {app} = useSelector((state: any) => state);
-    //
-    const groupStore = useSelector(groupSelector);
-    const groupMethodId = groupStore.isSaved && groupStore.group?.method_id;
-    //
-    const [disabledDiscipline, setDisabledDiscipline] = useState(groupMethodId || 0);
     const [exercises, setExercises]: any = useState([]);
-    const dispatch = useDispatch();
     const [loading, homework] = useApiUserGeneral({
         url: `/teacher/homework/${match.params.id}`,
         cancel: !match.params.id
@@ -40,48 +26,18 @@ const EditorHomework: React.FC<EditorHomeworkProps> = ({match}) => {
             'Создать домашнее задание'
     });
 
-    const clickEventHandler = (disciplineId: string) => {
-        dispatch(changeActiveDisciplineId(disciplineId))
-    };
-
-    useEffect(() => {
-        setDisabledDiscipline(
-            exercises.length ?
-                Number((
-                    homework ? homework.method_id : app.activeDisciplineId
-                ) || 1) : groupMethodId || 0
-        );
-    }, [exercises, app.activeDisciplineId, homework, groupMethodId]);
-
     return !loading ?
-        <Tabs
-            defaultActiveKey={String(homework ? homework.method_id : app.activeDisciplineId)}
-            onTabClick={clickEventHandler}
-        >
-            {app.disciplines.map((discipline: any) =>
-                <TabPane
-                    tab={
-                        <TabTitleCustom>
-                            {discipline.title}
-                        </TabTitleCustom>
-                    }
-                    disabled={disabledDiscipline !== 0 && disabledDiscipline !== Number(discipline.id)}
-                    key={discipline.id}
-                >
                     <TabsTasks
                         homework={homework}
                         exercises={exercises}
                         setExercises={setExercises}
-                        discipline_id={discipline.id}
+                        discipline_id={1}
                     >
                         <ButtonSaveHomework
                             homework={homework}
                             exercises={exercises}
-                            disciplineId={discipline.id}/>
-                    </TabsTasks>
-                </TabPane>
-            )}
-        </Tabs> :
+                            disciplineId={1}/>
+                    </TabsTasks> :
         <LoadingBlock/>
 };
 

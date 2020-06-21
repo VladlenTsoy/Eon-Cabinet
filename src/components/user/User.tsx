@@ -4,7 +4,7 @@ import {useAppContext} from "../../store/context/use-app-context";
 
 const BlockedAccount = React.lazy(() => import("./blocked-account/BlockedAccount"));
 const Student = React.lazy(() => import("./student/Student"));
-const Teacher = React.lazy(() => import("./teacher/Teacher"));
+const TeacherProvider = React.lazy(() => import("./teacher/TeacherProvider"));
 const Admin = React.lazy(() => import("./admin/Admin"));
 const DirectorCenter = React.lazy(() => import("./director-center/DirectorCenter"));
 const DirectorFranchise = React.lazy(() => import("./director-franchise/DirectorFranchise"));
@@ -42,7 +42,7 @@ const User:React.FC = () => {
 
     return <>
         <React.Suspense fallback={<Loader text="Загрузка доступа..."/>}>
-            {user.access === 'teacher' ? <Teacher/> :
+            {user.access === 'teacher' ? <TeacherProvider/> :
                 user.access === 'director-center' ? <DirectorCenter/> :
                     user.access === 'director-franchise' ? <DirectorFranchise/> :
                         user.access === 'admin' ? <Admin/> :

@@ -2,6 +2,8 @@ import React from 'react';
 import {Legend} from "../../../../../../lib";
 import UsingTablePagination from "../../../../../../lib/table-pagination/usingTablePagination";
 import Columns from "./Columns";
+import {useSelector} from "react-redux";
+import {disciplineSelector} from "../../../../../../store/reducers/teacher/discipline/disciplineSlice";
 
 // TODO - Настроить Props
 // interface RecordProps {
@@ -20,11 +22,12 @@ import Columns from "./Columns";
 // }
 
 const LastExecuted = () => {
+    const {activeDisciplineId} = useSelector(disciplineSelector);
     return <>
         <Legend>Домашние задания</Legend>
         <UsingTablePagination
             columns={Columns}
-            url={'/teacher/students/homework/done'}
+            url={`teacher/${activeDisciplineId}/students/homework/done`}
             isSearch={false}
             isPagination={false}
         />

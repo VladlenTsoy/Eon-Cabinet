@@ -1,10 +1,11 @@
-import React, {useState} from "react";
+import React, {useCallback, useState} from "react";
 import FormItems from "./form-items/FormItems";
-import ModalEditor from "../../../../../../../layouts/modal-editor/ModalEditor";
+import ModalEditor from "../../../../../../../../layouts/modal-editor/ModalEditor";
+import {GroupProps} from "../../../../../../../../store/reducers/teacher/group/groupSlice";
 
 interface EditorButtonProps {
     title: string;
-    group?: any;
+    group?: GroupProps;
 }
 
 const EditorButton: React.FC<EditorButtonProps> = (
@@ -17,7 +18,7 @@ const EditorButton: React.FC<EditorButtonProps> = (
     const [visible, setVisible] = useState(false);
 
     const open = () => setVisible(true);
-    const close = () => setVisible(false);
+    const close = useCallback(() => setVisible(false), []);
 
     return <>
         <span onClick={open}>
