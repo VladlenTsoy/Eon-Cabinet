@@ -7,6 +7,7 @@ import MoreHomeworkDrawer from "./more-homework/MoreHomeworkDrawer";
 import {ModalMenu} from "lib";
 import {Link} from "react-router-dom";
 import DeleteHomework from "./delete/DeleteHomework";
+import {HomeworkProps} from "../../../../../../../../../../store/reducers/teacher/homework/homeworkSlice";
 
 const ActionStyled = styled.div`
   border-radius: 5px;
@@ -54,11 +55,10 @@ const ActionStyled = styled.div`
 `;
 
 interface ActionsProps {
-    homework: any;
-    fetch: any;
+    homework: HomeworkProps;
 }
 
-const Actions: React.FC<ActionsProps> = ({homework, fetch}) => {
+const Actions: React.FC<ActionsProps> = ({homework}) => {
     const [, isBreakpoint] = useScreenWindow({breakpoint: 'lg'});
 
     if (isBreakpoint)
@@ -72,7 +72,7 @@ const Actions: React.FC<ActionsProps> = ({homework, fetch}) => {
             <Link to={`/homework/${homework.id}/duplicate`}>
                 <CopyOutlined/> Дублировать
             </Link>
-            <DeleteHomework homework={homework} fetch={fetch}>
+            <DeleteHomework homework={homework}>
                 <DeleteOutlined/> Удалить
             </DeleteHomework>
         </ModalMenu>
@@ -100,7 +100,7 @@ const Actions: React.FC<ActionsProps> = ({homework, fetch}) => {
                 <span className="title">Дублировать</span>
             </ActionStyled>
         </Link>
-        <DeleteHomework homework={homework} fetch={fetch}>
+        <DeleteHomework homework={homework}>
             <ActionStyled>
                 <DeleteOutlined/>
                 <span className="title">Удалить</span>

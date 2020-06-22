@@ -2,9 +2,10 @@ import React, {useState} from "react";
 import {Drawer} from "../../../../../../../../../../../lib";
 import MoreHomeworkItem from "./MoreHomeworkItem";
 import {useScreenWindow} from "../../../../../../../../../../../hooks/use-screen-window.effect";
+import {HomeworkProps} from "../../../../../../../../../../../store/reducers/teacher/homework/homeworkSlice";
 
 interface MoreHomeworkDrawerProps {
-    homework: any;
+    homework: HomeworkProps;
 }
 
 const MoreHomeworkDrawer: React.FC<MoreHomeworkDrawerProps> = ({homework, children}) => {

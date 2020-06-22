@@ -10,7 +10,7 @@ export const fetchHomeworkByCategoryId: any = createAsyncThunk<any, AgrProps>(
     'homework/fetch',
     async ({categoryId}, {signal}) => {
         const homework = await apiRequest('get', `homework/${categoryId}`, {type: 'teacher', signal});
-        return {categoryId, homework: homework.data};
+        return {categoryId, homework: homework};
     },
     {
         condition({categoryId, activeDisciplineId}, {getState}: any): any {

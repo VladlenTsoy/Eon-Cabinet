@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Level from "./level/Level";
 import Actions from "./actions/Actions";
 import Information from "./information/Information";
+import {HomeworkProps} from "../../../../../../../../../store/reducers/teacher/homework/homeworkSlice";
 
 const CardStyled = styled.div`
   background: ${props => props.theme['@component-background']};
@@ -42,18 +43,17 @@ const CardStyled = styled.div`
 `;
 
 interface CardHomeworkProps {
-    homework: any;
-    fetch: any;
+    homework: HomeworkProps;
 }
 
-const CardHomework: React.FC<CardHomeworkProps> = ({homework, fetch}) => {
+const CardHomework: React.FC<CardHomeworkProps> = ({homework}) => {
     return <CardStyled>
         <Level level={homework.level}/>
         <Information
             created_at={homework.created_at}
             description={homework.description}
         />
-        <Actions homework={homework} fetch={fetch}/>
+        <Actions homework={homework}/>
     </CardStyled>;
 };
 

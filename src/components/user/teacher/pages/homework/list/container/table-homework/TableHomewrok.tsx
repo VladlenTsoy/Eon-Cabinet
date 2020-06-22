@@ -23,7 +23,7 @@ const ListStyled = styled.div`
 
 const TableHomework: React.FC<TableHomeworkProps> = ({categoryId}) => {
     const {activeDisciplineId} = useSelector(disciplineSelector);
-    const {fetchLoading, categories} = useSelector(homeworkSelector);
+    const {categories} = useSelector(homeworkSelector);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -33,12 +33,12 @@ const TableHomework: React.FC<TableHomeworkProps> = ({categoryId}) => {
         }
     }, [activeDisciplineId, categoryId, dispatch]);
 
-    if (fetchLoading || !categories[categoryId])
+    if (!categories[categoryId])
         return <LoadingBlock/>;
 
     return <ListStyled>
         {categories[categoryId].map((val: any, key: number) =>
-            <CardHomework homework={val} fetch={fetch} key={key}/>
+            <CardHomework homework={val} key={key}/>
         )}
     </ListStyled>;
 };
