@@ -2,9 +2,17 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit'
 import {TeacherState} from "../store";
 import {fetchTasks} from "./fetchTasks";
 
+export interface TaskProps {
+    id: number;
+    title:string;
+    image: string;
+    discipline_id: number;
+    block: boolean;
+}
+
 export interface StateProps {
     fetchLoading: boolean;
-    all: any[]
+    all: TaskProps[]
 }
 
 const initialState: StateProps = {
@@ -20,7 +28,7 @@ const tasksSlice = createSlice({
         [fetchTasks.pending]: (state) => {
             state.fetchLoading = true;
         },
-        [fetchTasks.fulfilled]: (state, action: PayloadAction<any[]>) => {
+        [fetchTasks.fulfilled]: (state, action: PayloadAction<TaskProps[]>) => {
             state.all = action.payload;
             state.fetchLoading = false;
         },
@@ -28,7 +36,5 @@ const tasksSlice = createSlice({
 });
 
 export const tasksSelector = (state: TeacherState) => state.tasks;
-
-export const {} = tasksSlice.actions;
 
 export default tasksSlice.reducer;

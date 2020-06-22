@@ -4,6 +4,7 @@ import {FlagOutlined} from '@ant-design/icons';
 import {Typography} from "antd";
 import {Card} from "lib";
 import styled from "styled-components";
+import {TaskProps} from "../../../../../../../store/reducers/teacher/tasks/tasksSlice";
 
 const {Title} = Typography;
 
@@ -40,24 +41,23 @@ const TaskCardWrapper: any = styled(Card)`
 `;
 
 interface TaskBlockProps {
-    task: any;
+    task: TaskProps;
 }
 
 const TaskBlock: React.FC<TaskBlockProps> = ({task}) => {
-    return <TaskCardWrapper
-        block={task.block}
-    >
+    return <TaskCardWrapper block={task.block}>
         <div className="image-block">
             <img src={task.image} alt={task.title}/>
         </div>
         <div className="container-block">
             <Title level={4}>{task.title}</Title>
-            {task.block ?
-                'Заблокирован' :
-                <Link to={`/training/${task.discipline_id}/${task.id}/setting`}>
-                    <FlagOutlined/>
-                    Начать
-                </Link>
+            {
+                task.block ?
+                    'Заблокирован' :
+                    <Link to={`/training/${task.discipline_id}/${task.id}/setting`}>
+                        <FlagOutlined/>
+                        Начать
+                    </Link>
             }
         </div>
     </TaskCardWrapper>;
