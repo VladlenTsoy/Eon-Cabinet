@@ -1,10 +1,11 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {LoadingBlock} from "lib";
-import TabDiscipline from "./tab-discipline/TabDiscipline";
-import {fetchTasks} from "../../../../../../store/reducers/teacher/tasks/fetchTasks";
 import {disciplineSelector} from "../../../../../../store/reducers/teacher/discipline/disciplineSlice";
+import {fetchTasks} from "../../../../../../store/reducers/teacher/tasks/fetchTasks";
 import {tasksSelector} from "../../../../../../store/reducers/teacher/tasks/tasksSlice";
+import {Col, Row} from "antd";
+import TaskBlock from "./task/Task";
 
 const Training: React.FC = () => {
     const tasks = useSelector(tasksSelector);
@@ -21,7 +22,13 @@ const Training: React.FC = () => {
     if (tasks.fetchLoading)
         return <LoadingBlock/>;
 
-    return <TabDiscipline tasks={tasks.all}/>
+    return <Row gutter={15}>
+        {tasks.all.map((task: any) =>
+            <Col xl={6} lg={8} md={8} sm={12} xs={24} key={task.id}>
+                <TaskBlock task={task}/>
+            </Col>
+        )}
+    </Row>
 };
 
 export default Training;

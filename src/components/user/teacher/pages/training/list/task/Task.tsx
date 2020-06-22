@@ -1,7 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import { FlagOutlined } from '@ant-design/icons';
-import { Typography } from "antd";
+import {FlagOutlined} from '@ant-design/icons';
+import {Typography} from "antd";
 import {Card} from "lib";
 import styled from "styled-components";
 
@@ -44,25 +44,23 @@ interface TaskBlockProps {
 }
 
 const TaskBlock: React.FC<TaskBlockProps> = ({task}) => {
-    return (
-        <TaskCardWrapper
-            block={task.block}
-        >
-            <div className="image-block">
-                <img src={task.image} alt={task.title}/>
-            </div>
-            <div className="container-block">
-                <Title level={4}>{task.title}</Title>
-                {task.block ?
-                    'Заблокирован' :
-                    <Link to={`/training/${task.discipline_id}/${task.id}/setting`}>
-                        <FlagOutlined />
-                        Начать
-                    </Link>
-                }
-            </div>
-        </TaskCardWrapper>
-    );
+    return <TaskCardWrapper
+        block={task.block}
+    >
+        <div className="image-block">
+            <img src={task.image} alt={task.title}/>
+        </div>
+        <div className="container-block">
+            <Title level={4}>{task.title}</Title>
+            {task.block ?
+                'Заблокирован' :
+                <Link to={`/training/${task.discipline_id}/${task.id}/setting`}>
+                    <FlagOutlined/>
+                    Начать
+                </Link>
+            }
+        </div>
+    </TaskCardWrapper>;
 };
 
 export default TaskBlock;
