@@ -9,7 +9,7 @@ interface StateProps {
 
 const initialState: StateProps = {
     algorithms: null,
-    fetchLoading: false,
+    fetchLoading: true,
 };
 
 const algorithmSlice = createSlice({
@@ -29,7 +29,5 @@ const algorithmSlice = createSlice({
 });
 
 export const algorithmSelector = (state: TeacherState) => state.algorithm;
-
-export const {} = algorithmSlice.actions;
 
 export default algorithmSlice.reducer;

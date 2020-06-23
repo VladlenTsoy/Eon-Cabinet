@@ -77,7 +77,7 @@ const Services = () => {
                 <ItemWrapper>
                     <span>Ментальная арифметика</span>
                     <div className="desc">
-                        <Button shape="circle" icon={<DeleteOutlined />} type="danger" ghost/>
+                        <Button shape="circle" icon={<DeleteOutlined />} danger ghost/>
                     </div>
                     <SubItemsWrapper>
                         <SubItemWrapper>
@@ -93,7 +93,7 @@ const Services = () => {
                 <ItemWrapper>
                     <span>Мнемотехника</span>
                     <div className="desc">
-                        <Button shape="circle" icon={<DeleteOutlined />} type="danger" ghost/>
+                        <Button shape="circle" icon={<DeleteOutlined />} danger ghost/>
                     </div>
                     <SubItemsWrapper>
                         <SubItemWrapper>

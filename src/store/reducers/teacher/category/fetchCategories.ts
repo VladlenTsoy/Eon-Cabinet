@@ -1,16 +1,9 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {api} from "../../../../utils/api";
-import {message} from "../../../../utils/message";
+import {apiRequest} from "../../../../utils/api";
 
 export const fetchCategories: any = createAsyncThunk(
     'category/fetch',
     async () => {
-        try {
-            const response = await api.teacher.get('categories')
-            return response.data;
-        } catch (e) {
-            message({type: 'error', content: 'Неизвестная ошибка!'});
-            return [];
-        }
+        return apiRequest('get', 'categories', {type: "teacher"})
     }
 )

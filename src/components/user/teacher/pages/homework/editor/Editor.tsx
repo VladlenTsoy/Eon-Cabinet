@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {LoadingBlock} from "lib";
 import TabsTasks from "./tabs-tasks/TabsTasks";
 import ButtonSaveHomework from "./save/ButtonSaveHomework";
@@ -26,18 +26,22 @@ const EditorHomework: React.FC<EditorHomeworkProps> = ({match}) => {
             'Создать домашнее задание'
     });
 
+    useEffect(() => {
+        if (!loading && homework?.tasks)
+            setExercises(homework.tasks);
+    }, [homework, loading]);
+
     return !loading ?
-                    <TabsTasks
-                        homework={homework}
-                        exercises={exercises}
-                        setExercises={setExercises}
-                        discipline_id={1}
-                    >
-                        <ButtonSaveHomework
-                            homework={homework}
-                            exercises={exercises}
-                            disciplineId={1}/>
-                    </TabsTasks> :
+        <TabsTasks
+            homework={homework}
+            exercises={exercises}
+            setExercises={setExercises}
+        >
+            <ButtonSaveHomework
+                homework={homework}
+                exercises={exercises}
+            />
+        </TabsTasks> :
         <LoadingBlock/>
 };
 

@@ -16,7 +16,6 @@ const TasksSetting: React.FC<TasksSettingProps> = (
         olympiad,
         globalExercises,
         updateGlobalExercises,
-        discipline
     }
 ) => {
     const [exercises, setExercises] = useState<any[]>(globalExercises);
@@ -33,7 +32,6 @@ const TasksSetting: React.FC<TasksSettingProps> = (
         homework={olympiad}
         exercises={exercises}
         setExercises={updateExercises}
-        discipline_id={discipline}
     >
         {children}
     </TabsTasks>;

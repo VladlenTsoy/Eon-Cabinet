@@ -15,7 +15,7 @@ interface StateProps {
 
 const initialState: StateProps = {
     categories: [],
-    fetchLoading: false,
+    fetchLoading: true,
 };
 
 const categorySlice = createSlice({
@@ -35,7 +35,5 @@ const categorySlice = createSlice({
 });
 
 export const categorySelector = (state: TeacherState) => state.category;
-
-export const {} = categorySlice.actions;
 
 export default categorySlice.reducer;

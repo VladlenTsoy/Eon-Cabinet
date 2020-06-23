@@ -106,7 +106,7 @@ const ExerciseLists: React.FC<ExerciseWrapperProps> = ({exercise, deleteExercise
             <h2>{exercise.task_name}</h2>
             {outputSetting()}
             {edit ?
-                <Button type="danger" size="small" icon={<DeleteOutlined/>} onClick={deleteExercise}/> :
+                <Button danger size="small" icon={<DeleteOutlined/>} onClick={deleteExercise}/> :
                 null}
         </ExerciseTitleWrapper>
     );

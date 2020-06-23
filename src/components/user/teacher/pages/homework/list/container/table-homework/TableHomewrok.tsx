@@ -29,7 +29,7 @@ const TableHomework: React.FC<TableHomeworkProps> = ({categoryId}) => {
     useEffect(() => {
         const promise = dispatch(fetchHomeworkByCategoryId({categoryId, activeDisciplineId}));
         return () => {
-            promise.abort();
+            promise.abort('homework fetch abort');
         }
     }, [activeDisciplineId, categoryId, dispatch]);
 
@@ -43,4 +43,4 @@ const TableHomework: React.FC<TableHomeworkProps> = ({categoryId}) => {
     </ListStyled>;
 };
 
-export default TableHomework;
+export default React.memo(TableHomework);

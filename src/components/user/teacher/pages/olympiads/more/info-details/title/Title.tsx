@@ -90,7 +90,7 @@ const TitleInfo: React.FC<TitleProps> = ({olympiad,fetch, history}) => {
                 />
                 {
                     Number(olympiad.status) === 0 ?
-                        <Button type="danger" icon={<StopOutlined />} ghost onClick={finishOlympiad}>Отменить олимпиаду</Button> : null
+                        <Button danger icon={<StopOutlined />} ghost onClick={finishOlympiad}>Отменить олимпиаду</Button> : null
                 }
             </div>
         </TitleWrapper>

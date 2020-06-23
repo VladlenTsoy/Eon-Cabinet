@@ -130,7 +130,7 @@ const WordListTable: React.FC<WordListTableProps> = (
                                 <div>{field.value.count}</div>
                                 <Button
                                     ghost
-                                    type="danger"
+                                    danger
                                     icon={<DeleteOutlined/>}
                                     shape="circle"
                                     onClick={() => deleteSetting(field.name[1])}

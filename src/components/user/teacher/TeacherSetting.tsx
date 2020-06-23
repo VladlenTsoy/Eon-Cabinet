@@ -9,7 +9,7 @@ import {Loader} from "../../../lib";
 import TeacherRoutes from "./TeacherRoutes";
 import {algorithmSelector} from "../../../store/reducers/teacher/algorithm/algorithmSlice";
 
-const TeacherSetting = () => {
+const TeacherCategories = () => {
     const discipline = useSelector(disciplineSelector);
     const category = useSelector(categorySelector);
     const algorithm = useSelector(algorithmSelector);
@@ -17,22 +17,13 @@ const TeacherSetting = () => {
 
     useEffect(() => {
         (async () => {
-            await dispatch(fetchDisciplines());
-        })();
-    }, [dispatch]);
-
-    useEffect(() => {
-        (async () => {
             if (discipline.activeDisciplineId) {
-                await dispatch(fetchCategories(discipline.activeDisciplineId));
-                if (Number(discipline.activeDisciplineId) === 1)
-                    await dispatch(fetchAlgorithms());
+                dispatch(fetchCategories());
+                if (discipline.activeDisciplineId === 1)
+                    dispatch(fetchAlgorithms());
             }
         })();
     }, [dispatch, discipline.activeDisciplineId]);
-
-    if (discipline.fetchLoading)
-        return <Loader text="Загрузка дисциплин..."/>;
 
     if (category.fetchLoading)
         return <Loader text="Загрузка категорий..."/>;
@@ -41,6 +32,22 @@ const TeacherSetting = () => {
         return <Loader text="Загрузка алгоритмов..."/>;
 
     return <TeacherRoutes/>;
+}
+
+const TeacherSetting = () => {
+    const discipline = useSelector(disciplineSelector);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        (async () => {
+            await dispatch(fetchDisciplines());
+        })();
+    }, [dispatch]);
+
+    if (discipline.fetchLoading)
+        return <Loader text="Загрузка дисциплин..."/>;
+
+    return <TeacherCategories/>;
 };
 
 export default TeacherSetting;

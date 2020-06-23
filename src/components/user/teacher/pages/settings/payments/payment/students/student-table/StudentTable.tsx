@@ -64,7 +64,7 @@ const StudentTable = () => {
                 <td>Ментальная арифметика</td>
                 <td>10 000 сум</td>
                 <td>
-                    <Button type="danger" icon={<MinusOutlined />} shape="circle" size="small"/>
+                    <Button danger icon={<MinusOutlined />} shape="circle" size="small"/>
                 </td>
             </tr>
             <tr>
@@ -92,7 +92,7 @@ const StudentTable = () => {
                 <td>Ментальная арифметика</td>
                 <td>10 000 сум</td>
                 <td>
-                    <Button type="danger" icon={<MinusOutlined />} shape="circle" size="small"/>
+                    <Button danger icon={<MinusOutlined />} shape="circle" size="small"/>
                 </td>
             </tr>
             </tbody>

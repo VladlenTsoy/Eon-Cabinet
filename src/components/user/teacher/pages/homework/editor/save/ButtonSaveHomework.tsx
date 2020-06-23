@@ -3,7 +3,6 @@ import {ArrowRightOutlined} from '@ant-design/icons';
 import {Button} from "antd";
 import {useHistory} from "react-router-dom";
 import {useSelector} from "react-redux";
-import {RouteComponentProps, withRouter} from "react-router";
 import ModalEditor from "../../../../../../../layouts/modal-editor/ModalEditor";
 import FormItems from "./form-items/FormItems";
 import {groupSelector} from "../../../../../../../store/reducers/teacher/group/groupSlice";
@@ -11,10 +10,9 @@ import {groupSelector} from "../../../../../../../store/reducers/teacher/group/g
 interface ButtonSaveHomeworkProps {
     homework?: any;
     exercises: any;
-    disciplineId: any;
 }
 
-const ButtonSaveHomework: React.FC<ButtonSaveHomeworkProps & RouteComponentProps> = ({homework, exercises, disciplineId}) => {
+const ButtonSaveHomework: React.FC<ButtonSaveHomeworkProps> = ({homework, exercises}) => {
     const {group, isSaved} = useSelector(groupSelector);
     const history = useHistory();
     const [visible, setVisible] = useState(false);
@@ -37,7 +35,6 @@ const ButtonSaveHomework: React.FC<ButtonSaveHomeworkProps & RouteComponentProps
             <FormItems
                 homework={homework}
                 exercises={exercises}
-                disciplineId={disciplineId}
                 fetch={fetch}
                 close={close}
             />
@@ -45,4 +42,4 @@ const ButtonSaveHomework: React.FC<ButtonSaveHomeworkProps & RouteComponentProps
     </>
 };
 
-export default withRouter(ButtonSaveHomework);
+export default React.memo(ButtonSaveHomework);

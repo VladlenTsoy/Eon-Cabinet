@@ -7,17 +7,20 @@ export interface TaskProps {
     title:string;
     image: string;
     discipline_id: number;
-    block: boolean;
+    block: number | null;
+    homework: number| null;
 }
 
 export interface StateProps {
     fetchLoading: boolean;
-    all: TaskProps[]
+    all: TaskProps[],
+    homework: TaskProps[],
 }
 
 const initialState: StateProps = {
-    fetchLoading: false,
+    fetchLoading: true,
     all: [],
+    homework: []
 };
 
 const tasksSlice = createSlice({
@@ -30,6 +33,7 @@ const tasksSlice = createSlice({
         },
         [fetchTasks.fulfilled]: (state, action: PayloadAction<TaskProps[]>) => {
             state.all = action.payload;
+            state.homework = action.payload.filter((task) => !task.homework && !task.block);
             state.fetchLoading = false;
         },
     }

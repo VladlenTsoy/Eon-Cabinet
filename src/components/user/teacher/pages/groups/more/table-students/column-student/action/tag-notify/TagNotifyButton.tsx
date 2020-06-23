@@ -15,7 +15,7 @@ const TagNotifyButton: React.FC<TagNotifyButtonProps> = ({student}) => {
     };
 
     return (
-        <Button type="danger" icon={<LockOutlined />} onClick={clickHandler}>
+        <Button danger icon={<LockOutlined />} onClick={clickHandler}>
             {student.day_block} д.
         </Button>
     );

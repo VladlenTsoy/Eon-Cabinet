@@ -10,7 +10,7 @@ interface StateProps {
 }
 
 const initialState: StateProps = {
-    fetchLoading: false,
+    fetchLoading: true,
     activeDisciplineId: 1,
     disciplines: []
 };

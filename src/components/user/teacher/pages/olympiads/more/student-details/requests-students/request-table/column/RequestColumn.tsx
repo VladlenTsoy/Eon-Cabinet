@@ -65,7 +65,7 @@ const RequestColumn: React.FC<RequestColumnProps> = ({student, fetch, setIsChang
             <td>
                 <Button.Group>
                     <Button onClick={acceptRequestStudent}>Принять</Button>
-                    <Button type="danger" onClick={deniedRequestStudent}>Отказать</Button>
+                    <Button danger onClick={deniedRequestStudent}>Отказать</Button>
                 </Button.Group>
             </td>
         </tr>

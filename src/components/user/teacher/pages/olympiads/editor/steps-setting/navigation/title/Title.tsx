@@ -70,7 +70,7 @@ const Title: React.FC<TitleProps> = (
                 </EditorStepButton>
                 <Button
                     icon={<DeleteOutlined />}
-                    type="danger"
+                    danger
                     shape="circle-outline"
                     size="small"
                     onClick={() => deleteHandler(stepKey)}

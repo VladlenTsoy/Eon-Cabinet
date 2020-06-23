@@ -117,7 +117,7 @@ const Action: React.FC<Action> = ({task, history, id, type}) => {
             <Button
                 shape="round"
                 icon={<RedoOutlined/>}
-                type={'danger'}
+                danger
                 size="large"
                 onClick={() => startSecondApplication(task)}>
                 Повторить

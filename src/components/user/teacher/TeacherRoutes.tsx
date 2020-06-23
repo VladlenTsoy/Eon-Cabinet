@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import {Layout, Loader} from "../../../lib";
+import React from 'react';
+import {Layout} from "../../../lib";
 import HeaderItems from "./layout/header-items/HeaderItems";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Home from "./pages/home/Home";

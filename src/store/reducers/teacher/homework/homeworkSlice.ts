@@ -2,6 +2,8 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {fetchHomeworkByCategoryId} from "./fetchHomeworkByCategoryId";
 import {TeacherState} from "../store";
 import {deleteHomework} from "./deleteHomework";
+import {updateHomework} from "./updateHomework";
+import {createHomework} from "./createHomework";
 
 export interface HomeworkProps {
     id: number;
@@ -14,7 +16,7 @@ export interface HomeworkProps {
 
 interface StateProps {
     fetchLoading: boolean;
-    categories: {[categoryId: number]: HomeworkProps[]};
+    categories: { [categoryId: number]: HomeworkProps[] };
 }
 
 const initialState: StateProps = {
@@ -27,6 +29,23 @@ const homeworkSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: {
+        [updateHomework.pending]: (state) => {
+            state.fetchLoading = true;
+        },
+        [updateHomework.fulfilled]: (state: StateProps, action: PayloadAction<HomeworkProps>) => {
+            if (action.payload?.id)
+                state.categories[action.payload.category_id] = state.categories[action.payload.category_id]
+                    .map((homework) => homework.id === action.payload.id ? action.payload : homework);
+            state.fetchLoading = false;
+        },
+        [createHomework.pending]: (state) => {
+            state.fetchLoading = true;
+        },
+        [createHomework.fulfilled]: (state: StateProps, action: PayloadAction<HomeworkProps>) => {
+            if (action.payload?.id)
+                state.categories[action.payload.category_id] = [action.payload, ...state.categories[action.payload.category_id]];
+            state.fetchLoading = false;
+        },
         [fetchHomeworkByCategoryId.pending]: (state) => {
             state.fetchLoading = true;
         },
@@ -37,7 +56,7 @@ const homeworkSlice = createSlice({
         [deleteHomework.pending]: (state) => {
             state.fetchLoading = true;
         },
-        [deleteHomework.fulfilled]: (state: StateProps, action: PayloadAction<{ categoryId: HomeworkProps['category_id'], homeworkId: HomeworkProps['id']}>) => {
+        [deleteHomework.fulfilled]: (state: StateProps, action: PayloadAction<{ categoryId: HomeworkProps['category_id'], homeworkId: HomeworkProps['id'] }>) => {
             state.categories[action.payload.categoryId] = state.categories[action.payload.categoryId]
                 .filter((homework) => homework.id !== action.payload.homeworkId);
             state.fetchLoading = false;
