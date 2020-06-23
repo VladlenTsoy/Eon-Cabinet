@@ -1,6 +1,5 @@
 const {override, addLessLoader, fixBabelImports, addBundleVisualizer, addWebpackAlias, addWebpackPlugin, setWebpackOptimizationSplitChunks} = require('customize-cra');
 const path = require('path');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 
@@ -11,23 +10,6 @@ const addMinimizer = (config) => {
     config.plugins[0].options.inject = false;
 
     if (isEnvProduction) {
-        config.optimization.minimizer.push(
-            new UglifyJsPlugin({
-                sourceMap: false,
-                uglifyOptions: {
-                    mangle: true,
-                    output: {
-                        beautify: false,
-                    },
-                    compress: {
-                        unsafe: true,
-                        inline: true,
-                        passes: 2,
-                        keep_fargs: false,
-                    },
-                },
-            })
-        );
     } else {
         config.module.rules.push({
             test: /(dark|default).(less)$/,
