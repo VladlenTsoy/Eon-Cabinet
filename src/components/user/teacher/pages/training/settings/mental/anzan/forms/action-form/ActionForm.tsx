@@ -5,7 +5,7 @@ import {EditOutlined, FlagOutlined, PlusOutlined, PrinterOutlined, UndoOutlined}
 
 const ButtonGroupWrapper = styled(Button.Group)`
   width: 100%;
-  text-align: center;
+  justify-content: center;
 `;
 
 const PrintWrapper = styled.div`
