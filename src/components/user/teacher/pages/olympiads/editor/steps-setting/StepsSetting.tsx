@@ -4,12 +4,7 @@ import EmptySteps from "./empty/EmptySteps";
 import Navigation from "./navigation/Navigation";
 import Actions from "./actions/Actions";
 
-
-interface StepsSettingProps {
-    discipline: number;
-}
-
-const StepsSetting: React.FC<StepsSettingProps> = ({discipline}) => {
+const StepsSetting: React.FC = () => {
     const [current, setCurrent] = useState(0);
     const [steps, setSteps] = useState([]);
     const [exercises, setExercises] = useState<any[][]>([]);
@@ -38,7 +33,6 @@ const StepsSetting: React.FC<StepsSettingProps> = ({discipline}) => {
             key={current}
             current={current}
             olympiad={undefined}
-            discipline={discipline}
             globalExercises={exercises[current] || []}
             updateGlobalExercises={setExercises}
         >
@@ -47,7 +41,6 @@ const StepsSetting: React.FC<StepsSettingProps> = ({discipline}) => {
                     steps={steps}
                     step={steps[steps.length - 1]}
                     exercises={exercises}
-                    discipline={discipline}
                     current={current}
                     setCurrent={setCurrent}
                     setSteps={setSteps}

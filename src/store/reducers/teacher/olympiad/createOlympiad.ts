@@ -1,17 +1,18 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {api} from "../../../../utils/api";
+import {apiRequest} from "../../../../utils/api";
 import {message} from "../../../../utils/message";
 
-export const createOlympiad: any = createAsyncThunk<string, object>(
+export const createOlympiad: any = createAsyncThunk<string, any, any>(
     'teacher/olympiad/create',
-    async (data) => {
-        try {
-            const response = await api.user.post('teacher/olympiad', data)
-            message({type: 'success', content: 'Вы успешно создали олимпиаду!'});
-            return response.data;
-        } catch (e) {
-            message({type: 'error', content: 'Неизвестная ошибка!'});
-            return [];
-        }
+    async (data, {getState}: any) => {
+        const {discipline} = getState();
+        data.discipline_id = discipline.activeDisciplineId;
+        //
+        const response = await apiRequest('post', `teacher/olympiad`, {data});
+        response && message({
+            type: 'success',
+            content: 'Вы успешно создали олимпиаду!',
+        });
+        return response;
     }
 )

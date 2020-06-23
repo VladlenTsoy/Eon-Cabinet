@@ -6,7 +6,6 @@ interface TasksSettingProps {
     olympiad: any;
     globalExercises: any[];
     updateGlobalExercises: (exercises: any) => void;
-    discipline: number;
 }
 
 const TasksSetting: React.FC<TasksSettingProps> = (

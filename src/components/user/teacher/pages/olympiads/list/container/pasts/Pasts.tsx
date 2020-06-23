@@ -1,14 +1,23 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Tag} from "antd";
-import {ButtonLink} from "../../../../../../../../../lib";
+import {ButtonLink, Spin} from "../../../../../../../../lib";
+import {useDispatch, useSelector} from "react-redux";
+import {olympiadSelector} from "../../../../../../../../store/reducers/teacher/olympiad/olympiadSlice";
+import {fetchPastOlympiads} from "../../../../../../../../store/reducers/teacher/olympiad/fetchPastOlympiads";
 
-interface PastsProps {
-    olympiads: any[];
-}
+const Pasts: React.FC = () => {
+    const {past} = useSelector(olympiadSelector);
+    const dispatch = useDispatch();
 
-const Pasts: React.FC<PastsProps> = ({olympiads}) => {
-    return <>
-        {olympiads.map((olympiad, key) =>
+    useEffect(() => {
+        const promise = dispatch(fetchPastOlympiads());
+        return () => {
+            promise.abort();
+        }
+    } , [dispatch]);
+
+    return <Spin spinning={past.loading} tip="Загрузка...">
+        {past.data.map((olympiad, key) =>
             <div key={key}>
                 <p>{olympiad.title}</p>
                 <p>Дата завершения: {olympiad.last_step.end_at}</p>
@@ -30,7 +39,7 @@ const Pasts: React.FC<PastsProps> = ({olympiads}) => {
                 </ButtonLink>
             </div>
         )}
-    </>;
+    </Spin>;
 };
 
 export default Pasts;

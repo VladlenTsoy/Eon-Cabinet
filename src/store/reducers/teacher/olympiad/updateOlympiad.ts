@@ -1,22 +1,21 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {api} from "../../../../utils/api";
+import {apiRequest} from "../../../../utils/api";
 import {message} from "../../../../utils/message";
 
 interface ParamsProps {
     olympiadId: string | number;
-    data: object
+    data: any
 }
 
 export const updateOlympiad: any = createAsyncThunk<any, ParamsProps, any>(
     'teacher/olympiad/update',
-    async ({olympiadId, data}) => {
-        try {
-            const response = await api.user.patch(`teacher/olympiad/${olympiadId}`, data);
-            message({type: 'success', content: 'Вы успешно создали олимпиаду!'});
-            return response.data
-        } catch (e) {
-            message({type: 'error', content: 'Неизвестная ошибка!'});
-            return [];
-        }
+    async ({olympiadId, data}, {getState}: any) => {
+        //
+        const {discipline} = getState();
+        data.discipline_id = discipline.activeDisciplineId;
+        //
+        const response = await apiRequest('patch', `teacher/olympiad/${olympiadId}`, {data});
+        response && message({type: 'success', content: 'Вы успешно создали олимпиаду!'});
+        return response;
     }
 )

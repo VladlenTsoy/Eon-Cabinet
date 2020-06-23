@@ -15,7 +15,6 @@ interface ActionsProps {
     step?: any;
     steps: any[];
     olympiad?: any;
-    discipline: number;
     exercises: any[];
     current: number;
     setCurrent: (current: any) => void;
@@ -28,7 +27,6 @@ const Actions: React.FC<ActionsProps> = (
         steps,
         current,
         exercises,
-        discipline,
         olympiad,
         setSteps,
         setCurrent,
@@ -51,7 +49,6 @@ const Actions: React.FC<ActionsProps> = (
             <ButtonSaveOlympiad
                 steps={steps}
                 exercises={exercises}
-                disciplineId={discipline}
                 olympiad={olympiad}/>
         </ActionsWrapper>
     );

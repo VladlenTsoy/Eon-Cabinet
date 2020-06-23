@@ -1,18 +1,12 @@
-import React, {useState} from 'react';
-import Disciplines from "./disciplines/Disciplines";
-import StepsSetting from "./steps-setting/StepsSetting";
+import React from 'react';
 import {useChangeActionNavbar} from "hooks/use-change-action-navbar.effect";
+import StepsSetting from "./steps-setting/StepsSetting";
 
 const EditorOlympiad = () => {
-    const [discipline, setDiscipline] = useState<number>();
-
     useChangeActionNavbar({action: 'back'});
 
-    if (!discipline)
-        return <Disciplines setDiscipline={setDiscipline}/>;
-
     return <>
-        <StepsSetting discipline={discipline}/>
+        <StepsSetting/>
     </>;
 };
 

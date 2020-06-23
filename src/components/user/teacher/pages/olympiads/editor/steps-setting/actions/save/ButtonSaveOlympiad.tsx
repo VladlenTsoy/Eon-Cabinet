@@ -15,7 +15,6 @@ interface ButtonSaveOlympiadProps {
     olympiad?: any;
     steps?: any;
     exercises?: any;
-    disciplineId?: any;
     fetch?: () => void;
 }
 
@@ -25,7 +24,6 @@ const ButtonSaveOlympiad: React.FC<ButtonSaveOlympiadProps> = (
         olympiad,
         fetch,
         exercises,
-        disciplineId
     }
 ) => {
     const history = useHistory();
@@ -36,7 +34,7 @@ const ButtonSaveOlympiad: React.FC<ButtonSaveOlympiadProps> = (
         if (olympiad)
             await dispatch(updateOlympiad({olympiadId: olympiad.id, data}))
         else
-            await dispatch(createOlympiad({...data, discipline: disciplineId, exercises, steps}));
+            await dispatch(createOlympiad({...data, exercises, steps}));
     };
 
     const afterSaveOlympiad = () => {
