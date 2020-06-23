@@ -3,7 +3,6 @@ import {Col, Row} from "antd";
 import styled from "styled-components";
 import ConfigItem from "./config-item/ConfigItem";
 import TimeItem from "./time-item/TimeItem";
-import CategoryItem from "./category-item/CategoryItem";
 import ModeItem from "./mode-item/ModeItem";
 import TypeItem from "./type-item/TypeItem";
 import TitleItem from "./title-item/TitleItem";
@@ -15,7 +14,6 @@ const DescriptionWrapper = styled.div`
 `;
 
 interface FormHeaderProps {
-    categories: any[];
     data: any;
     description: string;
     onChangeHandler: any;
@@ -23,14 +21,12 @@ interface FormHeaderProps {
 
 const FormItems: React.FC<FormHeaderProps> = (
     {
-        categories,
         data,
         description,
         onChangeHandler,
     }
 ) => {
     return <>
-        <CategoryItem categories={categories}/>
         <TypeItem typeTasks={data.typeTasks}/>
         <ModeItem modes={data.modes}/>
         <Row gutter={15}>

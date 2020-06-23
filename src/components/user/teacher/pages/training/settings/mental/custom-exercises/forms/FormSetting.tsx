@@ -28,7 +28,6 @@ const FormSetting: React.FC<FormSettingProps> = (
     const [fields, setFields] = useState<any[]>([]);
     const [description, setDescription] = useState('');
     const [data, setData] = useState<any>({
-        categories: [],
         modes: [],
         typeTasks: [],
         titles: [],
@@ -39,29 +38,27 @@ const FormSetting: React.FC<FormSettingProps> = (
     const clearFormSetting = useCallback(async () => {
         await setInitValues(initialValues);
         await setFields([]);
-        await setData({categories: [], modes: [], typeTasks: [], titles: [], typeTask: 'basic', mode: 'plus-minus'});
+        await setData({modes: [], typeTasks: [], titles: [], typeTask: 'basic', mode: 'plus-minus'});
         await clearSaveSetting();
         form.resetFields();
     }, [form, clearSaveSetting, initialValues]);
 
-    const [categories] = useState<any>(typeof exercises === 'object' ? Object.keys(exercises) : []);
+    const [typeTasks] = useState<any>(typeof exercises === 'object' ? Object.keys(exercises) : []);
 
     const onChangeHandler = useCallback((item: any, select: any) => {
         setDescription(select['data-description']);
     }, []);
 
-    const updateTitles = useCallback(({allFields, categories, category, typeTask, mode, typeTasks, modes, user = false}) => {
-        if (!category || !typeTask || !mode) return false;
-        let titles = Object.values(exercises[category][typeTask][mode]);
+    const updateTitles = useCallback(({allFields, typeTask, mode, typeTasks, modes, user = false}) => {
+        if (!typeTask || !mode) return false;
+        let titles = Object.values(exercises[typeTask][mode]);
         let title: any = titles[0];
         let titleValue = user ? user.custom_exercises_id : title.id;
 
         setDescription(title.description);
 
         setFields(allFields.map((field: any) => {
-            if (field.name.includes('category_id'))
-                field.value = category;
-            else if (field.name.includes('anzan'))
+            if (field.name.includes('anzan'))
                 field.value = typeTask;
             else if (field.name.includes('mode'))
                 field.value = mode;
@@ -70,22 +67,15 @@ const FormSetting: React.FC<FormSettingProps> = (
             return field;
         }));
 
-        return {categories, typeTasks, modes, titles, typeTask, mode}
+        return {typeTasks, modes, titles, typeTask, mode}
     }, [exercises]);
 
-    const updateModes = useCallback(({allFields, categories, category, typeTask, typeTasks, user = false}) => {
-        if (!category || !typeTask) return false;
-        let modes = Object.keys(exercises[category][typeTask]);
+    const updateModes = useCallback(({allFields, typeTask, typeTasks, user = false}) => {
+        if (!typeTask) return false;
+        let modes = Object.keys(exercises[typeTask]);
         let mode = user ? user.mode : modes[0];
-        return updateTitles({allFields, categories, category, typeTask, mode, typeTasks, modes, user});
+        return updateTitles({allFields, typeTask, mode, typeTasks, modes, user});
     }, [updateTitles, exercises]);
-
-    const updateTypeTasks = useCallback(({allFields, categories, category, user = false,}) => {
-        if (!category) return false;
-        let typeTasks = Object.keys(exercises[category]);
-        let typeTask = user ? user.anzan : typeTasks[0];
-        return updateModes({allFields, categories, category, typeTask, typeTasks, user});
-    }, [updateModes, exercises]);
 
     const handleFormChange = (changedFields: any[], allFields: any[]) => {
         if (changedFields.length) {
@@ -100,30 +90,19 @@ const FormSetting: React.FC<FormSettingProps> = (
                     return false;
             }
 
-            let category = allFields.find((field: any) => field.name.includes('category_id'));
             let typeTask = allFields.find((field: any) => field.name.includes('anzan'));
 
             setData((prevState: any) => {
                 let stats = prevState;
-                if (changedFields[0].name.includes('category_id'))
-                    stats = updateTypeTasks({
-                        allFields,
-                        categories: [],
-                        category: changedFields[0].value,
-                    });
-                else if (changedFields[0].name.includes('anzan'))
+                if (changedFields[0].name.includes('anzan'))
                     stats = updateModes({
                         allFields,
-                        categories: [],
-                        category: category.value,
                         typeTask: changedFields[0].value,
                         typeTasks: prevState.typeTasks,
                     });
                 else if (changedFields[0].name.includes('mode'))
                     stats = updateTitles({
                         allFields,
-                        categories: [],
-                        category: category.value,
                         typeTask: typeTask.value,
                         mode: changedFields[0].value,
                         typeTasks: prevState.typeTasks,
@@ -135,14 +114,14 @@ const FormSetting: React.FC<FormSettingProps> = (
     };
 
     useEffect(() => {
-        if (initValues.hasOwnProperty('category_id')) {
-            let setting = updateTypeTasks({
-                allFields: [], categories, category: initValues.category_id, user: initValues
+        if (initValues.hasOwnProperty('type_task')) {
+            let setting = updateModes({
+                allFields: [], typeTask: initValues.type_task, typeTasks, user: initValues
             });
             if (setting)
                 setData(setting);
         }
-    }, [initValues, categories, updateTypeTasks]);
+    }, [initValues, typeTasks, updateModes]);
 
     return <Form
         form={form}
@@ -153,7 +132,6 @@ const FormSetting: React.FC<FormSettingProps> = (
     >
         <FormItems
             data={data}
-            categories={categories}
             onChangeHandler={onChangeHandler}
             description={description}
         />

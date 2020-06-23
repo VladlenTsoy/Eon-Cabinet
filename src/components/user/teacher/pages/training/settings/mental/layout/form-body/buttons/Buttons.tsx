@@ -6,7 +6,7 @@ import {FormInstance} from "antd/es/form";
 
 const ButtonGroupWrapper = styled(Button.Group)`
   width: 100%;
-  text-align: center;
+  justify-content: center;
 `;
 
 interface ButtonsProps {

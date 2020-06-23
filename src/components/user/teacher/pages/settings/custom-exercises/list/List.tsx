@@ -1,16 +1,12 @@
 import React from 'react';
 import {Navigation, NavigationButton} from "lib";
 import {Link} from "react-router-dom";
-import {Tabs, Tag} from "antd";
+import {Tag} from "antd";
 import {PlusOutlined} from "@ant-design/icons";
 import UsingTablePagination from "lib/table-pagination/usingTablePagination";
 import {ModalMenu} from "lib";
-import {useSelector} from "react-redux";
-import {useScreenWindow} from "hooks/use-screen-window.effect";
 import DeleteItem from "./Menu/delete-item/DeleteItem";
 import PrintItem from "./Menu/print-item/PrintItem";
-
-const {TabPane} = Tabs;
 
 const columns = (fetch: any) => [
     {
@@ -63,9 +59,6 @@ const columns = (fetch: any) => [
 ];
 
 const List: React.FC = () => {
-    const {app} = useSelector((state: any) => state);
-    const [, isBreakpoint] = useScreenWindow({breakpoint: 'sm'});
-
     return <>
         <Navigation>
             <Link to={`/settings/custom-exercises/create`}>
@@ -74,18 +67,11 @@ const List: React.FC = () => {
                 </NavigationButton>
             </Link>
         </Navigation>
-        <Tabs tabPosition={isBreakpoint ? 'top' : 'left'} style={{minHeight: '200px'}}>
-            {app.categories.filter((category: any) => category.discipline_id === 1)
-                .map((category: any) =>
-                    <TabPane tab={category.title} key={`category-${category.id}`}>
-                        <UsingTablePagination
-                            isSearch={false}
-                            url={`/teacher/custom-exercises/${category.id}/table`}
-                            columns={columns}
-                        />
-                    </TabPane>
-                )}
-        </Tabs>
+        <UsingTablePagination
+            isSearch={false}
+            url={`/teacher/custom-exercises/table`}
+            columns={columns}
+        />
     </>;
 };
 
