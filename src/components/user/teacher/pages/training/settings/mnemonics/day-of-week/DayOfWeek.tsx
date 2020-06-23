@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useState} from 'react';
 import {RedoOutlined} from '@ant-design/icons';
 import {DatePicker, Button, Radio, Typography, Form} from "antd";
 import {Alert} from "../../../../../../../../lib";
@@ -26,7 +26,6 @@ const DayOfWeekWrapper = styled.div`
 `;
 
 const DayOfWeek = () => {
-    const weekRef = useRef<any>();
     const [visible, setVisible] = useState(false);
     const [user, setUser] = useState<any>(null);
     const [answer, setAnswer] = useState<any>(null);
@@ -38,8 +37,7 @@ const DayOfWeek = () => {
             const date = new Date(start.valueOf() + Math.random() * (end.valueOf() - start.valueOf()));
             setAnswer(date);
         }
-        if (weekRef && weekRef.current)
-            weekRef.current.state.value = undefined;
+        setUser(undefined);
     };
 
     const changeWeekHandler = (e: any) => {
@@ -60,7 +58,7 @@ const DayOfWeek = () => {
             {answer ?
                 <>
                     <Title level={1}>Дата: {moment(answer).format('DD.MM.YYYY')}</Title>
-                    <Radio.Group buttonStyle="solid" onChange={changeWeekHandler} ref={weekRef} size="large">
+                    <Radio.Group buttonStyle="solid" onChange={changeWeekHandler} value={user} size="large">
                         <Radio.Button value="1">Пн</Radio.Button>
                         <Radio.Button value="2">Вт</Radio.Button>
                         <Radio.Button value="3">Ср</Radio.Button>
