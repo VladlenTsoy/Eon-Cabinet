@@ -4,6 +4,8 @@ import {useApiUserGeneral} from "../../../../../../../hooks/use-api-user-general
 import Students from "./students/Students";
 import styled from "styled-components";
 import {HomeOutlined, TeamOutlined} from "@ant-design/icons";
+import {useSelector} from "react-redux";
+import {disciplineSelector} from "../../../../../../../store/reducers/teacher/discipline/disciplineSlice";
 
 const StatisticWrapper = styled.div`
   display: grid;
@@ -12,7 +14,8 @@ const StatisticWrapper = styled.div`
 `;
 
 const Statistic: React.FC = () => {
-    const [loading, statistic] = useApiUserGeneral({url: '/teacher/statistic'});
+    const {activeDisciplineId} = useSelector(disciplineSelector);
+    const [loading, statistic] = useApiUserGeneral({url: `/teacher/${activeDisciplineId}/statistic`});
 
     return <StatisticWrapper>
         <CardStatistic
@@ -26,7 +29,11 @@ const Statistic: React.FC = () => {
             icon={<HomeOutlined/>}
             theme="primary"
             loading={loading}
-            count={statistic ? statistic.homework.count : 0}/>
+            items={[{
+                title: 'Отправленных',
+                type: 'main',
+                count: statistic ? statistic.homework.count : 0
+            }]}/>
         <Students statistic={statistic} loading={loading}/>
     </StatisticWrapper>;
 };
