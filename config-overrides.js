@@ -7,10 +7,7 @@ const isEnvProduction = process.env.NODE_ENV === 'production';
 process.env.GENERATE_SOURCEMAP = !isEnvProduction;
 
 const addMinimizer = (config) => {
-    config.plugins[0].options.inject = false;
-
-    if (isEnvProduction) {
-    } else {
+    if (!isEnvProduction) {
         config.module.rules.push({
             test: /(dark|default).(less)$/,
             use: [
@@ -24,6 +21,8 @@ const addMinimizer = (config) => {
             filename: 'static/css/[name].[contenthash:8].css',
             chunkFilename: 'static/css/[name].[contenthash:8].chunk.css',
         }));
+    } else {
+        config.plugins[0].options.inject = false;
     }
     return config;
 };
