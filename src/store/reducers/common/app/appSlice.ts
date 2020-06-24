@@ -35,4 +35,11 @@ export const {changeAction, changeSpin, changeTitle} = appSlice.actions;
 
 export const appSelector = (state: TeacherState) => state.app;
 
+type KeyProps =
+    | 'action'
+    | 'spin'
+    | 'title';
+
+export const appSubSelector = (key: KeyProps) => (state: TeacherState) => state.app[key];
+
 export default appSlice.reducer;
