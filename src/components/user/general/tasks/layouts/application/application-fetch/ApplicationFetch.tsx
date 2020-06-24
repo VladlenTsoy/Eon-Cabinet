@@ -1,17 +1,17 @@
 import React from 'react';
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import {useCallback, useEffect, useMemo, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import {
     changeStats,
     changeTotals,
     StatsActionProps,
     changeOutputs, gameSubSelector
 } from "store/reducers/common/game/gameSplice";
-import { useLoadPicturesEffect } from "../application-output/use-load-pictures.effect";
+import {useLoadPicturesEffect} from "../application-output/use-load-pictures.effect";
 import axios from "axios";
-import { useAppContext } from "store/context/use-app-context";
-import { LoadingBlock } from 'lib';
-import { useLoadSoundsEffect } from '../application-output/use-load-sounds.effect';
+import {useAppContext} from "store/context/use-app-context";
+import {LoadingBlock} from 'lib';
+import {useLoadSoundsEffect} from '../application-output/use-load-sounds.effect';
 import {picturesFunction} from "../Application.layout";
 
 const CancelToken = axios.CancelToken;
@@ -29,7 +29,7 @@ const ApplicationFetch: React.FC<ApplicationFetchProps> = (
         updateStats,
         requestSetting,
         pictures,
-        createTotals ,
+        createTotals,
         createOutputs,
         children,
     }
@@ -37,33 +37,40 @@ const ApplicationFetch: React.FC<ApplicationFetchProps> = (
     const {api} = useAppContext();
     const [loading, setLoading] = useState(true);
     const currentTimes = useSelector(gameSubSelector('currentTimes'));
-    const setting = useSelector(gameSubSelector( 'setting'));
+    const setting = useSelector(gameSubSelector('setting'));
     const dispatch = useDispatch();
     const source = useMemo(() => CancelToken.source(), []);
     const sourceCancel = useMemo(() => source.cancel, [source]);
 
     // Загрузка картинок
-    const [picturesLoad] = useLoadPicturesEffect({ pictures });
+    const [picturesLoad] = useLoadPicturesEffect({pictures});
     // Загрузка звуков
     const [soundsLoad] = useLoadSoundsEffect({setting});
 
     const checkAndUpdateStats = useCallback((_totals) => {
-        let stats = updateStats ? updateStats() : { all: Object.values(_totals).length };
+        let stats = updateStats ? updateStats() : {all: Object.values(_totals).length};
         dispatch(changeStats(stats))
     }, [dispatch, updateStats]);
 
     const fetch = useCallback(async () => {
         try {
             return requestSetting.method === 'post' ?
-                await api.user.post(requestSetting.url, requestSetting.setting || setting, { cancelToken: source.token }) :
-                await api.user.get(requestSetting.url, { params: requestSetting.setting || setting, cancelToken: source.token });
+                await api.user.post(requestSetting.url, requestSetting.setting || setting, {cancelToken: source.token}) :
+                await api.user.get(requestSetting.url, {
+                    params: requestSetting.setting || setting,
+                    cancelToken: source.token
+                });
         } catch (e) {
-
+            console.log(e)
         }
     }, [api.user, requestSetting, setting, source.token]);
 
     const createAndUpdateTotals = useCallback(async (data) => {
-        pictures && await picturesLoad(data);
+        try {
+            pictures && await picturesLoad(data);
+        } catch (e) {
+            console.log(e)
+        }
         const createdTotals = createTotals(data);
         dispatch(changeTotals(createdTotals));
         return createdTotals;
@@ -71,7 +78,11 @@ const ApplicationFetch: React.FC<ApplicationFetchProps> = (
 
     const createAndUpdateOutputs = useCallback(async (totals) => {
         const createdOutputs = createOutputs(totals, currentTimes);
-        setting.sound && await soundsLoad(createdOutputs);
+        try {
+            setting.sound && await soundsLoad(createdOutputs);
+        } catch (e) {
+            console.log(e)
+        }
         return createdOutputs
     }, [createOutputs, currentTimes, setting.sound, soundsLoad]);
 
@@ -99,7 +110,7 @@ const ApplicationFetch: React.FC<ApplicationFetchProps> = (
     // console.log('Fetch');
 
     if (loading)
-        return <LoadingBlock title="Настройка упражнения..." />;
+        return <LoadingBlock title="Настройка упражнения..."/>;
 
     return <>{children}</>;
 };
