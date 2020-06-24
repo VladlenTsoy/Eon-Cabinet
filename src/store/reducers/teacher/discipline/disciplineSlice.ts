@@ -30,7 +30,7 @@ const disciplineSlice = createSlice({
         },
         [fetchDisciplines.fulfilled]: (state, action) => {
             // Add user to the state array
-            if (action.payload.length) {
+            if (action.payload) {
                 const discipline = action.payload[0]
                 updateDiscipline(discipline.id);
                 state.activeDisciplineId = discipline.id
