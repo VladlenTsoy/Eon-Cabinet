@@ -16,14 +16,13 @@ export const useUpdateOutputEffect: UpdateOutputEffectTypes = ({extra}) => {
 
     const updaterOutput = useCallback((output) => {
         if (extra) {
-            if (extra?.includes('plus') && Math.sign(output) !== -1)
+            if (extra.includes('plus') && Math.sign(output) !== -1)
                 output = '+' + output;
-            if (extra?.includes('comma'))
+            if (extra.includes('comma'))
                 output = output.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
             return output;
         }
-        return output;
     }, [extra]);
 
     const updateExercises = useCallback((exercises) => {

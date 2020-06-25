@@ -31,7 +31,7 @@ const Application: React.FC<ApplicationProps> = ({otherUrl}) => {
         if (setting.anzan === 'double')
             return data.map((exercises: any[]) => {
                 return exercises.map((exercise: number[]) => {
-                    exercise = setting?.extra?.includes('mirror') ? updateMirror(exercise) : exercise;
+                    exercise = setting?.extra.includes('mirror') ? updateMirror(exercise) : exercise;
                     return {
                         exercise,
                         answer: isMultiplication ?
@@ -42,7 +42,7 @@ const Application: React.FC<ApplicationProps> = ({otherUrl}) => {
             });
         else
             return data.map((exercise: number[]) => {
-                exercise = setting?.extra?.includes('mirror') ? updateMirror(exercise) : exercise;
+                exercise = setting?.extra.includes('mirror') ? updateMirror(exercise) : exercise;
                 return {
                     exercise,
                     answer: isMultiplication ?
@@ -130,7 +130,7 @@ const Application: React.FC<ApplicationProps> = ({otherUrl}) => {
         pictures="abacus"
         listSetting={listSetting} updateResultsTotals={updateResultsTotals}
         timer={setting.anzan === 'list'} nextStatus={setting.anzan === 'list' ? 'result' :
-        typeof setting.extra === 'object' && setting.extra.includes('group') ? "intermediate" : "answer"} displayType={setting.anzan}
+        setting.extra.includes('group') ? "intermediate" : "answer"} displayType={setting.anzan}
     />
 };
 

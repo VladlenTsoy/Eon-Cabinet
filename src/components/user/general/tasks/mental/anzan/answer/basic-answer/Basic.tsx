@@ -5,7 +5,7 @@ import {gameSelector} from "../../../../../../../../store/reducers/common/game/g
 
 const Basic: React.FC = () => {
     const {totals, setting} = useSelector(gameSelector);
-    const isGroup = setting?.extra?.includes('group');
+    const isGroup = setting?.extra.includes('group');
 
     if (isGroup)
         return totals.map((total: any, key: number) =>

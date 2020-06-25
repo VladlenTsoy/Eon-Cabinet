@@ -19,7 +19,7 @@ const RightBlock: React.FC<RightBlockProps> = ({isView, result, resultData}) => 
         return <>
             <CounterBlock resultData={resultData}/>
             {!result && !resultData.is_second && <RepeatBlock isView={isView}/>}
-            {/*{resultData.next_task && <NextBlock nextTask={resultData.next_task}/>}*/}
+            {resultData.next_task && <NextBlock nextTask={resultData.next_task}/>}
         </>;
 
     return <>

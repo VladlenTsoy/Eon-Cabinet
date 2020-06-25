@@ -63,7 +63,7 @@ const ActionIntermediate: React.FC<ActionIntermediateProps> = ({checkResult}) =>
 
     const repeatExercise = () => dispatch(repeatGame(checkResult(totals[currentTimes])));
     const nextExercise = () => dispatch(nextGame());
-    const completionTask = () => dispatch(completionGame(setting?.extra?.includes('group')));
+    const completionTask = () => dispatch(completionGame(setting?.extra.includes('group')));
 
     return <ActionWrapper>
         {!match.params.homeworkId &&
