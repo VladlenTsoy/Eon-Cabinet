@@ -18,9 +18,27 @@ const NextBlock: React.FC<NextBlockProps> = ({nextTask}) => {
     const dispatch = useDispatch();
 
     const nextTaskStart = () => {
-        dispatch(changeSetting(nextTask.settings));
+        dispatch(changeSetting(checkTaskTypeOldTask(nextTask.settings)));
         dispatch(clearGame());
         history.replace(`/homework/${homeworkId}/${nextTask.id}/${disciplineId}/${nextTask.task_id}`);
+    };
+
+    const checkTaskTypeOldTask = (settings: any) => {
+        if (settings?.task)
+            switch (Number(settings?.task)) {
+                case 2:
+                case 4:
+                    settings.anzan = 'list';
+                    break;
+                case 1:
+                case 3:
+                    settings.anzan = 'basic';
+                    break;
+                case 5:
+                    settings.anzan = 'double';
+                    break;
+            }
+        return settings;
     };
 
     return <Card className="info">

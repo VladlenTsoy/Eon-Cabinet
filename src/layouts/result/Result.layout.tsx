@@ -70,7 +70,8 @@ const ResultLayout: React.FC<ResultProps> = (
     }
 ) => {
     useEffect(() => {
-        document.getElementsByClassName('ant-layout-content')[0].scrollTo(0, 0);
+        const layout = document.querySelector('.ant-layout-content');
+        layout && layout.scrollIntoView();
     }, []);
 
     return <ResultWrapper>

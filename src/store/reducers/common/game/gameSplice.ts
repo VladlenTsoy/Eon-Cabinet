@@ -51,6 +51,8 @@ const gameSlice = createSlice({
             state.stats.success += action.payload;
         },
         changeSetting(state, action: PayloadAction<any>) {
+            if (action.payload && !action.payload?.extra)
+                action.payload.extra = [];
             state.setting = action.payload;
         },
         changeOutputs(state, action: PayloadAction<any[]>) {
