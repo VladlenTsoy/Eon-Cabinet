@@ -57,12 +57,10 @@ export const apiRequest: ApiRequestProps = async (method = 'get', url: string, c
 
         return response.data;
     } catch (e) {
-        if (axios.isCancel(e)) {
-
-        } else {
-            console.error('-----> ', e)
-            message({type: 'error', content: 'Неизвестная ошибка!'});
-            return null;
+        if (!axios.isCancel(e)) {
+            console.error('-----> ', e);
+            message({type: 'error', content: e?.response?.data?.message || e?.message || 'Неизвестная ошибка!'});
+            throw Error(e?.response?.data?.message || e?.message || 'Неизвестная ошибка!');
         }
     }
 }
