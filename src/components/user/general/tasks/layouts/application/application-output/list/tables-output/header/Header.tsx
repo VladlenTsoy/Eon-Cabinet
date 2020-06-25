@@ -21,7 +21,7 @@ const Header: React.FC<HeaderProps> = ({tableKey, column, leftNumbering}) => {
     </tr>
     <tr>
         {leftNumbering ? <th className="not-border"/> : null}
-        {genCharArray(column)
+        {genCharArray(Number(column))
             .map((char: string) =>
                 <th key={char}><i>{char}</i></th>)
         }
