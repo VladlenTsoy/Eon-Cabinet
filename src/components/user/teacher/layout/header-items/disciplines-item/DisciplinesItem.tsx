@@ -5,6 +5,7 @@ import {disciplineSelector, changeActiveDisciplineId} from "store/reducers/teach
 import styled from "styled-components";
 import {FaBrain} from "react-icons/fa"
 import {TiSortNumericallyOutline} from "react-icons/ti"
+import {appSubSelector} from "../../../../../../store/reducers/common/app/appSlice";
 
 const {Option} = Select;
 
@@ -24,12 +25,16 @@ const DisciplinesStyled = styled.div`
 `;
 
 const DisciplinesItem = () => {
+    const action = useSelector(appSubSelector('action'));
     const {disciplines, activeDisciplineId} = useSelector(disciplineSelector)
     const dispatch = useDispatch();
 
     const handleChange = (disciplineId: number) => {
         dispatch(changeActiveDisciplineId(disciplineId))
     };
+
+    if(action)
+        return <></>;
 
     return <DisciplinesStyled>
         <Select defaultValue={activeDisciplineId} onChange={handleChange}>
