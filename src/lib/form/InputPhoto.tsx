@@ -2,7 +2,7 @@ import * as React from "react";
 import AvatarLabelWrapper from "../avatar/Label";
 import {getBase64} from "../upload/Upload";
 import {useState} from "react";
-import { EditOutlined } from '@ant-design/icons';
+import {EditOutlined} from '@ant-design/icons';
 import {IconsWrapper, IconEditWrapper} from "../avatar/IconsWrapper";
 import {FormItem} from "../../lib";
 import {FormInstance} from "antd/es/form";
@@ -25,11 +25,11 @@ const InputPhoto: React.FC<InputPhotoProps> = ({form}) => {
     return (
         <FormItem name="image">
             <AvatarLabelWrapper>
-                <img src={imageUrl || form.getFieldValue('image') || 'http://api.eon.loc/images/default.svg'}
+                <img src={imageUrl || form.getFieldValue('image') || 'http://api.eon.uz/images/default.svg'}
                      alt="Изменить фотографию"/>
                 <input type="file" accept="image/x-png,image/gif,image/jpeg" onChange={handleChange} hidden/>
                 <IconsWrapper>
-                    <IconEditWrapper><EditOutlined /> Изменить</IconEditWrapper>
+                    <IconEditWrapper><EditOutlined/> Изменить</IconEditWrapper>
                 </IconsWrapper>
             </AvatarLabelWrapper>
         </FormItem>

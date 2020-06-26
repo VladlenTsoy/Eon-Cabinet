@@ -20,7 +20,7 @@ interface StateProps {
 }
 
 const initialState: StateProps = {
-    fetchLoading: false,
+    fetchLoading: true,
     categories: [],
 };
 

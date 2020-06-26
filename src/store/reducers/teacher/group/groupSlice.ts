@@ -4,6 +4,7 @@ import {fetchGroups} from "./fetchGroups";
 import {updateGroup} from "./updateGroup";
 import {createGroup} from "./createGroup";
 import {deleteGroup} from "./deleteGroup";
+import {fetchGroup} from "./fetchGroup";
 
 export interface GroupProps {
     id: number;
@@ -19,6 +20,7 @@ export interface GroupProps {
 }
 
 interface StateProps {
+    fetchError: null | any;
     fetchLoading: boolean;
     group: GroupProps | null;
     isSaved: boolean;
@@ -28,6 +30,7 @@ interface StateProps {
 
 const initialState: StateProps = {
     fetchLoading: false,
+    fetchError: null,
     group: null,
     groups: [],
     isSaved: false,
@@ -38,9 +41,6 @@ const groupSlice = createSlice({
     name: 'group',
     initialState,
     reducers: {
-        changeGroup(state, action: PayloadAction<GroupProps>) {
-            state.group = action.payload
-        },
         changeIsSaved(state, action: PayloadAction<boolean>) {
             state.isSaved = action.payload
         },
@@ -49,10 +49,28 @@ const groupSlice = createSlice({
         }
     },
     extraReducers: {
+        [fetchGroup.pending]: (state) => {
+            state.fetchLoading = true;
+        },
+        [fetchGroup.fulfilled]: (state: StateProps, action: PayloadAction<GroupProps>) => {
+            state.fetchError = null;
+            state.group = action.payload || [];
+            state.fetchLoading = false;
+        },
+        [fetchGroup.rejected]: (state, action) => {
+            if (action.error.name === "ConditionError") {
+                const groupId = action.meta.arg.groupId;
+                if (groupId) state.group = state.groups.find((group) => group.id === Number(groupId)) || null;
+                state.fetchError = null;
+            } else if (action.error.name === 'Error') {
+                state.fetchError = action.error;
+                state.fetchLoading = false;
+            }
+        },
         [fetchGroups.pending]: (state) => {
             state.fetchLoading = true;
         },
-        [fetchGroups.fulfilled]: (state, action) => {
+        [fetchGroups.fulfilled]: (state: StateProps, action: PayloadAction<GroupProps[]>) => {
             state.groups = action.payload || [];
             state.fetchLoading = false;
         },
@@ -84,6 +102,6 @@ const groupSlice = createSlice({
 
 export const groupSelector = (state: TeacherState) => state.group;
 
-export const {changeGroup, changeIsSaved, changeSelectedStudentsId} = groupSlice.actions;
+export const {changeIsSaved, changeSelectedStudentsId} = groupSlice.actions;
 
 export default groupSlice.reducer;

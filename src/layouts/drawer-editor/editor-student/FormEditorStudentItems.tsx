@@ -2,7 +2,6 @@ import React, {useEffect} from "react";
 import {Col, DatePicker, Row} from "antd";
 import InputPhoto from "../../../lib/form/InputPhoto";
 import {FormItem, InputEmail, InputLogin, InputPassword} from "lib";
-import SelectData from "../../../lib/form/select-data/SelectData";
 import {FormInstance} from "antd/es/form";
 
 interface FormEditorStudentProps {
@@ -16,7 +15,6 @@ interface FormEditorStudentProps {
 const FormEditorStudent: React.FC<FormEditorStudentProps> = (
     {
         form,
-        group_id,
         data,
         setIsSaveBtn,
     }
@@ -38,13 +36,6 @@ const FormEditorStudent: React.FC<FormEditorStudentProps> = (
             />
             <InputEmail/>
             <InputLogin/>
-            {group_id ?
-                <SelectData
-                    url={`teacher/field/groups/${group_id}`}
-                    label="Группа"
-                    name="group_id"
-                    requiredMsg="Выберите группу!"
-                /> : null}
         </Col>
         <Col sm={12} xs={24}>
             <FormItem
