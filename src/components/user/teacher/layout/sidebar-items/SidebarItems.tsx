@@ -10,6 +10,7 @@ import {
     ThunderboltOutlined,
     TrophyOutlined,
     UserOutlined,
+    CreditCardOutlined
 } from '@ant-design/icons';
 
 import {Menu} from "antd";
@@ -69,12 +70,12 @@ const SidebarItems = () => {
                     <span>Настройки</span>
                 </div>
             }>
-            {/*<Item key="/settings/payments">*/}
-            {/*    <Link to="/settings/payments">*/}
-            {/*        <Icon type="credit-card"/>*/}
-            {/*        <span>Оплата</span>*/}
-            {/*    </Link>*/}
-            {/*</Item>*/}
+            <Item key="/settings/payments">
+                <Link to="/settings/payments">
+                    <CreditCardOutlined/>
+                    <span>Оплата</span>
+                </Link>
+            </Item>
             {
                 isMental ?
                     <Item key="/settings/custom-exercises">

@@ -39,7 +39,7 @@ interface StudentDetailsProps {
 }
 
 const StudentDetails: React.FC<StudentDetailsProps> = ({olympiad, fetch}) => {
-    if (olympiad.access === 'invite')
+    if (olympiad.status === 0 && olympiad.access === 'private')
         return <Wrapper>
             <Title level={4}>Добавляйте учеников для участия в олимпиаде</Title>
             <InviteStudentButton

@@ -10,7 +10,7 @@ import styled from "styled-components";
 import {useWindowSize} from "react-use";
 import {useScreenWindow} from "../../../../../hooks/use-screen-window.effect";
 import {Carousel} from "antd";
-import NextArrow from "../../../teacher/pages/home/olympiad/olympiad-carousel/next-arrow/NextArrow";
+import NextArrow from "lib/carousel/next-arrow/NextArrow";
 
 const HomeworkWrapper = styled.div`
   display: grid;

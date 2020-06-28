@@ -4,7 +4,7 @@ import Homework from "./homework/Homework";
 import styled from "styled-components";
 import {useScreenWindow} from "../../../../../hooks/use-screen-window.effect";
 import {Carousel} from "antd";
-import NextArrow from "../../../teacher/pages/home/olympiad/olympiad-carousel/next-arrow/NextArrow";
+import NextArrow from "lib/carousel/next-arrow/NextArrow";
 import Olympiad from "./olympiad/Olympiad";
 
 const Wrapper = styled.div`
