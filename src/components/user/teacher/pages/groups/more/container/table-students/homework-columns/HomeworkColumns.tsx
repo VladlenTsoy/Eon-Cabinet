@@ -19,7 +19,7 @@ const HomeworkColumns = ({fetchHomeworkLoading, homework}: HomeworkColumnsProps)
                     <tr>
                         {homework && homework[record.id] &&
                             homework[record.id].map((homework: any) =>
-                                <ColumnHomework homework={homework} key={homework.id} fetch={() => null}/>)
+                                <ColumnHomework homework={homework} key={homework.id}/>)
                         }
                     </tr>
                     </tbody>

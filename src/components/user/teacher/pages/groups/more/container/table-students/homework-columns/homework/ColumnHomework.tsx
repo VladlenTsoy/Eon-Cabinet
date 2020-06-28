@@ -25,16 +25,15 @@ const WrapperStatisticTable = styled.table`
 
 interface ColumnHomeworkProps {
     homework: Homework;
-    fetch: any;
 }
 
-const ColumnHomework: React.FC<ColumnHomeworkProps> = ({homework, fetch}) => {
+const ColumnHomework: React.FC<ColumnHomeworkProps> = ({homework}) => {
     return <WrapperTd>
         <WrapperStatisticTable>
             <thead>
             <tr>
                 <th colSpan={homework.tasks.length}>
-                    <Title homework={homework} fetch={fetch}/>
+                    <Title homework={homework}/>
                 </th>
             </tr>
             </thead>

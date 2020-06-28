@@ -1,9 +1,13 @@
 import React from 'react';
 import moment from "moment";
-import { StopOutlined } from '@ant-design/icons';
-import { Modal } from "antd";
+import {StopOutlined} from '@ant-design/icons';
+import {Modal} from "antd";
 import styled from "styled-components";
-import {useAppContext} from "store/context/use-app-context";
+import {useDispatch} from "react-redux";
+import {cancelStudentHomework} from "../../../../../../../../../../../store/reducers/teacher/students/cancelStudentHomework";
+import {fetchStudentsHomework} from "../../../../../../../../../../../store/reducers/teacher/students/fetchStudentsHomework";
+import {useParams} from "react-router-dom";
+import {ParamsProps} from "../../../../../Group";
 
 const WrapperTitleLevel = styled.div`
   display: flex;
@@ -40,18 +44,18 @@ const WrapperCancelHomework = styled.span`
 
 interface TitleProps {
     homework: any;
-    fetch: () => void;
 }
 
-const Title:React.FC<TitleProps> = ({homework, fetch}) => {
-    const {api} = useAppContext();
+const Title: React.FC<TitleProps> = ({homework}) => {
+    const {id} = useParams<ParamsProps>();
+    const dispatch = useDispatch();
 
     const cancelHomeworkHandler = () => {
         Modal.confirm({
             title: `Отменить отправку домашнего задания (Уровень: ${homework.level}) ?`,
             async onOk() {
-                await api.user.post('teacher/homework/cancel', {sent_id: homework.id});
-                await fetch();
+                await dispatch(cancelStudentHomework(homework.id));
+                await dispatch(fetchStudentsHomework({groupId: id, force: true}));
             }
         });
     };
@@ -62,7 +66,7 @@ const Title:React.FC<TitleProps> = ({homework, fetch}) => {
             className="level">{homework.level}</span>({moment(homework.created_at).format('DD/MM/YY')})
             {homework.status === 0 ?
                 <WrapperCancelHomework onClick={cancelHomeworkHandler}>
-                    <StopOutlined /> <span className="cancel-text">Отменить отправку</span>
+                    <StopOutlined/> <span className="cancel-text">Отменить отправку</span>
                 </WrapperCancelHomework> :
                 null}
         </WrapperTitleLevel>
