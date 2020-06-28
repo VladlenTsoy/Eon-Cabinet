@@ -1,12 +1,12 @@
 import React from "react";
-import { CreditCardOutlined, HomeOutlined } from '@ant-design/icons';
+import {HomeOutlined} from '@ant-design/icons';
 import {Link} from "react-router-dom";
 import {SidebarItem} from "../../../../../layouts";
 
 const SidebarItems = [
     <SidebarItem key="/">
         <Link to="/">
-            <HomeOutlined />
+            <HomeOutlined/>
             <span>Главная страница</span>
         </Link>
     </SidebarItem>,
