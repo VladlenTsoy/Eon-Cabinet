@@ -9,9 +9,10 @@ import FormItems from "./form-items/FormItems";
 
 interface HomeworkContainerProps {
     categoryId: number;
+    close: () => void;
 }
 
-const HomeworkContainer:React.FC<HomeworkContainerProps> = ({categoryId}) => {
+const HomeworkContainer:React.FC<HomeworkContainerProps> = ({categoryId, close}) => {
     const {activeDisciplineId} = useSelector(disciplineSelector);
     const dispatch = useDispatch();
     const {fetchLoading, categories} = useSelector(homeworkSelector);
@@ -29,7 +30,7 @@ const HomeworkContainer:React.FC<HomeworkContainerProps> = ({categoryId}) => {
     if (!fetchLoading && !(categories && categories[categoryId].length))
         return <HomeworkEmpty/>;
 
-    return <FormItems homework={categories[categoryId]}/>;
+    return <FormItems homework={categories[categoryId]} close={close}/>;
 };
 
 export default HomeworkContainer;

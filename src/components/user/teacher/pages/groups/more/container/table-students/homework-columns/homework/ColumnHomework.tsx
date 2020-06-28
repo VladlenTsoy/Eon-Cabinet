@@ -2,7 +2,7 @@ import React from 'react';
 import styled from "styled-components";
 import ColumnTask from "./column-task/ColumnTask";
 import Title from "./title/Title";
-import {StudentHomework} from "../../../../../../../../../../store/reducers/teacher/students/studentsSlice";
+import {Homework} from "../../../../../../../../../../store/reducers/teacher/students/studentsSlice";
 
 const WrapperTd = styled.td`
    padding: 0;
@@ -24,7 +24,7 @@ const WrapperStatisticTable = styled.table`
 
 
 interface ColumnHomeworkProps {
-    homework: StudentHomework;
+    homework: Homework;
     fetch: any;
 }
 

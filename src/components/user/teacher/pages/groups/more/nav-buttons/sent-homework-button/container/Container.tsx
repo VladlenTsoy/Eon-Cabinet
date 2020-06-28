@@ -4,7 +4,11 @@ import {useDispatch, useSelector} from "react-redux";
 import {LoadingBlock} from "../../../../../../../../../lib";
 import HomeworkContainer from "./homework-container/HomeworkContainer";
 
-const Container = () => {
+interface ContainerProps {
+    close: () => void;
+}
+
+const Container:React.FC<ContainerProps> = ({close}) => {
     const {fetchLoading, group} = useSelector(groupSelector);
     const dispatch = useDispatch();
 
@@ -15,7 +19,7 @@ const Container = () => {
     if(fetchLoading) return <LoadingBlock title="Загрузка данных группы..."/>
     if (!group) return <>Пусто</>
 
-    return <HomeworkContainer categoryId={group.category.id}/>;
+    return <HomeworkContainer categoryId={group.category.id} close={close}/>
 };
 
 export default Container;

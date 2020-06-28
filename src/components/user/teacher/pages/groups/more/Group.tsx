@@ -8,6 +8,7 @@ import {useParams} from "react-router-dom";
 import GroupError from "./container/group-error/GroupError";
 import {fetchGroup} from "../../../../../../store/reducers/teacher/group/fetchGroup";
 import Container from "./container/Container";
+import {changeSelectedIds} from "../../../../../../store/reducers/teacher/students/studentsSlice";
 
 export interface ParamsProps {
     id: string;
@@ -28,6 +29,12 @@ const Group: React.FC = () => {
         }
     }, [dispatch, id]);
 
+    useEffect(() => {
+        if (group && group.id !== Number(id)) {
+            dispatch(changeSelectedIds([]));
+        }
+    }, [dispatch, group, id]);
+    
     if (fetchError)
         return <GroupError error={fetchError}/>;
 

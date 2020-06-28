@@ -50,7 +50,7 @@ export const apiRequest: ApiRequestProps = async (method = 'get', url: string, c
             method === 'patch' ?
                 await api[type].patch(url, data, {..._config}) :
                 method === 'delete' ?
-                    await api[type].delete(url, {..._config}) :
+                    await api[type].delete(url, {..._config, data}) :
                     method === 'put' ?
                         await api[type].put(url, data, {..._config}) :
                         await api[type].post(url, data, {..._config});

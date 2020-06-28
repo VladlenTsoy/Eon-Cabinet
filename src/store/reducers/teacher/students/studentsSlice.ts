@@ -5,6 +5,7 @@ import {createStudent} from "./createStudent";
 import {updateStudent} from "./updateStudent";
 import {deleteStudent} from "./deleteStudent";
 import {deleteStudents} from "./deleteStudents";
+import {fetchStudentsDetails} from "./fetchStudentsDetails";
 
 export interface StudentHomeworkTask {
     task_name: string;
@@ -18,14 +19,17 @@ export interface StudentHomeworkTask {
     created_at: string;
 }
 
-export interface StudentHomework {
+export interface Homework {
     id: number;
     level: number;
     homework_id: number;
     status: number;
     tasks: StudentHomeworkTask[];
+    user_id: number;
     created_at: string;
 }
+
+export type StudentHomework = { [user_id: number]: Homework[] }
 
 export interface Student {
     id: number;
@@ -36,27 +40,27 @@ export interface Student {
     login: string | null;
     date_of_birth: string | object | null;
     group_id: number;
-    // students_id: number;
     image: string;
     is_blocked: boolean;
     day_block: number | null;
     day_unblock: number | null;
-    homework: StudentHomework[];
 }
 
 interface StateProps {
     fetchLoading: boolean;
+    fetchHomeworkLoading: boolean;
     fetchError: any;
-    homework: Student[];
-    data: Student[];
+    homework: StudentHomework;
+    details: Student[];
     selectedIds: Student['id'][],
 }
 
 const initialState: StateProps = {
     fetchLoading: true,
+    fetchHomeworkLoading: true,
     fetchError: null,
     homework: [],
-    data: [],
+    details: [],
     selectedIds: [],
 };
 
@@ -69,20 +73,27 @@ const studentsSlice = createSlice({
         }
     },
     extraReducers: {
-        [fetchStudentsHomework.pending]: (state: StateProps) => {
+        [fetchStudentsDetails.pending]: (state: StateProps) => {
             state.fetchLoading = true;
         },
-        [fetchStudentsHomework.fulfilled]: (state: StateProps, action: PayloadAction<Student[]>) => {
+        [fetchStudentsDetails.fulfilled]: (state: StateProps, action: PayloadAction<Student[]>) => {
             state.fetchError = null;
-            state.homework = action.payload || [];
+            state.details = action.payload || [];
             state.fetchLoading = false;
+        },
+        [fetchStudentsHomework.pending]: (state: StateProps) => {
+            state.fetchHomeworkLoading = true;
+        },
+        [fetchStudentsHomework.fulfilled]: (state: StateProps, action: PayloadAction<StudentHomework>) => {
+            state.homework = action.payload || [];
+            state.fetchHomeworkLoading = false;
         },
         [createStudent.pending]: (state: StateProps) => {
             state.fetchLoading = true;
         },
         [createStudent.fulfilled]: (state: StateProps, action: PayloadAction<Student>) => {
             if (action.payload?.id)
-                state.homework = [...state.homework, action.payload];
+                state.details = [...state.details, action.payload];
             state.fetchLoading = false;
         },
         [updateStudent.pending]: (state: StateProps) => {
@@ -90,21 +101,21 @@ const studentsSlice = createSlice({
         },
         [updateStudent.fulfilled]: (state: StateProps, action: PayloadAction<Student>) => {
             if (action.payload?.id)
-                state.homework = state.homework.map((student) => student.id === action.payload.id ? action.payload : student);
+                state.details = state.details.map((student) => student.id === action.payload.id ? action.payload : student);
             state.fetchLoading = false;
         },
         [deleteStudent.pending]: (state) => {
             state.fetchLoading = true;
         },
         [deleteStudent.fulfilled]: (state: StateProps, action: PayloadAction<Student['id']>) => {
-            state.homework = state.homework.filter((student) => student.id !== action.payload);
+            state.details = state.details.filter((student) => student.id !== action.payload);
             state.fetchLoading = false;
         },
         [deleteStudents.pending]: (state) => {
             state.fetchLoading = true;
         },
         [deleteStudents.fulfilled]: (state: StateProps, action: PayloadAction<Student['id'][]>) => {
-            state.homework = state.homework.filter((student) => !action.payload.includes(student.id));
+            state.details = state.details.filter((student) => !action.payload.includes(student.id));
             state.fetchLoading = false;
         }
     }

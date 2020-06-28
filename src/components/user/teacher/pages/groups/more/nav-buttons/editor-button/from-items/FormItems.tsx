@@ -8,6 +8,8 @@ import {createStudent} from "store/reducers/teacher/students/createStudent";
 import InputPhoto from "lib/form/InputPhoto";
 import SelectGroup from "./items/SelectGroup";
 import {SaveOutlined} from "@ant-design/icons";
+import {useParams} from "react-router-dom";
+import {ParamsProps} from "../../../Group";
 
 interface FormItemsProps {
     close: () => void;
@@ -15,6 +17,7 @@ interface FormItemsProps {
 }
 
 const FormItems: React.FC<FormItemsProps> = ({close, student}) => {
+    const {id} = useParams<ParamsProps>();
     const [form] = Form.useForm();
     const [loading, setLoading] = useState(false);
     const dispatch = useDispatch();
@@ -34,7 +37,7 @@ const FormItems: React.FC<FormItemsProps> = ({close, student}) => {
     return <Form
         layout="vertical"
         onFinish={onFinishHandler}
-        initialValues={student || undefined}
+        initialValues={student || id ? {group_id: Number(id)} : undefined}
     >
         <Row gutter={15}>
             <Col span={24}>

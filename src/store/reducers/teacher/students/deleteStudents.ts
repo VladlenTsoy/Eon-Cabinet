@@ -6,7 +6,7 @@ export const deleteStudents: any = createAsyncThunk<number[], any, any>(
     'teacher/students/delete',
     async (studentIds) => {
         //
-        const response = await apiRequest('delete', `teacher/students`, {data: studentIds});
+        const response = await apiRequest('delete', `teacher/students`, {data: {ids: studentIds}});
         response && message({
             type: 'success',
             content: studentIds.length > 1 ? 'Вы успешно удалили учеников!' : 'Вы успешно удалили ученика!'

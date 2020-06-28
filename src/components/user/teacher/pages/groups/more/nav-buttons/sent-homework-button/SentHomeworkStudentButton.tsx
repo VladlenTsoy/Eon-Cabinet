@@ -17,24 +17,6 @@ const SentHomeworkStudentButton: React.FC = ({children}) => {
     const open = () => setVisible(true);
     const close = useCallback(() => setVisible(false), []);
 
-    // const {api} = useAppContext();
-    // const dispatch = useDispatch();
-    //
-    // const sendHomework = useCallback(async (data: any) => {
-    //     try {
-    //         const response = await api.user.post(`teacher/homework/send`, {
-    //             ...data,
-    //             userIds: selectUsersId
-    //         });
-    //         if (response.data.status === 'success') {
-    //             dispatch(changeIsSaved(false));
-    //             fetch();
-    //             message.success('Вы успешно отправили домашнее задание!');
-    //         }
-    //     } catch (e) {
-    //         message.error('Неизвестная ошибка!');
-    //     }
-    // }, [selectUsersId, fetch, dispatch, api.user]);
     //
     const disabledHandler = () => {
         Modal.info({
@@ -56,7 +38,7 @@ const SentHomeworkStudentButton: React.FC = ({children}) => {
             title="Отправить домашнее задание"
             width={breakpoint ? '100%' : 650}
         >
-            <Container/>
+            <Container close={close}/>
         </DrawerEditor>
     </>
 };

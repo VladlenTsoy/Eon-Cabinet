@@ -1,24 +1,31 @@
 import React, {useState} from 'react';
 import {HomeworkProps} from "../../../../../../../../../../../store/reducers/teacher/homework/homeworkSlice";
-import {FormItem} from "../../../../../../../../../../../lib";
+import {DrawerActions, FormItem} from "../../../../../../../../../../../lib";
 import {Button, Input, Select, Form, Divider, Empty} from "antd";
 import moment from "moment";
 import {changeIsSaved} from "store/reducers/teacher/group/groupSlice";
-import {useHistory} from "react-router-dom";
+import {useHistory, useParams} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {FileAddOutlined} from '@ant-design/icons';
 import Tasks from "./tasks/Tasks";
+import {SaveOutlined} from "@ant-design/icons";
+import {sentHomeworkStudents} from "../../../../../../../../../../../store/reducers/teacher/students/sentHomeworkStudent";
+import {fetchStudentsHomework} from "../../../../../../../../../../../store/reducers/teacher/students/fetchStudentsHomework";
+import {ParamsProps} from "../../../../../Group";
 
 const {TextArea} = Input;
 
 interface FormItemsProps {
     homework: HomeworkProps[];
+    close: () => void;
 }
 
-const FormItems: React.FC<FormItemsProps> = ({homework}) => {
+const FormItems: React.FC<FormItemsProps> = ({homework, close}) => {
+    const {id} = useParams<ParamsProps>();
     const history = useHistory();
     const dispatch = useDispatch();
     const [selectHomework, setSelectHomework]: any = useState(null);
+    const [loading, setLoading] = useState(false);
 
     const handlerChange = (id: number) =>
         setSelectHomework(homework.find((_homework) => _homework.id === id));
@@ -28,11 +35,20 @@ const FormItems: React.FC<FormItemsProps> = ({homework}) => {
         history.push('/homework/create');
     };
 
+    const onFinishHandler = async (values: any) => {
+        setLoading(true);
+        await dispatch(sentHomeworkStudents(values))
+        await dispatch(fetchStudentsHomework({groupId: id, force: true}));
+
+        close();
+        setLoading(false);
+    }
+
     return <>
         <Button block icon={<FileAddOutlined/>} size="large" type="link" onClick={createHomeworkHandler}>
             Создать домашнее задание
         </Button>
-        <Form layout="vertical">
+        <Form layout="vertical" onFinish={onFinishHandler} id="form-sent-homework">
             <FormItem
                 name="homework"
                 label="Уровень"
@@ -60,6 +76,20 @@ const FormItems: React.FC<FormItemsProps> = ({homework}) => {
             <Tasks homeworkId={selectHomework.id} key={selectHomework.id}/> :
             <Empty description="Выберите уровень домашнего задания"/>
         }
+        <DrawerActions>
+            <Button onClick={close} style={{marginRight: 8}}>
+                Отмена
+            </Button>
+            <Button
+                form="form-sent-homework"
+                htmlType="submit"
+                loading={loading}
+                type="primary"
+                icon={<SaveOutlined/>}
+            >
+                Сохранить
+            </Button>
+        </DrawerActions>
     </>;
 };
 
