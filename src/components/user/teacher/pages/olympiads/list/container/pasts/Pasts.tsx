@@ -1,45 +1,78 @@
-import React, {useEffect} from 'react';
-import {Tag} from "antd";
-import {ButtonLink, Spin} from "../../../../../../../../lib";
+import React, {useCallback, useContext, useEffect} from 'react';
+import {ButtonLink, Card, TablePagination} from "../../../../../../../../lib";
 import {useDispatch, useSelector} from "react-redux";
 import {olympiadSelector} from "../../../../../../../../store/reducers/teacher/olympiad/olympiadSlice";
 import {fetchPastOlympiads} from "../../../../../../../../store/reducers/teacher/olympiad/fetchPastOlympiads";
+import TagAccess from "../../../../../../../../_components/teacher/olympiads/card-olympiad/tag-access/TagAccess";
+import {momentFormatCheckYear} from "../../../../../../../../utils/momentFormatCheckYear";
+import ProfileColumn from "../../../../groups/more/container/table-students/default-columns/profile/ProfileColumn";
+import {AppContext} from "../../../../../../../../store/context/appContext";
 
 const Pasts: React.FC = () => {
+    const {user} = useContext(AppContext);
     const {past} = useSelector(olympiadSelector);
     const dispatch = useDispatch();
 
+    const columns = [
+        {
+            title: 'ID',
+            dataIndex: 'id',
+            sorter: true,
+        },
+        {
+            title: 'Название',
+            dataIndex: 'title',
+        },
+        {
+            title: 'Этапов',
+            dataIndex: 'steps_count'
+        },
+        {
+            title: 'Участвовало',
+            dataIndex: 'students_count',
+        },
+        {
+            title: 'Чемпион',
+            dataIndex: 'students_count',
+            render: () => <ProfileColumn student={user}/>
+        },
+        {
+            title: 'Доступ',
+            dataIndex: 'access',
+            render: (text: any) => <TagAccess access={text}/>
+        },
+        {
+            title: 'Дата завершения',
+            dataIndex: ['last_step', 'end_at'],
+            render: (text: any) => momentFormatCheckYear(text, 'DD MMM', 'DD.MM.YYYY')
+        },
+        {
+            render: (text: any, record: any) =>
+                <ButtonLink type="link" to={`olympiad/${record.id}`}>Подробнее </ButtonLink>
+        }
+    ];
+
+    const fetch = useCallback((pagination: any) => dispatch(fetchPastOlympiads(pagination)), [dispatch]);
+    
     useEffect(() => {
-        const promise = dispatch(fetchPastOlympiads());
+        const promise = fetch({pageIndex: 1});
         return () => {
             promise.abort();
         }
-    } , [dispatch]);
+    }, [fetch]);
 
-    return <Spin spinning={past.loading} tip="Загрузка...">
-        {past.data.map((olympiad, key) =>
-            <div key={key}>
-                <p>{olympiad.title}</p>
-                <p>Дата завершения: {olympiad.last_step.end_at}</p>
-                <p>Участвовало: {olympiad.students_count}</p>
-                <p>Чемпион: </p>
-                <p>Доступ: {olympiad.access === 'public' ?
-                    <Tag color="#5cb860">Открытый</Tag> :
-                    olympiad.access === 'invite' ?
-                        <Tag color="#ff9800">Запрос</Tag> :
-                        <Tag color="#f55a4e">Закрытый</Tag>}
-                </p>
-                <p>Этапов : <span>{olympiad.steps_count}</span></p>
-                <ButtonLink
-                    block
-                    type="default"
-                    to={`olympiad/${olympiad.id}`}
-                >
-                    Подробнее
-                </ButtonLink>
-            </div>
-        )}
-    </Spin>;
+    return <Card>
+        <TablePagination
+            columns={columns}
+            pagination={{
+                pageIndex: past.pageIndex,
+                total: past.total,
+            }}
+            loading={past.loading}
+            data={past.data}
+            fetch={fetch}
+        />
+    </Card>
 };
 
 export default Pasts;

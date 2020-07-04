@@ -3,8 +3,13 @@ import {apiRequest} from "../../../../utils/api";
 
 export const fetchPastOlympiads: any = createAsyncThunk<any, any>(
     'olympiad/fetch/past',
-    async (_, {signal}) => {
-        return await apiRequest('get', `olympiads/past`, {type: 'teacher', signal});
+    async (pagination, {signal}) => {
+        return await apiRequest('get', `olympiads/past`, {
+            type: 'teacher', signal, params: {
+                // results: pagination.pageSize,
+                page: pagination.pageIndex,
+            }
+        });
     },
     {
         condition(_, {getState}: any): any {

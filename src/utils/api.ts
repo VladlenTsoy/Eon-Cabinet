@@ -32,12 +32,13 @@ interface ConfigRequestProps {
     type?: 'teacher' | 'user'
     data?: any;
     signal?: any,
+    params?: any,
 }
 
 type ApiRequestProps = (method: MethodProps, url: string, conf?: ConfigRequestProps) => Promise<any>;
 
 export const apiRequest: ApiRequestProps = async (method = 'get', url: string, conf = {}) => {
-    const {data, type = 'user', signal} = conf;
+    const {data, type = 'user', signal, params} = conf;
     const source = CancelToken.source();
     const _config = {cancelToken: source.token}
 
@@ -46,14 +47,14 @@ export const apiRequest: ApiRequestProps = async (method = 'get', url: string, c
 
     try {
         const response = method === 'get' ?
-            await api[type].get(url, {..._config}) :
+            await api[type].get(url, {..._config, params}) :
             method === 'patch' ?
-                await api[type].patch(url, data, {..._config}) :
+                await api[type].patch(url, data, {..._config, params}) :
                 method === 'delete' ?
-                    await api[type].delete(url, {..._config, data}) :
+                    await api[type].delete(url, {..._config, params, data}) :
                     method === 'put' ?
-                        await api[type].put(url, data, {..._config}) :
-                        await api[type].post(url, data, {..._config});
+                        await api[type].put(url, data, {..._config, params}) :
+                        await api[type].post(url, data, {..._config, params});
 
         return response.data;
     } catch (e) {

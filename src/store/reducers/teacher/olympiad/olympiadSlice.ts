@@ -22,7 +22,8 @@ interface Olympiad {
 
 interface DataProps {
     data: Olympiad[],
-    page: number;
+    pageIndex: number;
+    total: number;
     loading: boolean;
 }
 
@@ -36,17 +37,20 @@ const initialState: StateProps = {
     future: {
         loading: true,
         data: [],
-        page: 1,
+        pageIndex: 1,
+        total: 0,
     },
     current: {
         loading: true,
         data: [],
-        page: 1,
+        pageIndex: 1,
+        total: 0,
     },
     past: {
         loading: true,
         data: [],
-        page: 1,
+        pageIndex: 1,
+        total: 0,
     },
 };
 
@@ -68,7 +72,8 @@ const olympiadSlice = createSlice({
         },
         [fetchFutureOlympiads.fulfilled]: (state, action) => {
             state.future.data = action.payload.data;
-            state.future.page = action.payload.current_page;
+            state.future.pageIndex = action.payload.current_page;
+            state.future.total = action.payload.total;
             state.future.loading = false;
         },
         [fetchCurrentOlympiads.pending]: (state) => {
@@ -83,7 +88,8 @@ const olympiadSlice = createSlice({
         },
         [fetchPastOlympiads.fulfilled]: (state, action) => {
             state.past.data = action.payload.data;
-            state.past.page = action.payload.current_page;
+            state.past.pageIndex = action.payload.current_page;
+            state.past.total = action.payload.total;
             state.past.loading = false;
         }
     }
