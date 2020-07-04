@@ -19,3 +19,10 @@ RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301,NE]
 #    Header set Cache-Control "max-age=31536000"
 #  </FilesMatch>
 # </ifModule>
+
+# Source Files
+<ifModule mod_headers.c>
+    <FilesMatch ".(flv|gif|jpg|jpeg|png|ico|swf|pdf|otf|mp3|wav|svg|txt|ogg)$">
+        Header set Cache-Control "max-age=31536000"
+    </FilesMatch>
+</ifModule>
