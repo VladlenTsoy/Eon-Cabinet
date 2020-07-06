@@ -17,6 +17,7 @@ export const fetchPastOlympiads: any = createAsyncThunk<any, any>(
 
             if (olympiad.past?.data?.length)
                 return false;
-        }
+        },
+        dispatchConditionRejection: true
     }
 )

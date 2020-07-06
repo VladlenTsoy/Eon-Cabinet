@@ -40,7 +40,7 @@ const Futures: React.FC = () => {
         {
             title: 'Дата начало',
             dataIndex: ['current_step', 'start_at'],
-            render: (text: any) => momentFormatCheckYear(text, 'DD MMM', 'DD.MM.YYYY')
+            render: (text: any) => momentFormatCheckYear(text, 'HH:mm DD MMM', 'HH:mm DD.MM.YYYY')
         },
         {
             render: (text: any, record: any) =>

@@ -12,6 +12,7 @@ export const fetchFutureOlympiads: any = createAsyncThunk<any, any>(
 
             if (olympiad.future?.data?.length)
                 return false;
-        }
+        },
+        dispatchConditionRejection: true
     }
 )

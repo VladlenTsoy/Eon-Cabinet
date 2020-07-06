@@ -76,6 +76,10 @@ const olympiadSlice = createSlice({
             state.future.total = action.payload.total;
             state.future.loading = false;
         },
+        [fetchPastOlympiads.rejected]: (state) => {
+            state.future.loading = false;
+        },
+        ////
         [fetchCurrentOlympiads.pending]: (state) => {
             state.current.loading = true;
         },
@@ -83,6 +87,10 @@ const olympiadSlice = createSlice({
             state.current.data = action.payload;
             state.current.loading = false;
         },
+        [fetchPastOlympiads.rejected]: (state) => {
+            state.future.loading = false;
+        },
+        ////
         [fetchPastOlympiads.pending]: (state) => {
             state.future.loading = true;
         },
@@ -91,6 +99,9 @@ const olympiadSlice = createSlice({
             state.past.pageIndex = action.payload.current_page;
             state.past.total = action.payload.total;
             state.past.loading = false;
+        },
+        [fetchPastOlympiads.rejected]: (state) => {
+            state.future.loading = false;
         }
     }
 });
