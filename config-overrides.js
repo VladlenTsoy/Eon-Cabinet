@@ -1,5 +1,4 @@
-const {override, addLessLoader, fixBabelImports, addBundleVisualizer, addWebpackAlias, addWebpackPlugin, setWebpackOptimizationSplitChunks} = require('customize-cra');
-const path = require('path');
+const {override, addLessLoader, fixBabelImports, addBundleVisualizer, addWebpackPlugin, setWebpackOptimizationSplitChunks} = require('customize-cra');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 
@@ -68,14 +67,4 @@ module.exports = override(
             algorithm: "gzip",
             test: /\.(js|css)$/,
         })) : null,
-    addWebpackAlias({
-        'src': path.resolve(__dirname, './src'),
-        'components': path.resolve(__dirname, './src/components'),
-        'layouts': path.resolve(__dirname, './src/layouts'),
-        'lib': path.resolve(__dirname, './src/lib'),
-        'effects': path.resolve(__dirname, './src/hooks'),
-        'assets': path.resolve(__dirname, './src/assets'),
-        'tools': path.resolve(__dirname, './src/tools'),
-        'store': path.resolve(__dirname, './src/store')
-    }),
 );

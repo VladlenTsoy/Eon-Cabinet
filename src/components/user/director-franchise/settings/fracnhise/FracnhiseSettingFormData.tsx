@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {FormItem, Upload} from "../../../../../lib";
 import {Card} from "lib";
 import {SaveOutlined} from '@ant-design/icons';
@@ -9,14 +9,6 @@ const {TextArea} = Input;
 const FranchiseSettingFormData: React.FC<any> = ({franchise, update}) => {
     const [form] = Form.useForm();
     const [loading, setLoading] = useState(false);
-
-    useEffect(() => {
-        form.setFieldsValue({
-            title: franchise.title,
-            description: franchise.description,
-            image: franchise.image,
-        });
-    }, []);
 
     const handleSubmit = async (values: any) => {
         setLoading(true);
@@ -32,7 +24,11 @@ const FranchiseSettingFormData: React.FC<any> = ({franchise, update}) => {
     return (
         <Card>
             <Card.Title level={3} title="Информация"/>
-            <Form form={form} onFinish={handleSubmit} layout="vertical">
+            <Form form={form} onFinish={handleSubmit} layout="vertical" initialValues={{
+                title: franchise.title,
+                description: franchise.description,
+                image: franchise.image,
+            }}>
                 <Row gutter={15} align="middle">
                     <Col xl={12}>
                         <Upload form={form} name="image" label="Лого"/>

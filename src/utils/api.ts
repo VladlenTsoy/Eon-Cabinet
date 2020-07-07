@@ -2,7 +2,8 @@ import axios from "axios";
 import {message} from "./message";
 
 const CancelToken = axios.CancelToken;
-const DOMAIN_API = process.env.NODE_ENV === 'production' ? 'https://api.eon.uz/api' : 'http://192.168.1.37:8000/api';
+// const DOMAIN_API = process.env.NODE_ENV === 'production' ? 'https://api.eon.uz/api' : 'http://192.168.1.37:8000/api';
+const DOMAIN_API = process.env.NODE_ENV === 'production' ? 'https://api.eon.uz/api' : 'http://localhost:3001';
 
 export const api = {
     token: localStorage.getItem('EON_API_TOKEN_ACCESS') || '',
