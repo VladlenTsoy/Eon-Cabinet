@@ -1,24 +1,10 @@
-const CracoLessPlugin = require('craco-less');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CracoAntDesignPlugin = require("craco-antd");
-const {getThemeVariables} = require('antd/dist/theme');
+const CompressionPlugin = require('compression-webpack-plugin');
 
 const isEnvProduction = process.env.NODE_ENV === 'production';
 process.env.GENERATE_SOURCEMAP = !isEnvProduction;
 
 module.exports = {
-    module: {
-        rules: [
-            {
-                test: /(dark|default).(less)$/,
-                use: [
-                    MiniCssExtractPlugin.loader,
-                    "css-loader",
-                    "less-loader?javascriptEnabled=true",
-                ]
-            },
-        ]
-    },
     optimization: {
         runtimeChunk: 'single',
         splitChunks: {
@@ -50,10 +36,11 @@ module.exports = {
         }
     },
     webpackPlugins: [
-        new MiniCssExtractPlugin({
-            moduleFilename: 'static/css/[name].[contenthash:8].css',
-            filename: 'static/css/[name].[contenthash:8].css',
-            chunkFilename: 'static/css/[name].[contenthash:8].chunk.css',
+        isEnvProduction &&
+        new CompressionPlugin({
+            filename: "[path].gz[query]",
+            algorithm: "gzip",
+            test: /\.(js|css)$/,
         })
     ],
     plugins: [
