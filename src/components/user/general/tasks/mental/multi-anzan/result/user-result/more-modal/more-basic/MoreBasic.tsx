@@ -24,7 +24,7 @@ const BasicWrapper: any = styled.div`
  
     
     .desc{
-      font-size: 6vw;
+      font-size: 4vw;
       line-height: 1.5;
     }
     
@@ -42,7 +42,7 @@ const BasicWrapper: any = styled.div`
     max-width: 500px;
         
     .desc{
-      font-size: 3vw;
+      font-size: 2.5vw;
       
       p{
         margin: 0;      
