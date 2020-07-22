@@ -8,7 +8,7 @@ const CardStyled = styled.div`
   background: ${props => props.theme['@component-background']};
   box-shadow: 0 5px 10px 0 rgba(0,0,0,0.1);
   display: grid;
-  grid-template-columns: 135px 1fr repeat(4, 115px);
+  grid-template-columns: 135px 1fr repeat(5, 115px);
   border-radius: 10px;
   justify-content: space-between;
   align-items: center;
@@ -22,13 +22,13 @@ const CardStyled = styled.div`
   }
   
   @media (max-width: 1600px) {
-    grid-template-columns: 95px 1fr repeat(4, 115px);
+    grid-template-columns: 95px 1fr repeat(5, 115px);
     gap: 0.5rem;
     padding-right: 0.5rem;
   }
   
   @media (max-width: 1200px) {
-    grid-template-columns: 95px 1fr repeat(4, 65px);
+    grid-template-columns: 95px 1fr repeat(5, 65px);
   }
     
   @media (max-width: 992px) {
