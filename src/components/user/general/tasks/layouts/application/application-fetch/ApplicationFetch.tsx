@@ -34,7 +34,7 @@ const ApplicationFetch: React.FC<ApplicationFetchProps> = (
         children,
     }
 ) => {
-    const {api} = useAppContext();
+    const {api, user} = useAppContext();
     const [loading, setLoading] = useState(true);
     const currentTimes = useSelector(gameSubSelector('currentTimes'));
     const setting = useSelector(gameSubSelector( 'setting'));
@@ -55,12 +55,12 @@ const ApplicationFetch: React.FC<ApplicationFetchProps> = (
     const fetch = useCallback(async () => {
         try {
             return requestSetting.method === 'post' ?
-                await api.user.post(requestSetting.url, requestSetting.setting || setting, { cancelToken: source.token }) :
-                await api.user.get(requestSetting.url, { params: requestSetting.setting || setting, cancelToken: source.token });
+                await api[user?'user':'guest'].post(requestSetting.url, requestSetting.setting || setting, { cancelToken: source.token }) :
+                await api[user?'user':'guest'].get(requestSetting.url, { params: requestSetting.setting || setting, cancelToken: source.token });
         } catch (e) {
 
         }
-    }, [api.user, requestSetting, setting, source.token]);
+    }, [api, user, requestSetting, setting, source.token]);
 
     const createAndUpdateTotals = useCallback(async (data) => {
         pictures && await picturesLoad(data);
