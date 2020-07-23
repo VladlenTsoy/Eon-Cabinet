@@ -20,16 +20,19 @@ const CurrentExerciseDrawnBLock: React.FC<CurrentExerciseDrawnBlockProps> = (
         updateIsView
     }
 ) => {
-    const {api} = useAppContext();
+    const {api, user} = useAppContext();
     const {stats} = useSelector(gameSelector);
 
     const [visible, setVisible] = useState(false);
 
     const viewResult = useCallback(async () => {
-        await api.user.post(`/student/homework/result/${resultId}/view`);
+        if (user)
+            await api.user.post(`/student/homework/result/${resultId}/view`);
+        else
+            await api.guest.post(`/guest/homework/result/${resultId}/view`);
         updateIsView(true);
         setVisible(true);
-    }, [updateIsView, api.user, resultId]);
+    }, [user, api.user, api.guest, resultId, updateIsView]);
 
     const open = () => {
         if (resultId && !isView) {
