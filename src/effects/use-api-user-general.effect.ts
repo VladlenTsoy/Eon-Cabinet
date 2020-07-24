@@ -68,7 +68,7 @@ export const useApiUserGeneral: FH = (
                 setLoading(false);
             }
         });
-    }, [method, api, access, url, configuration, source.token, afterRequest]);
+    }, [method, api, access, url, configuration, source.token]);
 
     useEffect(() => {
         if (!cancel) {
