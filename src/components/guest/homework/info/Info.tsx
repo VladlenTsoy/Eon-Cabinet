@@ -29,6 +29,7 @@ const Info: React.FC<InfoProps> = ({homework}) => {
             return setLoading(false);
         }
         window.open(response.data.file_url);
+        setLoading(false)
     }
 
     return <InfoStyled>
