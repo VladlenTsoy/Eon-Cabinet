@@ -79,7 +79,9 @@ const Application: React.FC<ApplicationProps> = ({otherUrl}) => {
      *
      */
     const updateStats = useCallback(() => {
-        if (setting.anzan === 'list')
+        if (setting?.custom_exercises_id && setting?.type_task === 'list')
+            return {all: setting.tables * setting.column * setting.rows};
+        else if (setting.anzan === 'list')
             return {all: isMultiplication ? setting.tables * setting.column * setting.rows : setting.tables * setting.column};
         else
             return {all: setting.times};
