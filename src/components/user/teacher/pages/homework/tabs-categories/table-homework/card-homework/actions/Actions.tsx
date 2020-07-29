@@ -1,5 +1,5 @@
 import React from 'react';
-import {EditOutlined, DeleteOutlined, CopyOutlined, InfoCircleOutlined, MenuOutlined} from "@ant-design/icons";
+import {EditOutlined, DeleteOutlined, CopyOutlined, InfoCircleOutlined, MenuOutlined, LinkOutlined} from "@ant-design/icons";
 import styled from "styled-components";
 import {useScreenWindow} from "../../../../../../../../../effects/use-screen-window.effect";
 import {Button} from "antd";
@@ -7,6 +7,7 @@ import MoreHomeworkDrawer from "./more-homework/MoreHomeworkDrawer";
 import {ModalMenu} from "lib";
 import {Link} from "react-router-dom";
 import DeleteHomework from "./delete/DeleteHomework";
+import MoreLink from "./more-link/MoreLink";
 
 const ActionStyled = styled.div`
   border-radius: 5px;
@@ -66,6 +67,9 @@ const Actions: React.FC<ActionsProps> = ({homework, fetch}) => {
             <MoreHomeworkDrawer homework={homework}>
                 <InfoCircleOutlined/> Подробнее
             </MoreHomeworkDrawer>
+            <MoreLink homework={homework}>
+                <LinkOutlined/> Ссылка
+            </MoreLink>
             <Link to={`/homework/${homework.id}`}>
                 <EditOutlined/> Редактировать
             </Link>
@@ -84,6 +88,12 @@ const Actions: React.FC<ActionsProps> = ({homework, fetch}) => {
                 <span className="title">Подробнее</span>
             </ActionStyled>
         </MoreHomeworkDrawer>
+        <MoreLink homework={homework}>
+            <ActionStyled>
+                <LinkOutlined/>
+                <span className="title">Ссылка</span>
+            </ActionStyled>
+        </MoreLink>
         {/*<ActionStyled>*/}
         {/*    <SendOutlined/>*/}
         {/*    <span className="title">Отправить</span>*/}

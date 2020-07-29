@@ -53,7 +53,7 @@ const Output: React.FC<OutputProps> = ({output, time}) => {
     const {user} = useAppContext();
     return <OutputWrapper
         time={time}
-        className={`text-wrapper ${user.setting.anzanColor}`}
+        className={`text-wrapper ${user?.setting?.anzanColor || 'black'}`}
     >
         {/* TODO - Доработать отображение */}
         <TextFit widthOnly>

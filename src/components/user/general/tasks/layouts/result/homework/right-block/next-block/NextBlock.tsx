@@ -7,12 +7,14 @@ import {Button} from "antd";
 import {useHistory, useParams} from "react-router-dom";
 import {ResultMatchProps} from "../../Result";
 import {FlagOutlined} from '@ant-design/icons';
+import {useAppContext} from "../../../../../../../../../store/context/use-app-context";
 
 interface NextBlockProps {
     nextTask: any;
 }
 
 const NextBlock: React.FC<NextBlockProps> = ({nextTask}) => {
+    const {user} = useAppContext();
     const {homeworkId, disciplineId} = useParams<ResultMatchProps>();
     const history = useHistory();
     const dispatch = useDispatch();
@@ -20,7 +22,10 @@ const NextBlock: React.FC<NextBlockProps> = ({nextTask}) => {
     const nextTaskStart = () => {
         dispatch(changeSetting(checkTaskTypeOldTask(nextTask.settings)));
         dispatch(clearGame());
-        history.replace(`/homework/${homeworkId}/${nextTask.id}/${disciplineId}/${nextTask.task_id}`);
+        if (user)
+            history.replace(`/homework/${homeworkId}/${nextTask.id}/${disciplineId}/${nextTask.task_id}`);
+        else
+            history.replace(`/guest/homework/${homeworkId}/${nextTask.id}/${disciplineId}/${nextTask.task_id}`);
     };
 
     const checkTaskTypeOldTask = (settings: any) => {

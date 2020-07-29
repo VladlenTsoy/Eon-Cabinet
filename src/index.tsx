@@ -8,13 +8,16 @@ import {locale} from "moment";
 import 'moment/locale/ru';
 import './styles/index.less';
 import {AppProvider} from "./store/context/appContext";
+import {BrowserRouter as Router} from "react-router-dom";
 
 locale("ru");
 
 ReactDOM.render(
     <ConfigProvider locale={ruRU}>
         <AppProvider>
-            <App/>
+            <Router>
+                <App/>
+            </Router>
         </AppProvider>
     </ConfigProvider>, document.getElementById('root')
 );

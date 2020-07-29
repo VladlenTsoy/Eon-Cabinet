@@ -17,7 +17,7 @@ export type ResultMatchProps = {
 
 const Result: React.FC = ({children}) => {
     const {homeworkId, id} = useParams<ResultMatchProps>();
-    const {api} = useAppContext();
+    const {api, user} = useAppContext();
     const {stats, totals} = useSelector(gameSelector);
 
     const result: boolean = stats.all !== 0 && stats.all === stats.success;
@@ -33,17 +33,31 @@ const Result: React.FC = ({children}) => {
         if (homeworkId && id)
             (async () => {
                 setLoading(true);
-                const response = await api.user.post('/student/homework/result', {
-                    task_id: id,
-                    sent_id: homeworkId,
-                    result: {
-                        countAll: stats.all,
-                        countSuccess: stats.success,
-                        exodus: result,
-                    },
-                    totals
-                });
-                setResultData(response.data);
+                if(user) {
+                    const response = await api.user.post('/student/homework/result', {
+                        task_id: id,
+                        sent_id: homeworkId,
+                        result: {
+                            countAll: stats.all,
+                            countSuccess: stats.success,
+                            exodus: result,
+                        },
+                        totals
+                    });
+                    setResultData(response.data);
+                } else {
+                    const response = await api.guest.post('/guest/homework/result', {
+                        task_id: id,
+                        sent_id: homeworkId,
+                        result: {
+                            countAll: stats.all,
+                            countSuccess: stats.success,
+                            exodus: result,
+                        },
+                        totals
+                    });
+                    setResultData(response.data);
+                }
                 setTimeout(() => {
                     setLoading(false);
                 }, result ? 4000 : 2000);
@@ -52,7 +66,7 @@ const Result: React.FC = ({children}) => {
             setTimeout(() => {
                 setLoading(false);
             }, result ? 4000 : 2000);
-    }, [homeworkId, id, api.user, stats, totals, result]);
+    }, [homeworkId, id, api.user, stats, totals, result, user, api.guest]);
 
     return <ResultLayout
         loading={loading}
