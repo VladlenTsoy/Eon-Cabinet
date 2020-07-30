@@ -9,16 +9,21 @@ const HomeworkWrapper = styled.div`
   }
 `;
 
-const Homework = () => {
+interface HomeworkProps {
+    homework: any;
+    loading: boolean;
+}
+
+const Homework:React.FC<HomeworkProps> = ({loading, homework}) => {
     return <HomeworkWrapper>
         <CardStatistic
             title="Домашние задания"
-            theme="warning"
+            theme="primary"
             icon={<HomeOutlined/>}
-            loading={false}
-            count={10}
+            loading={loading}
+            count={homework?.all || 0}
             items={[
-                {title: 'Выполенных', count: 0, type: 'warning'},
+                {title: 'Выполенных', count: homework?.success || 0, type: 'primary'},
             ]}
         />
     </HomeworkWrapper>;

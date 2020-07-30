@@ -12,12 +12,12 @@ const Home: React.FC = () => {
         <Statistic/>
         <Homework/>
         <Row  gutter={15}>
-            <Col xl={18} lg={24} md={14} xs={24}>
+            <Col xs={24}>
                 <Olympiad/>
             </Col>
-            <Col xl={6} lg={8} md={10} xs={24}>
+            {/*<Col xl={6} lg={8} md={10} xs={24}>*/}
                 {/*<Rating/>*/}
-            </Col>
+            {/*</Col>*/}
         </Row>
     </>
 };
