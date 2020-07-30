@@ -4,6 +4,7 @@ import EditorButton from "./editor-button/EditorButton";
 import SentHomeworkStudentButton from "./sent-homework-button/SentHomeworkStudentButton";
 import DeleteStudentButton from "./delete-student-button/DeleteStudentButton";
 import {Navigation, NavigationButton} from "lib";
+import CoinButton from "./coin-button/CoinButton";
 
 interface NavigationProps {
     fetchUsers: () => void;
@@ -35,6 +36,10 @@ const GroupNavigation: React.FC<NavigationProps> = (
             selectUsersId={selectUsersId}
             group_id={groupId}
             fetch={fetchUsers}
+        />
+        <CoinButton
+            selectUsersId={selectUsersId}
+            fetchUsers={fetchUsers}
         />
         <DeleteStudentButton
             fetch={(fetchUsers)}
