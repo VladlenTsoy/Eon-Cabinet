@@ -47,7 +47,7 @@ const CoinModal: React.FC<CoinModalProps> = ({coin}) => {
                 <ImageStyled className="animated fadeInUp">
                     <img src={CoinSvg} alt="монеты"/>
                 </ImageStyled>
-                <Title level={4}>Кол-во: 5 шт.</Title>
+                <Title level={4}>Кол-во: {coin.coin} шт.</Title>
                 <Button type="primary" size="large" onClick={close}>Ок</Button>
             </ContentStyled>
         </Modal>
