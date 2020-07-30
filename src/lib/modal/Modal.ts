@@ -6,6 +6,7 @@ import styled from "styled-components";
 const Modal: FC<ModalProps> = styled(antd.Modal)`
     .ant-modal-content {
       border-radius: 10px;
+      overflow: hidden;
       box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
     
       .ant-modal-header {

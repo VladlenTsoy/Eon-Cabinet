@@ -17,9 +17,11 @@ import {useSelector} from "react-redux";
 
 const StudentRoutes = () => {
     const {app} = useSelector((state: any) => (state));
+    const header = HeaderItems();
+
     return <Spin spinning={app.spin} tip="Изменяем тему...">
         <Router>
-            <Layout sidebar={SidebarItems} header={HeaderItems}>
+            <Layout sidebar={SidebarItems} header={header}>
                 <Switch>
                     <Route exact path="/" component={Home}/>
                     <Route path="/profile" component={Profile}/>
