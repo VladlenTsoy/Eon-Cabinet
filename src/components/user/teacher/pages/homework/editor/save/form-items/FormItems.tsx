@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Button, Col, Form, Input, message, Row, Select} from "antd";
+import {Button, Col, Form, Input, InputNumber, message, Row, Select} from "antd";
 import {FormItem} from "lib";
 import {useSelector} from "react-redux";
 import {SaveOutlined} from "@ant-design/icons";
@@ -74,7 +74,9 @@ const FormItems: React.FC<FormItemsProps> = ({homework, close, fetch, discipline
     >
         <Row gutter={15}>
             <Col span={12}>
-                <FormItem name="level" label="Уровень" requiredMsg="Введите уровень!"/>
+                <FormItem name="level" label="Уровень (Цифру)" requiredMsg="Введите уровень!">
+                    <InputNumber min={1} style={{width: '100%'}}/>
+                </FormItem>
             </Col>
             <Col span={12}>
                 <FormItem
