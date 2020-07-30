@@ -5,6 +5,8 @@ import styled from "styled-components";
 import {useScreenWindow} from "../../../../../effects/use-screen-window.effect";
 import {Carousel} from "antd";
 import NextArrow from "../../../teacher/pages/home/olympiad/olympiad-carousel/next-arrow/NextArrow";
+import Olympiad from "./olympiad/Olympiad";
+import {useApiUserGeneral} from "../../../../../effects/use-api-user-general.effect";
 
 const Wrapper = styled.div`
   display: grid;
@@ -31,6 +33,7 @@ const Wrapper = styled.div`
 
 const Statistic: React.FC = () => {
     const [, isBreakpoint] = useScreenWindow({breakpoint: 'sm'});
+    const [loading, statistic] = useApiUserGeneral({url: '/student/statistic'});
 
     const wrapper = (child: any) => {
         if (isBreakpoint)
@@ -47,8 +50,8 @@ const Statistic: React.FC = () => {
     return wrapper(
         [
             <Profile key="profile"/>,
-            <Homework key="homework-1"/>,
-            <Homework key="homework-2"/>
+            <Homework key="homework" loading={loading} homework={statistic?.homework}/>,
+            <Olympiad key="olympiad" loading={loading} olympiad={statistic?.olympiad}/>
         ]
     );
 };
