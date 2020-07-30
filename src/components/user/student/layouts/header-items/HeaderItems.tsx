@@ -14,7 +14,7 @@ const HeaderItems = () => {
         <HeaderItem key="empty" mr="auto"/>,
         <HeaderItem key="money">
             <Text type="secondary">Монет:</Text>
-            <Coins count={user.coins}/>
+            <Coins count={user.coins || 0}/>
         </HeaderItem>,
         // <HeaderItem key="news">
         //     <BulbOutlined /> Новости

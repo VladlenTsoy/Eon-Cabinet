@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { FlagOutlined, HomeOutlined } from '@ant-design/icons';
+import {FlagOutlined, HomeOutlined, CheckCircleOutlined} from '@ant-design/icons';
 import {Link} from "react-router-dom";
 import {Card} from "lib";
 import {Button} from "antd";
@@ -13,12 +13,14 @@ const HomeworkWrapper = styled.div`
   
   .icon-block{
     font-size: 45px;
-    margin-bottom: 1rem;
-    color: ${props => props.theme.color_warning};
+    margin-bottom: 0.5rem;
 
-    i{
-      padding: 0.5rem;
-      border-radius: 50%;
+    .anticon-home{
+       color: ${props => props.theme.color_warning};
+    }
+        
+    .anticon-check-circle{
+       color: ${props => props.theme.color_success};
     }
   }
   
@@ -51,14 +53,14 @@ const HomeworkBlock: React.FC<HomeworkBlockProps> = ({homework}) => {
         <Card className="animated fadeIn">
             <HomeworkWrapper>
                 <div className="icon-block">
-                    <HomeOutlined />
+                    {homework.status === 1 ? <CheckCircleOutlined/> : <HomeOutlined/>}
                 </div>
                 <div className="info-block">
                     <p className="sub-title">{language.common.homework}</p>
                     <p className="title">{language.common.level} № {homework.level}</p>
                 </div>
                 <Link to={`/homework/${homework.id}`}>
-                    <Button icon={<FlagOutlined />} block>
+                    <Button icon={<FlagOutlined/>} block>
                         {language.common.more}
                     </Button>
                 </Link>
