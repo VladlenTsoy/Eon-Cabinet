@@ -1,9 +1,9 @@
 import React from "react";
-import antd from "antd";
+import {Alert as AntdAlert} from "antd";
 import {AlertProps} from "antd/lib/alert";
 import styled from "styled-components";
 
-const Alert:React.FC<AlertProps> = styled(antd.Alert)`
+const Alert:React.FC<AlertProps> = styled(AntdAlert)`
   &.ant-alert-with-description{
     margin-bottom: 1.5rem;
     border-radius: 10px;
