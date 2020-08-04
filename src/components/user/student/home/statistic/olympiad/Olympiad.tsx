@@ -1,18 +1,32 @@
 import React from 'react';
-import {CardStatistic} from "lib";
+import styled from "styled-components";
+import {CardStatistic} from "../../../../../../lib";
 import {TrophyOutlined} from "@ant-design/icons";
 
-const Olympiad = () => {
-    return <CardStatistic
-            title="Олимпиада"
+const OlympiadWrapper = styled.div`
+  @media (max-width: 576px) {
+    margin-right: 1rem;
+  }
+`;
+
+interface OlympiadProps {
+    olympiad: any;
+    loading: boolean;
+}
+
+const Olympiad: React.FC<OlympiadProps> = ({olympiad, loading}) => {
+    return <OlympiadWrapper>
+        <CardStatistic
+            title="Олимпиады"
             theme="warning"
             icon={<TrophyOutlined/>}
-            loading={false}
-            count={10}
+            loading={loading}
+            count={olympiad?.all || 0}
             items={[
-                {title: 'Выполенных', count: 0, type: 'warning'},
+                {title: 'Выполенных', count: olympiad?.success || 0, type: 'warning'},
             ]}
-        />;
+        />
+    </OlympiadWrapper>
 };
 
 export default Olympiad;

@@ -1,4 +1,4 @@
-import antd from "antd";
+import {Card as AntdCard} from "antd";
 import {CardProps} from "antd/lib/card";
 import styled from "styled-components";
 import CardHeader from "./header/CardHeader";
@@ -6,7 +6,7 @@ import CardTitle from "./title/CardTitle";
 import CardList from "./list/CardList";
 import CardImage from "./image/CardImage";
 
-const Card: any = styled(antd.Card)<CardProps>`
+const Card: any = styled(AntdCard)<CardProps>`
   &.ant-card{
     border-radius: 10px;
     border: 0;

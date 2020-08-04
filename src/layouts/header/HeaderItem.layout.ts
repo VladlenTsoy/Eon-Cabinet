@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import antd from "antd";
+import {Menu as AntdMenu} from "antd";
 import {MenuItemProps} from "antd/lib/menu/MenuItem";
 
 interface StyledProps {
@@ -9,7 +9,7 @@ interface StyledProps {
 
 type HeaderItemProps = MenuItemProps & StyledProps;
 
-const HeaderItemLayout: React.FC<HeaderItemProps> = styled(antd.Menu.Item)<StyledProps>`
+const HeaderItemLayout: React.FC<HeaderItemProps> = styled(AntdMenu.Item)<StyledProps>`
   .ant-menu-horizontal &{
     margin-right: ${props => props.mr || 'initial'};
 

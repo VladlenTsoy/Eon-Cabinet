@@ -1,13 +1,14 @@
 import React from 'react';
 import {EditOutlined, DeleteOutlined, CopyOutlined, InfoCircleOutlined, MenuOutlined} from "@ant-design/icons";
 import styled from "styled-components";
-import {useScreenWindow} from "../../../../../../../../../../hooks/use-screen-window.effect";
+import {useScreenWindow} from "hooks/use-screen-window.effect";
 import {Button} from "antd";
 import MoreHomeworkDrawer from "./more-homework/MoreHomeworkDrawer";
 import {ModalMenu} from "lib";
 import {Link} from "react-router-dom";
 import DeleteHomework from "./delete/DeleteHomework";
 import {HomeworkProps} from "../../../../../../../../../../store/reducers/teacher/homework/homeworkSlice";
+import MoreLink from "./more-link/MoreLink";
 
 const ActionStyled = styled.div`
   border-radius: 5px;
@@ -55,7 +56,7 @@ const ActionStyled = styled.div`
 `;
 
 interface ActionsProps {
-    homework: HomeworkProps;
+    homework: any;
 }
 
 const Actions: React.FC<ActionsProps> = ({homework}) => {

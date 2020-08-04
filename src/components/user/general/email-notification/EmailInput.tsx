@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import styled from "styled-components";
-import ConfirmEmailBg from "../../../../assets/images/pages/confirm_email.svg";
+import ConfirmEmailBg from "../../../../assets/images/pages/login_page_bg.svg";
 import {Button, Typography, Form} from "antd";
 import {FormItem} from "../../../../lib";
 import {useAppContext} from "../../../../store/context/use-app-context";

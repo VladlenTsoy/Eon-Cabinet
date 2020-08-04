@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import styled from "styled-components";
 import {Typography} from "antd";
-import ConfirmEmailBg from "../../../../../assets/images/pages/confirm_email.svg";
+import ConfirmEmailBg from "../../../../../assets/images/pages/login_page_bg.svg";
 import FormVerificationCode from "./FormVerificationCode";
 import SendingMessage from "./SendingMessage";
 import SuccessfulResult from "./SuccessfulResult";

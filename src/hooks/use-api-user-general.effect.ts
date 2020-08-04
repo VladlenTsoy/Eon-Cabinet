@@ -17,6 +17,7 @@ type FHProps<P> = {
     config?: any;
     initValue?: any;
     afterRequest?: (data: any, params?: any) => void;
+    access?: 'user'| 'guest';
 }
 
 export const useApiUserGeneral: FH = (
@@ -27,6 +28,7 @@ export const useApiUserGeneral: FH = (
         config = {},
         initValue,
         afterRequest,
+        access = 'user'
     }
 ) => {
     const {api} = useAppContext();
@@ -40,12 +42,12 @@ export const useApiUserGeneral: FH = (
         setLoading(true);
         (
             method === 'post' ?
-                api.user.post(url, configuration.params, {
+                api[access].post(url, configuration.params, {
                     ...configuration,
                     ...params ? {params} : {},
                     cancelToken: source.token
                 }) :
-                api.user.get(url, {
+                api[access].get(url, {
                     ...configuration,
                     ...params ? {params} : {},
                     cancelToken: source.token
@@ -66,7 +68,7 @@ export const useApiUserGeneral: FH = (
                 setLoading(false);
             }
         });
-    }, [api.user, url, source.token, configuration, method]);
+    }, [method, api, access, url, configuration, source.token]);
 
     useEffect(() => {
         if (!cancel) {

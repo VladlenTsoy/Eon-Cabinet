@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import antd from 'antd';
+import {Layout as AntdLayout} from 'antd';
 import styled from "styled-components";
 import Sidebar from "./sidebar/Sidebar";
 import Header from "./header/Header";
@@ -11,7 +11,7 @@ type LayoutProps = RouteComponentProps & {
     sidebar: JSX.Element[];
 }
 
-const LayoutWrapper = styled(antd.Layout)`
+const LayoutWrapper = styled(AntdLayout)`
   &.ant-layout{
     height: 100%;
     overflow-x: hidden;
@@ -23,7 +23,7 @@ const LayoutWrapper = styled(antd.Layout)`
   }
 `;
 
-const Content = styled(antd.Layout.Content)`
+const Content = styled(AntdLayout.Content)`
     padding: 1rem;
     min-height: auto!important;
     overflow-x: hidden;

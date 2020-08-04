@@ -1,9 +1,9 @@
 import React from 'react';
 import {PlusOutlined, SendOutlined} from "@ant-design/icons";
+import {Navigation, NavigationButton} from "lib";
 import EditorButton from "./editor-button/EditorButton";
 import SentHomeworkStudentButton from "./sent-homework-button/SentHomeworkStudentButton";
 import DeleteStudentButton from "./delete-student-button/DeleteStudentButton";
-import {Navigation, NavigationButton} from "lib";
 
 const NavButtons: React.FC = () => {
     return <Navigation>

@@ -1,14 +1,17 @@
 import React, {useEffect, useState} from 'react';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch, useRouteMatch} from 'react-router-dom';
 import Auth from "./auth/Auth";
 import User from "./user/User";
 import {ThemeProvider} from "styled-components";
-// import {_theme, blackTheme, whiteTheme} from '../styles/_theme';
 import ReactGA from 'react-ga';
 import "styles/themes/default.less";
 import "styles/themes/dark.less";
+import {Loader} from "../lib";
+
+const Guest = React.lazy(() => import("./guest/Guest"));
 
 const App: React.FC = () => {
+    const match = useRouteMatch({path: '/guest'});
     const [userTheme] = useState({});
 
     useEffect(() => {
@@ -28,15 +31,17 @@ const App: React.FC = () => {
     // }, [user]);
 
     // Fetch language and current user data
-    return <Router>
-        <Switch>
-            <Route exact path="**" render={() =>
-                <ThemeProvider theme={userTheme}>
-                    {localStorage.getItem('EON_API_TOKEN_ACCESS') ? <User/> : <Auth/>}
-                </ThemeProvider>
-            }/>
-        </Switch>
-    </Router>
+    return <React.Suspense fallback={<Loader text="Загрузка доступа..."/>}>
+        <Router>
+            <Switch>
+                <Route exact path="**" render={() =>
+                    <ThemeProvider theme={userTheme}>
+                        {localStorage.getItem('EON_API_TOKEN_ACCESS') ? <User/> : match ? <Guest/> : <Auth/>}
+                    </ThemeProvider>
+                }/>
+            </Switch>
+        </Router>
+    </React.Suspense>
 };
 
 export default App

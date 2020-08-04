@@ -4,7 +4,7 @@ import styled from "styled-components";
 import AnswerInput from "./answer-input/AnswerInput";
 import {Card} from "lib";
 import {Form} from "antd";
-import {changeStatus, gameSelector, changeTotals} from "../../../../../../../store/reducers/common/game/gameSplice";
+import {changeStatus, gameSelector, changeTotals, updateCurrentTotal} from "../../../../../../../store/reducers/common/game/gameSplice";
 import MultiGridLayout from "../layouts/MultiGrid.layout";
 import Header from "./header/Header";
 
@@ -32,7 +32,6 @@ const Answer: React.FC = () => {
     const [form] = Form.useForm();
 
     const submitHandler = (values: any) => {
-        let createdTotals = [];
         const result = (setting.group ? totals : totals[currentTimes]).answer
             .map(function (answer: any, key: number) {
                 if (setting.group)
@@ -43,12 +42,11 @@ const Answer: React.FC = () => {
                 return Number(answer) === Number(values.answer[key]);
             });
 
-        if (setting.group)
-            createdTotals = {...totals, user: values.answer, result};
-        else
-            createdTotals[currentTimes] = {...totals[currentTimes], user: values.answer, result};
-
-        dispatch(changeTotals(createdTotals));
+        if (setting.group) {
+            dispatch(changeTotals({...totals, user: values.answer, result}));
+        }else {
+            dispatch(updateCurrentTotal({user: values.answer, result}));
+        }
         dispatch(changeStatus(setting.mode === 'multiplication' && !setting.group ? 'intermediate' : 'result'));
     };
 

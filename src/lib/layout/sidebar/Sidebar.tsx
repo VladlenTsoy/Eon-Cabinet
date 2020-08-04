@@ -1,4 +1,4 @@
-import antd, {Drawer} from "antd";
+import {Drawer, Layout as AntdLayout, Menu} from "antd";
 import styled from "styled-components";
 import {useSelector} from "react-redux";
 import React, {useState} from "react";
@@ -24,11 +24,11 @@ const DrawerWrapper = styled(Drawer)`
   }
 `;
 
-const SidebarWrapper = styled(antd.Layout.Sider)`
+const SidebarWrapper = styled(AntdLayout.Sider)`
   overflow: hidden;
 `;
 
-const SidebarMenu = styled(antd.Menu)`
+const SidebarMenu = styled(Menu)`
   &, &.ant-menu-inline-collapsed {
     border: 0 !important;
   }
