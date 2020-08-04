@@ -1,24 +1,35 @@
 import axios from "axios";
 import {message} from "./message";
+import cookie from "js-cookie";
+import {Discipline} from "../store/access/teacher/discipline/disciplineSlice";
 
 const CancelToken = axios.CancelToken;
-// const DOMAIN_API = process.env.NODE_ENV === 'production' ? 'https://api.eon.uz/api' : 'http://192.168.1.37:8000/api';
-const DOMAIN_API = process.env.NODE_ENV === 'production' ? 'https://api.eon.uz/api' : 'http://localhost:3001';
+const DOMAIN_API = process.env.NODE_ENV === 'production' ? 'https://api.eon.uz/api' : 'http://192.168.1.37:8000/api';
+// export const DOMAIN_API = process.env.NODE_ENV === 'production' ? 'https://api.eon.uz/api' : 'http://localhost:3001';
+
+const TOKEN = cookie.get('token_access');
 
 export const api = {
-    token: localStorage.getItem('EON_API_TOKEN_ACCESS') || '',
-    guest: axios.create({baseURL: DOMAIN_API}),
-    user: axios.create({baseURL: DOMAIN_API + '/user'}),
-    teacher: axios.create({baseURL: DOMAIN_API + '/user/teacher/1'}),
+    token: TOKEN || null,
+    guest: axios.create({baseURL: DOMAIN_API, headers: {common: {Authorization: 'Bearer ' + TOKEN}}, withCredentials: true}),
+    user: axios.create({baseURL: DOMAIN_API + '/user', headers: {common: {Authorization: 'Bearer ' + TOKEN}}, withCredentials: true}),
+    teacher: axios.create({
+        baseURL: DOMAIN_API + '/user/teacher/1',
+        headers: {common: {Authorization: 'Bearer ' + TOKEN}}
+    }),
 };
 
-export const updateToken = (token: string) => {
+export const updateToken = (token: string | null) => {
     api.token = token;
+    if (token)
+        cookie.set('token_access', token, {expires: 30 });
+    else
+        cookie.remove('token_access');
     api.user.defaults.headers.common["Authorization"] = "Bearer " + token
     api.teacher.defaults.headers.common["Authorization"] = "Bearer " + token
 }
 
-export const updateDiscipline = (disciplineId: number) => {
+export const updateDiscipline = (disciplineId: Discipline["id"]) => {
     api.teacher.defaults.baseURL = DOMAIN_API + '/user/teacher/' + disciplineId
 }
 
@@ -30,7 +41,7 @@ type MethodProps =
     | 'patch';
 
 interface ConfigRequestProps {
-    type?: 'teacher' | 'user'
+    type?: 'teacher' | 'user' | 'guest'
     data?: any;
     signal?: any,
     params?: any,
@@ -61,6 +72,10 @@ export const apiRequest: ApiRequestProps = async (method = 'get', url: string, c
     } catch (e) {
         if (!axios.isCancel(e)) {
             console.error('-----> ', e);
+            if (e.response.status === 401) {
+                message({type: 'error', content: 'Ошибка токена!'});
+                throw Error('error_token');
+            }
             message({type: 'error', content: e?.response?.data?.message || e?.message || 'Неизвестная ошибка!'});
             throw Error(e?.response?.data?.message || e?.message || 'Неизвестная ошибка!');
         }

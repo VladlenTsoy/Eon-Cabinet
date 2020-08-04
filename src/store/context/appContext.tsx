@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useState} from "react";
-import {Loader} from "../../lib";
-import {api, updateToken} from "utils/api";
+import {Loader} from "../../lib/components";
+import {apiOld, updateToken} from "utils/api.old";
 
 interface User {
     id: number;
@@ -16,7 +16,7 @@ interface User {
 interface InitialState {
     user: User | any;
     language: any;
-    api: typeof api;
+    api: typeof apiOld;
     updateToken: (token: string) => void;
     updateUser: (data: User | null) => void;
     updateLanguage: (language: any) => void;
@@ -25,7 +25,7 @@ interface InitialState {
 const initialState: InitialState = {
     user: null,
     language: null,
-    api: api,
+    api: apiOld,
     updateToken: (token) => token,
     updateUser: (data) => data,
     updateLanguage: (data) => data
