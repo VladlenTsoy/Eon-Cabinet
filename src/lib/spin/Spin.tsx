@@ -1,10 +1,10 @@
 import React from "react";
-import antd from "antd";
+import {Spin as AntdSpin} from "antd";
 import {SpinProps} from "antd/es/spin";
 import styled from "styled-components";
 import {LoadingOutlined} from '@ant-design/icons';
 
-const WrapperSpin = styled(antd.Spin)`
+const WrapperSpin = styled(AntdSpin)`
   position: relative;
   min-height: 200px;
   .ant-spin-text{
