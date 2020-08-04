@@ -1,10 +1,10 @@
 import React from "react";
-import antd from 'antd';
+import {Drawer as AntdDrawer} from 'antd';
 import {DrawerProps} from 'antd/es/drawer';
 import styled from "styled-components";
 
 const DrawerWrapper = styled(({notFooter, children, ...props}: any) => (
-    <antd.Drawer {...props}>{children}</antd.Drawer>
+    <AntdDrawer {...props}>{children}</AntdDrawer>
 ))`
   .ant-drawer-close{
     width: 46px;
