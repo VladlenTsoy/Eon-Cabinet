@@ -1,7 +1,7 @@
 import React from "react";
 import { AppstoreOutlined, HomeOutlined, TeamOutlined, TrophyOutlined, UserOutlined } from '@ant-design/icons';
 import {Link} from "react-router-dom";
-import {SidebarItem} from "lib/layouts";
+import {SidebarItem} from "lib/layouts/dashboard";
 
 const SidebarItems = [
     <SidebarItem key="/">

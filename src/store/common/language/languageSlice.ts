@@ -40,7 +40,7 @@ const languageSlice = createSlice({
             state.title = action.payload.title;
             state.data = action.payload.data;
             state.abbr = action.payload.abbr;
-            state.languages = action.payload.languages;
+            // state.languages = action.payload.languages;
             state.loading = false;
             //
             cookie.set('language', state.abbr, { expires: 7 });

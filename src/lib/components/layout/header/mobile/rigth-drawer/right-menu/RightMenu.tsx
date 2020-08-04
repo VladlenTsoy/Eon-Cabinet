@@ -1,5 +1,5 @@
 import React from 'react';
-import HeaderItem from "../../../../../../layouts/header/HeaderItem.layout";
+import HeaderItem from "../../../../../../layouts/dashboard/header/HeaderItem.layout";
 import DarkSwitch from "../../../items/dark-switch/DarkSwitch";
 import { PoweroffOutlined } from '@ant-design/icons';
 import { Menu } from "antd";

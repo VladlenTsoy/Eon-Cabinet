@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {DownloadOutlined} from "@ant-design/icons";
 import {Button, Modal, Typography} from "antd";
 import styled from "styled-components";
-import {useAppContext} from "../../../../store/context/use-app-context";
+import {useAppContext} from "../../../../../store/context/use-app-context";
 
 const {Title} = Typography;
 

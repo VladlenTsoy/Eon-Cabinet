@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import HeaderItemLayout from "../../../../layouts/header/HeaderItem.layout";
-import HeaderMenuLayout from "../../../../layouts/header/HeaderMenu.layout";
+import HeaderItemLayout from "../../../../layouts/dashboard/header/HeaderItem.layout";
+import HeaderMenuLayout from "../../../../layouts/dashboard/header/HeaderMenu.layout";
 import { UserOutlined } from '@ant-design/icons';
 import HeaderProfile from "../profile/HeaderProfile";
 import LeftMenuBtn from "./left-menu-btn/LeftMenuBtn";

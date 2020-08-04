@@ -14,7 +14,7 @@ import {
 
 import { Menu } from "antd";
 import {Link} from "react-router-dom";
-import {SidebarItem, SidebarSubItem} from '../../../../../lib/layouts';
+import {SidebarItem, SidebarSubItem} from '../../../../../lib/layouts/dashboard';
 
 const Item = Menu.Item;
 

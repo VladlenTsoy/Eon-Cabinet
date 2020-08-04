@@ -15,7 +15,7 @@ import {
 
 import {Menu} from "antd";
 import {Link} from "react-router-dom";
-import {SidebarItem, SidebarSubItem} from "lib/layouts";
+import {SidebarItem, SidebarSubItem} from "lib/layouts/dashboard";
 import {useSelector} from "react-redux";
 import {disciplineSelector} from "../../../../../store/access/teacher/discipline/disciplineSlice";
 

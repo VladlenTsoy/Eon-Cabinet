@@ -27,7 +27,7 @@ export {default as InputPassword} from './form/InputPassword';
 export {default as SelectData} from './form/select-data-render/SelectData';
 export {default as Modal} from './modal/Modal';
 export {default as DescriptionTitle} from './empty/DescriptionTitle.layout';
-export {default as HeaderItem} from '../layouts/header/HeaderItem.layout';
+export {default as HeaderItem} from '../layouts/dashboard/header/HeaderItem.layout';
 export {default as TablePagination} from './table-pagination/TablePagination';
 export {default as UserImage} from './avatar/Avatar';
 export {default as DrawerActions} from './drawer/DrawerActions';

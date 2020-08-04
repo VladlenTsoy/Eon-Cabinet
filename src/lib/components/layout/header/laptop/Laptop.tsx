@@ -1,10 +1,10 @@
 import React from 'react';
 import HeaderTitle from "./title/HeaderTitle";
 import HeaderProfile from "../profile/HeaderProfile";
-import HeaderItemLayout from "../../../../layouts/header/HeaderItem.layout";
+import HeaderItemLayout from "../../../../layouts/dashboard/header/HeaderItem.layout";
 import DarkSwitch from "../items/dark-switch/DarkSwitch";
 import { PoweroffOutlined } from '@ant-design/icons';
-import HeaderMenuLayout from "../../../../layouts/header/HeaderMenu.layout";
+import HeaderMenuLayout from "../../../../layouts/dashboard/header/HeaderMenu.layout";
 import {useAppContext} from "../../../../../store/context/use-app-context";
 
 interface LaptopProps {
