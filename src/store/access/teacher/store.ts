@@ -1,5 +1,4 @@
 import {configureStore, combineReducers} from "@reduxjs/toolkit";
-import {commonReducer, CommonState} from '../../common/commonReducer';
 import group from './group/groupSlice';
 import category from './category/categorySlice';
 import olympiad from './olympiad/olympiadSlice';
@@ -8,8 +7,12 @@ import algorithm from './algorithm/algorithmSlice';
 import homework from './homework/homeworkSlice';
 import tasks from './tasks/tasksSlice';
 import students from './students/studentsSlice';
+import app from "../../common/app/appSlice";
+import language from "../../common/language/languageSlice";
+import game from "../../common/game/gameSplice";
+import user from "../../common/user/userSlice";
 
-export type TeacherState = ReturnType<typeof teacherReducer> & CommonState
+export type TeacherState = ReturnType<typeof teacherReducer>
 
 export const teacherReducer = combineReducers({
     group,
@@ -20,7 +23,10 @@ export const teacherReducer = combineReducers({
     homework,
     tasks,
     students,
-    ...commonReducer
+    app,
+    language,
+    game,
+    user,
 });
 
 export type AppDispatch = typeof store.dispatch

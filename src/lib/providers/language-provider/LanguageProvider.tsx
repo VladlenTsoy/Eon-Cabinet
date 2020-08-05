@@ -13,6 +13,7 @@ const browserLanguage = cookie.get('language') || navigator.language;
 
 const LanguageProvider: React.FC = ({children}) => {
     const language = useSelector(languageSelector);
+    console.log(language)
     const [antLang, setAntLang] = useState(language.abbr === 'ru-RU' ? ruRU : enUs);
     const dispatch = useDispatch();
 

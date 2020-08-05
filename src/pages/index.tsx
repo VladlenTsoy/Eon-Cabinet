@@ -1,8 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import ReactGA from "react-ga";
 import {Loader} from "../lib/components";
-import {ThemeProvider} from "styled-components";
 import {useSelector} from "react-redux";
 import {userSelector} from "../store/common/user/userSlice";
 import "../styles/style.less";
@@ -12,7 +11,6 @@ const User = React.lazy(() => import("./user/User"));
 
 const Index = () => {
     const user = useSelector(userSelector);
-    const [userTheme] = useState({});
 
     useEffect(() => {
         if (process.env.NODE_ENV === 'production')
@@ -27,9 +25,7 @@ const Index = () => {
         <Router>
             <Switch>
                 <Route exact path="**" render={() =>
-                    <ThemeProvider theme={userTheme}>
-                        {user.detail ? <User/> : <Guest/>}
-                    </ThemeProvider>
+                    user.detail ? <User/> : <Guest/>
                 }/>
             </Switch>
         </Router>

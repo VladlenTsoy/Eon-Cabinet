@@ -4,7 +4,8 @@ import {useScreenWindow} from "../../../../hooks/use-screen-window.effect";
 import Mobile from "./mobile/Mobile";
 import Laptop from "./laptop/Laptop";
 import {QuestionCircleOutlined} from "@ant-design/icons";
-import {useAppContext} from "../../../../store/context/use-app-context";
+import {useDispatch} from "react-redux";
+import {logoutUser} from "../../../../store/common/user/logoutUser";
 
 interface HeaderProps {
     collapsed: boolean;
@@ -14,7 +15,7 @@ interface HeaderProps {
 const confirm = Modal.confirm;
 
 const Header: React.FC<HeaderProps> = ({children, collapsed, toggleSidebar}) => {
-    const {api, updateUser, updateToken} = useAppContext();
+    const dispatch = useDispatch();
 
     // Выход
     const logout = () => {
@@ -22,9 +23,7 @@ const Header: React.FC<HeaderProps> = ({children, collapsed, toggleSidebar}) => 
             title: 'Вы действительно хотите выйти?',
             icon: <QuestionCircleOutlined/>,
             onOk: async () => {
-                await api.user.delete('/logout');
-                updateUser(null);
-                updateToken('');
+                dispatch(logoutUser());
             },
         });
     };

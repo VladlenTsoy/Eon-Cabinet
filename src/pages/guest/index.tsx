@@ -2,7 +2,7 @@ import React from 'react';
 import {Loader} from "../../lib/components";
 import {useRouteMatch} from "react-router-dom";
 
-const Auth = React.lazy(() => import("./auth/Auth"));
+const Auth = React.lazy(() => import("./auth/index"));
 const Homework = React.lazy(() => import("./homework/index"));
 
 const Index = () => {

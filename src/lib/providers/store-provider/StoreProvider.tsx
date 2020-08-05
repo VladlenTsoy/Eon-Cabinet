@@ -3,10 +3,8 @@ import {store} from "../../../store/store";
 import {useSelector} from "react-redux";
 import {userSelector} from "../../../store/common/user/userSlice";
 import {Loader} from "../../components";
-import {useLanguage} from "../../../hooks/use-language.hook";
 
 const StoreProvider: React.FC = ({children}) => {
-    const {l} = useLanguage();
     const user = useSelector(userSelector);
     const [loading, setLoading] = useState(!!user.detail);
 
@@ -24,7 +22,7 @@ const StoreProvider: React.FC = ({children}) => {
     }, [user.detail]);
 
     if (loading)
-        return <Loader text={`${l('loading_user')}...`}/>;
+        return <Loader text={`Загрузка пользователя...`}/>;
 
     return <>{children}</>;
 };

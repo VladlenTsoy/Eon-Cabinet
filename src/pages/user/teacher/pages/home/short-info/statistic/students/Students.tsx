@@ -83,7 +83,7 @@ const Students: React.FC<StudentsProps> = ({statistic, loading}) => {
                 <IconWrapper className="icon" t="warning">
                     <UserOutlined />
                 </IconWrapper>
-                <div className="main-counter">{loading ? <LoadingOutlined /> : statistic.students.count}</div>
+                <div className="main-counter">{loading ? <LoadingOutlined /> : (statistic?.students.count || 0)}</div>
                 <div className="counter-block">
                     <div>
                         Активных
@@ -95,8 +95,8 @@ const Students: React.FC<StudentsProps> = ({statistic, loading}) => {
                         {loading ?
                             <LoadingOutlined /> :
                             <>
-                                {statistic.students.increase ? <ArrowUpOutlined /> : <ArrowDownOutlined />}
-                                {(statistic.students.percent).toFixed(1)}%
+                                {statistic?.students.increase ? <ArrowUpOutlined /> : <ArrowDownOutlined />}
+                                {(statistic?.students.percent || 0).toFixed(1)}%
                             </>
                         }
 
@@ -113,8 +113,8 @@ const Students: React.FC<StudentsProps> = ({statistic, loading}) => {
                         {loading ?
                             <LoadingOutlined /> :
                             <>
-                                {statistic.homework.increase ? <ArrowUpOutlined /> : <ArrowDownOutlined />}
-                                {(statistic.homework.percent).toFixed(1)}%
+                                {statistic?.homework.increase ? <ArrowUpOutlined /> : <ArrowDownOutlined />}
+                                {(statistic?.homework.percent || 0).toFixed(1)}%
                             </>
                         }
                     </div>

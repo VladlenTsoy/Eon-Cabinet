@@ -4,7 +4,7 @@ import ForgotPassword from "./forgot/Forgot";
 import Login from "./login/Login";
 import Registration from "./registration/Registration";
 
-const Auth: React.FC = () =>
+const Index: React.FC = () =>
     <Router>
         <Switch>
             <Route exact path="/" component={Login}/>
@@ -14,4 +14,4 @@ const Auth: React.FC = () =>
         </Switch>
     </Router>
 
-export default Auth;
+export default Index;

@@ -2,7 +2,8 @@ import React from "react";
 import {LoadingOutlined} from '@ant-design/icons';
 import {Spin} from "antd";
 import styled from "styled-components";
-import {useAppContext} from "../../../store/context/use-app-context";
+import {useSelector} from "react-redux";
+import {languageSelector} from "../../../store/common/language/languageSlice";
 
 interface LoadingStyledProps extends React.HTMLAttributes<HTMLDivElement> {
     maxHeight: string;
@@ -44,7 +45,7 @@ interface LoadingBlockProps {
 }
 
 const LoadingBlock: React.FC<LoadingBlockProps> = ({title, maxHeight = '100%'}) => {
-    const {language} = useAppContext();
+    const language = useSelector(languageSelector);
 
     return <LoadingWrapper className="animated fadeIn" maxHeight={maxHeight} padding={title === null ? '0' : '2rem'}>
         <Container marginBottom={title === null ? '0' : '1rem'}>
@@ -53,7 +54,7 @@ const LoadingBlock: React.FC<LoadingBlockProps> = ({title, maxHeight = '100%'}) 
                 title === null ?
                     <></> :
                     <p>
-                        {title || `${language.common.loader}...`}
+                        {title || `${language.data?.common?.loader}...`}
                     </p>
             }
         </Container>

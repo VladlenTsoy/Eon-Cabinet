@@ -9,6 +9,7 @@ import StoreProvider from "./lib/providers/store-provider/StoreProvider";
 import Index from "./pages";
 import {store} from "./store/store";
 import BrowserSupportProvider from "./lib/providers/browser-support-provider/BrowserSupportProvider";
+import ThemeProvider from "./lib/providers/theme-provider/ThemeProvider";
 
 const App: React.FC = () => {
 
@@ -26,13 +27,15 @@ const App: React.FC = () => {
 
     return <BrowserSupportProvider>
         <Provider store={store}>
-            <LanguageProvider>
-                <UserProvider>
-                    <StoreProvider>
-                        <Index/>
-                    </StoreProvider>
-                </UserProvider>
-            </LanguageProvider>
+            <ThemeProvider>
+                <LanguageProvider>
+                    <UserProvider>
+                        <StoreProvider>
+                            <Index/>
+                        </StoreProvider>
+                    </UserProvider>
+                </LanguageProvider>
+            </ThemeProvider>
         </Provider>
     </BrowserSupportProvider>
 };

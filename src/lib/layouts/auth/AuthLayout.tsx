@@ -2,9 +2,8 @@ import React from 'react';
 import styled from "styled-components";
 import {Col, Row} from 'antd';
 import bgAuthWrapper from "../../../assets/images/pages/login_page_bg.svg";
-import Card from "./Card";
 import Footer from "./Footer";
-import HeaderLanguage from "./HeaderLanguage";
+import Card from "./Card";
 
 const AuthStyled = styled.div`
   height: 100vh;
@@ -30,7 +29,6 @@ interface AuthLayoutProps {
 
 const AuthLayout: React.FC<AuthLayoutProps> = ({title, subTitle, onFinish, children}) => {
     return <AuthStyled>
-        <HeaderLanguage/>
         <AuthScrollStyled>
             <Row justify="center" align="middle">
                 <Col xxl={6} xl={8} lg={7} md={10} sm={12} xs={22}>

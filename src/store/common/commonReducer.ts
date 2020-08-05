@@ -1,4 +1,4 @@
-import {combineReducers, configureStore} from "@reduxjs/toolkit";
+import {combineReducers} from "@reduxjs/toolkit";
 import app from "./app/appSlice";
 import language from "./language/languageSlice";
 import game from "./game/gameSplice";
