@@ -4,6 +4,7 @@ import {useSelector} from "react-redux";
 import {userSelector} from "../../../store/common/user/userSlice";
 import {_theme, blackTheme, whiteTheme} from 'styles/_theme';
 import {appSelector} from "../../../store/common/app/appSlice";
+import {Spin} from "../../components";
 
 const ThemeProvider: React.FC = ({children}) => {
     const user = useSelector(userSelector);
@@ -52,7 +53,9 @@ const ThemeProvider: React.FC = ({children}) => {
     }, [user.detail]);
 
     return <ThemeProviderStyled theme={userTheme}>
-        {children}
+        <Spin spinning={app.spin} tip="Изменяем тему...">
+            {children}
+        </Spin>
     </ThemeProviderStyled>
 };
 
