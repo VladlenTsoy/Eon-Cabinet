@@ -1,5 +1,5 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {apiRequest} from "../../../../utils/api.old";
+import {apiRequest} from "../../../../utils/api";
 
 interface AgrProps {
     activeDisciplineId: any;

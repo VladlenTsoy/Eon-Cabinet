@@ -1,5 +1,5 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {apiRequest} from "../../../../utils/api.old";
+import {apiRequest} from "../../../../utils/api";
 
 export const fetchCurrentOlympiads: any = createAsyncThunk<any, any>(
     'olympiad/fetch/current',
