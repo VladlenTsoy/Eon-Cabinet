@@ -1,14 +1,17 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {LoadingBlock, ButtonLink} from "lib/components";
 import {Card} from "lib/components";
 import {Typography, Empty} from "antd";
 import {InfoCircleOutlined} from "@ant-design/icons";
 import styled from "styled-components";
 import {useApiUserGeneral} from "../../../../../../../hooks/use-api-user-general.effect";
+import {useDispatch, useSelector} from "react-redux";
+import {notificationSelector} from "../../../../../../../store/access/teacher/notification/notificationSlice";
+import {fetchQuickNotice} from "../../../../../../../store/access/teacher/notification/quick-notice/fetchQuickNotice";
 
 const {Title, Text} = Typography;
 
-const CardWrapper = styled(Card)`
+const CardStyled = styled(Card)`
   &.ant-card > .ant-card-body{
     display: flex;
     height: 100%;
@@ -53,32 +56,39 @@ const CardWrapper = styled(Card)`
  * @constructor
  */
 const QuickNotice: React.FC = () => {
-    const [loading, notice] = useApiUserGeneral({url: 'teacher/quick-notice', initValue: {}});
+    const {quickNotice} = useSelector(notificationSelector)
+    const dispatch = useDispatch()
 
-    return <CardWrapper>
+    useEffect(() => {
+        const promise = dispatch(fetchQuickNotice())
+        return () => {
+            promise.abort()
+        }
+    }, [])
+
+    return <CardStyled>
         {
-            loading ?
+            quickNotice.loading ?
                 <LoadingBlock/> :
-                notice.hasOwnProperty('title') ?
+                quickNotice.data ?
                     <>
-                        <img src={notice.image} alt={notice.title}/>
+                        <img src={quickNotice.data.image} alt={quickNotice.data.title}/>
                         <div className="content">
-                            <Title level={3}>{notice.title}</Title>
-                            <Text type="secondary">{notice.text}</Text>
+                            <Title level={3}>{quickNotice.data.title}</Title>
+                            <Text type="secondary">{quickNotice.data.text}</Text>
                             <ButtonLink
                                 ghost
                                 icon={<InfoCircleOutlined/>}
-                                to={notice.link.to}
-                                type={notice.link.type}
+                                to={quickNotice.data.link.to}
+                                type={quickNotice.data.link.type}
                             >
-                                {notice.link.text}
+                                {quickNotice.data.link.text}
                             </ButtonLink>
                         </div>
-
                     </> :
                     <Empty image={Empty.PRESENTED_IMAGE_SIMPLE}/>
         }
-    </CardWrapper>;
+    </CardStyled>;
 };
 
 export default QuickNotice;
