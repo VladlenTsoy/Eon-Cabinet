@@ -1,9 +1,9 @@
 import React from 'react';
-import {useAppContext} from "store/context/use-app-context";
 import ProfileBlock from "../../../layouts/profile-block/ProfileBlock";
 import {Card} from "lib/components";
 import Awards from "./awards/Awards";
 import styled from "styled-components";
+import {useUser} from "../../../../../../hooks/use-user";
 
 const ProfileCardWrapper = styled(Card)`
   &.ant-card{
@@ -27,7 +27,7 @@ const ProfileCardWrapper = styled(Card)`
 `;
 
 const Profile: React.FC = () => {
-    const {user} = useAppContext();
+    const {user} = useUser();
     return <ProfileCardWrapper>
         <ProfileBlock user={user}/>
         <Awards/>

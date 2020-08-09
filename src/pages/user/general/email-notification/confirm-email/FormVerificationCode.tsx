@@ -1,23 +1,22 @@
 import React, {useState} from 'react';
 import {Button, message, Form} from "antd";
 import {FormItem} from "../../../../../lib/components";
-import {useAppContext} from "../../../../../store/context/use-app-context";
 
 interface FormVerificationCodeProps {
     changeDataCurrentUser: any;
     updateResult: any;
 }
 
+// TODO - api
 const FormVerificationCode: React.FC<FormVerificationCodeProps> = ({updateResult, changeDataCurrentUser}) => {
-    const {api} = useAppContext();
     const [loading, setLoading] = useState(false);
 
     const handleSubmit = async (values: any) => {
         setLoading(true);
         try {
-            let response = await api.user.post('/code-confirmation', values);
-            if (response.data.status === 'success')
-                changeDataCurrentUser(response.data.user);
+            // let response = await api.user.post('/code-confirmation', values);
+            // if (response.data.status === 'success')
+            //     changeDataCurrentUser(response.data.user);
             return updateResult(true);
         } catch (e) {
             message.error(e.response.data.message);

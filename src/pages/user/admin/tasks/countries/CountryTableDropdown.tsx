@@ -2,7 +2,6 @@ import React from 'react';
 import { DeleteOutlined, EditOutlined, MoreOutlined } from '@ant-design/icons';
 import { Button, Dropdown, Menu, Modal } from "antd";
 import EditorCountryButton from "./EditorCountryButton";
-import {useAppContext} from "../../../../../store/context/use-app-context";
 
 const confirm = Modal.confirm;
 
@@ -11,15 +10,15 @@ interface CountryTableDropdownProps {
     fetch: any,
 }
 
+// TODO - api
 const CountryTableDropdown: React.FC<CountryTableDropdownProps> = ({record, fetch}) => {
-    const {api} = useAppContext();
 
     const deleteCountry = () =>
         confirm({
             title: 'Вы уверены, что хотите удалить?',
             okType: 'danger',
             onOk: async () => {
-                await api.user.delete(`admin/country/${record.id}`);
+                // await api.user.delete(`admin/country/${record.id}`);
                 fetch();
             },
         });

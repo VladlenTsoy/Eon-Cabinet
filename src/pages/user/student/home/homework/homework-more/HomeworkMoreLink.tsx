@@ -2,7 +2,7 @@ import React from 'react';
 import { ArrowRightOutlined } from '@ant-design/icons';
 import styled from "styled-components";
 import {Link} from "react-router-dom";
-import {useAppContext} from "store/context/use-app-context";
+import {useLanguage} from "../../../../../../hooks/use-language";
 
 export const MoreWrapper: any = styled(Link)`
    height: calc(100% - 1.5rem);
@@ -36,7 +36,7 @@ export const MoreWrapper: any = styled(Link)`
 `;
 
 const HomeworkMoreLink = () => {
-    const {language} = useAppContext();
+    const {language} = useLanguage();
 
     return (
       <MoreWrapper to="/homework" className="animated fadeIn">

@@ -2,7 +2,6 @@ import React from "react";
 import DirectorItems from "./items/DirectorItems";
 import {message} from "antd";
 import usingDrawerEditorNew from "../../../../../lib/layouts/drawer-editor/usingDrawerEditor.new";
-import {useAppContext} from "../../../../../store/context/use-app-context";
 
 const FormComponentData = usingDrawerEditorNew(DirectorItems);
 
@@ -12,6 +11,7 @@ interface EditorDirectorDrawerProps {
     pagination?: any;
 }
 
+// TODO - api
 const EditorDirectorDrawer: React.FC<EditorDirectorDrawerProps> = (
     {
         fetch,
@@ -20,16 +20,14 @@ const EditorDirectorDrawer: React.FC<EditorDirectorDrawerProps> = (
         children
     }
 ) => {
-    const {api} = useAppContext();
-
     const request = async (values: any) => {
-        if (director) {
-            await api.user.post(`admin/franchise-director/${director.id}`, values);
-            message.success("Вы успешно изменили директора!");
-        } else {
-            await api.user.post(`admin/franchise-director`, values);
-            message.success("Вы успешно добавили директора!");
-        }
+        // if (director) {
+        //     await api.user.post(`admin/franchise-director/${director.id}`, values);
+        //     message.success("Вы успешно изменили директора!");
+        // } else {
+        //     await api.user.post(`admin/franchise-director`, values);
+        //     message.success("Вы успешно добавили директора!");
+        // }
     };
 
     return <FormComponentData

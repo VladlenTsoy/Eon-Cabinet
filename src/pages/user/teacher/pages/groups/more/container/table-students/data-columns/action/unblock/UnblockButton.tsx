@@ -1,6 +1,5 @@
 import React from 'react';
-import {useAppContext} from "store/context/use-app-context";
-import { UnlockOutlined } from '@ant-design/icons';
+import {UnlockOutlined} from '@ant-design/icons';
 import {Button, Modal} from "antd";
 
 interface UnblockButtonProps {
@@ -8,8 +7,8 @@ interface UnblockButtonProps {
     fetch: () => void;
 }
 
+// TODO - api
 const UnblockButton: React.FC<UnblockButtonProps> = ({student, fetch}) => {
-    const {api} = useAppContext();
 
     const clickHandler = () => {
         Modal.confirm({
@@ -18,12 +17,12 @@ const UnblockButton: React.FC<UnblockButtonProps> = ({student, fetch}) => {
             // заблокирован доступ к его личному кабинету,
             //  разблокировать возможно только после 20 дней или оплаты.`,
             onOk: async () => {
-                await api.user.post(`/${student.id}/unblock`);
+                // await api.user.post(`/${student.id}/unblock`);
                 await fetch();
             }
         });
     };
 
-    return <Button shape="circle" icon={<UnlockOutlined />} size="large" onClick={clickHandler}/>;
+    return <Button shape="circle" icon={<UnlockOutlined/>} size="large" onClick={clickHandler}/>;
 };
 export default UnblockButton;

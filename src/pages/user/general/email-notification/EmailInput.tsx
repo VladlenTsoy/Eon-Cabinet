@@ -3,7 +3,6 @@ import styled from "styled-components";
 import ConfirmEmailBg from "../../../../assets/images/pages/login_page_bg.svg";
 import {Button, Typography, Form} from "antd";
 import {FormItem} from "../../../../lib/components";
-import {useAppContext} from "../../../../store/context/use-app-context";
 
 const {Title} = Typography;
 
@@ -22,15 +21,15 @@ interface EmailInputProps {
     changeDataCurrentUser?: any;
 }
 
+// TODO - api
 const EmailInput: React.FC<EmailInputProps> = ({changeDataCurrentUser, currentUser}) => {
-    const {api} = useAppContext();
     const [loading, setLoading] = useState(false);
 
     const handlerSubmit = async (values: any) => {
         setLoading(true);
         try {
-            const response = await api.user.patch(`/${currentUser.id}`, values);
-            return changeDataCurrentUser(response.data);
+            // const response = await api.user.patch(`/${currentUser.id}`, values);
+            // return changeDataCurrentUser(response.data);
         } catch (e) {
             console.log(e);
         }

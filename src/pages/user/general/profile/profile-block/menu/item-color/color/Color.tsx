@@ -2,10 +2,11 @@ import * as React from "react";
 import './Color.less';
 import {useState} from "react";
 import {message} from "antd";
-import {useAppContext} from "../../../../../../../../store/context/use-app-context";
+import {useLanguage} from "../../../../../../../../hooks/use-language";
 
+// TODO - api
 const ColorModalBlock = ({currentUser, changeDataCurrentUser}: any) => {
-    const {api, language} = useAppContext();
+    const {language} = useLanguage();
     const [currentColor, setCurrentColor] = useState(currentUser.setting.anzanColor);
 
     const changeColor = async (color: string) => {
@@ -13,8 +14,8 @@ const ColorModalBlock = ({currentUser, changeDataCurrentUser}: any) => {
         currentUser.setting.anzanColor = color;
 
         try{
-            const response = await api.user.patch(`/${currentUser.id}`, {setting: currentUser.setting});
-            changeDataCurrentUser(response.data);
+            // const response = await api.user.patch(`/${currentUser.id}`, {setting: currentUser.setting});
+            // changeDataCurrentUser(response.data);
             message.success('Вы успешно изменили цвет!');
         } catch (e) {
             message.error(language.common['cx002']);

@@ -5,7 +5,6 @@ import CoinSvg from "assets/images/icons/coin.svg";
 import {Button, Form, message} from "antd";
 import Stepper from "../../../../../../../../lib/components/stepper/Stepper";
 import styled from "styled-components";
-import {useAppContext} from "../../../../../../../../store/context/use-app-context";
 
 const ImageStyled = styled.div`
   margin-bottom: 1rem;
@@ -20,8 +19,8 @@ interface CoinButtonProps {
     selectUsersId: number[];
 }
 
+// TODO - api
 const CoinButton: React.FC<CoinButtonProps> = ({selectUsersId, fetchUsers}) => {
-    const {api} = useAppContext();
     const [visible, setVisible] = useState(false);
     const [loading, setLoading] = useState(false);
 
@@ -31,9 +30,9 @@ const CoinButton: React.FC<CoinButtonProps> = ({selectUsersId, fetchUsers}) => {
     const submitHandler = async (values: any) => {
         setLoading(true);
         try {
-            const response = await api.user.post('/teacher/coin/sent', {...values, ids: selectUsersId});
-            if (response.data.status === 'success')
-                message.success('Вы успешно отправили монеты!')
+            // const response = await api.user.post('/teacher/coin/sent', {...values, ids: selectUsersId});
+            // if (response.data.status === 'success')
+            //     message.success('Вы успешно отправили монеты!')
             setLoading(false)
             setVisible(false)
             fetchUsers()

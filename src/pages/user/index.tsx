@@ -9,7 +9,7 @@ const Teacher = React.lazy(() => import("./teacher/index"));
 const Admin = React.lazy(() => import("./admin/Admin"));
 const DirectorFranchise = React.lazy(() => import("./director-franchise/DirectorFranchise"));
 
-const User: React.FC = () => {
+const Index: React.FC = () => {
     const user = useSelector(userSelector);
 
     return <>
@@ -26,4 +26,4 @@ const User: React.FC = () => {
     </>;
 };
 
-export default User;
+export default Index;

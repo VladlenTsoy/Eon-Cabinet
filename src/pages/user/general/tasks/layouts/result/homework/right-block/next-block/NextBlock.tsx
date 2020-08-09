@@ -7,14 +7,14 @@ import {Button} from "antd";
 import {useHistory, useParams} from "react-router-dom";
 import {ResultMatchProps} from "../../Result";
 import {FlagOutlined} from '@ant-design/icons';
-import {useAppContext} from "../../../../../../../../../store/context/use-app-context";
+import {useUser} from "../../../../../../../../../hooks/use-user";
 
 interface NextBlockProps {
     nextTask: any;
 }
 
 const NextBlock: React.FC<NextBlockProps> = ({nextTask}) => {
-    const {user} = useAppContext();
+    const {user} = useUser();
     const {homeworkId, disciplineId} = useParams<ResultMatchProps>();
     const history = useHistory();
     const dispatch = useDispatch();

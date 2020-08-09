@@ -2,7 +2,6 @@ import React from "react";
 import CategoryItems from "./category-items/CategoryItems";
 import {message} from "antd";
 import usingModalEditor from "../../../../../lib/layouts/modal-editor/usingModalEditor";
-import {useAppContext} from "../../../../../store/context/use-app-context";
 
 const EditorButton = usingModalEditor(CategoryItems);
 
@@ -12,15 +11,14 @@ interface EditorCategoryButtonProps {
     fetch: any;
 }
 
+// TODO - api
 const EditorCategoryButton: React.FC<EditorCategoryButtonProps> = ({title, children, category, fetch}) => {
-    const {api} = useAppContext();
-
     const request = async (values: any) => {
         if (category) {
-            await api.user.post(`admin/category/${category.id}`, values);
+            // await api.user.post(`admin/category/${category.id}`, values);
             message.success("Вы успешно изменили категорию!");
         } else {
-            await api.user.post(`admin/category`, values);
+            // await api.user.post(`admin/category`, values);
             message.success("Вы успешно добавили категорию!");
         }
     };

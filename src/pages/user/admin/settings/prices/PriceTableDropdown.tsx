@@ -2,7 +2,6 @@ import React from 'react';
 import { DeleteOutlined, EditOutlined, MoreOutlined } from '@ant-design/icons';
 import { Button, Dropdown, Menu, Modal } from "antd";
 import EditorPriceButton from "./EditorPriceButton";
-import {useAppContext} from "../../../../../store/context/use-app-context";
 
 const confirm = Modal.confirm;
 
@@ -11,15 +10,14 @@ interface PriceTableDropdownProps {
     fetch: any,
 }
 
+// TODO - api
 const PriceTableDropdown: React.FC<PriceTableDropdownProps> = ({record, fetch}) => {
-    const {api} = useAppContext();
-
     const deletePrice = () =>
         confirm({
             title: 'Вы уверены, что хотите удалить?',
             okType: 'danger',
             onOk: async () => {
-                await api.user.delete(`admin/price/${record.id}`);
+                // await api.user.delete(`admin/price/${record.id}`);
                 fetch();
             },
         });

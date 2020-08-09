@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
-import {useAppContext} from "store/context/use-app-context";
+import {useSelector} from "react-redux";
+import {languageSelector} from "../../../../../../../../../../store/common/language/languageSlice";
 
 const AdditionWrapper = styled.div`
   div{
@@ -28,11 +29,11 @@ interface AdditionProps {
 }
 
 const AdditionBlock: React.FC<AdditionProps> = ({setting}) => {
-    const {language} = useAppContext();
+    const language = useSelector(languageSelector);
 
     return <AdditionWrapper>
         <ModeWrapper>
-            {language.common.modeNames[setting.mode]}
+            {language.data?.common.modeNames[setting.mode]}
         </ModeWrapper>
         <div>
             <span>Разряд чисел:</span>
@@ -40,7 +41,7 @@ const AdditionBlock: React.FC<AdditionProps> = ({setting}) => {
         </div>
         <div>
             <span>Режим:</span>
-            {language.common.typeNames[0][setting.type]}
+            {language.data?.common.typeNames[0][setting.type]}
         </div>
         <div>
             <span>Тема:</span>

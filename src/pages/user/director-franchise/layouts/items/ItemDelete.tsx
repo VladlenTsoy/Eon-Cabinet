@@ -2,10 +2,9 @@ import React from "react";
 import { DeleteOutlined } from '@ant-design/icons';
 import { message, Modal } from "antd";
 import {QuestionCircleOutlined } from "@ant-design/icons";
-import {useAppContext} from "../../../../../store/context/use-app-context";
 
+// TODO - api
 const ItemDelete: React.FC<any> = ({user, afterAction}) => {
-    const {api} = useAppContext();
 
     const deleteAccount = async (teacher: any) => {
         Modal.confirm({
@@ -15,9 +14,9 @@ const ItemDelete: React.FC<any> = ({user, afterAction}) => {
             okType: 'danger',
             async onOk() {
                 try {
-                    const response = await api.user.delete(`/${teacher.id}`);
-                    if (response.data.status === 'success')
-                        message.info(`Вы успешно удалили аккаунт ID: ${teacher.id}.`);
+                    // const response = await api.user.delete(`/${teacher.id}`);
+                    // if (response.data.status === 'success')
+                    //     message.info(`Вы успешно удалили аккаунт ID: ${teacher.id}.`);
                 } catch (e) {
                     message.error(`Произошла неизвестная ошибка!`);
                 }

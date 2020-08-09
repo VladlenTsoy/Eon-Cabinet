@@ -4,10 +4,10 @@ import {Table} from "lib/components";
 import EditorWordButton from "./EditorWordButton";
 import { MenuOutlined } from '@ant-design/icons';
 import WordTableDropdown from "./WordTableDropdown";
-import {useAppContext} from "../../../../../store/context/use-app-context";
+import {useLanguage} from "../../../../../hooks/use-language";
 
 const Words = () => {
-    const {language} = useAppContext();
+    const {language} = useLanguage();
     const [loader, setLoader] = useState(false);
 
     const fetchWords = () => {

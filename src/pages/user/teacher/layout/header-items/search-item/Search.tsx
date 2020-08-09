@@ -2,9 +2,9 @@ import React, {useState} from "react";
 import {LoadingOutlined, SearchOutlined} from '@ant-design/icons';
 import {Select} from "antd";
 import {SelectProps} from "antd/es/select";
-import {useAppContext} from "store/context/use-app-context";
 import styled from "styled-components";
 import SearchOption from "./SearchOption";
+import {useLanguage} from "../../../../../../hooks/use-language";
 // import {pdfRender} from "../../../training/tasks/print/general";
 
 const SearchWrapper = styled.div`
@@ -51,8 +51,9 @@ const SelectWrapper: React.FC<SelectProps<any>> = styled(Select)`
   }
 `;
 
+// TODO - api
 const Search = () => {
-    const {api, language} = useAppContext();
+    const {language} = useLanguage();
     const [data, setData] = useState<any>([]);
     const [timer, setTimer] = useState<any>(0);
     const [loading, setLoading] = useState(false);
@@ -62,8 +63,8 @@ const Search = () => {
         if (value.trim().length) {
             setLoading(true);
             setTimer(setTimeout(async () => {
-                let response = await api.user.get('/algorithm/check/list', {params: {search_id: value}});
-                setData(response.data.length ? response.data : null);
+                // let response = await api.user.get('/algorithm/check/list', {params: {search_id: value}});
+                // setData(response.data.length ? response.data : null);
                 setLoading(false);
             }, 1000));
         } else {

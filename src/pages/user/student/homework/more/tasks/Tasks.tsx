@@ -4,14 +4,15 @@ import {LoadingBlock} from "lib/components";
 import {DescriptionTitle} from "../../../../../../lib/components";
 import Task from "./task/Task";
 import {useApiUserGeneral} from "../../../../../../hooks/use-api-user-general.effect";
-import {useAppContext} from "store/context/use-app-context";
+import {useSelector} from "react-redux";
+import {languageSelector} from "../../../../../../store/common/language/languageSlice";
 
 interface Tasks {
     id: number;
 }
 
 const TasksMoreHomework: React.FC<Tasks> = ({id}) => {
-    const {language} = useAppContext();
+    const language = useSelector(languageSelector);
     const [loading, tasks] = useApiUserGeneral({url: `student/homework/send/${id}/tasks`, initValue: []});
 
     // Загрузка
@@ -21,7 +22,7 @@ const TasksMoreHomework: React.FC<Tasks> = ({id}) => {
         return <Empty
             description={
                 <>
-                    <DescriptionTitle>{language.common.empty}</DescriptionTitle>
+                    <DescriptionTitle>{language.data?.common.empty}</DescriptionTitle>
                     <span>Произошла ошибка! В домашнем задание нет упражнений.</span>
                 </>
             }

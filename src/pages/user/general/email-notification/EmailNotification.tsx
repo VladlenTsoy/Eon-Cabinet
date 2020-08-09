@@ -2,10 +2,10 @@ import React, {useState} from 'react';
 import {Modal} from "../../../../lib/components";
 import EmailInput from "./EmailInput";
 import ConfirmEmail from "./confirm-email/ConfirmEmail";
-import {useAppContext} from "../../../../store/context/use-app-context";
+import {useUser} from "../../../../hooks/use-user";
 
 const EmailNotification: React.FC = () => {
-    const {user, updateUser} = useAppContext();
+    const {user, updateUser} = useUser();
     const [visible, setVisible] = useState(!user.email_verified_at);
 
     const close = () => setVisible(false);

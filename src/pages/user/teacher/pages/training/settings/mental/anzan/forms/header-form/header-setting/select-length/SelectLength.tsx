@@ -1,7 +1,7 @@
 import React from 'react';
 import {Col, Select} from "antd";
 import {FormItem} from "../../../../../../../../../../../../lib/components";
-import {useAppContext} from "store/context/use-app-context";
+import {useLanguage} from "../../../../../../../../../../../../hooks/use-language";
 
 const {Option} = Select;
 
@@ -20,7 +20,7 @@ const SelectLength: React.FC<SelectLengthProps> = (
         isThemes,
     }
 ) => {
-    const {language} = useAppContext();
+    const {language} = useLanguage();
 
     return <Col sm={isMultiplication && !isThemes ? 12 : 8} xs={12}>
         <FormItem

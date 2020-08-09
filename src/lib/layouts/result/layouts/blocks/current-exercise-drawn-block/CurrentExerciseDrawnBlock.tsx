@@ -4,7 +4,7 @@ import {Button, Modal} from "antd";
 import {EyeOutlined, ThunderboltOutlined, QuestionCircleOutlined} from '@ant-design/icons';
 import {useSelector} from "react-redux";
 import {gameSelector} from "../../../../../../store/common/game/gameSplice";
-import {useAppContext} from "../../../../../../store/context/use-app-context";
+import {useUser} from "../../../../../../hooks/use-user";
 
 interface CurrentExerciseDrawnBlockProps {
     resultId?: number;
@@ -12,6 +12,7 @@ interface CurrentExerciseDrawnBlockProps {
     updateIsView: (state: boolean) => void;
 }
 
+// TODO - api
 const CurrentExerciseDrawnBLock: React.FC<CurrentExerciseDrawnBlockProps> = (
     {
         children,
@@ -20,19 +21,19 @@ const CurrentExerciseDrawnBLock: React.FC<CurrentExerciseDrawnBlockProps> = (
         updateIsView
     }
 ) => {
-    const {api, user} = useAppContext();
+    const {user} = useUser();
     const {stats} = useSelector(gameSelector);
 
     const [visible, setVisible] = useState(false);
 
     const viewResult = useCallback(async () => {
-        if (user)
-            await api.user.post(`/student/homework/result/${resultId}/view`);
-        else
-            await api.guest.post(`/guest/homework/result/${resultId}/view`);
+        // if (user)
+        //     await api.user.post(`/student/homework/result/${resultId}/view`);
+        // else
+        //     await api.guest.post(`/guest/homework/result/${resultId}/view`);
         updateIsView(true);
         setVisible(true);
-    }, [user, api.user, api.guest, resultId, updateIsView]);
+    }, [user, resultId, updateIsView]);
 
     const open = () => {
         if (resultId && !isView) {

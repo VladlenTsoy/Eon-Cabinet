@@ -4,7 +4,7 @@ import {FlagOutlined, HomeOutlined, CheckCircleOutlined} from '@ant-design/icons
 import {Link} from "react-router-dom";
 import {Card} from "lib/components";
 import {Button} from "antd";
-import {useAppContext} from "store/context/use-app-context";
+import {useLanguage} from "../../../../../hooks/use-language";
 
 const HomeworkWrapper = styled.div`
   display: block;
@@ -48,7 +48,7 @@ interface HomeworkBlockProps {
 }
 
 const HomeworkBlock: React.FC<HomeworkBlockProps> = ({homework}) => {
-    const {language} = useAppContext();
+    const {language} = useLanguage();
     return (
         <Card className="animated fadeIn">
             <HomeworkWrapper>

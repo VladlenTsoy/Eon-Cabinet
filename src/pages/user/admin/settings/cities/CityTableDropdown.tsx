@@ -2,7 +2,6 @@ import React from 'react';
 import { DeleteOutlined, EditOutlined, MoreOutlined } from '@ant-design/icons';
 import { Button, Dropdown, Menu, Modal } from "antd";
 import EditorCityButton from "./EditorCityButton";
-import {useAppContext} from "../../../../../store/context/use-app-context";
 
 const confirm = Modal.confirm;
 
@@ -11,15 +10,14 @@ interface CityTableDropdownProps {
     fetch: any,
 }
 
+// TODO - api
 const CityTableDropdown: React.FC<CityTableDropdownProps> = ({record, fetch}) => {
-    const {api} = useAppContext();
-
     const deleteCity = () =>
         confirm({
             title: 'Вы уверены, что хотите удалить?',
             okType: 'danger',
             onOk: async () => {
-                await api.user.delete(`admin/city/${record.id}`);
+                // await api.user.delete(`admin/city/${record.id}`);
                 fetch();
             },
         });

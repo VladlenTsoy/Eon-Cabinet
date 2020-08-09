@@ -2,7 +2,6 @@ import React from "react";
 import DigitalPictureItems from "./DigitalPictureItems";
 import {message} from "antd";
 import usingModalEditor from "../../../../../lib/layouts/modal-editor/usingModalEditor";
-import {useAppContext} from "../../../../../store/context/use-app-context";
 
 const EditorButton = usingModalEditor(DigitalPictureItems);
 
@@ -12,15 +11,15 @@ interface EditorDigitalPictureButtonProps {
     fetch: any;
 }
 
+// TODO - api
 const EditorDigitalPictureButton: React.FC<EditorDigitalPictureButtonProps> = ({title, children, digitalPicture, fetch}) => {
-    const {api} = useAppContext();
 
     const request = async (values: any) => {
         if (digitalPicture) {
-            await api.user.post(`admin/digital-picture/${digitalPicture.id}`, values);
+            // await api.user.post(`admin/digital-picture/${digitalPicture.id}`, values);
             message.success("Вы успешно изменили Цифру-Картинку!");
         } else {
-            await api.user.post(`admin/digital-picture`, values);
+            // await api.user.post(`admin/digital-picture`, values);
             message.success("Вы успешно добавили Цифру-Картинку!");
         }
     };

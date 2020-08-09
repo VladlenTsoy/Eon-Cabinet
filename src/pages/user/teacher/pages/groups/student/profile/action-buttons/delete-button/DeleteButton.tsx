@@ -1,5 +1,4 @@
 import React from 'react';
-import {useAppContext} from "store/context/use-app-context";
 import {Modal} from "antd";
 
 const {confirm} = Modal;
@@ -9,8 +8,8 @@ interface DeleteButtonProps {
     fetch: () => void;
 }
 
+// TODO - api
 const DeleteButton: React.FC<DeleteButtonProps> = ({student, fetch, children}) => {
-    const {api} = useAppContext();
 
     const deleteUsers = () => {
         confirm({
@@ -18,7 +17,7 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({student, fetch, children}) =
             okText: 'Да',
             okType: 'danger',
             async onOk() {
-                await api.user.delete(`teacher/student/${student.id}`);
+                // await api.user.delete(`teacher/student/${student.id}`);
                 await fetch();
             },
         });

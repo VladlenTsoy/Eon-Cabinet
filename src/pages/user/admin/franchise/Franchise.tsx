@@ -4,11 +4,10 @@ import CenterTable from "./center-table/CenterTable";
 import EditorCenterButton from "./center-table/EditorCenterButton";
 import {useChangeActionNavbar} from "../../../../hooks/use-change-action-navbar.effect";
 import {useChangeTitle} from "../../../../hooks/use-change-title.effect";
-import {useAppContext} from "../../../../store/context/use-app-context";
 import {PlusOutlined} from "@ant-design/icons";
 
+// TODO - api
 const Franchise: React.FC<any> = ({match}) => {
-    const {api} = useAppContext();
     const [loading, setLoading] = useState(false);
     const [franchise, setFranchise] = useState();
 
@@ -16,9 +15,9 @@ const Franchise: React.FC<any> = ({match}) => {
     useChangeActionNavbar({action: 'back'});
 
     const fetch = useCallback(async () => {
-        const response = await api.user.get(`admin/franchise/${match.params.id}`);
-        setFranchise(response.data);
-    }, [api.user, match.params.id]);
+        // const response = await api.user.get(`admin/franchise/${match.params.id}`);
+        // setFranchise(response.data);
+    }, [match.params.id]);
 
     useEffect(() => {
         (async () => {

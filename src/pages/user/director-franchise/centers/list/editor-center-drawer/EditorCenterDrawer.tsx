@@ -3,7 +3,6 @@ import React from 'react';
 import CenterItems from "../../../../../../lib/layouts/drawer-editor/editor-center/FormEditorCenterItems";
 import usingDrawerEditorNew from "../../../../../../lib/layouts/drawer-editor/usingDrawerEditor.new";
 import {message} from "antd";
-import {useAppContext} from "../../../../../../store/context/use-app-context";
 
 const EditorButton = usingDrawerEditorNew(CenterItems);
 
@@ -13,6 +12,7 @@ interface EditorCenterDrawerProps {
     fetch: any;
 }
 
+// TODO - api
 const EditorCenterDrawer: React.FC<EditorCenterDrawerProps> = (
     {
         pagination,
@@ -21,13 +21,12 @@ const EditorCenterDrawer: React.FC<EditorCenterDrawerProps> = (
         children
     }
 ) => {
-    const {api} = useAppContext();
     const request = async (values: any) => {
         if (center) {
-            await api.user.post(`director-franchise/center/${center.id}`, values);
+            // await api.user.post(`director-franchise/center/${center.id}`, values);
             message.success("Вы успешно изменили центр!");
         } else {
-            await api.user.post(`director-franchise/center`, values);
+            // await api.user.post(`director-franchise/center`, values);
             message.success("Вы успешно добавили центр!");
         }
     };

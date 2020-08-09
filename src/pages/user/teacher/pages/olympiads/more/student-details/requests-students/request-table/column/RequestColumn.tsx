@@ -1,7 +1,6 @@
 import React from 'react';
 import Avatar from "../../../../../../../../../../lib/components/avatar/Avatar";
 import {Button, Modal, notification} from "antd";
-import {useAppContext} from "../../../../../../../../../../store/context/use-app-context";
 
 interface RequestColumnProps {
     student: any;
@@ -9,18 +8,18 @@ interface RequestColumnProps {
     setIsChange: (isChange: boolean) => void;
 }
 
+// TODO - api
 const RequestColumn: React.FC<RequestColumnProps> = ({student, fetch, setIsChange}) => {
-    const {api} = useAppContext();
 
     const acceptRequestStudent = async () => {
         Modal.confirm({
             title: `Добавить (${student.first_name} ${student.last_name}) к участникам олимпиады?`,
             async onOk() {
-                await api.user.patch(
-                    `teacher/olympiad/request/${student.request_id}`,
-                    {status: 'confirmed'}
-                );
-                notification.success({message: `${student.first_name} ${student.last_name} добавлен к участникам олимпиады!`});
+                // await api.user.patch(
+                //     `teacher/olympiad/request/${student.request_id}`,
+                //     {status: 'confirmed'}
+                // );
+                // notification.success({message: `${student.first_name} ${student.last_name} добавлен к участникам олимпиады!`});
                 await fetch();
                 setIsChange(true);
             }
@@ -32,11 +31,11 @@ const RequestColumn: React.FC<RequestColumnProps> = ({student, fetch, setIsChang
             title: `Отказать в участии ученику (${student.first_name} ${student.last_name})?`,
             okType: 'danger',
             async onOk() {
-                await api.user.patch(
-                    `teacher/olympiad/request/${student.request_id}`,
-                    {status: 'denied'}
-                );
-                notification.error({message: `Ученику (${student.first_name} ${student.last_name}) отказано!`});
+                // await api.user.patch(
+                //     `teacher/olympiad/request/${student.request_id}`,
+                //     {status: 'denied'}
+                // );
+                // notification.error({message: `Ученику (${student.first_name} ${student.last_name}) отказано!`});
                 await fetch();
                 setIsChange(true);
             }

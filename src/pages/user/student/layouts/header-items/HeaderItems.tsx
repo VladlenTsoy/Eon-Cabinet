@@ -3,12 +3,12 @@ import React from "react";
 import {Typography} from "antd";
 import {HeaderItem} from "../../../../../lib/components";
 import Coins from "../../../../../lib/components/coins/Coins";
-import {useAppContext} from "../../../../../store/context/use-app-context";
+import {useUser} from "../../../../../hooks/use-user";
 
 const {Text} = Typography;
 
 const HeaderItems = () => {
-    const {user} = useAppContext();
+    const {user} = useUser();
 
     return [
         <HeaderItem key="empty" mr="auto"/>,

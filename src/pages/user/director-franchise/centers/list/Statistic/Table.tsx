@@ -2,7 +2,6 @@ import React, {useCallback, useEffect, useState} from "react";
 import {CardTable} from "lib/components";
 import {Table, Typography} from "antd";
 import moment from "moment";
-import {useAppContext} from "../../../../../../store/context/use-app-context";
 
 const {Text} = Typography;
 
@@ -54,15 +53,15 @@ const expandedRowRender = (data: any) => {
         pagination={false}/>;
 };
 
+// TODO - api
 const TableCentersStatistic: React.FC<any> = ({url}) => {
-    const {api} = useAppContext();
     const [centers, setCenters] = useState([]);
     const [loader, setLoader] = useState(false);
 
     const fetch = useCallback(async () => {
-        const response = await api.user.get(url);
-        setCenters(response.data);
-    }, [api.user, url]);
+        // const response = await api.user.get(url);
+        // setCenters(response.data);
+    }, [url]);
 
     useEffect(() => {
         (async () => {

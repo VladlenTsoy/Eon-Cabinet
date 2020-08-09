@@ -7,7 +7,7 @@ import {userSelector} from "../store/common/user/userSlice";
 import "../styles/style.less";
 
 const Guest = React.lazy(() => import("./guest/index"));
-const User = React.lazy(() => import("./user/User"));
+const User = React.lazy(() => import("./user/index"));
 
 const Index = () => {
     const user = useSelector(userSelector);

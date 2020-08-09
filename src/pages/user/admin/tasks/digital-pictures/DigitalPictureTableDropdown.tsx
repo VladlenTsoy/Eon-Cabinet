@@ -2,7 +2,6 @@ import React from 'react';
 import { DeleteOutlined, EditOutlined, MoreOutlined } from '@ant-design/icons';
 import { Button, Dropdown, Menu, Modal } from "antd";
 import EditorDigitalPictureButton from "./EditorDigitalPictureButton";
-import {useAppContext} from "../../../../../store/context/use-app-context";
 
 const confirm = Modal.confirm;
 
@@ -11,15 +10,15 @@ interface DigitalPictureTableDropdownProps {
     fetch: any,
 }
 
+// TODO - api
 const DigitalPictureTableDropdown: React.FC<DigitalPictureTableDropdownProps> = ({record, fetch}) => {
-    const {api} = useAppContext();
 
     const deleteDigitalPicture = () =>
         confirm({
             title: 'Вы уверены, что хотите удалить?',
             okType: 'danger',
             onOk: async () => {
-                await api.user.delete(`admin/digital-picture/${record.id}`);
+                // await api.user.delete(`admin/digital-picture/${record.id}`);
                 fetch();
             },
         });

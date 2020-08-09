@@ -1,16 +1,15 @@
 import React, {useState} from "react";
 import {NavigationButton} from "../../../../lib/components";
 import {SaveOutlined} from "@ant-design/icons";
-import {useAppContext} from "../../../../store/context/use-app-context";
 
+// TODO - api
 const ExportToExcel: React.FC = () => {
-    const {api} = useAppContext();
     const [loading, setLoading] = useState(false);
 
     const saveStatistic = async () => {
         setLoading(true);
-        const response = await api.user(`admin/teachers/export/excel`);
-        window.open(response.data.file_url);
+        // const response = await api.user(`admin/teachers/export/excel`);
+        // window.open(response.data.file_url);
         setLoading(false);
     };
 

@@ -1,7 +1,8 @@
 import React from 'react';
-import {useAppContext} from "store/context/use-app-context";
 import styled from "styled-components";
 import TextFit from "./TextFit";
+import {useSelector} from "react-redux";
+import {languageSelector} from "../../../../../../../../../../store/common/language/languageSlice";
 
 const MultiplicationWrapper = styled.div`
   padding: 0 1rem;
@@ -39,16 +40,16 @@ interface MultiplicationProps {
 }
 
 const MultiplicationBlock: React.FC<MultiplicationProps> = ({setting}) => {
-    const {language} = useAppContext();
+    const language = useSelector(languageSelector)
 
     return <MultiplicationWrapper>
         <span className="title">Режим</span>
         <div className="fit">
         <TextFit>
             <div className="desc">
-                {language.common.lengthNames[setting.length]}&nbsp;
-                <span>{language.common.modeNames[setting.mode]}&nbsp;</span>
-                {setting.type === 'o' ? setting.theme : language.common.typeNames[1][setting.type]}
+                {language.data?.common.lengthNames[setting.length]}&nbsp;
+                <span>{language.data?.common.modeNames[setting.mode]}&nbsp;</span>
+                {setting.type === 'o' ? setting.theme : language.data?.common.typeNames[1][setting.type]}
             </div>
         </TextFit>
         </div>

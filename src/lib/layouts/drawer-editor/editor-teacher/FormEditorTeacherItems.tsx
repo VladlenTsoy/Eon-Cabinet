@@ -6,7 +6,7 @@ import SelectStatus from "./SelectStatus";
 import InputPhoto from "../../../components/form/InputPhoto";
 import EditorCenterButton from "../../../../pages/user/admin/franchise/center-table/EditorCenterButton";
 import {FormInstance} from "antd/es/form";
-import {useAppContext} from "../../../../store/context/use-app-context";
+import {useUser} from "../../../../hooks/use-user";
 
 interface FormEditorTeacherItemsProps {
     form: FormInstance;
@@ -16,7 +16,7 @@ interface FormEditorTeacherItemsProps {
 }
 
 const FormEditorTeacherItems: React.FC<FormEditorTeacherItemsProps> = ({form, data, franchise_id, setIsSaveBtn}) => {
-    const {user} = useAppContext();
+    const {user} = useUser();
 
     useEffect(() => {
         setIsSaveBtn(true);

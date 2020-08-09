@@ -1,7 +1,7 @@
 import React from 'react';
 import {Col, Select} from "antd";
 import {FormItem} from "../../../../../../../../../../../../lib/components";
-import {useAppContext} from "store/context/use-app-context";
+import {useLanguage} from "../../../../../../../../../../../../hooks/use-language";
 
 const {Option} = Select;
 
@@ -18,7 +18,7 @@ const SelectTheme: React.FC<SelectThemeProps> = (
         isThemes
     }
 ) => {
-    const {language} = useAppContext();
+    const {language} = useLanguage();
 
     return <>
         {!isMultiplication ?

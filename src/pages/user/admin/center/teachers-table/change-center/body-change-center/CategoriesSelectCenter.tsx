@@ -3,7 +3,6 @@ import {Alert} from "../../../../../../../lib/components";
 import {Row} from "antd";
 import styled from "styled-components";
 import FormItemWrapper from "./FormItemWrapper";
-import {useAppContext} from "../../../../../../../store/context/use-app-context";
 
 const CategoriesWrapper = styled.div`
   width: 100%;
@@ -23,15 +22,15 @@ interface CategoriesSelectCenterProps {
     categoriesCurrentCenter: any;
 }
 
+// TODO - api
 const CategoriesSelectCenter: React.FC<CategoriesSelectCenterProps> = ({teacher, centerId, currentCenterId, categoriesCurrentCenter}) => {
-    const {api} = useAppContext();
     const [loading, setLoading] = useState(false);
     const [categories, setCategories] = useState<any>([]);
 
     const fetch = useCallback(async () => {
-        let response = await api.user.get(`admin/categories/center/${centerId}`);
-        setCategories(response.data);
-    }, [api.user, centerId]);
+        // let response = await api.user.get(`admin/categories/center/${centerId}`);
+        // setCategories(response.data);
+    }, []);
 
     useEffect(() => {
         (async () => {

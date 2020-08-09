@@ -2,10 +2,10 @@ import React, {useMemo, useState} from "react";
 import {SaveOutlined} from '@ant-design/icons';
 import {Button, Form, Input, message} from "antd";
 import {FormItem} from "../../../../../lib/components";
-import {useAppContext} from "../../../../../store/context/use-app-context";
+import {useLanguage} from "../../../../../hooks/use-language";
 
 const FormulTitleSettingAnzan: React.FC<any> = ({form, defaultTypes}) => {
-    const {language} = useAppContext();
+    const {language} = useLanguage();
     const [btnLoading, setBtnLoading] = useState(false);
     const types = Object.entries(language.common.typeNames[0]);
 

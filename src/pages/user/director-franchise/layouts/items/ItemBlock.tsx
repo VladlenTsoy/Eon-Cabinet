@@ -7,15 +7,16 @@ import {
     ExclamationCircleOutlined
 } from '@ant-design/icons';
 import {message, Modal} from "antd";
-import {useAppContext} from "../../../../../store/context/use-app-context";
+import {useUser} from "../../../../../hooks/use-user";
 
 interface ItemBlockProps {
     user: any;
     afterAction?: () => void;
 }
 
+// TODO - api
 const ItemBlock: React.FC<ItemBlockProps> = ({user, afterAction}) => {
-    const {api, user:currentUser} = useAppContext();
+    const {user: currentUser} = useUser();
 
     const activationAccount = async (teacher: any) => {
         Modal.confirm({
@@ -25,9 +26,9 @@ const ItemBlock: React.FC<ItemBlockProps> = ({user, afterAction}) => {
             okType: 'danger',
             async onOk() {
                 try {
-                    const response = await api.user.post(`${teacher.id}/activation`);
-                    if (response.data.status === 'success')
-                        message.info(`Вы успешно активировали аккаунт ID: ${teacher.id}.`);
+                    // const response = await api.user.post(`${teacher.id}/activation`);
+                    // if (response.data.status === 'success')
+                    //     message.info(`Вы успешно активировали аккаунт ID: ${teacher.id}.`);
                 } catch (e) {
                     message.error(`Произошла неизвестная ошибка!`);
                 }
@@ -46,9 +47,9 @@ const ItemBlock: React.FC<ItemBlockProps> = ({user, afterAction}) => {
                 okType: 'danger',
                 async onOk() {
                     try {
-                        const response = await api.user.post(`${teacher.id}/block`);
-                        if (response.data.status === 'success')
-                            message.info(`Вы успешно заблокировали аккаунт ID: ${teacher.id}.`);
+                        // const response = await api.user.post(`${teacher.id}/block`);
+                        // if (response.data.status === 'success')
+                        //     message.info(`Вы успешно заблокировали аккаунт ID: ${teacher.id}.`);
                     } catch (e) {
                         message.error(`Произошла неизвестная ошибка!`);
                     }
@@ -73,9 +74,9 @@ const ItemBlock: React.FC<ItemBlockProps> = ({user, afterAction}) => {
                 okType: 'danger',
                 async onOk() {
                     try {
-                        const response = await api.user.post(`${teacher.id}/unblock`);
-                        if (response.data.status === 'success')
-                            message.info(`Вы успешно заблокировали аккаунт ID: ${teacher.id}.`);
+                        // const response = await api.user.post(`${teacher.id}/unblock`);
+                        // if (response.data.status === 'success')
+                        //     message.info(`Вы успешно заблокировали аккаунт ID: ${teacher.id}.`);
                     } catch (e) {
                         message.error(`Произошла неизвестная ошибка!`);
                     }

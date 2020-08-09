@@ -5,10 +5,10 @@ import {withRouter, RouteComponentProps} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {DescriptionTitle} from "../../../../../../../../../../../lib/components";
 import {changeIsSaved} from "../../../../../../../../../../../store/access/teacher/group/groupSlice";
-import {useAppContext} from "../../../../../../../../../../../store/context/use-app-context";
+import {useLanguage} from "../../../../../../../../../../../hooks/use-language";
 
 const HomeworkEmpty: React.FC<RouteComponentProps> = ({history}) => {
-    const {language} = useAppContext();
+    const {language} = useLanguage();
     const dispatch = useDispatch();
 
     const createHomeworkHandler = async () => {

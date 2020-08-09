@@ -1,9 +1,9 @@
 import React from 'react';
 import { RedoOutlined } from '@ant-design/icons';
 import {Button, Empty} from "antd";
-import {useAppContext} from "store/context/use-app-context";
 import {DescriptionTitle} from "../../../../../../lib/components";
 import styled from "styled-components";
+import {useLanguage} from "../../../../../../hooks/use-language";
 
 const EmptyWrapper = styled.div`
   padding: 2rem 1rem;
@@ -19,7 +19,7 @@ interface HomeworkEmptyProps {
 }
 
 const HomeworkEmpty: React.FC<HomeworkEmptyProps> = ({fetch}) => {
-    const {language} = useAppContext();
+    const {language} = useLanguage();
     const updateHandler = () => fetch();
 
     return (

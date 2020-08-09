@@ -1,4 +1,4 @@
-import React, {useCallback, useContext, useEffect} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import {ButtonLink, Card, TablePagination} from "../../../../../../../../lib/components";
 import {useDispatch, useSelector} from "react-redux";
 import {olympiadSelector} from "../../../../../../../../store/access/teacher/olympiad/olympiadSlice";
@@ -6,10 +6,10 @@ import {fetchPastOlympiads} from "../../../../../../../../store/access/teacher/o
 import TagAccess from "../../../../../../../../_components/teacher/olympiads/card-olympiad/tag-access/TagAccess";
 import {momentFormatCheckYear} from "../../../../../../../../utils/momentFormatCheckYear";
 import ProfileColumn from "../../../../groups/more/container/table-students/default-columns/profile/ProfileColumn";
-import {AppContext} from "../../../../../../../../store/context/appContext";
+import {useUser} from "../../../../../../../../hooks/use-user";
 
 const Pasts: React.FC = () => {
-    const {user} = useContext(AppContext);
+    const {user} = useUser();
     const {past} = useSelector(olympiadSelector);
     const dispatch = useDispatch();
 

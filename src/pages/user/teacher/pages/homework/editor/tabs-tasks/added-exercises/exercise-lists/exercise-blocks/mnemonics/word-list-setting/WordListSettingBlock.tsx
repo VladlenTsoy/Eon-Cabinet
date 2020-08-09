@@ -1,7 +1,7 @@
 import React from 'react';
-import {useAppContext} from "store/context/use-app-context";
 import styled from "styled-components";
 import { FileOutlined } from '@ant-design/icons';
+import {useLanguage} from "../../../../../../../../../../../../hooks/use-language";
 
 const TdAnzanWrapper = styled.td`
    color: ${props => props.theme.color_warning} !important;
@@ -15,7 +15,7 @@ interface WordListSettingBlockProps {
 }
 
 const WordListSettingBlock: React.FC<WordListSettingBlockProps> = ({setting}) => {
-    const {language} = useAppContext();
+    const {language} = useLanguage();
     return <>
         <tr>
             <TdAnzanWrapper colSpan={6}>

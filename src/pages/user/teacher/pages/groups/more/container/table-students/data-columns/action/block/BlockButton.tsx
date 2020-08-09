@@ -1,5 +1,4 @@
 import React from 'react';
-import {useAppContext} from "store/context/use-app-context";
 import { LockOutlined } from '@ant-design/icons';
 import {Button, Modal, Popover} from "antd";
 import styled from "styled-components";
@@ -14,8 +13,8 @@ const PopoverContent = styled.div`
   width: 200px;
 `;
 
+// TODO - api
 const BlockButton: React.FC<BlockButtonProps> = ({student, fetch}) => {
-    const {api} = useAppContext();
     const [, isBreakpoint] = useScreenWindow({breakpoint: 'sm'});
 
     const clickHandler = () => {
@@ -25,7 +24,7 @@ const BlockButton: React.FC<BlockButtonProps> = ({student, fetch}) => {
             заблокирован доступ к его личному кабинету,
              разблокировать возможно только после 20 дней или оплаты.`,
             onOk: async () => {
-                await api.user.post(`/${student.id}/block`);
+                // await api.user.post(`/${student.id}/block`);
                 fetch();
             }
         });

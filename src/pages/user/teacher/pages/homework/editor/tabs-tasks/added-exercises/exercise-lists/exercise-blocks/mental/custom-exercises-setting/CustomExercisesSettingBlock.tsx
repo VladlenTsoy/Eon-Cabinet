@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import {useAppContext} from "store/context/use-app-context";
 import AnzanType from "../anzan-setting/anzan-type/AnzanType";
 import styled from "styled-components";
+import {useLanguage} from "../../../../../../../../../../../../hooks/use-language";
 
 const TitleWrapper = styled.div`
   font-size: 18px;
@@ -14,7 +14,7 @@ interface CustomExercisesSettingBlockProps {
 }
 
 const CustomExercisesSettingBlock: React.FC<CustomExercisesSettingBlockProps> = ({setting}) => {
-    const {language} = useAppContext();
+    const {language} = useLanguage();
     const [isMultiplication] = useState(setting.mode === 'divide' || setting.mode === 'multiply');
 
     return <>

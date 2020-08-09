@@ -4,7 +4,6 @@ import CoinSvg from "../../../../../../assets/images/icons/coin.svg";
 import styled from "styled-components";
 import {Button, Typography} from "antd";
 import BgRays from "../../../../../../lib/layouts/result/layouts/bg-rays/BgRays";
-import {useAppContext} from "../../../../../../store/context/use-app-context";
 
 const {Title} = Typography;
 
@@ -26,14 +25,14 @@ interface CoinModalProps {
     coin: any
 }
 
+// TODO - api
 const CoinModal: React.FC<CoinModalProps> = ({coin}) => {
-    const {api} = useAppContext();
     const [visible, setVisible] = useState(true);
 
 
     const close = async () => {
         setVisible(false);
-        await api.user.get(`/student/coin/${coin.id}/view`)
+        // await api.user.get(`/student/coin/${coin.id}/view`)
     }
 
     return <>

@@ -1,7 +1,7 @@
 import React from 'react';
-import {useAppContext} from "store/context/use-app-context";
 import { FileOutlined } from '@ant-design/icons';
 import styled from "styled-components";
+import {useLanguage} from "../../../../../../../../../../../../hooks/use-language";
 
 const TdAnzanWrapper = styled.td`
    color: ${props => props.theme.color_warning} !important;
@@ -16,7 +16,7 @@ interface NumbersSettingBlockProps {
 }
 
 const NumbersSettingBlock:React.FC<NumbersSettingBlockProps> = ({setting}) => {
-    const {language} = useAppContext();
+    const {language} = useLanguage();
     return <>
         <tr>
             <TdAnzanWrapper colSpan={6}>

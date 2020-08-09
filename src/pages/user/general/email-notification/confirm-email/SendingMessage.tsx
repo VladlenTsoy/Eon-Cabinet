@@ -1,24 +1,23 @@
 import React, {useState} from 'react';
 import {Button} from "antd";
-import {useAppContext} from "../../../../../store/context/use-app-context";
 
 interface SendingMessageProps {
     updateIsSent: any;
     close: any;
 }
 
+// TODO - api
 const SendingMessage: React.FC<SendingMessageProps> = ({updateIsSent, close}) => {
-    const {api} = useAppContext();
     const [loading, setLoading] = useState(false);
 
     const sendingMessageHandler = async () => {
         try {
             setLoading(true);
-            let response = await api.user.post('/sending-message');
-            if (response.data.status === 'success') {
-
-                return updateIsSent(true);
-            }
+            // let response = await api.user.post('/sending-message');
+            // if (response.data.status === 'success') {
+            //
+            //     return updateIsSent(true);
+            // }
             setLoading(false);
         } catch (e) {
             console.log(e);

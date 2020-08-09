@@ -2,22 +2,21 @@ import React from "react";
 import {LockOutlined, SaveOutlined} from '@ant-design/icons';
 import {Button, Input, message, Form} from "antd";
 import {useState} from "react";
-import {useAppContext} from "../../../../../../../../store/context/use-app-context";
 
 interface PasswordProps {
     currentUser: any;
     closeModal: () => void;
 }
 
+// TODO - api
 const PasswordBlock: React.FC<PasswordProps> = ({currentUser, closeModal}) => {
     const [form] = Form.useForm();
-    const {api} = useAppContext();
     const [loading, setLoading] = useState(false);
 
     const handleSubmit = async (values: any) => {
         setLoading(true);
         try {
-            await api.user.post(`/${currentUser.id}/password`, values);
+            // await api.user.post(`/${currentUser.id}/password`, values);
             message.success('Вы успешно сменили пароль!');
             closeModal();
         } catch (e) {

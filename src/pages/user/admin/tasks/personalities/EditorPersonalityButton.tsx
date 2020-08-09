@@ -3,7 +3,6 @@ import PersonalityItems from "./PersonalityItems";
 import usingDrawerEditor from "../../../../../lib/layouts/drawer-editor/usingDrawerEditor";
 import {message} from "antd";
 import moment from 'moment';
-import {useAppContext} from "../../../../../store/context/use-app-context";
 
 const EditorButton = usingDrawerEditor(PersonalityItems);
 
@@ -13,15 +12,14 @@ interface EditorPersonalityButtonProps {
     fetch: any;
 }
 
+// TODO - api
 const EditorPersonalityButton: React.FC<EditorPersonalityButtonProps> = ({title, children, personality, fetch}) => {
-    const {api} = useAppContext();
-
     const request = async (values: any) => {
         if (personality) {
-            await api.user.post(`admin/personality/${personality.id}`, values);
+            // await api.user.post(`admin/personality/${personality.id}`, values);
             message.success("Вы успешно изменили личность!");
         } else {
-            await api.user.post(`admin/personality`, values);
+            // await api.user.post(`admin/personality`, values);
             message.success("Вы успешно добавили личность!");
         }
     };

@@ -6,7 +6,7 @@ import {Col, DatePicker, Row} from "antd";
 import SelectStatus from "../../../../../../../lib/layouts/drawer-editor/editor-teacher/SelectStatus";
 import InputPhoto from "../../../../../../../lib/components/form/InputPhoto";
 import {FormInstance} from "antd/es/form";
-import {useAppContext} from "../../../../../../../store/context/use-app-context";
+import {useUser} from "../../../../../../../hooks/use-user";
 
 interface TeacherItemsProps {
     form: FormInstance;
@@ -23,7 +23,7 @@ const TeacherItems: React.FC<TeacherItemsProps> = (
         setIsSaveBtn,
     }
 ) => {
-    const {user} = useAppContext();
+    const {user} = useUser();
 
     useEffect(() => {
         setIsSaveBtn(true);

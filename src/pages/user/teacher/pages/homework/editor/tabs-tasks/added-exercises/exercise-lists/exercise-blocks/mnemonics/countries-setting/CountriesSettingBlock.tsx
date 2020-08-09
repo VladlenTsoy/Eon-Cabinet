@@ -1,12 +1,12 @@
 import React from 'react';
-import {useAppContext} from "store/context/use-app-context";
+import {useLanguage} from "../../../../../../../../../../../../hooks/use-language";
 
 interface CountriesSettingBlockProps {
     setting: any;
 }
 
 const CountriesSettingBlock: React.FC<CountriesSettingBlockProps> = ({setting}) => {
-    const {language} = useAppContext();
+    const {language} = useLanguage();
     return <>
         <tr>
             <td className="text-mute">Мод:</td>

@@ -2,10 +2,10 @@ import React from "react";
 import {CardStatistic} from "../../../../../lib/components";
 import {useApiUserGeneral} from "../../../../../hooks/use-api-user-general.effect";
 import {TeamOutlined} from "@ant-design/icons";
-import {useAppContext} from "../../../../../store/context/use-app-context";
+import {useUser} from "../../../../../hooks/use-user";
 
 const TeacherCounter: React.FC<any> = () => {
-    const {user} = useAppContext();
+    const {user} = useUser();
     const [loading, counter] = useApiUserGeneral({url: `/${user.access}/teacher-counter`});
 
     return <CardStatistic

@@ -2,7 +2,6 @@ import React from "react";
 import WordItems from "./WordItems";
 import {message} from "antd";
 import usingModalEditor from "../../../../../lib/layouts/modal-editor/usingModalEditor";
-import {useAppContext} from "../../../../../store/context/use-app-context";
 
 const EditorButton = usingModalEditor(WordItems);
 
@@ -12,15 +11,15 @@ interface EditorWordButtonProps {
     fetch: any;
 }
 
+// TODO - api
 const EditorWordButton: React.FC<EditorWordButtonProps> = ({title, children, word, fetch}) => {
-    const {api} = useAppContext();
 
     const request = async (values: any) => {
         if (word) {
-            await api.user.post(`admin/word/${word.id}`, values);
+            // await api.user.post(`admin/word/${word.id}`, values);
             message.success("Вы успешно изменили слово!");
         } else {
-            await api.user.post(`admin/word`, values);
+            // await api.user.post(`admin/word`, values);
             message.success("Вы успешно добавили слово!");
         }
     };

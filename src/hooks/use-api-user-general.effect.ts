@@ -1,6 +1,5 @@
 import {useCallback, useEffect, useMemo, useState} from "react";
 import axios from "axios";
-import {useAppContext} from "../store/context/use-app-context";
 
 const CancelToken = axios.CancelToken;
 
@@ -20,6 +19,7 @@ type FHProps<P> = {
     access?: 'user'| 'guest';
 }
 
+// TODO - api
 export const useApiUserGeneral: FH = (
     {
         url,
@@ -31,7 +31,6 @@ export const useApiUserGeneral: FH = (
         access = 'user'
     }
 ) => {
-    const {api} = useAppContext();
     const [configuration] = useState<any>(config);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string>();
@@ -39,36 +38,7 @@ export const useApiUserGeneral: FH = (
     const source = useMemo(() => CancelToken.source(), []);
 
     const fetch = useCallback((params?) => {
-        setLoading(true);
-        (
-            method === 'post' ?
-                api[access].post(url, configuration.params, {
-                    ...configuration,
-                    ...params ? {params} : {},
-                    cancelToken: source.token
-                }) :
-                api[access].get(url, {
-                    ...configuration,
-                    ...params ? {params} : {},
-                    cancelToken: source.token
-                })
-        )
-            .then(async (response: any) => {
-                setData(response.data);
-
-                if (afterRequest)
-                    await afterRequest(response.data, params || configuration.params);
-
-                setLoading(false);
-            }).catch((thrown: any) => {
-            if (axios.isCancel(thrown)) {
-                // console.log('Request canceled', thrown.message);
-            } else {
-                setError(thrown && thrown.response ? thrown.response.data : thrown);
-                setLoading(false);
-            }
-        });
-    }, [method, api, access, url, configuration, source.token]);
+    }, [method, access, url, configuration, source.token]);
 
     useEffect(() => {
         if (!cancel) {

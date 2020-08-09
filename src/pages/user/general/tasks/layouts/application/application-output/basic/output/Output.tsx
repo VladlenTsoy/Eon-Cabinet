@@ -2,7 +2,7 @@ import React from 'react';
 import styled from "styled-components";
 import TextFit
     from "pages/user/teacher/pages/training/settings/mental/multi-anzan/exercise-setting/multiplication-block/TextFit";
-import {useAppContext} from "store/context/use-app-context";
+import {useUser} from "../../../../../../../../../hooks/use-user";
 
 interface OutputStyleProps extends React.HTMLAttributes<HTMLDivElement> {
     time: number;
@@ -50,7 +50,7 @@ interface OutputProps {
 }
 
 const Output: React.FC<OutputProps> = ({output, time}) => {
-    const {user} = useAppContext();
+    const {user} = useUser();
     return <OutputWrapper
         time={time}
         className={`text-wrapper ${user?.setting?.anzanColor || 'black'}`}

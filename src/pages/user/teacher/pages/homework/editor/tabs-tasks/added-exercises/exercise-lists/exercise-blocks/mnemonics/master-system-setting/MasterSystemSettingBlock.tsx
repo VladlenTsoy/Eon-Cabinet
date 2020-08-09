@@ -1,12 +1,12 @@
 import React from 'react';
-import {useAppContext} from "store/context/use-app-context";
+import {useLanguage} from "../../../../../../../../../../../../hooks/use-language";
 
 interface MasterSystemSettingBlockProps {
-setting: any;
+    setting: any;
 }
 
-const MasterSystemSettingBlock:React.FC<MasterSystemSettingBlockProps> = ({setting}) => {
-    const {language} = useAppContext();
+const MasterSystemSettingBlock: React.FC<MasterSystemSettingBlockProps> = ({setting}) => {
+    const {language} = useLanguage();
     return <>
         <tr>
             <td className="text-mute">Мод:</td>

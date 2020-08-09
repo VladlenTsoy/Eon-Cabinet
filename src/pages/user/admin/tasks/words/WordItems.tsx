@@ -1,7 +1,7 @@
 import React from "react";
 import {Input, Select} from "antd";
 import {FormItem} from "../../../../../lib/components";
-import {useAppContext} from "../../../../../store/context/use-app-context";
+import {useLanguage} from "../../../../../hooks/use-language";
 
 const {TextArea} = Input;
 const {Option} = Select;
@@ -10,7 +10,7 @@ interface PersonalityItemsProps {
 }
 
 const WordItems: React.FC<PersonalityItemsProps> = () => {
-    const {language} = useAppContext();
+    const {language} = useLanguage();
     const types = language.common.tasksTraining.wordsList.mode;
     const levels = language.common.tasksTraining.wordsList.type;
 

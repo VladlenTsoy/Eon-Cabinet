@@ -3,8 +3,8 @@ import styled from "styled-components";
 import {ButtonLink} from "lib/components";
 import {DescriptionTitle} from "../../../../../../lib/components";
 import {Empty} from "antd";
-import {useAppContext} from "store/context/use-app-context";
 import {TrophyOutlined} from "@ant-design/icons";
+import {useLanguage} from "../../../../../../hooks/use-language";
 
 const EmptyWrapper = styled.div`
   padding: 2rem 1rem;
@@ -17,7 +17,7 @@ const EmptyWrapper = styled.div`
 `;
 
 const OlympiadEmpty = () => {
-    const {language} = useAppContext();
+    const {language} = useLanguage();
 
     return <EmptyWrapper className="animated bounceIn">
         <Empty

@@ -1,12 +1,12 @@
 import React from 'react';
-import {useAppContext} from "store/context/use-app-context";
+import {useLanguage} from "../../../../../../../../../../../../hooks/use-language";
 
 interface PersonalitiesSettingBlockProps {
     setting: any;
 }
 
 const PersonalitiesSettingBlock:React.FC<PersonalitiesSettingBlockProps> = ({setting}) => {
-    const {language} = useAppContext();
+    const {language} = useLanguage();
     return <>
         <tr>
             <td className="text-mute">Мод:</td>

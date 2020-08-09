@@ -8,9 +8,9 @@ import NextArrow from "lib/components/carousel/next-arrow/NextArrow";
 import {useApiUserGeneral} from "../../../../../../hooks/use-api-user-general.effect";
 import CardOlympiad from "./card/CardOlympiad";
 import {DescriptionTitle} from "../../../../../../lib/components";
-import {useAppContext} from "store/context/use-app-context";
 import {useScreenWindow} from "../../../../../../hooks/use-screen-window.effect";
 import {useWindowSize} from "react-use";
+import {useLanguage} from "../../../../../../hooks/use-language";
 
 const CardsWrapper = styled.div`
   display: grid;
@@ -34,7 +34,7 @@ interface CurrentOlympiadsProps {
 const CurrentOlympiads: React.FC<CurrentOlympiadsProps> = () => {
     const {width} = useWindowSize();
     const [, isBreakpoint] = useScreenWindow({breakpoint: 'md'});
-    const {language} = useAppContext();
+    const {language} = useLanguage();
     const [loading, olympiads, , fetch] = useApiUserGeneral({
         url: 'student/olympiads/current',
         initValue: [],

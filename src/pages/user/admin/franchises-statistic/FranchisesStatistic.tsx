@@ -5,7 +5,6 @@ import {Navigation} from "../../../../lib/components";
 import moment from "moment";
 import ExportToExcel from "./ExportToExcel";
 import {useChangeActionNavbar} from "../../../../hooks/use-change-action-navbar.effect";
-import {useAppContext} from "../../../../store/context/use-app-context";
 
 const {Text} = Typography;
 
@@ -55,16 +54,15 @@ let columns = [
 ];
 
 const FranchisesStatistic: React.FC = () => {
-    const {api} = useAppContext();
     const [teaches, setTeachers] = useState([]);
     const [loading, setLoading] = useState(false);
 
     useChangeActionNavbar({action: 'back'});
 
     const fetchTeacher = useCallback(async () => {
-        const response = await api.user.get(`/admin/check/teachers`);
-        setTeachers(response.data);
-    }, [api.user]);
+        // const response = await api.user.get(`/admin/check/teachers`);
+        // setTeachers(response.data);
+    }, []);
 
     useEffect(() => {
         (async () => {

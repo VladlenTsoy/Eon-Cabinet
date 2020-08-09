@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
-import {useAppContext} from "store/context/use-app-context";
 import AnzanType from "./anzan-type/AnzanType";
+import {useLanguage} from "../../../../../../../../../../../../hooks/use-language";
 
 interface AnzanSettingBlockProps {
     setting: any;
 }
 
 const AnzanSettingBlock: React.FC<AnzanSettingBlockProps> = ({setting}) => {
-    const {language} = useAppContext();
+    const {language} = useLanguage();
     const [isMultiplication] = useState(setting.mode === 'divide' || setting.mode === 'multiply');
 
     return <>

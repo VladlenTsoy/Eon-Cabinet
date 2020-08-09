@@ -2,7 +2,6 @@ import React from 'react';
 import { StopOutlined } from '@ant-design/icons';
 import {Button, message, Modal, Typography} from "antd";
 import styled from "styled-components";
-import {useAppContext} from "store/context/use-app-context";
 import {withRouter, RouteComponentProps} from "react-router-dom";
 import ButtonSaveOlympiad from "../../../editor/steps-setting/actions/save/ButtonSaveOlympiad";
 
@@ -50,8 +49,8 @@ type TitleProps = RouteComponentProps & {
     fetch: () => void;
 }
 
+// TODO - api
 const TitleInfo: React.FC<TitleProps> = ({olympiad,fetch, history}) => {
-    const {api} = useAppContext();
     const finishOlympiad = () => {
         confirm({
             title: 'Вы уверены что хотите завершить олимпиаду?',
@@ -59,12 +58,12 @@ const TitleInfo: React.FC<TitleProps> = ({olympiad,fetch, history}) => {
             okText: 'Да',
             okType: 'danger',
             async onOk() {
-                const response = await api.user.delete(`teacher/olympiad/${olympiad.id}`);
-                if (response.data.status === 'success') {
-                    history.push('/olympiad');
-                    message.success('Вы успешно завершили олипиаду!')
-                }
-                console.log('OK');
+                // const response = await api.user.delete(`teacher/olympiad/${olympiad.id}`);
+                // if (response.data.status === 'success') {
+                //     history.push('/olympiad');
+                //     message.success('Вы успешно завершили олипиаду!')
+                // }
+                // console.log('OK');
             },
         });
     };

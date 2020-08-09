@@ -3,7 +3,7 @@ import {FormItem, Upload} from "lib/components";
 import SelectData from "../../../components/form/select-data/SelectData";
 import {Col, Input, Row} from "antd";
 import {FormInstance} from "antd/es/form";
-import {useAppContext} from "../../../../store/context/use-app-context";
+import {useUser} from "../../../../hooks/use-user";
 
 const {TextArea} = Input;
 
@@ -18,7 +18,7 @@ const FormEditorCenterItems: React.FC<FormEditorCenterItemsProps> = (
         setIsSaveBtn,
     }
 ) => {
-    const {user} = useAppContext();
+    const {user} = useUser();
 
     useEffect(() => {
         setIsSaveBtn(true);

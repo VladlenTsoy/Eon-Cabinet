@@ -13,8 +13,8 @@ const SwitchWrapper = styled(Switch)`
   }
 `;
 
+// TODO - api
 const DarkSwitch: React.FC = () => {
-    // const {api, user, updateUser} = useAppContext();
     const user = useSelector(userSelector);
     const dispatch = useDispatch();
 

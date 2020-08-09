@@ -2,8 +2,8 @@ import React from 'react';
 import styled from "styled-components";
 import TextFit
     from "../../../../../../../teacher/pages/training/settings/mental/multi-anzan/exercise-setting/multiplication-block/TextFit";
-import {useAppContext} from "store/context/use-app-context";
 import {random} from "lodash";
+import {useUser} from "../../../../../../../../../hooks/use-user";
 
 const TurboOutputWrapper = styled.div`
   position: absolute;
@@ -43,7 +43,7 @@ interface TurboProps {
 }
 
 const TurboOutput: React.FC<TurboProps> = ({output}) => {
-    const {user} = useAppContext();
+    const {user} = useUser();
     const OutputHeight = 150;
     const OutputWidth = 300;
     let turboWrapper = document.getElementById('application');

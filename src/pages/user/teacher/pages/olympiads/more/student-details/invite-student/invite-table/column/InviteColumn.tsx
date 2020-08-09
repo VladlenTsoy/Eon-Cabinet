@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import Avatar from "../../../../../../../../../../lib/components/avatar/Avatar";
 import { CheckOutlined, UserAddOutlined } from '@ant-design/icons';
 import {Button} from "antd";
-import {useAppContext} from "store/context/use-app-context";
 
 interface InviteColumnProps {
     student: any;
@@ -12,13 +11,13 @@ interface InviteColumnProps {
     olympiad: any;
 }
 
+// TODO - api
 const InviteColumn: React.FC<InviteColumnProps> = ({student, fetch, selected, setSelected, olympiad}) => {
-    const {api} = useAppContext();
     const [loading, setLoading] = useState(false);
 
     const addToSelected = async (id: any) => {
         setLoading(true);
-        await api.user.post(`/teacher/olympiad/${student.id}/invitation/student/${olympiad.id}`);
+        // await api.user.post(`/teacher/olympiad/${student.id}/invitation/student/${olympiad.id}`);
         setSelected([...selected, id]);
         fetch();
         setLoading(false);

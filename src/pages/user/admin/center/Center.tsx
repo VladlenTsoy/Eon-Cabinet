@@ -4,11 +4,10 @@ import EditorCenterButton from "./EditorTeacherButton";
 import TeachersTable from "./teachers-table/TeachersTable";
 import {useChangeActionNavbar} from "../../../../hooks/use-change-action-navbar.effect";
 import {useChangeTitle} from "../../../../hooks/use-change-title.effect";
-import {useAppContext} from "../../../../store/context/use-app-context";
 import {PlusOutlined} from "@ant-design/icons";
 
+// TODO - api
 const Center: React.FC<any> = ({match}) => {
-    const {api} = useAppContext();
     const [center, setCenter] = useState<any>();
     const [loading, setLoading] = useState(true);
 
@@ -20,9 +19,9 @@ const Center: React.FC<any> = ({match}) => {
     useChangeActionNavbar({action: 'back'});
 
     const fetchCenters = useCallback(async () => {
-        const response = await api.user.get(`admin/center/${match.params.center_id}`);
-        setCenter(response.data);
-    }, [match.params.center_id, api.user]);
+        // const response = await api.user.get(`admin/center/${match.params.center_id}`);
+        // setCenter(response.data);
+    }, [match.params.center_id]);
 
     useEffect(() => {
         (async () => {

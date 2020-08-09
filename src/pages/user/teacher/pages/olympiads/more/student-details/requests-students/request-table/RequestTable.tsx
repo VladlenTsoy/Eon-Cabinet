@@ -6,7 +6,7 @@ import RequestColumn from "./column/RequestColumn";
 import {ScrollWrapper, TableWrapper} from "../../invite-student/invite-table/InviteTable";
 import {useApiUserGeneral} from "../../../../../../../../../hooks/use-api-user-general.effect";
 import {DescriptionTitle, Spin} from "../../../../../../../../../lib/components";
-import {useAppContext} from "../../../../../../../../../store/context/use-app-context";
+import {useLanguage} from "../../../../../../../../../hooks/use-language";
 
 interface RequestTableProps {
     olympiad: any;
@@ -14,7 +14,7 @@ interface RequestTableProps {
 }
 
 const RequestTable: React.FC<RequestTableProps> = ({olympiad, setIsChange}) => {
-    const {language} = useAppContext();
+    const {language} = useLanguage();
     const [loading, students, , fetch] = useApiUserGeneral({
         url: `teacher/olympiad/${olympiad.id}/requests/students`,
         initValue: []

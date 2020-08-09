@@ -8,7 +8,6 @@ import {LoadingBlock} from "lib/components";
 import styled from "styled-components";
 import {useApiUserGeneral} from "hooks/use-api-user-general.effect";
 import {FormProps} from "antd/es/form";
-import {useAppContext} from "../../../../../../../store/context/use-app-context";
 
 const FormWrapper: React.FC<FormProps> = styled(Form)`
     margin-bottom: 0.5rem;
@@ -29,6 +28,7 @@ interface BodyChangeCenterTeacherProps {
     afterAction: any;
 }
 
+// TODO - api
 const BodyChangeCenterTeacher: React.FC<BodyChangeCenterTeacherProps> = (
     {
         teacher,
@@ -36,7 +36,6 @@ const BodyChangeCenterTeacher: React.FC<BodyChangeCenterTeacherProps> = (
     }
 ) => {
     const {center_id} = useParams<ParamsProps>();
-    const {api} = useAppContext();
     const [centerId, setCenterId] = useState();
     const [currentCenterId] = useState(center_id);
     const [btnLoading, setButtonLoading] = useState(false);
@@ -49,7 +48,7 @@ const BodyChangeCenterTeacher: React.FC<BodyChangeCenterTeacherProps> = (
 
     const handlerSubmit = async (values: any) => {
         setButtonLoading(true);
-        await api.user.post(`admin/teacher/${teacher.id}/center/transfer`, values);
+        // await api.user.post(`admin/teacher/${teacher.id}/center/transfer`, values);
         await afterAction();
         message.success("Вы успешно превели учителя в другой центр!");
     };

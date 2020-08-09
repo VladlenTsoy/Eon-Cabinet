@@ -2,7 +2,6 @@ import React from "react";
 import CenterItems from "../../../../../lib/layouts/drawer-editor/editor-center/FormEditorCenterItems";
 import {message} from "antd";
 import usingDrawerEditor from "../../../../../lib/layouts/drawer-editor/usingDrawerEditor";
-import {useAppContext} from "../../../../../store/context/use-app-context";
 
 const EditorButton = usingDrawerEditor(CenterItems);
 
@@ -14,15 +13,14 @@ interface EditorCenterButtonProps {
     fetch: any;
 }
 
+// TODO - api
 const EditorCenterButton: React.FC<EditorCenterButtonProps> = ({title, children, center, fetch, franchise_id, isMouseDown}) => {
-    const {api} = useAppContext();
-
     const request = async (values: any) => {
         if (center) {
-            await api.user.post(`admin/center/${center.id}`, values);
+            // await api.user.post(`admin/center/${center.id}`, values);
             message.success("Вы успешно изменили центр!");
         } else {
-            await api.user.post(`admin/center`, values);
+            // await api.user.post(`admin/center`, values);
             message.success("Вы успешно добавили центр!");
         }
     };

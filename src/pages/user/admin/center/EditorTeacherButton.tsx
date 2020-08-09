@@ -2,7 +2,6 @@ import React from "react";
 import {message} from "antd";
 import usingDrawerEditor from "../../../../lib/layouts/drawer-editor/usingDrawerEditor";
 import FormEditorTeacherItems from "../../../../lib/layouts/drawer-editor/editor-teacher/FormEditorTeacherItems";
-import {useAppContext} from "../../../../store/context/use-app-context";
 
 const EditorButton = usingDrawerEditor(FormEditorTeacherItems);
 
@@ -14,15 +13,15 @@ interface EditorTeacherButtonProps {
     center_id: any;
 }
 
+// TODO - api
 const EditorTeacherButton: React.FC<EditorTeacherButtonProps> = ({title, children, teacher, fetch, franchise_id, center_id}) => {
-    const {api} = useAppContext();
 
     const request = async (values: any) => {
         if (teacher) {
-            await api.user.post(`admin/teacher/${teacher.id}`, values);
+            // await api.user.post(`admin/teacher/${teacher.id}`, values);
             message.success("Вы успешно изменили данные учителя!");
         } else {
-            await api.user.post(`admin/teacher`, values);
+            // await api.user.post(`admin/teacher`, values);
             message.success("Вы успешно добавили учителя!");
         }
     };

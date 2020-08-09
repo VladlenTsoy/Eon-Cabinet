@@ -4,7 +4,8 @@ import {message, Modal} from "antd";
 import {useState} from "react";
 import {IconsWrapper, IconWrapper, IconEditWrapper} from "./IconsWrapper";
 import AvatarLabelWrapper from "./Label";
-import {useAppContext} from "../../../store/context/use-app-context";
+import {useLanguage} from "../../../hooks/use-language";
+import {useUser} from "../../../hooks/use-user";
 
 const {confirm} = Modal;
 
@@ -13,8 +14,10 @@ interface PhotoBlockProps {
     changeDataCurrentUser: any;
 }
 
+// TODO - api
 const PhotoBlock: React.FC<PhotoBlockProps> = ({currentUser, changeDataCurrentUser}: any) => {
-    const {user, api, language, updateUser} = useAppContext();
+    const {user, updateUser} = useUser();
+    const {language} = useLanguage();
     const [loading, setLoading] = useState(false);
 
     const handleChangeImage = (e: any) => {
@@ -43,12 +46,12 @@ const PhotoBlock: React.FC<PhotoBlockProps> = ({currentUser, changeDataCurrentUs
         setLoading(true);
 
         try {
-            const response = await api.user.post(`/${currentUser.id}/image`, data);
-            message.success(language.common['youHaveSuccessfullyChangedThePhoto']);
-            if (currentUser.id === user.id)
-                updateUser(response.data.data);
-            else
-                changeDataCurrentUser({...currentUser, ...response.data.data});
+            // const response = await api.user.post(`/${currentUser.id}/image`, data);
+            // message.success(language.common['youHaveSuccessfullyChangedThePhoto']);
+            // if (currentUser.id === user.id)
+            //     updateUser(response.data.data);
+            // else
+            //     changeDataCurrentUser({...currentUser, ...response.data.data});
         } catch (e) {
             message.error(language.common['cx002']);
         }

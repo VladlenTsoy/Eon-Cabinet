@@ -6,8 +6,9 @@ import {useChangeActionNavbar} from "hooks/use-change-action-navbar.effect";
 import {Col, Row} from "antd";
 import {Card, LoadingBlock} from "lib/components";
 import styled from "styled-components";
-import {useAppContext} from "../../../../../../store/context/use-app-context";
 import {changeSetting, changeExecutionMode} from "store/common/game/gameSplice";
+import {useLanguage} from "../../../../../../hooks/use-language";
+import {useUser} from "../../../../../../hooks/use-user";
 
 const Mental = React.lazy(() => import("./mental/Mental"));
 const Mnemonics = React.lazy(() => import("./mnemonics/Mnemonics"));
@@ -34,8 +35,10 @@ interface TasksRouteProps {
     task: string;
 }
 
+// TODO - api
 const Tasks: React.FC = () => {
-    const {api, user, language, updateUser} = useAppContext();
+    const {language} = useLanguage();
+    const {user} = useUser();
     const match = useRouteMatch<TasksRouteProps>();
     const history = useHistory();
     const {discipline, task} = match.params;
@@ -73,12 +76,12 @@ const Tasks: React.FC = () => {
                 userSetting.tasks.push({discipline, task, setting}) :
                 userSetting.tasks[keySetting].setting = setting;
 
-            let response = await api.user.patch(`/${user.id}`, {setting: userSetting});
-            updateUser(response.data);
+            // let response = await api.user.patch(`/${user.id}`, {setting: userSetting});
+            // updateUser(response.data);
         } catch (e) {
             console.error(e);
         }
-    }, [user.setting, updateUser, api.user, discipline, task, user.id]);
+    }, [user.setting, discipline, task, user.id]);
 
     // Очистка настроек для текущего упражнения
     const clearSaveSetting = useCallback(async () => await updateSetting({}), [updateSetting]);
@@ -104,17 +107,17 @@ const Tasks: React.FC = () => {
 
                 if (task === '24') {
                     url = `/custom-exercises/${_setting.custom_exercises_id}/print`;
-                    const response = await api.user.get(url, {params: _setting});
-                    await pdfRender(response.data.settings, response.data, language.common);
+                    // const response = await api.user.get(url, {params: _setting});
+                    // await pdfRender(response.data.settings, response.data, language.common);
                 } else {
-                    const response = await api.user.get(url, {params: _setting});
-                    await pdfRender(_setting, response.data, language.common);
+                    // const response = await api.user.get(url, {params: _setting});
+                    // await pdfRender(_setting, response.data, language.common);
                 }
 
             } else
                 history.push(`/training/${discipline}/${task}`);
         },
-        [history, discipline, task, dispatch, updateSetting, api.user, language.common]
+        [history, discipline, task, dispatch, updateSetting, language.common]
     );
 
     return <React.Suspense fallback={<LoadingBlock title="Загрузка упражнений..."/>}>

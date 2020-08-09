@@ -2,17 +2,16 @@ import React, {useCallback, useEffect, useState} from 'react';
 import {Card, LoadingBlock} from "lib/components";
 import {Col, Row} from "antd";
 import FormulTitleSettingAnzan from "./FormulTitleSettingAnzan";
-import {useAppContext} from "../../../../../store/context/use-app-context";
 
+// TODO - api
 const FormulTitleSetting: React.FC<any> = () => {
-    const {api} = useAppContext();
     const [loading, setLoading] = useState(true);
     const [defaultTypes, setDefaultTypes] = useState<any>([]);
 
     const fetch = useCallback(async () => {
-        const response = await api.user.get(`director-franchise/language/default/formul/anzan`);
-        setDefaultTypes(Object.entries(response.data));
-    }, [api.user]);
+        // const response = await api.user.get(`director-franchise/language/default/formul/anzan`);
+        // setDefaultTypes(Object.entries(response.data));
+    }, []);
 
     useEffect(() => {
         (async () => {

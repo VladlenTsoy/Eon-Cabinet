@@ -2,10 +2,10 @@ import React from 'react';
 import {BankOutlined} from "@ant-design/icons";
 import {CardStatistic} from "../../../../../lib/components";
 import {useApiUserGeneral} from "../../../../../hooks/use-api-user-general.effect";
-import {useAppContext} from "../../../../../store/context/use-app-context";
+import {useUser} from "../../../../../hooks/use-user";
 
 const CenterCounter: React.FC<any> = () => {
-    const {user} = useAppContext();
+    const {user} = useUser();
     const [loading, counter] = useApiUserGeneral({url: `/${user.access}/center-counter`});
 
     return <CardStatistic

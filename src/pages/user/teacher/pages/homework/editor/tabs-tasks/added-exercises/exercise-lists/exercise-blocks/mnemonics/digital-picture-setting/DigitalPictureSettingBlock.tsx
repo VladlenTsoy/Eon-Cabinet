@@ -1,12 +1,12 @@
 import React from 'react';
-import {useAppContext} from "store/context/use-app-context";
+import {useLanguage} from "../../../../../../../../../../../../hooks/use-language";
 
 interface DigitalPictureSettingBlockProps {
     setting: any;
 }
 
-const DigitalPictureSettingBlock:React.FC<DigitalPictureSettingBlockProps> = ({setting}) => {
-    const {language} = useAppContext();
+const DigitalPictureSettingBlock: React.FC<DigitalPictureSettingBlockProps> = ({setting}) => {
+    const {language} = useLanguage();
     return <>
         <tr>
             <td className="text-mute">Мод:</td>

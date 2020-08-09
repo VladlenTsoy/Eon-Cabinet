@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import {Input, Empty} from "antd";
-import {useAppContext} from "store/context/use-app-context";
 import styled from "styled-components";
 import {LoadingBlock} from "lib/components";
 import InviteColumn from "./column/InviteColumn";
 import {DescriptionTitle} from "../../../../../../../../../lib/components";
+import {useLanguage} from "../../../../../../../../../hooks/use-language";
 
 const {Search} = Input;
 
@@ -71,8 +71,9 @@ interface InviteTableProps {
     fetch: any;
 }
 
+// TODO - api
 const InviteTable: React.FC<InviteTableProps> = ({olympiad, fetch}) => {
-    const {api, language} = useAppContext();
+    const {language} = useLanguage();
     const [timer, setTimer] = useState<any>(0);
     const [students, setStudents] = useState<never[]>([]);
     const [loading, setLoading] = useState(false);
@@ -81,8 +82,8 @@ const InviteTable: React.FC<InviteTableProps> = ({olympiad, fetch}) => {
     const searchStudent = async (search: string) => {
         if (search) {
             setLoading(true);
-            let response = await api.user.post(`teacher/olympiad/${olympiad.id}/search/students`, {search});
-            setStudents(response.data);
+            // let response = await api.user.post(`teacher/olympiad/${olympiad.id}/search/students`, {search});
+            // setStudents(response.data);
             setLoading(false);
         }
     };

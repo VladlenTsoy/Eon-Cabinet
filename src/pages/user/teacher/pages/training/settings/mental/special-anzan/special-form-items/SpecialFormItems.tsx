@@ -1,14 +1,14 @@
 import React from 'react';
 import {Col, Form, InputNumber, Radio, Row} from "antd";
 import {FormItem} from "../../../../../../../../../lib/components";
-import {useAppContext} from "store/context/use-app-context";
 import Stepper from "../../../../../../../../../lib/components/stepper/Stepper";
+import {useLanguage} from "../../../../../../../../../hooks/use-language";
 
 interface SpecialFormItemsProps {
 }
 
 const SpecialFormItems: React.FC<SpecialFormItemsProps> = () => {
-    const {language} = useAppContext();
+    const {language} = useLanguage();
 
     return <Row gutter={15}>
         <Col span={24}>

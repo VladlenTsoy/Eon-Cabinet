@@ -1,8 +1,8 @@
 import React from 'react';
 import {MoreWrapper} from "../homework-more/HomeworkMoreLink";
 import { HomeOutlined } from '@ant-design/icons';
-import {useAppContext} from "store/context/use-app-context";
 import styled from "styled-components";
+import {useLanguage} from "../../../../../../hooks/use-language";
 
 const WaitWrapper = styled(MoreWrapper)`
   color: ${props => props.theme.light_color_border};
@@ -20,7 +20,7 @@ interface HomeworkWait {
 }
 
 const HomeworkWait:React.FC<HomeworkWait> = () => {
-    const {language} = useAppContext();
+    const {language} = useLanguage();
 
     return (
       <WaitWrapper to={''}>

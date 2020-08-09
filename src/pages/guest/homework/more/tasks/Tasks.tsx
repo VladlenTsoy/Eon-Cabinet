@@ -1,16 +1,16 @@
 import React from 'react';
-import {useAppContext} from "../../../../../store/context/use-app-context";
 import {useApiUserGeneral} from "hooks/use-api-user-general.effect";
 import {DescriptionTitle, LoadingBlock} from "../../../../../lib/components";
 import {Col, Empty, Row} from "antd";
 import Task from "./task/Task";
+import {useLanguage} from "../../../../../hooks/use-language";
 
 interface TasksProps {
     id: string;
 }
 
 const Tasks:React.FC<TasksProps> = ({id}) => {
-    const {language} = useAppContext();
+    const {language} = useLanguage();
     const [loading, tasks] = useApiUserGeneral({url: `guest/homework/${id}/tasks`, initValue: [], access: "guest"});
 
     // Загрузка

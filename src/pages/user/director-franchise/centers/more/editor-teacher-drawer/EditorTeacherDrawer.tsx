@@ -3,7 +3,6 @@ import {message} from "antd";
 import usingDrawerEditorNew from "../../../../../../lib/layouts/drawer-editor/usingDrawerEditor.new";
 import TeacherItems from "./items/TeacherItems";
 import {useScreenWindow} from "../../../../../../hooks/use-screen-window.effect";
-import {useAppContext} from "../../../../../../store/context/use-app-context";
 
 const FormComponentData = usingDrawerEditorNew(TeacherItems);
 
@@ -14,6 +13,7 @@ interface EditorDirectorDrawerProps {
     pagination?: any;
 }
 
+// TODO - api
 const EditorTeacherDrawer: React.FC<EditorDirectorDrawerProps> = (
     {
         teacher,
@@ -24,14 +24,13 @@ const EditorTeacherDrawer: React.FC<EditorDirectorDrawerProps> = (
     }
 ) => {
     const [, isBreakpoint] = useScreenWindow({breakpoint: 'md'});
-    const {api} = useAppContext();
 
     const request = async (values: any) => {
         if (teacher) {
-            await api.user.post(`director-franchise/teacher/${teacher.id}`, values);
+            // await api.user.post(`director-franchise/teacher/${teacher.id}`, values);
             message.success("Вы успешно изменили данные учителя!");
         } else {
-            await api.user.post(`director-franchise/teacher`, values);
+            // await api.user.post(`director-franchise/teacher`, values);
             message.success("Вы успешно добавили учителя!");
         }
     };
