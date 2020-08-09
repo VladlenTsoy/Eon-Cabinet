@@ -20,7 +20,7 @@ import Platform from "./pages/platform/Platform";
 import SidebarItems from "./layout/sidebar-items/SidebarItems";
 import DisciplinesProvider from "./providers/disciplines-provider/DisciplinesProvider";
 import CategoriesProvider from "./providers/categories-provider/CategoriesProvider";
-import AlgorithmsProvider from "./providers/AlgorithmsProvider/AlgorithmsProvider";
+import AlgorithmsProvider from "./providers/algorithms-provider/AlgorithmsProvider";
 
 const Index: React.FC = () => {
     const sidebar = SidebarItems();
