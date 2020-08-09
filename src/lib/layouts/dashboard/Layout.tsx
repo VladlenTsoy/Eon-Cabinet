@@ -11,7 +11,7 @@ type LayoutProps = RouteComponentProps & {
     sidebar: JSX.Element[];
 }
 
-const LayoutWrapper = styled(AntdLayout)`
+const LayoutStyled = styled(AntdLayout)`
   &.ant-layout{
     height: 100%;
     overflow-x: hidden;
@@ -55,15 +55,15 @@ const Layout: React.FC<LayoutProps> = (
         }
     }, [history]);
 
-    return <LayoutWrapper>
+    return <LayoutStyled>
         <Sidebar collapsed={collapsed} toggleSidebar={toggleSidebar}>{sidebar}</Sidebar>
-        <LayoutWrapper>
+        <LayoutStyled>
             <Header collapsed={collapsed} toggleSidebar={toggleSidebar}>{header}</Header>
             <Content>
                 {children}
             </Content>
-        </LayoutWrapper>
-    </LayoutWrapper>
+        </LayoutStyled>
+    </LayoutStyled>
 };
 
 export default withRouter(Layout);

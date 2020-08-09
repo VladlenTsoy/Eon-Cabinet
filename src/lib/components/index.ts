@@ -1,4 +1,3 @@
-export {default as Layout} from './layout/Layout';
 export {default as LoadingBlock} from './loading-block/LoadingBlock';
 export {default as Loader} from './loader/Loader';
 export {default as CardTable} from './card-table/CardTable';

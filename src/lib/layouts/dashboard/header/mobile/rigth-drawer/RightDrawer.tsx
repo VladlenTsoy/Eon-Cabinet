@@ -1,6 +1,6 @@
 import React from 'react';
 import RightMenu from "./right-menu/RightMenu";
-import Drawer, {DrawerCustomProps} from "../../../../drawer/Drawer";
+import Drawer, {DrawerCustomProps} from "../../../../../components/drawer/Drawer";
 import styled from "styled-components";
 
 const DrawerWrapper:React.FC<DrawerCustomProps> = styled(Drawer)`

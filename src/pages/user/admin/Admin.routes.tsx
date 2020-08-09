@@ -1,7 +1,8 @@
 import React from 'react';
 import {useSelector} from "react-redux";
 import {Spin} from "../../../lib/components";
-import {Layout, Loader} from "../../../lib/components";
+import {Loader} from "../../../lib/components";
+import Layout from "lib/layouts/dashboard/Layout";
 import SidebarItems from "./layouts/sidebar-items/SidebarItems";
 import HeaderItems from "./layouts/header-items/HeaderItems";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";

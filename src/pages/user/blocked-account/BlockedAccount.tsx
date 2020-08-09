@@ -1,5 +1,5 @@
 import React from 'react';
-import {Layout} from "lib/components";
+import Layout from "lib/layouts/dashboard/Layout";
 import SidebarItems from "./layouts/sidebar-items/SidebarItems";
 import HeaderItems from "./layouts/header-items/HeaderItems";
 import {Route} from "react-router-dom";

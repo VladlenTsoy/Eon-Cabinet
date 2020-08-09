@@ -1,5 +1,5 @@
 import React from 'react';
-import {Layout} from "../../../lib/components";
+import Layout from "lib/layouts/dashboard/Layout";
 import HeaderItems from "./layout/header-items/HeaderItems";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Home from "./pages/home/Home";
