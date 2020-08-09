@@ -23,7 +23,6 @@ const HeaderItemLayout: React.FC<HeaderItemProps> = styled(AntdMenu.Item)<Styled
       margin-top: 0;
       top: 0;
       border-bottom: none;
-      padding: 0 15px;
     }
     
     &.ant-menu-item:hover {
