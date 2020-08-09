@@ -51,14 +51,10 @@ const TaskBlock: React.FC<TaskBlockProps> = ({task}) => {
         </div>
         <div className="container-block">
             <Title level={4}>{task.title}</Title>
-            {
-                task.block ?
-                    'Заблокирован' :
-                    <Link to={`/training/${task.discipline_id}/${task.id}/setting`}>
-                        <FlagOutlined/>
-                        Начать
-                    </Link>
-            }
+            <Link to={`/training/${task.discipline_id}/${task.id}/setting`}>
+                <FlagOutlined/>
+                Начать
+            </Link>
         </div>
     </TaskCardWrapper>;
 };

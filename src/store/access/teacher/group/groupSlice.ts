@@ -5,6 +5,7 @@ import {updateGroup} from "./updateGroup";
 import {createGroup} from "./createGroup";
 import {deleteGroup} from "./deleteGroup";
 import {fetchGroup} from "./fetchGroup";
+import {statisticExtraReducers, statisticState, StatisticState} from "./statistic/statistic";
 
 export interface GroupProps {
     id: number;
@@ -19,13 +20,14 @@ export interface GroupProps {
     created_at: string;
 }
 
-interface StateProps {
+export interface StateProps {
     fetchError: null | any;
     fetchLoading: boolean;
     group: GroupProps | null;
     isSaved: boolean;
     groups: GroupProps[];
     selectedStudentsId: number[];
+    statistic: StatisticState
 }
 
 const initialState: StateProps = {
@@ -35,6 +37,7 @@ const initialState: StateProps = {
     groups: [],
     isSaved: false,
     selectedStudentsId: [],
+    statistic: statisticState
 };
 
 const groupSlice = createSlice({
@@ -96,7 +99,8 @@ const groupSlice = createSlice({
         [deleteGroup.fulfilled]: (state: StateProps, action: PayloadAction<number>) => {
             state.groups = state.groups.filter((group) => group.id !== action.payload);
             state.fetchLoading = false;
-        }
+        },
+        ...statisticExtraReducers
     }
 });
 

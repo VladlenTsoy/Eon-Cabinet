@@ -10,7 +10,10 @@ const LastExecuted = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(fetchStudentsRecentHomework({}))
+        const promise = dispatch(fetchStudentsRecentHomework({}))
+        return () => {
+            promise.abort()
+        }
     }, [dispatch])
 
     return <>

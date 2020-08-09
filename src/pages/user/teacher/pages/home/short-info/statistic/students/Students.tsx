@@ -76,7 +76,10 @@ const Students: React.FC = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(fetchStudentsStatistic({}))
+        const promise = dispatch(fetchStudentsStatistic({}))
+        return () => {
+            promise.abort()
+        }
     }, [dispatch])
 
     return <CardWrapper>
