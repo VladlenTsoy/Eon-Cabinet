@@ -5,7 +5,7 @@ import {studentsSelector} from "../../../../../../../../store/access/teacher/stu
 import HomeworkColumns from "./homework-columns/HomeworkColumns";
 import DataColumns from "./data-columns/DataColumns";
 import DefaultColumns from "./default-columns/DefaultColumns";
-import {fetchStudentsHomework} from "../../../../../../../../store/access/teacher/students/fetchStudentsHomework";
+import {fetchStudentsHomework} from "../../../../../../../../store/access/teacher/students/homework/fetchStudentsHomework";
 import {useParams} from "react-router-dom";
 import {ParamsProps} from "../../Group";
 
@@ -16,12 +16,12 @@ interface TableStudentsProps {
 
 const TableStudents: React.FC<TableStudentsProps> = ({tab, selectUsers}) => {
     const {id} = useParams<ParamsProps>();
-    const {details, fetchLoading, selectedIds, fetchHomeworkLoading, homework} = useSelector(studentsSelector);
+    const {details, selectedIds, homework} = useSelector(studentsSelector);
     const dispatch = useDispatch();
     
     const columns = [
         ...DefaultColumns(),
-        ...(tab === 'homework' ? HomeworkColumns({fetchHomeworkLoading, homework}) : DataColumns())
+        ...(tab === 'homework' ? HomeworkColumns(homework) : DataColumns())
     ];
 
     const rowSelection = {
@@ -48,11 +48,11 @@ const TableStudents: React.FC<TableStudentsProps> = ({tab, selectUsers}) => {
         columns={columns}
         rowKey={(record: any) => record.id}
         scroll={{x: true}}
-        dataSource={details}
+        dataSource={details.data}
         pagination={false}
         rowSelection={rowSelection}
         rowClassName={checkRowClass}
-        loading={fetchLoading}
+        loading={details.loading}
     />;
 };
 

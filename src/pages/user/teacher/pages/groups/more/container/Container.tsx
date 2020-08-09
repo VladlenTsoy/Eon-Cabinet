@@ -6,7 +6,7 @@ import TableStudents from "./table-students/TableStudents";
 import {changeSelectedIds} from "../../../../../../../store/access/teacher/students/studentsSlice";
 import {Radio} from "antd";
 import styled from "styled-components";
-import {fetchStudentsDetails} from "../../../../../../../store/access/teacher/students/fetchStudentsDetails";
+import {fetchStudentsDetails} from "../../../../../../../store/access/teacher/students/details/fetchStudentsDetails";
 import {RadioChangeEvent} from "antd/lib/radio/interface";
 
 const ContainerStyled = styled.div`

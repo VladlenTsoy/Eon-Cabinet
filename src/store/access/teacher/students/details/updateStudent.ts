@@ -1,6 +1,6 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {apiRequest} from "../../../../utils/api.old";
-import {message} from "../../../../utils/message";
+import {apiRequest} from "../../../../../utils/api.old";
+import {message} from "../../../../../utils/message";
 
 interface ParamsProps {
     studentId: number;

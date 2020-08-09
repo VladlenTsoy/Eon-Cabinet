@@ -1,6 +1,6 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {apiRequest} from "../../../../utils/api.old";
-import {message} from "../../../../utils/message";
+import {apiRequest} from "../../../../../utils/api.old";
+import {message} from "../../../../../utils/message";
 
 export const cancelStudentHomework: any = createAsyncThunk<string, any, any>(
     'teacher/student/cancel/homework',

@@ -34,7 +34,7 @@ const Statistic: React.FC = () => {
                 type: 'main',
                 count: statistic ? statistic.homework.count : 0
             }]}/>
-        <Students statistic={statistic} loading={loading}/>
+        <Students/>
     </StatisticWrapper>;
 };
 

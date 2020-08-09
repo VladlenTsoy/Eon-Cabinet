@@ -1,25 +1,25 @@
 import React from "react";
 import ColumnHomework from "./homework/ColumnHomework";
 import {Spin} from "antd";
-import {StudentHomework} from "../../../../../../../../../store/access/teacher/students/studentsSlice";
+import {StudentHomework} from "../../../../../../../../../store/access/teacher/students/homework/homework";
 
 interface HomeworkColumnsProps {
-    homework: StudentHomework;
-    fetchHomeworkLoading: boolean;
+    data: StudentHomework;
+    loading: boolean;
 }
 
-const HomeworkColumns = ({fetchHomeworkLoading, homework}: HomeworkColumnsProps) => {
+const HomeworkColumns = ({data, loading}: HomeworkColumnsProps) => {
     return [
         {
             title: 'Домашние задания',
             className: 'td-homework-table',
-            render: (text: any, record: any) => <Spin spinning={fetchHomeworkLoading}>
+            render: (text: any, record: any) => <Spin spinning={loading}>
                 <table>
                     <tbody>
                     <tr>
-                        {homework && homework[record.id] &&
-                            homework[record.id].map((homework: any) =>
-                                <ColumnHomework homework={homework} key={homework.id}/>)
+                        {data && data[record.id] &&
+                        data[record.id].map((homework: any) =>
+                            <ColumnHomework homework={homework} key={homework.id}/>)
                         }
                     </tr>
                     </tbody>

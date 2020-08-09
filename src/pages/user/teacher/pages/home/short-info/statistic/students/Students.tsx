@@ -1,6 +1,5 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styled from "styled-components";
-
 import {
     ArrowDownOutlined,
     ArrowUpOutlined,
@@ -8,10 +7,12 @@ import {
     QuestionCircleOutlined,
     UserOutlined,
 } from '@ant-design/icons';
-
-import { Popover } from "antd";
+import {Popover} from "antd";
 import {Card} from "lib/components";
 import {IconWrapper} from "../../../../../../../../lib/components/card-statistic/CardStatistic";
+import {useDispatch, useSelector} from "react-redux";
+import {studentsSelector} from "../../../../../../../../store/access/teacher/students/studentsSlice";
+import {fetchStudentsStatistic} from "../../../../../../../../store/access/teacher/students/statistic/fetchStudentsStatistic";
 
 const CardWrapper = styled(Card)`
    text-align: center;
@@ -70,58 +71,58 @@ const BodyWrapper = styled.div`
   }
 `;
 
-interface StudentsProps {
-    statistic: any;
-    loading: boolean;
-}
+const Students: React.FC = () => {
+    const {statistic} = useSelector(studentsSelector)
+    const dispatch = useDispatch()
 
-const Students: React.FC<StudentsProps> = ({statistic, loading}) => {
-    return (
-        <CardWrapper>
-            <h2>Ученики</h2>
-            <BodyWrapper>
-                <IconWrapper className="icon" t="warning">
-                    <UserOutlined />
-                </IconWrapper>
-                <div className="main-counter">{loading ? <LoadingOutlined /> : (statistic?.students.count || 0)}</div>
-                <div className="counter-block">
-                    <div>
-                        Активных
-                        <Popover content={<>Активность учеников сравнительно с предыдущим месяцем.</>}>
-                            <QuestionCircleOutlined />
-                        </Popover>
-                    </div>
-                    <div>
-                        {loading ?
-                            <LoadingOutlined /> :
-                            <>
-                                {statistic?.students.increase ? <ArrowUpOutlined /> : <ArrowDownOutlined />}
-                                {(statistic?.students.percent || 0).toFixed(1)}%
-                            </>
-                        }
+    useEffect(() => {
+        dispatch(fetchStudentsStatistic({}))
+    }, [dispatch])
 
-                    </div>
+    return <CardWrapper>
+        <h2>Ученики</h2>
+        <BodyWrapper>
+            <IconWrapper className="icon" t="warning">
+                <UserOutlined/>
+            </IconWrapper>
+            <div className="main-counter">{statistic.loading ? <LoadingOutlined/> : (statistic.students?.count)}</div>
+            <div className="counter-block">
+                <div>
+                    Активных
+                    <Popover content={<>Активность учеников сравнительно с предыдущим месяцем.</>}>
+                        <QuestionCircleOutlined/>
+                    </Popover>
                 </div>
-                <div className="counter-block">
-                    <div>
-                        Дом. Задания
-                        <Popover content={<>Выполненных домашних заданий сравнительно с отправленными.</>}>
-                            <QuestionCircleOutlined />
-                        </Popover>
-                    </div>
-                    <div>
-                        {loading ?
-                            <LoadingOutlined /> :
-                            <>
-                                {statistic?.homework.increase ? <ArrowUpOutlined /> : <ArrowDownOutlined />}
-                                {(statistic?.homework.percent || 0).toFixed(1)}%
-                            </>
-                        }
-                    </div>
+                <div>
+                    {statistic.loading ?
+                        <LoadingOutlined/> :
+                        <>
+                            {statistic?.students.increase ? <ArrowUpOutlined/> : <ArrowDownOutlined/>}
+                            {(statistic?.students.percent).toFixed(1)}%
+                        </>
+                    }
+
                 </div>
-            </BodyWrapper>
-        </CardWrapper>
-    );
+            </div>
+            <div className="counter-block">
+                <div>
+                    Дом. Задания
+                    <Popover content={<>Выполненных домашних заданий сравнительно с отправленными.</>}>
+                        <QuestionCircleOutlined/>
+                    </Popover>
+                </div>
+                <div>
+                    {statistic.loading ?
+                        <LoadingOutlined/> :
+                        <>
+                            {statistic?.homework.increase ? <ArrowUpOutlined/> : <ArrowDownOutlined/>}
+                            {(statistic?.homework.percent).toFixed(1)}%
+                        </>
+                    }
+                </div>
+            </div>
+        </BodyWrapper>
+    </CardWrapper>
 };
 
 export default Students;

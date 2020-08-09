@@ -9,8 +9,8 @@ import {useDispatch} from "react-redux";
 import {FileAddOutlined} from '@ant-design/icons';
 import Tasks from "./tasks/Tasks";
 import {SaveOutlined} from "@ant-design/icons";
-import {sentHomeworkStudents} from "../../../../../../../../../../../store/access/teacher/students/sentHomeworkStudent";
-import {fetchStudentsHomework} from "../../../../../../../../../../../store/access/teacher/students/fetchStudentsHomework";
+import {sentHomeworkStudents} from "../../../../../../../../../../../store/access/teacher/students/homework/sentHomeworkStudent";
+import {fetchStudentsHomework} from "../../../../../../../../../../../store/access/teacher/students/homework/fetchStudentsHomework";
 import {ParamsProps} from "../../../../../Group";
 
 const {TextArea} = Input;

@@ -4,8 +4,8 @@ import {StopOutlined} from '@ant-design/icons';
 import {Modal} from "antd";
 import styled from "styled-components";
 import {useDispatch} from "react-redux";
-import {cancelStudentHomework} from "../../../../../../../../../../../store/access/teacher/students/cancelStudentHomework";
-import {fetchStudentsHomework} from "../../../../../../../../../../../store/access/teacher/students/fetchStudentsHomework";
+import {cancelStudentHomework} from "../../../../../../../../../../../store/access/teacher/students/homework/cancelStudentHomework";
+import {fetchStudentsHomework} from "../../../../../../../../../../../store/access/teacher/students/homework/fetchStudentsHomework";
 import {useParams} from "react-router-dom";
 import {ParamsProps} from "../../../../../Group";
 

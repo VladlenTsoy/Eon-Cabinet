@@ -2,7 +2,7 @@ import React from 'react';
 import styled from "styled-components";
 import ColumnTask from "./column-task/ColumnTask";
 import Title from "./title/Title";
-import {Homework} from "../../../../../../../../../../store/access/teacher/students/studentsSlice";
+import {Homework} from "../../../../../../../../../../store/access/teacher/students/homework/homework";
 
 const WrapperTd = styled.td`
    padding: 0;
