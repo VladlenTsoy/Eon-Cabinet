@@ -1,18 +1,28 @@
-import React from 'react';
-import {useApiUserGeneral} from "../../../../../../hooks/use-api-user-general.effect";
+import React, {useEffect} from 'react';
 import {Alert} from "../../../../../../lib/components";
+import {useDispatch, useSelector} from "react-redux";
+import {notificationSelector} from "../../../../../../store/access/teacher/notification/notificationSlice";
+import {fetchAlertNotice} from "../../../../../../store/access/teacher/notification/alert-notice/fetchAlertNotice";
 
 const Notification: React.FC = () => {
-    const [loading, notification] = useApiUserGeneral({url: 'teacher/notification'});
+    const {alertNotice} = useSelector(notificationSelector)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        const promise = dispatch(fetchAlertNotice())
+        return () => {
+            promise.abort()
+        }
+    }, [dispatch]);
 
     return <>
-        {!loading && notification ?
+        {!alertNotice.loading && alertNotice.data ?
             <Alert
                 className="animated bounceInDown"
-                type={notification.type}
+                type={alertNotice.data.type}
                 showIcon
-                message={notification.title}
-                description={notification.description}
+                message={alertNotice.data.title}
+                description={alertNotice.data.description}
             /> : null}
     </>;
 };

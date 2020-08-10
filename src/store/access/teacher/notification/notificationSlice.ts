@@ -1,13 +1,16 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit'
+import {createSlice} from '@reduxjs/toolkit'
 import {TeacherState} from "../store";
 import {quickNoticeExtraReducers, quickNoticeState, QuickNoticeState} from "./quick-notice/quickNotice";
+import {alertNoticeExtraReducers, AlertNoticeState, alertNoticeState} from "./alert-notice/alertNotice";
 
 export interface StateProps {
     quickNotice: QuickNoticeState
+    alertNotice: AlertNoticeState
 }
 
 export const initialState: StateProps = {
-    quickNotice: quickNoticeState
+    quickNotice: quickNoticeState,
+    alertNotice: alertNoticeState,
 }
 
 const notificationSlice = createSlice({
@@ -15,7 +18,8 @@ const notificationSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: {
-        ...quickNoticeExtraReducers
+        ...quickNoticeExtraReducers,
+        ...alertNoticeExtraReducers,
     }
 })
 
