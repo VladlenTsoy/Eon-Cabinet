@@ -45,12 +45,37 @@ const TableStudentsLayout = styled(CardTable)`
     
     .ant-table-thead > tr > th, .ant-table-tbody > tr > td{
       background: ${props => props.theme['@component-background']};
-      padding: .3rem 16px;
+      padding: .5rem 1rem;
       vertical-align: middle !important;
     }
     
-    .ant-table-tbody > tr > td.td-homework-table {
+    .ant-table-tbody > tr > td.td-events-table {
       padding: 0;
+      cursor: pointer;
+      
+      &.active {
+        background: ${props => props.theme.color_primary + '2e'};
+        border-color: ${props => props.theme.color_primary + '2e'};
+      }
+      
+      &.selected{
+        background: ${props => props.theme.color_warning + '2e'};
+        border-color: ${props => props.theme.color_warning + '2e'};
+      }
+    }
+    
+    .ant-table-thead > tr > th.td-events-table {      
+      cursor: pointer;
+      
+      &.active {
+        color: ${props => props.theme.color_primary};
+      }
+      
+      &.selected{
+        z-index: 5;
+        box-shadow: 0 6px 5px 0 rgb(0 0 0 / 6%);
+        color: ${props => props.theme.color_warning};
+      }
     }
 `;
 

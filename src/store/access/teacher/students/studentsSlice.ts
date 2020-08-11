@@ -2,7 +2,7 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {TeacherState} from "../store";
 import {statisticExtraReducers, statisticState, StatisticState} from "./statistic/statistic";
 import {recentHomeworkExtraReducers, RecentHomeworkState, recentHomeworkState} from "./recent-homework/recentHomework";
-import {homeworkExtraReducer, homeworkState, HomeworkState} from "./homework/homework";
+import {homeworkExtraReducer, homeworkReducer, homeworkState, HomeworkState} from "./homework/homework";
 import {detailsExtraReducers, detailsState, DetailsState} from "./details/details";
 
 export interface Student {
@@ -42,7 +42,8 @@ const studentsSlice = createSlice({
     reducers: {
         changeSelectedIds(state: StateProps, action: PayloadAction<StateProps['selectedIds']>) {
             state.selectedIds = action.payload;
-        }
+        },
+        ...homeworkReducer
     },
     extraReducers: {
         ...detailsExtraReducers,

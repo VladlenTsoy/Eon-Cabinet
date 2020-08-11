@@ -8,6 +8,8 @@ import {ConfigProvider} from 'antd';
 import ruRU from 'antd/es/locale-provider/ru_RU';
 import enUs from 'antd/es/locale-provider/en_US';
 import cookie from 'js-cookie';
+import 'moment/locale/ru'
+import 'moment/locale/en-ie'
 
 const browserLanguage = cookie.get('language') || navigator.language;
 
