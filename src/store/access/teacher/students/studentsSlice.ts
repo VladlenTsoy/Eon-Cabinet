@@ -55,6 +55,6 @@ const studentsSlice = createSlice({
 
 export const studentsSelector = (state: TeacherState) => state.students;
 
-export const {changeSelectedIds} = studentsSlice.actions;
+export const {changeSelectedIds, nextWeek, prevWeek} = studentsSlice.actions;
 
 export default studentsSlice.reducer;

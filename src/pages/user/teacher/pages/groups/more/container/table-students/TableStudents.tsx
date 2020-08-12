@@ -1,7 +1,7 @@
-import React, {useCallback, useEffect, useState} from "react";
+import React, {useCallback, useEffect} from "react";
 import TableStudentsLayout from "./TableStudents.layout";
 import {useDispatch, useSelector} from "react-redux";
-import {studentsSelector} from "../../../../../../../../store/access/teacher/students/studentsSlice";
+import {studentsSelector, nextWeek, prevWeek} from "../../../../../../../../store/access/teacher/students/studentsSlice";
 import HomeworkColumns from "./homework-columns/HomeworkColumns";
 import DataColumns from "./data-columns/DataColumns";
 import DefaultColumns from "./default-columns/DefaultColumns";
@@ -9,7 +9,6 @@ import {fetchStudentsHomework} from "../../../../../../../../store/access/teache
 import {useParams} from "react-router-dom";
 import {ParamsProps} from "../../Group";
 import EventsColumns from "./events-columns/EventsColumns";
-import moment from "moment";
 import {fetchStudentsHomeworkDates} from "../../../../../../../../store/access/teacher/students/homework/fetchStudentsHomeworkDates";
 
 interface TableStudentsProps {
@@ -22,34 +21,13 @@ const TableStudents: React.FC<TableStudentsProps> = ({tab, selectUsers}) => {
     const {details, selectedIds, homework} = useSelector(studentsSelector);
     const dispatch = useDispatch();
 
-    const [i, setI] = useState(0)
-    const [dates, setDates] = useState<any>();
-
-    const getDates = useCallback((_i) => {
-        const startOfWeek = moment().startOf('week').subtract(_i, 'week');
-        const endOfWeek = moment().endOf('week').subtract(_i, 'week');
-
-        const days = [];
-        let day = startOfWeek;
-
-        while (day <= endOfWeek) {
-            days.push(day.toDate());
-            day = day.clone().add(1, 'd');
-        }
-        return {days, startOfWeek, endOfWeek};
-    }, [])
-
-    const nextAction = useCallback(() => setI((prevState) => prevState - 1), [])
-    const prevAction = useCallback(() => setI((prevState) => prevState + 1), [])
+    const nextAction = useCallback(() => dispatch(nextWeek()), [dispatch])
+    const prevAction = useCallback(() => dispatch(prevWeek()), [dispatch])
 
     useEffect(() => {
-        const {days, startOfWeek, endOfWeek} = getDates(homework.weekState);
-        const _dates = days.map((day) => ({day, events: null}));
-        setDates(_dates)
-
         let promise: any;
         const timeout = setTimeout(() => {
-            promise = dispatch(fetchStudentsHomeworkDates({groupId: id, startOfWeek, endOfWeek}))
+            promise = dispatch(fetchStudentsHomeworkDates({groupId: id}))
         }, 500)
 
         return () => {
@@ -57,20 +35,13 @@ const TableStudents: React.FC<TableStudentsProps> = ({tab, selectUsers}) => {
             promise && promise.abort()
         }
 
-    }, [getDates, homework.weekState, dispatch])
-
-
-    useEffect(() => {
-        const {days} = getDates(homework.weekState);
-        const _dates = days.map((day) => ({day, events: homework.dates[moment(day).format('e')]}));
-        setDates(_dates)
-    }, [homework.dates, homework.weekState])
+    }, [homework.weekState, dispatch])
 
     const columns = [
         ...DefaultColumns(),
         ...(
             tab === 'homework' ? HomeworkColumns(homework) :
-                tab === 'events' ? EventsColumns({dates: dates, next: nextAction, prev: prevAction, loading: homework.loading}) :
+                tab === 'events' ? EventsColumns({dates: homework.dates, next: nextAction, prev: prevAction, loading: homework.loading}) :
                     DataColumns()
         )
     ];
@@ -94,7 +65,6 @@ const TableStudents: React.FC<TableStudentsProps> = ({tab, selectUsers}) => {
             }
         }
     }, [dispatch, id, tab]);
-
 
     useEffect(() => {
         let parents = document.querySelectorAll('.td-events-table');
