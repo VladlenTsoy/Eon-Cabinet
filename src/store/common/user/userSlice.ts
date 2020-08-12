@@ -62,12 +62,12 @@ const userSlice = createSlice({
         },
 
         //
-        [updateUser.pending]: (state) => {
-            state.loading = true;
-        },
+        // [updateUser.pending]: (state) => {
+        //     state.loading = true;
+        // },
         [updateUser.fulfilled]: (state: StateProps, action: PayloadAction<User>) => {
             state.detail = action.payload;
-            state.loading = false;
+            // state.loading = false;
         },
 
         //

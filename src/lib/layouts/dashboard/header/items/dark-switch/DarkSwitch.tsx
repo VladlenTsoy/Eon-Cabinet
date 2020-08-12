@@ -5,6 +5,7 @@ import styled from "styled-components";
 import {Switch} from "antd";
 import {changeSpin} from "../../../../../../store/common/app/appSlice";
 import {userSelector} from "../../../../../../store/common/user/userSlice";
+import {updateUser} from "../../../../../../store/common/user/updateUser";
 
 const SwitchWrapper = styled(Switch)`
   .ant-switch-inner{
@@ -13,16 +14,14 @@ const SwitchWrapper = styled(Switch)`
   }
 `;
 
-// TODO - api
 const DarkSwitch: React.FC = () => {
     const user = useSelector(userSelector);
     const dispatch = useDispatch();
 
     const handlerChange = async (state: boolean) => {
-        dispatch(changeSpin(true));
-        // const response = await api.user.patch(`/${user.id}`, {setting: {...user.setting, is_dark: state}});
-        // await updateUser(response.data);
-        setTimeout(() => dispatch(changeSpin(false)), 1000);
+        dispatch(changeSpin(true))
+        dispatch(updateUser({userId: user.detail?.id, data: {setting: {...user.detail?.setting, is_dark: state}}}))
+        setTimeout(() => dispatch(changeSpin(false)), 1000)
     };
 
     return <SwitchWrapper

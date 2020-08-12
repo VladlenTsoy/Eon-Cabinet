@@ -9,7 +9,7 @@ const StoreProvider: React.FC = ({children}) => {
     const [loading, setLoading] = useState(!!user.detail);
 
     useEffect(() => {
-        if (user.detail) {
+        if (user.detail?.id) {
             (async () => {
                 setLoading(true);
                 const {teacherReducer} = await import("../../../store/access/teacher/store");
@@ -19,7 +19,7 @@ const StoreProvider: React.FC = ({children}) => {
             })()
         } else
             setLoading(false);
-    }, [user.detail]);
+    }, [user.detail?.id]);
 
     if (loading)
         return <Loader text={`Загрузка пользователя...`}/>;
