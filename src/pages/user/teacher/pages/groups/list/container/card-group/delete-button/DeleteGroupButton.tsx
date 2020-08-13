@@ -2,7 +2,7 @@ import React from 'react';
 import {DeleteOutlined} from '@ant-design/icons';
 import {Modal} from "antd";
 import {useDispatch} from "react-redux";
-import {deleteGroup} from "store/access/teacher/group/deleteGroup";
+import {deleteGroup} from "store/access/teacher/group/group/deleteGroup";
 import {ExclamationCircleOutlined} from "@ant-design/icons";
 
 interface DeleteGroupButtonProps {

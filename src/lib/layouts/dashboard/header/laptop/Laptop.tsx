@@ -27,7 +27,7 @@ const Laptop: React.FC<LaptopProps> = (
     return (
         <HeaderMenuLayout mode="horizontal">
             <HeaderTitle collapsed={collapsed} toggleSidebar={toggleSidebar}/>
-            <HeaderProfile user={user.detail}/>
+            <HeaderProfile user={user.detail} mr="auto"/>
             {children}
             <HeaderItemLayout key="account">
                 <AccountMenu logout={logout}>

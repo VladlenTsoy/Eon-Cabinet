@@ -1,6 +1,6 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {apiRequest} from "../../../../utils/api";
-import {message} from "../../../../utils/message";
+import {apiRequest} from "../../../../../utils/api";
+import {message} from "../../../../../utils/message";
 
 export const deleteGroup: any = createAsyncThunk<string, any, any>(
     'teacher/group/delete',

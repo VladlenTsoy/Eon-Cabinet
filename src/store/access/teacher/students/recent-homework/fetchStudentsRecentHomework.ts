@@ -12,8 +12,8 @@ export const fetchStudentsRecentHomework: any = createAsyncThunk<any, AgrProps, 
     },
     {
         condition({force}, {getState}: any) {
-            const {students} = getState()
-            if (students.recentHomework.data.length) return false
+            const {student} = getState()
+            if (student.recentHomework.data.length) return false
         },
     }
 )

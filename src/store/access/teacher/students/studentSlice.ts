@@ -36,10 +36,11 @@ const initialState: StateProps = {
     statistic: statisticState
 };
 
-const studentsSlice = createSlice({
-    name: 'students',
+const studentSlice = createSlice({
+    name: 'student',
     initialState,
     reducers: {
+        resetStudentSlice: () => initialState,
         changeSelectedIds(state: StateProps, action: PayloadAction<StateProps['selectedIds']>) {
             state.selectedIds = action.payload;
         },
@@ -53,8 +54,8 @@ const studentsSlice = createSlice({
     }
 })
 
-export const studentsSelector = (state: TeacherState) => state.students;
+export const studentsSelector = (state: TeacherState) => state.student;
 
-export const {changeSelectedIds, nextWeek, prevWeek} = studentsSlice.actions;
+export const {changeSelectedIds, nextWeek, prevWeek, resetStudentSlice} = studentSlice.actions;
 
-export default studentsSlice.reducer;
+export default studentSlice.reducer;

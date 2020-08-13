@@ -14,7 +14,7 @@ const Groups = () => {
         return () => {
             promise.abort()
         }
-    }, [])
+    }, [dispatch])
 
     return <CardStatistic
         title="Групп"

@@ -11,7 +11,7 @@ import {Popover} from "antd";
 import {Card} from "lib/components";
 import {IconWrapper} from "../../../../../../../../lib/components/card-statistic/CardStatistic";
 import {useDispatch, useSelector} from "react-redux";
-import {studentsSelector} from "../../../../../../../../store/access/teacher/students/studentsSlice";
+import {studentsSelector} from "../../../../../../../../store/access/teacher/students/studentSlice";
 import {fetchStudentsStatistic} from "../../../../../../../../store/access/teacher/students/statistic/fetchStudentsStatistic";
 
 const CardWrapper = styled(Card)`

@@ -2,6 +2,8 @@ import React from 'react';
 import {Select} from 'antd';
 import {useDispatch, useSelector} from "react-redux";
 import {disciplineSelector, changeActiveDisciplineId} from "store/access/teacher/discipline/disciplineSlice";
+import {resetGroupSlice} from "store/access/teacher/group/groupSlice";
+import {resetStudentSlice} from "store/access/teacher/students/studentSlice";
 import styled from "styled-components";
 import {FaBrain} from "react-icons/fa"
 import {TiSortNumericallyOutline} from "react-icons/ti"
@@ -30,6 +32,8 @@ const DisciplinesItem = () => {
     const dispatch = useDispatch();
 
     const handleChange = (disciplineId: number) => {
+        dispatch(resetGroupSlice())
+        dispatch(resetStudentSlice())
         dispatch(changeActiveDisciplineId(disciplineId))
     };
 

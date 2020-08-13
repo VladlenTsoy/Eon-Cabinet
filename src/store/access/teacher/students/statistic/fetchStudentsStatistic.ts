@@ -12,8 +12,8 @@ export const fetchStudentsStatistic: any = createAsyncThunk<any, AgrProps, any>(
     },
     {
         condition({force}, {getState}: any) {
-            const {students} = getState()
-            if (students.statistic.students.count !== 0) return false
+            const {student} = getState()
+            if (student.statistic.students.count !== 0) return false
         },
     }
 )

@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect} from "react";
 import TableStudentsLayout from "./TableStudents.layout";
 import {useDispatch, useSelector} from "react-redux";
-import {studentsSelector, nextWeek, prevWeek} from "../../../../../../../../store/access/teacher/students/studentsSlice";
+import {studentsSelector, nextWeek, prevWeek} from "../../../../../../../../store/access/teacher/students/studentSlice";
 import HomeworkColumns from "./homework-columns/HomeworkColumns";
 import DataColumns from "./data-columns/DataColumns";
 import DefaultColumns from "./default-columns/DefaultColumns";

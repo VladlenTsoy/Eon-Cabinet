@@ -4,7 +4,6 @@ import {Card} from "lib/components";
 import {Typography, Empty} from "antd";
 import {InfoCircleOutlined} from "@ant-design/icons";
 import styled from "styled-components";
-import {useApiUserGeneral} from "../../../../../../../hooks/use-api-user-general.effect";
 import {useDispatch, useSelector} from "react-redux";
 import {notificationSelector} from "../../../../../../../store/access/teacher/notification/notificationSlice";
 import {fetchQuickNotice} from "../../../../../../../store/access/teacher/notification/quick-notice/fetchQuickNotice";
@@ -64,7 +63,7 @@ const QuickNotice: React.FC = () => {
         return () => {
             promise.abort()
         }
-    }, [])
+    }, [dispatch])
 
     return <CardStyled>
         {

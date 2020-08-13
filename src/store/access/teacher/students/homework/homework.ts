@@ -1,6 +1,6 @@
 import {fetchStudentsHomework} from "./fetchStudentsHomework";
 import {PayloadAction} from "@reduxjs/toolkit";
-import {StateProps} from "../studentsSlice";
+import {StateProps} from "../studentSlice";
 import {fetchStudentsHomeworkDates} from "./fetchStudentsHomeworkDates";
 import moment from "moment";
 

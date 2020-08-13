@@ -1,11 +1,11 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit'
 import {TeacherState} from "../store";
-import {fetchGroups} from "./fetchGroups";
-import {updateGroup} from "./updateGroup";
-import {createGroup} from "./createGroup";
-import {deleteGroup} from "./deleteGroup";
-import {fetchGroup} from "./fetchGroup";
+import {updateGroup} from "./group/updateGroup";
+import {createGroup} from "./group/createGroup";
+import {deleteGroup} from "./group/deleteGroup";
+import {fetchGroup} from "./group/fetchGroup";
 import {statisticExtraReducers, statisticState, StatisticState} from "./statistic/statistic";
+import {groupsExtraReducers, groupsState, GroupsState} from "./groups/groups";
 
 export interface GroupProps {
     id: number;
@@ -25,8 +25,9 @@ export interface StateProps {
     fetchLoading: boolean;
     group: GroupProps | null;
     isSaved: boolean;
-    groups: GroupProps[];
     selectedStudentsId: number[];
+
+    groups: GroupsState;
     statistic: StatisticState
 }
 
@@ -34,9 +35,10 @@ const initialState: StateProps = {
     fetchLoading: false,
     fetchError: null,
     group: null,
-    groups: [],
     isSaved: false,
     selectedStudentsId: [],
+
+    groups: groupsState,
     statistic: statisticState
 };
 
@@ -44,6 +46,7 @@ const groupSlice = createSlice({
     name: 'group',
     initialState,
     reducers: {
+        resetGroupSlice: () => initialState,
         changeIsSaved(state, action: PayloadAction<boolean>) {
             state.isSaved = action.payload
         },
@@ -63,26 +66,20 @@ const groupSlice = createSlice({
         [fetchGroup.rejected]: (state, action) => {
             if (action.error.name === "ConditionError") {
                 const groupId = action.meta.arg.groupId;
-                if (groupId) state.group = state.groups.find((group) => group.id === Number(groupId)) || null;
+                if (groupId) state.group = state.groups.data.find((group) => group.id === Number(groupId)) || null;
                 state.fetchError = null;
             } else if (action.error.name === 'Error') {
                 state.fetchError = action.error;
                 state.fetchLoading = false;
             }
         },
-        [fetchGroups.pending]: (state) => {
-            state.fetchLoading = true;
-        },
-        [fetchGroups.fulfilled]: (state: StateProps, action: PayloadAction<GroupProps[]>) => {
-            state.groups = action.payload || [];
-            state.fetchLoading = false;
-        },
+
         [updateGroup.pending]: (state) => {
             state.fetchLoading = true;
         },
         [updateGroup.fulfilled]: (state: StateProps, action: PayloadAction<GroupProps>) => {
             if (action.payload?.id)
-                state.groups = state.groups.map((group) => group.id === action.payload.id ? action.payload : group);
+                state.groups.data = state.groups.data.map((group) => group.id === action.payload.id ? action.payload : group);
             state.fetchLoading = false;
         },
         [createGroup.pending]: (state) => {
@@ -90,22 +87,23 @@ const groupSlice = createSlice({
         },
         [createGroup.fulfilled]: (state: StateProps, action: PayloadAction<GroupProps>) => {
             if (action.payload?.id)
-                state.groups = [...state.groups, action.payload];
+                state.groups.data = [...state.groups.data, action.payload];
             state.fetchLoading = false;
         },
         [deleteGroup.pending]: (state) => {
             state.fetchLoading = true;
         },
         [deleteGroup.fulfilled]: (state: StateProps, action: PayloadAction<number>) => {
-            state.groups = state.groups.filter((group) => group.id !== action.payload);
+            state.groups.data = state.groups.data.filter((group) => group.id !== action.payload);
             state.fetchLoading = false;
         },
+        ...groupsExtraReducers,
         ...statisticExtraReducers
     }
 });
 
 export const groupSelector = (state: TeacherState) => state.group;
 
-export const {changeIsSaved, changeSelectedStudentsId} = groupSlice.actions;
+export const {changeIsSaved, changeSelectedStudentsId, resetGroupSlice} = groupSlice.actions;
 
 export default groupSlice.reducer;

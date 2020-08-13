@@ -1,5 +1,5 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {apiRequest} from "../../../../utils/api";
+import {apiRequest} from "../../../../../utils/api";
 
 interface AgrProps {
     groupId: number;

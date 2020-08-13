@@ -1,6 +1,6 @@
 import {fetchStudentsRecentHomework} from "./fetchStudentsRecentHomework";
 import {PayloadAction} from "@reduxjs/toolkit";
-import {StateProps} from "../studentsSlice";
+import {StateProps} from "../studentSlice";
 
 export interface RecentHomeworkDetails {
     id: number;

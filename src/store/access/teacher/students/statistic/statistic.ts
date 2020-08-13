@@ -1,6 +1,6 @@
 import {fetchStudentsStatistic} from "./fetchStudentsStatistic";
 import {PayloadAction} from "@reduxjs/toolkit";
-import {StateProps} from "../studentsSlice";
+import {StateProps} from "../studentSlice";
 
 export interface StatisticState {
     loading: boolean;

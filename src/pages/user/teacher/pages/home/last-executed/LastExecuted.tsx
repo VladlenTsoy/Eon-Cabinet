@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {Card, Legend, TablePagination} from "../../../../../../lib/components";
 import Columns from "./Columns";
 import {useDispatch, useSelector} from "react-redux";
-import {studentsSelector} from "../../../../../../store/access/teacher/students/studentsSlice";
+import {studentsSelector} from "../../../../../../store/access/teacher/students/studentSlice";
 import {fetchStudentsRecentHomework} from "../../../../../../store/access/teacher/students/recent-homework/fetchStudentsRecentHomework";
 
 const LastExecuted = () => {

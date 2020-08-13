@@ -3,7 +3,7 @@ import {useDispatch} from "react-redux";
 import {useParams} from "react-router-dom";
 import {ParamsProps} from "../Group";
 import TableStudents from "./table-students/TableStudents";
-import {changeSelectedIds} from "../../../../../../../store/access/teacher/students/studentsSlice";
+import {changeSelectedIds} from "../../../../../../../store/access/teacher/students/studentSlice";
 import {Radio} from "antd";
 import styled from "styled-components";
 import {fetchStudentsDetails} from "../../../../../../../store/access/teacher/students/details/fetchStudentsDetails";

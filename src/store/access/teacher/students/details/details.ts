@@ -1,6 +1,6 @@
 import {fetchStudentsDetails} from "./fetchStudentsDetails";
 import {PayloadAction} from "@reduxjs/toolkit";
-import {StateProps, Student} from "../studentsSlice";
+import {StateProps, Student} from "../studentSlice";
 import {createStudent} from "./createStudent";
 import {updateStudent} from "./updateStudent";
 import {deleteStudent} from "./deleteStudent";

@@ -6,7 +6,7 @@ import {groupSelector} from "../../../../../../../../store/access/teacher/group/
 import Container from "./container/Container";
 import checkStudentGif from "assets/images/hints/check-student.gif";
 import {Modal} from "antd";
-import {studentsSelector} from "../../../../../../../../store/access/teacher/students/studentsSlice";
+import {studentsSelector} from "../../../../../../../../store/access/teacher/students/studentSlice";
 
 const SentHomeworkStudentButton: React.FC = ({children}) => {
     const {isSaved} = useSelector(groupSelector);

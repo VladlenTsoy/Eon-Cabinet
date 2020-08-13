@@ -8,7 +8,6 @@ import {useLanguage} from "../../../../../../hooks/use-language";
 // import {pdfRender} from "../../../training/tasks/print/general";
 
 const SearchWrapper = styled.div`
-  margin-right: auto;
   display: flex;
   align-items: center;
   padding: 0 0 0 1rem;
@@ -101,7 +100,7 @@ const Search = () => {
                 showArrow={false}
                 filterOption={false}
                 notFoundContent={notFound()}
-                placeholder="Введите ID Листа"
+                placeholder="Найти лист по ID для скачанивания"
                 onSearch={handleSearch}
                 onChange={handleChange}
             >

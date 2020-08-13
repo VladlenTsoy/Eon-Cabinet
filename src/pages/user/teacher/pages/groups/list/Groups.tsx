@@ -1,28 +1,26 @@
 import React, {useEffect} from 'react';
 import {Spin} from "../../../../../../lib/components";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchGroups} from "../../../../../../store/access/teacher/group/fetchGroups";
+import {fetchGroups} from "../../../../../../store/access/teacher/group/groups/fetchGroups";
 import {groupSelector} from "../../../../../../store/access/teacher/group/groupSlice";
-import {disciplineSelector} from "../../../../../../store/access/teacher/discipline/disciplineSlice";
 import NavButtons from "./nav-buttons/NavButtons";
 import Container from "./container/Container";
 
 const Groups: React.FC = () => {
-    const {activeDisciplineId} = useSelector(disciplineSelector);
-    const {groups, fetchLoading} = useSelector(groupSelector);
+    const {groups} = useSelector(groupSelector);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        const promise = dispatch(fetchGroups({activeDisciplineId}));
+        const promise = dispatch(fetchGroups());
         return () => {
             promise.abort();
         }
-    }, [activeDisciplineId, dispatch]);
+    }, [dispatch]);
 
     return <>
         <NavButtons/>
-        <Spin spinning={fetchLoading} tip="Загрузка...">
-            <Container groups={groups}/>
+        <Spin spinning={groups.loading} tip="Загрузка...">
+            <Container groups={groups.data}/>
         </Spin>
     </>
 };
