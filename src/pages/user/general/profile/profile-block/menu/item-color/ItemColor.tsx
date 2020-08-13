@@ -5,10 +5,9 @@ import {BgColorsOutlined} from '@ant-design/icons';
 
 interface ItemColorProps {
     currentUser: any;
-    changeDataCurrentUser: any;
 }
 
-const ItemColor: React.FC<ItemColorProps> = ({currentUser, changeDataCurrentUser}) => {
+const ItemColor: React.FC<ItemColorProps> = ({currentUser}) => {
     const [visible, setVisible] = useState(false);
 
     const open = () => setVisible(true);
@@ -26,7 +25,7 @@ const ItemColor: React.FC<ItemColorProps> = ({currentUser, changeDataCurrentUser
             onCancel={close}
             okButtonProps={{hidden: true}}
         >
-            <ColorModalBlock currentUser={currentUser} changeDataCurrentUser={changeDataCurrentUser}/>
+            <ColorModalBlock currentUser={currentUser}/>
         </Modal>
     </>;
 };

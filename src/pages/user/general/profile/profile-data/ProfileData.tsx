@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
-import {Button, Col, DatePicker, Form, message, Row, Typography} from "antd";
+import {Button, Col, DatePicker, Form, Row, Typography} from "antd";
 import {Card} from "lib/components";
 import {FormItem} from "../../../../../lib/components";
 import styled from "styled-components";
 import moment from 'moment';
 import {useUser} from "../../../../../hooks/use-user";
+import {useDispatch} from "react-redux";
+import {updateUser} from "../../../../../store/common/user/updateUser";
 
 const {Title} = Typography;
 
@@ -12,20 +14,14 @@ const ProfileTitle = styled(Title)`
    text-align: center;
 `;
 
-// TODO - api
 const ProfileData: React.FC = () => {
-    const {user} = useUser();
-    const [loading, setLoading] = useState(false);
+    const {user} = useUser()
+    const [loading, setLoading] = useState(false)
+    const dispatch = useDispatch()
 
     const handleSubmit = async (values: any) => {
         setLoading(true);
-        try {
-            // const response = await api.user.patch(`/${user.id}`, values);
-            // updateUser(response.data);
-            message.success('Вы успешно изменили данные!');
-        } catch (e) {
-            message.error(e.response.data.message);
-        }
+        await dispatch(updateUser({userId: user.id, data: values}))
         setLoading(false);
     };
 

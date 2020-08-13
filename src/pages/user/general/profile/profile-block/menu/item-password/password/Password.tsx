@@ -1,29 +1,25 @@
 import React from "react";
 import {LockOutlined, SaveOutlined} from '@ant-design/icons';
-import {Button, Input, message, Form} from "antd";
+import {Button, Input, Form} from "antd";
 import {useState} from "react";
+import {useDispatch} from "react-redux";
+import {updatePasswordUser} from "../../../../../../../../store/common/user/updatePasswordUser";
+import {User} from "../../../../../../../../store/common/user/userSlice";
 
 interface PasswordProps {
-    currentUser: any;
+    currentUser: User;
     closeModal: () => void;
 }
 
-// TODO - api
 const PasswordBlock: React.FC<PasswordProps> = ({currentUser, closeModal}) => {
-    const [form] = Form.useForm();
-    const [loading, setLoading] = useState(false);
+    const [form] = Form.useForm()
+    const [loading, setLoading] = useState(false)
+    const dispatch = useDispatch()
 
     const handleSubmit = async (values: any) => {
         setLoading(true);
-        try {
-            // await api.user.post(`/${currentUser.id}/password`, values);
-            message.success('Вы успешно сменили пароль!');
-            closeModal();
-        } catch (e) {
-            console.log(e.response.data.message);
-            message.error(`${e.response.data.message}!`);
-            setLoading(false);
-        }
+        await dispatch(updatePasswordUser({userId: currentUser.id, data: values}))
+        closeModal();
     };
 
     const compareToFirstPassword = (rule: any, value: any, callback: any) => {
@@ -42,7 +38,6 @@ const PasswordBlock: React.FC<PasswordProps> = ({currentUser, closeModal}) => {
         >
             <Input.Password prefix={<LockOutlined/>}/>
         </Form.Item>
-
         <Form.Item
             label="Новый пароль"
             hasFeedback
@@ -56,7 +51,6 @@ const PasswordBlock: React.FC<PasswordProps> = ({currentUser, closeModal}) => {
         >
             <Input.Password prefix={<LockOutlined/>}/>
         </Form.Item>
-
         <Form.Item
             label="Потвердите новый пароль"
             hasFeedback
@@ -70,7 +64,6 @@ const PasswordBlock: React.FC<PasswordProps> = ({currentUser, closeModal}) => {
         >
             <Input.Password prefix={<LockOutlined/>}/>
         </Form.Item>
-
         <div className="actions-block">
             <Button type="primary" htmlType="submit" icon={<SaveOutlined/>} loading={loading}>Сохранить</Button>
             <Button onClick={closeModal}>Отмена</Button>

@@ -1,6 +1,6 @@
 import React from "react";
-import { EditOutlined } from '@ant-design/icons';
-import { Menu } from "antd";
+import {EditOutlined} from '@ant-design/icons';
+import {Menu} from "antd";
 import styled from "styled-components";
 import ItemColor from "./item-color/ItemColor";
 import ItemBlock from "../../../../director-franchise/layouts/items/ItemBlock";
@@ -46,40 +46,40 @@ interface ProfileBlockMenuProps {
 const ProfileBlockMenu: React.FC<ProfileBlockMenuProps> = ({currentUser, changeDataCurrentUser, setting}) => {
     return (
         <MenuWrapper>
-            {setting.edit ?
+            {
+                setting.edit &&
                 <Menu.Item>
                     <EditorButton title="Редактировать профиль">
-                        <EditOutlined /> Редактировать
+                        <EditOutlined/> Редактировать
                     </EditorButton>
                 </Menu.Item>
-                : null}
-            {setting.color ?
+            }
+            {
+                setting.color &&
                 <Menu.Item>
-                    <ItemColor currentUser={currentUser} changeDataCurrentUser={changeDataCurrentUser}/>
+                    <ItemColor currentUser={currentUser}/>
                 </Menu.Item>
-                : null}
-            {setting.email ?
+            }
+            {
+                setting.email &&
                 <Menu.Item disabled={!!currentUser.email_verified_at}>
                     <ItemEmailVerification
                         currentUser={currentUser}
                         changeDataCurrentUser={changeDataCurrentUser}/>
                 </Menu.Item>
-                : null}
-            {setting.block ?
+            }
+            {
+                setting.block &&
                 <Menu.Item>
                     <ItemBlock user={currentUser}/>
                 </Menu.Item>
-                : null}
-            {/*<Menu.Item disabled>*/}
-            {/*    <Icon type="lock"/>*/}
-            {/*    {language.common.youCanBlockThrough}*/}
-            {/*    <b className="text-danger">{currentUser.day_unblock}</b> {language.common.days} д.*/}
-            {/*</Menu.Item>*/}
-            {setting.password ?
+            }
+            {
+                setting.password &&
                 <Menu.Item>
                     <ItemPassword currentUser={currentUser}/>
                 </Menu.Item>
-                : null}
+            }
         </MenuWrapper>
     );
 };
