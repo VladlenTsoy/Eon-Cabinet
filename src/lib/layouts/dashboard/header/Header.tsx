@@ -10,11 +10,12 @@ import {logoutUser} from "../../../../store/common/user/logoutUser";
 interface HeaderProps {
     collapsed: boolean;
     toggleSidebar: () => void;
+    account?: JSX.Element[];
 }
 
 const confirm = Modal.confirm;
 
-const Header: React.FC<HeaderProps> = ({children, collapsed, toggleSidebar}) => {
+const Header: React.FC<HeaderProps> = ({children, collapsed, account, toggleSidebar}) => {
     const dispatch = useDispatch();
 
     // Выход
@@ -43,6 +44,7 @@ const Header: React.FC<HeaderProps> = ({children, collapsed, toggleSidebar}) => 
         toggleSidebar={toggleSidebar}
         logout={logout}
         collapsed={collapsed}
+        account={account}
     >
         {children}
     </Laptop>;

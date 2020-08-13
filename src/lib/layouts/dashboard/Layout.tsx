@@ -5,12 +5,6 @@ import Sidebar from "./sidebar/Sidebar";
 import Header from "./header/Header";
 import {withRouter, RouteComponentProps} from 'react-router';
 
-type LayoutProps = RouteComponentProps & {
-    history?: any;
-    header: JSX.Element[];
-    sidebar: JSX.Element[];
-}
-
 const LayoutStyled = styled(AntdLayout)`
   &.ant-layout{
     height: 100%;
@@ -35,12 +29,20 @@ const Content = styled(AntdLayout.Content)`
     }
 `;
 
+type LayoutProps = RouteComponentProps & {
+    history?: any;
+    header: JSX.Element[];
+    sidebar: JSX.Element[];
+    account?: JSX.Element[];
+}
+
 const Layout: React.FC<LayoutProps> = (
     {
         children,
         history,
         header,
-        sidebar
+        sidebar,
+        account,
     }
 ) => {
     const [collapsed, setCollapsed] = useState(true);
@@ -58,7 +60,7 @@ const Layout: React.FC<LayoutProps> = (
     return <LayoutStyled>
         <Sidebar collapsed={collapsed} toggleSidebar={toggleSidebar}>{sidebar}</Sidebar>
         <LayoutStyled>
-            <Header collapsed={collapsed} toggleSidebar={toggleSidebar}>{header}</Header>
+            <Header collapsed={collapsed} toggleSidebar={toggleSidebar} account={account}>{header}</Header>
             <Content>
                 {children}
             </Content>

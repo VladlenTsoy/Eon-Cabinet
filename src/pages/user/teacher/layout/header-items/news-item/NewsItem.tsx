@@ -1,8 +1,9 @@
 import React, {useState} from "react";
-import { BulbOutlined } from '@ant-design/icons';
+import {BulbOutlined} from '@ant-design/icons';
 import {Drawer} from "../../../../../../lib/components";
 import News from "../../../../general/news/News";
 import {useScreenWindow} from "../../../../../../hooks/use-screen-window.effect";
+import {Badge} from "antd";
 
 const NewsItem: React.FC = () => {
     const [visible, setVisible] = useState(false);
@@ -13,7 +14,7 @@ const NewsItem: React.FC = () => {
 
     return <>
         <div onClick={open}>
-            <BulbOutlined /> Новости
+            <Badge count={5}><BulbOutlined/></Badge> Новости
         </div>
         <Drawer
             title="Новости"

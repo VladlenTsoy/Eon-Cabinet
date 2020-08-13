@@ -21,6 +21,7 @@ import SidebarItems from "./layout/sidebar-items/SidebarItems";
 import DisciplinesProvider from "./providers/disciplines-provider/DisciplinesProvider";
 import CategoriesProvider from "./providers/categories-provider/CategoriesProvider";
 import AlgorithmsProvider from "./providers/algorithms-provider/AlgorithmsProvider";
+import AccountItems from "./layout/account-items/AccountItems";
 
 const Index: React.FC = () => {
     const sidebar = SidebarItems();
@@ -29,7 +30,7 @@ const Index: React.FC = () => {
         <CategoriesProvider>
             <AlgorithmsProvider>
                 <Router>
-                    <Layout header={HeaderItems} sidebar={sidebar}>
+                    <Layout header={HeaderItems} sidebar={sidebar} account={AccountItems}>
                         <Switch>
                             <Route exact path="/" component={Home}/>
                             <Route path="/profile" component={Profile}/>
