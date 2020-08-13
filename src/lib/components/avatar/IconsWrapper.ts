@@ -18,13 +18,13 @@ export const IconWrapper = styled.p`
  display: flex;
  align-items: center;
 
- i {
+ .anticon {
     font-size: 25px;
  }
 `;
 
 export const IconEditWrapper = styled(IconsWrapper)`
- i {
+ .anticon {
     font-size: 20px;
     margin-right: 0.5rem;
  }

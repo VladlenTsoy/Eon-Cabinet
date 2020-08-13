@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Modal} from "../../../../../../../lib/components";
 import ColorModalBlock from "./color/Color";
-import { BgColorsOutlined } from '@ant-design/icons';
+import {BgColorsOutlined} from '@ant-design/icons';
 
 interface ItemColorProps {
     currentUser: any;
@@ -9,19 +9,21 @@ interface ItemColorProps {
 }
 
 const ItemColor: React.FC<ItemColorProps> = ({currentUser, changeDataCurrentUser}) => {
-    const [modalColor, setModalColor] = useState(false);
-    const openColorModal = () => setModalColor(true);
+    const [visible, setVisible] = useState(false);
+
+    const open = () => setVisible(true);
+    const close = () => setVisible(false);
 
     return <>
-        <div onClick={openColorModal}>
-            <BgColorsOutlined />Изменить цвет
+        <div onClick={open}>
+            <BgColorsOutlined/>Изменить цвет
         </div>
         <Modal
             title="Настройка цвета"
             centered
             width={300}
-            visible={modalColor}
-            onCancel={() => setModalColor(false)}
+            visible={visible}
+            onCancel={close}
             okButtonProps={{hidden: true}}
         >
             <ColorModalBlock currentUser={currentUser} changeDataCurrentUser={changeDataCurrentUser}/>
@@ -29,4 +31,4 @@ const ItemColor: React.FC<ItemColorProps> = ({currentUser, changeDataCurrentUser
     </>;
 };
 
-export default ItemColor;
+export default React.memo(ItemColor);

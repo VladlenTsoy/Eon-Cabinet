@@ -9,13 +9,13 @@ interface ItemPasswordProps {
 }
 
 const ItemPassword:React.FC<ItemPasswordProps> = ({currentUser}) => {
-    const [modalPassword, setModalPassword] = useState(false);
+    const [visible, setVisible] = useState(false);
 
-    const openPasswordModal = () => setModalPassword(true);
-    const closePasswordModal = () => setModalPassword(false);
+    const open = () => setVisible(true);
+    const close = () => setVisible(false);
 
     return <>
-        <div onClick={openPasswordModal}>
+        <div onClick={open}>
             <KeyOutlined />Изменить пароль
         </div>
       <Modal
@@ -23,12 +23,12 @@ const ItemPassword:React.FC<ItemPasswordProps> = ({currentUser}) => {
           className="form-modal"
           centered
           width={300}
-          visible={modalPassword}
-          onCancel={() => setModalPassword(false)}
+          visible={visible}
+          onCancel={close}
           cancelButtonProps={{hidden: true}}
           okButtonProps={{hidden: true}}
       >
-          <PasswordBlock currentUser={currentUser} closeModal={closePasswordModal}/>
+          <PasswordBlock currentUser={currentUser} closeModal={close}/>
       </Modal>
   </>;
 };

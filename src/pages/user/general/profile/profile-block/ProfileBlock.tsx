@@ -5,9 +5,9 @@ import {useEffect, useState} from "react";
 import PhotoBlock from "../../../../../lib/components/avatar/Photo";
 import ProfileBlockMenu from "./menu/ProfileBlockMenu";
 import styled from "styled-components";
-import {useDispatch, useSelector} from "react-redux";
-import {userSelector} from "../../../../../store/common/user/userSlice";
+import {useDispatch} from "react-redux";
 import {updateUser} from "../../../../../store/common/user/updateUser";
+import {useUser} from "../../../../../hooks/use-user";
 
 const {Title} = Typography;
 
@@ -30,13 +30,13 @@ const ProfileBlockWrapper = styled(Card)`
 `;
 
 const ProfileBlock: React.FC<ProfileBlockProps> = ({user: userData, settingMenu}) => {
-    const [currentUser, setCurrentUser] = useState(userData);
-    const user = useSelector(userSelector)
-    const dispatch = useDispatch();
+    const [currentUser, setCurrentUser] = useState(userData)
+    const {user} = useUser()
+    const dispatch = useDispatch()
 
     useEffect(() => {
-        setCurrentUser(user);
-    }, [user]);
+        setCurrentUser(user)
+    }, [user])
 
     // Обновленные данные пользователя
     const changeDataCurrentUser = (updateDataUser: any) => {
@@ -51,7 +51,8 @@ const ProfileBlock: React.FC<ProfileBlockProps> = ({user: userData, settingMenu}
         <ProfileBlockMenu
             currentUser={currentUser}
             changeDataCurrentUser={changeDataCurrentUser}
-            setting={settingMenu}/>
+            setting={settingMenu}
+        />
     </ProfileBlockWrapper>
 };
 

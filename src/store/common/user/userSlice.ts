@@ -8,6 +8,7 @@ import {registrationUser} from "./registrationUser";
 import {updateToken} from "../../../utils/api";
 import cookie from "js-cookie";
 import {verificationCodeConfirmEmail} from "./email-confirmation/verificationCodeConfirmEmail";
+import {updateImageUser} from "./updateImageUser";
 
 export interface User {
     id: string;
@@ -21,6 +22,7 @@ export interface User {
     lang_id?: string
     setting: {
         is_dark: boolean;
+        anzanColor?: 'black' | 'red' | 'purple' | 'dark-purple' | 'light-blue' | 'green' | 'yellow'
     }
     created_at: string;
 }
@@ -67,6 +69,12 @@ const userSlice = createSlice({
         // },
         [updateUser.fulfilled]: (state: StateProps, action: PayloadAction<User>) => {
             state.detail = action.payload;
+            // state.loading = false;
+        },
+
+        [updateImageUser.fulfilled]: (state: StateProps, action: PayloadAction<{ data: { image: User['image'] } }>) => {
+            if (state.detail)
+                state.detail.image = action.payload.data.image;
             // state.loading = false;
         },
 

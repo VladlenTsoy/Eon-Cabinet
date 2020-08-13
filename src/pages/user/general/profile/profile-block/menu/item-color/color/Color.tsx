@@ -1,25 +1,24 @@
 import * as React from "react";
 import './Color.less';
 import {useState} from "react";
-import {message} from "antd";
-import {useLanguage} from "../../../../../../../../hooks/use-language";
+import {useDispatch} from "react-redux";
+import {updateUser} from "../../../../../../../../store/common/user/updateUser";
+import {User} from "../../../../../../../../store/common/user/userSlice";
 
-// TODO - api
-const ColorModalBlock = ({currentUser, changeDataCurrentUser}: any) => {
-    const {language} = useLanguage();
-    const [currentColor, setCurrentColor] = useState(currentUser.setting.anzanColor);
+interface ColorProps {
+    currentUser: User
+}
 
-    const changeColor = async (color: string) => {
-        setCurrentColor(color);
-        currentUser.setting.anzanColor = color;
+const ColorModalBlock:React.FC<ColorProps> = ({currentUser}) => {
+    const [currentColor, setCurrentColor] = useState<User["setting"]["anzanColor"]>(currentUser.setting.anzanColor)
+    const dispatch = useDispatch()
 
-        try{
-            // const response = await api.user.patch(`/${currentUser.id}`, {setting: currentUser.setting});
-            // changeDataCurrentUser(response.data);
-            message.success('Вы успешно изменили цвет!');
-        } catch (e) {
-            message.error(language.common['cx002']);
-        }
+    const changeColor = async (color: User["setting"]["anzanColor"]) => {
+        setCurrentColor(color)
+        await dispatch(updateUser({
+            userId: currentUser.id,
+            data: {setting: {...currentUser.setting, anzanColor: color}}
+        }))
     };
 
     return <div className="color-modal-block">
@@ -27,13 +26,34 @@ const ColorModalBlock = ({currentUser, changeDataCurrentUser}: any) => {
             1
         </div>
         <div className="block-select-color">
-            <div className={`black ${currentColor === 'black'? 'active': ''}`} onClick={() => changeColor('black')}/>
-            <div className={`red ${currentColor === 'red'? 'active': ''}`} onClick={() => changeColor('red')}/>
-            <div className={`purple ${currentColor === 'purple'? 'active': ''}`} onClick={() => changeColor('purple')}/>
-            <div className={`dark-purple ${currentColor === 'dark-purple'? 'active': ''}`} onClick={() => changeColor('dark-purple')}/>
-            <div className={`light-blue ${currentColor === 'light-blue'? 'active': ''}`} onClick={() => changeColor('light-blue')}/>
-            <div className={`green ${currentColor === 'green'? 'active': ''}`} onClick={() => changeColor('green')}/>
-            <div className={`yellow ${currentColor === 'yellow'? 'active': ''}`} onClick={() => changeColor('yellow')}/>
+            <div
+                className={`black ${currentColor === 'black' && 'active'}`}
+                onClick={() => changeColor('black')}
+            />
+            <div
+                className={`red ${currentColor === 'red' && 'active'}`}
+                onClick={() => changeColor('red')}
+            />
+            <div
+                className={`purple ${currentColor === 'purple' && 'active'}`}
+                onClick={() => changeColor('purple')}
+            />
+            <div
+                className={`dark-purple ${currentColor === 'dark-purple'&& 'active'}`}
+                onClick={() => changeColor('dark-purple')}
+            />
+            <div
+                className={`light-blue ${currentColor === 'light-blue'&& 'active'}`}
+                onClick={() => changeColor('light-blue')}
+            />
+            <div
+                className={`green ${currentColor === 'green'&& 'active'}`}
+                onClick={() => changeColor('green')}
+            />
+            <div
+                className={`yellow ${currentColor === 'yellow'&& 'active'}`}
+                onClick={() => changeColor('yellow')}
+            />
         </div>
     </div>;
 };

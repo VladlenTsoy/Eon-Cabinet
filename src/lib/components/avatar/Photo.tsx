@@ -4,8 +4,8 @@ import {message, Modal} from "antd";
 import {useState} from "react";
 import {IconsWrapper, IconWrapper, IconEditWrapper} from "./IconsWrapper";
 import AvatarLabelWrapper from "./Label";
-import {useLanguage} from "../../../hooks/use-language";
-import {useUser} from "../../../hooks/use-user";
+import {useDispatch} from "react-redux";
+import {updateImageUser} from "../../../store/common/user/updateImageUser";
 
 const {confirm} = Modal;
 
@@ -14,11 +14,9 @@ interface PhotoBlockProps {
     changeDataCurrentUser: any;
 }
 
-// TODO - api
-const PhotoBlock: React.FC<PhotoBlockProps> = ({currentUser, changeDataCurrentUser}: any) => {
-    const {user, updateUser} = useUser();
-    const {language} = useLanguage();
-    const [loading, setLoading] = useState(false);
+const PhotoBlock: React.FC<PhotoBlockProps> = ({currentUser}: any) => {
+    const dispatch = useDispatch()
+    const [loading, setLoading] = useState(false)
 
     const handleChangeImage = (e: any) => {
         if (loading) return;
@@ -44,29 +42,21 @@ const PhotoBlock: React.FC<PhotoBlockProps> = ({currentUser, changeDataCurrentUs
 
         data.append("images", img);
         setLoading(true);
-
-        try {
-            // const response = await api.user.post(`/${currentUser.id}/image`, data);
-            // message.success(language.common['youHaveSuccessfullyChangedThePhoto']);
-            // if (currentUser.id === user.id)
-            //     updateUser(response.data.data);
-            // else
-            //     changeDataCurrentUser({...currentUser, ...response.data.data});
-        } catch (e) {
-            message.error(language.common['cx002']);
-        }
+        await dispatch(updateImageUser({userId: currentUser.id, data}))
         setLoading(false);
     };
 
     return <AvatarLabelWrapper>
-            <img src={currentUser.image} alt={`${currentUser.first_name} ${currentUser.last_name}`}/>
-            <input type="file" accept="image/x-png,image/gif,image/jpeg" onChange={handleChangeImage}/>
-            <IconsWrapper>
-                {loading ?
+        <img src={currentUser.image} alt={`${currentUser.first_name} ${currentUser.last_name}`}/>
+        <input type="file" accept="image/x-png,image/gif,image/jpeg" onChange={handleChangeImage}/>
+        <IconsWrapper>
+            {
+                loading ?
                     <IconWrapper><LoadingOutlined/></IconWrapper> :
-                    <IconEditWrapper><EditOutlined/> Изменить</IconEditWrapper>}
-            </IconsWrapper>
-        </AvatarLabelWrapper>
+                    <IconEditWrapper><EditOutlined/> Изменить</IconEditWrapper>
+            }
+        </IconsWrapper>
+    </AvatarLabelWrapper>
 };
 
 export default PhotoBlock;
