@@ -3,8 +3,8 @@ import {Select, Form, Button} from "antd";
 import {useDispatch, useSelector} from "react-redux";
 import {FormItem} from "lib/components";
 import {categorySelector} from "store/access/teacher/category/categorySlice";
-import {updateGroup} from "store/access/teacher/group/group/updateGroup";
-import {createGroup} from "store/access/teacher/group/group/createGroup";
+import {updateGroup} from "store/access/teacher/group/groups/updateGroup";
+import {createGroup} from "store/access/teacher/group/groups/createGroup";
 import {GroupProps} from "../../../../../../../../../store/access/teacher/group/groupSlice";
 
 const {Option} = Select;
@@ -54,7 +54,7 @@ const FormItems: React.FC<FormItemsProps> = ({group, close}) => {
             <Select>
                 {
                     categories
-                        .map((category: any) =>
+                        .map((category) =>
                             <Option key={category.id} value={category.id}>
                                 {category.title}
                             </Option>

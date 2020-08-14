@@ -1,13 +1,21 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {apiRequest} from "../../../../../utils/api";
 import {message} from "../../../../../utils/message";
+import {TeacherThunkProps} from "../../store";
+import {GroupProps} from "../groupSlice";
 
-interface ParamsProps {
-    groupId: string | number;
-    data: object
+type ReturnedType = GroupProps
+
+interface AgrProps {
+    groupId: GroupProps['id']
+    data: {
+        title: GroupProps['title']
+        category_id: GroupProps['category']
+        method_id: GroupProps['method_id']
+    }
 }
 
-export const updateGroup: any = createAsyncThunk<any, ParamsProps, any>(
+export const updateGroup = createAsyncThunk<ReturnedType, AgrProps, TeacherThunkProps>(
     'teacher/group/update',
     async ({groupId, data}) => {
         //

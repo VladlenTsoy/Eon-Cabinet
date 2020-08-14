@@ -1,18 +1,20 @@
 import {Select} from "antd";
 import React, {useEffect} from "react";
 import {FormItem} from "../../../../../../../../../../lib/components";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {GroupProps, groupSelector} from "../../../../../../../../../../store/access/teacher/group/groupSlice";
 import {fetchGroups} from "../../../../../../../../../../store/access/teacher/group/groups/fetchGroups";
+import {useTeacherDispatch} from "../../../../../../../../../../store/access/teacher/store";
+
 const {Option} = Select;
 
 const SelectGroup: React.FC = () => {
-    const {groups, group, fetchLoading} = useSelector(groupSelector);
-    const dispatch = useDispatch();
+    const {groups, group} = useSelector(groupSelector);
+    const dispatch = useTeacherDispatch();
 
     const groupsFilterCategory = (groups: GroupProps[]): GroupProps[] => {
-        if(groups.length)
-            return groups.filter((_group) => _group.category.id === group?.category.id) || [];
+        if (groups.length)
+            return groups.filter((_group) => _group.category.id === group.detail?.category.id) || [];
         return [];
     };
 
@@ -29,7 +31,7 @@ const SelectGroup: React.FC = () => {
     return <FormItem name="group_id" label="Группа" requiredMsg="Выберите группу">
         <Select
             showSearch
-            loading={fetchLoading}
+            loading={group.loading}
             optionFilterProp="children"
             filterOption={filter}
         >

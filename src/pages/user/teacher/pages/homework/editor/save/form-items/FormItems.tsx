@@ -56,7 +56,7 @@ const FormItems: React.FC<FormItemsProps> = ({homework, close, fetch, exercises}
                 category: homework.category_id,
                 description: homework.description,
             } : isSaved ? {
-                category: group?.category.id,
+                category: group.detail?.category.id,
             } : {}
         }
     >

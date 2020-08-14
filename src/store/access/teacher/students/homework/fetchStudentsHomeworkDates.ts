@@ -10,10 +10,10 @@ export const fetchStudentsHomeworkDates: any = createAsyncThunk<any, AgrProps>(
     'students/fetch/homework/dates',
     async ({groupId}, {signal, getState}) => {
         // @ts-ignore
-        const {students} = getState();
+        const {student} = getState();
         return await apiRequest('post', `/teacher/students/${groupId}/homework/dates`, {
             signal,
-            data: {startOfWeek: students.homework.startOfWeek, endOfWeek: students.homework.endOfWeek}
+            data: {startOfWeek: student.homework.startOfWeek, endOfWeek: student.homework.endOfWeek}
         });
     },
 )

@@ -1,9 +1,9 @@
 import {GroupProps, StateProps} from "../groupSlice";
 import {fetchGroups} from "./fetchGroups";
-import {PayloadAction} from "@reduxjs/toolkit";
-import {updateGroup} from "../group/updateGroup";
-import {createGroup} from "../group/createGroup";
-import {deleteGroup} from "../group/deleteGroup";
+import {ActionReducerMapBuilder} from "@reduxjs/toolkit";
+import {updateGroup} from "./updateGroup";
+import {createGroup} from "./createGroup";
+import {deleteGroup} from "./deleteGroup";
 
 export interface GroupsState {
     data: GroupProps[]
@@ -15,42 +15,39 @@ export const groupsState: GroupsState = {
     loading: false
 }
 
-export const groupsExtraReducers = {
+export const groupsExtraReducers =  (builder: ActionReducerMapBuilder<StateProps>) => {
     // Загрузка групп
-    [fetchGroups.pending]: (state: StateProps) => {
-        state.groups.loading = true;
-    },
-    [fetchGroups.fulfilled]: (state: StateProps, action: PayloadAction<GroupProps[]>) => {
-        state.groups.data = action.payload || [];
-        state.groups.loading = false;
-    },
+    builder.addCase(fetchGroups.pending, (state) => {
+        state.groups.loading = true
+    })
+    builder.addCase(fetchGroups.fulfilled, (state, action) => {
+        state.groups.data = action.payload || []
+        state.groups.loading = false
+    })
 
-    // Создать
-    [createGroup.pending]: (state: StateProps) => {
+    builder.addCase(createGroup.pending, (state) => {
         state.groups.loading = true;
-    },
-    [createGroup.fulfilled]: (state: StateProps, action: PayloadAction<GroupProps>) => {
+    })
+    builder.addCase(createGroup.fulfilled, (state, action) => {
         if (action.payload?.id)
             state.groups.data = [...state.groups.data, action.payload];
         state.groups.loading = false;
-    },
+    })
 
-    // Обновить
-    [updateGroup.pending]: (state: StateProps) => {
+    builder.addCase(updateGroup.pending, (state) => {
         state.groups.loading = true;
-    },
-    [updateGroup.fulfilled]: (state: StateProps, action: PayloadAction<GroupProps>) => {
+    })
+    builder.addCase(updateGroup.fulfilled, (state, action) => {
         if (action.payload?.id)
             state.groups.data = state.groups.data.map((group) => group.id === action.payload.id ? action.payload : group);
         state.groups.loading = false;
-    },
+    })
 
-    // Удалить
-    [deleteGroup.pending]: (state: StateProps) => {
+    builder.addCase(deleteGroup.pending, (state) => {
         state.groups.loading = true;
-    },
-    [deleteGroup.fulfilled]: (state: StateProps, action: PayloadAction<GroupProps["id"]>) => {
+    })
+    builder.addCase(deleteGroup.fulfilled, (state, action) => {
         state.groups.data = state.groups.data.filter((group) => group.id !== action.payload)
         state.groups.loading = false
-    },
+    })
 }

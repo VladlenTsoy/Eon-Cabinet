@@ -9,17 +9,17 @@ interface ContainerProps {
 }
 
 const Container:React.FC<ContainerProps> = ({close}) => {
-    const {fetchLoading, group} = useSelector(groupSelector);
+    const {group} = useSelector(groupSelector);
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(changeIsSaved(false));
     }, [dispatch]);
 
-    if(fetchLoading) return <LoadingBlock title="Загрузка данных группы..."/>
-    if (!group) return <>Пусто</>
+    if(group.loading) return <LoadingBlock title="Загрузка данных группы..."/>
+    if (!group.detail) return <>Пусто</>
 
-    return <HomeworkContainer categoryId={group.category.id} close={close}/>
+    return <HomeworkContainer categoryId={group.detail.category.id} close={close}/>
 };
 
 export default Container;

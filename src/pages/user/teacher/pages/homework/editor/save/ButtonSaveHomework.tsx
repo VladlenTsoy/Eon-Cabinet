@@ -18,7 +18,7 @@ const ButtonSaveHomework: React.FC<ButtonSaveHomeworkProps> = ({homework, exerci
     const [visible, setVisible] = useState(false);
 
     const fetch = useCallback(() => {
-        history.push(isSaved ? `/groups/${group?.id}` : '/homework');
+        history.push(isSaved ? `/groups/${group.detail?.id}` : '/homework');
     }, [history, isSaved, group]);
 
     const open = () => setVisible(true);
@@ -28,7 +28,7 @@ const ButtonSaveHomework: React.FC<ButtonSaveHomeworkProps> = ({homework, exerci
         <Button type="primary" icon={<ArrowRightOutlined/>} onClick={open} block>Далее</Button>
         <ModalEditor
             width={550}
-            title={isSaved ? `Сохранить для ${group?.title}` : "Сохранить"}
+            title={isSaved ? `Сохранить для ${group.detail?.title}` : "Сохранить"}
             visible={visible}
             onCancel={close}
         >

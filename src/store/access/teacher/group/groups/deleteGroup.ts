@@ -1,8 +1,13 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {apiRequest} from "../../../../../utils/api";
 import {message} from "../../../../../utils/message";
+import {GroupProps} from "../groupSlice";
+import {TeacherThunkProps} from "../../store";
 
-export const deleteGroup: any = createAsyncThunk<string, any, any>(
+type ReturnedType = GroupProps['id']
+type AgrProps = GroupProps['id']
+
+export const deleteGroup = createAsyncThunk<ReturnedType, AgrProps, TeacherThunkProps>(
     'teacher/student/delete',
     async (groupId) => {
         //

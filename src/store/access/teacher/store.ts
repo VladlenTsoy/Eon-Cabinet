@@ -1,4 +1,5 @@
 import {configureStore, combineReducers} from "@reduxjs/toolkit";
+import {useDispatch} from 'react-redux'
 import group from './group/groupSlice';
 import category from './category/categorySlice';
 import olympiad from './olympiad/olympiadSlice';
@@ -32,6 +33,15 @@ export const teacherReducer = combineReducers({
 });
 
 export type AppDispatch = typeof store.dispatch
+
+export interface TeacherThunkProps {
+    dispatch: AppDispatch
+    state: TeacherState
+    extra?: unknown
+    rejectValue?: unknown
+}
+
+export const useTeacherDispatch = () => useDispatch<AppDispatch>()
 
 export const store = configureStore({
     reducer: teacherReducer,

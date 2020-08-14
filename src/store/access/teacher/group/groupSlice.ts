@@ -1,8 +1,8 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit'
 import {TeacherState} from "../store";
-import {fetchGroup} from "./group/fetchGroup";
 import {statisticExtraReducers, statisticState, StatisticState} from "./statistic/statistic";
 import {groupsExtraReducers, groupsState, GroupsState} from "./groups/groups";
+import {groupExtraReducers, GroupState, groupState} from "./group/group";
 
 export interface GroupProps {
     id: number;
@@ -18,23 +18,19 @@ export interface GroupProps {
 }
 
 export interface StateProps {
-    fetchError: null | any;
-    fetchLoading: boolean;
-    group: GroupProps | null;
     isSaved: boolean;
     selectedStudentsId: number[];
 
+    group: GroupState
     groups: GroupsState;
     statistic: StatisticState
 }
 
 const initialState: StateProps = {
-    fetchLoading: false,
-    fetchError: null,
-    group: null,
     isSaved: false,
     selectedStudentsId: [],
 
+    group: groupState,
     groups: groupsState,
     statistic: statisticState
 };
@@ -51,28 +47,10 @@ const groupSlice = createSlice({
             state.selectedStudentsId = action.payload
         }
     },
-    extraReducers: {
-        [fetchGroup.pending]: (state) => {
-            state.fetchLoading = true;
-        },
-        [fetchGroup.fulfilled]: (state: StateProps, action: PayloadAction<GroupProps>) => {
-            state.fetchError = null;
-            state.group = action.payload || [];
-            state.fetchLoading = false;
-        },
-        [fetchGroup.rejected]: (state, action) => {
-            if (action.error.name === "ConditionError") {
-                const groupId = action.meta.arg.groupId;
-                if (groupId) state.group = state.groups.data.find((group) => group.id === Number(groupId)) || null;
-                state.fetchError = null;
-            } else if (action.error.name === 'Error') {
-                state.fetchError = action.error;
-                state.fetchLoading = false;
-            }
-        },
-
-        ...groupsExtraReducers,
-        ...statisticExtraReducers
+    extraReducers: (builder) => {
+        groupExtraReducers(builder)
+        groupsExtraReducers(builder)
+        statisticExtraReducers(builder)
     }
 });
 

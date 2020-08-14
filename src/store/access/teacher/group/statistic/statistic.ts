@@ -1,5 +1,5 @@
 import {fetchGroupsStatistic} from "./fetchGroupsStatistic";
-import {PayloadAction} from "@reduxjs/toolkit";
+import {ActionReducerMapBuilder} from "@reduxjs/toolkit";
 import {StateProps} from "../groupSlice";
 
 export interface StatisticState {
@@ -14,12 +14,12 @@ export const statisticState = {
     }
 }
 
-export const statisticExtraReducers = {
-    [fetchGroupsStatistic.pending]: (state: StateProps) => {
-        state.statistic.loading = true;
-    },
-    [fetchGroupsStatistic.fulfilled]: (state: StateProps, action: PayloadAction<StatisticState['data']>) => {
-        state.statistic.data = action.payload || [];
+export const statisticExtraReducers = (builder: ActionReducerMapBuilder<StateProps>) => {
+    builder.addCase(fetchGroupsStatistic.pending, (state) => {
+        state.statistic.loading = true
+    })
+    builder.addCase(fetchGroupsStatistic.fulfilled, (state, action) => {
+        state.statistic.data = action.payload;
         state.statistic.loading = false;
-    },
+    })
 }
