@@ -1,8 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit'
 import {TeacherState} from "../store";
-import {updateGroup} from "./group/updateGroup";
-import {createGroup} from "./group/createGroup";
-import {deleteGroup} from "./group/deleteGroup";
 import {fetchGroup} from "./group/fetchGroup";
 import {statisticExtraReducers, statisticState, StatisticState} from "./statistic/statistic";
 import {groupsExtraReducers, groupsState, GroupsState} from "./groups/groups";
@@ -74,29 +71,6 @@ const groupSlice = createSlice({
             }
         },
 
-        [updateGroup.pending]: (state) => {
-            state.fetchLoading = true;
-        },
-        [updateGroup.fulfilled]: (state: StateProps, action: PayloadAction<GroupProps>) => {
-            if (action.payload?.id)
-                state.groups.data = state.groups.data.map((group) => group.id === action.payload.id ? action.payload : group);
-            state.fetchLoading = false;
-        },
-        [createGroup.pending]: (state) => {
-            state.fetchLoading = true;
-        },
-        [createGroup.fulfilled]: (state: StateProps, action: PayloadAction<GroupProps>) => {
-            if (action.payload?.id)
-                state.groups.data = [...state.groups.data, action.payload];
-            state.fetchLoading = false;
-        },
-        [deleteGroup.pending]: (state) => {
-            state.fetchLoading = true;
-        },
-        [deleteGroup.fulfilled]: (state: StateProps, action: PayloadAction<number>) => {
-            state.groups.data = state.groups.data.filter((group) => group.id !== action.payload);
-            state.fetchLoading = false;
-        },
         ...groupsExtraReducers,
         ...statisticExtraReducers
     }

@@ -3,7 +3,7 @@ import {apiRequest} from "../../../../../utils/api";
 import {message} from "../../../../../utils/message";
 
 export const deleteGroup: any = createAsyncThunk<string, any, any>(
-    'teacher/group/delete',
+    'teacher/student/delete',
     async (groupId) => {
         //
         const response = await apiRequest('delete', `teacher/group/${groupId}`);

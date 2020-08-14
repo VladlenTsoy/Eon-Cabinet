@@ -1,25 +1,24 @@
 import React, {useEffect, useState} from 'react';
 import {store} from "../../../store/store";
-import {useSelector} from "react-redux";
-import {userSelector} from "../../../store/common/user/userSlice";
 import {Loader} from "../../components";
+import {useUser} from "../../../hooks/use-user";
 
 const StoreProvider: React.FC = ({children}) => {
-    const user = useSelector(userSelector);
-    const [loading, setLoading] = useState(!!user.detail);
+    const {user} = useUser();
+    const [loading, setLoading] = useState(!!user);
 
     useEffect(() => {
-        if (user.detail?.id) {
+        if (user?.id) {
             (async () => {
-                setLoading(true);
-                const {teacherReducer} = await import("../../../store/access/teacher/store");
+                // setLoading(true)
+                const {teacherReducer} = await import("../../../store/access/teacher/store")
                 // @ts-ignore
                 store.replaceReducer(teacherReducer)
                 setLoading(false)
             })()
         } else
             setLoading(false);
-    }, [user.detail?.id]);
+    }, [user]);
 
     if (loading)
         return <Loader text={`Загрузка пользователя...`}/>;
