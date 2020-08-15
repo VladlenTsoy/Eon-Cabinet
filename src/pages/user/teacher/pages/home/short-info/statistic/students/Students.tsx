@@ -10,9 +10,10 @@ import {
 import {Popover} from "antd";
 import {Card} from "lib/components";
 import {IconWrapper} from "../../../../../../../../lib/components/card-statistic/CardStatistic";
-import {useDispatch, useSelector} from "react-redux";
-import {studentsSelector} from "../../../../../../../../store/access/teacher/students/studentSlice";
+import {useSelector} from "react-redux";
+import {studentsSelector} from "../../../../../../../../store/access/teacher/students/studentsSlice";
 import {fetchStudentsStatistic} from "../../../../../../../../store/access/teacher/students/statistic/fetchStudentsStatistic";
+import {useTeacherDispatch} from "../../../../../../../../store/access/teacher/store";
 
 const CardWrapper = styled(Card)`
    text-align: center;
@@ -73,7 +74,7 @@ const BodyWrapper = styled.div`
 
 const Students: React.FC = () => {
     const {statistic} = useSelector(studentsSelector)
-    const dispatch = useDispatch()
+    const dispatch = useTeacherDispatch()
 
     useEffect(() => {
         const promise = dispatch(fetchStudentsStatistic({}))

@@ -1,8 +1,9 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {apiRequest} from "../../../../../utils/api";
 import {message} from "../../../../../utils/message";
+import {TeacherThunkProps} from "../../store";
 
-export const deleteStudents: any = createAsyncThunk<number[], any, any>(
+export const deleteStudents = createAsyncThunk<number[], number[], TeacherThunkProps>(
     'teacher/students/delete',
     async (studentIds) => {
         //

@@ -1,13 +1,13 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {useDispatch} from "react-redux";
 import {useParams} from "react-router-dom";
 import {ParamsProps} from "../Group";
 import TableStudents from "./table-students/TableStudents";
-import {changeSelectedIds} from "../../../../../../../store/access/teacher/students/studentSlice";
+import {changeSelectedIds} from "../../../../../../../store/access/teacher/students/studentsSlice";
 import {Radio} from "antd";
 import styled from "styled-components";
 import {fetchStudentsDetails} from "../../../../../../../store/access/teacher/students/details/fetchStudentsDetails";
 import {RadioChangeEvent} from "antd/lib/radio/interface";
+import {useTeacherDispatch} from "../../../../../../../store/access/teacher/store";
 
 const ContainerStyled = styled.div`
   .ant-radio-group {
@@ -27,11 +27,11 @@ const ContainerStyled = styled.div`
 
 const Container = () => {
     const {id} = useParams<ParamsProps>();
-    const dispatch = useDispatch();
+    const dispatch = useTeacherDispatch();
     const [tab, setTab] = useState<'details' | 'homework'>('details');
 
     useEffect(() => {
-        const promise = dispatch(fetchStudentsDetails({groupId: id}));
+        const promise = dispatch(fetchStudentsDetails({groupId: Number(id)}));
         return () => {
             promise.abort();
         }

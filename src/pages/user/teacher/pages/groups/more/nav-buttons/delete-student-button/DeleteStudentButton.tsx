@@ -4,7 +4,7 @@ import {DeleteOutlined, ExclamationCircleOutlined} from "@ant-design/icons";
 import {NavigationButton} from "lib/components";
 import {useDispatch, useSelector} from "react-redux";
 import {deleteStudents} from "../../../../../../../../store/access/teacher/students/details/deleteStudents";
-import {studentsSelector} from "../../../../../../../../store/access/teacher/students/studentSlice";
+import {studentsSelector} from "../../../../../../../../store/access/teacher/students/studentsSlice";
 
 const {confirm} = Modal;
 

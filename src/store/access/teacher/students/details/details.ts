@@ -1,6 +1,6 @@
 import {fetchStudentsDetails} from "./fetchStudentsDetails";
 import {ActionReducerMapBuilder} from "@reduxjs/toolkit";
-import {StateProps, Student} from "../studentSlice";
+import {StateProps, Student} from "../studentsSlice";
 import {createStudent} from "./createStudent";
 import {updateStudent} from "./updateStudent";
 import {deleteStudent} from "./deleteStudent";

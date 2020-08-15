@@ -1,6 +1,6 @@
 import {fetchStudentsHomework} from "./fetchStudentsHomework";
 import {ActionReducerMapBuilder} from "@reduxjs/toolkit";
-import {StateProps} from "../studentSlice";
+import {StateProps} from "../studentsSlice";
 import {fetchStudentsHomeworkDates} from "./fetchStudentsHomeworkDates";
 import moment from "moment";
 

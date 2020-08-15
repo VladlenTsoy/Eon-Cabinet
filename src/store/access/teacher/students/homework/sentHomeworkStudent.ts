@@ -13,8 +13,8 @@ interface AgrProps {
 export const sentHomeworkStudents = createAsyncThunk<ReturnedType, AgrProps, TeacherThunkProps>(
     'teacher/students/sent/homework',
     async (arg, {getState}) => {
-        const {student} = getState();
-        const data = {...arg, userIds: student.selectedIds};
+        const {students} = getState();
+        const data = {...arg, userIds: students.selectedIds};
         //
         const response = await apiRequest('post', `teacher/homework/send`, {data});
         response && message({type: 'success', content: 'Вы успешно отправили домашнее задание!'});

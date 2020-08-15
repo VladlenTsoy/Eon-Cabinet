@@ -1,8 +1,14 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {apiRequest} from "../../../../../utils/api";
 import {message} from "../../../../../utils/message";
+import {TeacherThunkProps} from "../../store";
+import {Student} from "../studentsSlice";
 
-export const createStudent: any = createAsyncThunk<string, any, any>(
+type ReturnedType = Student
+
+type ArgProps = any
+
+export const createStudent = createAsyncThunk<ReturnedType, ArgProps, TeacherThunkProps>(
     'teacher/students/create',
     async (data) => {
         //

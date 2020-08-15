@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {useDispatch} from "react-redux";
 import {Button, Col, DatePicker, Form, Row} from "antd";
 import {DrawerActions, FormItem, InputEmail, InputLogin, InputPassword} from "lib/components";
-import {Student} from "store/access/teacher/students/studentSlice";
+import {Student} from "store/access/teacher/students/studentsSlice";
 import {updateStudent} from "store/access/teacher/students/details/updateStudent";
 import {createStudent} from "store/access/teacher/students/details/createStudent";
 import InputPhoto from "lib/components/form/InputPhoto";

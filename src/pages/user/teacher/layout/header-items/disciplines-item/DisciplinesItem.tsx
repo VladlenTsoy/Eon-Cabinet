@@ -3,7 +3,7 @@ import {Select} from 'antd';
 import {useDispatch, useSelector} from "react-redux";
 import {disciplineSelector, changeActiveDisciplineId} from "store/access/teacher/discipline/disciplineSlice";
 import {resetGroupSlice} from "store/access/teacher/group/groupSlice";
-import {resetStudentSlice} from "store/access/teacher/students/studentSlice";
+import {resetStudentSlice} from "store/access/teacher/students/studentsSlice";
 import styled from "styled-components";
 import {FaBrain} from "react-icons/fa"
 import {TiSortNumericallyOutline} from "react-icons/ti"

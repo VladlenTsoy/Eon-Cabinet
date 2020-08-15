@@ -1,6 +1,6 @@
 import {fetchStudentsStatistic} from "./fetchStudentsStatistic";
 import {ActionReducerMapBuilder} from "@reduxjs/toolkit";
-import {StateProps} from "../studentSlice";
+import {StateProps} from "../studentsSlice";
 
 export interface StatisticState {
     loading: boolean;

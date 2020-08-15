@@ -37,7 +37,7 @@ const initialState: StateProps = {
     statistic: statisticState
 };
 
-const studentSlice = createSlice({
+const studentsSlice = createSlice({
     name: 'student',
     initialState,
     reducers: {
@@ -55,8 +55,8 @@ const studentSlice = createSlice({
     }
 })
 
-export const studentsSelector = (state: TeacherState) => state.student;
+export const studentsSelector = (state: TeacherState) => state.students;
 
-export const {changeSelectedIds, nextWeek, prevWeek, resetStudentSlice} = studentSlice.actions;
+export const {changeSelectedIds, nextWeek, prevWeek, resetStudentSlice} = studentsSlice.actions;
 
-export default studentSlice.reducer;
+export default studentsSlice.reducer;

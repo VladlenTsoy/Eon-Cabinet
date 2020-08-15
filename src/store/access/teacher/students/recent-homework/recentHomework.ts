@@ -1,6 +1,6 @@
 import {fetchStudentsRecentHomework} from "./fetchStudentsRecentHomework";
 import {ActionReducerMapBuilder} from "@reduxjs/toolkit";
-import {StateProps} from "../studentSlice";
+import {StateProps} from "../studentsSlice";
 
 export interface RecentHomeworkDetails {
     id: number;

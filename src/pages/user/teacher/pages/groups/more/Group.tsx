@@ -8,7 +8,7 @@ import {useParams} from "react-router-dom";
 import GroupError from "./container/group-error/GroupError";
 import {fetchGroup} from "../../../../../../store/access/teacher/group/group/fetchGroup";
 import Container from "./container/Container";
-import {changeSelectedIds} from "../../../../../../store/access/teacher/students/studentSlice";
+import {changeSelectedIds} from "../../../../../../store/access/teacher/students/studentsSlice";
 import {useTeacherDispatch} from "../../../../../../store/access/teacher/store";
 
 export interface ParamsProps {

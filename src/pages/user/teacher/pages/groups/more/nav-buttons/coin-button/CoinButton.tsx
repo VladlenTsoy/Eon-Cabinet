@@ -6,7 +6,7 @@ import {Button, Form} from "antd";
 import Stepper from "../../../../../../../../lib/components/stepper/Stepper";
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
-import {studentsSelector} from "../../../../../../../../store/access/teacher/students/studentSlice";
+import {studentsSelector} from "../../../../../../../../store/access/teacher/students/studentsSlice";
 import {sendCoins} from "../../../../../../../../store/access/teacher/students/details/sendСoins";
 
 const ImageStyled = styled.div`

@@ -1,6 +1,6 @@
 import React, {useCallback, useState} from "react";
 import {useScreenWindow} from "../../../../../../../../hooks/use-screen-window.effect";
-import {Student} from "../../../../../../../../store/access/teacher/students/studentSlice";
+import {Student} from "../../../../../../../../store/access/teacher/students/studentsSlice";
 import DrawerEditor from "../../../../../../../../lib/layouts/drawer-editor/DrawerEditor";
 import FormItems from "./from-items/FormItems";
 import moment from "moment";

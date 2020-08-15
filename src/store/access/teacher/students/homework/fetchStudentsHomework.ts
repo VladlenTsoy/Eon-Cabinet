@@ -20,8 +20,8 @@ export const fetchStudentsHomework = createAsyncThunk<ReturnedType, AgrProps, Te
             if (!groupId) return false;
             if (force) return true;
 
-            const {group, student} = getState();
-            if (group.group.detail?.id === Number(groupId) && Object.values(student.homework.data).length) return false;
+            const {group, students} = getState();
+            if (group.group.detail?.id === Number(groupId) && Object.values(students.homework.data).length) return false;
         },
         dispatchConditionRejection: true
     }

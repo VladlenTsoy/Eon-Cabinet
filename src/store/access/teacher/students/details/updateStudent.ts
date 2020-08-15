@@ -1,13 +1,14 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {apiRequest} from "../../../../../utils/api";
 import {message} from "../../../../../utils/message";
+import {TeacherThunkProps} from "../../store";
 
 interface ParamsProps {
     studentId: number;
     data: object
 }
 
-export const updateStudent: any = createAsyncThunk<any, ParamsProps, any>(
+export const updateStudent = createAsyncThunk<any, ParamsProps, TeacherThunkProps>(
     'teacher/student/update',
     async ({studentId, data}) => {
         //

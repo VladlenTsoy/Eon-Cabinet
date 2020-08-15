@@ -2,7 +2,7 @@ import React from 'react';
 import {CardStatistic} from "../../../../../../../../lib/components";
 import {HomeOutlined} from "@ant-design/icons";
 import {useSelector} from "react-redux";
-import {studentsSelector} from "../../../../../../../../store/access/teacher/students/studentSlice";
+import {studentsSelector} from "../../../../../../../../store/access/teacher/students/studentsSlice";
 
 const Homework = () => {
     const {statistic} = useSelector(studentsSelector)
