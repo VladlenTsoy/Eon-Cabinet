@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect} from "react";
 import TableStudentsLayout from "./TableStudents.layout";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {studentsSelector, nextWeek, prevWeek} from "../../../../../../../../store/access/teacher/students/studentSlice";
 import HomeworkColumns from "./homework-columns/HomeworkColumns";
 import DataColumns from "./data-columns/DataColumns";
@@ -10,6 +10,7 @@ import {useParams} from "react-router-dom";
 import {ParamsProps} from "../../Group";
 import EventsColumns from "./events-columns/EventsColumns";
 import {fetchStudentsHomeworkDates} from "../../../../../../../../store/access/teacher/students/homework/fetchStudentsHomeworkDates";
+import {useTeacherDispatch} from "../../../../../../../../store/access/teacher/store";
 
 interface TableStudentsProps {
     tab: "details" | "homework" | "events";
@@ -19,7 +20,7 @@ interface TableStudentsProps {
 const TableStudents: React.FC<TableStudentsProps> = ({tab, selectUsers}) => {
     const {id} = useParams<ParamsProps>();
     const {details, selectedIds, homework} = useSelector(studentsSelector);
-    const dispatch = useDispatch();
+    const dispatch = useTeacherDispatch();
 
     const nextAction = useCallback(() => dispatch(nextWeek()), [dispatch])
     const prevAction = useCallback(() => dispatch(prevWeek()), [dispatch])
@@ -27,7 +28,7 @@ const TableStudents: React.FC<TableStudentsProps> = ({tab, selectUsers}) => {
     useEffect(() => {
         let promise: any;
         const timeout = setTimeout(() => {
-            promise = dispatch(fetchStudentsHomeworkDates({groupId: id}))
+            promise = dispatch(fetchStudentsHomeworkDates({groupId: Number(id)}))
         }, 500)
 
         return () => {
@@ -41,7 +42,12 @@ const TableStudents: React.FC<TableStudentsProps> = ({tab, selectUsers}) => {
         ...DefaultColumns(),
         ...(
             tab === 'homework' ? HomeworkColumns(homework) :
-                tab === 'events' ? EventsColumns({dates: homework.dates, next: nextAction, prev: prevAction, loading: homework.loading}) :
+                tab === 'events' ? EventsColumns({
+                        dates: homework.dates,
+                        next: nextAction,
+                        prev: prevAction,
+                        loading: homework.loading
+                    }) :
                     DataColumns()
         )
     ];
@@ -59,7 +65,7 @@ const TableStudents: React.FC<TableStudentsProps> = ({tab, selectUsers}) => {
 
     useEffect(() => {
         if (tab === 'homework') {
-            const promise = dispatch(fetchStudentsHomework({groupId: id}));
+            const promise = dispatch(fetchStudentsHomework({groupId: Number(id)}));
             return () => {
                 promise.abort();
             }

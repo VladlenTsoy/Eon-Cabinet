@@ -10,8 +10,8 @@ import {FileAddOutlined} from '@ant-design/icons';
 import Exercises from "./exercises/Exercises";
 import {SaveOutlined} from "@ant-design/icons";
 import {sentHomeworkStudents} from "../../../../../../../../../../../store/access/teacher/students/homework/sentHomeworkStudent";
-import {fetchStudentsHomework} from "../../../../../../../../../../../store/access/teacher/students/homework/fetchStudentsHomework";
 import {ParamsProps} from "../../../../../Group";
+import {fetchStudentsHomeworkDates} from "../../../../../../../../../../../store/access/teacher/students/homework/fetchStudentsHomeworkDates";
 
 const {TextArea} = Input;
 
@@ -38,7 +38,7 @@ const FormItems: React.FC<FormItemsProps> = ({homework, close}) => {
     const onFinishHandler = async (values: any) => {
         setLoading(true);
         await dispatch(sentHomeworkStudents(values))
-        await dispatch(fetchStudentsHomework({groupId: id, force: true}));
+        await dispatch(fetchStudentsHomeworkDates({groupId: Number(id), force: true}));
 
         close();
         setLoading(false);
@@ -65,7 +65,8 @@ const FormItems: React.FC<FormItemsProps> = ({homework, close}) => {
             {selectHomework && selectHomework?.description}
             <Divider/>
             <FormItem name="message" label="Сообщение">
-                <TextArea rows={4} placeholder="Данное сообщение будет отображаться перед выполнением домашнего задания."/>
+                <TextArea rows={4}
+                          placeholder="Данное сообщение будет отображаться перед выполнением домашнего задания."/>
             </FormItem>
         </Form>
         <Exercises homeworkId={selectHomework?.id}/>

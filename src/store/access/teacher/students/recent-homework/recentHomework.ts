@@ -1,5 +1,5 @@
 import {fetchStudentsRecentHomework} from "./fetchStudentsRecentHomework";
-import {PayloadAction} from "@reduxjs/toolkit";
+import {ActionReducerMapBuilder} from "@reduxjs/toolkit";
 import {StateProps} from "../studentSlice";
 
 export interface RecentHomeworkDetails {
@@ -27,14 +27,12 @@ export const recentHomeworkState: RecentHomeworkState = {
     data: []
 }
 
-export const recentHomeworkExtraReducers = {
-    //
-    [fetchStudentsRecentHomework.pending]: (state:StateProps) => {
+export const recentHomeworkExtraReducers = (builder: ActionReducerMapBuilder<StateProps>) =>{
+    builder.addCase(fetchStudentsRecentHomework.pending, (state) => {
         state.recentHomework.loading = true;
-    },
-    //
-    [fetchStudentsRecentHomework.fulfilled]: (state: StateProps, action: PayloadAction<any[]>) => {
+    })
+    builder.addCase(fetchStudentsRecentHomework.fulfilled, (state, action) => {
         state.recentHomework.data = action.payload || [];
         state.recentHomework.loading = false;
-    },
+    })
 }

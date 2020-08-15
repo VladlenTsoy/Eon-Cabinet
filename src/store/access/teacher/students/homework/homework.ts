@@ -1,5 +1,5 @@
 import {fetchStudentsHomework} from "./fetchStudentsHomework";
-import {PayloadAction} from "@reduxjs/toolkit";
+import {ActionReducerMapBuilder} from "@reduxjs/toolkit";
 import {StateProps} from "../studentSlice";
 import {fetchStudentsHomeworkDates} from "./fetchStudentsHomeworkDates";
 import moment from "moment";
@@ -79,24 +79,23 @@ export const homeworkReducer = {
     }
 }
 
-export const homeworkExtraReducer = {
-    [fetchStudentsHomework.pending]: (state: StateProps) => {
-        state.homework.loading = true;
-    },
-    [fetchStudentsHomework.fulfilled]: (state: StateProps, action: PayloadAction<StudentHomework>) => {
-        state.homework.data = action.payload || [];
-        state.homework.loading = false;
-    },
+export const homeworkExtraReducer = (builder: ActionReducerMapBuilder<StateProps>) => {
+    builder.addCase(fetchStudentsHomework.pending, (state) => {
+        state.homework.loading = true
+    })
+    builder.addCase(fetchStudentsHomework.fulfilled, (state, action) => {
+        state.homework.data = action.payload || []
+        state.homework.loading = false
+    })
 
-    [fetchStudentsHomeworkDates.pending]: (state: StateProps) => {
+    builder.addCase(fetchStudentsHomeworkDates.pending, (state) => {
         state.homework.loading = true;
-    },
-    [fetchStudentsHomeworkDates.fulfilled]: (state: StateProps, action: PayloadAction<any>) => {
-        // console.log(state.homework.dates.map((day:any) => ({day, events: action.payload[moment(day).format('e')]})))
+    })
+    builder.addCase(fetchStudentsHomeworkDates.fulfilled, (state, action) => {
         state.homework.dates = state.homework.dates.map((date: any) => {
-            date.events = action.payload[moment(date.day).format('e')]
+            date.events = action.payload[Number(moment(date.day).format('e'))]
             return date;
         });
         state.homework.loading = false;
-    },
+    })
 }

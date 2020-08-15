@@ -18,6 +18,7 @@ export interface Student {
     is_blocked: boolean;
     day_block: number | null;
     day_unblock: number | null;
+    coins: number;
 }
 
 export interface StateProps {
@@ -46,11 +47,11 @@ const studentSlice = createSlice({
         },
         ...homeworkReducer
     },
-    extraReducers: {
-        ...detailsExtraReducers,
-        ...homeworkExtraReducer,
-        ...recentHomeworkExtraReducers,
-        ...statisticExtraReducers
+    extraReducers: (builder) => {
+        detailsExtraReducers(builder)
+        homeworkExtraReducer(builder)
+        recentHomeworkExtraReducers(builder)
+        statisticExtraReducers(builder)
     }
 })
 

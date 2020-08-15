@@ -1,5 +1,5 @@
 import {fetchStudentsStatistic} from "./fetchStudentsStatistic";
-import {PayloadAction} from "@reduxjs/toolkit";
+import {ActionReducerMapBuilder} from "@reduxjs/toolkit";
 import {StateProps} from "../studentSlice";
 
 export interface StatisticState {
@@ -30,15 +30,13 @@ export const statisticState: StatisticState = {
     }
 }
 
-export const statisticExtraReducers = {
-    //
-    [fetchStudentsStatistic.fulfilled]: (state:StateProps) => {
+export const statisticExtraReducers = (builder: ActionReducerMapBuilder<StateProps>) => {
+    builder.addCase(fetchStudentsStatistic.pending, (state) => {
         state.statistic.loading = true;
-    },
-    // Вывод статистики для главной страницы
-    [fetchStudentsStatistic.fulfilled]: (state: StateProps, action: PayloadAction<any>) => {
+    })
+    builder.addCase(fetchStudentsStatistic.fulfilled, (state, action) => {
         state.statistic.students = action.payload.students;
         state.statistic.homework = action.payload.homework;
         state.statistic.loading = false;
-    },
+    })
 }

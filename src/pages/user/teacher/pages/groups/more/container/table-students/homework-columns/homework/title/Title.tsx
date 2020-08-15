@@ -55,7 +55,7 @@ const Title: React.FC<TitleProps> = ({homework}) => {
             title: `Отменить отправку домашнего задания (Уровень: ${homework.level}) ?`,
             async onOk() {
                 await dispatch(cancelStudentHomework(homework.id));
-                await dispatch(fetchStudentsHomework({groupId: id, force: true}));
+                await dispatch(fetchStudentsHomework({groupId: Number(id), force: true}));
             }
         });
     };

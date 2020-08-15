@@ -1,15 +1,18 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {apiRequest} from "../../../../../utils/api";
+import {TeacherThunkProps} from "../../store";
+import {Homework} from "./homework";
+
+type ReturnedType = { [week: number]: { [userId: number]: Homework[] } }
 
 interface AgrProps {
     groupId: number;
     force?: boolean;
 }
 
-export const fetchStudentsHomeworkDates: any = createAsyncThunk<any, AgrProps>(
+export const fetchStudentsHomeworkDates = createAsyncThunk<ReturnedType, AgrProps, TeacherThunkProps>(
     'students/fetch/homework/dates',
     async ({groupId}, {signal, getState}) => {
-        // @ts-ignore
         const {student} = getState();
         return await apiRequest('post', `/teacher/students/${groupId}/homework/dates`, {
             signal,

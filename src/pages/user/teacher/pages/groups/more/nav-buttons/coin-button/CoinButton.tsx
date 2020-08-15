@@ -2,9 +2,12 @@ import React, {useState} from 'react';
 import {FormItem, Modal, NavigationButton} from "lib/components";
 import {PlusCircleOutlined} from "@ant-design/icons";
 import CoinSvg from "assets/images/icons/coin.svg";
-import {Button, Form, message} from "antd";
+import {Button, Form} from "antd";
 import Stepper from "../../../../../../../../lib/components/stepper/Stepper";
 import styled from "styled-components";
+import {useDispatch, useSelector} from "react-redux";
+import {studentsSelector} from "../../../../../../../../store/access/teacher/students/studentSlice";
+import {sendCoins} from "../../../../../../../../store/access/teacher/students/details/sendСoins";
 
 const ImageStyled = styled.div`
   margin-bottom: 1rem;
@@ -14,32 +17,21 @@ const ImageStyled = styled.div`
   }
 `;
 
-interface CoinButtonProps {
-    fetchUsers: () => void;
-    selectUsersId: number[];
-}
+const CoinButton: React.FC = () => {
+    const dispatch = useDispatch()
+    const {selectedIds} = useSelector(studentsSelector);
 
-// TODO - api
-const CoinButton: React.FC<CoinButtonProps> = ({selectUsersId, fetchUsers}) => {
-    const [visible, setVisible] = useState(false);
-    const [loading, setLoading] = useState(false);
+    const [visible, setVisible] = useState(false)
+    const [loading, setLoading] = useState(false)
 
     const open = () => setVisible(true);
     const close = () => setVisible(false);
 
     const submitHandler = async (values: any) => {
         setLoading(true);
-        try {
-            // const response = await api.user.post('/teacher/coin/sent', {...values, ids: selectUsersId});
-            // if (response.data.status === 'success')
-            //     message.success('Вы успешно отправили монеты!')
-            setLoading(false)
-            setVisible(false)
-            fetchUsers()
-        } catch (e) {
-            message.error('Неизвестная ошибка!');
-            setLoading(false);
-        }
+        await dispatch(sendCoins({...values, ids: selectedIds}))
+        setLoading(false)
+        setVisible(false)
     }
 
     return <>
@@ -47,7 +39,7 @@ const CoinButton: React.FC<CoinButtonProps> = ({selectUsersId, fetchUsers}) => {
             type="primary"
             icon={<PlusCircleOutlined/>}
             onClick={open}
-            disabled={!selectUsersId.length}
+            disabled={!selectedIds.length}
         >
             Монеты
         </NavigationButton>

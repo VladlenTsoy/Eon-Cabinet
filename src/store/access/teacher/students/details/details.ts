@@ -1,10 +1,11 @@
 import {fetchStudentsDetails} from "./fetchStudentsDetails";
-import {PayloadAction} from "@reduxjs/toolkit";
+import {ActionReducerMapBuilder} from "@reduxjs/toolkit";
 import {StateProps, Student} from "../studentSlice";
 import {createStudent} from "./createStudent";
 import {updateStudent} from "./updateStudent";
 import {deleteStudent} from "./deleteStudent";
 import {deleteStudents} from "./deleteStudents";
+import {sendCoins} from "./sendСoins";
 
 export interface DetailsState {
     data: Student[]
@@ -18,48 +19,60 @@ export const detailsState: DetailsState = {
     error: null
 }
 
-export const detailsExtraReducers = {
-    //
-    [createStudent.pending]: (state: StateProps) => {
+export const detailsExtraReducers = (builder: ActionReducerMapBuilder<StateProps>) => {
+    builder.addCase(createStudent.pending, (state) => {
         state.details.loading = true;
-    },
-    [createStudent.fulfilled]: (state: StateProps, action: PayloadAction<Student>) => {
+    })
+    builder.addCase(createStudent.fulfilled, (state, action) => {
         if (action.payload?.id)
             state.details.data = [...state.details.data, action.payload];
         state.details.loading = false;
-    },
-    //
-    [updateStudent.pending]: (state: StateProps) => {
+    })
+
+    builder.addCase(updateStudent.pending, (state) => {
         state.details.loading = true;
-    },
-    [updateStudent.fulfilled]: (state: StateProps, action: PayloadAction<Student>) => {
+    })
+    builder.addCase(updateStudent.fulfilled, (state, action) => {
         if (action.payload?.id)
             state.details.data = state.details.data.map((student) => student.id === action.payload.id ? action.payload : student);
         state.details.loading = false;
-    },
-    //
-    [deleteStudent.pending]: (state: StateProps) => {
+    })
+
+    builder.addCase(deleteStudent.pending, (state) => {
         state.details.loading = true;
-    },
-    [deleteStudent.fulfilled]: (state: StateProps, action: PayloadAction<Student['id']>) => {
+    })
+    builder.addCase(deleteStudent.fulfilled, (state, action) => {
         state.details.data = state.details.data.filter((student) => student.id !== action.payload);
         state.details.loading = false;
-    },
-    //
-    [deleteStudents.pending]: (state: StateProps) => {
+    })
+
+    builder.addCase(deleteStudents.pending, (state) => {
         state.details.loading = true;
-    },
-    [deleteStudents.fulfilled]: (state: StateProps, action: PayloadAction<Student['id'][]>) => {
+    })
+    builder.addCase(deleteStudents.fulfilled, (state, action) => {
         state.details.data = state.details.data.filter((student) => !action.payload.includes(student.id));
         state.details.loading = false;
-    },
-    //
-    [fetchStudentsDetails.pending]: (state: StateProps) => {
+    })
+
+    builder.addCase(fetchStudentsDetails.pending, (state) => {
         state.details.loading = true;
-    },
-    [fetchStudentsDetails.fulfilled]: (state: StateProps, action: PayloadAction<Student[]>) => {
+    })
+    builder.addCase(fetchStudentsDetails.fulfilled, (state, action) => {
         state.details.error = null;
         state.details.data = action.payload || [];
         state.details.loading = false;
-    },
+    })
+
+    // Отправка монет студенту
+    builder.addCase(sendCoins.pending, (state) => {
+        state.details.loading = true;
+    })
+    builder.addCase(sendCoins.fulfilled, (state, action) => {
+        state.details.data.map((student) => {
+            if(action.payload.ids.includes(student.id))
+                student.coins += action.payload.coin
+            return student
+        })
+        state.details.loading = false;
+    })
 }
