@@ -3,6 +3,8 @@ import { LockOutlined } from '@ant-design/icons';
 import {Button, Modal, Popover} from "antd";
 import styled from "styled-components";
 import {useScreenWindow} from "../../../../../../../../../../../hooks/use-screen-window.effect";
+import {blockStudent} from "../../../../../../../../../../../store/access/teacher/students/details/blockStudent";
+import {useDispatch} from "react-redux";
 
 interface BlockButtonProps {
     student: any;
@@ -13,9 +15,9 @@ const PopoverContent = styled.div`
   width: 200px;
 `;
 
-// TODO - api
-const BlockButton: React.FC<BlockButtonProps> = ({student, fetch}) => {
-    const [, isBreakpoint] = useScreenWindow({breakpoint: 'sm'});
+const BlockButton: React.FC<BlockButtonProps> = ({student}) => {
+    const dispatch = useDispatch()
+    const [, isBreakpoint] = useScreenWindow({breakpoint: 'sm'})
 
     const clickHandler = () => {
         Modal.confirm({
@@ -24,8 +26,7 @@ const BlockButton: React.FC<BlockButtonProps> = ({student, fetch}) => {
             заблокирован доступ к его личному кабинету,
              разблокировать возможно только после 20 дней или оплаты.`,
             onOk: async () => {
-                // await api.user.post(`/${student.id}/block`);
-                fetch();
+                await dispatch(blockStudent({studentId: student.id}))
             }
         });
     };

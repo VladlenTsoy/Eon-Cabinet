@@ -67,37 +67,32 @@ const Homework: React.FC<HomeworkProps> = ({id}) => {
 
     }, [homework.page, dispatch])
 
-    return (
-        <Col span={24}>
-            <Legend style={{marginTop: 0}}>Домашние задания</Legend>
-            <Card>
-                <Spin spinning={homework.loading} tip="Загрузка...">
-                    {
-                        homework.data.length ?
-                            <TabsWrapper
-                                tabPosition={isBreakpoint ? 'top' : 'left'}
-                                tabBarExtraContent={
-                                    homework.isMore ? <Button icon={<HistoryOutlined/>} block
-                                                              onClick={moreHandler}>Еще</Button> : null
-                                }
-                            >
-                                {
-                                    homework.data.map((_homework: any, key: any) =>
-                                        <TabPane
-                                            tab={<Tab homework={_homework}/>}
-                                            key={key}
-                                        >
-                                            <Collapse homework={_homework}/>
-                                        </TabPane>
-                                    )
-                                }
-                            </TabsWrapper> :
-                            <Empty/>
-                    }
-                </Spin>
-            </Card>
-        </Col>
-    );
+    return <Col span={24}>
+        <Legend style={{marginTop: 0}}>Домашние задания</Legend>
+        <Card>
+            <Spin spinning={homework.loading} tip="Загрузка...">
+                {
+                    homework.data.length ?
+                        <TabsWrapper
+                            tabPosition={isBreakpoint ? 'top' : 'left'}
+                            tabBarExtraContent={
+                                homework.isMore ? <Button icon={<HistoryOutlined/>} block
+                                                          onClick={moreHandler}>Еще</Button> : null
+                            }
+                        >
+                            {
+                                homework.data.map((_homework, key) =>
+                                    <TabPane tab={<Tab homework={_homework}/>} key={key}>
+                                        <Collapse homework={_homework}/>
+                                    </TabPane>
+                                )
+                            }
+                        </TabsWrapper> :
+                        <Empty/>
+                }
+            </Spin>
+        </Card>
+    </Col>
 };
 
 export default Homework;

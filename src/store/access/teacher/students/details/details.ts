@@ -6,6 +6,8 @@ import {updateStudent} from "./updateStudent";
 import {deleteStudent} from "./deleteStudent";
 import {deleteStudents} from "./deleteStudents";
 import {sendCoins} from "./sendСoins";
+import {blockStudent} from "./blockStudent";
+import {unblockStudent} from "./unblockStudent";
 
 export interface DetailsState {
     data: Student[]
@@ -71,6 +73,35 @@ export const detailsExtraReducers = (builder: ActionReducerMapBuilder<StateProps
         state.details.data.map((student) => {
             if(action.payload.ids.includes(student.id))
                 student.coins += action.payload.coin
+            return student
+        })
+        state.details.loading = false;
+    })
+
+    //
+    builder.addCase(blockStudent.pending, (state) => {
+        state.details.loading = true;
+    })
+    builder.addCase(blockStudent.fulfilled, (state, action) => {
+        state.details.data.map((student) => {
+            if(student.id === action.payload.studentId)
+                student.is_blocked = true
+                student.day_block = action.payload.data.day_block
+            return student
+        })
+        state.details.loading = false;
+    })
+
+    //
+    builder.addCase(unblockStudent.pending, (state) => {
+        state.details.loading = true;
+    })
+    builder.addCase(unblockStudent.fulfilled, (state, action) => {
+        state.details.data.map((student) => {
+            if(student.id === action.payload.studentId)
+                student.day_block = null
+                student.is_blocked = false
+                student.day_unblock = action.payload.data.day_unblock
             return student
         })
         state.details.loading = false;

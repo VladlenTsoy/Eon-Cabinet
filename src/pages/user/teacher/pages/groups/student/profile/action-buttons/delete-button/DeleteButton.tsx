@@ -1,14 +1,17 @@
 import React from 'react';
 import {Modal} from "antd";
+import {useDispatch} from "react-redux";
+import {deleteStudent} from "../../../../../../../../../store/access/teacher/students/details/deleteStudent";
+import {Student} from "../../../../../../../../../store/access/teacher/students/studentsSlice";
 
 const {confirm} = Modal;
 
 interface DeleteButtonProps {
-    student: any;
+    student: Student;
 }
 
-// TODO - api
 const DeleteButton: React.FC<DeleteButtonProps> = ({student, children}) => {
+    const dispatch = useDispatch()
 
     const deleteUsers = () => {
         confirm({
@@ -16,8 +19,7 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({student, children}) => {
             okText: 'Да',
             okType: 'danger',
             async onOk() {
-                // await api.user.delete(`teacher/student/${student.id}`);
-                // await fetch();
+                dispatch(deleteStudent(student.id))
             },
         });
     };
