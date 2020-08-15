@@ -77,11 +77,10 @@ const ButtonWrapper: React.FC<ButtonProps> = styled.div<ButtonProps>`
 `;
 
 interface ActionButtonsProps {
-    update: () => void;
     student: any;
 }
 
-const ActionButtons: React.FC<ActionButtonsProps> = ({student, update}) => {
+const ActionButtons: React.FC<ActionButtonsProps> = ({student}) => {
     return (
       <ActionsWrapper>
           <ButtonWrapper>
@@ -90,7 +89,7 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({student, update}) => {
               </EditorButton>
           </ButtonWrapper>
           <ButtonWrapper>
-              <ItemBlock user={student} afterAction={update}/>
+              <ItemBlock user={student}/>
           </ButtonWrapper>
           <ButtonWrapper disabled>
               <span>
@@ -99,7 +98,7 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({student, update}) => {
               </span>
           </ButtonWrapper>
           <ButtonWrapper>
-              <DeleteButton student={student} fetch={update}>
+              <DeleteButton student={student}>
                   <DeleteOutlined />
                   Удалить
               </DeleteButton>

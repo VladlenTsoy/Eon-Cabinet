@@ -16,7 +16,7 @@ const TeacherModalMenu: React.FC<TeacherTableMenuProps> = ({record, setLoader}) 
                 <InfoCircleOutlined />
                 <span>Подробнее</span>
             </div>
-            <ItemBlock user={record} afterAction={() => setLoader(true)}/>
+            <ItemBlock user={record}/>
             <ItemDelete user={record} afterAction={() => setLoader(true)}/>
         </ModalMenu>
     );

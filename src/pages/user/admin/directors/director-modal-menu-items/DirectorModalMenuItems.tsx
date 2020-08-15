@@ -17,7 +17,7 @@ const DirectorModalMenuItems: React.FC<ModalMenuItemsProps> = ({record, fetch, p
             <EditorDirectorDrawer director={record} fetch={fetch} pagination={pagination}>
                 <EditOutlined /> Редактировать
             </EditorDirectorDrawer>
-            <ItemBlock user={record} afterAction={fetch}/>
+            <ItemBlock user={record}/>
             <ItemDelete user={record} afterAction={fetch}/>
         </ModalMenu>
     );

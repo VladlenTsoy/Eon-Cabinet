@@ -23,7 +23,7 @@ const TeacherModalMenuItems: React.FC<TeacherModalMenuItemsProps> = ({record, fe
             >
                 <EditOutlined /> Редактировать
             </EditorTeacherDrawer>
-            <ItemBlock user={record} afterAction={fetch}/>
+            <ItemBlock user={record}/>
             <ItemDelete user={record} afterAction={fetch}/>
         </ModalMenu>
     </>;

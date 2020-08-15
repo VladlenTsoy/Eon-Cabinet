@@ -1,13 +1,16 @@
-import React, {useState} from 'react';
-import { HistoryOutlined } from '@ant-design/icons';
+import React, {useEffect} from 'react';
+import {HistoryOutlined} from '@ant-design/icons';
 import {Button, Col, Empty, Tabs} from "antd";
 import {Legend, Spin} from "../../../../../../../lib/components";
 import {Card} from "lib/components";
-import {useApiUserGeneral} from "../../../../../../../hooks/use-api-user-general.effect";
 import Tab from "./tab/Tab";
 import Collapse from "./collapse/Collapse";
 import styled from "styled-components";
 import {useScreenWindow} from "../../../../../../../hooks/use-screen-window.effect";
+import {useTeacherDispatch} from "../../../../../../../store/access/teacher/store";
+import {changeHomeworkPage, studentSelector} from "store/access/teacher/student/studentSlice";
+import {useSelector} from "react-redux";
+import {fetchStudentHomeworkPaginate} from "../../../../../../../store/access/teacher/student/homework/fetchStudentHomeworkPaginate";
 
 const {TabPane} = Tabs;
 
@@ -50,42 +53,36 @@ interface HomeworkProps {
 }
 
 const Homework: React.FC<HomeworkProps> = ({id}) => {
-    const [page, setPage] = useState(1);
-    const [isMore, setIsMore] = useState(false);
-    const [homework, setHomework] = useState<any[]>([]);
-
+    const {homework} = useSelector(studentSelector)
+    const dispatch = useTeacherDispatch()
     const [, isBreakpoint] = useScreenWindow({breakpoint: 'md'});
 
-    const [loading, , , fetch] = useApiUserGeneral(
-        {
-            url: `/teacher/homework/student/${id}/paginate`,
-            afterRequest: (data) => {
-                setPage(data.current_page);
-                setIsMore(data.last_page > data.current_page);
-                setHomework(prevState => [...prevState, ...data.data]);
-            }
-        }
-    );
+    const moreHandler = () => dispatch(changeHomeworkPage(homework.page + 1));
 
-    const moreHandler = () => {
-        fetch({page: page + 1});
-    };
+    useEffect(() => {
+        const promise = dispatch(fetchStudentHomeworkPaginate({studentId: Number(id), page: homework.page}))
+        return () => {
+            promise.abort()
+        }
+
+    }, [homework.page, dispatch])
 
     return (
         <Col span={24}>
             <Legend style={{marginTop: 0}}>Домашние задания</Legend>
             <Card>
-                <Spin spinning={loading} tip="Загрузка...">
+                <Spin spinning={homework.loading} tip="Загрузка...">
                     {
-                        homework.length ?
+                        homework.data.length ?
                             <TabsWrapper
                                 tabPosition={isBreakpoint ? 'top' : 'left'}
                                 tabBarExtraContent={
-                                    isMore ? <Button icon={<HistoryOutlined />} block onClick={moreHandler}>Еще</Button> : null
+                                    homework.isMore ? <Button icon={<HistoryOutlined/>} block
+                                                              onClick={moreHandler}>Еще</Button> : null
                                 }
                             >
                                 {
-                                    homework.map((_homework: any, key: any) =>
+                                    homework.data.map((_homework: any, key: any) =>
                                         <TabPane
                                             tab={<Tab homework={_homework}/>}
                                             key={key}

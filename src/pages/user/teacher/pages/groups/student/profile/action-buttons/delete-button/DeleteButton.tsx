@@ -5,11 +5,10 @@ const {confirm} = Modal;
 
 interface DeleteButtonProps {
     student: any;
-    fetch: () => void;
 }
 
 // TODO - api
-const DeleteButton: React.FC<DeleteButtonProps> = ({student, fetch, children}) => {
+const DeleteButton: React.FC<DeleteButtonProps> = ({student, children}) => {
 
     const deleteUsers = () => {
         confirm({
@@ -18,7 +17,7 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({student, fetch, children}) =
             okType: 'danger',
             async onOk() {
                 // await api.user.delete(`teacher/student/${student.id}`);
-                await fetch();
+                // await fetch();
             },
         });
     };

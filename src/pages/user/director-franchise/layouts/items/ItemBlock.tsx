@@ -11,11 +11,10 @@ import {useUser} from "../../../../../hooks/use-user";
 
 interface ItemBlockProps {
     user: any;
-    afterAction?: () => void;
 }
 
 // TODO - api
-const ItemBlock: React.FC<ItemBlockProps> = ({user, afterAction}) => {
+const ItemBlock: React.FC<ItemBlockProps> = ({user}) => {
     const {user: currentUser} = useUser();
 
     const activationAccount = async (teacher: any) => {
@@ -32,8 +31,8 @@ const ItemBlock: React.FC<ItemBlockProps> = ({user, afterAction}) => {
                 } catch (e) {
                     message.error(`Произошла неизвестная ошибка!`);
                 }
-                if (afterAction)
-                    afterAction();
+                // if (afterAction)
+                //     afterAction();
             }
         });
     };
@@ -53,8 +52,8 @@ const ItemBlock: React.FC<ItemBlockProps> = ({user, afterAction}) => {
                     } catch (e) {
                         message.error(`Произошла неизвестная ошибка!`);
                     }
-                    if (afterAction)
-                        afterAction();
+                    // if (afterAction)
+                    //     afterAction();
                 }
             });
         else
@@ -80,8 +79,8 @@ const ItemBlock: React.FC<ItemBlockProps> = ({user, afterAction}) => {
                     } catch (e) {
                         message.error(`Произошла неизвестная ошибка!`);
                     }
-                    if (afterAction)
-                        afterAction();
+                    // if (afterAction)
+                    //     afterAction();
                 }
             });
         else

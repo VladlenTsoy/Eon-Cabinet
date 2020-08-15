@@ -25,7 +25,7 @@ const TeacherTableDropdown: React.FC<TeacherTableMenuProps> = ({record, fetch, f
                 <EditOutlined /> Редактировать
             </EditorTeacherButton>
             <ChangeCenterTeacherItem teacher={record} afterAction={fetch}/>
-            <ItemBlock user={record} afterAction={fetch}/>
+            <ItemBlock user={record}/>
             <ItemDelete user={record} afterAction={fetch}/>
         </ModalMenu>
     );

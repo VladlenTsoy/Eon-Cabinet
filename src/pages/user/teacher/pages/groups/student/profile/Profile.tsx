@@ -14,15 +14,14 @@ const ProfileWrapper = styled.div`
 
 interface ProfileProps {
     student: any;
-    update: () => void;
 }
 
-const Profile: React.FC<ProfileProps> = ({student, update}) => {
+const Profile: React.FC<ProfileProps> = ({student}) => {
     return <Card>
         <ProfileWrapper>
             <ProfileBlock user={student}/>
             <GroupCoins student={student}/>
-            <ActionButtons student={student} update={update}/>
+            <ActionButtons student={student}/>
         </ProfileWrapper>
     </Card>;
 };

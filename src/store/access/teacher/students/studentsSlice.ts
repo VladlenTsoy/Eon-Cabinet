@@ -38,7 +38,7 @@ const initialState: StateProps = {
 };
 
 const studentsSlice = createSlice({
-    name: 'student',
+    name: 'students',
     initialState,
     reducers: {
         resetStudentSlice: () => initialState,
