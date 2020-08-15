@@ -1,24 +1,36 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import ExerciseLists
     from "../../../../../../../../homework/editor/tabs-tasks/added-exercises/exercise-lists/ExerciseLists";
 import {LoadingBlock} from "../../../../../../../../../../../../lib/components";
-import {useApiUserGeneral} from "../../../../../../../../../../../../hooks/use-api-user-general.effect";
+import {useTeacherDispatch} from "../../../../../../../../../../../../store/access/teacher/store";
+import {fetchTasksByHomeworkId} from "../../../../../../../../../../../../store/access/teacher/homework/tasks/fetchTasksByHomeworkId";
+import {Homework} from "../../../../../../../../../../../../store/access/teacher/students/homework/homework";
+import {useSelector} from "react-redux";
+import {homeworkSelector} from "../../../../../../../../../../../../store/access/teacher/homework/homeworkSlice";
 
 interface TasksProps {
-    homeworkId: number;
+    homeworkId: Homework['id'];
 }
 
 const Tasks: React.FC<TasksProps> = ({homeworkId}) => {
-    const [loadingTasks, tasks] = useApiUserGeneral({url: `/teacher/tasks/homework/${homeworkId}`, initValue: []})
+    const {tasks} = useSelector(homeworkSelector)
+    const dispatch = useTeacherDispatch()
 
-    if (loadingTasks)
+    useEffect(() => {
+        const promise = dispatch(fetchTasksByHomeworkId({homeworkId: homeworkId}))
+        return () => {
+            promise.abort()
+        }
+    }, [dispatch])
+
+    if (tasks.loading)
         return <LoadingBlock title="Загрузка заданий..." maxHeight="250px"/>;
 
     return <>
-        {tasks.map((task: any, key: number) =>
+        {(tasks.data[homeworkId] || []).map((task: any, key: number) =>
             <ExerciseLists exercise={task} key={key}/>
         )}
     </>;
 };
 
-export default Tasks;
+export default React.memo(Tasks);

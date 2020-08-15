@@ -1,9 +1,14 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {createSlice} from "@reduxjs/toolkit";
 import {fetchHomeworkByCategoryId} from "./fetchHomeworkByCategoryId";
 import {TeacherState} from "../store";
 import {deleteHomework} from "./deleteHomework";
 import {updateHomework} from "./updateHomework";
 import {createHomework} from "./createHomework";
+import {tasksExtraReducers, tasksState, TasksState} from "./tasks/tasks";
+
+export interface TaskHomeworkProps {
+
+}
 
 export interface HomeworkProps {
     id: number;
@@ -12,55 +17,63 @@ export interface HomeworkProps {
     discipline_id: number;
     category_id: number;
     created_at: string;
+    tasks?: TaskHomeworkProps[]
 }
 
-interface StateProps {
+export interface StateProps {
     fetchLoading: boolean;
     categories: { [categoryId: number]: HomeworkProps[] };
+    tasks: TasksState
 }
 
 const initialState: StateProps = {
     fetchLoading: true,
     categories: [],
+    tasks: tasksState
 };
 
 const homeworkSlice = createSlice({
     name: 'homework',
     initialState,
     reducers: {},
-    extraReducers: {
-        [updateHomework.pending]: (state) => {
-            state.fetchLoading = true;
-        },
-        [updateHomework.fulfilled]: (state: StateProps, action: PayloadAction<HomeworkProps>) => {
+    extraReducers: (builder) => {
+        builder.addCase(updateHomework.pending, (state) => {
+            state.fetchLoading = true
+        })
+        builder.addCase(updateHomework.fulfilled, (state, action) => {
             if (action.payload?.id)
                 state.categories[action.payload.category_id] = state.categories[action.payload.category_id]
                     .map((homework) => homework.id === action.payload.id ? action.payload : homework);
             state.fetchLoading = false;
-        },
-        [createHomework.pending]: (state) => {
+        })
+
+        builder.addCase(createHomework.pending, (state) => {
             state.fetchLoading = true;
-        },
-        [createHomework.fulfilled]: (state: StateProps, action: PayloadAction<HomeworkProps>) => {
+        })
+        builder.addCase(createHomework.fulfilled, (state, action) => {
             if (action.payload?.id)
                 state.categories[action.payload.category_id] = [action.payload, ...state.categories[action.payload.category_id]];
             state.fetchLoading = false;
-        },
-        [fetchHomeworkByCategoryId.pending]: (state) => {
+        })
+
+        builder.addCase(fetchHomeworkByCategoryId.pending, (state) => {
             state.fetchLoading = true;
-        },
-        [fetchHomeworkByCategoryId.fulfilled]: (state, action: PayloadAction<{ categoryId: HomeworkProps['category_id'], homework: HomeworkProps[] }>) => {
+        })
+        builder.addCase(fetchHomeworkByCategoryId.fulfilled, (state, action) => {
             state.categories[action.payload.categoryId] = action.payload.homework || [];
             state.fetchLoading = false;
-        },
-        [deleteHomework.pending]: (state) => {
+        })
+
+        builder.addCase(deleteHomework.pending, (state) => {
             state.fetchLoading = true;
-        },
-        [deleteHomework.fulfilled]: (state: StateProps, action: PayloadAction<{ categoryId: HomeworkProps['category_id'], homeworkId: HomeworkProps['id'] }>) => {
+        })
+        builder.addCase(deleteHomework.fulfilled, (state, action) => {
             state.categories[action.payload.categoryId] = state.categories[action.payload.categoryId]
                 .filter((homework) => homework.id !== action.payload.homeworkId);
             state.fetchLoading = false;
-        }
+        })
+
+        tasksExtraReducers(builder)
     }
 });
 
