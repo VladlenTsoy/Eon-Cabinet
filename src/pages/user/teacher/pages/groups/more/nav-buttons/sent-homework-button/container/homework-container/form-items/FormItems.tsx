@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
 import {HomeworkProps} from "../../../../../../../../../../../store/access/teacher/homework/homeworkSlice";
 import {DrawerActions, FormItem} from "../../../../../../../../../../../lib/components";
-import {Button, Input, Select, Form, Divider, Empty} from "antd";
+import {Button, Input, Select, Form, Divider} from "antd";
 import moment from "moment";
 import {changeIsSaved} from "store/access/teacher/group/groupSlice";
 import {useHistory, useParams} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {FileAddOutlined} from '@ant-design/icons';
-import Tasks from "./tasks/Tasks";
+import Exercises from "./exercises/Exercises";
 import {SaveOutlined} from "@ant-design/icons";
 import {sentHomeworkStudents} from "../../../../../../../../../../../store/access/teacher/students/homework/sentHomeworkStudent";
 import {fetchStudentsHomework} from "../../../../../../../../../../../store/access/teacher/students/homework/fetchStudentsHomework";
@@ -64,18 +64,11 @@ const FormItems: React.FC<FormItemsProps> = ({homework, close}) => {
             </FormItem>
             {selectHomework && selectHomework?.description}
             <Divider/>
-            <FormItem
-                name="message"
-                label="Сообщение"
-            >
-                <TextArea rows={4}
-                          placeholder="Данное сообщение будет отображаться перед выполнением домашнего задания."/>
+            <FormItem name="message" label="Сообщение">
+                <TextArea rows={4} placeholder="Данное сообщение будет отображаться перед выполнением домашнего задания."/>
             </FormItem>
         </Form>
-        {selectHomework?.id ?
-            <Tasks homeworkId={selectHomework.id} key={selectHomework.id}/> :
-            <Empty description="Выберите уровень домашнего задания"/>
-        }
+        <Exercises homeworkId={selectHomework?.id}/>
         <DrawerActions>
             <Button onClick={close} style={{marginRight: 8}}>
                 Отмена

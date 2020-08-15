@@ -4,8 +4,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {disciplineSelector} from "../../../../../../../../../../store/access/teacher/discipline/disciplineSlice";
 import {LoadingBlock} from "../../../../../../../../../../lib/components";
 import {homeworkSelector} from "../../../../../../../../../../store/access/teacher/homework/homeworkSlice";
-import HomeworkEmpty from "./homework-empty/HomeworkEmpty";
 import FormItems from "./form-items/FormItems";
+import Empty from "./empty/Empty";
 
 interface HomeworkContainerProps {
     categoryId: number;
@@ -28,7 +28,7 @@ const HomeworkContainer:React.FC<HomeworkContainerProps> = ({categoryId, close})
         return <LoadingBlock title="Загрука домашних заданий..."/>
 
     if (!fetchLoading && !(categories && categories[categoryId].length))
-        return <HomeworkEmpty/>;
+        return <Empty/>;
 
     return <FormItems homework={categories[categoryId]} close={close}/>;
 };

@@ -4,10 +4,17 @@ import {TeacherState} from "../store";
 import {deleteHomework} from "./deleteHomework";
 import {updateHomework} from "./updateHomework";
 import {createHomework} from "./createHomework";
-import {tasksExtraReducers, tasksState, TasksState} from "./tasks/tasks";
+import {tasksExtraReducers, exercisesState, ExercisesState} from "./exercises/exercises";
 
-export interface TaskHomeworkProps {
-
+export interface ExerciseProps {
+    id: number
+    homework_id: number
+    count_all: number
+    settings: any
+    task_id: number
+    task_name: string
+    created_at: string
+    updated_at: string
 }
 
 export interface HomeworkProps {
@@ -17,25 +24,27 @@ export interface HomeworkProps {
     discipline_id: number;
     category_id: number;
     created_at: string;
-    tasks?: TaskHomeworkProps[]
+    tasks?: ExerciseProps[]
 }
 
 export interface StateProps {
     fetchLoading: boolean;
     categories: { [categoryId: number]: HomeworkProps[] };
-    tasks: TasksState
+    exercises: ExercisesState
 }
 
 const initialState: StateProps = {
     fetchLoading: true,
     categories: [],
-    tasks: tasksState
+    exercises: exercisesState
 };
 
 const homeworkSlice = createSlice({
     name: 'homework',
     initialState,
-    reducers: {},
+    reducers: {
+        resetHomeworkSlice: () => initialState,
+    },
     extraReducers: (builder) => {
         builder.addCase(updateHomework.pending, (state) => {
             state.fetchLoading = true

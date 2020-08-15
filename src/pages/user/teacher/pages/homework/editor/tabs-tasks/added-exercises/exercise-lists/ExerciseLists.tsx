@@ -3,7 +3,6 @@ import {DeleteOutlined} from '@ant-design/icons';
 import {Button} from "antd";
 import styled from "styled-components";
 import AnzanSettingBlock from "./exercise-blocks/mental/anzan-setting/AnzanSettingBlock";
-import SoundConfig from "./exercise-blocks/config/SoundConfig";
 import ModsConfig from "./exercise-blocks/config/ModsConfig";
 import {TableSettingWrapper} from "./exercise-blocks/TableSettingWrapper";
 import FlashAnzanSettingBlock from "./exercise-blocks/mental/flash-anzan-setting/FlashAnzanSettingBlock";
@@ -97,7 +96,6 @@ const ExerciseLists: React.FC<ExerciseWrapperProps> = ({exercise, deleteExercise
                 </tbody>
             </TableSettingWrapper>,
             exercise.settings.extra ? <ModsConfig setting={exercise.settings} key="mods"/> : null,
-            exercise.settings.sound !== undefined ? <SoundConfig setting={exercise.settings} key="config"/> : null
         ]
     };
 

@@ -3,12 +3,13 @@ import {changeIsSaved, groupSelector} from "../../../../../../../../../store/acc
 import {useDispatch, useSelector} from "react-redux";
 import {LoadingBlock} from "../../../../../../../../../lib/components";
 import HomeworkContainer from "./homework-container/HomeworkContainer";
+import {Result} from "antd";
 
 interface ContainerProps {
     close: () => void;
 }
 
-const Container:React.FC<ContainerProps> = ({close}) => {
+const Container: React.FC<ContainerProps> = ({close}) => {
     const {group} = useSelector(groupSelector);
     const dispatch = useDispatch();
 
@@ -16,8 +17,15 @@ const Container:React.FC<ContainerProps> = ({close}) => {
         dispatch(changeIsSaved(false));
     }, [dispatch]);
 
-    if(group.loading) return <LoadingBlock title="Загрузка данных группы..."/>
-    if (!group.detail) return <>Пусто</>
+    if (group.loading)
+        return <LoadingBlock title="Загрузка данных группы..."/>
+
+    if (!group.detail)
+        return <Result
+            status="error"
+            title="Произошла ошибка!"
+            subTitle="Не выбрана группа, попробуйте обновить страницу."
+        />
 
     return <HomeworkContainer categoryId={group.detail.category.id} close={close}/>
 };
