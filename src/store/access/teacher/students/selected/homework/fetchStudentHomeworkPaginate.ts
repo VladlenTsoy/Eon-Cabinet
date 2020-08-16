@@ -12,8 +12,7 @@ interface ArgProps {
 
 export const fetchStudentHomeworkPaginate = createAsyncThunk<ReturnedType, ArgProps, TeacherThunkProps>(
     'teacher/student/fetch/homework/paginate',
-    async ({studentId, page}) => {
-        console.log(2)
-        return await apiRequest('get', `/teacher/homework/student/${studentId}/paginate`, {params: {page}});
+    async ({studentId, page}, {signal}) => {
+        return await apiRequest('get', `/teacher/homework/student/${studentId}/paginate`, {params: {page}, signal});
     }
 )

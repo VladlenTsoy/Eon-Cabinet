@@ -3,8 +3,13 @@ import styled from "styled-components";
 import {CheckCircleOutlined, ClockCircleOutlined, DeleteOutlined} from '@ant-design/icons';
 import {Homework} from "../../../../../../../../../../../store/access/teacher/students/homework/homework";
 import {Modal} from "lib/components";
-import {Popconfirm} from "antd";
+import {Modal as ModalAntd} from "antd";
 import More from "./more/More";
+import {cancelStudentHomework} from "../../../../../../../../../../../store/access/teacher/students/homework/cancelStudentHomework";
+import {useDispatch} from "react-redux";
+import {useParams} from "react-router-dom";
+import {ParamsProps} from "../../../../../Group";
+import {fetchStudentsHomeworkDates} from "../../../../../../../../../../../store/access/teacher/students/homework/fetchStudentsHomeworkDates";
 
 interface HomeworkBadgeStyledProps extends React.HTMLAttributes<HTMLDivElement> {
     status: 'completing' | 'completed' | 'failed'
@@ -94,9 +99,21 @@ interface HomeworkBadgeProps {
 }
 
 const HomeworkBadge: React.FC<HomeworkBadgeProps> = ({homework}) => {
+    const {id} = useParams<ParamsProps>();
     const [moreVisible, setMoreVisible] = useState(false)
+    const dispatch = useDispatch();
     const openMore = () => setMoreVisible(true)
     const closeMore = () => setMoreVisible(false)
+
+    const cancelHomeworkHandler = () => {
+        ModalAntd.confirm({
+            title: `Отменить отправку домашнего задания (Уровень: ${homework.level}) ?`,
+            async onOk() {
+                await dispatch(cancelStudentHomework(homework.id));
+                await dispatch(fetchStudentsHomeworkDates({groupId: Number(id), force: true}));
+            }
+        });
+    };
 
     return <>
         <HomeworkBadgeStyled className="homework-badge" status={homework.status === 1 ? 'completed' : 'completing'}>
@@ -110,10 +127,8 @@ const HomeworkBadge: React.FC<HomeworkBadgeProps> = ({homework}) => {
             </div>
             {
                 homework.status === 0 &&
-                <div className="cancel">
-                    <Popconfirm title="Отменить отправку домашнего задания?" onConfirm={() => alert(1)}>
-                        <DeleteOutlined/>
-                    </Popconfirm>
+                <div className="cancel" onClick={cancelHomeworkHandler}>
+                    <DeleteOutlined/>
                 </div>
             }
         </HomeworkBadgeStyled>

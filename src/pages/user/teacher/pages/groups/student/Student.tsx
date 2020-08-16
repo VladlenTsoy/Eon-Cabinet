@@ -45,24 +45,26 @@ const Student: React.FC<StudentProps> = ({match}) => {
             />
         </Card>
 
-    return <Row gutter={15}>
-        {student && <Notification student={student}/>}
-        <Col xl={12} lg={12} xs={24}>
-            <Spin spinning={loading && !!student} tip="Загрузка...">
-                {
-                    loading || !student ? <LoadingBlock/> :
-                        <Profile student={student}/>
-                }
-            </Spin>
-        </Col>
-        {/*<Col lg={6} md={12} sm={12} xs={24}>*/}
-        {/*    <Tournaments/>*/}
-        {/*</Col>*/}
-        {/*<Col lg={6} md={12} sm={12} xs={24}>*/}
-        {/*    <Tournaments/>*/}
-        {/*</Col>*/}
+    return <>
+        <Row gutter={15}>
+            {student && <Notification student={student}/>}
+            <Col xl={12} lg={12} xs={24}>
+                <Spin spinning={loading && !!student} tip="Загрузка...">
+                    {
+                        loading || !student ? <LoadingBlock/> :
+                            <Profile student={student}/>
+                    }
+                </Spin>
+            </Col>
+            {/*<Col lg={6} md={12} sm={12} xs={24}>*/}
+            {/*    <Tournaments/>*/}
+            {/*</Col>*/}
+            {/*<Col lg={6} md={12} sm={12} xs={24}>*/}
+            {/*    <Tournaments/>*/}
+            {/*</Col>*/}
+        </Row>
         <Homework id={match.params.id}/>
-    </Row>;
+    </>
 };
 
 export default Student;

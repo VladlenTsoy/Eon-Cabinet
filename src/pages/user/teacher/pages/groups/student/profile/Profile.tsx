@@ -4,6 +4,7 @@ import ProfileBlock from "../../../../../student/layouts/profile-block/ProfileBl
 import ActionButtons from "./action-buttons/ActionButtons";
 import styled from "styled-components";
 import GroupCoins from "./group-coins/GroupCoins";
+import {Student} from "../../../../../../../store/access/teacher/students/studentsSlice";
 
 const ProfileWrapper = styled.div`
     display: grid;
@@ -13,7 +14,7 @@ const ProfileWrapper = styled.div`
 `;
 
 interface ProfileProps {
-    student: any;
+    student: Student;
 }
 
 const Profile: React.FC<ProfileProps> = ({student}) => {

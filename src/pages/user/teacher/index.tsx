@@ -25,13 +25,12 @@ import AccountItems from "./layout/account-items/AccountItems";
 
 const Index: React.FC = () => {
     const sidebar = SidebarItems();
-    const header = HeaderItems();
 
     return <DisciplinesProvider>
         <CategoriesProvider>
             <AlgorithmsProvider>
                 <Router>
-                    <Layout header={header} sidebar={sidebar} account={AccountItems}>
+                    <Layout header={HeaderItems} sidebar={sidebar} account={AccountItems}>
                         <Switch>
                             <Route exact path="/" component={Home}/>
                             <Route path="/profile" component={Profile}/>

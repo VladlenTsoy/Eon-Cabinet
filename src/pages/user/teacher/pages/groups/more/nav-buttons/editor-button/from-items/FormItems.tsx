@@ -37,7 +37,8 @@ const FormItems: React.FC<FormItemsProps> = ({close, student}) => {
     return <Form
         layout="vertical"
         onFinish={onFinishHandler}
-        initialValues={student || id ? {group_id: Number(id)} : undefined}
+        form={form}
+        initialValues={student || id ? {...student, group_id: Number(id)} : undefined}
     >
         <Row gutter={15}>
             <Col span={24}>

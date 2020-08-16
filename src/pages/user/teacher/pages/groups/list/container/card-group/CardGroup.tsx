@@ -3,8 +3,8 @@ import {EditOutlined} from '@ant-design/icons';
 import {Card, ButtonLink} from "lib/components";
 import DeleteGroupButton from "./delete-button/DeleteGroupButton";
 import EditorButton from "../../nav-buttons/editor-button/EditorButton";
-import moment from "moment";
 import {GroupProps} from "store/access/teacher/group/groupSlice";
+import {momentFormatCheckYear} from "../../../../../../../../utils/momentFormatCheckYear";
 
 interface CardGroupProps {
     group: GroupProps;
@@ -24,11 +24,11 @@ const CardGroup: React.FC<CardGroupProps> = ({group}) => {
             {title: 'Кол-во учеников', item: group.count},
             {
                 title: 'Дата создания',
-                item: group.created_at ? moment(group.created_at).format('DD/MM/YY') : 'Неизвестно'
+                item: group.created_at ? momentFormatCheckYear(group.created_at) : 'Неизвестно'
             },
             {
                 title: 'Последняя активность',
-                item: group.last_activity ? moment(group.last_activity).format('DD/MM/YY') : 'Неизвестно'
+                item: group.last_activity ? momentFormatCheckYear(group.last_activity) : 'Неизвестно'
             },
         ]}/>
         <ButtonLink to={`groups/${group.id}`} type="primary" block>

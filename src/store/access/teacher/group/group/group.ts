@@ -28,6 +28,7 @@ export const groupExtraReducers = (builder: ActionReducerMapBuilder<StateProps>)
             const groupId = action.meta.arg.groupId;
             if (groupId) state.group.detail = state.groups.data.find((group) => group.id === Number(groupId)) || null;
             state.group.error = null;
+            state.group.loading = false;
         } else if (action.error.name === 'Error') {
             state.group.error = action.error;
             state.group.loading = false;

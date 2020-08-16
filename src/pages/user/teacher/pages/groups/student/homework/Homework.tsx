@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {HistoryOutlined} from '@ant-design/icons';
-import {Button, Col, Empty, Tabs} from "antd";
+import {Button, Empty, Tabs} from "antd";
 import {Legend, Spin} from "../../../../../../../lib/components";
 import {Card} from "lib/components";
 import Tab from "./tab/Tab";
@@ -65,8 +65,8 @@ const Homework: React.FC<HomeworkProps> = ({id}) => {
     useEffect(() => {
         const promise = dispatch(fetchStudentHomeworkPaginate({studentId: Number(id), page: page}))
         promise.then((response) => {
-            console.log(response)
-            setIsMore(response.payload.last_page > response.payload.current_page)
+            if (response?.payload)
+                setIsMore(response.payload.last_page > response.payload.current_page)
         })
         return () => {
             promise.abort()
@@ -74,7 +74,7 @@ const Homework: React.FC<HomeworkProps> = ({id}) => {
 
     }, [dispatch, page])
 
-    return <Col span={24}>
+    return <>
         <Legend style={{marginTop: 0}}>Домашние задания</Legend>
         <Card>
             <Spin spinning={homework.loading} tip="Загрузка...">
@@ -99,7 +99,7 @@ const Homework: React.FC<HomeworkProps> = ({id}) => {
                 }
             </Spin>
         </Card>
-    </Col>
+    </>
 };
 
 export default Homework;
