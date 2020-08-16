@@ -14,7 +14,7 @@ const initialState: StateProps = {
     title: 'Моя страница',
     action: null,
     spin: false,
-    isDark: !!cookie.get('is_dark'),
+    isDark: cookie.get('is_dark') === '1',
     setting: null,
 };
 
@@ -32,12 +32,13 @@ const appSlice = createSlice({
             state.spin = action.payload
         },
         changeIsDark(state, action: PayloadAction<StateProps["isDark"]>) {
+            cookie.set('is_dark', action.payload ? '1' : '0')
             state.isDark = action.payload
         },
     }
 });
 
-export const {changeAction, changeSpin, changeTitle} = appSlice.actions;
+export const {changeAction, changeSpin, changeTitle, changeIsDark} = appSlice.actions;
 
 export const appSelector = (state: CommonState) => state.app;
 

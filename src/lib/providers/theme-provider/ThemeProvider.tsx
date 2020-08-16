@@ -10,7 +10,7 @@ const ThemeProvider: React.FC = ({children}) => {
     const user = useSelector(userSelector);
     const app = useSelector(appSelector);
     const [userTheme, setUserTheme] = useState({});
-    const [isDarkTheme, setIsDarkTheme] = useState(false);
+    const [isDarkTheme, setIsDarkTheme] = useState(app.isDark);
 
     useEffect(() => {
         if (user.detail)

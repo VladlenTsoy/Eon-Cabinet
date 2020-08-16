@@ -10,8 +10,8 @@ interface StyledProps {
 type HeaderItemProps = MenuItemProps & StyledProps;
 
 const HeaderItemLayout: React.FC<HeaderItemProps> = styled(AntdMenu.Item)<StyledProps>`
-  .ant-menu-horizontal &{
-    margin-right: ${props => props.mr || 'initial'};
+  .ant-menu-horizontal:not(.ant-menu-dark) > &{
+    ${props => `margin-right: ${props.mr};`};
 
     &.ant-menu-item-selected {
       border-bottom: none;
