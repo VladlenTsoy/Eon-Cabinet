@@ -6,12 +6,11 @@ import {useChangeActionNavbar} from "../../../../../../hooks/use-change-action-n
 import Profile from "./profile/Profile";
 import Homework from "./homework/Homework";
 import Notification from "./notification/Notification";
-import Tournaments from "../../home/short-info/tournaments/Tournaments";
 import {Spin} from "../../../../../../lib/components";
 import {useSelector} from "react-redux";
-import {studentSelector} from "../../../../../../store/access/teacher/student/studentSlice";
 import {useTeacherDispatch} from "../../../../../../store/access/teacher/store";
-import {fetchStudent} from "../../../../../../store/access/teacher/student/fetchStudent";
+import {fetchStudent} from "../../../../../../store/access/teacher/students/selected/fetchStudent";
+import {studentsSubSelector} from "../../../../../../store/access/teacher/students/studentsSlice";
 
 interface StudentProps {
     match: any;
@@ -19,7 +18,7 @@ interface StudentProps {
 
 const Student: React.FC<StudentProps> = ({match}) => {
     const dispatch = useTeacherDispatch()
-    const {loading, detail: student, error} = useSelector(studentSelector)
+    const {loading, detail: student, error} = useSelector(studentsSubSelector('selected'))
 
     useChangeActionNavbar({action: 'back'});
 
@@ -56,12 +55,12 @@ const Student: React.FC<StudentProps> = ({match}) => {
                 }
             </Spin>
         </Col>
-        <Col lg={6} md={12} sm={12} xs={24}>
-            <Tournaments/>
-        </Col>
-        <Col lg={6} md={12} sm={12} xs={24}>
-            <Tournaments/>
-        </Col>
+        {/*<Col lg={6} md={12} sm={12} xs={24}>*/}
+        {/*    <Tournaments/>*/}
+        {/*</Col>*/}
+        {/*<Col lg={6} md={12} sm={12} xs={24}>*/}
+        {/*    <Tournaments/>*/}
+        {/*</Col>*/}
         <Homework id={match.params.id}/>
     </Row>;
 };

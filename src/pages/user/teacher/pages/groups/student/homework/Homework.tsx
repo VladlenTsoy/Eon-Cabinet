@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {HistoryOutlined} from '@ant-design/icons';
 import {Button, Col, Empty, Tabs} from "antd";
 import {Legend, Spin} from "../../../../../../../lib/components";
@@ -8,9 +8,9 @@ import Collapse from "./collapse/Collapse";
 import styled from "styled-components";
 import {useScreenWindow} from "../../../../../../../hooks/use-screen-window.effect";
 import {useTeacherDispatch} from "../../../../../../../store/access/teacher/store";
-import {changeHomeworkPage, studentSelector} from "store/access/teacher/student/studentSlice";
 import {useSelector} from "react-redux";
-import {fetchStudentHomeworkPaginate} from "../../../../../../../store/access/teacher/student/homework/fetchStudentHomeworkPaginate";
+import {fetchStudentHomeworkPaginate} from "../../../../../../../store/access/teacher/students/selected/homework/fetchStudentHomeworkPaginate";
+import {studentsSelector} from "../../../../../../../store/access/teacher/students/studentsSlice";
 
 const {TabPane} = Tabs;
 
@@ -53,19 +53,26 @@ interface HomeworkProps {
 }
 
 const Homework: React.FC<HomeworkProps> = ({id}) => {
-    const {homework} = useSelector(studentSelector)
+    const {selected} = useSelector(studentsSelector)
+    const {homework} = selected
     const dispatch = useTeacherDispatch()
+    const [page, setPage] = useState(1)
+    const [isMore, setIsMore] = useState(true)
     const [, isBreakpoint] = useScreenWindow({breakpoint: 'md'});
 
-    const moreHandler = () => dispatch(changeHomeworkPage(homework.page + 1));
+    const moreHandler = () => setPage((prevState) => prevState + 1);
 
     useEffect(() => {
-        const promise = dispatch(fetchStudentHomeworkPaginate({studentId: Number(id), page: homework.page}))
+        const promise = dispatch(fetchStudentHomeworkPaginate({studentId: Number(id), page: page}))
+        promise.then((response) => {
+            console.log(response)
+            setIsMore(response.payload.last_page > response.payload.current_page)
+        })
         return () => {
             promise.abort()
         }
 
-    }, [homework.page, dispatch])
+    }, [dispatch, page])
 
     return <Col span={24}>
         <Legend style={{marginTop: 0}}>Домашние задания</Legend>
@@ -76,8 +83,8 @@ const Homework: React.FC<HomeworkProps> = ({id}) => {
                         <TabsWrapper
                             tabPosition={isBreakpoint ? 'top' : 'left'}
                             tabBarExtraContent={
-                                homework.isMore ? <Button icon={<HistoryOutlined/>} block
-                                                          onClick={moreHandler}>Еще</Button> : null
+                                isMore ? <Button icon={<HistoryOutlined/>} block
+                                                 onClick={moreHandler}>Еще</Button> : null
                             }
                         >
                             {

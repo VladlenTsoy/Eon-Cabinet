@@ -7,7 +7,6 @@ import discipline from './discipline/disciplineSlice';
 import algorithm from './algorithm/algorithmSlice';
 import homework from './homework/homeworkSlice';
 import tasks from './tasks/tasksSlice';
-import student from './student/studentSlice';
 import students from './students/studentsSlice';
 import app from "../../common/app/appSlice";
 import language from "../../common/language/languageSlice";
@@ -26,7 +25,6 @@ export const teacherReducer = combineReducers({
     algorithm,
     homework,
     tasks,
-    student,
     students,
     app,
     language,

@@ -4,6 +4,7 @@ import {statisticExtraReducers, statisticState, StatisticState} from "./statisti
 import {recentHomeworkExtraReducers, RecentHomeworkState, recentHomeworkState} from "./recent-homework/recentHomework";
 import {homeworkExtraReducer, homeworkReducer, homeworkState, HomeworkState} from "./homework/homework";
 import {detailsExtraReducers, detailsState, DetailsState} from "./details/details";
+import {selectedExtraReducers, selectedReducers, selectedState, SelectedState} from "./selected/selected";
 
 export interface Student {
     id: number;
@@ -27,6 +28,7 @@ export interface StateProps {
     selectedIds: Student['id'][]
     recentHomework: RecentHomeworkState
     statistic: StatisticState
+    selected: SelectedState
 }
 
 const initialState: StateProps = {
@@ -34,7 +36,8 @@ const initialState: StateProps = {
     details: detailsState,
     selectedIds: [],
     recentHomework: recentHomeworkState,
-    statistic: statisticState
+    statistic: statisticState,
+    selected: selectedState,
 };
 
 const studentsSlice = createSlice({
@@ -45,6 +48,7 @@ const studentsSlice = createSlice({
         changeSelectedIds(state: StateProps, action: PayloadAction<StateProps['selectedIds']>) {
             state.selectedIds = action.payload;
         },
+        ...selectedReducers,
         ...homeworkReducer
     },
     extraReducers: (builder) => {
@@ -52,10 +56,15 @@ const studentsSlice = createSlice({
         homeworkExtraReducer(builder)
         recentHomeworkExtraReducers(builder)
         statisticExtraReducers(builder)
+        selectedExtraReducers(builder)
     }
 })
 
 export const studentsSelector = (state: TeacherState) => state.students;
+
+type KeyProps = 'homework' | 'details' | 'selectedIds' | 'recentHomework' | 'statistic' | 'selected'
+
+export const studentsSubSelector: any = (key: KeyProps) => (state: TeacherState) => state.students[key];
 
 export const {changeSelectedIds, nextWeek, prevWeek, resetStudentSlice} = studentsSlice.actions;
 
