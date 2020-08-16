@@ -1,16 +1,17 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {apiRequest} from "utils/api";
+import {AlertNoticeProps} from "./alertNotice";
+import {TeacherThunkProps} from "../../store";
 
-interface AgrProps {
-}
+type ReturnedType =  AlertNoticeProps
 
-export const fetchAlertNotice: any = createAsyncThunk<any, AgrProps>(
+export const fetchAlertNotice = createAsyncThunk<ReturnedType, undefined, TeacherThunkProps>(
     'notification/alert/notice',
     async (_, {signal}) => {
         return await apiRequest('get', `/teacher/notification`, {signal});
     },
     {
-        condition(_, {getState}: any): any {
+        condition(_, {getState}) {
             const {notification} = getState();
 
             if (notification.alertNotice.data?.title)

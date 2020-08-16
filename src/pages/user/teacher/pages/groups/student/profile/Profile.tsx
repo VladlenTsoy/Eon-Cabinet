@@ -4,7 +4,7 @@ import ProfileBlock from "../../../../../student/layouts/profile-block/ProfileBl
 import ActionButtons from "./action-buttons/ActionButtons";
 import styled from "styled-components";
 import GroupCoins from "./group-coins/GroupCoins";
-import {Student} from "../../../../../../../store/access/teacher/students/studentsSlice";
+import {Student} from "../../../../../../../lib/types/teacher/Student";
 
 const ProfileWrapper = styled.div`
     display: grid;

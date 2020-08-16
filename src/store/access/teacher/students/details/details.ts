@@ -1,6 +1,6 @@
 import {fetchStudentsDetails} from "./fetchStudentsDetails";
 import {ActionReducerMapBuilder} from "@reduxjs/toolkit";
-import {StateProps, Student} from "../studentsSlice";
+import {StateProps} from "../studentsSlice";
 import {createStudent} from "./createStudent";
 import {updateStudent} from "./updateStudent";
 import {deleteStudent} from "./deleteStudent";
@@ -8,6 +8,7 @@ import {deleteStudents} from "./deleteStudents";
 import {sendCoins} from "./sendСoins";
 import {blockStudent} from "./blockStudent";
 import {unblockStudent} from "./unblockStudent";
+import {Student} from "../../../../../lib/types/teacher/Student";
 
 export interface DetailsState {
     data: Student[]

@@ -1,4 +1,4 @@
-import {PayloadAction} from "@reduxjs/toolkit";
+import {ActionReducerMapBuilder} from "@reduxjs/toolkit";
 import {StateProps} from "../notificationSlice";
 import {fetchAlertNotice} from "./fetchAlertNotice";
 import {AlertProps} from "antd/es/alert";
@@ -19,12 +19,12 @@ export const alertNoticeState = {
     data: null
 }
 
-export const alertNoticeExtraReducers = {
-    [fetchAlertNotice.pending]: (state: StateProps) => {
+export const alertNoticeExtraReducers = (builder:ActionReducerMapBuilder<StateProps> ) => {
+    builder.addCase(fetchAlertNotice.pending, (state) => {
         state.alertNotice.loading = true;
-    },
-    [fetchAlertNotice.fulfilled]: (state: StateProps, action: PayloadAction<AlertNoticeProps>) => {
+    })
+    builder.addCase(fetchAlertNotice.fulfilled, (state, action) => {
         state.alertNotice.data = action.payload;
         state.alertNotice.loading = false;
-    },
+    })
 }

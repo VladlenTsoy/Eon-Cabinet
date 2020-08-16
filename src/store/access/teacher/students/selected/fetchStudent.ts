@@ -1,9 +1,9 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {apiRequest} from "../../../../../utils/api";
 import {TeacherThunkProps} from "../../store";
-import {Student} from "../studentsSlice";
+import {Student} from "../../../../../lib/types/teacher/Student";
 
-type ReturnedType = any
+type ReturnedType = Student
 
 interface ArgProps {
     studentId: Student['id']

@@ -4,9 +4,10 @@ import {Card} from "lib/components";
 import {Typography, Empty} from "antd";
 import {InfoCircleOutlined} from "@ant-design/icons";
 import styled from "styled-components";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {notificationSelector} from "../../../../../../../store/access/teacher/notification/notificationSlice";
 import {fetchQuickNotice} from "../../../../../../../store/access/teacher/notification/quick-notice/fetchQuickNotice";
+import {useTeacherDispatch} from "../../../../../../../store/access/teacher/store";
 
 const {Title, Text} = Typography;
 
@@ -56,7 +57,7 @@ const CardStyled = styled(Card)`
  */
 const QuickNotice: React.FC = () => {
     const {quickNotice} = useSelector(notificationSelector)
-    const dispatch = useDispatch()
+    const dispatch = useTeacherDispatch()
 
     useEffect(() => {
         const promise = dispatch(fetchQuickNotice())
@@ -90,4 +91,4 @@ const QuickNotice: React.FC = () => {
     </CardStyled>;
 };
 
-export default QuickNotice;
+export default React.memo(QuickNotice);

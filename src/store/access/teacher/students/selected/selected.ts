@@ -1,7 +1,8 @@
 import {ActionReducerMapBuilder} from "@reduxjs/toolkit";
-import {StateProps, Student} from "../studentsSlice";
+import {StateProps} from "../studentsSlice";
 import {fetchStudent} from "./fetchStudent";
 import {homeworkExtraReducers, homeworkState, HomeworkState} from "./homework/homework";
+import {Student} from "../../../../../lib/types/teacher/Student";
 
 export interface SelectedState {
     loading: boolean

@@ -1,4 +1,4 @@
-import {PayloadAction} from "@reduxjs/toolkit";
+import {ActionReducerMapBuilder} from "@reduxjs/toolkit";
 import {StateProps} from "../notificationSlice";
 import {ButtonType} from "antd/es/button";
 import {fetchQuickNotice} from "./fetchQuickNotice";
@@ -24,12 +24,12 @@ export const quickNoticeState = {
     data: null
 }
 
-export const quickNoticeExtraReducers = {
-    [fetchQuickNotice.pending]: (state: StateProps) => {
+export const quickNoticeExtraReducers = (builder: ActionReducerMapBuilder<StateProps>) => {
+    builder.addCase(fetchQuickNotice.pending, (state) => {
         state.quickNotice.loading = true;
-    },
-    [fetchQuickNotice.fulfilled]: (state: StateProps, action: PayloadAction<QuickNoticeProps>) => {
+    })
+    builder.addCase(fetchQuickNotice.fulfilled, (state, action) => {
         state.quickNotice.data = action.payload;
         state.quickNotice.loading = false;
-    },
+    })
 }

@@ -4,7 +4,7 @@ import styled from "styled-components";
 import ItemBlock from "../../../../../../director-franchise/layouts/items/ItemBlock";
 import EditorButton from "../../../more/nav-buttons/editor-button/EditorButton";
 import DeleteButton from "./delete-button/DeleteButton";
-import {Student} from "../../../../../../../../store/access/teacher/students/studentsSlice";
+import {Student} from "../../../../../../../../lib/types/teacher/Student";
 
 const ActionsWrapper = styled.div`
   grid-column-start: 1;
@@ -78,7 +78,7 @@ const ButtonWrapper: React.FC<ButtonProps> = styled.div<ButtonProps>`
 `;
 
 interface ActionButtonsProps {
-    student: Student;
+    student: Student
 }
 
 const ActionButtons: React.FC<ActionButtonsProps> = ({student}) => {

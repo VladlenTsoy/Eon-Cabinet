@@ -1,12 +1,13 @@
 import React, {useEffect} from 'react';
 import {Alert} from "../../../../../../lib/components";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {notificationSelector} from "../../../../../../store/access/teacher/notification/notificationSlice";
 import {fetchAlertNotice} from "../../../../../../store/access/teacher/notification/alert-notice/fetchAlertNotice";
+import {useTeacherDispatch} from "../../../../../../store/access/teacher/store";
 
 const Notification: React.FC = () => {
     const {alertNotice} = useSelector(notificationSelector)
-    const dispatch = useDispatch()
+    const dispatch = useTeacherDispatch()
 
     useEffect(() => {
         const promise = dispatch(fetchAlertNotice())
@@ -16,15 +17,17 @@ const Notification: React.FC = () => {
     }, [dispatch]);
 
     return <>
-        {!alertNotice.loading && alertNotice.data ?
+        {
+            !alertNotice.loading && alertNotice.data &&
             <Alert
                 className="animated bounceInDown"
                 type={alertNotice.data.type}
                 showIcon
                 message={alertNotice.data.title}
                 description={alertNotice.data.description}
-            /> : null}
+            />
+        }
     </>;
 };
 
-export default Notification;
+export default React.memo(Notification);

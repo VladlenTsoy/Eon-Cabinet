@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import {useDispatch} from "react-redux";
 import {Button, Col, DatePicker, Form, Row} from "antd";
 import {DrawerActions, FormItem, InputEmail, InputLogin, InputPassword} from "lib/components";
-import {Student} from "store/access/teacher/students/studentsSlice";
 import {updateStudent} from "store/access/teacher/students/details/updateStudent";
 import {createStudent} from "store/access/teacher/students/details/createStudent";
 import InputPhoto from "lib/components/form/InputPhoto";
@@ -10,6 +9,7 @@ import SelectGroup from "./items/SelectGroup";
 import {SaveOutlined} from "@ant-design/icons";
 import {useParams} from "react-router-dom";
 import {ParamsProps} from "../../../Group";
+import {Student} from "../../../../../../../../../lib/types/teacher/Student";
 
 interface FormItemsProps {
     close: () => void;

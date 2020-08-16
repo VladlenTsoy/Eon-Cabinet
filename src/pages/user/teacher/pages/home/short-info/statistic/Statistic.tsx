@@ -18,4 +18,4 @@ const Statistic: React.FC = () => {
     </StatisticWrapper>;
 };
 
-export default Statistic;
+export default React.memo(Statistic);

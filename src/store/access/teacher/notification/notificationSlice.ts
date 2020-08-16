@@ -17,9 +17,9 @@ const notificationSlice = createSlice({
     name: 'notification',
     initialState,
     reducers: {},
-    extraReducers: {
-        ...quickNoticeExtraReducers,
-        ...alertNoticeExtraReducers,
+    extraReducers: (builder) => {
+        quickNoticeExtraReducers(builder)
+        alertNoticeExtraReducers(builder)
     }
 })
 
