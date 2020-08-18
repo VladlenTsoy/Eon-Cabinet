@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
-import {Button, Form, Input, message} from "antd";
+import {Button, Form, Input} from "antd";
 import {FormItem} from "../../../../../../../../../../../lib/components";
 import {SaveOutlined} from "@ant-design/icons";
 import {useHistory} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {createCustomExercises} from "../../../../../../../../../../../store/access/teacher/custom-exercises/createCustomExercises";
 
 const {TextArea} = Input;
 
@@ -11,15 +13,14 @@ interface FormItemsProps {
     setting: any;
 }
 
-// TODO - api
 const FormItems: React.FC<FormItemsProps> = ({exercises, setting}) => {
     const history = useHistory();
     const [loading, setLoading] = useState(false);
+    const dispatch = useDispatch()
 
     const onFinishHandler = async (values: any) => {
         setLoading(true);
-        // await api.user.post('/teacher/custom-exercises', {...values, setting, exercises});
-        message.success(`Вы успешно создали примеры!`);
+        await dispatch(createCustomExercises({...values, setting, exercises}))
         history.push('/settings/custom-exercises');
     };
 

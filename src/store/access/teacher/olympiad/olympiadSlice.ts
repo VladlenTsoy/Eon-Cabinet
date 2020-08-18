@@ -3,6 +3,7 @@ import {TeacherState} from "../store";
 import {fetchFutureOlympiads} from "./fetchFutureOlympiads";
 import {fetchCurrentOlympiads} from "./fetchCurrentOlympiads";
 import {fetchPastOlympiads} from "./fetchPastOlympiads";
+import {fetchOlympiad} from "./fetchOlympiad";
 
 interface Olympiad {
     id: number;
@@ -31,6 +32,11 @@ export interface StateProps {
     future: DataProps;
     past: DataProps;
     current: DataProps;
+    detail: {
+        loading: boolean
+        data: any | null,
+        error: any
+    }
 }
 
 const initialState: StateProps = {
@@ -52,57 +58,62 @@ const initialState: StateProps = {
         pageIndex: 1,
         total: 0,
     },
+    detail: {
+        loading: true,
+        data: null,
+        error: null
+    }
 };
 
 const olympiadSlice = createSlice({
     name: 'olympiad',
     initialState,
     reducers: {},
-    extraReducers: {
-        // [createOlympiad.fulfilled]: (state, action) => {
-            // Add user to the state array
-            // state.entities.push(action.payload)
-        // },
-        // [updateOlympiad.fulfilled]: (state, action) => {
-            // Add user to the state array
-            // state.entities.push(action.payload)
-        // },
-        [fetchFutureOlympiads.pending]: (state) => {
+    extraReducers: (builder) => {
+        builder.addCase(fetchFutureOlympiads.pending, (state) => {
             state.future.loading = true;
-        },
-        [fetchFutureOlympiads.fulfilled]: (state, action) => {
+        })
+        builder.addCase(fetchFutureOlympiads.fulfilled, (state, action) => {
             state.future.data = action.payload.data;
             state.future.pageIndex = action.payload.current_page;
             state.future.total = action.payload.total;
             state.future.loading = false;
-        },
-        [fetchPastOlympiads.rejected]: (state) => {
+        })
+        builder.addCase(fetchFutureOlympiads.rejected, (state) => {
             state.future.loading = false;
-        },
+        })
         ////
-        [fetchCurrentOlympiads.pending]: (state) => {
+        builder.addCase(fetchCurrentOlympiads.pending, (state) => {
             state.current.loading = true;
-        },
-        [fetchCurrentOlympiads.fulfilled]: (state, action) => {
+        })
+        builder.addCase(fetchCurrentOlympiads.fulfilled, (state, action) => {
             state.current.data = action.payload;
             state.current.loading = false;
-        },
-        [fetchPastOlympiads.rejected]: (state) => {
-            state.future.loading = false;
-        },
+        })
+        builder.addCase(fetchCurrentOlympiads.rejected, (state) => {
+            state.current.loading = false;
+        })
         ////
-        [fetchPastOlympiads.pending]: (state) => {
-            state.future.loading = true;
-        },
-        [fetchPastOlympiads.fulfilled]: (state, action) => {
+        builder.addCase(fetchPastOlympiads.pending, (state) => {
+            state.current.loading = true;
+        })
+        builder.addCase(fetchPastOlympiads.fulfilled, (state, action) => {
             state.past.data = action.payload.data;
             state.past.pageIndex = action.payload.current_page;
             state.past.total = action.payload.total;
             state.past.loading = false;
-        },
-        [fetchPastOlympiads.rejected]: (state) => {
-            state.future.loading = false;
-        }
+        })
+        builder.addCase(fetchPastOlympiads.rejected, (state) => {
+            state.current.loading = false;
+        })
+        ////
+        builder.addCase(fetchOlympiad.pending, (state) => {
+            state.detail.loading = true;
+        })
+        builder.addCase(fetchOlympiad.fulfilled, (state, action) => {
+            state.detail.data = action.payload;
+            state.detail.loading = false;
+        })
     }
 });
 

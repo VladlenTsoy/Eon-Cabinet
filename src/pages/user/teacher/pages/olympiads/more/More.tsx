@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import InfoDetails from "./info-details/InfoDetails";
 import {LoadingBlock} from "lib/components";
 import {Result} from "antd";
@@ -9,6 +9,10 @@ import StudentDetails from "./student-details/StudentDetails";
 import {Spin} from "lib/components";
 import {useChangeActionNavbar} from "../../../../../../hooks/use-change-action-navbar.effect";
 import {useChangeTitle} from "../../../../../../hooks/use-change-title.effect";
+import {useSelector} from "react-redux";
+import {olympiadSelector} from "../../../../../../store/access/teacher/olympiad/olympiadSlice";
+import {useTeacherDispatch} from "../../../../../../store/access/teacher/store";
+import {fetchOlympiad} from "../../../../../../store/access/teacher/olympiad/fetchOlympiad";
 
 const MoreWrapper = styled.div`
   position: absolute;
@@ -31,13 +35,27 @@ interface MoreOlympiadProps {
 }
 
 const MoreOlympiad: React.FC<MoreOlympiadProps> = ({match}) => {
-    const [loading, olympiad, error, fetch] = useApiUserGeneral({url: `teacher/olympiad/${match.params.id}`});
+    const {detail} = useSelector(olympiadSelector)
+    const {loading, data: olympiad, error} = detail;
+    const dispatch = useTeacherDispatch()
+
+    console.log(olympiad)
+    const fetch = () => dispatch(fetchOlympiad({olympiadId: match.params.id}))
+
+    // const [loading, olympiad, error, fetch] = useApiUserGeneral({url: `teacher/olympiad/${match.params.id}`});
 
     useChangeActionNavbar({action: 'back'});
     // todo - cancel 
-        useChangeTitle({title: match.params.id && loading ? 'Загрузка...' : `Олимпиада: ${olympiad ? olympiad.title : 'Недоступна'}`});
+    useChangeTitle({title: match.params.id && loading ? 'Загрузка...' : `Олимпиада: ${olympiad ? olympiad.title : 'Недоступна'}`});
 
-    if (loading && !olympiad)
+    useEffect(() => {
+        const promise = dispatch(fetchOlympiad({olympiadId: match.params.id}))
+        return () => {
+            promise.abort()
+        }
+    }, [])
+
+    if (loading || !olympiad)
         return <LoadingBlock/>;
 
     if (error)

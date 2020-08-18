@@ -1,9 +1,11 @@
 import React from 'react';
-import { StopOutlined } from '@ant-design/icons';
-import {Button, message, Modal, Typography} from "antd";
+import {StopOutlined} from '@ant-design/icons';
+import {Button, Modal, Typography} from "antd";
 import styled from "styled-components";
-import {withRouter, RouteComponentProps} from "react-router-dom";
+import {useHistory, RouteComponentProps} from "react-router-dom";
 import ButtonSaveOlympiad from "../../../editor/steps-setting/actions/save/ButtonSaveOlympiad";
+import {useDispatch} from "react-redux";
+import {deleteOlympiad} from "../../../../../../../../store/access/teacher/olympiad/deleteOlympiad";
 
 const {Title} = Typography;
 const {confirm} = Modal;
@@ -44,26 +46,23 @@ const TitleWrapper = styled.div`
   }
 `;
 
-type TitleProps = RouteComponentProps & {
+interface TitleProps {
     olympiad: any;
     fetch: () => void;
 }
 
-// TODO - api
-const TitleInfo: React.FC<TitleProps> = ({olympiad,fetch, history}) => {
+const TitleInfo: React.FC<TitleProps> = ({olympiad, fetch}) => {
+    const history = useHistory()
+    const dispatch = useDispatch()
+
     const finishOlympiad = () => {
         confirm({
             title: 'Вы уверены что хотите завершить олимпиаду?',
-            // content: '',
             okText: 'Да',
             okType: 'danger',
             async onOk() {
-                // const response = await api.user.delete(`teacher/olympiad/${olympiad.id}`);
-                // if (response.data.status === 'success') {
-                //     history.push('/olympiad');
-                //     message.success('Вы успешно завершили олипиаду!')
-                // }
-                // console.log('OK');
+                await dispatch(deleteOlympiad({olympiadId: olympiad.id}))
+                history.push('/olympiad');
             },
         });
     };
@@ -89,11 +88,12 @@ const TitleInfo: React.FC<TitleProps> = ({olympiad,fetch, history}) => {
                 />
                 {
                     Number(olympiad.status) === 0 ?
-                        <Button danger icon={<StopOutlined />} ghost onClick={finishOlympiad}>Отменить олимпиаду</Button> : null
+                        <Button danger icon={<StopOutlined/>} ghost onClick={finishOlympiad}>Отменить
+                            олимпиаду</Button> : null
                 }
             </div>
         </TitleWrapper>
     );
 };
 
-export default withRouter(TitleInfo);
+export default TitleInfo;

@@ -13,6 +13,7 @@ import language from "../../common/language/languageSlice";
 import game from "../../common/game/gameSplice";
 import user from "../../common/user/userSlice";
 import notification from "./notification/notificationSlice";
+import customExercises from "./custom-exercises/customExercisesSlice";
 
 export type TeacherState = ReturnType<typeof teacherReducer>
 
@@ -28,6 +29,7 @@ export const teacherReducer = combineReducers({
     students,
     app,
     language,
+    customExercises,
     game,
     user,
 });
