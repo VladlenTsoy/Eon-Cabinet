@@ -27,9 +27,10 @@ export const teacherReducer = combineReducers({
     homework,
     tasks,
     students,
+    customExercises,
+    // common
     app,
     language,
-    customExercises,
     game,
     user,
 });

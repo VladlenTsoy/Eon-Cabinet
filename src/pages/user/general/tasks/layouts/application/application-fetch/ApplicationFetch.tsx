@@ -1,20 +1,19 @@
 import React from 'react';
-import {useCallback, useEffect, useMemo, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import {useCallback, useEffect, useState} from "react";
+import {useSelector} from "react-redux";
 import {
     changeStats,
     changeTotals,
-    StatsActionProps,
-    changeOutputs, gameSubSelector
+    changeOutputs,
+    StatsActionProps, gameSubSelector
 } from "store/common/game/gameSplice";
 import {useLoadPicturesEffect} from "../application-output/use-load-pictures.effect";
-import axios from "axios";
 import {LoadingBlock} from 'lib/components';
 import {useLoadSoundsEffect} from '../application-output/use-load-sounds.effect';
 import {picturesFunction} from "../Application.layout";
 import {useUser} from "../../../../../../../hooks/use-user";
-
-const CancelToken = axios.CancelToken;
+import {fetchGameExercises} from "../../../../../../../store/common/game/fetchGameExercises";
+import {useCommonDispatch} from "../../../../../../../store/common/store";
 
 interface ApplicationFetchProps {
     pictures?: string[] | 'abacus' | picturesFunction;
@@ -24,7 +23,6 @@ interface ApplicationFetchProps {
     updateStats?: () => StatsActionProps;
 }
 
-// TODO - api
 const ApplicationFetch: React.FC<ApplicationFetchProps> = (
     {
         updateStats,
@@ -39,9 +37,7 @@ const ApplicationFetch: React.FC<ApplicationFetchProps> = (
     const [loading, setLoading] = useState(true);
     const currentTimes = useSelector(gameSubSelector('currentTimes'));
     const setting = useSelector(gameSubSelector('setting'));
-    const dispatch = useDispatch();
-    const source = useMemo(() => CancelToken.source(), []);
-    const sourceCancel = useMemo(() => source.cancel, [source]);
+    const dispatch = useCommonDispatch();
 
     // Загрузка картинок
     const [picturesLoad] = useLoadPicturesEffect({pictures});
@@ -53,18 +49,11 @@ const ApplicationFetch: React.FC<ApplicationFetchProps> = (
         dispatch(changeStats(stats))
     }, [dispatch, updateStats]);
 
+    /** TODO - Cancel **/
     const fetch = useCallback(async () => {
-        // try {
-        //     return requestSetting.method === 'post' ?
-        //         await api[user ? 'user' : 'guest'].post(requestSetting.url, requestSetting.setting || setting, {cancelToken: source.token}) :
-        //         await api[user ? 'user' : 'guest'].get(requestSetting.url, {
-        //             params: requestSetting.setting || setting,
-        //             cancelToken: source.token
-        //         });
-        // } catch (e) {
-        //
-        // }
-    }, [user, requestSetting, setting, source.token]);
+         const action = await dispatch(fetchGameExercises({requestSetting, setting, user}))
+        return action.payload
+    }, [user, setting, dispatch]);
 
     const createAndUpdateTotals = useCallback(async (data) => {
         pictures && await picturesLoad(data);
@@ -80,12 +69,12 @@ const ApplicationFetch: React.FC<ApplicationFetchProps> = (
     }, [createOutputs, currentTimes, setting.sound, soundsLoad]);
 
     const fetchAndCreateAndUpdateOutputs = useCallback(async () => {
-        // const response = await fetch();
-        // if (!response) return null;
-        // const createdTotals = await createAndUpdateTotals(response.data);
-        // checkAndUpdateStats(createdTotals);
-        // const createdOutputs = await createAndUpdateOutputs(createdTotals);
-        // dispatch(changeOutputs(createdOutputs));
+        const response = await fetch();
+        if (!response) return null;
+        const createdTotals = await createAndUpdateTotals(response);
+        checkAndUpdateStats(createdTotals);
+        const createdOutputs = await createAndUpdateOutputs(createdTotals);
+        dispatch(changeOutputs(createdOutputs));
     }, [checkAndUpdateStats, createAndUpdateOutputs, createAndUpdateTotals, dispatch, fetch]);
 
     useEffect(() => {
@@ -94,13 +83,7 @@ const ApplicationFetch: React.FC<ApplicationFetchProps> = (
             await fetchAndCreateAndUpdateOutputs();
             setLoading(false);
         })();
-
-        return () => {
-            sourceCancel();
-        }
-    }, [fetchAndCreateAndUpdateOutputs, sourceCancel]);
-
-    // console.log('Fetch');
+    }, [fetchAndCreateAndUpdateOutputs]);
 
     if (loading)
         return <LoadingBlock title="Настройка упражнения..."/>;

@@ -120,6 +120,12 @@ const FormSetting: React.FC<FormSettingProps> = (
             });
             if (setting)
                 setData(setting);
+        } else if (Object.keys(exercises).length) {
+            let setting = updateModes({
+                allFields: [], typeTask: Object.keys(exercises)[0], typeTasks
+            });
+            if (setting)
+                setData(setting);
         }
     }, [initValues, typeTasks, updateModes]);
 

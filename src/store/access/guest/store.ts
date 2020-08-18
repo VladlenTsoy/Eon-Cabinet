@@ -1,8 +1,15 @@
 import {configureStore, combineReducers} from "@reduxjs/toolkit";
-import {commonReducer} from '../../common/commonReducer';
+import app from "../../common/app/appSlice";
+import language from "../../common/language/languageSlice";
+import game from "../../common/game/gameSplice";
+import user from "../../common/user/userSlice";
 
 export const guestReducer = combineReducers({
-    ...commonReducer
+    // common
+    app,
+    language,
+    game,
+    user,
 });
 
 export const store = configureStore({
