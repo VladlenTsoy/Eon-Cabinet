@@ -9,23 +9,7 @@ import {updateToken} from "../../../utils/api";
 import cookie from "js-cookie";
 import {verificationCodeConfirmEmail} from "./email-confirmation/verificationCodeConfirmEmail";
 import {updateImageUser} from "./updateImageUser";
-
-export interface User {
-    id: string;
-    first_name: string;
-    last_name: string;
-    email: string;
-    email_verified_at?: string;
-    image: string;
-    access: 'student' | 'teacher' | 'director-franchise' | 'admin';
-    status: 'active' | 'test'
-    lang_id?: string
-    setting: {
-        is_dark: boolean;
-        anzanColor?: 'black' | 'red' | 'purple' | 'dark-purple' | 'light-blue' | 'green' | 'yellow'
-    }
-    created_at: string;
-}
+import {User} from "../../../lib/types/common/User";
 
 interface StateProps {
     token: string | null;
@@ -50,62 +34,57 @@ const userSlice = createSlice({
                 state.detail = null;
         }
     },
-    extraReducers: {
-        //
-        [fetchUser.pending]: (state) => {
+    extraReducers: (builder) => {
+        // Вывод пользователя
+        builder.addCase(fetchUser.pending, (state) => {
             state.loading = true;
-        },
-        [fetchUser.fulfilled]: (state: StateProps, action: PayloadAction<User>) => {
+        })
+        builder.addCase(fetchUser.fulfilled, (state, action) => {
             state.detail = action.payload;
             state.loading = false;
-        },
-        [fetchUser.rejected]: (state) => {
+        })
+        builder.addCase(fetchUser.rejected, (state) => {
             state.loading = false;
-        },
+        })
+
+        // Обвноление пользователя
+        builder.addCase(updateUser.fulfilled, (state, action) => {
+            state.detail = action.payload;
+        })
+
+        // Обвноление изображения пользователя
+        builder.addCase(updateImageUser.fulfilled, (state, action) => {
+            state.detail = action.payload;
+        })
+
+        // Авторизация пользователя
+        builder.addCase(authUser.fulfilled, (state, action) => {
+            state.token = action.payload.token;
+            updateToken(action.payload.token);
+        })
+
+        // Регистрация пользователя
+        builder.addCase(registrationUser.fulfilled, (state, action) => {
+            state.token = action.payload.token;
+            updateToken(action.payload.token);
+        })
 
         //
-        // [updateUser.pending]: (state) => {
-        //     state.loading = true;
-        // },
-        [updateUser.fulfilled]: (state: StateProps, action: PayloadAction<User>) => {
-            state.detail = action.payload;
-            // state.loading = false;
-        },
-
-        [updateImageUser.fulfilled]: (state: StateProps, action: PayloadAction<{ data: { image: User['image'] } }>) => {
+        builder.addCase(verificationCodeConfirmEmail.fulfilled, (state, action) => {
             if (state.detail)
-                state.detail.image = action.payload.data.image;
-            // state.loading = false;
-        },
+                state.detail.email_verified_at = action.payload.user.email_verified_at;
+        })
 
-        //
-        [authUser.fulfilled]: (state: StateProps, action: PayloadAction<{ token: StateProps['token'] }>) => {
-            state.token = action.payload.token;
-            updateToken(action.payload.token);
-        },
-
-        //
-        [registrationUser.fulfilled]: (state: StateProps, action: PayloadAction<{ token: StateProps['token'] }>) => {
-            state.token = action.payload.token;
-            updateToken(action.payload.token);
-        },
-
-        //
-        [verificationCodeConfirmEmail.fulfilled]: (state: StateProps, action: PayloadAction<{ message: string, user: { email_verified_at: User['email_verified_at'] } }>) => {
-            // if (state.detail)
-            //     state.detail.email_verified_at = action.payload.user.email_verified_at;
-        },
-
-        //
-        [logoutUser.pending]: (state) => {
+        // Выход пользователя
+        builder.addCase(logoutUser.pending, (state) => {
             state.loading = true;
-        },
-        [logoutUser.fulfilled]: (state: StateProps) => {
+        })
+        builder.addCase(logoutUser.fulfilled, (state, action) => {
             updateToken(null);
             state.token = null;
             state.detail = null;
             state.loading = false;
-        },
+        })
     }
 });
 

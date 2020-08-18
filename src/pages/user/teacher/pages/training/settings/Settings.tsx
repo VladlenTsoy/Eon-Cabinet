@@ -1,6 +1,5 @@
 import React, {useCallback, useState} from 'react';
 import {BrowserRouter as Router, useHistory, useRouteMatch} from "react-router-dom";
-import {useDispatch} from "react-redux";
 import {Switch, Route} from "react-router";
 import {useChangeActionNavbar} from "hooks/use-change-action-navbar.effect";
 import {Col, Row} from "antd";
@@ -9,6 +8,8 @@ import styled from "styled-components";
 import {changeSetting, changeExecutionMode} from "store/common/game/gameSplice";
 import {useLanguage} from "../../../../../../hooks/use-language";
 import {useUser} from "../../../../../../hooks/use-user";
+import {useTeacherDispatch} from "../../../../../../store/access/teacher/store";
+import {updateUser} from "../../../../../../store/common/user/updateUser";
 
 const Mental = React.lazy(() => import("./mental/Mental"));
 const Mnemonics = React.lazy(() => import("./mnemonics/Mnemonics"));
@@ -42,7 +43,7 @@ const Tasks: React.FC = () => {
     const match = useRouteMatch<TasksRouteProps>();
     const history = useHistory();
     const {discipline, task} = match.params;
-    const dispatch = useDispatch();
+    const dispatch = useTeacherDispatch();
 
     const [setting] = useState<any>(() => {
         try {
@@ -66,8 +67,8 @@ const Tasks: React.FC = () => {
     const updateSetting = useCallback(async (setting: any) => {
         try {
             let userSetting = Object.keys(user.setting).length ? user.setting : {};
-            userSetting.tasks = userSetting.tasks && userSetting.tasks[0] && userSetting.tasks[0].hasOwnProperty('discipline') ?
-                userSetting.tasks : [];
+            console.log(userSetting.tasks)
+            // userSetting.tasks = userSetting.tasks || [];
 
             const keySetting = userSetting.tasks.findIndex(
                 (item: any) => Number(item.discipline) === Number(discipline) && Number(item.task) === Number(task)
@@ -76,8 +77,7 @@ const Tasks: React.FC = () => {
                 userSetting.tasks.push({discipline, task, setting}) :
                 userSetting.tasks[keySetting].setting = setting;
 
-            // let response = await api.user.patch(`/${user.id}`, {setting: userSetting});
-            // updateUser(response.data);
+            dispatch(updateUser({userId: user.id, data: {setting: userSetting}}))
         } catch (e) {
             console.error(e);
         }

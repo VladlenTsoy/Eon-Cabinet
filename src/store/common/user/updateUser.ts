@@ -7,7 +7,7 @@ import {User} from "../../../lib/types/common/User";
 type ReturnedType = User
 
 interface ArgsProps {
-    userId: string;
+    userId: User['id'];
     data: object
 }
 

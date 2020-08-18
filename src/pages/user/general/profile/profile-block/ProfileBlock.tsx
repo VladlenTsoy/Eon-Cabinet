@@ -46,7 +46,7 @@ const ProfileBlock: React.FC<ProfileBlockProps> = ({user: userData, settingMenu}
     };
 
     return <ProfileBlockWrapper>
-        <PhotoBlock currentUser={currentUser} changeDataCurrentUser={changeDataCurrentUser}/>
+        <PhotoBlock/>
         <Title className="title" level={3}>{currentUser.first_name} {currentUser.last_name}</Title>
         <ProfileBlockMenu
             currentUser={currentUser}

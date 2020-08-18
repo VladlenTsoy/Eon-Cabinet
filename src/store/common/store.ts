@@ -16,10 +16,6 @@ export const commonReducer = combineReducers({
 
 export type AppDispatch = typeof store.dispatch
 
-export const store = configureStore({
-    reducer: commonReducer,
-});
-
 export interface CommonThunkProps {
     dispatch: AppDispatch
     state: CommonState
@@ -28,3 +24,7 @@ export interface CommonThunkProps {
 }
 
 export const useCommonDispatch = () => useDispatch<AppDispatch>()
+
+export const store = configureStore({
+    reducer: commonReducer,
+});

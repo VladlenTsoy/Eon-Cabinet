@@ -4,7 +4,9 @@ import cookie from "js-cookie";
 import {User} from "../../../lib/types/common/User";
 import {CommonThunkProps} from "../store";
 
-export const fetchUser = createAsyncThunk<User, undefined, CommonThunkProps>(
+type ReturnedType = User
+
+export const fetchUser = createAsyncThunk<ReturnedType, undefined, CommonThunkProps>(
     'user/fetch',
     async (_, {signal}) => {
         return await apiRequest('get', `/`, {signal})

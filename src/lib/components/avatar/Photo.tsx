@@ -4,17 +4,14 @@ import {message, Modal} from "antd";
 import {useState} from "react";
 import {IconsWrapper, IconWrapper, IconEditWrapper} from "./IconsWrapper";
 import AvatarLabelWrapper from "./Label";
-import {useDispatch} from "react-redux";
 import {updateImageUser} from "../../../store/common/user/updateImageUser";
+import {useUser} from "../../../hooks/use-user";
+import {useDispatch} from "react-redux";
 
 const {confirm} = Modal;
 
-interface PhotoBlockProps {
-    currentUser: any;
-    changeDataCurrentUser: any;
-}
-
-const PhotoBlock: React.FC<PhotoBlockProps> = ({currentUser}: any) => {
+const PhotoBlock: React.FC = () => {
+    const {user} = useUser()
     const dispatch = useDispatch()
     const [loading, setLoading] = useState(false)
 
@@ -42,12 +39,12 @@ const PhotoBlock: React.FC<PhotoBlockProps> = ({currentUser}: any) => {
 
         data.append("images", img);
         setLoading(true);
-        await dispatch(updateImageUser({userId: currentUser.id, data}))
+        await dispatch(updateImageUser({userId: user.id, data}))
         setLoading(false);
     };
 
     return <AvatarLabelWrapper>
-        <img src={currentUser.image} alt={`${currentUser.first_name} ${currentUser.last_name}`}/>
+        <img src={user.image} alt={`${user.first_name} ${user.last_name}`}/>
         <input type="file" accept="image/x-png,image/gif,image/jpeg" onChange={handleChangeImage}/>
         <IconsWrapper>
             {
@@ -59,4 +56,4 @@ const PhotoBlock: React.FC<PhotoBlockProps> = ({currentUser}: any) => {
     </AvatarLabelWrapper>
 };
 
-export default PhotoBlock;
+export default React.memo(PhotoBlock);
