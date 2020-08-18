@@ -1,7 +1,7 @@
 import axios from "axios";
 import {message} from "./message";
 import cookie from "js-cookie";
-import {Discipline} from "../store/access/teacher/discipline/disciplineSlice";
+import {Discipline} from "../lib/types/common/Discipline";
 
 const CancelToken = axios.CancelToken;
 const DOMAIN_API = process.env.NODE_ENV === 'production' ? 'https://api.eon.uz/api' : 'http://192.168.1.37:8000/api';

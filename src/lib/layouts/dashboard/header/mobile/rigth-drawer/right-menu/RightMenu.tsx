@@ -33,16 +33,19 @@ const MenuWrapper: React.FC<MenuProps> = styled(Menu)`
 
 interface RightMenuProps {
     logout: () => void;
+    account?: JSX.Element[];
 }
 
 const RightMenu: React.FC<RightMenuProps> = (
     {
         logout,
+        account,
         children
     }
 ) => {
     return (
         <MenuWrapper mode="vertical-right">
+            {account}
             {children}
             <HeaderItem key="theme">
                 <DarkSwitch/>

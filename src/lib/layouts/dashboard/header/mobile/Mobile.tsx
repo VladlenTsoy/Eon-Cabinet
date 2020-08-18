@@ -12,6 +12,7 @@ interface MobileProps {
     toggleSidebar: () => void;
     logout: () => void;
     collapsed: boolean;
+    account?: JSX.Element[];
 }
 
 const Mobile: React.FC<MobileProps> = (
@@ -19,6 +20,7 @@ const Mobile: React.FC<MobileProps> = (
         toggleSidebar,
         collapsed,
         logout,
+        account,
         children,
     }
 ) => {
@@ -45,6 +47,7 @@ const Mobile: React.FC<MobileProps> = (
             visible={visible}
             logout={logout}
             close={close}
+            account={account}
         >
             {children}
         </RightDrawer>

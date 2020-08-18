@@ -4,7 +4,7 @@ import {Button, Input, Form} from "antd";
 import {useState} from "react";
 import {useDispatch} from "react-redux";
 import {updatePasswordUser} from "../../../../../../../../store/common/user/updatePasswordUser";
-import {User} from "../../../../../../../../store/common/user/userSlice";
+import {User} from "../../../../../../../../lib/types/common/User";
 
 interface PasswordProps {
     currentUser: User;

@@ -2,12 +2,7 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit'
 import {TeacherState} from "../store";
 import {fetchDisciplines} from "./fetchDisciplines";
 import {updateDiscipline} from "utils/api";
-
-export interface Discipline {
-    id: number;
-    key: string;
-    title: string;
-}
+import {Discipline} from "../../../../lib/types/common/Discipline";
 
 interface StateProps {
     activeDisciplineId?: Discipline["id"];
@@ -30,11 +25,11 @@ const disciplineSlice = createSlice({
             state.activeDisciplineId = action.payload
         },
     },
-    extraReducers: {
-        [fetchDisciplines.pending]: (state) => {
+    extraReducers: (builder) => {
+        builder.addCase(fetchDisciplines.pending, (state) => {
             state.fetchLoading = true;
-        },
-        [fetchDisciplines.fulfilled]: (state, action:PayloadAction<Discipline[]>) => {
+        })
+        builder.addCase(fetchDisciplines.fulfilled, (state, action) => {
             // Add user to the state array
             if (action.payload) {
                 const discipline = action.payload[0]
@@ -43,7 +38,7 @@ const disciplineSlice = createSlice({
             }
             state.disciplines = action.payload;
             state.fetchLoading = false;
-        }
+        })
     }
 });
 

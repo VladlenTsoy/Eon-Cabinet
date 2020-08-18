@@ -42,6 +42,7 @@ const ProfileData: React.FC = () => {
             <Row gutter={15}>
                 <Col sm={12} xs={24}>
                     <FormItem
+                        tabIndex={1}
                         name="last_name"
                         label="Фамилия"
                         requiredMsg="Введите фамилию!"
@@ -50,9 +51,10 @@ const ProfileData: React.FC = () => {
                         name="date_of_birth"
                         label="Дата рождения"
                     >
-                        <DatePicker format="DD-MM-YYYY" style={{width: '100%'}}/>
+                        <DatePicker tabIndex={3} format="DD-MM-YYYY" style={{width: '100%'}}/>
                     </FormItem>
                     <FormItem
+                        tabIndex={5}
                         name="email"
                         label="Эл.почта"
                         rules={[{
@@ -66,18 +68,21 @@ const ProfileData: React.FC = () => {
                 </Col>
                 <Col sm={12} xs={24}>
                     <FormItem
+                        tabIndex={2}
                         name="first_name"
                         label="Имя"
                         requiredMsg="Введите имя!"
                     />
                     <FormItem
+                        tabIndex={4}
+                        name="phone"
+                        label="Телефон"
+                    />
+                    <FormItem
+                        tabIndex={6}
                         name="login"
                         label="Логин"
                         requiredMsg="Введите Логин!"
-                    />
-                    <FormItem
-                        name="phone"
-                        label="Телефон"
                     />
                 </Col>
                 <Col span={24}>

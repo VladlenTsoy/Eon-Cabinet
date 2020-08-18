@@ -1,13 +1,17 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {apiRequest} from "../../../utils/api";
 import {message} from "../../../utils/message";
+import {CommonThunkProps} from "../store";
+import {User} from "../../../lib/types/common/User";
 
-interface ParamsProps {
+type ReturnedType = User
+
+interface ArgsProps {
     userId: string;
     data: object
 }
 
-export const updateUser: any = createAsyncThunk<any, ParamsProps, any>(
+export const updateUser = createAsyncThunk<ReturnedType, ArgsProps, CommonThunkProps>(
     'user/update',
     async ({userId, data}) => {
         //

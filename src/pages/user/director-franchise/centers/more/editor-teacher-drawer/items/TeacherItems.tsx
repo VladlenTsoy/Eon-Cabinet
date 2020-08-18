@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {FormItem, InputEmail, InputLogin, InputPassword, SelectData} from "../../../../../../../lib/components";
-import EditorCenterButton from "../../../../../admin/franchise/center-table/EditorCenterButton";
+import EditorCenterButton from "../../../../../admin/pages/franchise/center-table/EditorCenterButton";
 import {PlusOutlined} from '@ant-design/icons';
 import {Col, DatePicker, Row} from "antd";
 import SelectStatus from "../../../../../../../lib/layouts/drawer-editor/editor-teacher/SelectStatus";

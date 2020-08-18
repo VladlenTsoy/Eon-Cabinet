@@ -3,7 +3,7 @@ import './Color.less';
 import {useState} from "react";
 import {useDispatch} from "react-redux";
 import {updateUser} from "../../../../../../../../store/common/user/updateUser";
-import {User} from "../../../../../../../../store/common/user/userSlice";
+import {User} from "../../../../../../../../lib/types/common/User";
 
 interface ColorProps {
     currentUser: User

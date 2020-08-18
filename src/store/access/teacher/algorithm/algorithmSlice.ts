@@ -17,14 +17,14 @@ const algorithmSlice = createSlice({
     initialState,
     reducers: {
     },
-    extraReducers: {
-        [fetchAlgorithms.pending]: (state) => {
-            state.fetchLoading = true;
-        },
-        [fetchAlgorithms.fulfilled]: (state, action) => {
+    extraReducers: (builder) => {
+        builder.addCase(fetchAlgorithms.pending, state => {
+            state.fetchLoading = true
+        })
+        builder.addCase(fetchAlgorithms.fulfilled, (state, action) => {
             state.algorithms = action.payload;
             state.fetchLoading = false;
-        }
+        })
     }
 });
 

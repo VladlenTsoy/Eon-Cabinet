@@ -1,18 +1,23 @@
 import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {categorySelector} from "../../../../../store/access/teacher/category/categorySlice";
 import {fetchCategories} from "../../../../../store/access/teacher/category/fetchCategories";
 import {disciplineSelector} from "../../../../../store/access/teacher/discipline/disciplineSlice";
 import {Loader} from "../../../../../lib/components";
+import {useTeacherDispatch} from "../../../../../store/access/teacher/store";
 
 const CategoriesProvider: React.FC = ({children}) => {
     const discipline = useSelector(disciplineSelector);
     const category = useSelector(categorySelector);
-    const dispatch = useDispatch();
+    const dispatch = useTeacherDispatch();
 
     useEffect(() => {
-        if (discipline.activeDisciplineId)
-            dispatch(fetchCategories());
+        if (discipline.activeDisciplineId){
+          const promise = dispatch(fetchCategories());
+          return () => {
+              promise.abort()
+          }
+        }
     }, [dispatch, discipline.activeDisciplineId]);
 
     if (category.fetchLoading)

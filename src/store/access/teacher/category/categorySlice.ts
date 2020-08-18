@@ -1,15 +1,10 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit'
+import {createSlice} from '@reduxjs/toolkit'
 import {TeacherState} from "../store";
 import {fetchCategories} from "./fetchCategories";
-
-interface CategoryProps {
-    id: number;
-    title: string;
-    active: boolean;
-}
+import {Category} from "../../../../lib/types/common/Category";
 
 interface StateProps {
-    categories: CategoryProps[];
+    categories: Category[];
     fetchLoading: boolean;
 }
 
@@ -22,15 +17,15 @@ const categorySlice = createSlice({
     name: 'category',
     initialState,
     reducers: {},
-    extraReducers: {
-        [fetchCategories.pending]: (state) => {
-            state.fetchLoading = true;
-        },
-        [fetchCategories.fulfilled]: (state, action: PayloadAction<CategoryProps[]>) => {
+    extraReducers: (builder) => {
+        builder.addCase(fetchCategories.pending, state => {
+            state.fetchLoading = true
+        })
+        builder.addCase(fetchCategories.fulfilled, (state, action) => {
             // Add user to the state array
             state.categories = action.payload;
             state.fetchLoading = false;
-        }
+        })
     }
 });
 

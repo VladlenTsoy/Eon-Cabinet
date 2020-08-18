@@ -1,12 +1,13 @@
 import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {fetchUser} from "../../../store/common/user/fetchUser";
 import {userSelector} from "../../../store/common/user/userSlice";
 import {Loader} from "../../components";
+import {useCommonDispatch} from "../../../store/common/store";
 
 const UserProvider: React.FC = ({children}) => {
     const user = useSelector(userSelector);
-    const dispatch = useDispatch();
+    const dispatch = useCommonDispatch();
 
     useEffect(() => {
         const promise = dispatch(fetchUser());

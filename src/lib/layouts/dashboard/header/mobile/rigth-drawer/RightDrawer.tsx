@@ -13,6 +13,7 @@ interface RightDrawerProps {
     visible: boolean;
     logout: () => void;
     close: () => void;
+    account?: JSX.Element[];
 }
 
 const RightDrawer: React.FC<RightDrawerProps> = (
@@ -20,6 +21,7 @@ const RightDrawer: React.FC<RightDrawerProps> = (
         visible,
         logout,
         close,
+        account,
         children
     }
 ) => {
@@ -29,7 +31,10 @@ const RightDrawer: React.FC<RightDrawerProps> = (
         onClose={close}
         notFooter
     >
-        <RightMenu logout={logout}>
+        <RightMenu
+            account={account}
+            logout={logout}
+        >
             {children}
         </RightMenu>
     </DrawerWrapper>;

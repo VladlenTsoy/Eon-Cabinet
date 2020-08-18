@@ -1,16 +1,10 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {apiRequest} from "utils/api";
-import {AppDispatch, StoreState} from "../../store";
-import {User} from "./userSlice";
 import cookie from "js-cookie";
+import {User} from "../../../lib/types/common/User";
+import {CommonThunkProps} from "../store";
 
-interface Options {
-    dispatch: AppDispatch
-    state: StoreState
-    extra: any
-}
-
-export const fetchUser: any = createAsyncThunk<User, any, Options>(
+export const fetchUser = createAsyncThunk<User, undefined, CommonThunkProps>(
     'user/fetch',
     async (_, {signal}) => {
         return await apiRequest('get', `/`, {signal})
@@ -20,7 +14,7 @@ export const fetchUser: any = createAsyncThunk<User, any, Options>(
             }) as User;
     },
     {
-        condition(_): any {
+        condition(_) {
             if (!cookie.get('token_access'))
                 return false;
         },

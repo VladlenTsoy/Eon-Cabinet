@@ -1,17 +1,19 @@
 import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {disciplineSelector} from "../../../../../store/access/teacher/discipline/disciplineSlice";
 import {fetchDisciplines} from "../../../../../store/access/teacher/discipline/fetchDisciplines";
 import {Loader} from "../../../../../lib/components";
+import {useTeacherDispatch} from "../../../../../store/access/teacher/store";
 
 const DisciplinesProvider: React.FC = ({children}) => {
     const discipline = useSelector(disciplineSelector);
-    const dispatch = useDispatch();
+    const dispatch = useTeacherDispatch();
 
     useEffect(() => {
-        (async () => {
-            await dispatch(fetchDisciplines());
-        })();
+        const promise = dispatch(fetchDisciplines())
+        return () => {
+            promise.abort()
+        }
     }, [dispatch]);
 
     if (discipline.fetchLoading)

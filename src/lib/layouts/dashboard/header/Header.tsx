@@ -36,6 +36,7 @@ const Header: React.FC<HeaderProps> = ({children, collapsed, account, toggleSide
             toggleSidebar={toggleSidebar}
             collapsed={collapsed}
             logout={logout}
+            account={account}
         >
             {children}
         </Mobile>;

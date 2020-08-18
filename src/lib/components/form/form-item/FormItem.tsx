@@ -9,6 +9,7 @@ type Overwrite<T, U> = Pick<T, Diff<keyof T, keyof U>> & U;
 
 interface ItemProps {
     size?: 'small' | 'middle' | 'large';
+    tabIndex?: number;
     autofocus?: boolean;
     placeholder?: any;
     marginBottom?: string;
@@ -20,6 +21,7 @@ const FormItem: React.FC<Overwrite<FormItemProps, ItemProps>> = (
     {
         size,
         placeholder,
+        tabIndex,
         autofocus = false,
         //
         requiredMsg,
@@ -38,6 +40,7 @@ const FormItem: React.FC<Overwrite<FormItemProps, ItemProps>> = (
         {
             children ||
             <Input
+                tabIndex={tabIndex}
                 placeholder={placeholder}
                 size={size}
                 autoFocus={autofocus}

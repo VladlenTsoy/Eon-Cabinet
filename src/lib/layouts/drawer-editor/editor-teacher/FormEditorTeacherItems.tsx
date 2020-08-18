@@ -4,7 +4,7 @@ import {PlusOutlined} from '@ant-design/icons';
 import {Col, DatePicker, Row} from "antd";
 import SelectStatus from "./SelectStatus";
 import InputPhoto from "../../../components/form/InputPhoto";
-import EditorCenterButton from "../../../../pages/user/admin/franchise/center-table/EditorCenterButton";
+import EditorCenterButton from "../../../../pages/user/admin/pages/franchise/center-table/EditorCenterButton";
 import {FormInstance} from "antd/es/form";
 import {useUser} from "../../../../hooks/use-user";
 
