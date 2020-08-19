@@ -8,7 +8,7 @@ const Profile: React.FC = () => {
     const {user} = useUser();
     return <Row  gutter={15} align="middle">
         <Col lg={6} md={12} xs={24}>
-            <ProfileBlock user={user} settingMenu={{password: true, color: true, email: true}}/>
+            <ProfileBlock user={user} settingMenu={{password: true, color: true}}/>
         </Col>
         <Col lg={12} md={24} xs={24}>
             <ProfileData/>
