@@ -2,7 +2,7 @@ import React from "react";
 import {ArrowLeftOutlined, UserOutlined} from '@ant-design/icons';
 import {Button, Input, Form} from "antd";
 import {useState} from "react";
-import {FormItem} from "../../../../lib/components";
+import {FormItem} from "../../../../lib/ui";
 import {Link} from "react-router-dom";
 import AuthLayout from "../../../../lib/layouts/auth/AuthLayout";
 

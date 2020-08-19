@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import styled from "styled-components";
 import ConfirmEmailBg from "../../../../assets/images/pages/login_page_bg.svg";
 import {Button, Typography, Form} from "antd";
-import {FormItem} from "../../../../lib/components";
+import {FormItem} from "../../../../lib/ui";
 
 const {Title} = Typography;
 

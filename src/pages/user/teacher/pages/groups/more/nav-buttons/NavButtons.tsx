@@ -1,6 +1,6 @@
 import React from 'react';
 import {PlusOutlined, SendOutlined} from "@ant-design/icons";
-import {Navigation, NavigationButton} from "lib/components";
+import {Navigation, NavigationButton} from "lib/ui";
 import EditorButton from "./editor-button/EditorButton";
 import SentHomeworkStudentButton from "./sent-homework-button/SentHomeworkStudentButton";
 import DeleteStudentButton from "./delete-student-button/DeleteStudentButton";

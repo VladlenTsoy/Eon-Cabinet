@@ -1,6 +1,6 @@
 import React from "react";
-import {Legend} from "../../../../../lib/components";
-import {LoadingBlock} from "lib/components";
+import {Legend} from "../../../../../lib/ui";
+import {LoadingBlock} from "lib/ui";
 import HomeworkBlock from "../../layouts/homework-block/HomeworkBlock";
 import {useApiUserGeneral} from "../../../../../hooks/use-api-user-general.effect";
 import HomeworkEmpty from "./homework-empty/HomeworkEmpty";
@@ -10,7 +10,7 @@ import styled from "styled-components";
 import {useWindowSize} from "react-use";
 import {useScreenWindow} from "../../../../../hooks/use-screen-window.effect";
 import {Carousel} from "antd";
-import NextArrow from "lib/components/carousel/next-arrow/NextArrow";
+import NextArrow from "lib/ui/carousel/next-arrow/NextArrow";
 
 const HomeworkWrapper = styled.div`
   display: grid;

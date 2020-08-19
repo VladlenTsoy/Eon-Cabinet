@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Modal} from "../../../../../../lib/components";
+import {Modal} from "../../../../../../lib/ui";
 import CoinSvg from "../../../../../../assets/images/icons/coin.svg";
 import styled from "styled-components";
 import {Button, Typography} from "antd";

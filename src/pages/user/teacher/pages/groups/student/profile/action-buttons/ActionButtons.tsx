@@ -1,7 +1,7 @@
 import React from 'react';
 import { DeleteOutlined, DollarOutlined, EditOutlined } from '@ant-design/icons';
 import styled from "styled-components";
-import ItemBlock from "../../../../../../director-franchise/layouts/items/ItemBlock";
+// import ItemBlock from "../../../../../../director-franchise/layouts/items/ItemBlock";
 import EditorButton from "../../../more/nav-buttons/editor-button/EditorButton";
 import DeleteButton from "./delete-button/DeleteButton";
 import {Student} from "../../../../../../../../lib/types/teacher/Student";
@@ -90,7 +90,7 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({student}) => {
               </EditorButton>
           </ButtonWrapper>
           <ButtonWrapper>
-              <ItemBlock user={student}/>
+              {/*<ItemBlock user={student}/>*/}
           </ButtonWrapper>
           <ButtonWrapper disabled>
               <span>

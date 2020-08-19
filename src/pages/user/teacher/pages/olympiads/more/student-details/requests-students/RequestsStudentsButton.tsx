@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { EyeOutlined } from '@ant-design/icons';
 import {Button} from "antd";
 import RequestTable from "./request-table/RequestTable";
-import {Drawer} from "lib/components";
+import {Drawer} from "lib/ui";
 import {useScreenWindow} from "../../../../../../../../hooks/use-screen-window.effect";
 
 interface RequestsStudentsButtonProps {

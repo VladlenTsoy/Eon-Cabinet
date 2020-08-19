@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Drawer} from "../../../../../../../../../../../lib/components";
+import {Drawer} from "../../../../../../../../../../../lib/ui";
 import MoreHomeworkItem from "./MoreHomeworkItem";
 import {useScreenWindow} from "../../../../../../../../../../../hooks/use-screen-window.effect";
 import {HomeworkProps} from "../../../../../../../../../../../store/access/teacher/homework/homeworkSlice";

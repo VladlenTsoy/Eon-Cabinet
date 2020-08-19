@@ -1,6 +1,6 @@
 import React from 'react';
 import {Select} from "antd";
-import {FormItem} from "../../../../../../../../lib/components";
+import {FormItem} from "../../../../../../../../lib/ui";
 import FormSettingLayout from "../../mental/layout/form-setting/FormSetting.layout";
 
 interface DigitalImageProps {

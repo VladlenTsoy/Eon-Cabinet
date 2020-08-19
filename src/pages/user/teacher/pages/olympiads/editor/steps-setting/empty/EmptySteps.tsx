@@ -1,7 +1,7 @@
 import React from 'react';
 import { PlusCircleOutlined } from '@ant-design/icons';
 import {Button, Col, Empty, Row} from 'antd';
-import {DescriptionTitle} from "lib/components";
+import {DescriptionTitle} from "lib/ui";
 import EditorStepButton from "../editor-step-button/EditorStepButton";
 
 const rowStyle = {

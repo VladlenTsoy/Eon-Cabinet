@@ -1,6 +1,6 @@
 import React from 'react';
 import {Col, Select} from "antd";
-import {FormItem} from "../../../../../../../../../../../../lib/components";
+import {FormItem} from "../../../../../../../../../../../../lib/ui";
 import {useLanguage} from "../../../../../../../../../../../../hooks/use-language";
 
 const {Option} = Select;

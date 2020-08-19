@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card} from "lib/components";
+import {Card} from "lib/ui";
 import ProcessSvg from "assets/images/tournaments/process.svg";
 import styled from "styled-components";
 

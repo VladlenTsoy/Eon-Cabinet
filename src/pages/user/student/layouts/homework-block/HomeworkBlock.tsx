@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import {FlagOutlined, HomeOutlined, CheckCircleOutlined} from '@ant-design/icons';
 import {Link} from "react-router-dom";
-import {Card} from "lib/components";
+import {Card} from "lib/ui";
 import {Button} from "antd";
 import {useLanguage} from "../../../../../hooks/use-language";
 

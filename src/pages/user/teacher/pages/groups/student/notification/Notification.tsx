@@ -1,5 +1,5 @@
 import React from 'react';
-import {Alert} from "../../../../../../../lib/components";
+import {Alert} from "../../../../../../../lib/ui";
 import { LockOutlined } from '@ant-design/icons';
 import { Col } from "antd";
 

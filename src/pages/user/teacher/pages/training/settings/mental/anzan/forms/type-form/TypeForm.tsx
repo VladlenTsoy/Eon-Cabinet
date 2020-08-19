@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {BlockOutlined, FileOutlined, ThunderboltOutlined} from '@ant-design/icons';
 import {Form, Radio} from "antd";
 import {RadioGroupProps} from "antd/es/radio";
-import {FormItem} from "../../../../../../../../../../lib/components";
+import {FormItem} from "../../../../../../../../../../lib/ui";
 import styled from "styled-components";
 
 interface StyledProps {

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {FormItem} from "../../../../../../../../../lib/components";
+import {FormItem} from "../../../../../../../../../lib/ui";
 import {DatePicker} from "antd";
 import moment, {Moment} from "moment";
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Legend} from "../../../../../../lib/components";
+import {Legend} from "../../../../../../lib/ui";
 
 const Olympiad: React.FC = () => {
     return <>

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import styled from "styled-components";
 import Anzan from "../../../anzan/Anzan";
-import {Modal} from "../../../../../../../../../../lib/components";
+import {Modal} from "../../../../../../../../../../lib/ui";
 
 const AddExercisesWrapper = styled.div`
   margin-right: 1.5rem;

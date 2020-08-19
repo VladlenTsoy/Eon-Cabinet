@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import ReactGA from "react-ga";
-import {Loader} from "../lib/components";
+import {Loader} from "../lib/ui";
 import {useSelector} from "react-redux";
 import {userSelector} from "../store/common/user/userSlice";
 import "../styles/style.less";

@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {fetchUser} from "../../../store/common/user/fetchUser";
-import {Loader} from "../../components";
+import {Loader} from "../../ui";
 import {useCommonDispatch} from "../../../store/common/store";
 import {useUser} from "../../../hooks/use-user";
 

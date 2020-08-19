@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-import {FormItem, Modal, NavigationButton} from "lib/components";
+import {FormItem, Modal, NavigationButton} from "lib/ui";
 import {PlusCircleOutlined} from "@ant-design/icons";
 import CoinSvg from "assets/images/icons/coin.svg";
 import {Button, Form} from "antd";
-import Stepper from "../../../../../../../../lib/components/stepper/Stepper";
+import Stepper from "../../../../../../../../lib/ui/stepper/Stepper";
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
 import {studentsSelector} from "../../../../../../../../store/access/teacher/students/studentsSlice";

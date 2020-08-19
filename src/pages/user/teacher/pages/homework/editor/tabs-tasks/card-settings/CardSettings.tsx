@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {Tabs} from "antd";
 import FormSetting from "./from-setting/FormSetting";
-import {Card} from "../../../../../../../../lib/components";
+import {Card} from "../../../../../../../../lib/ui";
 import {useDispatch, useSelector} from "react-redux";
 import {tasksSelector} from "../../../../../../../../store/access/teacher/tasks/tasksSlice";
 import {useScreenWindow} from "../../../../../../../../hooks/use-screen-window.effect";

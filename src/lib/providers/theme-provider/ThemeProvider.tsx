@@ -3,7 +3,7 @@ import {ThemeProvider as ThemeProviderStyled} from "styled-components";
 import {useSelector} from "react-redux";
 import {_theme, blackTheme, whiteTheme} from 'styles/_theme';
 import {appSelector} from "../../../store/common/app/appSlice";
-import {Spin} from "../../components";
+import {Spin} from "../../ui";
 
 const ThemeProvider: React.FC = ({children}) => {
     const app = useSelector(appSelector);

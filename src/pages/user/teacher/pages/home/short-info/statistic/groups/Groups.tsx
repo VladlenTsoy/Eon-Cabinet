@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {CardStatistic} from "../../../../../../../../lib/components";
+import {CardStatistic} from "../../../../../../../../lib/ui";
 import {TeamOutlined} from "@ant-design/icons";
 import {useSelector} from "react-redux";
 import {groupSelector} from "../../../../../../../../store/access/teacher/group/groupSlice";

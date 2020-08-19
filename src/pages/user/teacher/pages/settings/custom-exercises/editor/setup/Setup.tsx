@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import {Card} from "lib/components";
+import {Card} from "lib/ui";
 import {ArrowRightOutlined} from "@ant-design/icons";
 import {Button, Col, Form, Row} from "antd";
-import {Alert} from "lib/components";
+import {Alert} from "lib/ui";
 import {Link} from "react-router-dom";
 import FormHeadItems from "./form-head-items/FormHeadItems";
 import FormBodyItems from "./form-body-items/FormBodyItems";

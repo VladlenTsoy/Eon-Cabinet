@@ -1,5 +1,5 @@
 import React from 'react';
-import {LoadingBlock} from "lib/components";
+import {LoadingBlock} from "lib/ui";
 import ProfileBlock from "../../../../layouts/profile-block/ProfileBlock";
 import {useApiUserGeneral} from "../../../../../../../hooks/use-api-user-general.effect";
 

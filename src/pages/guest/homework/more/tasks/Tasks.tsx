@@ -1,6 +1,6 @@
 import React from 'react';
 import {useApiUserGeneral} from "hooks/use-api-user-general.effect";
-import {DescriptionTitle, LoadingBlock} from "../../../../../lib/components";
+import {DescriptionTitle, LoadingBlock} from "../../../../../lib/ui";
 import {Col, Empty, Row} from "antd";
 import Task from "./task/Task";
 import {useLanguage} from "../../../../../hooks/use-language";

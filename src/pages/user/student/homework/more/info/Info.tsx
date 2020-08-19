@@ -1,6 +1,6 @@
 import React from "react";
 import Teacher from "./teacher/Teacher";
-import {Card} from "lib/components";
+import {Card} from "lib/ui";
 import styled from "styled-components";
 import Message from "./message/Message";
 import Counter from "./counter/Counter";

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {CardTable} from "lib/components";
+import {CardTable} from "lib/ui";
 
 const TableStudentsLayout = styled(CardTable)`
     white-space: nowrap;

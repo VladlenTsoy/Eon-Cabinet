@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Alert, Modal} from "lib/components";
+import {Alert, Modal} from "lib/ui";
 import {Input, message} from "antd";
 import {LinkOutlined, CopyOutlined} from "@ant-design/icons";
 

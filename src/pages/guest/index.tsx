@@ -1,5 +1,5 @@
 import React from 'react';
-import {Loader} from "../../lib/components";
+import {Loader} from "../../lib/ui";
 import {useRouteMatch} from "react-router-dom";
 
 const Auth = React.lazy(() => import("./auth/index"));

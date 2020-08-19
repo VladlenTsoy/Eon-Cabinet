@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {store} from "../../../store/store";
-import {Loader} from "../../components";
+import {Loader} from "../../ui";
 import {useUser} from "../../../hooks/use-user";
 
 const StoreProvider: React.FC = ({children}) => {

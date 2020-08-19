@@ -5,7 +5,7 @@ import styled from "styled-components";
 import {useScreenWindow} from "../../../../../hooks/use-screen-window.effect";
 import {Carousel} from "antd";
 import {useApiUserGeneral} from "hooks/use-api-user-general.effect";
-import NextArrow from "lib/components/carousel/next-arrow/NextArrow";
+import NextArrow from "lib/ui/carousel/next-arrow/NextArrow";
 import Olympiad from "./olympiad/Olympiad";
 
 const Wrapper = styled.div`

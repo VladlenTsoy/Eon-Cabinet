@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button} from "antd";
-import {Card} from "lib/components";
+import {Card} from "lib/ui";
 import {RedoOutlined} from '@ant-design/icons';
 import {clearGame} from "store/common/game/gameSplice";
 import {useDispatch} from "react-redux";

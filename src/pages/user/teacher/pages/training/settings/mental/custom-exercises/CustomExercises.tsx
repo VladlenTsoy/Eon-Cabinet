@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {LoadingBlock} from "lib/components";
+import {LoadingBlock} from "lib/ui";
 import FormSetting from "./forms/FormSetting";
 import {useSelector} from "react-redux";
 import {customExercisesSelector} from "../../../../../../../../store/access/teacher/custom-exercises/customExercisesSlice";
@@ -31,7 +31,7 @@ const CustomExercises: React.FC<CustomExercisesProps> = (
         return () => {
             promise.abort()
         }
-    }, [])
+    }, [dispatch])
 
     return !loading ?
         <FormSetting

@@ -1,12 +1,15 @@
-import React from 'react';
-import {Navigation, NavigationButton} from "lib/components";
+import React, {useEffect} from 'react';
+import {Navigation, NavigationButton, TablePagination} from "lib/ui";
 import {Link} from "react-router-dom";
 import {Tag} from "antd";
 import {PlusOutlined} from "@ant-design/icons";
-import UsingTablePagination from "lib/components/table-pagination/usingTablePagination";
-import {ModalMenu} from "lib/components";
+import {ModalMenu} from "lib/ui";
 import DeleteItem from "./Menu/delete-item/DeleteItem";
 import PrintItem from "./Menu/print-item/PrintItem";
+import {useTeacherDispatch} from "../../../../../../../store/access/teacher/store";
+import {useSelector} from "react-redux";
+import {customExercisesSelector} from "../../../../../../../store/access/teacher/custom-exercises/customExercisesSlice";
+import {fetchCustomExercises} from "../../../../../../../store/access/teacher/custom-exercises/fetchCustomExercises";
 
 const columns = (fetch: any) => [
     {
@@ -59,6 +62,17 @@ const columns = (fetch: any) => [
 ];
 
 const List: React.FC = () => {
+    const {loading, exercises} = useSelector(customExercisesSelector)
+    const dispatch = useTeacherDispatch()
+
+    // teacher/custom-exercises/table
+    useEffect(() => {
+        const promise = dispatch(fetchCustomExercises())
+        return () => {
+            promise.abort()
+        }
+    }, [dispatch])
+
     return <>
         <Navigation>
             <Link to={`/settings/custom-exercises/create`}>
@@ -67,11 +81,7 @@ const List: React.FC = () => {
                 </NavigationButton>
             </Link>
         </Navigation>
-        <UsingTablePagination
-            isSearch={false}
-            url={`/teacher/custom-exercises/table`}
-            columns={columns}
-        />
+        {/*<TablePagination columns={columns(() => null)} pagination={false} loading={loading} data={exercises} fetch={() => null}/>*/}
     </>;
 };
 

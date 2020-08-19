@@ -3,8 +3,8 @@ import styled from "styled-components";
 import {useSelector} from "react-redux";
 import TrophyResultIntermediate from "../../../../layouts/intermediate/result-intermediate/trophy-result/TrophyResultIntermediate";
 import {Button, Typography} from "antd";
-import {Modal} from "../../../../../../../../lib/components";
-import {LoadingBlock} from "lib/components";
+import {Modal} from "../../../../../../../../lib/ui";
+import {LoadingBlock} from "lib/ui";
 import MoreModal from "./more-modal/MoreModal";
 import {gameSelector} from "../../../../../../../../store/common/game/gameSplice";
 

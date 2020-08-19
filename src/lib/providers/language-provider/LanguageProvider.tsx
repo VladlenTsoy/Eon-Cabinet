@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {languageSelector} from "../../../store/common/language/languageSlice";
-import {Loader} from "lib/components";
+import {Loader} from "lib/ui";
 import {fetchLanguage} from "../../../store/common/language/fetchLanguage";
 import {locale} from "moment";
 import {ConfigProvider} from 'antd';

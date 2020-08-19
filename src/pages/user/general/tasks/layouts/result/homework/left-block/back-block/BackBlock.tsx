@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card} from "lib/components";
+import {Card} from "lib/ui";
 import {Button} from "antd";
 import {ArrowLeftOutlined} from '@ant-design/icons';
 import {useHistory, useParams} from 'react-router-dom';

@@ -1,6 +1,6 @@
 import React from 'react';
-import {Alert} from "lib/components";
-import {Card} from "lib/components";
+import {Alert} from "lib/ui";
+import {Card} from "lib/ui";
 
 const Update = () => {
     return <Card>

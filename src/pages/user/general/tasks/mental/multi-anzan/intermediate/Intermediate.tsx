@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import {Card} from "lib/components";
+import {Card} from "lib/ui";
 import MultiGridLayout from "../layouts/MultiGrid.layout";
 import {useSelector} from "react-redux";
 import Header from "./header/Header";

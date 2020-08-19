@@ -3,7 +3,7 @@ import {BrowserRouter as Router, useHistory, useRouteMatch} from "react-router-d
 import {Switch, Route} from "react-router";
 import {useChangeActionNavbar} from "hooks/use-change-action-navbar.effect";
 import {Col, Row} from "antd";
-import {Card, LoadingBlock} from "lib/components";
+import {Card, LoadingBlock} from "lib/ui";
 import styled from "styled-components";
 import {changeSetting, changeExecutionMode} from "store/common/game/gameSplice";
 import {useLanguage} from "../../../../../../hooks/use-language";

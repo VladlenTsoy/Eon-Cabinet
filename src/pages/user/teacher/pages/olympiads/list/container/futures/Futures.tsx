@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {ButtonLink, Card, TablePagination} from "../../../../../../../../lib/components";
+import {ButtonLink, Card, TablePagination} from "../../../../../../../../lib/ui";
 import {useDispatch, useSelector} from "react-redux";
 import {olympiadSelector} from "../../../../../../../../store/access/teacher/olympiad/olympiadSlice";
-import {fetchFutureOlympiads} from "../../../../../../../../store/access/teacher/olympiad/fetchFutureOlympiads";
-import TagAccess from "../../../../../../../../_components/teacher/olympiads/card-olympiad/tag-access/TagAccess";
+import {fetchFutureOlympiads} from "../../../../../../../../store/access/teacher/olympiad/future/fetchFutureOlympiads";
+import OlympiadTagAccess from "../../../../../../../../lib/components/olympiad-tag-access/OlympiadTagAccess";
 import {momentFormatCheckYear} from "../../../../../../../../utils/momentFormatCheckYear";
 
 const Futures: React.FC = () => {
@@ -35,7 +35,7 @@ const Futures: React.FC = () => {
         {
             title: 'Доступ',
             dataIndex: 'access',
-            render: (text: any) => <TagAccess access={text}/>
+            render: (text: any) => <OlympiadTagAccess access={text}/>
         },
         {
             title: 'Дата начало',

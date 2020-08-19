@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {LoadingBlock} from "lib/components";
+import {LoadingBlock} from "lib/ui";
 import styled from "styled-components";
 import CardHomework from "./card-homework/CardHomework";
 import {useDispatch, useSelector} from "react-redux";

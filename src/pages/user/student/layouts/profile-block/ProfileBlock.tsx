@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import Avatar from "../../../../../lib/components/avatar/Avatar";
+import Avatar from "../../../../../lib/ui/avatar/Avatar";
 
 const ProfileDetailsWrapper:any = styled.div`
     display: flex;

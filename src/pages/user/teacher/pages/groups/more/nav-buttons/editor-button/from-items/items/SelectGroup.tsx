@@ -1,6 +1,6 @@
 import {Select} from "antd";
 import React, {useEffect} from "react";
-import {FormItem} from "../../../../../../../../../../lib/components";
+import {FormItem} from "../../../../../../../../../../lib/ui";
 import {useSelector} from "react-redux";
 import {GroupProps, groupSelector} from "../../../../../../../../../../store/access/teacher/group/groupSlice";
 import {fetchGroups} from "../../../../../../../../../../store/access/teacher/group/groups/fetchGroups";

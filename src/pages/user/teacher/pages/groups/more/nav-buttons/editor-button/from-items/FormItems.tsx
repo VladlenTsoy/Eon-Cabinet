@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {Button, Col, DatePicker, Form, Row} from "antd";
-import {DrawerActions, FormItem, InputEmail, InputLogin, InputPassword} from "lib/components";
+import {DrawerActions, FormItem, InputEmail, InputLogin, InputPassword} from "lib/ui";
 import {updateStudent} from "store/access/teacher/students/details/updateStudent";
 import {createStudent} from "store/access/teacher/students/details/createStudent";
-import InputPhoto from "lib/components/form/InputPhoto";
+import InputPhoto from "lib/ui/form/InputPhoto";
 import SelectGroup from "./items/SelectGroup";
 import {SaveOutlined} from "@ant-design/icons";
 import {useParams} from "react-router-dom";

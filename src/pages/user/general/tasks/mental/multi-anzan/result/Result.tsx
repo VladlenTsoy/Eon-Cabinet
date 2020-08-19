@@ -2,7 +2,7 @@ import React from 'react';
 import MultiGridLayout from "../layouts/MultiGrid.layout";
 import {useSelector} from "react-redux";
 import styled from "styled-components";
-import {Card} from "lib/components";
+import {Card} from "lib/ui";
 import UserResult from "./user-result/UserResult";
 import Header from "./header/Header";
 import {gameSelector} from "../../../../../../../store/common/game/gameSplice";

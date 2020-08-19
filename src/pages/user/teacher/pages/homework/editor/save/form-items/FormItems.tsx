@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Button, Col, Form, Input, Row, Select, InputNumber} from "antd";
-import {FormItem} from "lib/components";
+import {FormItem} from "lib/ui";
 import {useDispatch, useSelector} from "react-redux";
 import {SaveOutlined} from "@ant-design/icons";
 import {groupSelector} from "store/access/teacher/group/groupSlice";

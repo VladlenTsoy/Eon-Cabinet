@@ -1,6 +1,6 @@
 import React from 'react';
 import {InputNumber} from "antd";
-import {FormItem} from "lib/components";
+import {FormItem} from "lib/ui";
 import styled from "styled-components";
 
 const Sign = styled.p`

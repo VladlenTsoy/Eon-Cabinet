@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {LoadingBlock} from "lib/components";
+import {LoadingBlock} from "lib/ui";
 import {disciplineSelector} from "../../../../../../store/access/teacher/discipline/disciplineSlice";
 import {fetchTasks} from "../../../../../../store/access/teacher/tasks/fetchTasks";
 import {tasksSelector} from "../../../../../../store/access/teacher/tasks/tasksSlice";

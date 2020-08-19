@@ -12,7 +12,7 @@ import Olympiads from "./olympiad/list/Olympiads";
 import Olympiad from "./olympiad/more/Olympiad";
 import TasksOlympiad from "./olympiad/tasks/Tasks";
 import Result from "../general/tasks/layouts/result/olympiad/Result";
-import {Spin} from "../../../lib/components";
+import {Spin} from "../../../lib/ui";
 import {useSelector} from "react-redux";
 
 const StudentRoutes = () => {

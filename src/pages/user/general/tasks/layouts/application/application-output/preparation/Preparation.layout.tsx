@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import styled from "styled-components";
-import {Card} from "lib/components";
+import {Card} from "lib/ui";
 import {useAddTimeout} from "../../../../../../../../hooks/use-add-timeout.effect";
 import TextFit
     from "../../../../../../teacher/pages/training/settings/mental/multi-anzan/exercise-setting/multiplication-block/TextFit";

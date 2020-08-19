@@ -1,7 +1,7 @@
 import React from 'react';
 import TaskSuccessSVG from "assets/images/olympiad/task_success.svg";
 import styled from "styled-components";
-import {GrayIcon} from "lib/components";
+import {GrayIcon} from "lib/ui";
 
 interface ImageStyledProps {
     checkResult: boolean;

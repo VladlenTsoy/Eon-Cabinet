@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {changeIsSaved, groupSelector} from "../../../../../../../../../store/access/teacher/group/groupSlice";
 import {useDispatch, useSelector} from "react-redux";
-import {LoadingBlock} from "../../../../../../../../../lib/components";
+import {LoadingBlock} from "../../../../../../../../../lib/ui";
 import HomeworkContainer from "./homework-container/HomeworkContainer";
 import {Result} from "antd";
 

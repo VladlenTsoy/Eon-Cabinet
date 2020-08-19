@@ -2,7 +2,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 import {FlagOutlined} from '@ant-design/icons';
 import {Typography} from "antd";
-import {Card} from "lib/components";
+import {Card} from "lib/ui";
 import styled from "styled-components";
 import {TaskProps} from "../../../../../../../store/access/teacher/tasks/tasksSlice";
 

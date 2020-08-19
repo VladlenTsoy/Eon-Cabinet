@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import {Card} from "lib/components";
+import {Card} from "lib/ui";
 
 const ApplicationCardWrapper = styled.div`
   min-height: 100%;

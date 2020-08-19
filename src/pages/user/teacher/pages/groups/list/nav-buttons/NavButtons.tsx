@@ -1,5 +1,5 @@
 import React from 'react';
-import {Navigation, NavigationButton} from "lib/components";
+import {Navigation, NavigationButton} from "lib/ui";
 import EditorButton from "./editor-button/EditorButton";
 import {PlusOutlined} from "@ant-design/icons";
 

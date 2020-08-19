@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {BulbOutlined} from '@ant-design/icons';
-import {Drawer} from "../../../../../../lib/components";
+import {Drawer} from "../../../../../../lib/ui";
 import News from "../../../../general/news/News";
 import {useScreenWindow} from "../../../../../../hooks/use-screen-window.effect";
 import {Badge} from "antd";

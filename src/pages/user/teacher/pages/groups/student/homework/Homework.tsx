@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {HistoryOutlined} from '@ant-design/icons';
 import {Button, Empty, Tabs} from "antd";
-import {Legend, Spin} from "../../../../../../../lib/components";
-import {Card} from "lib/components";
+import {Legend, Spin} from "../../../../../../../lib/ui";
+import {Card} from "lib/ui";
 import Tab from "./tab/Tab";
 import Collapse from "./collapse/Collapse";
 import styled from "styled-components";

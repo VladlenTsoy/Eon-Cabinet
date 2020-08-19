@@ -1,5 +1,5 @@
 import React from 'react';
-import {Navigation, NavigationButton} from "../../../../../../../lib/components";
+import {Navigation, NavigationButton} from "../../../../../../../lib/ui";
 import {Link} from "react-router-dom";
 import {PlusOutlined} from "@ant-design/icons";
 

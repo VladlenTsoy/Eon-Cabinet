@@ -2,7 +2,7 @@ import React from 'react';
 import styled from "styled-components";
 import ImageBlock from "./image/Image";
 import Counter from "./counter/Counter";
-import {LoadingBlock} from "lib/components";
+import {LoadingBlock} from "lib/ui";
 
 const Wrapper: React.FC = styled.div`
   padding: 0 1.5rem;

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card, GrayIcon} from "lib/components";
+import {Card, GrayIcon} from "lib/ui";
 import StepSuccessSVG from "assets/images/olympiad/step_success.svg";
 
 interface CounterBlockProps {

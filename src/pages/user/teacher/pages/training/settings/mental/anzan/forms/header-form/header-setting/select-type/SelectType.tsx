@@ -1,5 +1,5 @@
 import React from 'react';
-import {FormItem} from "../../../../../../../../../../../../lib/components";
+import {FormItem} from "../../../../../../../../../../../../lib/ui";
 import {Col, Select} from "antd";
 import {useLanguage} from "../../../../../../../../../../../../hooks/use-language";
 

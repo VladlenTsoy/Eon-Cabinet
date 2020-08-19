@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {FormItem} from "lib/components";
+import {FormItem} from "lib/ui";
 import {Button, Form, Input} from "antd";
 import {Link, useHistory} from "react-router-dom";
 import {ArrowLeftOutlined} from '@ant-design/icons';

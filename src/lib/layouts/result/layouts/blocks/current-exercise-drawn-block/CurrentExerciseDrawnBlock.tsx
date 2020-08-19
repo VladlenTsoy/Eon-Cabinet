@@ -1,5 +1,5 @@
 import React, {useCallback, useState} from 'react';
-import {Card, Drawer} from "../../../../../components";
+import {Card, Drawer} from "../../../../../ui";
 import {Button, Modal} from "antd";
 import {EyeOutlined, ThunderboltOutlined, QuestionCircleOutlined} from '@ant-design/icons';
 import {useSelector} from "react-redux";

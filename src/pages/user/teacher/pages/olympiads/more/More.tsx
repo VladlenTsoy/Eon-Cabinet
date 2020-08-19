@@ -1,18 +1,18 @@
 import React, {useEffect} from 'react';
 import InfoDetails from "./info-details/InfoDetails";
-import {LoadingBlock} from "lib/components";
+import {LoadingBlock} from "lib/ui";
 import {Result} from "antd";
 import {useApiUserGeneral} from "hooks/use-api-user-general.effect";
 import StepsDetails from "./step-details/StepsDetails";
 import styled from "styled-components";
 import StudentDetails from "./student-details/StudentDetails";
-import {Spin} from "lib/components";
+import {Spin} from "lib/ui";
 import {useChangeActionNavbar} from "../../../../../../hooks/use-change-action-navbar.effect";
 import {useChangeTitle} from "../../../../../../hooks/use-change-title.effect";
 import {useSelector} from "react-redux";
 import {olympiadSelector} from "../../../../../../store/access/teacher/olympiad/olympiadSlice";
 import {useTeacherDispatch} from "../../../../../../store/access/teacher/store";
-import {fetchOlympiad} from "../../../../../../store/access/teacher/olympiad/fetchOlympiad";
+import {fetchOlympiad} from "../../../../../../store/access/teacher/olympiad/detail/fetchOlympiad";
 
 const MoreWrapper = styled.div`
   position: absolute;

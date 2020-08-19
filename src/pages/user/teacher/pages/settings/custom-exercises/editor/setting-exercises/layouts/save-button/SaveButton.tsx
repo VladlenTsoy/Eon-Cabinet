@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Button} from "antd";
 import {ArrowRightOutlined} from "@ant-design/icons";
 import {FormInstance} from "antd/es/form";
-import {Modal} from "lib/components";
+import {Modal} from "lib/ui";
 import FormItems from "./form-items/FormItems";
 import {flattenDepth} from "lodash";
 

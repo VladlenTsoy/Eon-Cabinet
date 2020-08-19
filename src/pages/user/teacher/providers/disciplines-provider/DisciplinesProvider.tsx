@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {useSelector} from "react-redux";
 import {disciplineSelector} from "../../../../../store/access/teacher/discipline/disciplineSlice";
 import {fetchDisciplines} from "../../../../../store/access/teacher/discipline/fetchDisciplines";
-import {Loader} from "../../../../../lib/components";
+import {Loader} from "../../../../../lib/ui";
 import {useTeacherDispatch} from "../../../../../store/access/teacher/store";
 
 const DisciplinesProvider: React.FC = ({children}) => {

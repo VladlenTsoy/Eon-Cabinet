@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card} from "lib/components";
+import {Card} from "lib/ui";
 import ProfileBlock from "../../../../../student/layouts/profile-block/ProfileBlock";
 import ActionButtons from "./action-buttons/ActionButtons";
 import styled from "styled-components";

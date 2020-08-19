@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Button, message, Form} from "antd";
-import {FormItem} from "../../../../../lib/components";
+import {FormItem} from "../../../../../lib/ui";
 
 interface FormVerificationCodeProps {
     changeDataCurrentUser: any;

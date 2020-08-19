@@ -7,7 +7,7 @@ import {
     changeTotals,
     StatsActionProps,
 } from "../../../../../../../store/common/game/gameSplice";
-import {LoadingBlock} from "../../../../../../../lib/components";
+import {LoadingBlock} from "../../../../../../../lib/ui";
 import {useLoadSoundsEffect} from "../application-output/use-load-sounds.effect";
 import {useDispatch, useSelector} from "react-redux";
 

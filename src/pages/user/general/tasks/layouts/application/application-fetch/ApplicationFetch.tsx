@@ -8,7 +8,7 @@ import {
     StatsActionProps, gameSubSelector
 } from "store/common/game/gameSplice";
 import {useLoadPicturesEffect} from "../application-output/use-load-pictures.effect";
-import {LoadingBlock} from 'lib/components';
+import {LoadingBlock} from 'lib/ui';
 import {useLoadSoundsEffect} from '../application-output/use-load-sounds.effect';
 import {picturesFunction} from "../Application.layout";
 import {useUser} from "../../../../../../../hooks/use-user";

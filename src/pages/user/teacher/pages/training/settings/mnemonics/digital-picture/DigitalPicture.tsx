@@ -1,8 +1,8 @@
 import React from 'react';
 import {Col, Row, Select} from "antd";
-import {FormItem} from "../../../../../../../../lib/components";
+import {FormItem} from "../../../../../../../../lib/ui";
 import FormSettingLayout from "../../mental/layout/form-setting/FormSetting.layout";
-import Stepper from "../../../../../../../../lib/components/stepper/Stepper";
+import Stepper from "../../../../../../../../lib/ui/stepper/Stepper";
 
 interface DigitalPictureProps {
     userSetting?: any;

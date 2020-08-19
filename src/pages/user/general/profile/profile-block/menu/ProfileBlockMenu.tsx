@@ -3,7 +3,7 @@ import {EditOutlined} from '@ant-design/icons';
 import {Menu} from "antd";
 import styled from "styled-components";
 import ItemColor from "./item-color/ItemColor";
-import ItemBlock from "../../../../director-franchise/layouts/items/ItemBlock";
+// import ItemBlock from "../../../../director-franchise/layouts/items/ItemBlock";
 import ItemPassword from "./item-password/ItemPassword";
 import ItemEmailVerification from "./ItemEmailVerification";
 import EditorButton from "../../../../teacher/pages/groups/more/nav-buttons/editor-button/EditorButton";
@@ -71,7 +71,7 @@ const ProfileBlockMenu: React.FC<ProfileBlockMenuProps> = ({currentUser, changeD
             {
                 setting.block &&
                 <Menu.Item>
-                    <ItemBlock user={currentUser}/>
+                    {/*<ItemBlock user={currentUser}/>*/}
                 </Menu.Item>
             }
             {

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {LoadingBlock} from "lib/components";
+import {LoadingBlock} from "lib/ui";
 import TabsTasks from "./tabs-tasks/TabsTasks";
 import ButtonSaveHomework from "./save/ButtonSaveHomework";
 import {useChangeTitle} from "../../../../../../hooks/use-change-title.effect";

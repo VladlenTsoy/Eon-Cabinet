@@ -1,6 +1,6 @@
 import React from 'react';
 import {Col, InputNumber, Row} from "antd";
-import {FormItem} from "../../../../../../../../lib/components";
+import {FormItem} from "../../../../../../../../lib/ui";
 import FormSettingLayout from "../../mental/layout/form-setting/FormSetting.layout";
 
 interface DigitalRowProps {

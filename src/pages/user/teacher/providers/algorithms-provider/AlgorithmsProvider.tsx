@@ -3,7 +3,7 @@ import {useSelector} from "react-redux";
 import {algorithmSelector} from "../../../../../store/access/teacher/algorithm/algorithmSlice";
 import {fetchAlgorithms} from "../../../../../store/access/teacher/algorithm/fetchAlgorithms";
 import {disciplineSelector} from "../../../../../store/access/teacher/discipline/disciplineSlice";
-import {Loader} from "../../../../../lib/components";
+import {Loader} from "../../../../../lib/ui";
 import {useTeacherDispatch} from "../../../../../store/access/teacher/store";
 
 const AlgorithmsProvider: React.FC = ({children}) => {

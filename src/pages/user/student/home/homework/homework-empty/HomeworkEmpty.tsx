@@ -1,7 +1,7 @@
 import React from 'react';
 import { RedoOutlined } from '@ant-design/icons';
 import {Button, Empty} from "antd";
-import {DescriptionTitle} from "../../../../../../lib/components";
+import {DescriptionTitle} from "../../../../../../lib/ui";
 import styled from "styled-components";
 import {useLanguage} from "../../../../../../hooks/use-language";
 

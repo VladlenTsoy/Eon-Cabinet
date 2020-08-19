@@ -1,6 +1,6 @@
 import React from 'react';
 import {withRouter} from "react-router";
-import {Alert} from "../../../../lib/components";
+import {Alert} from "../../../../lib/ui";
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import { Collapse } from "antd";
 import styled from "styled-components";

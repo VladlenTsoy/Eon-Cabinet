@@ -4,7 +4,7 @@ import ExerciseLists from "../../../../../../editor/tabs-tasks/added-exercises/e
 import styled from "styled-components";
 import moment from "moment";
 import {useApiUserGeneral} from "hooks/use-api-user-general.effect";
-import {LoadingBlock} from "lib/components";
+import {LoadingBlock} from "lib/ui";
 
 const SubTitle = styled.p`
   color: ${props => props.theme.color_second};

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import {GrayIcon} from "lib/components";
+import {GrayIcon} from "lib/ui";
 import {withRouter, RouteComponentProps} from "react-router-dom";
 import SuccessFinallySVG from "assets/images/olympiad/step_success_finally.svg";
 import { TrophyOutlined } from '@ant-design/icons';

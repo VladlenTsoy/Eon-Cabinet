@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {RedoOutlined} from '@ant-design/icons';
 import {DatePicker, Button, Radio, Typography, Form} from "antd";
-import {Alert} from "../../../../../../../../lib/components";
+import {Alert} from "../../../../../../../../lib/ui";
 import styled from "styled-components";
 import moment from "moment";
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import ProfileBlock from "../../../layouts/profile-block/ProfileBlock";
-import {Card} from "lib/components";
+import {Card} from "lib/ui";
 import Awards from "./awards/Awards";
 import styled from "styled-components";
 import {useUser} from "../../../../../../hooks/use-user";

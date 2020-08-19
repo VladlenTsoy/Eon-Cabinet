@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Select, Form, Button} from "antd";
 import {useDispatch, useSelector} from "react-redux";
-import {FormItem} from "lib/components";
+import {FormItem} from "lib/ui";
 import {categorySelector} from "store/access/teacher/category/categorySlice";
 import {updateGroup} from "store/access/teacher/group/groups/updateGroup";
 import {createGroup} from "store/access/teacher/group/groups/createGroup";

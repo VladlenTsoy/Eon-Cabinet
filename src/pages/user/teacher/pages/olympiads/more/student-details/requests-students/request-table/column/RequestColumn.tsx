@@ -1,5 +1,5 @@
 import React from 'react';
-import Avatar from "../../../../../../../../../../lib/components/avatar/Avatar";
+import Avatar from "../../../../../../../../../../lib/ui/avatar/Avatar";
 import {Button, Modal, notification} from "antd";
 
 interface RequestColumnProps {

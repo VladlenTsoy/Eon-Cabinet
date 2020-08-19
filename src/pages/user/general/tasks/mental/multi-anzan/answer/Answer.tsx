@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import styled from "styled-components";
 import AnswerInput from "./answer-input/AnswerInput";
-import {Card} from "lib/components";
+import {Card} from "lib/ui";
 import {Form} from "antd";
 import {changeStatus, gameSelector, changeTotals, updateCurrentTotal} from "../../../../../../../store/common/game/gameSplice";
 import MultiGridLayout from "../layouts/MultiGrid.layout";

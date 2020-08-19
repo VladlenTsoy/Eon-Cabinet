@@ -1,6 +1,6 @@
 import React from 'react';
-import {Card} from "lib/components";
-import {Alert} from "lib/components";
+import {Card} from "lib/ui";
+import {Alert} from "lib/ui";
 
 const Platform = () => {
     return  <Card>

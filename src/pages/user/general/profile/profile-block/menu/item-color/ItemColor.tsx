@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Modal} from "../../../../../../../lib/components";
+import {Modal} from "../../../../../../../lib/ui";
 import ColorModalBlock from "./color/Color";
 import {BgColorsOutlined} from '@ant-design/icons';
 

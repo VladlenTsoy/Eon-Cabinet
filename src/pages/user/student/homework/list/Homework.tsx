@@ -2,7 +2,7 @@ import React from 'react';
 import {Row, Col} from 'antd';
 import Rating from "./rating/Rating";
 import HomeworkBlock from "../../layouts/homework-block/HomeworkBlock";
-import {LoadingBlock} from "lib/components";
+import {LoadingBlock} from "lib/ui";
 import {useApiUserGeneral} from "../../../../../hooks/use-api-user-general.effect";
 
 const Homework = () => {

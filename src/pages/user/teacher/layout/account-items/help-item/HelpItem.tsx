@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import { InfoCircleOutlined } from '@ant-design/icons';
-import {Drawer} from "../../../../../../lib/components";
+import {Drawer} from "../../../../../../lib/ui";
 import Help from "../../../../general/help/Help";
 import {useScreenWindow} from "../../../../../../hooks/use-screen-window.effect";
 

@@ -1,12 +1,12 @@
 import React, {useEffect} from "react";
 import {Col, Result, Row,} from "antd";
-import {LoadingBlock, Card} from "lib/components";
+import {LoadingBlock, Card} from "lib/ui";
 import {useChangeTitle} from "../../../../../../hooks/use-change-title.effect";
 import {useChangeActionNavbar} from "../../../../../../hooks/use-change-action-navbar.effect";
 import Profile from "./profile/Profile";
 import Homework from "./homework/Homework";
 import Notification from "./notification/Notification";
-import {Spin} from "../../../../../../lib/components";
+import {Spin} from "../../../../../../lib/ui";
 import {useSelector} from "react-redux";
 import {useTeacherDispatch} from "../../../../../../store/access/teacher/store";
 import {fetchStudent} from "../../../../../../store/access/teacher/students/selected/fetchStudent";

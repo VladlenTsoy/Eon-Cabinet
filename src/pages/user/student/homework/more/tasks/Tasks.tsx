@@ -1,7 +1,7 @@
 import React from "react";
 import {Col, Row, Empty} from "antd";
-import {LoadingBlock} from "lib/components";
-import {DescriptionTitle} from "../../../../../../lib/components";
+import {LoadingBlock} from "lib/ui";
+import {DescriptionTitle} from "../../../../../../lib/ui";
 import Task from "./task/Task";
 import {useApiUserGeneral} from "../../../../../../hooks/use-api-user-general.effect";
 import {useSelector} from "react-redux";

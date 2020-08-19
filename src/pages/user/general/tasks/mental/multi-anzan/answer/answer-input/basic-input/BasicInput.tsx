@@ -1,5 +1,5 @@
 import React from 'react';
-import {FormItem} from "../../../../../../../../../lib/components";
+import {FormItem} from "../../../../../../../../../lib/ui";
 import styled from "styled-components";
 import {Typography} from "antd";
 

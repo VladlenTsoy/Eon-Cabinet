@@ -1,6 +1,6 @@
 import React from 'react';
 import { ClockCircleOutlined } from '@ant-design/icons';
-import {Card, LoadingBlock} from "lib/components";
+import {Card, LoadingBlock} from "lib/ui";
 import moment from "moment";
 import Timer from "react-compound-timer";
 

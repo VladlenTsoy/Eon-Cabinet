@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import Avatar from "../../../../../../../../../../lib/components/avatar/Avatar";
+import Avatar from "../../../../../../../../../../lib/ui/avatar/Avatar";
 import { CheckOutlined, UserAddOutlined } from '@ant-design/icons';
 import {Button} from "antd";
 

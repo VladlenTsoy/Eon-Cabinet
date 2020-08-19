@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import {Card} from "lib/components";
+import {Card} from "lib/ui";
 import {Form} from "antd";
 import Addition from "../layouts/item/addition/Addition";
 import Multiplication from "../layouts/item/multiplication/Multiplication";

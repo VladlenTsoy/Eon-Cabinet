@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {SaveOutlined} from '@ant-design/icons';
 import {Form, Button, message} from "antd";
-import {DrawerActions} from "lib/components";
+import {DrawerActions} from "lib/ui";
 import moment from "moment";
 
 interface FormDrawerEditorDataProps {

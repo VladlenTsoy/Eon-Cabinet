@@ -1,6 +1,6 @@
 import React from 'react';
 import {Result} from "antd";
-import {Card} from "../../../../../../../../lib/components";
+import {Card} from "../../../../../../../../lib/ui";
 
 interface GroupErrorProps {
     error: {

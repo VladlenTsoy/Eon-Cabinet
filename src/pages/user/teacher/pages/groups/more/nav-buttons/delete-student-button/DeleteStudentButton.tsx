@@ -1,7 +1,7 @@
 import React from 'react';
 import {Modal} from "antd";
 import {DeleteOutlined, ExclamationCircleOutlined} from "@ant-design/icons";
-import {NavigationButton} from "lib/components";
+import {NavigationButton} from "lib/ui";
 import {useDispatch, useSelector} from "react-redux";
 import {deleteStudents} from "../../../../../../../../store/access/teacher/students/details/deleteStudents";
 import {studentsSelector} from "../../../../../../../../store/access/teacher/students/studentsSlice";

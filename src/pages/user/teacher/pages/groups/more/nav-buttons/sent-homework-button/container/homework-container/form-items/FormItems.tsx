@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {HomeworkProps} from "../../../../../../../../../../../store/access/teacher/homework/homeworkSlice";
-import {DrawerActions, FormItem} from "../../../../../../../../../../../lib/components";
+import {DrawerActions, FormItem} from "../../../../../../../../../../../lib/ui";
 import {Button, Input, Select, Form, Divider} from "antd";
 import moment from "moment";
 import {changeIsSaved} from "store/access/teacher/group/groupSlice";

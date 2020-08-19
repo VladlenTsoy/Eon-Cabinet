@@ -1,6 +1,6 @@
 import React from 'react';
 import BlockedSvg from 'assets/images/pages/blocked-account/blocked.svg';
-import {Card} from "../../../../../lib/components";
+import {Card} from "../../../../../lib/ui";
 import styled from "styled-components";
 import {Typography} from "antd";
 

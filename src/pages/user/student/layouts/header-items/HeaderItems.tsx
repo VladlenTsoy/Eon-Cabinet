@@ -1,8 +1,8 @@
 import React from "react";
 // import { BulbOutlined, InfoCircleOutlined } from '@ant-design/icons';
 import {Typography} from "antd";
-import {HeaderItem} from "../../../../../lib/components";
-import Coins from "../../../../../lib/components/coins/Coins";
+import {HeaderItem} from "../../../../../lib/ui";
+import Coins from "../../../../../lib/ui/coins/Coins";
 import {useUser} from "../../../../../hooks/use-user";
 
 const {Text} = Typography;

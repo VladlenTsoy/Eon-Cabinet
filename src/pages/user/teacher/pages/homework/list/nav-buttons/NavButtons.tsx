@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import {NavigationButton, Navigation} from "lib/components";
+import {NavigationButton, Navigation} from "lib/ui";
 import {PlusOutlined, AppstoreOutlined} from "@ant-design/icons";
 import {useSelector} from "react-redux";
 import {disciplineSelector} from "../../../../../../../store/access/teacher/discipline/disciplineSlice";

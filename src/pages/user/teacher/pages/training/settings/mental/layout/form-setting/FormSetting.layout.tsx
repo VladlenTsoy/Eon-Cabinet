@@ -1,7 +1,7 @@
 import React, {useCallback, useState} from 'react';
 import {Form} from "antd";
 import Buttons from "../form-body/buttons/Buttons";
-import {Spin} from "../../../../../../../../../lib/components";
+import {Spin} from "../../../../../../../../../lib/ui";
 
 interface FormSettingProps {
     isEdit?: boolean;

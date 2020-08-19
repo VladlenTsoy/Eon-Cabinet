@@ -4,7 +4,7 @@ import Info from "./info/Info";
 import {useChangeActionNavbar} from "../../../../../hooks/use-change-action-navbar.effect";
 import {useApiUserGeneral} from "../../../../../hooks/use-api-user-general.effect";
 import {useChangeTitle} from "../../../../../hooks/use-change-title.effect";
-import {LoadingBlock} from "lib/components";
+import {LoadingBlock} from "lib/ui";
 import Error from "./error/Error";
 
 interface MoreHomeworkProps {

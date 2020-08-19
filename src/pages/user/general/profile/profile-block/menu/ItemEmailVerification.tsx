@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { MailOutlined } from '@ant-design/icons';
 import styled from "styled-components";
-import {Modal} from "../../../../../../lib/components";
+import {Modal} from "../../../../../../lib/ui";
 import ConfirmEmail from "../../../email-notification/confirm-email/ConfirmEmail";
 import EmailInput from "../../../email-notification/EmailInput";
 

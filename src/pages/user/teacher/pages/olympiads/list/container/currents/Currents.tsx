@@ -1,11 +1,11 @@
 import React, {useEffect} from 'react';
-import {ButtonLink, Card, TablePagination} from "../../../../../../../../lib/components";
+import {ButtonLink, Card, TablePagination} from "../../../../../../../../lib/ui";
 import LeftToOlympiad
-    from "../../../../../../../../_components/teacher/olympiads/card-olympiad/left-to-olympiad/LeftToOlympiad";
+    from "../../../../../../../../lib/components/olympiad-timer-left/OlympiadTimerLeft";
 import {useDispatch, useSelector} from "react-redux";
 import {olympiadSelector} from "../../../../../../../../store/access/teacher/olympiad/olympiadSlice";
-import {fetchCurrentOlympiads} from "../../../../../../../../store/access/teacher/olympiad/fetchCurrentOlympiads";
-import TagAccess from "../../../../../../../../_components/teacher/olympiads/card-olympiad/tag-access/TagAccess";
+import {fetchCurrentOlympiads} from "../../../../../../../../store/access/teacher/olympiad/current/fetchCurrentOlympiads";
+import OlympiadTagAccess from "../../../../../../../../lib/components/olympiad-tag-access/OlympiadTagAccess";
 
 const Currents: React.FC = () => {
     const {current} = useSelector(olympiadSelector);
@@ -31,7 +31,7 @@ const Currents: React.FC = () => {
         {
             title: 'Доступ',
             dataIndex: 'access',
-            render: (text: any) => <TagAccess access={text}/>
+            render: (text: any) => <OlympiadTagAccess access={text}/>
         },
         {
             title: 'До следующего',

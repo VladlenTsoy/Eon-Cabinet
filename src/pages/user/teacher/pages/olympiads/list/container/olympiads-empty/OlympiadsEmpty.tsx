@@ -1,5 +1,5 @@
 import React from 'react';
-import {ButtonLink, DescriptionTitle} from "../../../../../../../../lib/components";
+import {ButtonLink, DescriptionTitle} from "../../../../../../../../lib/ui";
 import {Empty} from "antd";
 import {PlusOutlined} from "@ant-design/icons";
 

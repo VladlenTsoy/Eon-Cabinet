@@ -3,7 +3,7 @@ import {LockOutlined, UserOutlined} from '@ant-design/icons';
 import {Button, Input, Form} from "antd";
 import {Link} from "react-router-dom";
 import AuthLayout from "lib/layouts/auth/AuthLayout";
-import {FormItem} from "../../../../lib/components";
+import {FormItem} from "../../../../lib/ui";
 import {useDispatch} from "react-redux";
 import {authUser} from "../../../../store/common/user/authUser";
 

@@ -4,7 +4,7 @@ import ResultIntermediate from "./result-intermediate/ResultIntermediate";
 import ActionIntermediate from "./action-intermediate/ActionIntermediate";
 import {useSelector} from "react-redux";
 import styled from "styled-components";
-import {Card} from "lib/components";
+import {Card} from "lib/ui";
 import StepsIntermediate from "./layouts/step-intermediate/StepsIntermediate";
 import BgIconsDownIntermediateLayout from "./layouts/bg-icons-down/BgIconsDownIntermediate.layout";
 import {useScreenWindow} from "../../../../../../hooks/use-screen-window.effect";

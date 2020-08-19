@@ -3,7 +3,7 @@ import {Form} from "antd";
 import {useSelector} from "react-redux";
 import HeaderSetting from "./header-setting/HeaderSetting";
 import {algorithmSelector} from "../../../../../../../../../../store/access/teacher/algorithm/algorithmSlice";
-import {LoadingBlock} from "../../../../../../../../../../lib/components";
+import {LoadingBlock} from "../../../../../../../../../../lib/ui";
 
 interface FormHeaderProps {
     isClearForm: boolean;

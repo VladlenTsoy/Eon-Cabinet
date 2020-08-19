@@ -1,6 +1,6 @@
 import React from 'react';
 import {Form} from "antd";
-import {Card as CardStyled} from "lib/components";
+import {Card as CardStyled} from "lib/ui";
 import styled from "styled-components";
 import {FormProps} from "antd/lib/form";
 

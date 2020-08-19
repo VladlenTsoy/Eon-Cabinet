@@ -1,6 +1,6 @@
 import React from 'react';
 import {useApiUserGeneral} from "../../../../hooks/use-api-user-general.effect";
-import {LoadingBlock} from "../../../../lib/components";
+import {LoadingBlock} from "../../../../lib/ui";
 import Error from "../../../user/student/homework/more/error/Error";
 import Info from "./info/Info";
 import Tasks from "./tasks/Tasks";

@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Card, Legend, TablePagination} from "../../../../../../lib/components";
+import {Card, Legend, TablePagination} from "../../../../../../lib/ui";
 import Columns from "./Columns";
 import {useSelector} from "react-redux";
 import {studentsSelector} from "../../../../../../store/access/teacher/students/studentsSlice";

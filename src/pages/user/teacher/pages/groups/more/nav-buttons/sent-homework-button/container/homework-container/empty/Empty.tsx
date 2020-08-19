@@ -3,7 +3,7 @@ import { FileAddOutlined } from '@ant-design/icons';
 import {Empty as EmptyAntd, Button} from "antd";
 import {withRouter, RouteComponentProps} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {DescriptionTitle} from "../../../../../../../../../../../lib/components";
+import {DescriptionTitle} from "../../../../../../../../../../../lib/ui";
 import {changeIsSaved} from "../../../../../../../../../../../store/access/teacher/group/groupSlice";
 import {useLanguage} from "../../../../../../../../../../../hooks/use-language";
 

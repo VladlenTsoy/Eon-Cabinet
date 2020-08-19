@@ -1,10 +1,14 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styled from "styled-components";
 import moment from "moment";
-import Avatar from "../../../../../../../../../lib/components/avatar/Avatar";
+import Avatar from "../../../../../../../../../lib/ui/avatar/Avatar";
 import {Typography, Popover} from "antd";
-import UsingTablePagination from "../../../../../../../../../lib/components/table-pagination/usingTablePagination";
 import StepSuccess from "assets/images/olympiad/step_success.svg";
+import {useTeacherDispatch} from "../../../../../../../../../store/access/teacher/store";
+import {fetchOlympiadStepStudents} from "../../../../../../../../../store/access/teacher/olympiad/detail/students/fetchOlympiadStudents";
+import {useSelector} from "react-redux";
+import {olympiadSelector} from "../../../../../../../../../store/access/teacher/olympiad/olympiadSlice";
+import {TablePagination} from "../../../../../../../../../lib/ui";
 
 const {Title} = Typography;
 
@@ -117,12 +121,23 @@ const Columns = () => [
 ];
 
 const StudentsMore: React.FC<StudentsMoreProps> = ({step}) => {
+    const {detail} = useSelector(olympiadSelector)
+    const dispatch = useTeacherDispatch()
+
+    useEffect(() => {
+        const promise = dispatch(fetchOlympiadStepStudents({stepId: step.id}))
+        return () => {
+            promise.abort()
+        }
+    }, [dispatch])
+
     return <Wrapper>
         <Title level={4}>Участники</Title>
-        <UsingTablePagination
-            isCard={false}
-            columns={Columns}
-            url={`teacher/olympiad/step/${step.id}/students`}
+        <TablePagination
+            columns={Columns()}
+            pagination={false}
+            loading={detail.students.loading}
+            data={detail.students.data?.data || []} fetch={() => false}
         />
     </Wrapper>;
 };

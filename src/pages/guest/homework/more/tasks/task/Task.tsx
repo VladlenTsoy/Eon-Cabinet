@@ -1,5 +1,5 @@
 import React from "react";
-import {Card} from "lib/components";
+import {Card} from "lib/ui";
 import styled from "styled-components";
 import LossSvg from 'assets/images/icons/loss.svg';
 import WinSvg from 'assets/images/icons/win.svg';

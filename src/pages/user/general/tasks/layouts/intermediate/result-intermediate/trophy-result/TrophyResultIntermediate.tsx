@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import win from "assets/images/illustrations/block_win.svg";
 import loss from "assets/images/illustrations/block_loss.svg";
-import {Spin} from "lib/components";
+import {Spin} from "lib/ui";
 import styled from "styled-components";
 
 interface TrophyAnimationProps {

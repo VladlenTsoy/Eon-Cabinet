@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Alert} from "../../../../../../lib/components";
+import {Alert} from "../../../../../../lib/ui";
 import {useSelector} from "react-redux";
 import {notificationSelector} from "../../../../../../store/access/teacher/notification/notificationSlice";
 import {fetchAlertNotice} from "../../../../../../store/access/teacher/notification/alert-notice/fetchAlertNotice";

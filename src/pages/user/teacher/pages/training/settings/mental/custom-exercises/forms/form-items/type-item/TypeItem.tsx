@@ -1,7 +1,7 @@
 import React from 'react';
 import {RadioWrapper} from "../../../../anzan/forms/type-form/TypeForm";
 import {Radio} from "antd";
-import {FormItem} from "../../../../../../../../../../../lib/components";
+import {FormItem} from "../../../../../../../../../../../lib/ui";
 import {FileOutlined} from "@ant-design/icons";
 
 interface TypeItemProps {

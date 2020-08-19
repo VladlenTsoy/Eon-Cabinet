@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {BrowserRouter as Router, Route, Switch, useHistory} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
 import {clearGame, gameSelector, changeSetting} from "store/common/game/gameSplice";
-import {LoadingBlock} from "lib/components";
+import {LoadingBlock} from "lib/ui";
 import {useChangeActionNavbar} from "../../../../hooks/use-change-action-navbar.effect";
 import TasksSwitch from "./Tasks.switch";
 

@@ -1,9 +1,9 @@
 import React, {useCallback, useEffect} from 'react';
-import {ButtonLink, Card, TablePagination} from "../../../../../../../../lib/components";
+import {ButtonLink, Card, TablePagination} from "../../../../../../../../lib/ui";
 import {useDispatch, useSelector} from "react-redux";
 import {olympiadSelector} from "../../../../../../../../store/access/teacher/olympiad/olympiadSlice";
-import {fetchPastOlympiads} from "../../../../../../../../store/access/teacher/olympiad/fetchPastOlympiads";
-import TagAccess from "../../../../../../../../_components/teacher/olympiads/card-olympiad/tag-access/TagAccess";
+import {fetchPastOlympiads} from "../../../../../../../../store/access/teacher/olympiad/past/fetchPastOlympiads";
+import OlympiadTagAccess from "../../../../../../../../lib/components/olympiad-tag-access/OlympiadTagAccess";
 import {momentFormatCheckYear} from "../../../../../../../../utils/momentFormatCheckYear";
 import ProfileColumn from "../../../../groups/more/container/table-students/default-columns/profile/ProfileColumn";
 import {useUser} from "../../../../../../../../hooks/use-user";
@@ -39,7 +39,7 @@ const Pasts: React.FC = () => {
         {
             title: 'Доступ',
             dataIndex: 'access',
-            render: (text: any) => <TagAccess access={text}/>
+            render: (text: any) => <OlympiadTagAccess access={text}/>
         },
         {
             title: 'Дата завершения',

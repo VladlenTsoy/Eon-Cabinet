@@ -1,7 +1,7 @@
 import React from 'react';
 import {Col, InputNumber, Row} from "antd";
-import {FormItem} from "../../../../../../../../../lib/components";
-import Stepper from "../../../../../../../../../lib/components/stepper/Stepper";
+import {FormItem} from "../../../../../../../../../lib/ui";
+import Stepper from "../../../../../../../../../lib/ui/stepper/Stepper";
 
 const FlashFormItems: React.FC = () => {
     return <Row gutter={15}>

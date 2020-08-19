@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { UserAddOutlined } from '@ant-design/icons';
 import {Button} from "antd";
-import {Drawer} from "../../../../../../../../lib/components";
+import {Drawer} from "../../../../../../../../lib/ui";
 import InviteTable from "./invite-table/InviteTable";
 import {useScreenWindow} from "../../../../../../../../hooks/use-screen-window.effect";
 

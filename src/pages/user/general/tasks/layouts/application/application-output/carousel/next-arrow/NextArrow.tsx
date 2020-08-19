@@ -1,7 +1,7 @@
 import React from 'react';
 import { ArrowRightOutlined } from '@ant-design/icons';
 import styled from "styled-components";
-import {NextArrowWrapper} from "lib/components/carousel/next-arrow/NextArrow";
+import {NextArrowWrapper} from "lib/ui/carousel/next-arrow/NextArrow";
 
 const NextArrowApplication = styled(NextArrowWrapper)`
   .ant-carousel &.slick-next{

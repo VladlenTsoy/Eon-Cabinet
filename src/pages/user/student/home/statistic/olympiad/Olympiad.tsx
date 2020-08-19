@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import {CardStatistic} from "../../../../../../lib/components";
+import {CardStatistic} from "../../../../../../lib/ui";
 import {TrophyOutlined} from "@ant-design/icons";
 
 const OlympiadWrapper = styled.div`

@@ -1,5 +1,5 @@
 import React from 'react';
-import {DescriptionTitle} from "lib/components";
+import {DescriptionTitle} from "lib/ui";
 import {Button, Empty} from "antd";
 import {PlusOutlined} from "@ant-design/icons";
 import EditorButton from "../../nav-buttons/editor-button/EditorButton";

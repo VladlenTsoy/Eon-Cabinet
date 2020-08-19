@@ -3,7 +3,7 @@ import {useSelector} from "react-redux";
 import {categorySelector} from "../../../../../store/access/teacher/category/categorySlice";
 import {fetchCategories} from "../../../../../store/access/teacher/category/fetchCategories";
 import {disciplineSelector} from "../../../../../store/access/teacher/discipline/disciplineSlice";
-import {Loader} from "../../../../../lib/components";
+import {Loader} from "../../../../../lib/ui";
 import {useTeacherDispatch} from "../../../../../store/access/teacher/store";
 
 const CategoriesProvider: React.FC = ({children}) => {

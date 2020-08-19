@@ -127,7 +127,7 @@ const FormSetting: React.FC<FormSettingProps> = (
             if (setting)
                 setData(setting);
         }
-    }, [initValues, typeTasks, updateModes]);
+    }, [initValues, typeTasks, updateModes, exercises]);
 
     return <Form
         form={form}

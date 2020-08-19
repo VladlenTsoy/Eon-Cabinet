@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
-import {LoadingBlock, ButtonLink} from "lib/components";
-import {Card} from "lib/components";
+import {LoadingBlock, ButtonLink} from "lib/ui";
+import {Card} from "lib/ui";
 import {Typography, Empty} from "antd";
 import {InfoCircleOutlined} from "@ant-design/icons";
 import styled from "styled-components";

@@ -1,6 +1,6 @@
 import React from 'react';
 import {EditOutlined} from '@ant-design/icons';
-import {Card, ButtonLink} from "lib/components";
+import {Card, ButtonLink} from "lib/ui";
 import DeleteGroupButton from "./delete-button/DeleteGroupButton";
 import EditorButton from "../../nav-buttons/editor-button/EditorButton";
 import {GroupProps} from "store/access/teacher/group/groupSlice";

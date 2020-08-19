@@ -1,11 +1,11 @@
 import React from 'react';
 import { RedoOutlined } from '@ant-design/icons';
 import {Button, Empty} from "antd";
-import {LoadingBlock} from "lib/components";
+import {LoadingBlock} from "lib/ui";
 import RequestColumn from "./column/RequestColumn";
 import {ScrollWrapper, TableWrapper} from "../../invite-student/invite-table/InviteTable";
 import {useApiUserGeneral} from "../../../../../../../../../hooks/use-api-user-general.effect";
-import {DescriptionTitle, Spin} from "../../../../../../../../../lib/components";
+import {DescriptionTitle, Spin} from "../../../../../../../../../lib/ui";
 import {useLanguage} from "../../../../../../../../../hooks/use-language";
 
 interface RequestTableProps {

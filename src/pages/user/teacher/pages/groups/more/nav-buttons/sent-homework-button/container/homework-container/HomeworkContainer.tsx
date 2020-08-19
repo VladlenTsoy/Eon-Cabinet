@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {fetchHomeworkByCategoryId} from "../../../../../../../../../../store/access/teacher/homework/fetchHomeworkByCategoryId";
 import {useDispatch, useSelector} from "react-redux";
 import {disciplineSelector} from "../../../../../../../../../../store/access/teacher/discipline/disciplineSlice";
-import {LoadingBlock} from "../../../../../../../../../../lib/components";
+import {LoadingBlock} from "../../../../../../../../../../lib/ui";
 import {homeworkSelector} from "../../../../../../../../../../store/access/teacher/homework/homeworkSlice";
 import FormItems from "./form-items/FormItems";
 import Empty from "./empty/Empty";

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import TaskSuccessSVG from "assets/images/olympiad/task_success.svg";
 import React from "react";
-import {GrayIcon} from "lib/components";
+import {GrayIcon} from "lib/ui";
 
 const CounterWrapper: any = styled.div`
   position: relative;

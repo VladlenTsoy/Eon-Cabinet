@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import {FormItem, UserImage} from "../../../../../../../../lib/components";
+import {FormItem, UserImage} from "../../../../../../../../lib/ui";
 import {DatePicker} from "antd";
 import {useSelector} from "react-redux";
 import {useScreenWindow} from "../../../../../../../../hooks/use-screen-window.effect";

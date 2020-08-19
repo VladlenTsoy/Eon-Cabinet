@@ -1,6 +1,6 @@
 import * as React from "react";
 import PasswordBlock from "./password/Password";
-import {Modal} from "../../../../../../../lib/components";
+import {Modal} from "../../../../../../../lib/ui";
 import {useState} from "react";
 import { KeyOutlined } from '@ant-design/icons';
 

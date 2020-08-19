@@ -2,7 +2,7 @@ import React from 'react';
 import {RouteComponentProps} from "react-router-dom";
 import styled from "styled-components";
 import {useApiUserGeneral} from "hooks/use-api-user-general.effect";
-import {LoadingBlock} from "lib/components";
+import {LoadingBlock} from "lib/ui";
 import {Typography} from "antd";
 import {useChangeActionNavbar} from "hooks/use-change-action-navbar.effect";
 import {useChangeTitle} from "hooks/use-change-title.effect";

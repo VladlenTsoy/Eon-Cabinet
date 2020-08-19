@@ -2,7 +2,7 @@ import React from 'react';
 import {Input, InputNumber} from "antd";
 import {Typography} from "antd";
 import styled from "styled-components";
-import {FormItem} from "lib/components";
+import {FormItem} from "lib/ui";
 
 const {Title} = Typography;
 

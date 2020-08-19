@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Spin} from "../../../../../../lib/components";
+import {Spin} from "../../../../../../lib/ui";
 import {useSelector} from "react-redux";
 import {fetchGroups} from "../../../../../../store/access/teacher/group/groups/fetchGroups";
 import {groupSelector} from "../../../../../../store/access/teacher/group/groupSlice";

@@ -1,7 +1,7 @@
 import React from 'react';
 import {List} from "antd";
-import {Card} from "lib/components";
-import {UserImage, Legend} from "lib/components";
+import {Card} from "lib/ui";
+import {UserImage, Legend} from "lib/ui";
 import styled from "styled-components";
 import {useUser} from "../../../../../hooks/use-user";
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import {CardStatistic} from "../../../../../../lib/components";
+import {CardStatistic} from "../../../../../../lib/ui";
 import styled from "styled-components";
 import {HomeOutlined} from "@ant-design/icons";
 

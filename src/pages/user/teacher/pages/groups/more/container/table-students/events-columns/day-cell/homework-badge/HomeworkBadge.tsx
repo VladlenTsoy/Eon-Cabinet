@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import styled from "styled-components";
 import {CheckCircleOutlined, ClockCircleOutlined, DeleteOutlined} from '@ant-design/icons';
 import {Homework} from "../../../../../../../../../../../store/access/teacher/students/homework/homework";
-import {Modal} from "lib/components";
+import {Modal} from "lib/ui";
 import {Modal as ModalAntd} from "antd";
 import More from "./more/More";
 import {cancelStudentHomework} from "../../../../../../../../../../../store/access/teacher/students/homework/cancelStudentHomework";

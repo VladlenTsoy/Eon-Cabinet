@@ -4,7 +4,7 @@ import Stars from "./starts/Stars";
 import Counter from "./counter/Counter";
 import Title from "./title/Title";
 import {usePreloadSounds} from "hooks/use-preload-sounds.effect";
-import {LoadingBlock} from "lib/components";
+import {LoadingBlock} from "lib/ui";
 import StarSvg from "assets/images/star.svg";
 import {usePreloadPictures} from "../../../../../../../../hooks/use-preload-pictures.effect";
 import {useSelector} from "react-redux";

@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {Input, Empty} from "antd";
 import styled from "styled-components";
-import {LoadingBlock} from "lib/components";
+import {LoadingBlock} from "lib/ui";
 import InviteColumn from "./column/InviteColumn";
-import {DescriptionTitle} from "../../../../../../../../../lib/components";
+import {DescriptionTitle} from "../../../../../../../../../lib/ui";
 import {useLanguage} from "../../../../../../../../../hooks/use-language";
 
 const {Search} = Input;

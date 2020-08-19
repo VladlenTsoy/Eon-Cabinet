@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Modal} from "../../../../lib/components";
+import {Modal} from "../../../../lib/ui";
 import EmailInput from "./EmailInput";
 import ConfirmEmail from "./confirm-email/ConfirmEmail";
 import {useUser} from "../../../../hooks/use-user";

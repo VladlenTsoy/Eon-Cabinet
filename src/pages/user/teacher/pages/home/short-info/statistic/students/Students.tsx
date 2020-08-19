@@ -8,8 +8,8 @@ import {
     UserOutlined,
 } from '@ant-design/icons';
 import {Popover} from "antd";
-import {Card} from "lib/components";
-import {IconWrapper} from "../../../../../../../../lib/components/card-statistic/CardStatistic";
+import {Card} from "lib/ui";
+import {IconWrapper} from "../../../../../../../../lib/ui/card-statistic/CardStatistic";
 import {useSelector} from "react-redux";
 import {studentsSelector} from "../../../../../../../../store/access/teacher/students/studentsSlice";
 import {fetchStudentsStatistic} from "../../../../../../../../store/access/teacher/students/statistic/fetchStudentsStatistic";
