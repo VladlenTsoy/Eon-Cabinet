@@ -9,6 +9,7 @@ import {useSelector} from "react-redux";
 import {useScreenWindow} from "effects/use-screen-window.effect";
 import DeleteItem from "./Menu/delete-item/DeleteItem";
 import PrintItem from "./Menu/print-item/PrintItem";
+import EditItem from "./Menu/edit-item/EditItem";
 
 const {TabPane} = Tabs;
 
@@ -52,10 +53,7 @@ const columns = (fetch: any) => [
         render: (text: any, record: any) =>
             <ModalMenu>
                 {record.type_task === 'list' ? <PrintItem record={record}/> : null}
-                {/*<div>*/}
-                {/*    <EditOutlined/>*/}
-                {/*    <span>Редактировать</span>*/}
-                {/*</div>*/}
+                <EditItem record={record} fetch={fetch}/>
                 <DeleteItem record={record} fetch={fetch}/>
             </ModalMenu>
     },
