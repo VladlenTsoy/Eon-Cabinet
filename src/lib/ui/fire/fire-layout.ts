@@ -5,7 +5,7 @@ export const FireLayout = styled.div`
   width: 100%;
   position: absolute;
   animation-name: shake;
-  animation-delay: 0;
+  animation-delay: 0ms;
   animation-timing-function: ease-out;
   animation-fill-mode: both;
   animation-iteration-count: infinite;
@@ -25,7 +25,7 @@ export const FireLayout = styled.div`
     border-radius: 50%;
     filter: drop-shadow(0 0 10px #d43322);
     animation-name: particleUp;
-    animation-delay: 0;
+    animation-delay: 0ms;
     animation-fill-mode: both;
     animation-timing-function: ease-out;
     animation-iteration-count: infinite;
