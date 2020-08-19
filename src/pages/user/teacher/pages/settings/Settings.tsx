@@ -5,10 +5,12 @@ const Payments = React.lazy(() => import("./payments/Payments"));
 const CustomExercises = React.lazy(() => import("./custom-exercises/CustomExercises"));
 
 const Settings: React.FC = () => {
-    return <Switch>
-        <Route path="/settings/payments" component={Payments}/>
-        <Route path="/settings/custom-exercises" component={CustomExercises}/>
-    </Switch>;
+    return <React.Suspense fallback={<>Загрузка...</>}>
+        <Switch>
+            <Route path="/settings/payments" component={Payments}/>
+            <Route path="/settings/custom-exercises" component={CustomExercises}/>
+        </Switch>
+    </React.Suspense>
 };
 
 export default Settings;

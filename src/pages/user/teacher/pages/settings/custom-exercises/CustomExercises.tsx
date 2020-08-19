@@ -4,7 +4,8 @@ import List from "./list/List";
 import Editor from "./editor/Editor";
 
 const CustomExercises:React.FC = () => {
-    let match = useRouteMatch();
+    const match = useRouteMatch();
+
     return <Switch>
         <Route path={`${match.path}/create`} component={Editor}/>
         <Route exact path={`${match.path}/`} component={List}/>
