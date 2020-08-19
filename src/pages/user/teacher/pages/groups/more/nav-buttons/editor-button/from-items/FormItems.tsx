@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import {useDispatch} from "react-redux";
 import {Button, Col, DatePicker, Form, Row} from "antd";
 import {DrawerActions, FormItem, InputEmail, InputLogin, InputPassword} from "lib/components";
 import {updateStudent} from "store/access/teacher/students/details/updateStudent";
@@ -10,6 +9,7 @@ import {SaveOutlined} from "@ant-design/icons";
 import {useParams} from "react-router-dom";
 import {ParamsProps} from "../../../Group";
 import {Student} from "../../../../../../../../../lib/types/teacher/Student";
+import {useTeacherDispatch} from "../../../../../../../../../store/access/teacher/store";
 
 interface FormItemsProps {
     close: () => void;
@@ -20,19 +20,23 @@ const FormItems: React.FC<FormItemsProps> = ({close, student}) => {
     const {id} = useParams<ParamsProps>();
     const [form] = Form.useForm();
     const [loading, setLoading] = useState(false);
-    const dispatch = useDispatch();
+    const dispatch = useTeacherDispatch();
+
+    const afterDispatch = (response: any) => {
+        if (response.payload) {
+            setLoading(false);
+            close();
+        } else if (response.error)
+            setLoading(false)
+    }
 
     const onFinishHandler = async (values: any) => {
         setLoading(true);
-
         if (student)
-            await dispatch(updateStudent({studentId: student.id, data: values}));
+            await dispatch(updateStudent({studentId: student.id, data: values})).then(afterDispatch);
         else
-            await dispatch(createStudent(values));
-
-        close();
-        setLoading(false);
-    };
+            await dispatch(createStudent(values)).then(afterDispatch);
+    }
 
     return <Form
         layout="vertical"

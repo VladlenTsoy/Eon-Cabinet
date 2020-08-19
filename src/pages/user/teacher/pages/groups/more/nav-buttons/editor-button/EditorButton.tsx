@@ -17,7 +17,6 @@ const EditorButton: React.FC<EditorStudentButtonProps> = ({title, children, stud
     const open = () => setVisible(true);
     const close = useCallback(() => setVisible(false), []);
 
-    console.log(student)
     return <>
         <span onClick={open}>
             {children}
