@@ -1,10 +1,11 @@
-import {GroupProps, StateProps} from "../groupSlice";
+import {StateProps} from "../groupSlice";
 import {ActionReducerMapBuilder} from "@reduxjs/toolkit";
 import {fetchGroup} from "./fetchGroup";
+import {Group} from "../../../../../lib/types/teacher/Group";
 
 export interface GroupState {
     loading: boolean
-    detail: GroupProps | null
+    detail: Group | null
     error: any
 }
 

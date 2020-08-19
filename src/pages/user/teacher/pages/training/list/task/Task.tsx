@@ -4,7 +4,7 @@ import {FlagOutlined} from '@ant-design/icons';
 import {Typography} from "antd";
 import {Card} from "lib/ui";
 import styled from "styled-components";
-import {TaskProps} from "../../../../../../../store/access/teacher/tasks/tasksSlice";
+import {Task} from "../../../../../../../lib/types/teacher/Task";
 
 const {Title} = Typography;
 
@@ -41,7 +41,7 @@ const TaskCardWrapper: any = styled(Card)`
 `;
 
 interface TaskBlockProps {
-    task: TaskProps;
+    task: Task;
 }
 
 const TaskBlock: React.FC<TaskBlockProps> = ({task}) => {

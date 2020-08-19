@@ -2,9 +2,10 @@ import {Select} from "antd";
 import React, {useEffect} from "react";
 import {FormItem} from "../../../../../../../../../../lib/ui";
 import {useSelector} from "react-redux";
-import {GroupProps, groupSelector} from "../../../../../../../../../../store/access/teacher/group/groupSlice";
+import {groupSelector} from "../../../../../../../../../../store/access/teacher/group/groupSlice";
 import {fetchGroups} from "../../../../../../../../../../store/access/teacher/group/groups/fetchGroups";
 import {useTeacherDispatch} from "../../../../../../../../../../store/access/teacher/store";
+import {Group} from "../../../../../../../../../../lib/types/teacher/Group";
 
 const {Option} = Select;
 
@@ -12,7 +13,7 @@ const SelectGroup: React.FC = () => {
     const {groups, group} = useSelector(groupSelector);
     const dispatch = useTeacherDispatch();
 
-    const groupsFilterCategory = (groups: GroupProps[]): GroupProps[] => {
+    const groupsFilterCategory = (groups: Group[]): Group[] => {
         if (groups.length)
             return groups.filter((_group) => _group.category.id === group.detail?.category.id) || [];
         return [];

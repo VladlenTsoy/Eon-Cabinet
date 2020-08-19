@@ -1,11 +1,11 @@
 import React, {useCallback, useState} from "react";
 import FormItems from "./form-items/FormItems";
 import ModalEditor from "../../../../../../../../lib/layouts/modal-editor/ModalEditor";
-import {GroupProps} from "../../../../../../../../store/access/teacher/group/groupSlice";
+import {Group} from "../../../../../../../../lib/types/teacher/Group";
 
 interface EditorButtonProps {
     title: string;
-    group?: GroupProps;
+    group?: Group;
 }
 
 const EditorButton: React.FC<EditorButtonProps> = (

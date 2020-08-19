@@ -5,12 +5,12 @@ import {FormItem} from "lib/ui";
 import {categorySelector} from "store/access/teacher/category/categorySlice";
 import {updateGroup} from "store/access/teacher/group/groups/updateGroup";
 import {createGroup} from "store/access/teacher/group/groups/createGroup";
-import {GroupProps} from "../../../../../../../../../store/access/teacher/group/groupSlice";
+import {Group} from "../../../../../../../../../lib/types/teacher/Group";
 
 const {Option} = Select;
 
 interface FormItemsProps {
-    group?: GroupProps;
+    group?: Group;
     close: () => void;
 }
 

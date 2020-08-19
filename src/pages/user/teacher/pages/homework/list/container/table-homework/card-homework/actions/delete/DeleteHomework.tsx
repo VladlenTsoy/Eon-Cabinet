@@ -1,12 +1,12 @@
 import React from "react";
 import {Modal} from "antd";
 import {QuestionCircleOutlined} from "@ant-design/icons";
-import {HomeworkProps} from "../../../../../../../../../../../store/access/teacher/homework/homeworkSlice";
 import {useDispatch} from "react-redux";
 import {deleteHomework} from "../../../../../../../../../../../store/access/teacher/homework/deleteHomework";
+import {Homework} from "../../../../../../../../../../../lib/types/teacher/Homework";
 
 interface DeleteHomeworkProps {
-    homework: HomeworkProps;
+    homework: Homework;
 }
 
 const DeleteHomework: React.FC<DeleteHomeworkProps> = ({homework, children}) => {

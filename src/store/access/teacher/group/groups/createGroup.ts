@@ -1,15 +1,15 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {apiRequest} from "../../../../../utils/api";
 import {message} from "../../../../../utils/message";
-import {GroupProps} from "../groupSlice";
 import {TeacherThunkProps} from "../../store";
+import {Group} from "../../../../../lib/types/teacher/Group";
 
-type ReturnedType = GroupProps
+type ReturnedType = Group
 
 interface AgrProps {
-    title: GroupProps['title']
-    category_id: GroupProps['category']
-    method_id: GroupProps['method_id']
+    title: Group['title']
+    category_id: Group['category']
+    method_id: Group['method_id']
 }
 
 export const createGroup = createAsyncThunk<ReturnedType, AgrProps, TeacherThunkProps>(

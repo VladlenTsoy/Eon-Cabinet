@@ -1,23 +1,22 @@
 import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {LoadingBlock} from "lib/ui";
-import {disciplineSelector} from "../../../../../../store/access/teacher/discipline/disciplineSlice";
 import {fetchTasks} from "../../../../../../store/access/teacher/tasks/fetchTasks";
 import {tasksSelector} from "../../../../../../store/access/teacher/tasks/tasksSlice";
 import {Col, Row} from "antd";
 import TaskBlock from "./task/Task";
+import {useTeacherDispatch} from "../../../../../../store/access/teacher/store";
 
 const Training: React.FC = () => {
     const tasks = useSelector(tasksSelector);
-    const {activeDisciplineId} = useSelector(disciplineSelector);
-    const dispatch = useDispatch();
+    const dispatch = useTeacherDispatch();
 
     useEffect(() => {
-        const promise = dispatch(fetchTasks({activeDisciplineId}));
+        const promise = dispatch(fetchTasks());
         return () => {
             promise.abort();
         }
-    }, [activeDisciplineId, dispatch]);
+    }, [dispatch]);
 
     if (tasks.fetchLoading)
         return <LoadingBlock/>;

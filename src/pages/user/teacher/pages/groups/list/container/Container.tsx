@@ -1,11 +1,11 @@
 import React from 'react';
 import {Col, Row} from "antd";
 import GroupBlock from "./card-group/CardGroup";
-import {GroupProps} from "../../../../../../../store/access/teacher/group/groupSlice";
 import GroupsEmpty from "./groups-empty/GroupsEmpty";
+import {Group} from "../../../../../../../lib/types/teacher/Group";
 
 interface ContainerProps {
-    groups: GroupProps[];
+    groups: Group[];
 }
 
 const Container:React.FC<ContainerProps> = ({groups}) => {

@@ -1,9 +1,9 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {apiRequest} from "../../../../../utils/api";
-import {GroupProps} from "../groupSlice";
 import {TeacherThunkProps} from "../../store";
+import {Group} from "../../../../../lib/types/teacher/Group";
 
-type ReturnedType = GroupProps[]
+type ReturnedType = Group[]
 
 export const fetchGroups = createAsyncThunk<ReturnedType, undefined, TeacherThunkProps>(
     'group/fetch',

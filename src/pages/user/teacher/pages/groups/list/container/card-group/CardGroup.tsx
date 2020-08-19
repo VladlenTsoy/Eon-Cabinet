@@ -3,11 +3,11 @@ import {EditOutlined} from '@ant-design/icons';
 import {Card, ButtonLink} from "lib/ui";
 import DeleteGroupButton from "./delete-button/DeleteGroupButton";
 import EditorButton from "../../nav-buttons/editor-button/EditorButton";
-import {GroupProps} from "store/access/teacher/group/groupSlice";
 import {momentFormatCheckYear} from "../../../../../../../../utils/momentFormatCheckYear";
+import {Group} from "../../../../../../../../lib/types/teacher/Group";
 
 interface CardGroupProps {
-    group: GroupProps;
+    group: Group;
 }
 
 const CardGroup: React.FC<CardGroupProps> = ({group}) => {

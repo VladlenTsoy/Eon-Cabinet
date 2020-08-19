@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import {HomeworkProps} from "../../../../../../../../../../../store/access/teacher/homework/homeworkSlice";
 import {DrawerActions, FormItem} from "../../../../../../../../../../../lib/ui";
 import {Button, Input, Select, Form, Divider} from "antd";
 import moment from "moment";
@@ -12,11 +11,12 @@ import {SaveOutlined} from "@ant-design/icons";
 import {sentHomeworkStudents} from "../../../../../../../../../../../store/access/teacher/students/homework/sentHomeworkStudent";
 import {ParamsProps} from "../../../../../Group";
 import {fetchStudentsHomeworkDates} from "../../../../../../../../../../../store/access/teacher/students/homework/fetchStudentsHomeworkDates";
+import {Homework} from "../../../../../../../../../../../lib/types/teacher/Homework";
 
 const {TextArea} = Input;
 
 interface FormItemsProps {
-    homework: HomeworkProps[];
+    homework: Homework[];
     close: () => void;
 }
 

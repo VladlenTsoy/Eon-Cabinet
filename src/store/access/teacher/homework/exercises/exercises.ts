@@ -1,10 +1,11 @@
 import {ActionReducerMapBuilder} from "@reduxjs/toolkit";
-import {ExerciseProps, StateProps} from "../homeworkSlice";
+import {StateProps} from "../homeworkSlice";
 import {fetchExercisesByHomeworkId} from "./fetchExercisesByHomeworkId";
+import {Exercise} from "../../../../../lib/types/teacher/Homework";
 
 export interface ExercisesState {
     loading: boolean
-    data: { [homeworkId: number]: ExerciseProps[] }
+    data: { [homeworkId: number]: Exercise[] }
 }
 
 export const exercisesState: ExercisesState = {

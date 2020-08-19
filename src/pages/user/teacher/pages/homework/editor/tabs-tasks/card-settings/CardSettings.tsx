@@ -2,11 +2,11 @@ import React, {useEffect} from 'react';
 import {Tabs} from "antd";
 import FormSetting from "./from-setting/FormSetting";
 import {Card} from "../../../../../../../../lib/ui";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {tasksSelector} from "../../../../../../../../store/access/teacher/tasks/tasksSlice";
 import {useScreenWindow} from "../../../../../../../../hooks/use-screen-window.effect";
 import {fetchTasks} from "../../../../../../../../store/access/teacher/tasks/fetchTasks";
-import {disciplineSelector} from "../../../../../../../../store/access/teacher/discipline/disciplineSlice";
+import {useTeacherDispatch} from "../../../../../../../../store/access/teacher/store";
 
 const {TabPane} = Tabs;
 
@@ -16,9 +16,8 @@ interface CardSettingsProps {
 
 const CardSettings: React.FC<CardSettingsProps> = ({setExercises}) => {
     const {homework, fetchLoading} = useSelector(tasksSelector);
-    const dispatch = useDispatch();
+    const dispatch = useTeacherDispatch();
     const [, isBreakpoint] = useScreenWindow({breakpoint: 'md'});
-    const {activeDisciplineId} = useSelector(disciplineSelector);
 
     // Send setting for start application
     const sendSubmit = (taskId: number, values: any) => {
@@ -34,11 +33,11 @@ const CardSettings: React.FC<CardSettingsProps> = ({setExercises}) => {
     };
 
     useEffect(() => {
-        const promise = dispatch(fetchTasks({activeDisciplineId}));
+        const promise = dispatch(fetchTasks());
         return () => {
             promise.abort();
         }
-    }, [dispatch, activeDisciplineId]);
+    }, [dispatch]);
 
     return <Card loading={fetchLoading}>
         {

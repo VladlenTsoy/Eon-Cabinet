@@ -1,12 +1,12 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {apiRequest} from "../../../../utils/api";
 import {message} from "../../../../utils/message";
-import {HomeworkProps} from "./homeworkSlice";
+import {Homework} from "../../../../lib/types/teacher/Homework";
 
-type Args = {categoryId: HomeworkProps["category_id"], homeworkId: HomeworkProps["id"]};
+type Args = {categoryId: Homework["category_id"], homeworkId: Homework["id"]};
 
 export const deleteHomework: any = createAsyncThunk<any, Args, any>(
-    'teacher/group/delete',
+    'teacher/homework/delete',
     async ({categoryId,homeworkId}) => {
         //
         const response = await apiRequest('delete', `teacher/homework/${homeworkId}`);

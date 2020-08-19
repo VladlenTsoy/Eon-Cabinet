@@ -5,31 +5,11 @@ import {deleteHomework} from "./deleteHomework";
 import {updateHomework} from "./updateHomework";
 import {createHomework} from "./createHomework";
 import {tasksExtraReducers, exercisesState, ExercisesState} from "./exercises/exercises";
-
-export interface ExerciseProps {
-    id: number
-    homework_id: number
-    count_all: number
-    settings: any
-    task_id: number
-    task_name: string
-    created_at: string
-    updated_at: string
-}
-
-export interface HomeworkProps {
-    id: number;
-    level: number;
-    description: string;
-    discipline_id: number;
-    category_id: number;
-    created_at: string;
-    tasks?: ExerciseProps[]
-}
+import {Homework} from "../../../../lib/types/teacher/Homework";
 
 export interface StateProps {
     fetchLoading: boolean;
-    categories: { [categoryId: number]: HomeworkProps[] };
+    categories: { [categoryId: number]: Homework[] };
     exercises: ExercisesState
 }
 

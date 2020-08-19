@@ -1,24 +1,19 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {apiRequest} from "../../../../utils/api";
+import {Task} from "../../../../lib/types/teacher/Task";
+import {TeacherThunkProps} from "../store";
 
-interface AgrProps {
-    activeDisciplineId: string;
-}
+type ReturnedType = Task[]
 
-export const fetchTasks: any = createAsyncThunk<any, AgrProps>(
+export const fetchTasks = createAsyncThunk<ReturnedType, undefined, TeacherThunkProps>(
     'tasks/fetch',
     async (_, {signal}) => {
         return await apiRequest('get', `/tasks`, {type: 'teacher', signal});
     },
     {
-        condition({activeDisciplineId}, {getState}: any): any {
+        condition(_, {getState}: any): any {
             const {tasks} = getState();
-
-            if (!activeDisciplineId)
-                return false;
-
-            const checkDiscipline = tasks.all.find((task: any) => task.discipline_id === Number(activeDisciplineId));
-            if (tasks.all.length && checkDiscipline)
+            if (tasks.all.length)
                 return false;
         }
     }

@@ -4,19 +4,6 @@ import {statisticExtraReducers, statisticState, StatisticState} from "./statisti
 import {groupsExtraReducers, groupsState, GroupsState} from "./groups/groups";
 import {groupExtraReducers, GroupState, groupState} from "./group/group";
 
-export interface GroupProps {
-    id: number;
-    title: string;
-    method_id: number;
-    category: {
-        id: number;
-        title: string;
-    };
-    count: number;
-    last_activity: string;
-    created_at: string;
-}
-
 export interface StateProps {
     isSaved: boolean;
     selectedStudentsId: number[];
