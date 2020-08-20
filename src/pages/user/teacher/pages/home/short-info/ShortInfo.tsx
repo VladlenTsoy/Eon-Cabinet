@@ -2,7 +2,7 @@ import React from 'react';
 import Statistic from "./statistic/Statistic";
 import QuickNotice from "./quick-notice/QuickNotice";
 import styled from "styled-components";
-import Tournaments from "./tournaments/Tournaments";
+import Advertising from "./statistics-chart/StatisticsChart";
 
 const ShortInfoWrapper = styled.div`
   display: grid;
@@ -42,7 +42,7 @@ const ShortInfo: React.FC = () => {
     return <ShortInfoWrapper>
         <QuickNotice/>
         <Statistic/>
-        <Tournaments/>
+        <Advertising/>
     </ShortInfoWrapper>;
 };
 

@@ -1,17 +1,11 @@
 import {ActionReducerMapBuilder} from "@reduxjs/toolkit";
 import {StateProps} from "../notificationSlice";
 import {fetchAlertNotice} from "./fetchAlertNotice";
-import {AlertProps} from "antd/es/alert";
-
-export interface AlertNoticeProps {
-    type: AlertProps['type']
-    title: string
-    description: string
-}
+import {AlertNotice} from "../../../../../lib/types/teacher/Notification";
 
 export interface AlertNoticeState {
     loading: boolean
-    data: null | AlertNoticeProps
+    data: null | AlertNotice
 }
 
 export const alertNoticeState = {

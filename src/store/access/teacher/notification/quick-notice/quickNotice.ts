@@ -1,22 +1,11 @@
 import {ActionReducerMapBuilder} from "@reduxjs/toolkit";
 import {StateProps} from "../notificationSlice";
-import {ButtonType} from "antd/es/button";
 import {fetchQuickNotice} from "./fetchQuickNotice";
-
-export interface QuickNoticeProps {
-    image: string
-    title: string
-    text: string
-    link: {
-        to: string
-        type: ButtonType
-        text: string
-    }
-}
+import {QuickNotice} from "../../../../../lib/types/teacher/Notification";
 
 export interface QuickNoticeState {
     loading: boolean
-    data: null | QuickNoticeProps
+    data: null | QuickNotice
 }
 
 export const quickNoticeState = {

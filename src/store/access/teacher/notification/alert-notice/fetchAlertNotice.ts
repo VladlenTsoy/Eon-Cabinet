@@ -1,9 +1,9 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {apiRequest} from "utils/api";
-import {AlertNoticeProps} from "./alertNotice";
 import {TeacherThunkProps} from "../../store";
+import {AlertNotice} from "../../../../../lib/types/teacher/Notification";
 
-type ReturnedType =  AlertNoticeProps
+type ReturnedType =  AlertNotice
 
 export const fetchAlertNotice = createAsyncThunk<ReturnedType, undefined, TeacherThunkProps>(
     'notification/alert/notice',

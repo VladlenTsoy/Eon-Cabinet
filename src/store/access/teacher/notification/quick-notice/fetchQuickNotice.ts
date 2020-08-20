@@ -1,12 +1,12 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {apiRequest} from "utils/api";
-import {QuickNoticeProps} from "./quickNotice";
 import {TeacherThunkProps} from "../../store";
+import {QuickNotice} from "../../../../../lib/types/teacher/Notification";
 
-type ReturnedType = QuickNoticeProps
+type ReturnedType = QuickNotice
 
 export const fetchQuickNotice = createAsyncThunk<ReturnedType, undefined, TeacherThunkProps>(
-    'notification/quick/notice',
+    'teacher/notification/quick/notice',
     async (_, {signal}) => {
         return await apiRequest('get', `/teacher/quick-notice`, {signal});
     },
