@@ -8,4 +8,4 @@ not found
     );
 };
 
-export default NotFound;
+export default React.memo(NotFound);

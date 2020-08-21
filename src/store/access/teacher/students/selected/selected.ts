@@ -33,9 +33,9 @@ export const selectedExtraReducers = (builder: ActionReducerMapBuilder<StateProp
     })
     builder.addCase(fetchStudent.rejected, (state, action) => {
         if (action.error.name === "ConditionError") {
-            const studentId = action.meta.arg.studentId;
-            if (studentId)
-                state.selected.detail = state.details.data.find((student) => student.id === studentId) || null;
+            // const studentId = action.meta.arg.studentId;
+            // if (studentId)
+            //     state.selected.detail = state.data.find((student) => student.id === studentId) || null;
             state.selected.error = null;
             state.selected.loading = false;
         } else if (action.error.name === 'Error') {

@@ -2,14 +2,12 @@ import React, {useEffect} from 'react';
 import {useChangeTitle} from "../../../../../../hooks/use-change-title.effect";
 import {useChangeActionNavbar} from "../../../../../../hooks/use-change-action-navbar.effect";
 import GroupNavigation from "./nav-buttons/NavButtons";
-import {useSelector} from "react-redux";
-import {groupSelector} from "../../../../../../store/access/teacher/group/groupSlice";
 import {useParams} from "react-router-dom";
-import GroupError from "./container/group-error/GroupError";
-import {fetchGroup} from "../../../../../../store/access/teacher/group/group/fetchGroup";
 import Container from "./container/Container";
-import {changeSelectedIds} from "../../../../../../store/access/teacher/students/studentsSlice";
 import {useTeacherDispatch} from "../../../../../../store/access/teacher/store";
+import {fetchGroups} from "../../../../../../store/access/teacher/group/fetchGroups";
+import NotFound from "../../../../../errors/404";
+import {useLoadingGroups, useSelectGroupById} from "../../../../../../store/access/teacher/group/groupSelectors";
 
 export interface ParamsProps {
     id: string;
@@ -17,27 +15,23 @@ export interface ParamsProps {
 
 const Group: React.FC = () => {
     const {id} = useParams<ParamsProps>();
-    const {group} = useSelector(groupSelector);
+    const group = useSelectGroupById(Number(id));
+    const loading = useLoadingGroups()
     const dispatch = useTeacherDispatch();
 
     useChangeActionNavbar({action: '/groups'});
-    useChangeTitle({title: group.loading ? 'Группа: Загрузка...' : `Группа: ${group.detail?.title || 'Недоступна'}`});
+    useChangeTitle({title: loading ? 'Группа: Загрузка...' : `Группа: ${group?.title || 'Недоступна'}`});
 
     useEffect(() => {
-        const promise = dispatch(fetchGroup({groupId: Number(id)}));
+        const promise = dispatch(fetchGroups());
         return () => {
             promise.abort();
         }
     }, [dispatch, id]);
 
-    useEffect(() => {
-        if (group.detail && group.detail.id !== Number(id)) {
-            dispatch(changeSelectedIds([]));
-        }
-    }, [dispatch, group.detail, id]);
-    
-    if (group.error)
-        return <GroupError error={group.error}/>;
+    console.log(2)
+    if(!group && !loading)
+        return <NotFound/>
 
     return <>
         <GroupNavigation/>

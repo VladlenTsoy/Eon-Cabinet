@@ -8,16 +8,17 @@ interface AgrProps {
 }
 
 export const fetchStudentsDetails = createAsyncThunk<any, AgrProps, TeacherThunkProps>(
-    'students/fetch/details',
+    'teacher/students/fetch/details',
     async ({groupId}, {signal}) => {
-        return await apiRequest('get', `/teacher/students/${groupId}`, {signal});
+        return await apiRequest('get', `/teacher/students/${groupId}`, {signal})
     },
     {
         condition({groupId, force}, {getState}) {
-            if(!groupId) return false;
+            if (!groupId) return false;
 
             const {group, students} = getState();
-            if (group.group.detail?.id === Number(groupId) && Object.values(students.details).length) return false;
+            const check = Object.values(students.entities).filter(student => student?.group_id === groupId)
+            if (group.ids.includes(groupId) && check.length) return false;
         },
         dispatchConditionRejection: true
     }

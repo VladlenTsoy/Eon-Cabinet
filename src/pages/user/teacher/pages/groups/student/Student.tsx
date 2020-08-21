@@ -10,7 +10,7 @@ import {Spin} from "../../../../../../lib/ui";
 import {useSelector} from "react-redux";
 import {useTeacherDispatch} from "../../../../../../store/access/teacher/store";
 import {fetchStudent} from "../../../../../../store/access/teacher/students/selected/fetchStudent";
-import {studentsSubSelector} from "../../../../../../store/access/teacher/students/studentsSlice";
+import {studentsSelector} from "../../../../../../store/access/teacher/students/studentsSlice";
 
 interface StudentProps {
     match: any;
@@ -18,7 +18,8 @@ interface StudentProps {
 
 const Student: React.FC<StudentProps> = ({match}) => {
     const dispatch = useTeacherDispatch()
-    const {loading, detail: student, error} = useSelector(studentsSubSelector('selected'))
+    const {selected} = useSelector(studentsSelector)
+    const {loading, detail: student, error} = selected
 
     useChangeActionNavbar({action: 'back'});
 

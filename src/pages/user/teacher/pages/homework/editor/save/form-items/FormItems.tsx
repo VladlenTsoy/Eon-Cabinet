@@ -8,6 +8,8 @@ import {useParams} from "react-router";
 import {categorySelector} from "../../../../../../../../store/access/teacher/category/categorySlice";
 import {createHomework} from "../../../../../../../../store/access/teacher/homework/createHomework";
 import {updateHomework} from "../../../../../../../../store/access/teacher/homework/updateHomework";
+import {ParamsProps} from "../../../../groups/more/Group";
+import {useSelectGroupById} from "../../../../../../../../store/access/teacher/group/groupSelectors";
 
 const {TextArea} = Input;
 
@@ -21,7 +23,10 @@ interface FormItemsProps {
 const FormItems: React.FC<FormItemsProps> = ({homework, close, fetch, exercises}) => {
     const {categories} = useSelector(categorySelector);
     const {duplicate} = useParams();
-    const {group, isSaved} = useSelector(groupSelector);
+    // TODO - note group id params
+    const {id} = useParams<ParamsProps>();
+    const group = useSelectGroupById(Number(id));
+    const {isSaved} = useSelector(groupSelector);
     const [loading, setLoading] = useState(false);
     const dispatch = useDispatch();
 
@@ -56,7 +61,7 @@ const FormItems: React.FC<FormItemsProps> = ({homework, close, fetch, exercises}
                 category: homework.category_id,
                 description: homework.description,
             } : isSaved ? {
-                category: group.detail?.category.id,
+                category: group?.category.id,
             } : {}
         }
     >

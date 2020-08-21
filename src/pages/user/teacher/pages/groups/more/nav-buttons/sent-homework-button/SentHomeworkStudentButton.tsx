@@ -6,11 +6,14 @@ import {groupSelector} from "../../../../../../../../store/access/teacher/group/
 import Container from "./container/Container";
 import checkStudentGif from "assets/images/hints/check-student.gif";
 import {Modal} from "antd";
-import {studentsSelector} from "../../../../../../../../store/access/teacher/students/studentsSlice";
+import {useParams} from "react-router-dom";
+import {ParamsProps} from "../../Group";
+import {useSelectSelectedStudentsByIdsGroupId} from "../../../../../../../../store/access/teacher/students/studentsSelectors";
 
 const SentHomeworkStudentButton: React.FC = ({children}) => {
+    const {id} = useParams<ParamsProps>();
     const {isSaved} = useSelector(groupSelector);
-    const {selectedIds} = useSelector(studentsSelector);
+    const selectedIds = useSelectSelectedStudentsByIdsGroupId(Number(id))
     const [visible, setVisible] = useState(isSaved);
     const [, breakpoint] = useScreenWindow({breakpoint: 'sm'});
 

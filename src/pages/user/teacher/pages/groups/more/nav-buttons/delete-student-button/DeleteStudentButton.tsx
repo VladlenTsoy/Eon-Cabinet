@@ -2,15 +2,18 @@ import React from 'react';
 import {Modal} from "antd";
 import {DeleteOutlined, ExclamationCircleOutlined} from "@ant-design/icons";
 import {NavigationButton} from "lib/ui";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {deleteStudents} from "../../../../../../../../store/access/teacher/students/details/deleteStudents";
-import {studentsSelector} from "../../../../../../../../store/access/teacher/students/studentsSlice";
+import {useParams} from "react-router-dom";
+import {ParamsProps} from "../../Group";
+import {useSelectSelectedStudentsByIdsGroupId} from "../../../../../../../../store/access/teacher/students/studentsSelectors";
 
 const {confirm} = Modal;
 
 const DeleteStudentButton: React.FC = () => {
+    const {id} = useParams<ParamsProps>();
     const dispatch = useDispatch();
-    const {selectedIds} = useSelector(studentsSelector);
+    const selectedIds = useSelectSelectedStudentsByIdsGroupId(Number(id))
 
     const deleteUsers = () => {
         confirm({

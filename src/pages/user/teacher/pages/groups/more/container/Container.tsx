@@ -37,7 +37,7 @@ const Container = () => {
         }
     }, [dispatch, id]);
 
-    const selectUserHandler = useCallback((ids: number[]) => dispatch(changeSelectedIds(ids)), [dispatch])
+    const selectUserHandler = useCallback((ids: number[]) => dispatch(changeSelectedIds({groupId: Number(id), ids})), [dispatch])
 
     const changeTabHandler = (val: RadioChangeEvent) => setTab(val.target.value);
 

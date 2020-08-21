@@ -15,14 +15,9 @@ export const fetchStudent = createAsyncThunk<ReturnedType, ArgProps, TeacherThun
         return await apiRequest('get', `/teacher/student/${studentId}`);
     },
     {
-        condition({studentId}, {getState, extra}) {
+        condition({studentId}, {getState}) {
             const {students} = getState();
-
-            if (students.details.data.length) {
-                const checkStudent = students.details.data.find((student) => student.id === studentId);
-                extra = checkStudent;
-                if (checkStudent) return false;
-            }
+            if (students.ids.includes(studentId)) return false;
         },
         dispatchConditionRejection: true
     }

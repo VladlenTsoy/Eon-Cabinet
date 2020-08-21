@@ -1,26 +1,23 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit'
+import {createSlice, PayloadAction, createEntityAdapter} from '@reduxjs/toolkit'
 import {TeacherState} from "../store";
-import {statisticExtraReducers, statisticState, StatisticState} from "./statistic/statistic";
-import {groupsExtraReducers, groupsState, GroupsState} from "./groups/groups";
-import {groupExtraReducers, GroupState, groupState} from "./group/group";
+import {Group} from "../../../../lib/types/teacher/Group";
+import {fetchGroups} from "./fetchGroups";
+import {createGroup} from "./createGroup";
+import {updateGroup} from "./updateGroup";
+import {deleteGroup} from "./deleteGroup";
+
+//
+export const groupAdapter = createEntityAdapter<Group>()
 
 export interface StateProps {
     isSaved: boolean;
-    selectedStudentsId: number[];
-
-    group: GroupState
-    groups: GroupsState;
-    statistic: StatisticState
+    loading: boolean;
 }
 
-const initialState: StateProps = {
+const initialState = groupAdapter.getInitialState<StateProps>({
+    loading: true,
     isSaved: false,
-    selectedStudentsId: [],
-
-    group: groupState,
-    groups: groupsState,
-    statistic: statisticState
-};
+});
 
 const groupSlice = createSlice({
     name: 'group',
@@ -30,19 +27,71 @@ const groupSlice = createSlice({
         changeIsSaved(state, action: PayloadAction<boolean>) {
             state.isSaved = action.payload
         },
-        changeSelectedStudentsId(state, action: PayloadAction<number[]>) {
-            state.selectedStudentsId = action.payload
-        }
     },
     extraReducers: (builder) => {
-        groupExtraReducers(builder)
-        groupsExtraReducers(builder)
-        statisticExtraReducers(builder)
+        // Загрузка групп
+        builder.addCase(fetchGroups.pending, (state) => {
+            state.loading = true
+        })
+        builder.addCase(fetchGroups.fulfilled, (state, action) => {
+            groupAdapter.upsertMany(state, action.payload)
+            state.loading = false
+        })
+        builder.addCase(fetchGroups.rejected, (state) => {
+            state.loading = false
+        })
+
+        // Создания группы
+        builder.addCase(createGroup.pending, (state) => {
+            state.loading = true;
+        })
+        builder.addCase(createGroup.fulfilled, (state, action) => {
+            if (action.payload?.id)
+                groupAdapter.addOne(state, action.payload)
+            state.loading = false;
+        })
+        builder.addCase(createGroup.rejected, (state) => {
+            state.loading = false;
+        })
+
+        // Редактированние группы
+        builder.addCase(updateGroup.pending, (state) => {
+            state.loading = true;
+        })
+        builder.addCase(updateGroup.fulfilled, (state, action) => {
+            if (action.payload?.id)
+                groupAdapter.updateOne(state, {id: action.payload.id, changes: action.payload})
+            state.loading = false;
+        })
+        builder.addCase(updateGroup.rejected, (state) => {
+            state.loading = false;
+        })
+
+        // Удаление группы
+        builder.addCase(deleteGroup.pending, (state) => {
+            state.loading = true;
+        })
+        builder.addCase(deleteGroup.fulfilled, (state, action) => {
+            groupAdapter.removeOne(state, action.payload)
+            state.loading = false
+        })
+        builder.addCase(deleteGroup.rejected, (state) => {
+            state.loading = false;
+        })
     }
 });
 
 export const groupSelector = (state: TeacherState) => state.group;
 
-export const {changeIsSaved, changeSelectedStudentsId, resetGroupSlice} = groupSlice.actions;
+// Can create a set of memoized selectors based on the location of this entity state
+export const {
+    selectById: getGroupById,
+    selectIds: selectGroupIds,
+    selectEntities: selectGroupEntities,
+    selectAll: selectAllGroups,
+    selectTotal: selectTotalGroups
+} = groupAdapter.getSelectors<TeacherState>(state => state.group)
+
+export const {changeIsSaved, resetGroupSlice} = groupSlice.actions;
 
 export default groupSlice.reducer;

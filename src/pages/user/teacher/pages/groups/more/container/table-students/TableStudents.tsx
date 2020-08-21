@@ -1,7 +1,11 @@
 import React, {useCallback, useEffect} from "react";
 import TableStudentsLayout from "./TableStudents.layout";
 import {useSelector} from "react-redux";
-import {studentsSelector, nextWeek, prevWeek} from "../../../../../../../../store/access/teacher/students/studentsSlice";
+import {
+    studentsSelector,
+    nextWeek,
+    prevWeek,
+} from "../../../../../../../../store/access/teacher/students/studentsSlice";
 import HomeworkColumns from "./homework-columns/HomeworkColumns";
 import DataColumns from "./data-columns/DataColumns";
 import DefaultColumns from "./default-columns/DefaultColumns";
@@ -11,6 +15,11 @@ import {ParamsProps} from "../../Group";
 import EventsColumns from "./events-columns/EventsColumns";
 import {fetchStudentsHomeworkDates} from "../../../../../../../../store/access/teacher/students/homework/fetchStudentsHomeworkDates";
 import {useTeacherDispatch} from "../../../../../../../../store/access/teacher/store";
+import {
+    useSelectStudentsByGroupId,
+    useLoadingStudents,
+    useSelectSelectedStudentsByIdsGroupId
+} from "../../../../../../../../store/access/teacher/students/studentsSelectors";
 
 interface TableStudentsProps {
     tab: "details" | "homework" | "events";
@@ -19,8 +28,13 @@ interface TableStudentsProps {
 
 const TableStudents: React.FC<TableStudentsProps> = ({tab, selectUsers}) => {
     const {id} = useParams<ParamsProps>();
-    const {details, selectedIds, homework} = useSelector(studentsSelector);
+    const {homework} = useSelector(studentsSelector);
     const dispatch = useTeacherDispatch();
+
+
+    const loading = useLoadingStudents()
+    const selectedIds = useSelectSelectedStudentsByIdsGroupId(Number(id))
+    const students = useSelectStudentsByGroupId(Number(id))
 
     const nextAction = useCallback(() => dispatch(nextWeek()), [dispatch])
     const prevAction = useCallback(() => dispatch(prevWeek()), [dispatch])
@@ -116,11 +130,11 @@ const TableStudents: React.FC<TableStudentsProps> = ({tab, selectUsers}) => {
         columns={columns}
         rowKey={(record: any) => record.id}
         scroll={{x: true}}
-        dataSource={details.data}
+        dataSource={students}
         pagination={false}
         rowSelection={rowSelection}
         rowClassName={checkRowClass}
-        loading={details.loading}
+        loading={loading}
     />;
 };
 

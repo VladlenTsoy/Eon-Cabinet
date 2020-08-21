@@ -11,7 +11,7 @@ interface AgrProps {
 }
 
 export const fetchStudentsHomework = createAsyncThunk<ReturnedType, AgrProps, TeacherThunkProps>(
-    'students/fetch/homework',
+    'teacher/students/fetch/homework',
     async ({groupId}, {signal}) => {
         return await apiRequest('get', `/teacher/students/${groupId}/homework`, {signal});
     },
@@ -21,7 +21,7 @@ export const fetchStudentsHomework = createAsyncThunk<ReturnedType, AgrProps, Te
             if (force) return true;
 
             const {group, students} = getState();
-            if (group.group.detail?.id === Number(groupId) && Object.values(students.homework.data).length) return false;
+            if (group.ids.includes(groupId) && Object.values(students.homework.data).length) return false;
         },
         dispatchConditionRejection: true
     }

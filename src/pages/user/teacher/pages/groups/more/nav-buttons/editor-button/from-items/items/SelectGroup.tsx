@@ -1,21 +1,29 @@
 import {Select} from "antd";
 import React, {useEffect} from "react";
 import {FormItem} from "../../../../../../../../../../lib/ui";
-import {useSelector} from "react-redux";
-import {groupSelector} from "../../../../../../../../../../store/access/teacher/group/groupSlice";
-import {fetchGroups} from "../../../../../../../../../../store/access/teacher/group/groups/fetchGroups";
+import {fetchGroups} from "../../../../../../../../../../store/access/teacher/group/fetchGroups";
 import {useTeacherDispatch} from "../../../../../../../../../../store/access/teacher/store";
 import {Group} from "../../../../../../../../../../lib/types/teacher/Group";
+import {useParams} from "react-router-dom";
+import {ParamsProps} from "../../../../Group";
+import {
+    useLoadingGroups,
+    useSelectAllGroups,
+    useSelectGroupById
+} from "../../../../../../../../../../store/access/teacher/group/groupSelectors";
 
 const {Option} = Select;
 
 const SelectGroup: React.FC = () => {
-    const {groups, group} = useSelector(groupSelector);
+    const {id} = useParams<ParamsProps>();
+    const group = useSelectGroupById(Number(id));
+    const groups = useSelectAllGroups()
+    const loading = useLoadingGroups()
     const dispatch = useTeacherDispatch();
 
     const groupsFilterCategory = (groups: Group[]): Group[] => {
         if (groups.length)
-            return groups.filter((_group) => _group.category.id === group.detail?.category.id) || [];
+            return groups.filter((_group) => _group.category.id === group?.category.id) || [];
         return [];
     };
 
@@ -32,11 +40,11 @@ const SelectGroup: React.FC = () => {
     return <FormItem name="group_id" label="Группа" requiredMsg="Выберите группу">
         <Select
             showSearch
-            loading={group.loading}
+            loading={loading}
             optionFilterProp="children"
             filterOption={filter}
         >
-            {groupsFilterCategory(groups.data).map((item) =>
+            {groupsFilterCategory(groups).map((item) =>
                 <Option key={item.id} value={item.id}>
                     {item.title}
                 </Option>
@@ -45,4 +53,4 @@ const SelectGroup: React.FC = () => {
     </FormItem>
 };
 
-export default SelectGroup;
+export default React.memo(SelectGroup);

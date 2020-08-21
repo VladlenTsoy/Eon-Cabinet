@@ -5,9 +5,11 @@ import CoinSvg from "assets/images/icons/coin.svg";
 import {Button, Form} from "antd";
 import Stepper from "../../../../../../../../lib/ui/stepper/Stepper";
 import styled from "styled-components";
-import {useDispatch, useSelector} from "react-redux";
-import {studentsSelector} from "../../../../../../../../store/access/teacher/students/studentsSlice";
+import {useDispatch} from "react-redux";
 import {sendCoins} from "../../../../../../../../store/access/teacher/students/details/sendСoins";
+import {useParams} from "react-router-dom";
+import {ParamsProps} from "../../Group";
+import {useSelectSelectedStudentsByIdsGroupId} from "../../../../../../../../store/access/teacher/students/studentsSelectors";
 
 const ImageStyled = styled.div`
   margin-bottom: 1rem;
@@ -18,8 +20,9 @@ const ImageStyled = styled.div`
 `;
 
 const CoinButton: React.FC = () => {
+    const {id} = useParams<ParamsProps>();
     const dispatch = useDispatch()
-    const {selectedIds} = useSelector(studentsSelector);
+    const selectedIds = useSelectSelectedStudentsByIdsGroupId(Number(id))
 
     const [visible, setVisible] = useState(false)
     const [loading, setLoading] = useState(false)
