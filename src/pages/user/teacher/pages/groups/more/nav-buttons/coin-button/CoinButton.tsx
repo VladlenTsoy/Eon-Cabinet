@@ -6,7 +6,7 @@ import {Button, Form} from "antd";
 import Stepper from "../../../../../../../../lib/ui/stepper/Stepper";
 import styled from "styled-components";
 import {useDispatch} from "react-redux";
-import {sendCoins} from "../../../../../../../../store/access/teacher/students/details/sendСoins";
+import {sendCoins} from "../../../../../../../../store/access/teacher/students/sendСoins";
 import {useParams} from "react-router-dom";
 import {ParamsProps} from "../../Group";
 import {useSelectSelectedStudentsByIdsGroupId} from "../../../../../../../../store/access/teacher/students/studentsSelectors";

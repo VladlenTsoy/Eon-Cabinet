@@ -11,8 +11,6 @@ const Groups: React.FC = () => {
     const groups = useSelectAllGroups()
     const dispatch = useTeacherDispatch();
 
-    console.log(1)
-
     useEffect(() => {
         const promise = dispatch(fetchGroups());
         return () => {

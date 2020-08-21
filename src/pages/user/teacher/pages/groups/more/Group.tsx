@@ -29,7 +29,6 @@ const Group: React.FC = () => {
         }
     }, [dispatch, id]);
 
-    console.log(2)
     if(!group && !loading)
         return <NotFound/>
 

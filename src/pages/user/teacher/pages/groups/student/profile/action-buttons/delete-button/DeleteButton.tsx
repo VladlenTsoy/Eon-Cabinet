@@ -1,7 +1,7 @@
 import React from 'react';
 import {Modal} from "antd";
 import {useDispatch} from "react-redux";
-import {deleteStudent} from "../../../../../../../../../store/access/teacher/students/details/deleteStudent";
+import {deleteStudent} from "../../../../../../../../../store/access/teacher/students/deleteStudent";
 import {Student} from "../../../../../../../../../lib/types/teacher/Student";
 
 const {confirm} = Modal;

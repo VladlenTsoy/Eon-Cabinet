@@ -5,7 +5,7 @@ import TableStudents from "./table-students/TableStudents";
 import {changeSelectedIds} from "../../../../../../../store/access/teacher/students/studentsSlice";
 import {Radio} from "antd";
 import styled from "styled-components";
-import {fetchStudentsDetails} from "../../../../../../../store/access/teacher/students/details/fetchStudentsDetails";
+import {fetchStudents} from "../../../../../../../store/access/teacher/students/fetchStudents";
 import {RadioChangeEvent} from "antd/lib/radio/interface";
 import {useTeacherDispatch} from "../../../../../../../store/access/teacher/store";
 
@@ -31,7 +31,7 @@ const Container = () => {
     const [tab, setTab] = useState<'details' | 'homework'>('details');
 
     useEffect(() => {
-        const promise = dispatch(fetchStudentsDetails({groupId: Number(id)}));
+        const promise = dispatch(fetchStudents({groupId: Number(id)}));
         return () => {
             promise.abort();
         }

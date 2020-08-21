@@ -1,8 +1,8 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {apiRequest} from "../../../../../utils/api";
-import {message} from "../../../../../utils/message";
-import {TeacherThunkProps} from "../../store";
-import {Student} from "../../../../../lib/types/teacher/Student";
+import {apiRequest} from "../../../../utils/api";
+import {message} from "../../../../utils/message";
+import {TeacherThunkProps} from "../store";
+import {Student} from "../../../../lib/types/teacher/Student";
 
 type ReturnedType = Student
 

@@ -3,7 +3,7 @@ import {Modal} from "antd";
 import {DeleteOutlined, ExclamationCircleOutlined} from "@ant-design/icons";
 import {NavigationButton} from "lib/ui";
 import {useDispatch} from "react-redux";
-import {deleteStudents} from "../../../../../../../../store/access/teacher/students/details/deleteStudents";
+import {deleteStudents} from "../../../../../../../../store/access/teacher/students/deleteStudents";
 import {useParams} from "react-router-dom";
 import {ParamsProps} from "../../Group";
 import {useSelectSelectedStudentsByIdsGroupId} from "../../../../../../../../store/access/teacher/students/studentsSelectors";

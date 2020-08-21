@@ -1,7 +1,7 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {TeacherThunkProps} from "../../store";
-import {apiRequest} from "../../../../../utils/api";
-import {Student} from "../../../../../lib/types/teacher/Student";
+import {TeacherThunkProps} from "../store";
+import {apiRequest} from "../../../../utils/api";
+import {Student} from "../../../../lib/types/teacher/Student";
 
 type ReturnedType = {
     data: { day_unblock: number },

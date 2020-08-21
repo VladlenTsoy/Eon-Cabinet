@@ -5,15 +5,15 @@ import {recentHomeworkExtraReducers, RecentHomeworkState, recentHomeworkState} f
 import {homeworkExtraReducer, homeworkReducer, homeworkState, HomeworkState} from "./homework/homework";
 import {selectedExtraReducers, selectedReducers, selectedState, SelectedState} from "./selected/selected";
 import {Student} from "../../../../lib/types/teacher/Student";
-import {fetchStudentsDetails} from "./details/fetchStudentsDetails";
+import {fetchStudents} from "./fetchStudents";
 import {Group} from "../../../../lib/types/teacher/Group";
-import {createStudent} from "./details/createStudent";
-import {updateStudent} from "./details/updateStudent";
-import {deleteStudent} from "./details/deleteStudent";
-import {deleteStudents} from "./details/deleteStudents";
-import {sendCoins} from "./details/sendСoins";
-import {blockStudent} from "./details/blockStudent";
-import {unblockStudent} from "./details/unblockStudent";
+import {createStudent} from "./createStudent";
+import {updateStudent} from "./updateStudent";
+import {deleteStudent} from "./deleteStudent";
+import {deleteStudents} from "./deleteStudents";
+import {sendCoins} from "./sendСoins";
+import {blockStudent} from "./blockStudent";
+import {unblockStudent} from "./unblockStudent";
 
 //
 export const studentAdapter = createEntityAdapter<Student>()
@@ -54,14 +54,14 @@ const studentsSlice = createSlice({
     },
     extraReducers: (builder) => {
         // Загрузка учеников
-        builder.addCase(fetchStudentsDetails.pending, (state) => {
+        builder.addCase(fetchStudents.pending, (state) => {
             state.loading = true;
         })
-        builder.addCase(fetchStudentsDetails.fulfilled, (state, action) => {
+        builder.addCase(fetchStudents.fulfilled, (state, action) => {
             studentAdapter.upsertMany(state, action.payload)
             state.loading = false;
         })
-        builder.addCase(fetchStudentsDetails.rejected, (state) => {
+        builder.addCase(fetchStudents.rejected, (state) => {
             state.loading = false;
         })
 

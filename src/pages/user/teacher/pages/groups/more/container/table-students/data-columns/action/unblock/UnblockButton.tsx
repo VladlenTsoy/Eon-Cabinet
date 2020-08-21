@@ -2,7 +2,7 @@ import React from 'react';
 import {UnlockOutlined} from '@ant-design/icons';
 import {Button, Modal} from "antd";
 import {useDispatch} from "react-redux";
-import {unblockStudent} from "../../../../../../../../../../../store/access/teacher/students/details/unblockStudent";
+import {unblockStudent} from "../../../../../../../../../../../store/access/teacher/students/unblockStudent";
 
 interface UnblockButtonProps {
     student: any;

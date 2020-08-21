@@ -3,7 +3,7 @@ import { LockOutlined } from '@ant-design/icons';
 import {Button, Modal, Popover} from "antd";
 import styled from "styled-components";
 import {useScreenWindow} from "../../../../../../../../../../../hooks/use-screen-window.effect";
-import {blockStudent} from "../../../../../../../../../../../store/access/teacher/students/details/blockStudent";
+import {blockStudent} from "../../../../../../../../../../../store/access/teacher/students/blockStudent";
 import {useDispatch} from "react-redux";
 
 interface BlockButtonProps {
