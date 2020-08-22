@@ -5,9 +5,9 @@ import GroupNavigation from "./nav-buttons/NavButtons";
 import {useParams} from "react-router-dom";
 import Container from "./container/Container";
 import {useTeacherDispatch} from "../../../../../../store/access/teacher/store";
-import {fetchGroups} from "../../../../../../store/access/teacher/group/fetchGroups";
 import NotFound from "../../../../../errors/404";
 import {useLoadingGroups, useSelectGroupById} from "../../../../../../store/access/teacher/group/groupSelectors";
+import {fetchGroup} from "../../../../../../store/access/teacher/group/fetchGroup";
 
 export interface ParamsProps {
     id: string;
@@ -23,7 +23,7 @@ const Group: React.FC = () => {
     useChangeTitle({title: loading ? 'Группа: Загрузка...' : `Группа: ${group?.title || 'Недоступна'}`});
 
     useEffect(() => {
-        const promise = dispatch(fetchGroups());
+        const promise = dispatch(fetchGroup({id: Number(id)}));
         return () => {
             promise.abort();
         }

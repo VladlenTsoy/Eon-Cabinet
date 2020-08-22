@@ -5,9 +5,12 @@ import {fetchGroups} from "./fetchGroups";
 import {createGroup} from "./createGroup";
 import {updateGroup} from "./updateGroup";
 import {deleteGroup} from "./deleteGroup";
+import {fetchGroup} from "./fetchGroup";
 
 //
-export const groupAdapter = createEntityAdapter<Group>()
+export const groupAdapter = createEntityAdapter<Group>({
+    sortComparer: (a, b) => a.id > b.id ? 1 : 0
+})
 
 export interface StateProps {
     isSaved: boolean
@@ -41,6 +44,19 @@ const groupSlice = createSlice({
             state.loading = false
         })
         builder.addCase(fetchGroups.rejected, (state) => {
+            state.loading = false
+        })
+
+        // Загрузка группы
+        builder.addCase(fetchGroup.pending, (state) => {
+            state.loading = true
+        })
+        builder.addCase(fetchGroup.fulfilled, (state, action) => {
+            groupAdapter.upsertMany(state, action.payload.data)
+            state.total = action.payload.total
+            state.loading = false
+        })
+        builder.addCase(fetchGroup.rejected, (state) => {
             state.loading = false
         })
 
