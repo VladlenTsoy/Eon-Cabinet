@@ -4,9 +4,10 @@ import {Modal} from "antd";
 import {useDispatch} from "react-redux";
 import {ExclamationCircleOutlined} from "@ant-design/icons";
 import {deleteGroup} from "store/access/teacher/group/deleteGroup";
+import {Group} from "../../../../../../../../../lib/types/teacher/Group";
 
 interface DeleteGroupButtonProps {
-    group: any;
+    group: Group;
 }
 
 const {confirm, warning} = Modal;
@@ -15,7 +16,7 @@ const DeleteGroupButton: React.FC<DeleteGroupButtonProps> = ({group}) => {
     const dispatch = useDispatch();
 
     const deleteGroupHandler = () => {
-        if (group.count === 0)
+        if (group.students_count === 0)
             confirm({
                 icon: <ExclamationCircleOutlined />,
                 title: `Вы действительно хотите удалить группу ${group.title}?`,

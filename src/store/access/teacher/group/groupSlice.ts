@@ -10,12 +10,14 @@ import {deleteGroup} from "./deleteGroup";
 export const groupAdapter = createEntityAdapter<Group>()
 
 export interface StateProps {
-    isSaved: boolean;
-    loading: boolean;
+    isSaved: boolean
+    total: number
+    loading: boolean
 }
 
 const initialState = groupAdapter.getInitialState<StateProps>({
     loading: true,
+    total: 0,
     isSaved: false,
 });
 
@@ -34,7 +36,8 @@ const groupSlice = createSlice({
             state.loading = true
         })
         builder.addCase(fetchGroups.fulfilled, (state, action) => {
-            groupAdapter.upsertMany(state, action.payload)
+            groupAdapter.upsertMany(state, action.payload.data)
+            state.total = action.payload.total
             state.loading = false
         })
         builder.addCase(fetchGroups.rejected, (state) => {
