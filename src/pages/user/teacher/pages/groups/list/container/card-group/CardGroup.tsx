@@ -20,18 +20,13 @@ const CardGroup: React.FC<CardGroupProps> = ({group}) => {
         </Card.Header>
         <Card.Title title={group.title}/>
         <Card.List list={[
-            {title: 'Категория', item: group.category.title},
             {title: 'Кол-во учеников', item: group.students_count},
-            {
-                title: 'Дата создания',
-                item: group.created_at ? momentFormatCheckYear(group.created_at) : 'Неизвестно'
-            },
             {
                 title: 'Последняя активность',
                 item: group.last_homework ? momentFormatCheckYear(group.last_homework.created_at) : 'Неизвестно'
             },
         ]}/>
-        <ButtonLink to={`groups/${group.id}`} type="primary" block>
+        <ButtonLink to={`groups/${group.id}`} type="primary" size="large" block>
             Подробнее
         </ButtonLink>
     </Card>;

@@ -2,6 +2,7 @@ export interface Category {
     id: number
     title: string
     active: boolean
+    groups: boolean
     discipline_id: number
     franchise_id: number | null
     center_id: number | null

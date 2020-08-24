@@ -3,7 +3,6 @@ import React, {useEffect} from "react";
 import {FormItem} from "../../../../../../../../../../lib/ui";
 import {fetchGroups} from "../../../../../../../../../../store/access/teacher/group/fetchGroups";
 import {useTeacherDispatch} from "../../../../../../../../../../store/access/teacher/store";
-import {Group} from "../../../../../../../../../../lib/types/teacher/Group";
 import {useParams} from "react-router-dom";
 import {ParamsProps} from "../../../../Group";
 import {
@@ -21,21 +20,17 @@ const SelectGroup: React.FC = () => {
     const loading = useLoadingGroups()
     const dispatch = useTeacherDispatch();
 
-    const groupsFilterCategory = (groups: Group[]): Group[] => {
-        if (groups.length)
-            return groups.filter((_group) => _group.category.id === group?.category.id) || [];
-        return [];
-    };
-
     const filter = (input: string, option: any) =>
         option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0;
 
     useEffect(() => {
-        const promise = dispatch(fetchGroups());
-        return () => {
-            promise.abort();
+        if (group?.category.id) {
+            const promise = dispatch(fetchGroups({categoryId: group?.category.id}));
+            return () => {
+                promise.abort();
+            }
         }
-    }, [dispatch]);
+    }, [dispatch, group]);
 
     return <FormItem name="group_id" label="Группа" requiredMsg="Выберите группу">
         <Select
@@ -44,7 +39,7 @@ const SelectGroup: React.FC = () => {
             optionFilterProp="children"
             filterOption={filter}
         >
-            {groupsFilterCategory(groups).map((item) =>
+            {groups.map((item) =>
                 <Option key={item.id} value={item.id}>
                     {item.title}
                 </Option>

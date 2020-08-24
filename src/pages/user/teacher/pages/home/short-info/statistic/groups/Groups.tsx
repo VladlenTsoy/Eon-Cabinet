@@ -14,7 +14,7 @@ const Groups = () => {
     const dispatch = useTeacherDispatch()
 
     useEffect(() => {
-        const promise = dispatch(fetchGroups())
+        const promise = dispatch(fetchGroups({categoryId: 1}))
         return () => {
             promise.abort()
         }

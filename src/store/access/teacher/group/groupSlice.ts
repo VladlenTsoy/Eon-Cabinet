@@ -14,14 +14,22 @@ export const groupAdapter = createEntityAdapter<Group>({
 
 export interface StateProps {
     isSaved: boolean
-    total: number
+
     loading: boolean
+    total: number
+    current_page: number
+    last_page: number
+    page_size: number
 }
 
 const initialState = groupAdapter.getInitialState<StateProps>({
+    isSaved: false,
+
     loading: true,
     total: 0,
-    isSaved: false,
+    current_page: 0,
+    last_page: 0,
+    page_size: 0,
 });
 
 const groupSlice = createSlice({
@@ -41,6 +49,8 @@ const groupSlice = createSlice({
         builder.addCase(fetchGroups.fulfilled, (state, action) => {
             groupAdapter.upsertMany(state, action.payload.data)
             state.total = action.payload.total
+            state.current_page = action.payload.current_page
+            state.last_page = action.payload.last_page
             state.loading = false
         })
         builder.addCase(fetchGroups.rejected, (state) => {

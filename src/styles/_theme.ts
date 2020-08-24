@@ -27,10 +27,10 @@ export const blackTheme = {
     color_main: "rgba(255,255,255, 0.85)",
     color_second: "rgba(255,255,255, 0.65)",
     color_minimal: "rgba(255,255,255, 0.45)",
-    color_border: "#000",
+    color_border: "#000000",
     light_color_border: "rgba(255,255,255,0.1)",
 
-    bg_color_arrow: '#000',
+    bg_color_arrow: '#000000',
     legend_color: '#141414',
 
     // Background color for `<body>`
@@ -38,21 +38,21 @@ export const blackTheme = {
     // Base background color for most components
     '@component-background': '#141414',
     // Layout
-    '@layout-body-background': '#000',
+    '@layout-body-background': '#000000',
 
-    '@background-color-base': '#000',
+    '@background-color-base': '#000000',
 
     '@text-color': "rgba(255,255,255, 0.85)",
     '@text-color-secondary': "rgba(255,255,255, 0.65)",
     '@heading-color': "rgba(255,255,255, 1)",
-    '@disabled-color': "fade(#fff, 35%)",
+    '@disabled-color': "fade(#ffffff, 35%)",
 
-    '@border-color-base': "#000",
-    '@border-color-split': "#000",
+    '@border-color-base': "#000000",
+    '@border-color-split': "#000000",
 
     '@modal-mask-bg': 'fade(@black, 45%)',
 
-    '@primary-1': '#000',
+    '@primary-1': '#000000',
     '@background-color-light': '#141414',
 };
 
@@ -69,9 +69,9 @@ export const whiteTheme = {
     legend_color: 'rgba(0, 0, 0, 0.45)',
 
     // Background color for `<body>`
-    '@body-background': '#fff',
+    '@body-background': '#ffffff',
     // Base background color for most components
-    '@component-background': '#fff',
+    '@component-background': '#ffffff',
     // Layout
     '@layout-body-background': '#f0f2f5',
 
@@ -80,7 +80,7 @@ export const whiteTheme = {
     '@text-color': "rgba(0, 0, 0, 0.65)",
     '@text-color-secondary': "rgba(0, 0, 0, 0.45)",
     '@heading-color': "rgba(0, 0, 0, 0.85)",
-    '@disabled-color': "fade(#000, 35%)",
+    '@disabled-color': "fade(#000000, 35%)",
 
     '@border-color-base': 'hsv(0, 0, 85%)',
     '@border-color-split': 'hsv(0, 0, 91%)',
@@ -88,5 +88,5 @@ export const whiteTheme = {
     '@modal-mask-bg': 'fade(@black, 45%)',
 
     '@primary-1': 'color(~`colorPalette(\'@{primary-color}\', 1) `)',
-    '@background-color-light': '#fff',
+    '@background-color-light': '#ffffff',
 };

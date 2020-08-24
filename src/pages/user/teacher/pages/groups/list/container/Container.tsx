@@ -1,24 +1,30 @@
 import React from 'react';
-import {Col, Row} from "antd";
-import GroupBlock from "./card-group/CardGroup";
-import GroupsEmpty from "./groups-empty/GroupsEmpty";
-import {Group} from "../../../../../../../lib/types/teacher/Group";
+import {useSelector} from "react-redux";
+import {categorySelector} from "../../../../../../../store/access/teacher/category/categorySlice";
+import {useScreenWindow} from "../../../../../../../hooks/use-screen-window.effect";
+import GroupsGrid from "./groups-grid/GroupsGrid";
+import {useLoadingGroups} from "../../../../../../../store/access/teacher/group/groupSelectors";
+import {Spin, Tabs, TabPane} from "../../../../../../../lib/ui";
+
 
 interface ContainerProps {
-    groups: Group[];
 }
 
-const Container:React.FC<ContainerProps> = ({groups}) => {
-    if(!groups.length)
-        return <GroupsEmpty/>
+const Container: React.FC<ContainerProps> = () => {
+    const {categories} = useSelector(categorySelector);
+    const [, isBreakpoint] = useScreenWindow({breakpoint: 'sm'});
+    const loading = useLoadingGroups()
 
-    return <Row gutter={15}>
-        {groups.map((group: any) =>
-            <Col xxl={6} lg={8} md={12} sm={12} xs={24} key={group.id}>
-                <GroupBlock group={group}/>
-            </Col>
-        )}
-    </Row>;
+    return <Tabs tabPosition={isBreakpoint ? 'top' : 'left'} type="card" style={{minHeight: '200px'}}>
+        {categories
+            .map((category) =>
+                <TabPane tab={category.title} key={`category-${category.id}`}>
+                    <Spin spinning={loading} tip="Загрузка...">
+                        <GroupsGrid categoryId={category.id}/>
+                    </Spin>
+                </TabPane>
+            )}
+    </Tabs>;
 };
 
 export default React.memo(Container);
