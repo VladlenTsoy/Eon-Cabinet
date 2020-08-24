@@ -14,9 +14,10 @@ interface TableHomeworkProps {
 const ListStyled = styled.div`
   display: grid;
   gap: 2rem;
-  padding: 1rem 0;
+  padding: 5px 0 1.5rem;
   
-  @media (max-width: 992px) {
+  @media (max-width: 1600px) {
+    padding-top: 0;
     gap: 1rem;  
   }
 `;
