@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useApiUserGeneral} from "effects/use-api-user-general.effect";
 import {Navigation, TablePagination} from "../../lib";
 import {Card} from "lib/index";
 
 interface UsingTablePaginationProps<RecordType = any> {
     url: string;
+    autoUpdate?: any;
     isPagination?: boolean;
     isSearch?: boolean;
     isCard?: boolean;
@@ -16,6 +17,7 @@ interface UsingTablePaginationProps<RecordType = any> {
 const UsingTablePagination: React.FC<UsingTablePaginationProps> = (
     {
         url,
+        autoUpdate,
         isPagination = true,
         isSearch = true,
         isCard = true,
@@ -48,6 +50,11 @@ const UsingTablePagination: React.FC<UsingTablePaginationProps> = (
                     ...params,
                 }) : null
     });
+
+    useEffect(() => {
+        if (autoUpdate)
+            fetch(pagination)
+    }, [autoUpdate])
 
     const Wrapper = (child: any) => isCard ?
         <Card>{child}</Card> : child;
