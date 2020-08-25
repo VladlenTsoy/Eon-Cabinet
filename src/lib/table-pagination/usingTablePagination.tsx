@@ -54,7 +54,7 @@ const UsingTablePagination: React.FC<UsingTablePaginationProps> = (
     useEffect(() => {
         if (autoUpdate)
             fetch(pagination)
-    }, [autoUpdate])
+    }, [autoUpdate, fetch, pagination])
 
     const Wrapper = (child: any) => isCard ?
         <Card>{child}</Card> : child;
