@@ -3,10 +3,17 @@ import styled from "styled-components";
 
 const TabsStyled = styled.div`
   display: flex;
+  
+  @media (max-width: 480px) {
+    flex-direction: column;
+  }
 `
 
 const MenuStyled = styled.div`
-  
+  @media (max-width: 480px) {
+    display: flex;
+    overflow-x: auto;
+  }
 `
 
 interface ItemStyledProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -15,19 +22,31 @@ interface ItemStyledProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const ItemStyled: React.FC<ItemStyledProps> = styled.div<ItemStyledProps>`
   padding: 0.75rem 1rem;
-  background: ${props => props.active ? '#ffffff' : '#ffffff73'};
-  margin-bottom: 0.25rem;
+  background: ${props => props.active ? props.theme['@component-background'] : `${props.theme['@component-background']}73`};
+  color: ${props => props.active ? props.theme.color_main : props.theme.color_second};
+  margin-bottom: 0.3rem;
   box-shadow: ${props => props.active ? '0 5px 10px 0 rgba(0,0,0,0.1)' : 'none'};
   white-space: nowrap;
   border-radius: 10px;
   font-size: 16px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
+  
+  @media (max-width: 480px) {
+    :not(:last-child) {
+      margin-right: 0.5rem;
+    }
+  }
 `
 
 const ContainerStyled = styled.div`
   padding-left: 1rem;
   width: 100%;
+  
+  @media (max-width: 480px) {
+    padding-top: 1rem;
+    padding-left: 0;
+  }
 `
 
 interface TabStyledProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -69,6 +88,7 @@ const Tabs: React.FC<TabsProps> = ({defaultValue = null, children}) => {
         </MenuStyled>
         <ContainerStyled>
             {React.Children.map(children, (child: any) =>
+                visible === child.key &&
                 <TabStyled key={child.key} visible={visible === child.key} className="animated fadeIn">
                     {child}
                 </TabStyled>
