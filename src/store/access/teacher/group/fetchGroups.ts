@@ -5,7 +5,7 @@ import {Group} from "../../../../lib/types/teacher/Group";
 
 interface ArgProps {
     page?: number
-    categoryId: number | string
+    categoryId: number
 }
 
 type ReturnedType = {
@@ -18,28 +18,16 @@ type ReturnedType = {
 
 export const fetchGroups = createAsyncThunk<ReturnedType, ArgProps, TeacherThunkProps>(
     'teacher/groups/fetch',
-    async ({page= 1, categoryId}, {signal}) => {
-        return await apiRequest('get', `teacher/groups/${categoryId}`, {signal});
+    async ({page = 1, categoryId}, {signal}) => {
+        return await apiRequest('get', `teacher/groups/${categoryId}`, {signal, params: {page}});
     },
     {
-        condition({page= 1}, {getState}) {
+        condition({page = 1, categoryId}, {getState}) {
             const {group} = getState();
-            if(group.current_page === 0) return true
-
-            // 0 15 0
-            // 30 30 43
-            //   (4 * 15)
-            // 30  45  43
-            // group.total > page * group.page_size
-
-            // if (
-            //     group.ids.length !== 0
-                // &&
-                // (
-                //     group.ids.length >= (group.page_size * page) &&
-                //     group.ids.length > group.total
-                // )
-            // ) return false
+            if(!group.categories[categoryId]) return true
+            const {current_page = 0, last_page = 0} = group.categories[categoryId]
+            if (!current_page) return true
+            if (current_page >= last_page) return false
         }
     }
 )

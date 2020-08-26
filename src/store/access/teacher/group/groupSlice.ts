@@ -16,20 +16,22 @@ export interface StateProps {
     isSaved: boolean
 
     loading: boolean
-    total: number
-    current_page: number
-    last_page: number
     page_size: number
+    categories: {
+        [categoryId: number]: {
+            loading?: boolean
+            total?: number
+            current_page?: number
+            last_page?: number
+        }
+    }
 }
 
 const initialState = groupAdapter.getInitialState<StateProps>({
     isSaved: false,
-
-    loading: true,
-    total: 0,
-    current_page: 0,
-    last_page: 0,
-    page_size: 0,
+    loading: false,
+    page_size: 15,
+    categories: []
 });
 
 const groupSlice = createSlice({
@@ -43,18 +45,20 @@ const groupSlice = createSlice({
     },
     extraReducers: (builder) => {
         // Загрузка групп
-        builder.addCase(fetchGroups.pending, (state) => {
-            state.loading = true
+        builder.addCase(fetchGroups.pending, (state, action) => {
+            const {categoryId} = action.meta.arg
+            state.categories[categoryId] = {...state.categories[categoryId] || {}, loading: true}
         })
         builder.addCase(fetchGroups.fulfilled, (state, action) => {
-            groupAdapter.upsertMany(state, action.payload.data)
-            state.total = action.payload.total
-            state.current_page = action.payload.current_page
-            state.last_page = action.payload.last_page
-            state.loading = false
+            const {categoryId} = action.meta.arg
+            const {total, last_page, current_page, data} = action.payload
+
+            groupAdapter.upsertMany(state, data)
+            state.categories[categoryId] = {total, current_page, last_page, loading: false}
         })
-        builder.addCase(fetchGroups.rejected, (state) => {
-            state.loading = false
+        builder.addCase(fetchGroups.rejected, (state, action) => {
+            const {categoryId} = action.meta.arg
+            state.categories[categoryId] = {...state.categories[categoryId] || {}, loading: false}
         })
 
         // Загрузка группы
@@ -63,7 +67,7 @@ const groupSlice = createSlice({
         })
         builder.addCase(fetchGroup.fulfilled, (state, action) => {
             groupAdapter.upsertMany(state, action.payload.data)
-            state.total = action.payload.total
+            // state.total = action.payload.total
             state.loading = false
         })
         builder.addCase(fetchGroup.rejected, (state) => {
