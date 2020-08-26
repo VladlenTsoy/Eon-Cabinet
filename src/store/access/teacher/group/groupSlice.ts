@@ -75,41 +75,57 @@ const groupSlice = createSlice({
         })
 
         // Создания группы
-        builder.addCase(createGroup.pending, (state) => {
-            state.loading = true;
+        builder.addCase(createGroup.pending, (state, action) => {
+            const categoryId = Number(action.meta.arg.category_id)
+            state.categories[categoryId] = {...state.categories[categoryId] || {}, loading: true}
         })
         builder.addCase(createGroup.fulfilled, (state, action) => {
+            const categoryId = Number(action.meta.arg.category_id)
             if (action.payload?.id)
                 groupAdapter.addOne(state, action.payload)
-            state.loading = false;
+            state.categories[categoryId] = {...state.categories[categoryId] || {}, loading: false}
         })
-        builder.addCase(createGroup.rejected, (state) => {
-            state.loading = false;
+        builder.addCase(createGroup.rejected, (state, action) => {
+            const categoryId = Number(action.meta.arg.category_id)
+            state.categories[categoryId] = {...state.categories[categoryId] || {}, loading: false}
         })
 
         // Редактированние группы
-        builder.addCase(updateGroup.pending, (state) => {
-            state.loading = true;
+        builder.addCase(updateGroup.pending, (state, action) => {
+            const categoryId = Number(action.meta.arg.data.category_id)
+            state.categories[categoryId] = {...state.categories[categoryId] || {}, loading: true}
         })
         builder.addCase(updateGroup.fulfilled, (state, action) => {
+            const categoryId = Number(action.meta.arg.data.category_id)
             if (action.payload?.id)
                 groupAdapter.updateOne(state, {id: action.payload.id, changes: action.payload})
-            state.loading = false;
+            state.categories[categoryId] = {...state.categories[categoryId] || {}, loading: false}
         })
-        builder.addCase(updateGroup.rejected, (state) => {
-            state.loading = false;
+        builder.addCase(updateGroup.rejected, (state, action) => {
+            const categoryId = Number(action.meta.arg.data.category_id)
+            state.categories[categoryId] = {...state.categories[categoryId] || {}, loading: false}
         })
 
         // Удаление группы
-        builder.addCase(deleteGroup.pending, (state) => {
-            state.loading = true;
+        builder.addCase(deleteGroup.pending, (state, action) => {
+            const id = Number(action)
+            const categoryId = Object.values(state.entities).find(group => group && group.id === id)?.category.id
+            if (categoryId)
+                state.categories[categoryId] = {...state.categories[categoryId] || {}, loading: true}
         })
         builder.addCase(deleteGroup.fulfilled, (state, action) => {
             groupAdapter.removeOne(state, action.payload)
-            state.loading = false
+
+            const id = Number(action)
+            const categoryId = Object.values(state.entities).find(group => group && group.id === id)?.category.id
+            if (categoryId)
+                state.categories[categoryId] = {...state.categories[categoryId] || {}, loading: false}
         })
-        builder.addCase(deleteGroup.rejected, (state) => {
-            state.loading = false;
+        builder.addCase(deleteGroup.rejected, (state, action) => {
+            const id = Number(action)
+            const categoryId = Object.values(state.entities).find(group => group && group.id === id)?.category.id
+            if (categoryId)
+                state.categories[categoryId] = {...state.categories[categoryId] || {}, loading: false}
         })
     }
 });
