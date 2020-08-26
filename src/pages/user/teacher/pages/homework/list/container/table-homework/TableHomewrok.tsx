@@ -7,10 +7,6 @@ import {homeworkSelector} from "../../../../../../../../store/access/teacher/hom
 import {fetchHomeworkByCategoryId} from "../../../../../../../../store/access/teacher/homework/fetchHomeworkByCategoryId";
 import {disciplineSelector} from "../../../../../../../../store/access/teacher/discipline/disciplineSlice";
 
-interface TableHomeworkProps {
-    categoryId: number;
-}
-
 const ListStyled = styled.div`
   display: grid;
   gap: 2rem;
@@ -21,6 +17,10 @@ const ListStyled = styled.div`
     gap: 1rem;  
   }
 `;
+
+interface TableHomeworkProps {
+    categoryId: number;
+}
 
 const TableHomework: React.FC<TableHomeworkProps> = ({categoryId}) => {
     const {activeDisciplineId} = useSelector(disciplineSelector);
@@ -44,4 +44,4 @@ const TableHomework: React.FC<TableHomeworkProps> = ({categoryId}) => {
     </ListStyled>;
 };
 
-export default React.memo(TableHomework);
+export default React.memo<TableHomeworkProps>(TableHomework);

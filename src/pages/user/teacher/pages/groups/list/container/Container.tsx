@@ -1,28 +1,30 @@
 import React from 'react';
 import {useSelector} from "react-redux";
 import {categorySelector} from "../../../../../../../store/access/teacher/category/categorySlice";
-import {useScreenWindow} from "../../../../../../../hooks/use-screen-window.effect";
+// import {useScreenWindow} from "../../../../../../../hooks/use-screen-window.effect";
 import GroupsGrid from "./groups-grid/GroupsGrid";
-import {useLoadingGroups} from "../../../../../../../store/access/teacher/group/groupSelectors";
-import {Spin, Tabs, TabPane} from "../../../../../../../lib/ui";
+// import {useLoadingGroups} from "../../../../../../../store/access/teacher/group/groupSelectors";
+// import {Spin} from "../../../../../../../lib/ui";
 
+import Tabs from "../../../../../../../lib/components/tabs/Tabs";
+import Tab from "../../../../../../../lib/components/tabs/Tab";
 
 interface ContainerProps {
 }
 
 const Container: React.FC<ContainerProps> = () => {
     const {categories} = useSelector(categorySelector);
-    const [, isBreakpoint] = useScreenWindow({breakpoint: 'sm'});
-    const loading = useLoadingGroups()
+    // const [, isBreakpoint] = useScreenWindow({breakpoint: 'sm'});
+    // const loading = useLoadingGroups()
 
-    return <Tabs tabPosition={isBreakpoint ? 'top' : 'left'} type="card" style={{minHeight: '200px'}}>
+    return <Tabs>
         {categories
             .map((category) =>
-                <TabPane tab={category.title} key={`category-${category.id}`}>
-                    <Spin spinning={loading} tip="Загрузка...">
-                        <GroupsGrid categoryId={category.id}/>
-                    </Spin>
-                </TabPane>
+                <Tab title={category.title} key={`category-${category.id}`}>
+                    {/*<Spin spinning={loading} tip="Загрузка...">*/}
+                    <GroupsGrid categoryId={category.id}/>
+                    {/*</Spin>*/}
+                </Tab>
             )}
     </Tabs>;
 };
