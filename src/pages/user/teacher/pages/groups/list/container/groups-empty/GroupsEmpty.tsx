@@ -7,7 +7,7 @@ const GroupsEmpty = () => {
         description={
             <>
                 <DescriptionTitle>Пусто</DescriptionTitle>
-                <span>Создайте группу для добавление учеников</span>
+                <span>Создайте группу для добавления учеников</span>
             </>
         }
     >
