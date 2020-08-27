@@ -2,19 +2,19 @@ import React, {useEffect} from 'react';
 import {CardStatistic} from "../../../../../../../../lib/ui";
 import {TeamOutlined} from "@ant-design/icons";
 import {useTeacherDispatch} from "../../../../../../../../store/access/teacher/store";
-import {fetchGroups} from "../../../../../../../../store/access/teacher/group/fetchGroups";
 import {
-    useLoadingGroups,
-    useSelectTotalGroups
+    useCountStatisticGroups,
+    useLoadingStatisticGroups
 } from "../../../../../../../../store/access/teacher/group/groupSelectors";
+import {fetchStatisticsGroups} from "../../../../../../../../store/access/teacher/group/fetchStatisticsGroups";
 
 const Groups = () => {
-    const total = useSelectTotalGroups()
-    const loading = useLoadingGroups()
+    const loading = useLoadingStatisticGroups()
+    const count = useCountStatisticGroups()
     const dispatch = useTeacherDispatch()
 
     useEffect(() => {
-        const promise = dispatch(fetchGroups({categoryId: 1}))
+        const promise = dispatch(fetchStatisticsGroups())
         return () => {
             promise.abort()
         }
@@ -25,7 +25,7 @@ const Groups = () => {
         icon={<TeamOutlined/>}
         theme="success"
         loading={loading}
-        count={total}/>;
+        count={count}/>;
 };
 
 export default Groups;

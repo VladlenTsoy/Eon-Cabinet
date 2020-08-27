@@ -1,23 +1,23 @@
 import {Select} from "antd";
 import React, {useEffect} from "react";
 import {FormItem} from "../../../../../../../../../../lib/ui";
-import {fetchGroups} from "../../../../../../../../../../store/access/teacher/group/fetchGroups";
 import {useTeacherDispatch} from "../../../../../../../../../../store/access/teacher/store";
 import {useParams} from "react-router-dom";
 import {ParamsProps} from "../../../../Group";
 import {
-    useLoadingGroups,
-    useSelectAllGroups,
+    useLoadingSelectsGroupsByCategoryId,
+    useAllSelectsGroupsByCategoryId,
     useSelectGroupById
 } from "../../../../../../../../../../store/access/teacher/group/groupSelectors";
+import {fetchSelectsGroups} from "../../../../../../../../../../store/access/teacher/group/fetchSelectsGroups";
 
 const {Option} = Select;
 
 const SelectGroup: React.FC = () => {
     const {id} = useParams<ParamsProps>();
     const group = useSelectGroupById(Number(id));
-    const groups = useSelectAllGroups()
-    const loading = useLoadingGroups()
+    const groups = useAllSelectsGroupsByCategoryId(group?.category.id || 0)
+    const loading = useLoadingSelectsGroupsByCategoryId(group?.category.id || 0)
     const dispatch = useTeacherDispatch();
 
     const filter = (input: string, option: any) =>
@@ -25,7 +25,7 @@ const SelectGroup: React.FC = () => {
 
     useEffect(() => {
         if (group?.category.id) {
-            const promise = dispatch(fetchGroups({categoryId: group?.category.id}));
+            const promise = dispatch(fetchSelectsGroups({groupId: group?.id, categoryId: group?.category.id}));
             return () => {
                 promise.abort();
             }

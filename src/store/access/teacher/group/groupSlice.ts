@@ -6,6 +6,8 @@ import {createGroup} from "./createGroup";
 import {updateGroup} from "./updateGroup";
 import {deleteGroup} from "./deleteGroup";
 import {fetchGroup} from "./fetchGroup";
+import {fetchStatisticsGroups} from "./fetchStatisticsGroups";
+import {fetchSelectsGroups} from "./fetchSelectsGroups";
 
 //
 export const groupAdapter = createEntityAdapter<Group>({
@@ -14,7 +16,20 @@ export const groupAdapter = createEntityAdapter<Group>({
 
 export interface StateProps {
     isSaved: boolean
-
+    statistics: {
+        loading: boolean
+        count: number
+    }
+    selects: {
+        [categoryId: number]: {
+            loading?: boolean
+            force?: boolean
+            data?: {
+                id: Group['id'],
+                title: Group['title']
+            }[]
+        }
+    }
     loading: boolean
     page_size: number
     categories: {
@@ -29,6 +44,11 @@ export interface StateProps {
 
 const initialState = groupAdapter.getInitialState<StateProps>({
     isSaved: false,
+    selects: [],
+    statistics: {
+        loading: false,
+        count: 0
+    },
     loading: false,
     page_size: 15,
     categories: []
@@ -83,6 +103,8 @@ const groupSlice = createSlice({
             const categoryId = Number(action.meta.arg.category_id)
             if (action.payload?.id)
                 groupAdapter.addOne(state, action.payload)
+            state.statistics.count++
+            state.selects[categoryId] = {...state.selects[categoryId] || {}, force: true}
             state.categories[categoryId] = {...state.categories[categoryId] || {}, loading: false}
         })
         builder.addCase(createGroup.rejected, (state, action) => {
@@ -99,6 +121,7 @@ const groupSlice = createSlice({
             const categoryId = Number(action.meta.arg.data.category_id)
             if (action.payload?.id)
                 groupAdapter.updateOne(state, {id: action.payload.id, changes: action.payload})
+            state.selects[categoryId] = {...state.selects[categoryId] || {}, force: true}
             state.categories[categoryId] = {...state.categories[categoryId] || {}, loading: false}
         })
         builder.addCase(updateGroup.rejected, (state, action) => {
@@ -118,14 +141,43 @@ const groupSlice = createSlice({
 
             const id = Number(action)
             const categoryId = Object.values(state.entities).find(group => group && group.id === id)?.category.id
-            if (categoryId)
+            state.statistics.count--
+            if (categoryId) {
+                state.selects[categoryId] = {...state.selects[categoryId] || {}, force: true}
                 state.categories[categoryId] = {...state.categories[categoryId] || {}, loading: false}
+            }
         })
         builder.addCase(deleteGroup.rejected, (state, action) => {
             const id = Number(action)
             const categoryId = Object.values(state.entities).find(group => group && group.id === id)?.category.id
             if (categoryId)
                 state.categories[categoryId] = {...state.categories[categoryId] || {}, loading: false}
+        })
+
+        // Загрузка статистики
+        builder.addCase(fetchStatisticsGroups.pending, state => {
+            state.statistics.loading = true
+        })
+        builder.addCase(fetchStatisticsGroups.fulfilled, (state, action) => {
+            state.statistics.count = action.payload
+            state.statistics.loading = false
+        })
+        builder.addCase(fetchStatisticsGroups.rejected, state => {
+            state.statistics.loading = false
+        })
+
+        // Загрузка групп для формы
+        builder.addCase(fetchSelectsGroups.pending, (state, action) => {
+            const {categoryId} = action.meta.arg
+            state.selects[categoryId] = {...state.selects[categoryId] || {}, loading: true}
+        })
+        builder.addCase(fetchSelectsGroups.fulfilled, (state, action) => {
+            const {categoryId} = action.meta.arg
+            state.selects[categoryId] = {...state.selects[categoryId] || {}, loading: false, data: action.payload}
+        })
+        builder.addCase(fetchSelectsGroups.rejected, (state, action) => {
+            const {categoryId} = action.meta.arg
+            state.selects[categoryId] = {...state.selects[categoryId] || {}, loading: false}
         })
     }
 });

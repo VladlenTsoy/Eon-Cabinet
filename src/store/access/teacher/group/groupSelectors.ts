@@ -1,8 +1,7 @@
 import {useSelector} from "react-redux"
 import {TeacherState} from "../store"
-import {getGroupById, selectAllGroups, selectTotalGroups} from "./groupSlice"
+import {getGroupById, selectAllGroups} from "./groupSlice"
 import {Group} from "../../../../lib/types/teacher/Group"
-import {groupBy} from "lodash"
 import {Category} from "../../../../lib/types/common/Category";
 
 // Загрузка групп
@@ -29,11 +28,13 @@ export const useSelectGroupsByCategoryId = (categoryId: Category['id']) => {
     return groups.filter(group => group.category.id === categoryId)
 }
 
-// Вывод всех категории
-export const useSelectCategories = () => {
-    const groups = useSelectAllGroups()
-    return groupBy(groups, (group) => group.category.id)
-}
+// Загрузка статистики групп
+export const useLoadingStatisticGroups = (): boolean => useSelector((state: TeacherState) => state.group.statistics.loading)
+// Загрузка кол-во групп
+export const useCountStatisticGroups = (): number => useSelector((state: TeacherState) => state.group.statistics.count)
 
-// Вывод кол-во крупп
-export const useSelectTotalGroups = () => useSelector(selectTotalGroups)
+// Загрузка групп по категории для select
+export const useLoadingSelectsGroupsByCategoryId = (categoryId: Category['id']): boolean => useSelector((state: TeacherState) => state.group.selects[categoryId]?.loading || false)
+
+// групп по категории для select
+export const useAllSelectsGroupsByCategoryId = (categoryId: Category['id']) => useSelector((state: TeacherState) => state.group.selects[categoryId]?.data || [])
