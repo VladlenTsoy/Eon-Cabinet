@@ -7,11 +7,11 @@ import {locale} from "moment";
 import {ConfigProvider} from 'antd';
 import ruRU from 'antd/es/locale-provider/ru_RU';
 import enUs from 'antd/es/locale-provider/en_US';
-import cookie from 'js-cookie';
 import 'moment/locale/ru'
 import 'moment/locale/en-ie'
+import {getCookie} from "../../../utils/cookie";
 
-const browserLanguage = cookie.get('language') || navigator.language;
+const browserLanguage = getCookie('language') || navigator.language;
 
 const LanguageProvider: React.FC = ({children}) => {
     const language = useSelector(languageSelector);

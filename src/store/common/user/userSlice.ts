@@ -6,10 +6,10 @@ import {logoutUser} from "./logoutUser";
 import {authUser} from "./authUser";
 import {registrationUser} from "./registrationUser";
 import {updateToken} from "../../../utils/api";
-import cookie from "js-cookie";
 import {verificationCodeConfirmEmail} from "./email-confirmation/verificationCodeConfirmEmail";
 import {updateImageUser} from "./updateImageUser";
 import {User} from "../../../lib/types/common/User";
+import {getCookie} from "../../../utils/cookie";
 
 interface StateProps {
     token: string | null;
@@ -18,7 +18,7 @@ interface StateProps {
 }
 
 const initialState: StateProps = {
-    token: cookie.get('token_access') || null,
+    token: getCookie('token_access') || null,
     detail: null,
     loading: true,
 }
@@ -79,7 +79,7 @@ const userSlice = createSlice({
         builder.addCase(logoutUser.pending, (state) => {
             state.loading = true;
         })
-        builder.addCase(logoutUser.fulfilled, (state, action) => {
+        builder.addCase(logoutUser.fulfilled, (state) => {
             updateToken(null);
             state.token = null;
             state.detail = null;

@@ -135,7 +135,7 @@ export const groupSelector = (state: TeacherState) => state.group;
 // Can create a set of memoized selectors based on the location of this entity state
 export const {
     selectById: getGroupById,
-    selectIds: selectGroupIds,
+    // selectIds: selectGroupIds,
     selectEntities: selectGroupEntities,
     selectAll: selectAllGroups,
     selectTotal: selectTotalGroups

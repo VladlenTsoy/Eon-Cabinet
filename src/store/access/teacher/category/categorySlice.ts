@@ -1,34 +1,57 @@
-import {createSlice} from '@reduxjs/toolkit'
+import {createEntityAdapter, createSlice, PayloadAction} from '@reduxjs/toolkit'
 import {TeacherState} from "../store";
 import {fetchCategories} from "./fetchCategories";
 import {Category} from "../../../../lib/types/common/Category";
+import {getCookie, setCookie} from "../../../../utils/cookie";
+
+export const categoryAdapter = createEntityAdapter<Category>()
 
 interface StateProps {
-    categories: Category[];
-    fetchLoading: boolean;
+    loading: boolean
+    activeCategoryId: Category['id'] | null
 }
 
-const initialState: StateProps = {
-    categories: [],
-    fetchLoading: true,
-};
+const initialState = categoryAdapter.getInitialState<StateProps>({
+    loading: true,
+    activeCategoryId: getCookie('active_category_id') ? Number(getCookie('active_category_id')) : null
+});
 
 const categorySlice = createSlice({
     name: 'category',
     initialState,
-    reducers: {},
+    reducers: {
+        changeActiveCategoryId: (state, action: PayloadAction<Category['id']>) => {
+            state.activeCategoryId = action.payload
+            setCookie('active_category_id', String(action.payload))
+        }
+    },
     extraReducers: (builder) => {
+        // Загрука категорий
         builder.addCase(fetchCategories.pending, state => {
-            state.fetchLoading = true
+            state.loading = true
         })
         builder.addCase(fetchCategories.fulfilled, (state, action) => {
             // Add user to the state array
-            state.categories = action.payload;
-            state.fetchLoading = false;
+            categoryAdapter.upsertMany(state, action.payload)
+            state.loading = false
+        })
+        builder.addCase(fetchCategories.rejected, state => {
+            state.loading = false
         })
     }
 });
 
 export const categorySelector = (state: TeacherState) => state.category;
+
+// Can create a set of memoized selectors based on the location of this entity state
+export const {
+    // selectById: getCategoryById,
+    selectIds: selectCategoryIds,
+    selectEntities: selectCategoryEntities,
+    selectAll: selectAllCategories,
+    selectTotal: selectTotalCategories
+} = categoryAdapter.getSelectors<TeacherState>(state => state.category)
+
+export const {changeActiveCategoryId} = categorySlice.actions;
 
 export default categorySlice.reducer;

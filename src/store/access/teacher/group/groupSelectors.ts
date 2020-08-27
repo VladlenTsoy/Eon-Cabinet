@@ -11,8 +11,10 @@ export const useLoadingGroups = () => useSelector((state: TeacherState) => state
 // Загрузка групп по категории
 export const useLoadingGroupsByCategoryId = (categoryId: Category['id']): boolean => useSelector((state: TeacherState) => state.group.categories[categoryId]?.loading || false)
 
-// Загрузка групп по категории
+// Последняя страница по категории
 export const useLastPageGroupsByCategoryId = (categoryId: Category['id']): number => useSelector((state: TeacherState) => state.group.categories[categoryId]?.last_page || 0)
+
+// Текущая страница по категории
 export const useCurrentPageGroupsByCategoryId = (categoryId: Category['id']): number => useSelector((state: TeacherState) => state.group.categories[categoryId]?.current_page || 1)
 
 // Вывод группы по ID

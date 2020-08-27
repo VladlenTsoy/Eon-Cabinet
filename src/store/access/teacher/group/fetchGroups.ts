@@ -27,7 +27,7 @@ export const fetchGroups = createAsyncThunk<ReturnedType, ArgProps, TeacherThunk
             if(!group.categories[categoryId]) return true
             const {current_page = 0, last_page = 0} = group.categories[categoryId]
             if (!current_page) return true
-            if (current_page >= last_page) return false
+            if (current_page >= page || current_page >= last_page) return false
         }
     }
 )

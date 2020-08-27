@@ -1,12 +1,11 @@
 import React, {useState} from "react";
 import {Select, Form, Button} from "antd";
-import {useSelector} from "react-redux";
 import {FormItem} from "lib/ui";
-import {categorySelector} from "store/access/teacher/category/categorySlice";
 import {updateGroup} from "store/access/teacher/group/updateGroup";
 import {createGroup} from "store/access/teacher/group/createGroup";
 import {Group} from "../../../../../../../../../lib/types/teacher/Group";
 import {useTeacherDispatch} from "../../../../../../../../../store/access/teacher/store";
+import {useSelectAllCategories} from "../../../../../../../../../store/access/teacher/category/categorySelectors";
 
 const {Option} = Select;
 
@@ -16,7 +15,7 @@ interface FormItemsProps {
 }
 
 const FormItems: React.FC<FormItemsProps> = ({group, close}) => {
-    const {categories} = useSelector(categorySelector);
+    const categories = useSelectAllCategories();
     const [loading, setLoading] = useState(false);
     const dispatch = useTeacherDispatch();
 

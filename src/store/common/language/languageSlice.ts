@@ -1,7 +1,7 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {TeacherState} from "../../access/teacher/store";
 import {fetchLanguage} from "./fetchLanguage";
-import cookie from "js-cookie";
+import {setCookie} from "../../../utils/cookie";
 
 export interface Language {
     id: string;
@@ -43,7 +43,7 @@ const languageSlice = createSlice({
             // state.languages = action.payload.languages;
             state.loading = false;
             //
-            cookie.set('language', state.abbr, { expires: 7 });
+            setCookie('language', state.abbr, { expires: 7 });
         }
     }
 });

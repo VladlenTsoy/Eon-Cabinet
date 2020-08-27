@@ -1,14 +1,14 @@
 import React, {useEffect} from 'react';
 import {useSelector} from "react-redux";
-import {categorySelector} from "../../../../../store/access/teacher/category/categorySlice";
 import {fetchCategories} from "../../../../../store/access/teacher/category/fetchCategories";
 import {disciplineSelector} from "../../../../../store/access/teacher/discipline/disciplineSlice";
 import {Loader} from "../../../../../lib/ui";
 import {useTeacherDispatch} from "../../../../../store/access/teacher/store";
+import {useLoadingCategories} from "../../../../../store/access/teacher/category/categorySelectors";
 
 const CategoriesProvider: React.FC = ({children}) => {
     const discipline = useSelector(disciplineSelector);
-    const category = useSelector(categorySelector);
+    const loading = useLoadingCategories()
     const dispatch = useTeacherDispatch();
 
     useEffect(() => {
@@ -20,7 +20,7 @@ const CategoriesProvider: React.FC = ({children}) => {
         }
     }, [dispatch, discipline.activeDisciplineId]);
 
-    if (category.fetchLoading)
+    if (loading)
         return <Loader text="Загрузка категорий..."/>;
 
     return <>{children}</>

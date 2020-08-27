@@ -5,11 +5,11 @@ import {useDispatch, useSelector} from "react-redux";
 import {SaveOutlined} from "@ant-design/icons";
 import {groupSelector} from "store/access/teacher/group/groupSlice";
 import {useParams} from "react-router";
-import {categorySelector} from "../../../../../../../../store/access/teacher/category/categorySlice";
 import {createHomework} from "../../../../../../../../store/access/teacher/homework/createHomework";
 import {updateHomework} from "../../../../../../../../store/access/teacher/homework/updateHomework";
 import {ParamsProps} from "../../../../groups/more/Group";
 import {useSelectGroupById} from "../../../../../../../../store/access/teacher/group/groupSelectors";
+import {useSelectAllCategories} from "../../../../../../../../store/access/teacher/category/categorySelectors";
 
 const {TextArea} = Input;
 
@@ -21,7 +21,7 @@ interface FormItemsProps {
 }
 
 const FormItems: React.FC<FormItemsProps> = ({homework, close, fetch, exercises}) => {
-    const {categories} = useSelector(categorySelector);
+    const categories = useSelectAllCategories();
     const {duplicate} = useParams();
     // TODO - note group id params
     const {id} = useParams<ParamsProps>();

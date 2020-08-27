@@ -1,13 +1,13 @@
 import axios from "axios";
 import {message} from "./message";
-import cookie from "js-cookie";
 import {Discipline} from "../lib/types/common/Discipline";
+import {getCookie, removeCookie, setCookie} from "./cookie";
 
 const CancelToken = axios.CancelToken;
 const DOMAIN_API = process.env.NODE_ENV === 'production' ? 'https://api.eon.uz/api' : 'http://192.168.1.37:8000/api';
 // export const DOMAIN_API = process.env.NODE_ENV === 'production' ? 'https://api.eon.uz/api' : 'http://localhost:3001';
 
-const TOKEN = cookie.get('token_access');
+const TOKEN = getCookie('token_access');
 
 export const api = {
     token: TOKEN || null,
@@ -22,9 +22,9 @@ export const api = {
 export const updateToken = (token: string | null) => {
     api.token = token;
     if (token)
-        cookie.set('token_access', token, {expires: 30 });
+        setCookie('token_access', token, {expires: 30 });
     else
-        cookie.remove('token_access');
+        removeCookie('token_access');
     api.user.defaults.headers.common["Authorization"] = "Bearer " + token
     api.teacher.defaults.headers.common["Authorization"] = "Bearer " + token
 }

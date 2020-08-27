@@ -58,13 +58,15 @@ const TabStyled: React.FC<TabStyledProps> = styled.div<TabStyledProps>`
 `
 
 interface TabsProps {
-    defaultValue?: string
+    defaultValue?: string | null
+    onChange?: (key: string) => void
 }
 
-const Tabs: React.FC<TabsProps> = ({defaultValue = null, children}) => {
+const Tabs: React.FC<TabsProps> = ({defaultValue = null, children, onChange}) => {
     const [visible, setVisible] = useState<string | null>(defaultValue)
 
     const clickHandler = (key: string) => {
+        onChange && onChange(key)
         setVisible(key)
     }
 

@@ -1,8 +1,8 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {apiRequest} from "utils/api";
-import cookie from "js-cookie";
 import {User} from "../../../lib/types/common/User";
 import {CommonThunkProps} from "../store";
+import {getCookie, removeCookie} from "../../../utils/cookie";
 
 type ReturnedType = User
 
@@ -12,12 +12,12 @@ export const fetchUser = createAsyncThunk<ReturnedType, undefined, CommonThunkPr
         return await apiRequest('get', `/`, {signal})
             .catch((e) => {
                 if (e.message === 'error_token')
-                    cookie.remove('token_access');
+                    removeCookie('token_access');
             }) as User;
     },
     {
         condition(_) {
-            if (!cookie.get('token_access'))
+            if (!getCookie('token_access'))
                 return false;
         },
         dispatchConditionRejection: true

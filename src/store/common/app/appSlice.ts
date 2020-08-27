@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {CommonState} from "../store";
-import cookie from "js-cookie";
+import {getCookie, setCookie} from "../../../utils/cookie";
 
 interface StateProps {
     title: string;
@@ -14,7 +14,7 @@ const initialState: StateProps = {
     title: 'Моя страница',
     action: null,
     spin: false,
-    isDark: cookie.get('is_dark') === '1',
+    isDark: getCookie('is_dark') === '1',
     setting: null,
 };
 
@@ -32,7 +32,7 @@ const appSlice = createSlice({
             state.spin = action.payload
         },
         changeIsDark(state, action: PayloadAction<StateProps["isDark"]>) {
-            cookie.set('is_dark', action.payload ? '1' : '0')
+            setCookie('is_dark', action.payload ? '1' : '0')
             state.isDark = action.payload
         },
     }
