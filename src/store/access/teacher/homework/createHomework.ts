@@ -1,10 +1,23 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {apiRequest} from "../../../../utils/api";
 import {message} from "../../../../utils/message";
+import {TeacherThunkProps} from "../store";
+import {Homework} from "../../../../lib/types/teacher/Homework";
 
-export const createHomework: any = createAsyncThunk<string, any, any>(
+interface AgrProps {
+    duplicate: boolean
+    data: {
+        level: number
+        category_id: string
+        method_id: number | undefined
+    }
+}
+
+type ReturnedType = Homework
+
+export const createHomework = createAsyncThunk<ReturnedType, AgrProps, TeacherThunkProps>(
     'teacher/homework/create',
-    async ({duplicate, data}, {getState}: any) => {
+    async ({duplicate, data}, {getState}) => {
         //
         const {discipline} = getState();
         data.method_id = discipline.activeDisciplineId;

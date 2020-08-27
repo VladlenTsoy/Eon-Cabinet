@@ -1,11 +1,13 @@
 import React, {useEffect} from 'react';
 import {fetchHomeworkByCategoryId} from "../../../../../../../../../../store/access/teacher/homework/fetchHomeworkByCategoryId";
-import {useDispatch, useSelector} from "react-redux";
-import {disciplineSelector} from "../../../../../../../../../../store/access/teacher/discipline/disciplineSlice";
 import {LoadingBlock} from "../../../../../../../../../../lib/ui";
-import {homeworkSelector} from "../../../../../../../../../../store/access/teacher/homework/homeworkSlice";
 import FormItems from "./form-items/FormItems";
 import Empty from "./empty/Empty";
+import {
+    useLoadingHomeworkByCategoryId,
+    useSelectHomeworkByCategoryId
+} from "../../../../../../../../../../store/access/teacher/homework/homeworkSelector";
+import {useTeacherDispatch} from "../../../../../../../../../../store/access/teacher/store";
 
 interface HomeworkContainerProps {
     categoryId: number;
@@ -13,24 +15,24 @@ interface HomeworkContainerProps {
 }
 
 const HomeworkContainer:React.FC<HomeworkContainerProps> = ({categoryId, close}) => {
-    const {activeDisciplineId} = useSelector(disciplineSelector);
-    const dispatch = useDispatch();
-    const {fetchLoading, categories} = useSelector(homeworkSelector);
+    const dispatch = useTeacherDispatch();
+    const loading = useLoadingHomeworkByCategoryId(categoryId)
+    const homework = useSelectHomeworkByCategoryId(categoryId);
 
     useEffect(() => {
-        const promise = dispatch(fetchHomeworkByCategoryId({categoryId, activeDisciplineId}));
+        const promise = dispatch(fetchHomeworkByCategoryId({categoryId}));
         return () => {
             promise.abort();
         }
-    }, [categoryId, activeDisciplineId, dispatch]);
+    }, [categoryId, dispatch]);
 
-    if(fetchLoading)
+    if(loading)
         return <LoadingBlock title="Загрука домашних заданий..."/>
 
-    if (!fetchLoading && !(categories && categories[categoryId].length))
+    if (homework.length)
         return <Empty/>;
 
-    return <FormItems homework={categories[categoryId]} close={close}/>;
+    return <FormItems homework={homework} close={close}/>;
 };
 
 export default HomeworkContainer;

@@ -1,11 +1,14 @@
 import React, {useEffect} from 'react';
-import {LoadingBlock} from "lib/ui";
+import {Spin} from "lib/ui";
 import styled from "styled-components";
 import CardHomework from "./card-homework/CardHomework";
-import {useDispatch, useSelector} from "react-redux";
-import {homeworkSelector} from "../../../../../../../../store/access/teacher/homework/homeworkSlice";
 import {fetchHomeworkByCategoryId} from "../../../../../../../../store/access/teacher/homework/fetchHomeworkByCategoryId";
-import {disciplineSelector} from "../../../../../../../../store/access/teacher/discipline/disciplineSlice";
+import {useTeacherDispatch} from "../../../../../../../../store/access/teacher/store";
+import {
+    useLoadingHomeworkByCategoryId,
+    useSelectHomeworkByCategoryId
+} from "../../../../../../../../store/access/teacher/homework/homeworkSelector";
+import HomeworkEmpty from "../homework-empty/HomeworkEmpty";
 
 const ListStyled = styled.div`
   display: grid;
@@ -23,25 +26,28 @@ interface TableHomeworkProps {
 }
 
 const TableHomework: React.FC<TableHomeworkProps> = ({categoryId}) => {
-    const {activeDisciplineId} = useSelector(disciplineSelector);
-    const {categories} = useSelector(homeworkSelector);
-    const dispatch = useDispatch();
+    const loading = useLoadingHomeworkByCategoryId(categoryId)
+    const homework = useSelectHomeworkByCategoryId(categoryId);
+    const dispatch = useTeacherDispatch();
 
     useEffect(() => {
-        const promise = dispatch(fetchHomeworkByCategoryId({categoryId, activeDisciplineId}));
+        const promise = dispatch(fetchHomeworkByCategoryId({categoryId}));
         return () => {
             promise.abort('homework fetch abort');
         }
-    }, [activeDisciplineId, categoryId, dispatch]);
+    }, [categoryId, dispatch]);
 
-    if (!categories[categoryId])
-        return <LoadingBlock/>;
-
-    return <ListStyled>
-        {categories[categoryId].map((val: any, key: number) =>
-            <CardHomework homework={val} key={key}/>
-        )}
-    </ListStyled>;
+    return <Spin spinning={loading} tip="Загрузка...">
+        {
+            homework.length ?
+                <ListStyled>
+                    {homework.map((val, key) =>
+                        <CardHomework homework={val} key={key}/>
+                    )}
+                </ListStyled> :
+                <HomeworkEmpty/>
+        }
+    </Spin>
 };
 
 export default React.memo<TableHomeworkProps>(TableHomework);

@@ -1,10 +1,23 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {apiRequest} from "../../../../utils/api";
 import {message} from "../../../../utils/message";
+import {Homework} from "../../../../lib/types/teacher/Homework";
+import {TeacherThunkProps} from "../store";
 
-export const updateHomework: any = createAsyncThunk<string, any, any>(
+interface ArgProps {
+    homeworkId: Homework['id']
+    data: {
+        level: number
+        category_id: string
+        method_id: number | undefined
+    }
+}
+
+type ReturnedType = Homework
+
+export const updateHomework = createAsyncThunk<ReturnedType, ArgProps, TeacherThunkProps>(
     'teacher/homework/update',
-    async ({homeworkId, data}, {getState}: any) => {
+    async ({homeworkId, data}, {getState}) => {
         //
         const {discipline} = getState();
         data.method_id = discipline.activeDisciplineId;
