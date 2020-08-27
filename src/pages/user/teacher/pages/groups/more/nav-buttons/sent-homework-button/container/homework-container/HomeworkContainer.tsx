@@ -1,35 +1,36 @@
 import React, {useEffect} from 'react';
-import {fetchHomeworkByCategoryId} from "../../../../../../../../../../store/access/teacher/homework/fetchHomeworkByCategoryId";
 import {LoadingBlock} from "../../../../../../../../../../lib/ui";
 import FormItems from "./form-items/FormItems";
 import Empty from "./empty/Empty";
 import {
-    useLoadingHomeworkByCategoryId,
-    useSelectHomeworkByCategoryId
+    useLoadingSelectsHomeworkByCategoryId,
+    useAllSelectsHomeworkByCategoryId
 } from "../../../../../../../../../../store/access/teacher/homework/homeworkSelector";
 import {useTeacherDispatch} from "../../../../../../../../../../store/access/teacher/store";
+import {fetchSelectsHomework} from "../../../../../../../../../../store/access/teacher/homework/fetchSelectsHomework";
 
 interface HomeworkContainerProps {
+    groupId: number;
     categoryId: number;
     close: () => void;
 }
 
-const HomeworkContainer:React.FC<HomeworkContainerProps> = ({categoryId, close}) => {
+const HomeworkContainer: React.FC<HomeworkContainerProps> = ({categoryId, groupId, close}) => {
     const dispatch = useTeacherDispatch();
-    const loading = useLoadingHomeworkByCategoryId(categoryId)
-    const homework = useSelectHomeworkByCategoryId(categoryId);
+    const loading = useLoadingSelectsHomeworkByCategoryId(categoryId)
+    const homework = useAllSelectsHomeworkByCategoryId(categoryId);
 
     useEffect(() => {
-        const promise = dispatch(fetchHomeworkByCategoryId({categoryId}));
+        const promise = dispatch(fetchSelectsHomework({categoryId, groupId}));
         return () => {
             promise.abort();
         }
-    }, [categoryId, dispatch]);
+    }, [categoryId, groupId, dispatch]);
 
-    if(loading)
+    if (loading)
         return <LoadingBlock title="Загрука домашних заданий..."/>
 
-    if (homework.length)
+    if (!homework.length)
         return <Empty/>;
 
     return <FormItems homework={homework} close={close}/>;

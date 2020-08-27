@@ -37,7 +37,7 @@ const Container: React.FC<ContainerProps> = ({close}) => {
             subTitle="Не выбрана группа, попробуйте обновить страницу."
         />
 
-    return <HomeworkContainer categoryId={group.category.id} close={close}/>
+    return <HomeworkContainer categoryId={group.category.id} groupId={group.id} close={close}/>
 };
 
 export default Container;

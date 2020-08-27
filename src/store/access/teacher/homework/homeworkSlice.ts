@@ -6,6 +6,7 @@ import {updateHomework} from "./updateHomework";
 import {createHomework} from "./createHomework";
 import {tasksExtraReducers, exercisesState, ExercisesState} from "./exercises/exercises";
 import {Homework} from "../../../../lib/types/teacher/Homework";
+import {fetchSelectsHomework} from "./fetchSelectsHomework";
 
 //
 export const homeworkAdapter = createEntityAdapter<Homework>()
@@ -20,6 +21,13 @@ export interface StateProps {
             last_page?: number
         }
     }
+    selects: {
+        [categoryId: number]: {
+            loading?: boolean
+            force?: boolean
+            data?: Homework[]
+        }
+    }
 
     exercises: ExercisesState
 }
@@ -27,6 +35,7 @@ export interface StateProps {
 const initialState = homeworkAdapter.getInitialState<StateProps>({
     loading: true,
     categories: [],
+    selects: [],
 
     exercises: exercisesState
 });
@@ -51,6 +60,7 @@ const homeworkSlice = createSlice({
             if (action.payload?.id)
                 homeworkAdapter.updateOne(state, {id: action.payload.id, changes: action.payload})
 
+            state.selects[categoryId] = {...state.selects[categoryId] || {}, force: true}
             state.categories[categoryId] = {...state.categories[categoryId] || {}, loading: false}
         })
         builder.addCase(updateHomework.rejected, (state, action) => {
@@ -72,6 +82,7 @@ const homeworkSlice = createSlice({
             if (action.payload?.id)
                 homeworkAdapter.addOne(state, action.payload)
 
+            state.selects[categoryId] = {...state.selects[categoryId] || {}, force: true}
             state.categories[categoryId] = {...state.categories[categoryId] || {}, loading: false}
         })
         builder.addCase(createHomework.rejected, (state, action) => {
@@ -105,11 +116,26 @@ const homeworkSlice = createSlice({
         builder.addCase(deleteHomework.fulfilled, (state, action) => {
             const {categoryId, homeworkId} = action.meta.arg
             homeworkAdapter.removeOne(state, homeworkId)
+            state.selects[categoryId] = {...state.selects[categoryId] || {}, force: true}
             state.categories[categoryId] = {...state.categories[categoryId] || {}, loading: false}
         })
         builder.addCase(deleteHomework.rejected, (state, action) => {
             const {categoryId} = action.meta.arg
             state.categories[categoryId] = {...state.categories[categoryId] || {}, loading: false}
+        })
+
+        // Загрузка дом. задания для формы
+        builder.addCase(fetchSelectsHomework.pending, (state, action) => {
+            const {categoryId} = action.meta.arg
+            state.selects[categoryId] = {...state.selects[categoryId] || {}, loading: true}
+        })
+        builder.addCase(fetchSelectsHomework.fulfilled, (state, action) => {
+            const {categoryId} = action.meta.arg
+            state.selects[categoryId] = {...state.selects[categoryId] || {}, loading: false, data: action.payload}
+        })
+        builder.addCase(fetchSelectsHomework.rejected, (state, action) => {
+            const {categoryId} = action.meta.arg
+            state.selects[categoryId] = {...state.selects[categoryId] || {}, loading: false}
         })
 
         tasksExtraReducers(builder)
@@ -120,7 +146,7 @@ export const homeworkSelector = (state: TeacherState) => state.homework;
 
 // Can create a set of memoized selectors based on the location of this entity state
 export const {
-    selectById: getHomeworkById,
+    // selectById: getHomeworkById,
     selectIds: selectHomeworkIds,
     selectEntities: selectHomeworkEntities,
     selectAll: selectAllHomework,

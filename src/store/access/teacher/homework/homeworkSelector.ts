@@ -21,3 +21,9 @@ export const useSelectHomeworkByCategoryId = (categoryId: Category['id']) => {
     const homework = useSelectAllHomework()
     return homework.filter(homework => homework.category_id === categoryId)
 }
+
+// Загрузка Дз по категории для select
+export const useLoadingSelectsHomeworkByCategoryId = (categoryId: Category['id']): boolean => useSelector((state: TeacherState) => state.homework.selects[categoryId]?.loading || false)
+
+// Дз по категории для select
+export const useAllSelectsHomeworkByCategoryId = (categoryId: Category['id']) => useSelector((state: TeacherState) => state.homework.selects[categoryId]?.data || [])
