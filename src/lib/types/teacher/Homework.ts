@@ -5,7 +5,7 @@ export interface Homework {
     discipline_id: number;
     category_id: number;
     created_at: string;
-    tasks?: Exercise[]
+    // tasks?: Exercise[]
 }
 
 export interface Exercise {

@@ -4,7 +4,6 @@ import {TeacherState} from "../store";
 import {deleteHomework} from "./deleteHomework";
 import {updateHomework} from "./updateHomework";
 import {createHomework} from "./createHomework";
-import {tasksExtraReducers, exercisesState, ExercisesState} from "./exercises/exercises";
 import {Homework} from "../../../../lib/types/teacher/Homework";
 import {fetchSelectsHomework} from "./fetchSelectsHomework";
 
@@ -28,16 +27,12 @@ export interface StateProps {
             data?: Homework[]
         }
     }
-
-    exercises: ExercisesState
 }
 
 const initialState = homeworkAdapter.getInitialState<StateProps>({
     loading: true,
     categories: [],
     selects: [],
-
-    exercises: exercisesState
 });
 
 const homeworkSlice = createSlice({
@@ -137,8 +132,6 @@ const homeworkSlice = createSlice({
             const {categoryId} = action.meta.arg
             state.selects[categoryId] = {...state.selects[categoryId] || {}, loading: false}
         })
-
-        tasksExtraReducers(builder)
     }
 });
 

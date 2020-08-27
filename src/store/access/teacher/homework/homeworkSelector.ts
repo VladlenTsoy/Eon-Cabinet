@@ -1,4 +1,3 @@
-// Загрузка групп по категории
 import {Category} from "../../../../lib/types/common/Category";
 import {useSelector} from "react-redux";
 import {TeacherState} from "../store";
