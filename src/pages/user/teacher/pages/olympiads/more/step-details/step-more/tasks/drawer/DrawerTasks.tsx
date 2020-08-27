@@ -1,6 +1,6 @@
 import React from 'react';
 import {Empty} from "antd";
-import ExerciseLists from "../../../../../../homework/editor/tabs-tasks/added-exercises/exercise-lists/ExerciseLists";
+import ExerciseLists from "../../../../../../../../../../lib/components/exercise-lists/ExerciseLists";
 
 interface DrawerTasksProps {
     tasks: any[];

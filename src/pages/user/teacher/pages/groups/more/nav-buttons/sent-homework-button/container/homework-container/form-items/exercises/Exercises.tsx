@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import ExerciseLists
-    from "../../../../../../../../homework/editor/tabs-tasks/added-exercises/exercise-lists/ExerciseLists";
+    from "../../../../../../../../../../../../lib/components/exercise-lists/ExerciseLists";
 import {LoadingBlock} from "../../../../../../../../../../../../lib/ui";
 import {useTeacherDispatch} from "../../../../../../../../../../../../store/access/teacher/store";
 import {fetchExercisesByHomeworkId} from "../../../../../../../../../../../../store/access/teacher/homework-exercises/fetchExercisesByHomeworkId";

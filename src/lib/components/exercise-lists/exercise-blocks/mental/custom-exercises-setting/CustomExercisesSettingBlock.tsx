@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import AnzanType from "../anzan-setting/anzan-type/AnzanType";
 import styled from "styled-components";
-import {useLanguage} from "../../../../../../../../../../../../hooks/use-language";
+import {useLanguage} from "../../../../../../hooks/use-language";
 
 const TitleWrapper = styled.div`
   font-size: 18px;

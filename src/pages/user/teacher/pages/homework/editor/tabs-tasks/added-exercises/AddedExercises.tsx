@@ -1,7 +1,7 @@
 import React from 'react';
 import {Empty} from "antd";
 import {Card} from "lib/ui";
-import ExerciseLists from "./exercise-lists/ExerciseLists";
+import ExerciseLists from "../../../../../../../../lib/components/exercise-lists/ExerciseLists";
 import styled from "styled-components";
 
 const ScrollWrapper = styled.div`

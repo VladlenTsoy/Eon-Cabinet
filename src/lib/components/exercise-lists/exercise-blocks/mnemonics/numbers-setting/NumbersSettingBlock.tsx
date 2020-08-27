@@ -1,7 +1,7 @@
 import React from 'react';
 import { FileOutlined } from '@ant-design/icons';
 import styled from "styled-components";
-import {useLanguage} from "../../../../../../../../../../../../hooks/use-language";
+import {useLanguage} from "../../../../../../hooks/use-language";
 
 const TdAnzanWrapper = styled.td`
    color: ${props => props.theme.color_warning} !important;

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import AnzanType from "./anzan-type/AnzanType";
-import {useLanguage} from "../../../../../../../../../../../../hooks/use-language";
+import {useLanguage} from "../../../../../../hooks/use-language";
 
 interface AnzanSettingBlockProps {
     setting: any;
