@@ -9,7 +9,7 @@ interface StateProps {
 
 const initialState: StateProps = {
     algorithms: null,
-    fetchLoading: true,
+    fetchLoading: false,
 };
 
 const algorithmSlice = createSlice({

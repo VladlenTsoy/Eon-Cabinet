@@ -3,6 +3,7 @@ import {TeacherState} from "../store";
 import {fetchDisciplines} from "./fetchDisciplines";
 import {updateDiscipline} from "utils/api";
 import {Discipline} from "../../../../lib/types/common/Discipline";
+import {getCookie, setCookie} from "../../../../utils/cookie";
 
 interface StateProps {
     activeDisciplineId?: Discipline["id"];
@@ -12,7 +13,7 @@ interface StateProps {
 
 const initialState: StateProps = {
     fetchLoading: true,
-    activeDisciplineId: undefined,
+    activeDisciplineId: getCookie('active-discipline-id') ? Number(getCookie('active-discipline-id')) : undefined,
     disciplines: []
 };
 
@@ -22,6 +23,7 @@ const disciplineSlice = createSlice({
     reducers: {
         changeActiveDisciplineId(state, action: PayloadAction<Discipline["id"]>) {
             updateDiscipline(action.payload);
+            setCookie('active-discipline-id', String(action.payload))
             state.activeDisciplineId = action.payload
         },
     },
@@ -33,8 +35,8 @@ const disciplineSlice = createSlice({
             // Add user to the state array
             if (action.payload) {
                 const discipline = action.payload[0]
-                updateDiscipline(discipline.id);
-                state.activeDisciplineId = discipline.id
+                state.activeDisciplineId = state.activeDisciplineId || discipline.id
+                updateDiscipline(state.activeDisciplineId);
             }
             state.disciplines = action.payload;
             state.fetchLoading = false;
