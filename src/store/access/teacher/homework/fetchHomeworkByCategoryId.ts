@@ -8,20 +8,18 @@ interface AgrProps {
     categoryId: number
 }
 
-// type ReturnedType = {
-//     total: number
-//     data: Homework[]
-//     last_page: number
-//     current_page: number
-//     per_page: number
-// }
-
-type ReturnedType = Homework[]
+type ReturnedType = {
+    total: number
+    data: Homework[]
+    last_page: number
+    current_page: number
+    per_page: number
+}
 
 export const fetchHomeworkByCategoryId = createAsyncThunk<ReturnedType, AgrProps, TeacherThunkProps>(
     'teacher/homework/fetch',
     async ({categoryId,page =1}, {signal}) => {
-        return await apiRequest('get', `homework/${categoryId}`, {type: 'teacher', signal});
+        return await apiRequest('get', `homework/${categoryId}`, {type: 'teacher', signal, params: {page}});
     },
     {
         condition({categoryId, page =1}, {getState}: any): any {

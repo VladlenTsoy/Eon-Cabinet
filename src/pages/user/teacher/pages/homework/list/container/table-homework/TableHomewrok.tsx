@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Spin} from "lib/ui";
 import styled from "styled-components";
 import CardHomework from "./card-homework/CardHomework";
@@ -6,9 +6,14 @@ import {fetchHomeworkByCategoryId} from "../../../../../../../../store/access/te
 import {useTeacherDispatch} from "../../../../../../../../store/access/teacher/store";
 import {
     useLoadingHomeworkByCategoryId,
-    useSelectHomeworkByCategoryId
+    useSelectHomeworkByCategoryId,
+    useLastPageHomeworkByCategoryId,
+    useCurrentPageHomeworkByCategoryId
 } from "../../../../../../../../store/access/teacher/homework/homeworkSelector";
 import HomeworkEmpty from "../homework-empty/HomeworkEmpty";
+import {Button} from "antd";
+import {ArrowDownOutlined} from "@ant-design/icons";
+import {Category} from "../../../../../../../../lib/types/common/Category";
 
 const ListStyled = styled.div`
   display: grid;
@@ -22,29 +27,44 @@ const ListStyled = styled.div`
 `;
 
 interface TableHomeworkProps {
-    categoryId: number;
+    categoryId: Category['id'];
 }
 
 const TableHomework: React.FC<TableHomeworkProps> = ({categoryId}) => {
     const loading = useLoadingHomeworkByCategoryId(categoryId)
+    const lastPage = useLastPageHomeworkByCategoryId(categoryId)
+    const currentPage = useCurrentPageHomeworkByCategoryId(categoryId)
     const homework = useSelectHomeworkByCategoryId(categoryId);
     const dispatch = useTeacherDispatch();
+    const [page, setPage] = useState(currentPage)
+
+    const clickMoreHandler = () => {
+        setPage(prevState => ++prevState)
+    }
 
     useEffect(() => {
-        const promise = dispatch(fetchHomeworkByCategoryId({categoryId}));
+        const promise = dispatch(fetchHomeworkByCategoryId({categoryId, page}));
         return () => {
             promise.abort('homework fetch abort');
         }
-    }, [categoryId, dispatch]);
+    }, [categoryId, dispatch, page]);
 
     return <Spin spinning={loading} tip="Загрузка...">
         {
             homework.length ?
-                <ListStyled>
-                    {homework.map((val, key) =>
-                        <CardHomework homework={val} key={key}/>
-                    )}
-                </ListStyled> :
+                <>
+                    <ListStyled>
+                        {homework.map((val, key) =>
+                            <CardHomework homework={val} key={key}/>
+                        )}
+                    </ListStyled>
+                    {
+                        lastPage > currentPage &&
+                        <div>
+                            <Button onClick={clickMoreHandler} loading={loading} size="large" block icon={<ArrowDownOutlined/>}>Еще</Button>
+                        </div>
+                    }
+                </>:
                 <HomeworkEmpty/>
         }
     </Spin>

@@ -87,12 +87,10 @@ const homeworkSlice = createSlice({
         })
         builder.addCase(fetchHomeworkByCategoryId.fulfilled, (state, action) => {
             const {categoryId} = action.meta.arg
-            // const {total, last_page, current_page, data} = action.payload
+            const {total, last_page, current_page, data} = action.payload
 
-            // homeworkAdapter.upsertMany(state, data)
-            homeworkAdapter.upsertMany(state, action.payload)
-            // state.categories[categoryId] = {total, current_page, last_page, loading: false}
-            state.categories[categoryId] = {...state.categories[categoryId] || {}, loading: false}
+            homeworkAdapter.upsertMany(state, data)
+            state.categories[categoryId] = {total, current_page, last_page, loading: false}
         })
         builder.addCase(fetchHomeworkByCategoryId.rejected, (state, action) => {
             const {categoryId} = action.meta.arg
