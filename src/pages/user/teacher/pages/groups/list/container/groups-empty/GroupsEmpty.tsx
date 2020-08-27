@@ -1,8 +1,6 @@
 import React from 'react';
 import {DescriptionTitle} from "lib/ui";
-import {Button, Empty} from "antd";
-import {PlusOutlined} from "@ant-design/icons";
-import EditorButton from "../../nav-buttons/editor-button/EditorButton";
+import {Empty} from "antd";
 
 const GroupsEmpty = () => {
     return <Empty
@@ -13,11 +11,6 @@ const GroupsEmpty = () => {
             </>
         }
     >
-        <EditorButton title="Создать группу">
-            <Button type="ghost" size="large" icon={<PlusOutlined/>}>
-                Создать Группу
-            </Button>
-        </EditorButton>
     </Empty>;
 };
 

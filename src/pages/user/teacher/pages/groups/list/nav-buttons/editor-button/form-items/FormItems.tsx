@@ -1,11 +1,12 @@
 import React, {useState} from "react";
 import {Select, Form, Button} from "antd";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {FormItem} from "lib/ui";
 import {categorySelector} from "store/access/teacher/category/categorySlice";
 import {updateGroup} from "store/access/teacher/group/updateGroup";
 import {createGroup} from "store/access/teacher/group/createGroup";
 import {Group} from "../../../../../../../../../lib/types/teacher/Group";
+import {useTeacherDispatch} from "../../../../../../../../../store/access/teacher/store";
 
 const {Option} = Select;
 
@@ -17,18 +18,17 @@ interface FormItemsProps {
 const FormItems: React.FC<FormItemsProps> = ({group, close}) => {
     const {categories} = useSelector(categorySelector);
     const [loading, setLoading] = useState(false);
-    const dispatch = useDispatch();
+    const dispatch = useTeacherDispatch();
 
     const onFinishHandler = async (values: any) => {
-        setLoading(true);
+        setLoading(true)
         if (group)
-            await dispatch(updateGroup({groupId: group.id, data: values}));
+            await dispatch(updateGroup({groupId: group.id, data: values}))
         else
-            await dispatch(createGroup(values));
-
-        close();
-        setLoading(false);
-    };
+            await dispatch(createGroup(values))
+        setLoading(false)
+        close()
+    }
 
     return <Form
         layout="vertical"
