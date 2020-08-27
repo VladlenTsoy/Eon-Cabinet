@@ -13,4 +13,4 @@ const OlympiadTagAccess: React.FC<OlympiadTagAccessProps> = ({access}) => {
             <Tag color="#f55a4e">Закрытый</Tag>;
 };
 
-export default OlympiadTagAccess;
+export default React.memo<OlympiadTagAccessProps>(OlympiadTagAccess);

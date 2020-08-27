@@ -40,4 +40,4 @@ const OlympiadTimerLeft: React.FC<OlympiadTimerLeftProps> = ({end, callback = ()
     </>
 };
 
-export default React.memo(OlympiadTimerLeft)
+export default React.memo<OlympiadTimerLeftProps>(OlympiadTimerLeft)

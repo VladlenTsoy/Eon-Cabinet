@@ -135,15 +135,13 @@ const homeworkSlice = createSlice({
     }
 });
 
-export const homeworkSelector = (state: TeacherState) => state.homework;
-
 // Can create a set of memoized selectors based on the location of this entity state
 export const {
     // selectById: getHomeworkById,
-    selectIds: selectHomeworkIds,
-    selectEntities: selectHomeworkEntities,
+    // selectIds: selectHomeworkIds,
+    // selectEntities: selectHomeworkEntities,
     selectAll: selectAllHomework,
-    selectTotal: selectTotalHomework
+    // selectTotal: selectTotalHomework
 } = homeworkAdapter.getSelectors<TeacherState>(state => state.homework)
 
 export const {resetHomeworkSlice} = homeworkSlice.actions;

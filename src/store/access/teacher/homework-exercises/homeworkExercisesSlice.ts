@@ -34,10 +34,10 @@ const homeworkExercisesSlice = createSlice({
 // Can create a set of memoized selectors based on the location of this entity state
 export const {
     // selectById: getHomeworkExercisesById,
-    selectIds: selectHomeworkExercisesIds,
-    selectEntities: selectHomeworkExercisesEntities,
+    // selectIds: selectHomeworkExercisesIds,
+    // selectEntities: selectHomeworkExercisesEntities,
     selectAll: selectAllHomeworkExercises,
-    selectTotal: selectTotalHomeworkExercises
+    // selectTotal: selectTotalHomeworkExercises
 } = homeworkExercisesAdapter.getSelectors<TeacherState>(state => state.homeworkExercises)
 
 export default homeworkExercisesSlice.reducer;
