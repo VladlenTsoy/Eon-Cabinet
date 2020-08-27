@@ -20,6 +20,7 @@ const categorySlice = createSlice({
     name: 'category',
     initialState,
     reducers: {
+        resetCategorySlice: () => initialState,
         changeActiveCategoryId: (state, action: PayloadAction<Category['id']>) => {
             state.activeCategoryId = action.payload
             setCookie('active_category_id', String(action.payload))
@@ -52,6 +53,6 @@ export const {
     selectTotal: selectTotalCategories
 } = categoryAdapter.getSelectors<TeacherState>(state => state.category)
 
-export const {changeActiveCategoryId} = categorySlice.actions;
+export const {changeActiveCategoryId, resetCategorySlice} = categorySlice.actions;
 
 export default categorySlice.reducer;

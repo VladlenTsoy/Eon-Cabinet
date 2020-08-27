@@ -127,4 +127,6 @@ export const {
     selectTotal: selectTotalHomework
 } = homeworkAdapter.getSelectors<TeacherState>(state => state.homework)
 
+export const {resetHomeworkSlice} = homeworkSlice.actions;
+
 export default homeworkSlice.reducer;

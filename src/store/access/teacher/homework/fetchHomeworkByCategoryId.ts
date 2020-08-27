@@ -17,14 +17,14 @@ type ReturnedType = {
 }
 
 export const fetchHomeworkByCategoryId = createAsyncThunk<ReturnedType, AgrProps, TeacherThunkProps>(
-    'teacher/homework/fetch',
-    async ({categoryId,page =1}, {signal}) => {
-        return await apiRequest('get', `homework/${categoryId}`, {type: 'teacher', signal, params: {page}});
+    'teacher/homework/category/fetch',
+    async ({categoryId, page = 1}, {signal}) => {
+        return await apiRequest('get', `teacher/homework/category/${categoryId}`, {signal, params: {page}});
     },
     {
-        condition({categoryId, page =1}, {getState}: any): any {
+        condition({categoryId, page = 1}, {getState}: any): any {
             const {homework} = getState();
-            if(!homework.categories[categoryId]) return true
+            if (!homework.categories[categoryId]) return true
             const {current_page = 0, last_page = 0} = homework.categories[categoryId]
             if (!current_page) return true
             if (current_page >= page || current_page >= last_page) return false

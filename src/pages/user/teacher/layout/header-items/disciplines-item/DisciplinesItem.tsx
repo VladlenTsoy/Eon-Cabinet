@@ -5,6 +5,8 @@ import {disciplineSelector, changeActiveDisciplineId} from "store/access/teacher
 import {resetGroupSlice} from "store/access/teacher/group/groupSlice";
 import {resetStudentSlice} from "store/access/teacher/students/studentsSlice";
 import {resetTasksSlice} from "store/access/teacher/tasks/tasksSlice";
+import {resetHomeworkSlice} from "store/access/teacher/homework/homeworkSlice";
+import {resetCategorySlice} from "store/access/teacher/category/categorySlice";
 import styled from "styled-components";
 import {FaBrain} from "react-icons/fa"
 import {TiSortNumericallyOutline} from "react-icons/ti"
@@ -33,6 +35,8 @@ const DisciplinesItem = () => {
     const dispatch = useDispatch();
 
     const handleChange = (disciplineId: number) => {
+        dispatch(resetCategorySlice())
+        dispatch(resetHomeworkSlice())
         dispatch(resetGroupSlice())
         dispatch(resetStudentSlice())
         dispatch(resetTasksSlice())
