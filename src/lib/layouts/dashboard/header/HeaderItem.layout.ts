@@ -28,6 +28,25 @@ const HeaderItemLayout: React.FC<HeaderItemProps> = styled(AntdMenu.Item)<Styled
     &.ant-menu-item:hover {
       border-bottom: none;
     }
+    
+    &.icon-button{
+      :not(.last):not(.first) {
+        margin-right: 0.5rem;
+        margin-left: 0.5rem;
+      }
+      
+      .anticon {
+        margin: 0;
+      }
+      
+      &.first {
+        margin-right: 0.5rem;
+      }
+      
+      &.last{
+        margin-left: 0.5rem;
+      }
+    }
   }
   
   @media (max-width: 768px) {

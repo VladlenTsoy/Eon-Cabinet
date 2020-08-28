@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import HeaderItemLayout from "../../../../layouts/dashboard/header/HeaderItem.layout";
 import HeaderMenuLayout from "../../../../layouts/dashboard/header/HeaderMenu.layout";
 import { UserOutlined } from '@ant-design/icons';
-import HeaderProfile from "../profile/HeaderProfile";
+import HeaderProfile from "../items/profile/HeaderProfile";
 import LeftMenuBtn from "./left-menu-btn/LeftMenuBtn";
 import RightDrawer from "./rigth-drawer/RightDrawer";
 import {useSelector} from "react-redux";

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import {Link} from "react-router-dom";
 import {Typography} from "antd";
 import {TextProps} from "antd/es/typography/Text";
-import Avatar from "../../../../ui/avatar/Avatar";
+import Avatar from "../../../../../ui/avatar/Avatar";
 
 const {Text} = Typography;
 

@@ -17,17 +17,23 @@ const LayoutStyled = styled(AntdLayout)`
   }
 `;
 
+const DrawerContainer = styled.div`
+  height: calc(100% - 46px);
+  overflow: hidden;
+  position: relative;
+`
+
 const Content = styled(AntdLayout.Content)`
     padding: 1rem;
     min-height: auto!important;
     overflow-x: hidden;
     position: relative;
-    height: calc(100% - 46px);
+    height: 100%;
     
     @media (max-width: 768px) {
       padding: 1rem 0.5rem;
     }
-`;
+`
 
 type LayoutProps = RouteComponentProps & {
     history?: any;
@@ -61,9 +67,11 @@ const Layout: React.FC<LayoutProps> = (
         <Sidebar collapsed={collapsed} toggleSidebar={toggleSidebar}>{sidebar}</Sidebar>
         <LayoutStyled>
             <Header collapsed={collapsed} toggleSidebar={toggleSidebar} account={account}>{header}</Header>
-            <Content>
-                {children}
-            </Content>
+            <DrawerContainer className="draw-container">
+                <Content>
+                    {children}
+                </Content>
+            </DrawerContainer>
         </LayoutStyled>
     </LayoutStyled>
 };

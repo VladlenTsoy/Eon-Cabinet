@@ -63,7 +63,7 @@ const Avatar: React.FC<UserImageProps> = (
     const w = Number(width.match(/\d+/)) / 2;
     const time = uuidv4();
     const [image, setImage] = useState<any>(src);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const image = new Image();

@@ -29,6 +29,7 @@ export const blackTheme = {
     color_minimal: "rgba(255,255,255, 0.45)",
     color_border: "#000000",
     light_color_border: "rgba(255,255,255,0.1)",
+    color_hover_item: "rgba(255,255,255,0.05)",
 
     bg_color_arrow: '#000000',
     legend_color: '#141414',
@@ -64,6 +65,7 @@ export const whiteTheme = {
     // color_border: "#f1f1f1",
     color_border: "#d9d9d9",
     light_color_border: "rgba(0, 0, 0, 0.1)",
+    color_hover_item: "rgba(0, 0, 0, 0.05)",
 
     bg_color_arrow: '#ffffff',
     legend_color: 'rgba(0, 0, 0, 0.45)',

@@ -32,13 +32,6 @@ export const AccountItem = styled(Menu.Item)`
   }
 `
 
-const ButtonStyled = styled(Button)`
-  .ant-menu-item & .anticon {
-    margin: 0;
-  }
-`
-
-
 interface AccountMenuProps {
     logout: () => void
 }
@@ -61,7 +54,7 @@ const AccountMenu: React.FC<AccountMenuProps> = ({logout, children}) => {
     return <>
         <Badge count={5}>
             <Dropdown overlay={menu} arrow placement="bottomRight">
-                <ButtonStyled shape="circle" icon={<CaretDownOutlined/>}/>
+                <Button shape="circle" icon={<CaretDownOutlined/>}/>
             </Dropdown>
         </Badge>
     </>;
