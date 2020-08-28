@@ -14,7 +14,6 @@ export {default as Spin} from './spin/Spin';
 export {default as Navigation} from './navigaion/Navigation';
 export {default as NavigationButton} from './navigaion/ButtonNavigation';
 export {default as Drawer} from './drawer/Drawer';
-export {default as TabTitleCustom} from './tab/TitleCustom';
 export {default as CardStatistic} from './card-statistic/CardStatistic';
 export {default as InputPhoto} from './form/InputPhoto';
 export {default as InputLogin} from './form/InputLogin';

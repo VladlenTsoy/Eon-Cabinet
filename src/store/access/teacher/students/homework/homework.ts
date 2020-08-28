@@ -1,4 +1,3 @@
-import {fetchStudentsHomework} from "./fetchStudentsHomework";
 import {ActionReducerMapBuilder} from "@reduxjs/toolkit";
 import {StateProps} from "../studentsSlice";
 import {fetchStudentsHomeworkDates} from "./fetchStudentsHomeworkDates";
@@ -80,14 +79,6 @@ export const homeworkReducer = {
 }
 
 export const homeworkExtraReducer = (builder: ActionReducerMapBuilder<StateProps>) => {
-    builder.addCase(fetchStudentsHomework.pending, (state) => {
-        state.homework.loading = true
-    })
-    builder.addCase(fetchStudentsHomework.fulfilled, (state, action) => {
-        state.homework.data = action.payload || []
-        state.homework.loading = false
-    })
-
     builder.addCase(fetchStudentsHomeworkDates.pending, (state) => {
         state.homework.loading = true;
     })
@@ -96,6 +87,9 @@ export const homeworkExtraReducer = (builder: ActionReducerMapBuilder<StateProps
             date.events = action.payload[Number(moment(date.day).format('e'))]
             return date;
         });
+        state.homework.loading = false;
+    })
+    builder.addCase(fetchStudentsHomeworkDates.rejected, (state) => {
         state.homework.loading = false;
     })
 }

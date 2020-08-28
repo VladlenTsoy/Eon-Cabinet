@@ -2,13 +2,18 @@ import React from 'react';
 import { ClockCircleOutlined, HistoryOutlined, TeamOutlined, UserOutlined } from '@ant-design/icons';
 import { Tabs } from "antd";
 import {Card} from "lib/ui";
-import {Alert, TabTitleCustom} from "../../../../../../../lib/ui";
+import {Alert} from "../../../../../../../lib/ui";
 import styled from "styled-components";
 import Students from "./students/Students";
 import Account from "./account/Account";
 import Total from "./total/Total";
 
 const {TabPane} = Tabs;
+
+const TabTitleCustom = styled.div`
+ font-size: 20px;
+ font-weight: bolder;
+`;
 
 const AlertWrapper = styled(Alert)`
   &.ant-alert-with-description{

@@ -6,10 +6,8 @@ import {
     nextWeek,
     prevWeek,
 } from "../../../../../../../../store/access/teacher/students/studentsSlice";
-import HomeworkColumns from "./homework-columns/HomeworkColumns";
 import DataColumns from "./data-columns/DataColumns";
 import DefaultColumns from "./default-columns/DefaultColumns";
-import {fetchStudentsHomework} from "../../../../../../../../store/access/teacher/students/homework/fetchStudentsHomework";
 import {useParams} from "react-router-dom";
 import {ParamsProps} from "../../Group";
 import EventsColumns from "./events-columns/EventsColumns";
@@ -55,14 +53,13 @@ const TableStudents: React.FC<TableStudentsProps> = ({tab, selectUsers}) => {
     const columns = [
         ...DefaultColumns(),
         ...(
-            tab === 'homework' ? HomeworkColumns(homework) :
-                tab === 'events' ? EventsColumns({
-                        dates: homework.dates,
-                        next: nextAction,
-                        prev: prevAction,
-                        loading: homework.loading
-                    }) :
-                    DataColumns()
+            tab === 'events' ? EventsColumns({
+                    dates: homework.dates,
+                    next: nextAction,
+                    prev: prevAction,
+                    loading: homework.loading
+                }) :
+                DataColumns()
         )
     ];
 
@@ -76,15 +73,6 @@ const TableStudents: React.FC<TableStudentsProps> = ({tab, selectUsers}) => {
             return 'tr-student-block';
         return '';
     };
-
-    useEffect(() => {
-        if (tab === 'homework') {
-            const promise = dispatch(fetchStudentsHomework({groupId: Number(id)}));
-            return () => {
-                promise.abort();
-            }
-        }
-    }, [dispatch, id, tab]);
 
     useEffect(() => {
         let parents = document.querySelectorAll('.td-events-table');

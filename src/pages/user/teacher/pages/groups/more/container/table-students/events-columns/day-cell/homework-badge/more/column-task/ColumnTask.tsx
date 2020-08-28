@@ -2,7 +2,7 @@ import React from 'react';
 import {CheckCircleOutlined, ClockCircleOutlined, ExclamationCircleOutlined} from '@ant-design/icons';
 import styled from "styled-components";
 import moment from "moment";
-import {StudentHomeworkTask} from "../../../../../../../../../../../store/access/teacher/students/homework/homework";
+import {StudentHomeworkTask} from "../../../../../../../../../../../../../store/access/teacher/students/homework/homework";
 
 interface ColumnTask {
     task: StudentHomeworkTask;

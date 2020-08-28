@@ -44,7 +44,6 @@ const Container = () => {
     return <ContainerStyled>
         <Radio.Group defaultValue={tab} buttonStyle="solid" onChange={changeTabHandler}>
             <Radio.Button value="details">Данные</Radio.Button>
-            <Radio.Button value="homework">Домашние задания</Radio.Button>
             <Radio.Button value="events">События</Radio.Button>
         </Radio.Group>
         <TableStudents tab={tab} selectUsers={selectUserHandler}/>
