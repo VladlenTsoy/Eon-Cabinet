@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {useParams} from "react-router";
 import {useSelector} from "react-redux";
-import ResultLayout from "../../../../../../../lib/layouts/result/Result.layout";
+import ResultLayout from "../../../../../../../lib/layouts/pages/result/Result.layout";
 import MiddleBlock from "./middle-block/MiddleBlock";
 import LeftBlock from "./left-block/LeftBlock";
 import RightBlock from "./right-block/RightBlock";

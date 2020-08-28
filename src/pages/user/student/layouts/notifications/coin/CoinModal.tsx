@@ -3,7 +3,7 @@ import {Modal} from "../../../../../../lib/ui";
 import CoinSvg from "../../../../../../assets/images/icons/coin.svg";
 import styled from "styled-components";
 import {Button, Typography} from "antd";
-import BgRays from "../../../../../../lib/layouts/result/layouts/bg-rays/BgRays";
+import BgRays from "../../../../../../lib/layouts/pages/result/layouts/bg-rays/BgRays";
 
 const {Title} = Typography;
 

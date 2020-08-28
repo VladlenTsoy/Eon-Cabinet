@@ -1,6 +1,6 @@
 import React from 'react';
 import CurrentExerciseDrawnBLock
-    from "../../../../../../../../lib/layouts/result/layouts/blocks/current-exercise-drawn-block/CurrentExerciseDrawnBlock";
+    from "../../../../../../../../lib/layouts/pages/result/layouts/blocks/current-exercise-drawn-block/CurrentExerciseDrawnBlock";
 import BackBlock from "./back-block/BackBlock";
 
 interface LeftBlockProps {

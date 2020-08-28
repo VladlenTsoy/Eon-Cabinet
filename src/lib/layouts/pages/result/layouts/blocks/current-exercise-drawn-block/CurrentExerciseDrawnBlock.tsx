@@ -1,10 +1,10 @@
 import React, {useCallback, useState} from 'react';
-import {Card, Drawer} from "../../../../../ui";
+import {Card, Drawer} from "../../../../../../ui";
 import {Button, Modal} from "antd";
 import {EyeOutlined, ThunderboltOutlined, QuestionCircleOutlined} from '@ant-design/icons';
 import {useSelector} from "react-redux";
-import {gameSelector} from "../../../../../../store/common/game/gameSplice";
-import {useUser} from "../../../../../../hooks/use-user";
+import {gameSelector} from "../../../../../../../store/common/game/gameSplice";
+import {useUser} from "../../../../../../../hooks/use-user";
 
 interface CurrentExerciseDrawnBlockProps {
     resultId?: number;

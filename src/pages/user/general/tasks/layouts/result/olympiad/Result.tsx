@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import styled from "styled-components";
 import {withRouter,RouteComponentProps} from "react-router";
-import BgRays from "lib/layouts/result/layouts/bg-rays/BgRays";
+import BgRays from "lib/layouts/pages/result/layouts/bg-rays/BgRays";
 import LeftBlock from "./left-block/LeftBlock";
 import WaitingResult from "./waiting-result/WaitingResult";
 import TaskSuccessSVG from "../../../../../../../assets/images/olympiad/task_success.svg";

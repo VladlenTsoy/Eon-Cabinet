@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import SideBlockLayout from "../../../../../../../../../lib/layouts/result/layouts/side-block/SideBlock.layout";
+import SideBlockLayout from "../../../../../../../../../lib/layouts/pages/result/layouts/side-block/SideBlock.layout";
 import NextTask from "./next-task/NextTask";
 import NextStep from "./next-step/NextStep";
 import CounterTasks from "./counter-tasks/CounterTasks";
