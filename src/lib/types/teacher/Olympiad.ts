@@ -1,6 +1,7 @@
 export interface Olympiad {
     id: number;
     title: string;
+    description: string;
     access: 'public' | 'invite' | 'private';
     current_step: {
         start_at: string;

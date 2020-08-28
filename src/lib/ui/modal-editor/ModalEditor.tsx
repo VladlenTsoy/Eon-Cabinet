@@ -1,5 +1,5 @@
 import React from "react";
-import {Modal} from "lib/ui";
+import {Modal} from "lib/ui/index";
 import {ModalProps} from "antd/es/modal";
 
 type ModalEditor = ModalProps & {

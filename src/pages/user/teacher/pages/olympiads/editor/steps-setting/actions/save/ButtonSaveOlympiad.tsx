@@ -1,15 +1,9 @@
-import React from 'react';
+import React, {useCallback, useState} from 'react';
 import SaveOlympiadItems from "./items/SaveOlympiadItems";
 import {EditOutlined, FlagOutlined} from '@ant-design/icons';
 import {Button} from "antd";
-import usingDrawerEditor from "../../../../../../../../../lib/layouts/drawer-editor/usingDrawerEditor";
-import {useHistory} from "react-router";
 import {useScreenWindow} from "../../../../../../../../../hooks/use-screen-window.effect";
-import {useDispatch} from "react-redux";
-import {createOlympiad} from "store/access/teacher/olympiad/createOlympiad";
-import {updateOlympiad} from "store/access/teacher/olympiad/updateOlympiad";
-
-const SaveButtonHandler = usingDrawerEditor(SaveOlympiadItems);
+import DrawerEditor from "../../../../../../../../../lib/ui/drawer-editor/DrawerEditor";
 
 interface ButtonSaveOlympiadProps {
     olympiad?: any;
@@ -26,46 +20,34 @@ const ButtonSaveOlympiad: React.FC<ButtonSaveOlympiadProps> = (
         exercises,
     }
 ) => {
-    const history = useHistory();
+    const [visible, setVisible] = useState(false);
     const [, breakpoint] = useScreenWindow({breakpoint: 'sm'});
-    const dispatch = useDispatch();
 
-    const saveOlympiad = async (data: any) => {
-        if (olympiad)
-            await dispatch(updateOlympiad({olympiadId: olympiad.id, data}))
-        else
-            await dispatch(createOlympiad({...data, exercises, steps}));
-    };
+    const open = () => setVisible(true);
+    const close = useCallback(() => setVisible(false), []);
 
-    const afterSaveOlympiad = () => {
-        if (olympiad) {
-            if (fetch)
-                fetch();
-        } else
-            history.push('/olympiad');
-    };
+    return <>
+        {
+            olympiad ?
+                <Button icon={<EditOutlined/>} onClick={open}>Изменить</Button> :
+                <Button icon={<FlagOutlined/>} block onClick={open}>Завершить</Button>
+        }
 
-    return (
-        <SaveButtonHandler
+        <DrawerEditor
+            visible={visible}
+            close={close}
             title={olympiad ? 'Редактировать олимпиаду' : 'Сохранить олимпиаду'}
-            fetch={afterSaveOlympiad}
-            width={breakpoint ? '100%' : 550}
-            sendData={saveOlympiad}
-            data={olympiad ?
-                {
-                    title: olympiad.title,
-                    description: olympiad.description,
-                    access: olympiad.access,
-                } : {}
-            }
+            width={breakpoint ? '100%' : 650}
         >
-            {
-                olympiad ?
-                    <Button icon={<EditOutlined/>}>Изменить</Button> :
-                    <Button icon={<FlagOutlined/>} block>Завершить</Button>
-            }
-        </SaveButtonHandler>
-    );
+            <SaveOlympiadItems
+                close={close}
+                fetch={fetch}
+                steps={steps}
+                exercises={exercises}
+                olympiad={olympiad}
+            />
+        </DrawerEditor>
+    </>
 };
 
 export default ButtonSaveOlympiad;

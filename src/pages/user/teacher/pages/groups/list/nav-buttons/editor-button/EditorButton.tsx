@@ -1,6 +1,6 @@
 import React, {useCallback, useState} from "react";
 import FormItems from "./form-items/FormItems";
-import ModalEditor from "../../../../../../../../lib/layouts/modal-editor/ModalEditor";
+import ModalEditor from "../../../../../../../../lib/ui/modal-editor/ModalEditor";
 import {Group} from "../../../../../../../../lib/types/teacher/Group";
 
 interface EditorButtonProps {

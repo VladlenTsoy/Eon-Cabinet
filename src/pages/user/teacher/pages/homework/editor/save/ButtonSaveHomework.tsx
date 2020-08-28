@@ -3,7 +3,7 @@ import {ArrowRightOutlined} from '@ant-design/icons';
 import {Button} from "antd";
 import {useHistory, useParams} from "react-router-dom";
 import {useSelector} from "react-redux";
-import ModalEditor from "../../../../../../../lib/layouts/modal-editor/ModalEditor";
+import ModalEditor from "../../../../../../../lib/ui/modal-editor/ModalEditor";
 import FormItems from "./form-items/FormItems";
 import {groupSelector} from "../../../../../../../store/access/teacher/group/groupSlice";
 import {ParamsProps} from "../../../groups/more/Group";
