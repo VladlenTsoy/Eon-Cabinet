@@ -17,8 +17,8 @@ interface ChatProps {
 const Chat:React.FC<ChatProps> = ({close}) => {
     const [contact, setContact] = useState(null)
 
-    const selectUser = useCallback((user: any) => {
-        setContact(user)
+    const selectContact = useCallback((contact: any) => {
+        setContact(contact)
     }, [])
 
     const resetContact = useCallback(() => {
@@ -30,7 +30,7 @@ const Chat:React.FC<ChatProps> = ({close}) => {
         {
             contact ?
                 <ChatMessages contact={contact}/> :
-                <ContactList selectUser={selectUser}/>
+                <ContactList selectContact={selectContact}/>
         }
     </ChatStyled>
 };
