@@ -3,6 +3,7 @@ import ContactList from "./contact-list/ContactList";
 import Header from "./header/Header";
 import ChatMessages from "./chat-messages/ChatMessages";
 import styled from "styled-components";
+import {User} from "../../../types/common/User"
 
 const ChatStyled = styled.div`
   display: grid;
@@ -11,10 +12,11 @@ const ChatStyled = styled.div`
 `
 
 interface ChatProps {
+    user: User
     close: () => void
 }
 
-const Chat:React.FC<ChatProps> = ({close}) => {
+const Chat:React.FC<ChatProps> = ({close, user}) => {
     const [contact, setContact] = useState(null)
 
     const selectContact = useCallback((contact: any) => {
@@ -30,7 +32,7 @@ const Chat:React.FC<ChatProps> = ({close}) => {
         {
             contact ?
                 <ChatMessages contact={contact}/> :
-                <ContactList selectContact={selectContact}/>
+                <ContactList user={user} selectContact={selectContact}/>
         }
     </ChatStyled>
 };

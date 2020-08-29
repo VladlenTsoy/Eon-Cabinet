@@ -2,9 +2,10 @@ import React, {useCallback, useState} from "react"
 import {Badge, Button} from "antd"
 import {Drawer} from "../../../../../ui"
 import {MessageFilled} from "@ant-design/icons"
-import Chat from "./chat/Chat"
+import Chat from "../../../../../modules/chat/components/Chat"
 import {useScreenWindow} from "../../../../../../hooks/use-screen-window.effect"
 import styled from "styled-components"
+import {useUser} from "../../../../../../hooks/use-user"
 
 const ChatDrawStyled = styled(Drawer)`
     .ant-drawer-wrapper-body .ant-drawer-body {
@@ -13,6 +14,7 @@ const ChatDrawStyled = styled(Drawer)`
 `
 
 const ChatItem: React.FC = () => {
+    const {user} = useUser()
     const [visible, setVisible] = useState(false)
     const [, breakpoint] = useScreenWindow({breakpoint: "sm"})
 
@@ -40,7 +42,7 @@ const ChatItem: React.FC = () => {
                 zIndex={4}
                 notFooter
             >
-                <Chat close={close} />
+                <Chat close={close} user={user} />
             </ChatDrawStyled>
         </>
     )

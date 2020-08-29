@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "styled-components"
-import Contactitem from "./contact-item/ContactItem"
+import ContactItem from "./contact-item/ContactItem"
+import {User} from "../../../../types/common/User"
 
 const ContactListStyled = styled.div`
     height: 100%;
@@ -9,16 +10,17 @@ const ContactListStyled = styled.div`
 `
 
 interface ContactListProps {
+    user: User
     selectContact: (contact: any) => void
 }
 
-const ContactList: React.FC<ContactListProps> = ({selectContact}) => {
+const ContactList: React.FC<ContactListProps> = ({user, selectContact}) => {
     return (
         <ContactListStyled>
             {Array(15)
                 .fill(1)
                 .map((_, key) => (
-                    <Contactitem selectContact={selectContact} key={key} />
+                    <ContactItem contact={{profile: user}} selectContact={selectContact} key={key} />
                 ))}
         </ContactListStyled>
     )
