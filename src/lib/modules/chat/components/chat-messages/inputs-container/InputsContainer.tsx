@@ -1,11 +1,15 @@
-import React from 'react';
-import styled from "styled-components";
-import EmogiItem from "./emogi-item/EmogiItem";
-import AttachItem from "./attach-item/AttachItem";
-import TextareaItem from "./textarea-item/TextareaItem";
-import SendItem from "./send-item/SendItem";
+import React, {useCallback, useEffect, useState} from "react"
+import styled from "styled-components"
+import AttachItem from "./attach-item/AttachItem"
+import EmojiItem from "./emoji-item/EmojiItem"
+import TextareaItem from "./textarea-item/TextareaItem"
+import SendItem from "./send-item/SendItem"
+import {Contact} from "../../../interfaces/Contact"
+import {useUser} from "../../../../../../hooks/use-user"
+import {firestore} from "../../../../../../bin/firebase"
+import EmojiContainer from "./emoji-container/EmojiContainer"
 
-const InputMessageStyled = styled.div`
+const InputMessageStyled = styled.form`
   display: grid;
   grid-template-columns: 50px 1fr 50px 50px;
   text-align: center;
@@ -17,13 +21,49 @@ const InputMessageStyled = styled.div`
   }
 `
 
-const InputsContainer = () => {
-    return <InputMessageStyled>
-        <AttachItem/>
-        <TextareaItem/>
-        <EmogiItem/>
-        <SendItem/>
-    </InputMessageStyled>
-};
+const ContainerStyled = styled.div`
+  transition: all 0.3s ease-in-out;
+`
 
-export default InputsContainer;
+interface InputsContainerProps {
+    contactId: Contact["profile"]["id"]
+}
+
+const InputsContainer: React.FC<InputsContainerProps> = ({contactId}) => {
+    const {user} = useUser()
+    const [emojiVisible, setEmojiVisible] = useState(false)
+    const [emojiBlockVisible, setEmojiBlockVisible] = useState(false)
+    const [message, setMessage] = useState<string>("")
+
+    const onChangeHandler = useCallback((value: string) => {
+        setMessage(value)
+    }, [])
+
+    const onSubmit = (e: any) => {
+        e.preventDefault()
+        console.log(message)
+        if (message !== "") {
+            firestore.collection("messages").add({
+                contact_id: contactId,
+                user_id: user.id,
+                message,
+                created_at: new Date()
+            })
+            setMessage("")
+        }
+    }
+
+
+
+    return <ContainerStyled>
+        {(emojiVisible || emojiBlockVisible) && <EmojiContainer setEmojiBlockVisible={setEmojiBlockVisible} setMessage={setMessage}/>}
+        <InputMessageStyled onSubmit={onSubmit}>
+            <AttachItem/>
+            <TextareaItem onChangeHandler={onChangeHandler} onSubmit={onSubmit} message={message}/>
+            <EmojiItem setEmojiVisible={setEmojiVisible} active={(emojiVisible || emojiBlockVisible)}/>
+            <SendItem/>
+        </InputMessageStyled>
+    </ContainerStyled>
+}
+
+export default React.memo<InputsContainerProps>(InputsContainer)

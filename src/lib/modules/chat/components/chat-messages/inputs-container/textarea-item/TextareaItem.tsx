@@ -1,6 +1,6 @@
-import React from 'react';
-import styled from "styled-components";
-import TextArea from 'react-textarea-autosize'
+import React, {useRef, useState} from "react"
+import styled from "styled-components"
+import TextArea from "react-textarea-autosize"
 
 const WrapperTextAreaStyled = styled.div`
   display: flex;
@@ -21,10 +21,37 @@ const TextAreaStyled = styled(TextArea)`
   }
 `
 
-const TextareaItem = () => {
-    return <WrapperTextAreaStyled>
-        <TextAreaStyled placeholder="Написать сообщение..."/>
-    </WrapperTextAreaStyled>
-};
+interface TextareaItemProps {
+    message?: string
+    onChangeHandler: any
+    onSubmit: any
+}
 
-export default TextareaItem;
+const TextareaItem: React.FC<TextareaItemProps> = ({onChangeHandler, onSubmit, message}) => {
+    const a = (e: any) => {
+        onChangeHandler(e.target.value)
+    }
+
+    const onKeyDownHandler = (e: any) => {
+        if (e.keyCode === 13) {
+            if (e.ctrlKey) {
+                onChangeHandler((prevState: string) => prevState + "\n")
+                return true
+            }
+            return onSubmit(e)
+        }
+    }
+
+    return <WrapperTextAreaStyled>
+        <TextAreaStyled
+            maxRows={5}
+            value={message}
+            placeholder="Написать сообщение..."
+            name="message"
+            onChange={a}
+            onKeyDown={onKeyDownHandler}
+        />
+    </WrapperTextAreaStyled>
+}
+
+export default TextareaItem

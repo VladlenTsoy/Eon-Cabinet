@@ -15,6 +15,8 @@ import user from "../../common/user/userSlice";
 import notification from "./notification/notificationSlice";
 import customExercises from "./custom-exercises/customExercisesSlice";
 import homeworkExercises from "./homework-exercises/homeworkExercisesSlice";
+import contacts from "lib/modules/chat/reducer/contacts/contactsSlice";
+import messages from "lib/modules/chat/reducer/messages/messagesSlice";
 
 export type TeacherState = ReturnType<typeof teacherReducer>
 
@@ -35,6 +37,8 @@ export const teacherReducer = combineReducers({
     language,
     game,
     user,
+    contacts,
+    messages,
 });
 
 export type AppDispatch = typeof store.dispatch

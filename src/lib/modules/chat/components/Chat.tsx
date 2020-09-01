@@ -1,9 +1,10 @@
-import React, {useCallback, useState} from 'react';
-import ContactList from "./contact-list/ContactList";
-import Header from "./header/Header";
-import ChatMessages from "./chat-messages/ChatMessages";
-import styled from "styled-components";
+import React, {useCallback, useState} from "react"
+import ContactList from "./contact-list/ContactList"
+import Header from "./header/Header"
+import ChatMessages from "./chat-messages/ChatMessages"
+import styled from "styled-components"
 import {User} from "../../../types/common/User"
+import {Contact} from "../interfaces/Contact"
 
 const ChatStyled = styled.div`
   display: grid;
@@ -12,12 +13,11 @@ const ChatStyled = styled.div`
 `
 
 interface ChatProps {
-    user: User
     close: () => void
 }
 
-const Chat:React.FC<ChatProps> = ({close, user}) => {
-    const [contact, setContact] = useState(null)
+const Chat: React.FC<ChatProps> = ({close}) => {
+    const [contact, setContact] = useState<Contact | null>(null)
 
     const selectContact = useCallback((contact: any) => {
         setContact(contact)
@@ -32,9 +32,9 @@ const Chat:React.FC<ChatProps> = ({close, user}) => {
         {
             contact ?
                 <ChatMessages contact={contact}/> :
-                <ContactList user={user} selectContact={selectContact}/>
+                <ContactList selectContact={selectContact}/>
         }
     </ChatStyled>
-};
+}
 
-export default Chat;
+export default Chat

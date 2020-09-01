@@ -1,7 +1,14 @@
-import React from "react"
+import React, {useEffect} from "react"
 import styled from "styled-components"
 import ContactItem from "./contact-item/ContactItem"
 import {User} from "../../../../types/common/User"
+import {fetchContacts} from "../../reducer/contacts/fetchContacts"
+import {useCommonDispatch} from "../../../../../store/common/store"
+import {
+    useSelectAllContacts,
+    useLoadingContacts
+} from "../../reducer/contacts/contactsSelectors"
+import {LoadingBlock} from "../../../../ui"
 
 const ContactListStyled = styled.div`
     height: 100%;
@@ -10,18 +17,32 @@ const ContactListStyled = styled.div`
 `
 
 interface ContactListProps {
-    user: User
     selectContact: (contact: any) => void
 }
 
-const ContactList: React.FC<ContactListProps> = ({user, selectContact}) => {
+const ContactList: React.FC<ContactListProps> = ({selectContact}) => {
+    const dispatch = useCommonDispatch()
+    const loading = useLoadingContacts()
+    const contacts = useSelectAllContacts()
+
+    useEffect(() => {
+        const promise = dispatch(fetchContacts())
+        return () => {
+            promise.abort()
+        }
+    }, [dispatch])
+
+    if (loading) return <LoadingBlock />
+
     return (
         <ContactListStyled>
-            {Array(15)
-                .fill(1)
-                .map((_, key) => (
-                    <ContactItem contact={{profile: user}} selectContact={selectContact} key={key} />
-                ))}
+            {contacts.map((contact, key) => (
+                <ContactItem
+                    contact={contact}
+                    selectContact={selectContact}
+                    key={key}
+                />
+            ))}
         </ContactListStyled>
     )
 }

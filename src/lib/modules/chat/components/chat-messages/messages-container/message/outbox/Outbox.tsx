@@ -1,10 +1,12 @@
-import React from 'react';
-import styled from "styled-components";
-import {MessageStyled, WrapperMessageStyled} from "../Message";
+import React from "react"
+import styled from "styled-components"
+import {MessageStyled, WrapperMessageStyled} from "../Message"
+import {Message} from "../../../../../interfaces/Message"
+import moment from "moment"
 
 const WrapperOutboxStyled = styled(WrapperMessageStyled)`
   justify-content: flex-end;
-  padding-right: 0.5rem;
+  padding-right: 1rem;
 `
 
 const OutboxStyled = styled(MessageStyled)`
@@ -12,13 +14,17 @@ const OutboxStyled = styled(MessageStyled)`
   background: ${props => props.theme.gradient_primary};
 `
 
-const Outbox = () => {
+interface OutboxProps {
+    message: Message
+}
+
+const Outbox: React.FC<OutboxProps> = ({message}) => {
     return <WrapperOutboxStyled>
-        <span className="time">12:56</span>
+        <span className="time">{moment(message.created_at.seconds * 1000).format('DD MMM HH:mm')}</span>
         <OutboxStyled>
-            Исходящие сообщения
+            {message.message}
         </OutboxStyled>
     </WrapperOutboxStyled>
-};
+}
 
-export default Outbox;
+export default Outbox

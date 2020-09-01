@@ -41,6 +41,7 @@
     "craco-less": "^1.17.0",
     "css-loader": "^3.5.2",
     "detect-browser": "^5.1.1",
+    "firebase": "^7.19.1",
     "jspdf": "^1.5.3",
     "jspdf-autotable": "^3.4.0",
     "less": "^3.11.1",

@@ -19,12 +19,7 @@ const ContactItemStyled = styled.div`
     }
 
     .content {
-
-        .full-name {
-
-        }
-
-       
+      overflow: hidden;
     }
 `
 
