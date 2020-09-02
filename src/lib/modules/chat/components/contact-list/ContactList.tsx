@@ -1,7 +1,6 @@
 import React, {useEffect} from "react"
 import styled from "styled-components"
 import ContactItem from "./contact-item/ContactItem"
-import {User} from "../../../../types/common/User"
 import {fetchContacts} from "../../reducer/contacts/fetchContacts"
 import {useCommonDispatch} from "../../../../../store/common/store"
 import {

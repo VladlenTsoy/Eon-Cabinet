@@ -3,7 +3,6 @@ import ContactList from "./contact-list/ContactList"
 import Header from "./header/Header"
 import ChatMessages from "./chat-messages/ChatMessages"
 import styled from "styled-components"
-import {User} from "../../../types/common/User"
 import {Contact} from "../interfaces/Contact"
 
 const ChatStyled = styled.div`

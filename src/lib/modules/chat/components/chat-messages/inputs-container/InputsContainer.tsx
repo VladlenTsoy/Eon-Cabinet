@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from "react"
+import React, {useCallback, useState} from "react"
 import styled from "styled-components"
 import AttachItem from "./attach-item/AttachItem"
 import EmojiItem from "./emoji-item/EmojiItem"

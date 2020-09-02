@@ -1,5 +1,14 @@
-import React, {useEffect} from "react"
+import React from "react"
 import {SmileOutlined} from "@ant-design/icons"
+import styled from "styled-components"
+
+interface EmojiItemStyledProps extends React.HTMLAttributes<HTMLDivElement> {
+    active: boolean
+}
+
+const EmojiItemStyled: React.FC<EmojiItemStyledProps> = styled.div<EmojiItemStyledProps>`
+  color: ${props => props.active ? props.theme.color_primary : props.theme.color_main}
+`
 
 interface EmojiItemProps {
     active: boolean
@@ -15,9 +24,9 @@ const EmojiItem: React.FC<EmojiItemProps> = ({setEmojiVisible, active}) => {
         setEmojiVisible(false)
     }
 
-    return <div onMouseLeave={mouseLeaveHandler} onMouseEnter={mouseEnterHandler}>
+    return <EmojiItemStyled active={active} onMouseLeave={mouseLeaveHandler} onMouseEnter={mouseEnterHandler}>
         <SmileOutlined/>
-    </div>
+    </EmojiItemStyled>
 }
 
 export default EmojiItem
