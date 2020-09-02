@@ -18,7 +18,6 @@ const EmojiContainerStyled = styled.div`
     animation-duration: 0.3s;
     animation-fill-mode: both;
     opacity: 0;
-    //transform: translate3d(0, 100%, 0);
 
     > span {
         user-select: none;
@@ -39,10 +38,10 @@ interface EmojiContainerProps {
 }
 
 const EmojiContainer: React.FC<EmojiContainerProps> = ({
-                                                           setEmojiBlockVisible,
-                                                           setMessage,
-                                                           active
-                                                       }) => {
+    setEmojiBlockVisible,
+    setMessage,
+    active
+}) => {
     let a: any
 
     const mouseEnterHandler = () => {
@@ -59,8 +58,8 @@ const EmojiContainer: React.FC<EmojiContainerProps> = ({
             "#emoji-select-block > span"
         )
 
-        emojiBlock.forEach(function(emoji) {
-            emoji.addEventListener("click", function(event: any) {
+        emojiBlock.forEach(function (emoji) {
+            emoji.addEventListener("click", function (event: any) {
                 const textarea = document.getElementById(
                     "textarea-message-chat"
                 )
@@ -71,8 +70,6 @@ const EmojiContainer: React.FC<EmojiContainerProps> = ({
             })
         })
     }, [])
-
-    console.log(active ? "fadeInUp" : "fadeOutDown")
 
     return (
         <EmojiContainerStyled
