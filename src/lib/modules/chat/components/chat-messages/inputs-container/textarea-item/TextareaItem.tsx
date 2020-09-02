@@ -47,6 +47,7 @@ const TextareaItem: React.FC<TextareaItemProps> = ({onChangeHandler, onSubmit, m
             maxRows={5}
             value={message}
             placeholder="Написать сообщение..."
+            id="textarea-message-chat"
             name="message"
             onChange={a}
             onKeyDown={onKeyDownHandler}

@@ -10,19 +10,24 @@ import {firestore} from "../../../../../../bin/firebase"
 import EmojiContainer from "./emoji-container/EmojiContainer"
 
 const InputMessageStyled = styled.form`
-  display: grid;
-  grid-template-columns: 50px 1fr 50px 50px;
-  text-align: center;
-  font-size: 25px;
-  align-items: flex-end;
-  
-  > div {
-    padding: 0.5rem 0.5rem;
-  }
+    display: grid;
+    grid-template-columns: 50px 1fr 50px 50px;
+    text-align: center;
+    font-size: 25px;
+    align-items: flex-end;
+    position: relative;
+    z-index: 555;
+    background: ${(props) => props.theme["@component-background"]};
+
+    > div {
+        padding: 0.5rem 0.5rem;
+    }
 `
 
 const ContainerStyled = styled.div`
-  transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    overflow: visible;
 `
 
 interface InputsContainerProps {
@@ -53,17 +58,30 @@ const InputsContainer: React.FC<InputsContainerProps> = ({contactId}) => {
         }
     }
 
-
-
-    return <ContainerStyled>
-        {(emojiVisible || emojiBlockVisible) && <EmojiContainer setEmojiBlockVisible={setEmojiBlockVisible} setMessage={setMessage}/>}
-        <InputMessageStyled onSubmit={onSubmit}>
-            <AttachItem/>
-            <TextareaItem onChangeHandler={onChangeHandler} onSubmit={onSubmit} message={message}/>
-            <EmojiItem setEmojiVisible={setEmojiVisible} active={(emojiVisible || emojiBlockVisible)}/>
-            <SendItem/>
-        </InputMessageStyled>
-    </ContainerStyled>
+    return (
+        <ContainerStyled>
+            {
+                <EmojiContainer
+                    active={emojiVisible || emojiBlockVisible}
+                    setEmojiBlockVisible={setEmojiBlockVisible}
+                    setMessage={setMessage}
+                />
+            }
+            <InputMessageStyled onSubmit={onSubmit}>
+                <AttachItem/>
+                <TextareaItem
+                    onChangeHandler={onChangeHandler}
+                    onSubmit={onSubmit}
+                    message={message}
+                />
+                <EmojiItem
+                    setEmojiVisible={setEmojiVisible}
+                    active={emojiVisible || emojiBlockVisible}
+                />
+                <SendItem/>
+            </InputMessageStyled>
+        </ContainerStyled>
+    )
 }
 
 export default React.memo<InputsContainerProps>(InputsContainer)
