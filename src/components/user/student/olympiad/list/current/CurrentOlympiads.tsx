@@ -28,17 +28,22 @@ const CardsWrapper = styled.div`
 `
 
 interface CurrentOlympiadsProps {
-
+    setKey: any
 }
 
-const CurrentOlympiads: React.FC<CurrentOlympiadsProps> = () => {
+const CurrentOlympiads: React.FC<CurrentOlympiadsProps> = ({setKey}) => {
     const {width} = useWindowSize()
     const [, isBreakpoint] = useScreenWindow({breakpoint: "md"})
     const {language} = useAppContext()
-    const [loading, olympiads, , fetch] = useApiUserGeneral({
+    const [loading, olympiads, , _fetch] = useApiUserGeneral({
         url: "student/olympiads/current",
         initValue: []
     })
+
+    const fetch = () => {
+        setKey((key: number) => ++key)
+        _fetch()
+    }
 
     if (loading)
         return <LoadingBlock maxHeight="250px"/>

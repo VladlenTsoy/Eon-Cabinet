@@ -77,11 +77,12 @@ const TabWrapper: React.FC<TabStyleProps> = styled.div`
 
 interface TabProps {
     step: any;
+    selectStep: any;
     currentStep: any;
     clickHandler: (id: any) => void;
 }
 
-const Tab: React.FC<TabProps> = ({step, currentStep, clickHandler}) => {
+const Tab: React.FC<TabProps> = ({step, selectStep, currentStep, clickHandler}) => {
     const momentFormatCheckYear = (date: any, formatOne: string, formatTwo: string) => {
         const years = moment(date).diff(date, 'years', false);
         return moment(date).format(years ? formatTwo : formatOne);
@@ -90,7 +91,7 @@ const Tab: React.FC<TabProps> = ({step, currentStep, clickHandler}) => {
     return (
       <TabWrapper
           className={
-              step.id === currentStep.id ?
+              step.id === selectStep.id ?
                   'active' : step.step > currentStep.step ?
                   'disabled' : ''
           }

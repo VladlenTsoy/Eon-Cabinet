@@ -8,6 +8,7 @@ import {changeStatus, changeCurrentTimes, changeSetting, changeTotals} from "../
 import {useDispatch} from "react-redux";
 
 interface RouteProps {
+    olympiadId: string,
     sentOlympiadId: string,
     taskOlympiadId: string
     taskId: string
@@ -22,11 +23,11 @@ const NextTask: React.FC<NextStepProps> = ({loading, nextTask, history, match}) 
     const dispatch = useDispatch();
 
     const nextTaskStart = () => {
-        history.push(`/olympiads/${match.params.sentOlympiadId}/${nextTask.id}/${nextTask.task_id}`);
         dispatch(changeSetting(nextTask.settings));
         dispatch(changeTotals([]));
         dispatch(changeCurrentTimes(0));
         dispatch(changeStatus('start'));
+        history.replace(`/olympiads/${match.params.olympiadId}/${match.params.sentOlympiadId}/${nextTask.id}/${nextTask.discipline_id}/${nextTask.task_id}`);
     };
 
     return (

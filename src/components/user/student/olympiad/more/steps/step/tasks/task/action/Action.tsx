@@ -4,7 +4,7 @@ import {useDispatch} from "react-redux";
 import {FlagOutlined} from '@ant-design/icons';
 import {Button} from "antd";
 import {useHistory} from "react-router";
-import {changeSetting} from "../../../../../../../../../../store/reducers/common/game/gameSplice";
+import {changeExecutionMode, changeSetting} from "../../../../../../../../../../store/reducers/common/game/gameSplice"
 
 type ActionProps = {
     task: any;
@@ -24,13 +24,35 @@ const Action: React.FC<ActionProps> = ({task, type}) => {
                 return false;
             case 16:
                 return task.settings['task-mode'] === 'basic';
+            case 24:
+                return task.settings.type_task === 'basic';
         }
         return true;
     };
 
+    const checkTaskTypeOldTask = (_task: any) => {
+        if (_task.settings?.task)
+            switch (Number(_task.settings?.task)) {
+                case 2:
+                case 4:
+                    _task.settings.anzan = 'list';
+                    break;
+                case 1:
+                case 3:
+                    _task.settings.anzan = 'basic';
+                    break;
+                case 5:
+                    _task.settings.anzan = 'double';
+                    break;
+            }
+        return _task;
+    };
+
     const startApplication = (_task: any) => {
+        _task = checkTaskTypeOldTask(_task);
         dispatch(changeSetting(_task.settings));
-        history.push(`/olympiads/${_task.sent_id}/${_task.id}/${_task.discipline_id}/${_task.task_id}`);
+        dispatch(changeExecutionMode('fetch'));
+        history.push(`/olympiads/${_task.olympiad_id}/${_task.sent_id}/${_task.id}/${_task.discipline_id}/${_task.task_id}`);
     };
 
     return <ActionWrapper type={type}>
