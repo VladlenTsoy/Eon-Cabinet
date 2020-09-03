@@ -8,8 +8,6 @@ interface OlympiadProps {
 
 const Olympiads:React.FC<OlympiadProps> = () => {
     return <>
-        <div>
-        </div>
         <CurrentOlympiads/>
         <Available/>
     </>;
