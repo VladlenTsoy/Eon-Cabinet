@@ -20,7 +20,7 @@ const CustomExercisesSettingBlock: React.FC<CustomExercisesSettingBlockProps> = 
     return <>
         <tr>
             <td colSpan={5}>
-                <TitleWrapper>{setting.title}</TitleWrapper>
+                <TitleWrapper>{setting.title} <small>(ID: {setting.custom_exercises_id})</small></TitleWrapper>
             </td>
         </tr>
         <AnzanType setting={setting}/>
