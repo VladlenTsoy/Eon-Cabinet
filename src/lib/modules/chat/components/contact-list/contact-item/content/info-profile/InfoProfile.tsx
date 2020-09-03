@@ -19,14 +19,14 @@ const InfoProfileStyled = styled.div`
 `
 
 interface InfoProfileProps {
-    profile: Contact['profile']
+    contact: Contact
 }
 
-const InfoProfile: React.FC<InfoProfileProps> = ({profile}) => {
+const InfoProfile: React.FC<InfoProfileProps> = ({contact}) => {
     return (
         <InfoProfileStyled>
-            <span>{profile.last_name}</span>
-            <span>{profile.first_name}</span>
+            <span>{contact.last_name}</span>
+            <span>{contact.first_name}</span>
             <span className="time">12:58</span>
         </InfoProfileStyled>
     )

@@ -3,12 +3,12 @@ import {Avatar} from "../../../../../../ui"
 import {Contact} from "../../../../interfaces/Contact"
 
 interface ImageProfileProps {
-    profile: Contact["profile"]
+    contact: Contact
 }
 
-const ImageProfile: React.FC<ImageProfileProps> = ({profile}) => {
+const ImageProfile: React.FC<ImageProfileProps> = ({contact}) => {
     return <div>
-        <Avatar src={profile.image} alt={profile.first_name} width="50px"/>
+        <Avatar src={contact.image} alt={contact.first_name} width="50px"/>
     </div>
 }
 

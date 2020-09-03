@@ -20,7 +20,7 @@ interface OutboxProps {
 
 const Outbox: React.FC<OutboxProps> = ({message}) => {
     return <WrapperOutboxStyled>
-        <span className="time">{moment(message.created_at.seconds * 1000).format('DD MMM HH:mm')}</span>
+        <span className="time">{moment(message.created_at * 1000).format('DD MMM HH:mm')}</span>
         <OutboxStyled>
             {message.message}
         </OutboxStyled>

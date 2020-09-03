@@ -33,9 +33,9 @@ const ContactItem: React.FC<ContactItemProps> = ({contact, selectContact}) => {
 
     return (
         <ContactItemStyled onClick={onClickHandler}>
-            <ImageProfile profile={contact.profile}/>
+            <ImageProfile contact={contact}/>
             <div className="content">
-                <InfoProfile profile={contact.profile}/>
+                <InfoProfile contact={contact}/>
                 <LastMessage message="Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                 Architecto beatae consequuntur culpa doloribus eligendi expedita
                 facilis, fugit nesciunt optio quas, qui quo repudiandae sapiente

@@ -21,7 +21,7 @@ const Inbox:React.FC<InboxProps> = ({message}) => {
         <InboxStyled>
             {message.message}
         </InboxStyled>
-        <span className="time">{moment(message.created_at.seconds * 1000).format('DD MMM HH:mm')}</span>
+        <span className="time">{moment(message.created_at * 1000).format('DD MMM HH:mm')}</span>
     </WrapperInboxStyled>
 };
 

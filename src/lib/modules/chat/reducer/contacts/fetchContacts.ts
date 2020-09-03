@@ -8,7 +8,7 @@ type ReturnedType = Contact[]
 export const fetchContacts = createAsyncThunk<ReturnedType, undefined, CommonThunkProps>(
     "contacts/fetch",
     async (_, {signal}) => {
-        return await apiRequest("get", `contacts`, {signal})
+        return await apiRequest("get", `contacts`, {signal, api2: true})
     },
     {
         condition(_, {getState}) {

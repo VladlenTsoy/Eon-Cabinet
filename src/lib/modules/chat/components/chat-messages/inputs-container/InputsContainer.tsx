@@ -31,7 +31,7 @@ const ContainerStyled = styled.div`
 `
 
 interface InputsContainerProps {
-    contactId: Contact["profile"]["id"]
+    contactId: Contact["id"]
 }
 
 const InputsContainer: React.FC<InputsContainerProps> = ({contactId}) => {

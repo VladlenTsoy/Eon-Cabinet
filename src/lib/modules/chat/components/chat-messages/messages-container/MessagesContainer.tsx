@@ -1,9 +1,12 @@
-import React, {useEffect} from "react"
+import React, {useEffect, useState} from "react"
 import styled from "styled-components"
 import Inbox from "./message/inbox/Inbox"
 import Outbox from "./message/outbox/Outbox"
 import {useUser} from "../../../../../../hooks/use-user"
 import {Message} from "../../../interfaces/Message"
+import {firestore} from "../../../../../../bin/firebase"
+import {LoadingBlock} from "../../../../../ui"
+import {Contact} from "../../../interfaces/Contact"
 
 const MessagesContainerStyled = styled.div`
     padding-top: 0.5rem;
@@ -17,12 +20,39 @@ const MessagesContainerStyled = styled.div`
 `
 
 interface MessagesContainerProps {
-    messages: Message[]
-    setPage: any
+    contact: Contact
 }
 
-const MessagesContainer: React.FC<MessagesContainerProps> = ({messages, setPage}) => {
+const MessagesContainer: React.FC<MessagesContainerProps> = ({contact}) => {
     const {user} = useUser()
+    const [loading, setLoading] = useState(false)
+    const [messages, setMessages] = useState<Message[]>([])
+    const [page, setPage] = useState<number>(1)
+
+    useEffect(() => {
+        setLoading(true)
+        const unsubscribe = firestore
+            .collection("messages")
+            .where("user_id", "==", user.id)
+            .where("contact_id", "==", contact.id)
+            .orderBy("created_at", "desc")
+            .limit(page * 25)
+            .onSnapshot(
+                (querySnapshot) => {
+                    console.log(querySnapshot.docChanges())
+                    setMessages(
+                        querySnapshot.docs.map((doc):Message => ({
+                            id: doc.id, ...doc.data(),
+                            created_at: doc.data().created_at.seconds
+                        }) as Message).reverse()
+                    )
+                    setLoading(false)
+                }
+            )
+        return () => {
+            unsubscribe()
+        }
+    }, [contact, page, user])
 
     useEffect(() => {
         if (messages.length) {
@@ -41,6 +71,10 @@ const MessagesContainer: React.FC<MessagesContainerProps> = ({messages, setPage}
                     setPage((prevState: any) => ++prevState)
             })
     }, [])
+
+
+    if (loading)
+        return <LoadingBlock/>
 
     return (
         <MessagesContainerStyled id="scroll-chat">
