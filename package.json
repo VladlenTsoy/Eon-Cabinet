@@ -1,6 +1,6 @@
 {
-  "name": "test",
-  "version": "0.1.0",
+  "name": "eon-cabinet",
+  "version": "5.2.0",
   "private": true,
   "dependencies": {
     "@ant-design/compatible": "^1.0.2",
@@ -63,7 +63,8 @@
     "typescript": "~3.7.2",
     "uglifyjs-webpack-plugin": "^2.2.0",
     "uuid": "^7.0.3",
-    "webpack-visualizer-plugin": "^0.1.11"
+    "webpack-visualizer-plugin": "^0.1.11",
+    "workbox-webpack-plugin": "^5.1.3"
   },
   "scripts": {
     "start": "craco start",

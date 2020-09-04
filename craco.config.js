@@ -4,6 +4,7 @@ const rewireBabelLoader = require("craco-babel-loader");
 const BabelRcPlugin = require('@jackwilsdon/craco-use-babelrc');
 const {BundleAnalyzerPlugin} = require("webpack-bundle-analyzer");
 const CompressionPlugin = require('compression-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin')
 
 const isEnvProduction = process.env.NODE_ENV === 'production';
 process.env.GENERATE_SOURCEMAP = !isEnvProduction;
@@ -62,6 +63,10 @@ module.exports = {
                 filename: "[path].gz[query]",
                 algorithm: "gzip",
                 test: /\.(js|css)$/,
+            }),
+            new WorkboxPlugin.GenerateSW({
+                clientsClaim: true,
+                skipWaiting: true
             }),
             new BundleAnalyzerPlugin()
         ]
