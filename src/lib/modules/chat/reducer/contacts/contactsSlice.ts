@@ -1,4 +1,4 @@
-import {createSlice, createEntityAdapter} from '@reduxjs/toolkit'
+import {createSlice, createEntityAdapter} from "@reduxjs/toolkit"
 import {Contact} from "../../interfaces/Contact"
 import {fetchContacts} from "./fetchContacts"
 import {CommonState} from "../../../../../store/common/store"
@@ -17,7 +17,8 @@ const initialState = contactsAdapter.getInitialState<StateProps>({
 const contactsSlice = createSlice({
     name: 'contacts',
     initialState,
-    reducers: {},
+    reducers: {
+    },
     extraReducers: builder => {
         builder.addCase(fetchContacts.pending, state => {
             state.loading = true
@@ -33,11 +34,13 @@ const contactsSlice = createSlice({
 })
 
 export const {
-    selectById: getContactsById,
+    // selectById: getContactsById,
     // selectIds: selectContactsIds,
-    selectEntities: selectContactsEntities,
+    // selectEntities: selectContactsEntities,
     selectAll: selectAllContacts,
-    selectTotal: selectTotalContacts
+    // selectTotal: selectTotalContacts
 } = contactsAdapter.getSelectors<CommonState>(state => state.contacts)
+
+export const {} = contactsSlice.actions;
 
 export default contactsSlice.reducer;

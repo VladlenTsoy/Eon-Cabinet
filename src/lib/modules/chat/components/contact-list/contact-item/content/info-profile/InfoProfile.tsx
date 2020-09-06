@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import {Contact} from "../../../../../interfaces/Contact"
+import moment from "moment"
 
 const InfoProfileStyled = styled.div`
     position: relative;
@@ -27,7 +28,12 @@ const InfoProfile: React.FC<InfoProfileProps> = ({contact}) => {
         <InfoProfileStyled>
             <span>{contact.last_name}</span>
             <span>{contact.first_name}</span>
-            <span className="time">12:58</span>
+            <span className="time">
+                {
+                    contact.messages?.last &&
+                    moment(contact.messages.last.created_at * 1000).format("DD MMM HH:mm")
+                }
+            </span>
         </InfoProfileStyled>
     )
 }

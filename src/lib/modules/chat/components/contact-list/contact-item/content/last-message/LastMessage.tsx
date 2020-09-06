@@ -29,15 +29,16 @@ const LastMessageStyled = styled.div`
 
 interface LastMessageProps {
     message: string
+    unread: number
 }
 
-const LastMessage:React.FC<LastMessageProps> = ({message}) => {
+const LastMessage: React.FC<LastMessageProps> = ({message, unread}) => {
     return (
         <LastMessageStyled>
             <p>
                 {message}
             </p>
-            <div className="notify-count">1</div>
+            {unread > 0 && <div className="notify-count">{unread}</div>}
         </LastMessageStyled>
     )
 }

@@ -6,6 +6,7 @@ export interface Message {
     user_id: User["id"]
     contact_id: Contact["id"]
     message: string
+    read: boolean
     created_at: number
     // created_at: {
     //     seconds: number

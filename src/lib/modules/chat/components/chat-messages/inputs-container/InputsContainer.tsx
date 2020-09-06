@@ -46,7 +46,6 @@ const InputsContainer: React.FC<InputsContainerProps> = ({contactId}) => {
 
     const onSubmit = (e: any) => {
         e.preventDefault()
-        console.log(message)
         if (message !== "") {
             firestore.collection("messages").add({
                 contact_id: contactId,

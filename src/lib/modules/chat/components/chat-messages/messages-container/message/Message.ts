@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const WrapperMessageStyled = styled.div`
   display: flex;
   margin-bottom: 0.5rem;
+  height: fit-content;
   
   .time {
     padding: 0.5rem;

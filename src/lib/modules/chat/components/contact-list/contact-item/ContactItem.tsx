@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import ImageProfile from "./image-profile/ImageProfile"
 import {Contact} from "../../../interfaces/Contact"
-import LastMessage from "./content/last-message/LastMessage"
+// import LastMessage from "./content/last-message/LastMessage"
 import InfoProfile from "./content/info-profile/InfoProfile"
 
 const ContactItemStyled = styled.div`
@@ -36,10 +36,7 @@ const ContactItem: React.FC<ContactItemProps> = ({contact, selectContact}) => {
             <ImageProfile contact={contact}/>
             <div className="content">
                 <InfoProfile contact={contact}/>
-                <LastMessage message="Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Architecto beatae consequuntur culpa doloribus eligendi expedita
-                facilis, fugit nesciunt optio quas, qui quo repudiandae sapiente
-                sit soluta ut vitae? Blanditiis, reiciendis."/>
+                {/*<LastMessage message={contact.messages?.last.message || ""} unread={contact.messages?.not_read || 0}/>*/}
             </div>
         </ContactItemStyled>
     )
