@@ -15,11 +15,7 @@ const ContactListStyled = styled.div`
     overflow-y: auto;
 `
 
-interface ContactListProps {
-    selectContact: (contact: any) => void
-}
-
-const ContactList: React.FC<ContactListProps> = ({selectContact}) => {
+const ContactList: React.FC = () => {
     const dispatch = useCommonDispatch()
     const loading = useLoadingContacts()
     const contacts = useSelectAllContacts()
@@ -31,16 +27,12 @@ const ContactList: React.FC<ContactListProps> = ({selectContact}) => {
         }
     }, [dispatch])
 
-    if (loading) return <LoadingBlock />
+    if (loading) return <LoadingBlock/>
 
     return (
         <ContactListStyled>
             {contacts.map((contact, key) => (
-                <ContactItem
-                    contact={contact}
-                    selectContact={selectContact}
-                    key={key}
-                />
+                <ContactItem contact={contact} key={key}/>
             ))}
         </ContactListStyled>
     )

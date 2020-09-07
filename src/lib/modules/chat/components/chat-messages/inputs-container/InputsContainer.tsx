@@ -4,7 +4,6 @@ import AttachItem from "./attach-item/AttachItem"
 import EmojiItem from "./emoji-item/EmojiItem"
 import TextareaItem from "./textarea-item/TextareaItem"
 import SendItem from "./send-item/SendItem"
-import {Contact} from "../../../interfaces/Contact"
 import {useUser} from "../../../../../../hooks/use-user"
 import {firestore} from "../../../../../../bin/firebase"
 import EmojiContainer from "./emoji-container/EmojiContainer"
@@ -31,10 +30,10 @@ const ContainerStyled = styled.div`
 `
 
 interface InputsContainerProps {
-    contactId: Contact["id"]
+    selectedContactId: number
 }
 
-const InputsContainer: React.FC<InputsContainerProps> = ({contactId}) => {
+const InputsContainer: React.FC<InputsContainerProps> = ({selectedContactId}) => {
     const {user} = useUser()
     const [emojiVisible, setEmojiVisible] = useState(false)
     const [emojiBlockVisible, setEmojiBlockVisible] = useState(false)
@@ -44,15 +43,16 @@ const InputsContainer: React.FC<InputsContainerProps> = ({contactId}) => {
         setMessage(value)
     }, [])
 
-    const onSubmit = (e: any) => {
+    const onSubmit = async (e: any) => {
         e.preventDefault()
         if (message !== "") {
-            firestore.collection("messages").add({
-                contact_id: contactId,
+            const a =await firestore.collection("messages").add({
+                contact_id: selectedContactId,
                 user_id: user.id,
                 message,
                 created_at: new Date()
             })
+            console.log(a)
             setMessage("")
         }
     }
@@ -83,4 +83,4 @@ const InputsContainer: React.FC<InputsContainerProps> = ({contactId}) => {
     )
 }
 
-export default React.memo<InputsContainerProps>(InputsContainer)
+export default React.memo(InputsContainer)

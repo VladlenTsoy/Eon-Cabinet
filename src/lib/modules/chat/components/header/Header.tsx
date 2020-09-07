@@ -1,15 +1,10 @@
 import React from "react"
 import styled from "styled-components"
-import More from "./more/More"
-import List from "./list/List"
-import {Contact} from "../../interfaces/Contact"
 
 const HeaderStyled = styled.div`
     text-align: center;
     font-size: 16px;
     font-weight: 900;
-    // border-bottom: 1px solid ${(props) => props.theme.light_color_border};
-    //color: ${(props) => props.theme.color_black};
 
     > div {
         display: grid;
@@ -30,22 +25,12 @@ const HeaderStyled = styled.div`
     }
 `
 
-interface HeaderProps {
-    close: () => void
-    contact: Contact | null
-    back: () => void
-}
-
-const Header: React.FC<HeaderProps> = ({contact, back, close}) => {
+const Header: React.FC = ({children}) => {
     return (
         <HeaderStyled>
-            {contact ? (
-                <More back={back} contact={contact} close={close}/>
-            ) : (
-                <List close={close}/>
-            )}
+            {children}
         </HeaderStyled>
     )
 }
 
-export default React.memo<HeaderProps>(Header)
+export default Header

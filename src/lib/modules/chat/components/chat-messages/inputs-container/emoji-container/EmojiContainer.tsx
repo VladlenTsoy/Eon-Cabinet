@@ -18,6 +18,7 @@ const EmojiContainerStyled = styled.div`
     animation-duration: 0.3s;
     animation-fill-mode: both;
     opacity: 0;
+    transform: translate3d(0, 100%, 0);
 
     > span {
         user-select: none;
@@ -76,7 +77,7 @@ const EmojiContainer: React.FC<EmojiContainerProps> = ({
             id="emoji-select-block"
             onMouseLeave={mouseLeaveHandler}
             onMouseEnter={mouseEnterHandler}
-            className={active ? "fadeInUp" : "fadeOutDown"}
+            className={active ? "fadeInUp" : ""}
         >
             <span>😄</span>
             <span>😂</span>

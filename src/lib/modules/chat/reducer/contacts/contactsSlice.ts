@@ -1,4 +1,4 @@
-import {createSlice, createEntityAdapter} from "@reduxjs/toolkit"
+import {createSlice, createEntityAdapter, PayloadAction} from "@reduxjs/toolkit"
 import {Contact} from "../../interfaces/Contact"
 import {fetchContacts} from "./fetchContacts"
 import {CommonState} from "../../../../../store/common/store"
@@ -8,16 +8,21 @@ export const contactsAdapter = createEntityAdapter<Contact>()
 
 export interface StateProps {
     loading: boolean
+    selectedContactId: Contact["id"] | null
 }
 
 const initialState = contactsAdapter.getInitialState<StateProps>({
-    loading: false
+    loading: false,
+    selectedContactId: null
 })
 
 const contactsSlice = createSlice({
-    name: 'contacts',
+    name: "contacts",
     initialState,
     reducers: {
+        changeSelectedContactId: (state, action: PayloadAction<Contact["id"] | null>) => {
+            state.selectedContactId = action.payload
+        }
     },
     extraReducers: builder => {
         builder.addCase(fetchContacts.pending, state => {
@@ -34,13 +39,13 @@ const contactsSlice = createSlice({
 })
 
 export const {
-    // selectById: getContactsById,
+    selectById: getContactsById,
     // selectIds: selectContactsIds,
     // selectEntities: selectContactsEntities,
-    selectAll: selectAllContacts,
+    selectAll: selectAllContacts
     // selectTotal: selectTotalContacts
 } = contactsAdapter.getSelectors<CommonState>(state => state.contacts)
 
-export const {} = contactsSlice.actions;
+export const {changeSelectedContactId} = contactsSlice.actions
 
-export default contactsSlice.reducer;
+export default contactsSlice.reducer

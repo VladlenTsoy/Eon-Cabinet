@@ -1,9 +1,12 @@
-import React, {useCallback, useState} from "react"
+import React, {useEffect} from "react"
 import ContactList from "./contact-list/ContactList"
 import Header from "./header/Header"
 import ChatMessages from "./chat-messages/ChatMessages"
 import styled from "styled-components"
-import {Contact} from "../interfaces/Contact"
+import {useSelectedContactId} from "../reducer/contacts/contactsSelectors"
+import More from "./header/more/More"
+import List from "./header/list/List"
+import socket from "../../../../utils/socket"
 
 const ChatStyled = styled.div`
   display: grid;
@@ -16,22 +19,28 @@ interface ChatProps {
 }
 
 const Chat: React.FC<ChatProps> = ({close}) => {
-    const [contact, setContact] = useState<Contact | null>(null)
+    const selectedContactId = useSelectedContactId()
 
-    const selectContact = useCallback((contact: any) => {
-        setContact(contact)
-    }, [])
+    useEffect(() => {
+        socket.on("check_chat", () => {
+            // console.log(1)
+        })
 
-    const resetContact = useCallback(() => {
-        setContact(null)
+        socket.emit("chat message", "world")
     }, [])
 
     return <ChatStyled>
-        <Header contact={contact} back={resetContact} close={close}/>
+        <Header>
+            {
+                selectedContactId ?
+                    <More close={close} contactId={selectedContactId}/> :
+                    <List close={close}/>
+            }
+        </Header>
         {
-            contact ?
-                <ChatMessages contact={contact}/> :
-                <ContactList selectContact={selectContact}/>
+            selectedContactId ?
+                <ChatMessages selectedContactId={selectedContactId}/> :
+                <ContactList/>
         }
     </ChatStyled>
 }

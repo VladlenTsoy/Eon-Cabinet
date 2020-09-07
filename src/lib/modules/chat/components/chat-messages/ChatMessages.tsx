@@ -2,7 +2,9 @@ import React from "react"
 import styled from "styled-components"
 import MessagesContainer from "./messages-container/MessagesContainer"
 import InputsContainer from "./inputs-container/InputsContainer"
-import {Contact} from "../../interfaces/Contact"
+import {useSelectMessages} from "../../hooks/useSelectMessages"
+import {LoadingBlock} from "../../../../ui"
+import {useUser} from "../../../../../hooks/use-user"
 
 const ChatMessageStyled = styled.div`
   position: relative;
@@ -13,13 +15,20 @@ const ChatMessageStyled = styled.div`
 `
 
 interface ChatMessagesProps {
-    contact: Contact
+    selectedContactId: number
 }
 
-const ChatMessages: React.FC<ChatMessagesProps> = ({contact}) => {
+const ChatMessages: React.FC<ChatMessagesProps> = ({selectedContactId}) => {
+    const {user} = useUser()
+    const [loading, messages, addPage] = useSelectMessages({selectedContactId, userId: user.id})
+
     return <ChatMessageStyled>
-        <MessagesContainer contact={contact}/>
-        <InputsContainer contactId={contact.id}/>
+        {
+            loading && !messages.length ?
+                <LoadingBlock/> :
+                <MessagesContainer messages={messages} addPage={addPage} loading={loading}/>
+        }
+        <InputsContainer selectedContactId={selectedContactId}/>
     </ChatMessageStyled>
 }
 
