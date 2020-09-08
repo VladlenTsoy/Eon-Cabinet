@@ -3,10 +3,11 @@ import ContactList from "./contact-list/ContactList"
 import Header from "./header/Header"
 import ChatMessages from "./chat-messages/ChatMessages"
 import styled from "styled-components"
-import {useSelectedContactId} from "../reducer/contacts/contactsSelectors"
+import {useSelectedChatId} from "../reducer/chats/chatsSelectors"
 import More from "./header/more/More"
 import List from "./header/list/List"
 import socket from "../../../../utils/socket"
+import {useUser} from "../../../../hooks/use-user"
 
 const ChatStyled = styled.div`
   display: grid;
@@ -19,27 +20,29 @@ interface ChatProps {
 }
 
 const Chat: React.FC<ChatProps> = ({close}) => {
-    const selectedContactId = useSelectedContactId()
+    const {user} = useUser()
+    const selectedChatId = useSelectedChatId()
 
     useEffect(() => {
-        socket.on("check_chat", () => {
-            // console.log(1)
+        socket.on(`receive_messages${user.id}`, () => {
+            alert(1)
         })
-
-        socket.emit("chat message", "world")
-    }, [])
+        return () => {
+            socket.removeEventListener(`receive_messages${user.id}`);
+        }
+    }, [user])
 
     return <ChatStyled>
         <Header>
             {
-                selectedContactId ?
-                    <More close={close} contactId={selectedContactId}/> :
+                selectedChatId ?
+                    <More close={close} chatId={selectedChatId}/> :
                     <List close={close}/>
             }
         </Header>
         {
-            selectedContactId ?
-                <ChatMessages selectedContactId={selectedContactId}/> :
+            selectedChatId ?
+                <ChatMessages chatId={selectedChatId}/> :
                 <ContactList/>
         }
     </ChatStyled>

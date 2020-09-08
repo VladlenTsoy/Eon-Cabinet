@@ -5,8 +5,9 @@ import EmojiItem from "./emoji-item/EmojiItem"
 import TextareaItem from "./textarea-item/TextareaItem"
 import SendItem from "./send-item/SendItem"
 import {useUser} from "../../../../../../hooks/use-user"
-import {firestore} from "../../../../../../bin/firebase"
 import EmojiContainer from "./emoji-container/EmojiContainer"
+import {useCommonDispatch} from "../../../../../../store/common/store"
+import {addMessage} from "../../../reducer/messages/addMessage"
 
 const InputMessageStyled = styled.form`
     display: grid;
@@ -38,6 +39,7 @@ const InputsContainer: React.FC<InputsContainerProps> = ({selectedContactId}) =>
     const [emojiVisible, setEmojiVisible] = useState(false)
     const [emojiBlockVisible, setEmojiBlockVisible] = useState(false)
     const [message, setMessage] = useState<string>("")
+    const dispatch = useCommonDispatch()
 
     const onChangeHandler = useCallback((value: string) => {
         setMessage(value)
@@ -46,13 +48,7 @@ const InputsContainer: React.FC<InputsContainerProps> = ({selectedContactId}) =>
     const onSubmit = async (e: any) => {
         e.preventDefault()
         if (message !== "") {
-            const a =await firestore.collection("messages").add({
-                contact_id: selectedContactId,
-                user_id: user.id,
-                message,
-                created_at: new Date()
-            })
-            console.log(a)
+            dispatch(addMessage({chatId: selectedContactId, message, userId: user.id}))
             setMessage("")
         }
     }

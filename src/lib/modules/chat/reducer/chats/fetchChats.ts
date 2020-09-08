@@ -1,19 +1,19 @@
 import {createAsyncThunk} from "@reduxjs/toolkit"
 import {CommonThunkProps} from "../../../../../store/common/store"
 import {apiRequest} from "../../../../../utils/api"
-import {Contact} from "../../interfaces/Contact"
+import {Chat} from "../../interfaces/Chat"
 
-type ReturnedType = Contact[]
+type ReturnedType = Chat[]
 
-export const fetchContacts = createAsyncThunk<ReturnedType, undefined, CommonThunkProps>(
-    "contacts/fetch",
+export const fetchChats = createAsyncThunk<ReturnedType, undefined, CommonThunkProps>(
+    "chats/fetch",
     async (_, {signal}) => {
         return await apiRequest("get", `contacts`, {signal, api2: true})
     },
     {
         condition(_, {getState}) {
-            const {contacts} = getState();
-            return !contacts.ids.length
+            const {chats} = getState();
+            return !chats.ids.length
         }
     }
 )

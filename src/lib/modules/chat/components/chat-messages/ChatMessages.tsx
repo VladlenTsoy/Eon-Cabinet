@@ -1,10 +1,11 @@
-import React from "react"
+import React, {useEffect} from "react"
 import styled from "styled-components"
 import MessagesContainer from "./messages-container/MessagesContainer"
 import InputsContainer from "./inputs-container/InputsContainer"
-import {useSelectMessages} from "../../hooks/useSelectMessages"
 import {LoadingBlock} from "../../../../ui"
-import {useUser} from "../../../../../hooks/use-user"
+import {useCommonDispatch} from "../../../../../store/common/store"
+import {fetchMessagesByChatId} from "../../reducer/messages/fetchMessagesByChatId"
+import {useLoadingMessagesByChatId, useSelectMessagesByChatId} from "../../reducer/messages/messagesSelectors"
 
 const ChatMessageStyled = styled.div`
   position: relative;
@@ -15,20 +16,28 @@ const ChatMessageStyled = styled.div`
 `
 
 interface ChatMessagesProps {
-    selectedContactId: number
+    chatId: number
 }
 
-const ChatMessages: React.FC<ChatMessagesProps> = ({selectedContactId}) => {
-    const {user} = useUser()
-    const [loading, messages, addPage] = useSelectMessages({selectedContactId, userId: user.id})
+const ChatMessages: React.FC<ChatMessagesProps> = ({chatId}) => {
+    const loading = useLoadingMessagesByChatId(chatId)
+    const messages = useSelectMessagesByChatId(chatId)
+    const dispatch = useCommonDispatch()
+
+    useEffect(() => {
+        const promise = dispatch(fetchMessagesByChatId({chatId}))
+        return () => {
+            promise.abort()
+        }
+    }, [dispatch])
 
     return <ChatMessageStyled>
         {
             loading && !messages.length ?
                 <LoadingBlock/> :
-                <MessagesContainer messages={messages} addPage={addPage} loading={loading}/>
+                <MessagesContainer messages={messages} addPage={() => null} loading={loading}/>
         }
-        <InputsContainer selectedContactId={selectedContactId}/>
+        <InputsContainer selectedContactId={chatId}/>
     </ChatMessageStyled>
 }
 

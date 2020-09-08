@@ -1,15 +1,11 @@
-import {Contact} from "./Contact"
+import {Chat} from "./Chat"
 import {User} from "../../../types/common/User"
 
 export interface Message {
     id: string
     user_id: User["id"]
-    contact_id: Contact["id"]
+    chat_id: Chat["chat_id"]
     message: string
-    read: boolean
-    created_at: number
-    // created_at: {
-    //     seconds: number
-    //     nanoseconds: number
-    // }
+    status: 'new' | 'view'
+    created_at: string
 }

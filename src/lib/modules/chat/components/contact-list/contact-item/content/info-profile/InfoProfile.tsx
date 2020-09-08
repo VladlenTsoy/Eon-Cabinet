@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import {Contact} from "../../../../../interfaces/Contact"
+import {Chat} from "../../../../../interfaces/Chat"
 import moment from "moment"
 
 const InfoProfileStyled = styled.div`
@@ -20,18 +20,18 @@ const InfoProfileStyled = styled.div`
 `
 
 interface InfoProfileProps {
-    contact: Contact
+    chat: Chat
 }
 
-const InfoProfile: React.FC<InfoProfileProps> = ({contact}) => {
+const InfoProfile: React.FC<InfoProfileProps> = ({chat}) => {
     return (
         <InfoProfileStyled>
-            <span>{contact.last_name}</span>
-            <span>{contact.first_name}</span>
+            <span>{chat.contact.last_name}</span>
+            <span>{chat.contact.first_name}</span>
             <span className="time">
                 {
-                    contact.messages?.last &&
-                    moment(contact.messages.last.created_at * 1000).format("DD MMM HH:mm")
+                    chat.last_message &&
+                    moment(chat.last_message.created_at).format("DD MMM HH:mm")
                 }
             </span>
         </InfoProfileStyled>

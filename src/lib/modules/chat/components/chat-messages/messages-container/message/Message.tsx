@@ -17,6 +17,7 @@ const WrapperStyled = styled.div<MessageStyledProp>`
     padding: 0 1rem;
 
     .time {
+        order: ${(props) => props.type === "inbox" ? 3 : 1};;
         padding: 0.5rem;
         font-size: 12px;
     }
@@ -29,6 +30,7 @@ const MessageStyled: React.FC<MessageStyledProp> = styled.div<
     border-radius: 10px;
     box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
     white-space: pre;
+    order: 2;
 
     background: ${(props) =>
         props.type === "inbox"
@@ -46,10 +48,10 @@ interface MessageProps {
 const Message: React.FC<MessageProps> = ({message, type}) => {
     return (
         <WrapperStyled type={type}>
-            <MessageStyled type={type}>{message.message}</MessageStyled>
             <span className="time">
-                {moment(message.created_at * 1000).format("DD MMM HH:mm")}
+                {moment(message.created_at).format("DD MMM HH:mm")}
             </span>
+            <MessageStyled type={type}>{message.message}</MessageStyled>
         </WrapperStyled>
     )
 }

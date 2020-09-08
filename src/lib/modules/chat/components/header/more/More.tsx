@@ -1,28 +1,28 @@
 import React from "react"
 import {CloseOutlined, ArrowLeftOutlined} from "@ant-design/icons"
-import {Contact} from "../../../interfaces/Contact"
+import {Chat} from "../../../interfaces/Chat"
 import {useCommonDispatch} from "../../../../../../store/common/store"
-import {changeSelectedContactId} from "../../../reducer/contacts/contactsSlice"
-import {useSelectContactsById} from "../../../reducer/contacts/contactsSelectors"
+import {changeSelectedChatId} from "../../../reducer/chats/chatsSlice"
+import {useSelectChatsById} from "../../../reducer/chats/chatsSelectors"
 
 interface MoreProps {
-    contactId: Contact["id"]
+    chatId: Chat["chat_id"]
     close: () => void
 }
 
-const More: React.FC<MoreProps> = ({close, contactId}) => {
+const More: React.FC<MoreProps> = ({close, chatId}) => {
     const dispatch = useCommonDispatch()
-    const back = () => dispatch(changeSelectedContactId(null))
-    const contact = useSelectContactsById(contactId)
+    const back = () => dispatch(changeSelectedChatId(null))
+    const chat = useSelectChatsById(chatId)
 
-    if (!contact)
+    if (!chat)
         return <div>Загрузка...</div>
 
     return (
         <div>
             <div className="back" onClick={back}><ArrowLeftOutlined/></div>
             <div>
-                {contact.last_name} {contact.first_name}
+                {chat.contact.last_name} {chat.contact.first_name}
             </div>
             <div className="close" onClick={close}><CloseOutlined/></div>
         </div>

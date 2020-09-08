@@ -77,6 +77,8 @@ const Tasks: React.FC = () => {
                 userSetting.tasks.push({discipline, task, setting}) :
                 userSetting.tasks[keySetting].setting = setting;
 
+            // TODO _ error
+            // @ts-ignore
             dispatch(updateUser({userId: user.id, data: {setting: userSetting}}))
         } catch (e) {
             console.error(e);

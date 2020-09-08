@@ -1,7 +1,7 @@
 import {Message} from "./Message"
 import {User} from "../../../types/common/User"
 
-export interface Contact {
+export interface Chat {
     chat_id: number
     contact: {
         id: number

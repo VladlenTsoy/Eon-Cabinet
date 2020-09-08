@@ -8,7 +8,7 @@ type ReturnedType = User
 
 interface ArgsProps {
     userId: User['id'];
-    data: object
+    data: any
 }
 
 export const updateUser = createAsyncThunk<ReturnedType, ArgsProps, CommonThunkProps>(

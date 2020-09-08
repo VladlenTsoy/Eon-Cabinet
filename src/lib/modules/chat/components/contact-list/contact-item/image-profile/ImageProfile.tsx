@@ -1,9 +1,9 @@
 import React from "react"
 import {Avatar} from "../../../../../../ui"
-import {Contact} from "../../../../interfaces/Contact"
+import {Chat} from "../../../../interfaces/Chat"
 
 interface ImageProfileProps {
-    contact: Contact
+    contact: Chat['contact']
 }
 
 const ImageProfile: React.FC<ImageProfileProps> = ({contact}) => {

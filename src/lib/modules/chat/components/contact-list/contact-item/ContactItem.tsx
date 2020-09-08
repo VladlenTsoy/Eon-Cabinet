@@ -1,10 +1,10 @@
 import React from "react"
 import styled from "styled-components"
 import ImageProfile from "./image-profile/ImageProfile"
-import {Contact} from "../../../interfaces/Contact"
+import {Chat} from "../../../interfaces/Chat"
 import LastMessage from "./content/last-message/LastMessage"
 import InfoProfile from "./content/info-profile/InfoProfile"
-import {changeSelectedContactId} from "../../../reducer/contacts/contactsSlice"
+import {changeSelectedChatId} from "../../../reducer/chats/chatsSlice"
 import {useCommonDispatch} from "../../../../../../store/common/store"
 
 const ContactItemStyled = styled.div`
@@ -26,19 +26,19 @@ const ContactItemStyled = styled.div`
 `
 
 interface ContactItemProps {
-    contact: Contact
+    chat: Chat
 }
 
-const ContactItem: React.FC<ContactItemProps> = ({contact}) => {
+const ContactItem: React.FC<ContactItemProps> = ({chat}) => {
     const dispatch = useCommonDispatch()
-    const onClickHandler = () => dispatch(changeSelectedContactId(contact.id))
+    const onClickHandler = () => dispatch(changeSelectedChatId(chat.chat_id))
 
     return (
         <ContactItemStyled onClick={onClickHandler}>
-            <ImageProfile contact={contact}/>
+            <ImageProfile contact={chat.contact}/>
             <div className="content">
-                <InfoProfile contact={contact}/>
-                <LastMessage message={contact.messages?.last.message || ""} unread={contact.messages?.not_read || 0}/>
+                <InfoProfile chat={chat}/>
+                <LastMessage message={chat.last_message?.message || ""} unread={chat?.not_read || 0}/>
             </div>
         </ContactItemStyled>
     )

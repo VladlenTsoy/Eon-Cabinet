@@ -8,11 +8,14 @@ const MessagesContainerStyled = styled.div`
     padding-top: 0.5rem;
     height: 100%;
     background: ${(props) => props.theme["@layout-body-background"]};
-    display: grid;
-    flex-direction: column;
-    justify-content: flex-end;
     overflow-x: hidden;
     overflow-y: auto;
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+    }
 `
 
 interface MessagesContainerProps {
@@ -21,14 +24,17 @@ interface MessagesContainerProps {
     messages: Message[]
 }
 
-const MessagesContainer: React.FC<MessagesContainerProps> = ({messages, addPage, loading}) => {
+const MessagesContainer: React.FC<MessagesContainerProps> = ({
+    messages,
+    addPage,
+    loading
+}) => {
     const {user} = useUser()
 
     useEffect(() => {
         if (messages.length) {
             const scrollBlock = document.getElementById("scroll-chat")
-            if (scrollBlock)
-                scrollBlock.scrollTop = scrollBlock.scrollHeight
+            if (scrollBlock) scrollBlock.scrollTop = scrollBlock.scrollHeight
         }
     }, [messages])
 
@@ -36,22 +42,27 @@ const MessagesContainer: React.FC<MessagesContainerProps> = ({messages, addPage,
         const messagesBlock = document.getElementById("scroll-chat")
         if (messagesBlock)
             messagesBlock.addEventListener("scroll", (event: any) => {
-                if (event.target.scrollTop === 0)
-                    addPage()
+                if (event.target.scrollTop === 0) addPage()
             })
     }, [addPage])
 
     return (
-        <MessagesContainerStyled id="scroll-chat">
+        <div style={{height: "100%", overflow: "hidden"}}>
             {loading && <div>Загрузка...</div>}
-            {messages.map((message, key) => (
-                <MessageComponent
-                    message={message}
-                    type={user.id === message.user_id ? "outbox" : "inbox"}
-                    key={key}
-                />
-            ))}
-        </MessagesContainerStyled>
+            <MessagesContainerStyled id="scroll-chat">
+                <div className="container">
+                    {messages.map((message) => (
+                        <MessageComponent
+                            message={message}
+                            type={
+                                user.id === message.user_id ? "outbox" : "inbox"
+                            }
+                            key={message.id}
+                        />
+                    ))}
+                </div>
+            </MessagesContainerStyled>
+        </div>
     )
 }
 
