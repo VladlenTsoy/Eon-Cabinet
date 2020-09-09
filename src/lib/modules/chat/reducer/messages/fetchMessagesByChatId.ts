@@ -23,9 +23,12 @@ export const fetchMessagesByChatId = createAsyncThunk<ReturnedType, ArgsProps, C
         return await apiRequest("get", `messages/${chatId}`, {signal, api2: true, params: {page}})
     },
     {
-        // condition(_, {getState}) {
-        //     const {chats} = getState();
-        //     return !chats.ids.length
-        // }
+        condition({chatId, page = 1}, {getState}) {
+            const {messages} = getState();
+            if(!messages.chats[chatId]) return true
+            const {current_page = 0, last_page = 0} = messages.chats[chatId]
+            if (!current_page) return true
+            if (current_page >= page || current_page >= last_page) return false
+        }
     }
 )

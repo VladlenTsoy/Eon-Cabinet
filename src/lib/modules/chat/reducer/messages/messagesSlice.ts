@@ -54,7 +54,7 @@ const messagesSlice = createSlice({
         //
         builder.addCase(addMessage.pending, (state, action) => {
             const {chatId, userId, message} = action.meta.arg
-            const createdAt = (new Date()).toString()
+            const createdAt = (new Date()).toUTCString()
 
             const data: Message = {
                 id: 9999,
