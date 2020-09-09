@@ -22,6 +22,13 @@ export const useSelectMessagesByChatId = (chatId: Chat["chat_id"]) => {
     return messages.filter(message => message.chat_id === chatId)
 }
 
+// Вывод
+export const useLastMessageByChatId = (chatId: Chat["chat_id"]) => {
+    const all = useSelectAllMessages()
+    const messages = all.filter(message => message.chat_id === chatId)
+    return messages.length ? messages[messages.length - 1] : null
+}
+
 // Вывод всех групп по категории
 export const useSelectCountNotReadByChatId = (chatId: Chat["chat_id"], userId: User["id"]) => {
     const messages = useSelectAllMessages()

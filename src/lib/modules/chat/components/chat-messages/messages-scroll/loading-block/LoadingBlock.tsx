@@ -13,6 +13,7 @@ const LoadingStyled = styled.div`
     background: ${(props) => props.theme["@component-background"]};
     animation-duration: 1s;
     animation-fill-mode: both;
+    top: 0.5rem;
 
     .anticon {
         margin-right: 0.5rem;
