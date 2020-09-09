@@ -1,11 +1,10 @@
-import React, {useEffect} from "react"
+import React, {useEffect, useState} from "react"
 import styled from "styled-components"
 import MessagesContainer from "./messages-container/MessagesContainer"
 import InputsContainer from "./inputs-container/InputsContainer"
-import {LoadingBlock} from "../../../../ui"
 import {useCommonDispatch} from "../../../../../store/common/store"
 import {fetchMessagesByChatId} from "../../reducer/messages/fetchMessagesByChatId"
-import {useLoadingMessagesByChatId, useSelectMessagesByChatId} from "../../reducer/messages/messagesSelectors"
+import {useCurrentPageMessagesByChatId} from "../../reducer/messages/messagesSelectors"
 
 const ChatMessageStyled = styled.div`
   position: relative;
@@ -20,23 +19,23 @@ interface ChatMessagesProps {
 }
 
 const ChatMessages: React.FC<ChatMessagesProps> = ({chatId}) => {
-    const loading = useLoadingMessagesByChatId(chatId)
-    const messages = useSelectMessagesByChatId(chatId)
+    const currentPage = useCurrentPageMessagesByChatId(chatId)
+    const [page, setPage] = useState(currentPage)
     const dispatch = useCommonDispatch()
 
     useEffect(() => {
-        const promise = dispatch(fetchMessagesByChatId({chatId}))
+        const promise = dispatch(fetchMessagesByChatId({chatId, page}))
         return () => {
             promise.abort()
         }
-    }, [dispatch])
+    }, [dispatch, page])
+
+    const clickMoreHandler = () => {
+        setPage(prevState => ++prevState)
+    }
 
     return <ChatMessageStyled>
-        {
-            loading && !messages.length ?
-                <LoadingBlock/> :
-                <MessagesContainer messages={messages} addPage={() => null} loading={loading}/>
-        }
+        <MessagesContainer chatId={chatId} addPage={clickMoreHandler}/>
         <InputsContainer selectedContactId={chatId}/>
     </ChatMessageStyled>
 }

@@ -1,12 +1,14 @@
-import {createEntityAdapter, createSlice} from "@reduxjs/toolkit"
+import {createEntityAdapter, createSlice, PayloadAction} from "@reduxjs/toolkit"
 import {Message} from "../../interfaces/Message"
 import {CommonState} from "../../../../../store/common/store"
 import {fetchMessagesByChatId} from "./fetchMessagesByChatId"
 import {addMessage} from "./addMessage"
+import moment from "moment"
 
 //
 export const messageAdapter = createEntityAdapter<Message>({
-    selectId: message => message.id
+    selectId: message => message.id,
+    sortComparer: (a, b) => moment(a.created_at).isAfter(b.created_at) ? 1 : 0
 })
 
 export interface StateProps {
@@ -27,7 +29,11 @@ const initialState = messageAdapter.getInitialState<StateProps>({
 const messagesSlice = createSlice({
     name: "messages",
     initialState,
-    reducers: {},
+    reducers: {
+        addSocketMessage: (state, action: PayloadAction<Message>) => {
+            messageAdapter.addOne(state, action.payload)
+        }
+    },
     extraReducers: builder => {
         //
         builder.addCase(fetchMessagesByChatId.pending, (state, action) => {
@@ -46,16 +52,36 @@ const messagesSlice = createSlice({
             state.chats[chatId] = {...state.chats[chatId] || {}, loading: false}
         })
         //
-        // builder.addCase(addMessage.pending, (state, action) => {
-            // messageAdapter.addOne(state, {id: , changes})
-        // })
-        builder.addCase(addMessage.fulfilled, (state, action) => {
-            const data = action.payload
+        builder.addCase(addMessage.pending, (state, action) => {
+            const {chatId, userId, message} = action.meta.arg
+            const createdAt = (new Date()).toString()
+
+            const data: Message = {
+                id: 9999,
+                message,
+                user_id: userId,
+                chat_id: chatId,
+                status: "loading",
+                created_at: createdAt
+            }
+
             messageAdapter.addOne(state, data)
         })
-        // builder.addCase(addMessage.rejected, (state, action) => {
-            // messageAdapter.addOne(state, action.payload)
-        // })
+        builder.addCase(addMessage.fulfilled, (state, action) => {
+            const data = action.payload
+            messageAdapter.updateOne(state, {
+                id: 9999,
+                changes: data
+            })
+        })
+        builder.addCase(addMessage.rejected, (state) => {
+            messageAdapter.updateOne(state, {
+                id: 9999,
+                changes: {
+                    status: "error"
+                }
+            })
+        })
     }
 })
 
@@ -67,6 +93,6 @@ export const {
     // selectTotal: selectTotalMessages
 } = messageAdapter.getSelectors<CommonState>(state => state.messages)
 
-export const {} = messagesSlice.actions
+export const {addSocketMessage} = messagesSlice.actions
 
 export default messagesSlice.reducer

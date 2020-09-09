@@ -44,6 +44,7 @@ const TextareaItem: React.FC<TextareaItemProps> = ({onChangeHandler, onSubmit, m
 
     return <WrapperTextAreaStyled>
         <TextAreaStyled
+            autoFocus
             maxRows={5}
             value={message}
             placeholder="Написать сообщение..."

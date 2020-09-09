@@ -2,6 +2,7 @@ import {createSlice, createEntityAdapter, PayloadAction} from "@reduxjs/toolkit"
 import {Chat} from "../../interfaces/Chat"
 import {fetchChats} from "./fetchChats"
 import {CommonState} from "../../../../../store/common/store"
+import {Message} from "../../interfaces/Message"
 
 //
 export const chatsAdapter = createEntityAdapter<Chat>({
@@ -22,6 +23,15 @@ const chatsSlice = createSlice({
     name: "chats",
     initialState,
     reducers: {
+        updateContactLastMessage: (state, action: PayloadAction<Message>) => {
+            const {chat_id} = action.payload
+            chatsAdapter.updateOne(state, {
+                id: chat_id, changes: {
+                    not_read: [],
+                    last_message: action.payload
+                }
+            })
+        },
         changeSelectedChatId: (state, action: PayloadAction<Chat["chat_id"] | null>) => {
             state.selectedChatId = action.payload
         }
@@ -48,6 +58,6 @@ export const {
     // selectTotal: selectTotalChats
 } = chatsAdapter.getSelectors<CommonState>(state => state.chats)
 
-export const {changeSelectedChatId} = chatsSlice.actions
+export const {changeSelectedChatId, updateContactLastMessage} = chatsSlice.actions
 
 export default chatsSlice.reducer

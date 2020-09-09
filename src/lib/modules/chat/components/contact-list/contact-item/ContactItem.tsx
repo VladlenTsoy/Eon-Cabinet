@@ -5,7 +5,9 @@ import {Chat} from "../../../interfaces/Chat"
 import LastMessage from "./content/last-message/LastMessage"
 import InfoProfile from "./content/info-profile/InfoProfile"
 import {changeSelectedChatId} from "../../../reducer/chats/chatsSlice"
+import {useSelectCountNotReadByChatId} from "../../../reducer/messages/messagesSelectors"
 import {useCommonDispatch} from "../../../../../../store/common/store"
+import {useUser} from "../../../../../../hooks/use-user"
 
 const ContactItemStyled = styled.div`
     display: grid;
@@ -30,15 +32,17 @@ interface ContactItemProps {
 }
 
 const ContactItem: React.FC<ContactItemProps> = ({chat}) => {
+    const {user} = useUser()
     const dispatch = useCommonDispatch()
     const onClickHandler = () => dispatch(changeSelectedChatId(chat.chat_id))
+    const notRead = useSelectCountNotReadByChatId(chat.chat_id, user.id)
 
     return (
         <ContactItemStyled onClick={onClickHandler}>
             <ImageProfile contact={chat.contact}/>
             <div className="content">
                 <InfoProfile chat={chat}/>
-                <LastMessage message={chat.last_message?.message || ""} unread={chat?.not_read || 0}/>
+                <LastMessage message={chat.last_message?.message || ""} unread={notRead || 0}/>
             </div>
         </ContactItemStyled>
     )

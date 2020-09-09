@@ -5,6 +5,9 @@ const HeaderStyled = styled.div`
     text-align: center;
     font-size: 16px;
     font-weight: 900;
+    z-index: 5;
+    position: relative;
+    box-shadow: 0 2px 15px 0 rgba(0,0,0,.05);
 
     > div {
         display: grid;

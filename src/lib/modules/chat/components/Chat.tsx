@@ -8,6 +8,10 @@ import More from "./header/more/More"
 import List from "./header/list/List"
 import socket from "../../../../utils/socket"
 import {useUser} from "../../../../hooks/use-user"
+import {Message} from "../interfaces/Message"
+import {useCommonDispatch} from "../../../../store/common/store"
+import {addSocketMessage} from "../reducer/messages/messagesSlice"
+import {updateContactLastMessage} from "../reducer/chats/chatsSlice"
 
 const ChatStyled = styled.div`
   display: grid;
@@ -22,13 +26,15 @@ interface ChatProps {
 const Chat: React.FC<ChatProps> = ({close}) => {
     const {user} = useUser()
     const selectedChatId = useSelectedChatId()
+    const dispatch = useCommonDispatch()
 
     useEffect(() => {
-        socket.on(`receive_messages${user.id}`, () => {
-            alert(1)
+        socket.on(`receive_messages_${user.id}`, (message: Message) => {
+            dispatch(addSocketMessage(message))
+            dispatch(updateContactLastMessage(message))
         })
         return () => {
-            socket.removeEventListener(`receive_messages${user.id}`);
+            socket.removeEventListener(`receive_messages_${user.id}`)
         }
     }, [user])
 

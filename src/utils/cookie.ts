@@ -1,4 +1,4 @@
-import cookie from "js-cookie";
+import cookie from "js-cookie"
 
 // Добавить куки
 export const setCookie = (name: string, value: string, options?: any) => cookie.set(name, value, options)
