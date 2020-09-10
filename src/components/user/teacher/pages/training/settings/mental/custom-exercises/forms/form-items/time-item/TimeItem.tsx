@@ -13,7 +13,7 @@ const TimeItem: React.FC<TimeItemProps> = ({typeTask}) => {
         size="large"
         requiredMsg="Введите время!"
     >
-        <Stepper min={typeTask === 'basic' ? 0.2 : 1} max={10} step={typeTask === 'basic' ? 0.1 : 1}/>
+        <Stepper min={typeTask === 'basic' ? 0.2 : 1} max={60} step={typeTask === 'basic' ? 0.1 : 1}/>
     </FormItem>;
 };
 
