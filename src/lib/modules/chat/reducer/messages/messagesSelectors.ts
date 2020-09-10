@@ -36,3 +36,11 @@ export const useSelectCountNotReadByChatId = (chatId: Chat["chat_id"], userId: U
         message => message.chat_id === chatId && message.status === "new" && message.user_id !== userId
     ).length
 }
+
+// Вывод
+export const useSelectCountNotReadAll = (userId: User["id"]) => {
+    const messages = useSelectAllMessages()
+    return messages.filter(
+        message => message.status === "new" && message.user_id !== userId
+    ).length
+}

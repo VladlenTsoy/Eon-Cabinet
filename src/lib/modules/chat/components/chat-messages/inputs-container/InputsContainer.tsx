@@ -1,6 +1,6 @@
 import React, {useCallback, useState} from "react"
 import styled from "styled-components"
-import AttachItem from "./attach-item/AttachItem"
+// import AttachItem from "./attach-item/AttachItem"
 import EmojiItem from "./emoji-item/EmojiItem"
 import TextareaItem from "./textarea-item/TextareaItem"
 import SendItem from "./send-item/SendItem"
@@ -8,10 +8,12 @@ import {useUser} from "../../../../../../hooks/use-user"
 import EmojiContainer from "./emoji-container/EmojiContainer"
 import {useCommonDispatch} from "../../../../../../store/common/store"
 import {addMessage} from "../../../reducer/messages/addMessage"
+import {updateContactLastMessage} from "../../../reducer/chats/chatsSlice"
 
 const InputMessageStyled = styled.form`
     display: grid;
-    grid-template-columns: 50px 1fr 50px 50px;
+    //grid-template-columns: 50px 1fr 50px 50px;
+    grid-template-columns: 50px 1fr 50px;
     text-align: center;
     font-size: 25px;
     align-items: flex-end;
@@ -48,7 +50,11 @@ const InputsContainer: React.FC<InputsContainerProps> = ({selectedContactId}) =>
     const onSubmit = async (e: any) => {
         e.preventDefault()
         if (message !== "") {
-            dispatch(addMessage({chatId: selectedContactId, message, userId: user.id}))
+            const messageRef = await dispatch(addMessage({chatId: selectedContactId, message, userId: user.id}))
+            if (messageRef.payload) {
+                // @ts-ignore
+                dispatch(updateContactLastMessage(messageRef.payload))
+            }
             setMessage("")
         }
     }
@@ -63,15 +69,15 @@ const InputsContainer: React.FC<InputsContainerProps> = ({selectedContactId}) =>
                 />
             }
             <InputMessageStyled onSubmit={onSubmit}>
-                <AttachItem/>
+                {/*<AttachItem/>*/}
+                <EmojiItem
+                    setEmojiVisible={setEmojiVisible}
+                    active={emojiVisible || emojiBlockVisible}
+                />
                 <TextareaItem
                     onChangeHandler={onChangeHandler}
                     onSubmit={onSubmit}
                     message={message}
-                />
-                <EmojiItem
-                    setEmojiVisible={setEmojiVisible}
-                    active={emojiVisible || emojiBlockVisible}
                 />
                 <SendItem/>
             </InputMessageStyled>

@@ -5,8 +5,6 @@ import { UserOutlined } from '@ant-design/icons';
 import HeaderProfile from "../items/profile/HeaderProfile";
 import LeftMenuBtn from "./left-menu-btn/LeftMenuBtn";
 import RightDrawer from "./rigth-drawer/RightDrawer";
-import {useSelector} from "react-redux";
-import {userSelector} from "../../../../../store/common/user/userSlice";
 
 interface MobileProps {
     toggleSidebar: () => void;
@@ -24,7 +22,6 @@ const Mobile: React.FC<MobileProps> = (
         children,
     }
 ) => {
-    const user = useSelector(userSelector);
     const [visible, setVisible] = useState(false);
 
     const open = (): void => setVisible(true);
@@ -38,7 +35,7 @@ const Mobile: React.FC<MobileProps> = (
                     collapsed={collapsed}
                 />
             </HeaderItemLayout>
-            <HeaderProfile user={user.detail} mr="auto"/>
+            <HeaderProfile mr="auto"/>
             <HeaderItemLayout onClick={open}>
                 <UserOutlined />
             </HeaderItemLayout>

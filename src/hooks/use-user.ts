@@ -6,5 +6,11 @@ export const useUser = (): any => {
 
     const updateUser = () => {}
 
-    return {user: user.detail, updateUser, token: user.token, loading: user.loading};
+    return {
+        userId: user.detail?.id,
+        user: user.detail,
+        updateUser,
+        token: user.token,
+        loading: user.loading
+    };
 };

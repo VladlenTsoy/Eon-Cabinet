@@ -1,5 +1,7 @@
 import React from "react"
 import styled from "styled-components"
+import {Message} from "../../../../../interfaces/Message"
+import {useUser} from "../../../../../../../../hooks/use-user"
 
 const LastMessageStyled = styled.div`
     color: ${(props) => props.theme.color_second};
@@ -28,15 +30,17 @@ const LastMessageStyled = styled.div`
 `
 
 interface LastMessageProps {
-    message: string
+    message: Message
     unread: number
 }
 
 const LastMessage: React.FC<LastMessageProps> = ({message, unread}) => {
+    const {user} = useUser()
     return (
         <LastMessageStyled>
             <p>
-                {message}
+                {user.id === message.user_id && <span className="me">Вы:</span>}
+                {message.message}
             </p>
             {unread > 0 && <div className="notify-count">{unread}</div>}
         </LastMessageStyled>

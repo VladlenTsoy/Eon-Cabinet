@@ -42,7 +42,7 @@ const ContactItem: React.FC<ContactItemProps> = ({chat}) => {
             <ImageProfile contact={chat.contact}/>
             <div className="content">
                 <InfoProfile chat={chat}/>
-                <LastMessage message={chat.last_message?.message || ""} unread={notRead || 0}/>
+                {chat.last_message && <LastMessage message={chat.last_message} unread={notRead || 0}/>}
             </div>
         </ContactItemStyled>
     )
