@@ -15,6 +15,4 @@ export interface Chat {
         }
     }
     last_message?: Message
-    // not_read: number
-    not_read: {[id: number]: number}[]
 }

@@ -21,10 +21,10 @@ const ChatMessages: React.FC<ChatMessagesProps> = ({chatId}) => {
     const {userId} = useUser()
 
     useEffect(() => {
-        socket.emit('joined_the_chat', {chatId, userId: userId})
+        socket.emit('joined_the_chat', {chatId, userId})
 
         return() => {
-            socket.emit('left_the_chat', {chatId, userId: userId})
+            socket.emit('left_the_chat', {chatId, userId})
         }
     }, [chatId, userId])
 

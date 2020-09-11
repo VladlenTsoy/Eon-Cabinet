@@ -18,9 +18,9 @@ interface ArgsProps {
 }
 
 export const fetchMessagesByChatId = createAsyncThunk<ReturnedType, ArgsProps, CommonThunkProps>(
-    "messages/fetch",
+    "messages/chat/fetch",
     async ({chatId, page = 1}, {signal}) => {
-        return await apiRequest("get", `messages/${chatId}`, {signal, api2: true, params: {page}})
+        return await apiRequest("get", `messages/chat/${chatId}`, {signal, api2: true, params: {page}})
     },
     {
         condition({chatId, page = 1}, {getState}) {

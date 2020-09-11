@@ -17,6 +17,7 @@ const HeaderStyled = styled.div`
             padding: 0.5rem 0.5rem;
 
             &.back,
+            &.search,
             &.close {
                 cursor: pointer;
 

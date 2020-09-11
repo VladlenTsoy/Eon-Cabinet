@@ -3,31 +3,36 @@ import socket from "../../../../utils/socket"
 import {Message} from "../interfaces/Message"
 import {addSocketMessages} from "../reducer/messages/messagesSlice"
 import {useCommonDispatch} from "../../../../store/common/store"
-import {useSelectedChatId} from "../reducer/chats/chatsSelectors"
-import {useUser} from "../../../../hooks/use-user"
 import {useSelectCountNotReadAll} from "../reducer/messages/messagesSelectors"
+import {fetchMessages} from "../reducer/messages/fetchMessages"
+import {User} from "../../../types/common/User"
 
-type HookType = () => number
+type HookType = (params: {userId: User['id']}) => number
 
-export const useChatListeningMessage: HookType = () => {
-    const {user} = useUser()
+/**
+ * Запрос не прочитанных сообщений
+ * @return Кол-во не прочитанных сообщений
+ */
+export const useChatListeningMessage: HookType = ({userId}) => {
     const dispatch = useCommonDispatch()
-    const selectedChatId = useSelectedChatId()
-    const countNewMessages = useSelectCountNotReadAll(user.id)
+    const countNewMessages = useSelectCountNotReadAll(userId)
 
     useEffect(() => {
-        socket.emit(`chat_check_receive_messages`, {userId: user.id})
-        socket.on(`chat_receive_messages_${user.id}`, (messages: Message[]) => {
-            messages = messages.map(message => ({
-                ...message,
-                status: selectedChatId === message.chat_id ? "view" : message.status
-            }))
-            dispatch(addSocketMessages(messages))
-        })
+        const promise = dispatch(fetchMessages({userId: userId}))
         return () => {
-            socket.removeEventListener(`chat_receive_messages_${user.id}`)
+            promise.abort()
         }
-    }, [user, dispatch, selectedChatId])
+    }, [userId, dispatch])
+
+    useEffect(() => {
+        // Сообщения отправленные контактом для пользователя
+        socket.on(`chat_receive_messages_${userId}`, (messages: Message[]) =>
+            dispatch(addSocketMessages(messages))
+        )
+        return () => {
+            socket.removeEventListener(`chat_receive_messages_${userId}`)
+        }
+    }, [userId, dispatch])
 
     return countNewMessages
 }

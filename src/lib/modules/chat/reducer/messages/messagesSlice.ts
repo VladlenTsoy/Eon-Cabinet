@@ -4,6 +4,7 @@ import {CommonState} from "../../../../../store/common/store"
 import {fetchMessagesByChatId} from "./fetchMessagesByChatId"
 import {addMessage} from "./addMessage"
 import moment from "moment"
+import {fetchMessages} from "./fetchMessages"
 
 //
 export const messageAdapter = createEntityAdapter<Message>({
@@ -51,6 +52,12 @@ const messagesSlice = createSlice({
             const {chatId} = action.meta.arg
             state.chats[chatId] = {...state.chats[chatId] || {}, loading: false}
         })
+
+        //
+        builder.addCase(fetchMessages.fulfilled, (state, action) => {
+            messageAdapter.upsertMany(state, action.payload)
+        })
+
         //
         builder.addCase(addMessage.pending, (state, action) => {
             const {chatId, userId, message} = action.meta.arg

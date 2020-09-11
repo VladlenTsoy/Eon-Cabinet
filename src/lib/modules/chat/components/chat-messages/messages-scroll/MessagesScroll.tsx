@@ -39,8 +39,10 @@ const MessagesScroll: React.FC<MessagesScrollProps> = ({chatId}) => {
     const dispatch = useCommonDispatch()
 
     useEffect(() => {
-        const scrollBlock = document.getElementById("scroll-chat")
-        if (scrollBlock) scrollBlock.scrollTop = scrollBlock.scrollHeight
+        if (lastMessage) {
+            const scrollBlock = document.getElementById("scroll-chat")
+            if (scrollBlock) scrollBlock.scrollTop = scrollBlock.scrollHeight
+        }
     }, [lastMessage])
 
     useEffect(() => {

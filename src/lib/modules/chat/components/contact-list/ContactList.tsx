@@ -31,8 +31,8 @@ const ContactList: React.FC = () => {
 
     return (
         <ContactListStyled>
-            {chats.map((chat, key) => (
-                <ContactItem chat={chat} key={key}/>
+            {chats.map((chat) => (
+                <ContactItem chat={chat} key={chat.chat_id}/>
             ))}
         </ContactListStyled>
     )

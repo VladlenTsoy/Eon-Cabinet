@@ -8,7 +8,6 @@ import {useUser} from "../../../../../../hooks/use-user"
 import EmojiContainer from "./emoji-container/EmojiContainer"
 import {useCommonDispatch} from "../../../../../../store/common/store"
 import {addMessage} from "../../../reducer/messages/addMessage"
-import {updateContactLastMessage} from "../../../reducer/chats/chatsSlice"
 
 const InputMessageStyled = styled.form`
     display: grid;
@@ -50,11 +49,7 @@ const InputsContainer: React.FC<InputsContainerProps> = ({selectedContactId}) =>
     const onSubmit = async (e: any) => {
         e.preventDefault()
         if (message !== "") {
-            const messageRef = await dispatch(addMessage({chatId: selectedContactId, message, userId: user.id}))
-            if (messageRef.payload) {
-                // @ts-ignore
-                dispatch(updateContactLastMessage(messageRef.payload))
-            }
+            dispatch(addMessage({chatId: selectedContactId, message, userId: user.id}))
             setMessage("")
         }
     }

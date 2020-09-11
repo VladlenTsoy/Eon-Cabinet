@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useCallback, useState} from "react"
 import ContactList from "./contact-list/ContactList"
 import Header from "./header/Header"
 import ChatMessages from "./chat-messages/ChatMessages"
@@ -18,20 +18,27 @@ interface ChatProps {
 }
 
 const Chat: React.FC<ChatProps> = ({close}) => {
+    const [isSearch, setIsSearch] = useState(false)
     const selectedChatId = useSelectedChatId()
+
+    const clickSearchHandler = useCallback(() => setIsSearch(true), [])
 
     return <ChatStyled>
         <Header>
             {
-                selectedChatId ?
-                    <More close={close} chatId={selectedChatId}/> :
-                    <List close={close}/>
+                isSearch ?
+                    <></> :
+                    selectedChatId ?
+                        <More close={close} chatId={selectedChatId}/> :
+                        <List close={close} clickSearchHandler={clickSearchHandler}/>
             }
         </Header>
         {
-            selectedChatId ?
-                <ChatMessages chatId={selectedChatId}/> :
-                <ContactList/>
+            isSearch ?
+                <></> :
+                selectedChatId ?
+                    <ChatMessages chatId={selectedChatId}/> :
+                    <ContactList/>
         }
     </ChatStyled>
 }

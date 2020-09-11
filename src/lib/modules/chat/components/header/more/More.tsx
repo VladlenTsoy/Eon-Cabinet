@@ -15,14 +15,14 @@ const More: React.FC<MoreProps> = ({close, chatId}) => {
     const back = () => dispatch(changeSelectedChatId(null))
     const chat = useSelectChatsById(chatId)
 
-    if (!chat)
-        return <div>Загрузка...</div>
-
     return (
         <div>
             <div className="back" onClick={back}><ArrowLeftOutlined/></div>
             <div>
-                {chat.contact.last_name} {chat.contact.first_name}
+                {chat?
+                    `${chat.contact.last_name} ${chat.contact.first_name}`:
+                    'Загрузка...'
+                }
             </div>
             <div className="close" onClick={close}><CloseOutlined/></div>
         </div>
