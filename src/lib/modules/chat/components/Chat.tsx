@@ -3,9 +3,9 @@ import ContactList from "./contact-list/ContactList"
 import Header from "./header/Header"
 import ChatMessages from "./chat-messages/ChatMessages"
 import styled from "styled-components"
-import {useSelectedChatId} from "../reducer/chats/chatsSelectors"
 import More from "./header/more/More"
 import List from "./header/list/List"
+import {useSelectedChatId} from "../reducer/chats/chatsSelectors"
 
 const ChatStyled = styled.div`
   display: grid;
@@ -36,4 +36,4 @@ const Chat: React.FC<ChatProps> = ({close}) => {
     </ChatStyled>
 }
 
-export default Chat
+export default React.memo<ChatProps>(Chat)

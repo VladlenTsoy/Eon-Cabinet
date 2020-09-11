@@ -5,7 +5,7 @@ import {MessageFilled} from "@ant-design/icons"
 import Chat from "../../../../../modules/chat/components/Chat"
 import {useScreenWindow} from "../../../../../../hooks/use-screen-window.effect"
 import styled from "styled-components"
-import {useChatListeningNotificationCount} from "../../../../../modules/chat/hooks/useChatListeningNotificationCount"
+import {useChatListeningMessage} from "../../../../../modules/chat/hooks/useChatListeningMessage"
 
 const ChatDrawStyled = styled(Drawer)`
     .ant-drawer-wrapper-body .ant-drawer-body {
@@ -16,7 +16,7 @@ const ChatDrawStyled = styled(Drawer)`
 const ChatItem: React.FC = () => {
     const [visible, setVisible] = useState(false)
     const [, breakpoint] = useScreenWindow({breakpoint: "sm"})
-    const countNewMessages = useChatListeningNotificationCount()
+    const countNewMessages = useChatListeningMessage()
 
     const toggle = () => setVisible(!visible)
     const close = useCallback(() => setVisible(false), [])

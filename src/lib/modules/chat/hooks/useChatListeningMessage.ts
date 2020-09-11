@@ -1,32 +1,33 @@
 import {useEffect} from "react"
 import socket from "../../../../utils/socket"
 import {Message} from "../interfaces/Message"
-import {addSocketMessage} from "../reducer/messages/messagesSlice"
-import {updateContactLastMessage} from "../reducer/chats/chatsSlice"
+import {addSocketMessages} from "../reducer/messages/messagesSlice"
 import {useCommonDispatch} from "../../../../store/common/store"
 import {useSelectedChatId} from "../reducer/chats/chatsSelectors"
 import {useUser} from "../../../../hooks/use-user"
 import {useSelectCountNotReadAll} from "../reducer/messages/messagesSelectors"
 
-export const useListeningNewMessages = () => {
+type HookType = () => number
+
+export const useChatListeningMessage: HookType = () => {
     const {user} = useUser()
     const dispatch = useCommonDispatch()
     const selectedChatId = useSelectedChatId()
     const countNewMessages = useSelectCountNotReadAll(user.id)
 
     useEffect(() => {
-        socket.on(`chat_receive_messages_${user.id}`, (_message: Message) => {
-            let message = _message
-            if (selectedChatId === message.chat_id)
-                message = {..._message, status: "view"}
-
-            dispatch(addSocketMessage(message))
-            dispatch(updateContactLastMessage(message))
+        socket.emit(`chat_check_receive_messages`, {userId: user.id})
+        socket.on(`chat_receive_messages_${user.id}`, (messages: Message[]) => {
+            messages = messages.map(message => ({
+                ...message,
+                status: selectedChatId === message.chat_id ? "view" : message.status
+            }))
+            dispatch(addSocketMessages(messages))
         })
         return () => {
-            socket.removeEventListener(`receive_messages_${user.id}`)
+            socket.removeEventListener(`chat_receive_messages_${user.id}`)
         }
     }, [user, dispatch, selectedChatId])
 
-    return [countNewMessages]
+    return countNewMessages
 }
