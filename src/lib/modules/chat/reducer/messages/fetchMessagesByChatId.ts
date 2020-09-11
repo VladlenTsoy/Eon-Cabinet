@@ -17,6 +17,9 @@ interface ArgsProps {
     page?: number
 }
 
+/**
+ * Вывод всех сообщений чата
+ */
 export const fetchMessagesByChatId = createAsyncThunk<ReturnedType, ArgsProps, CommonThunkProps>(
     "messages/chat/fetch",
     async ({chatId, page = 1}, {signal}) => {

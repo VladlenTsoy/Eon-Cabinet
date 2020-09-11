@@ -13,6 +13,9 @@ interface ArgsProps {
     message: string
 }
 
+/**
+ * Добавить сообщение
+ */
 export const addMessage = createAsyncThunk<ReturnedType, ArgsProps, CommonThunkProps>(
     "messages/add",
     async (data, {signal}) => {

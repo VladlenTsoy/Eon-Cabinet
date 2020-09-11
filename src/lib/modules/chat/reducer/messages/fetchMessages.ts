@@ -10,6 +10,9 @@ interface ArgsProps {
     userId: User["id"],
 }
 
+/**
+ * Вывод всех не прочитанных сообщений
+ */
 export const fetchMessages = createAsyncThunk<ReturnedType, ArgsProps, CommonThunkProps>(
     "messages/user/fetch",
     async ({userId}, {signal}) => {

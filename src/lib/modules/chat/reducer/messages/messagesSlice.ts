@@ -6,7 +6,6 @@ import {addMessage} from "./addMessage"
 import moment from "moment"
 import {fetchMessages} from "./fetchMessages"
 
-//
 export const messageAdapter = createEntityAdapter<Message>({
     selectId: message => message.id,
     sortComparer: (a, b) => moment(a.created_at).isAfter(b.created_at) ? 1 : 0
@@ -36,7 +35,7 @@ const messagesSlice = createSlice({
         }
     },
     extraReducers: builder => {
-        //
+        // Вывод сообщений в чате
         builder.addCase(fetchMessagesByChatId.pending, (state, action) => {
             const {chatId} = action.meta.arg
             state.chats[chatId] = {...state.chats[chatId] || {}, loading: true}
@@ -53,12 +52,12 @@ const messagesSlice = createSlice({
             state.chats[chatId] = {...state.chats[chatId] || {}, loading: false}
         })
 
-        //
+        // Вывод всех непрочитанных сообщений
         builder.addCase(fetchMessages.fulfilled, (state, action) => {
             messageAdapter.upsertMany(state, action.payload)
         })
 
-        //
+        // Добавление сообщения
         builder.addCase(addMessage.pending, (state, action) => {
             const {chatId, userId, message} = action.meta.arg
             const createdAt = (new Date()).toUTCString()
