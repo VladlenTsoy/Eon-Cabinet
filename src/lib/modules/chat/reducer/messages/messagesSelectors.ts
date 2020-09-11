@@ -41,6 +41,18 @@ export const useSelectMessagesByChatId = (chatId: Chat["chat_id"]) => {
 }
 
 /**
+ *
+ * @param chatId
+ * @param userId
+ */
+export const useSelectNewMessagesByChatIdAndUserId = (chatId: Chat["chat_id"], userId: User['id']) => {
+    const messages = useSelectAllMessages()
+    return messages.filter(
+        message => message.chat_id === chatId && message.user_id !== userId && message.status === 'new'
+    )
+}
+
+/**
  * Вывод последнего сообщения в чате
  * @param chatId
  */

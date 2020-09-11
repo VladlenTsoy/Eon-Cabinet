@@ -32,6 +32,10 @@ const messagesSlice = createSlice({
     reducers: {
         addSocketMessages: (state, action: PayloadAction<Message[]>) => {
             messageAdapter.upsertMany(state, action.payload)
+        },
+        updateMessages: (state, action: PayloadAction<Message[]>) => {
+            const messages: Message[] = action.payload.map(message => ({...message, status: "view"}))
+            messageAdapter.upsertMany(state, messages)
         }
     },
     extraReducers: builder => {
@@ -99,6 +103,6 @@ export const {
     // selectTotal: selectTotalMessages
 } = messageAdapter.getSelectors<CommonState>(state => state.messages)
 
-export const {addSocketMessages} = messagesSlice.actions
+export const {addSocketMessages, updateMessages} = messagesSlice.actions
 
 export default messagesSlice.reducer

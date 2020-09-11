@@ -23,6 +23,7 @@ const MessagesScrollStyled: React.FC<MessagesScrollStyledProps> = styled.div<Mes
     overflow-x: hidden;
     overflow-y: scroll;
     transition: all 0.5s ease-in-out;
+    display: grid;
 `
 
 interface MessagesScrollProps {

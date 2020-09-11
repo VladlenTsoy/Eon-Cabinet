@@ -4,6 +4,9 @@ import MessagesContainer from "./messages-scroll/MessagesScroll"
 import InputsContainer from "./inputs-container/InputsContainer"
 import socket from "../../../../../utils/socket"
 import {useUser} from "../../../../../hooks/use-user"
+import {useSelectNewMessagesByChatIdAndUserId} from "../../reducer/messages/messagesSelectors"
+import {updateMessages} from "../../reducer/messages/messagesSlice"
+import {useCommonDispatch} from "../../../../../store/common/store"
 
 const ChatMessageStyled = styled.div`
     position: relative;
@@ -19,12 +22,18 @@ interface ChatMessagesProps {
 
 const ChatMessages: React.FC<ChatMessagesProps> = ({chatId}) => {
     const {userId} = useUser()
+    const dispatch = useCommonDispatch()
+    const messages = useSelectNewMessagesByChatIdAndUserId(chatId, userId)
 
     useEffect(() => {
-        socket.emit('joined_the_chat', {chatId, userId})
+        if (messages.length)
+            dispatch(updateMessages(messages))
+    }, [messages])
 
-        return() => {
-            socket.emit('left_the_chat', {chatId, userId})
+    useEffect(() => {
+        socket.emit("joined_the_chat", {chatId, userId})
+        return () => {
+            socket.emit("left_the_chat", {chatId, userId})
         }
     }, [chatId, userId])
 
