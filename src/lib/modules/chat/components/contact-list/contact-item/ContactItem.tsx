@@ -12,7 +12,7 @@ import {
 import {useCommonDispatch} from "../../../../../../store/common/store"
 import {useUser} from "../../../../../../hooks/use-user"
 
-const ContactItemStyled = styled.div`
+export const ContactItemStyled = styled.div`
     display: grid;
     gap: 1rem;
     grid-template-columns: 50px 1fr;
