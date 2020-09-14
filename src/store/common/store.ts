@@ -6,6 +6,7 @@ import user from "./user/userSlice";
 import {useDispatch} from "react-redux";
 import chats from "../../lib/modules/chat/reducer/chats/chatsSlice"
 import messages from "../../lib/modules/chat/reducer/messages/messagesSlice"
+import contacts from "../../lib/modules/chat/reducer/contacts/contactsSlice"
 
 export type CommonState = ReturnType<typeof commonReducer>
 
@@ -16,6 +17,7 @@ export const commonReducer = combineReducers({
     user,
     chats,
     messages,
+    contacts,
 });
 
 export type AppDispatch = typeof store.dispatch

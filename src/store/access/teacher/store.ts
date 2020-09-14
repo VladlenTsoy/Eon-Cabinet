@@ -17,6 +17,7 @@ import customExercises from "./custom-exercises/customExercisesSlice";
 import homeworkExercises from "./homework-exercises/homeworkExercisesSlice";
 import chats from "lib/modules/chat/reducer/chats/chatsSlice";
 import messages from "lib/modules/chat/reducer/messages/messagesSlice";
+import contacts from "lib/modules/chat/reducer/contacts/contactsSlice";
 
 export type TeacherState = ReturnType<typeof teacherReducer>
 
@@ -39,6 +40,7 @@ export const teacherReducer = combineReducers({
     user,
     chats,
     messages,
+    contacts,
 });
 
 export type AppDispatch = typeof store.dispatch

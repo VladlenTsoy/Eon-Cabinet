@@ -3,6 +3,7 @@ import {Chat} from "../../interfaces/Chat"
 import {fetchChats} from "./fetchChats"
 import {CommonState} from "../../../../../store/common/store"
 import {addMessage} from "../messages/addMessage"
+import {createChat} from "./createChat"
 
 //
 export const chatsAdapter = createEntityAdapter<Chat>({
@@ -47,6 +48,11 @@ const chatsSlice = createSlice({
                     last_message: action.payload
                 }
             })
+        })
+        //
+        builder.addCase(createChat.fulfilled, (state, action) => {
+            chatsAdapter.addOne(state, action.payload)
+            state.selectedChatId = action.payload.chat_id
         })
     }
 })

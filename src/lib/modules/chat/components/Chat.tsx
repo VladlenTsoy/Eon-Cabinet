@@ -5,11 +5,13 @@ import ChatMessages from "./chat-messages/ChatMessages"
 import styled from "styled-components"
 import More from "./header/more/More"
 import List from "./header/list/List"
+import Search from "./header/search/Search"
 import {useSelectedChatId} from "../reducer/chats/chatsSelectors"
+import ContactSearch from "./contact-search/ContactSearch"
 
 const ChatStyled = styled.div`
   display: grid;
-  grid-auto-rows: 41px 1fr;
+  grid-auto-rows: 48px 1fr;
   height: 100%;
 `
 
@@ -22,22 +24,25 @@ const Chat: React.FC<ChatProps> = ({close}) => {
     const selectedChatId = useSelectedChatId()
 
     const clickSearchHandler = useCallback(() => setIsSearch(true), [])
+    const backHandler = useCallback(() => setIsSearch(false), [])
 
     return <ChatStyled>
         <Header>
             {
-                isSearch ?
-                    <></> :
-                    selectedChatId ?
-                        <More close={close} chatId={selectedChatId}/> :
+                selectedChatId ?
+                    <More close={close} chatId={selectedChatId}/> :
+                    isSearch ?
+                        <Search back={backHandler} close={close}/> :
                         <List close={close} clickSearchHandler={clickSearchHandler}/>
+
+
             }
         </Header>
         {
-            isSearch ?
-                <></> :
-                selectedChatId ?
-                    <ChatMessages chatId={selectedChatId}/> :
+            selectedChatId ?
+                <ChatMessages chatId={selectedChatId}/> :
+                isSearch ?
+                    <ContactSearch/> :
                     <ContactList/>
         }
     </ChatStyled>

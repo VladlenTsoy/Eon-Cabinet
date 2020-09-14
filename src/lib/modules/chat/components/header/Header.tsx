@@ -12,6 +12,8 @@ const HeaderStyled = styled.div`
     > div {
         display: grid;
         grid-template-columns: 50px 1fr 50px;
+        align-items: center;
+        height: 100%;
 
         > div {
             padding: 0.5rem 0.5rem;

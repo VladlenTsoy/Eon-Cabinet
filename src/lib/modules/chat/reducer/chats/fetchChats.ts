@@ -8,7 +8,7 @@ type ReturnedType = Chat[]
 export const fetchChats = createAsyncThunk<ReturnedType, undefined, CommonThunkProps>(
     "chats/fetch",
     async (_, {signal}) => {
-        return await apiRequest("get", `contacts`, {signal, api2: true})
+        return await apiRequest("get", `chats`, {signal, api2: true})
     },
     {
         condition(_, {getState}) {
