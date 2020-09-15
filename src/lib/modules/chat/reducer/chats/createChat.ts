@@ -15,4 +15,12 @@ export const createChat = createAsyncThunk<ReturnedType, ArgProps, CommonThunkPr
     async (data, {signal}) => {
         return await apiRequest("post", `chat`, {signal, api2: true, data})
     },
+    {
+        condition({contactId}, {getState}) {
+            const {chats} = getState();
+            const chat = Object.values(chats.entities).find(chat => chat && chat.contact.id === contactId)
+
+            return !!chat
+        }
+    }
 )

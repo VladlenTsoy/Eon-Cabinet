@@ -7,12 +7,17 @@ import InfoProfile from "./content/info-profile/InfoProfile"
 import {changeSelectedChatId} from "../../../reducer/chats/chatsSlice"
 import {
     useLastMessageByChatId,
-    useSelectCountNotReadByChatId,
+    useSelectCountNotReadByChatId
 } from "../../../reducer/messages/messagesSelectors"
 import {useCommonDispatch} from "../../../../../../store/common/store"
 import {useUser} from "../../../../../../hooks/use-user"
+import {Contact} from "../../../interfaces/Contact"
 
-export const ContactItemStyled = styled.div`
+interface ContactItemStyledProps extends React.HTMLAttributes<HTMLDivElement> {
+    access?: Contact['access']
+}
+
+export const ContactItemStyled: React.FC<ContactItemStyledProps> = styled.div<ContactItemStyledProps>`
     display: grid;
     gap: 1rem;
     grid-template-columns: 50px 1fr;
@@ -20,6 +25,7 @@ export const ContactItemStyled = styled.div`
     padding: 0.5rem 1rem;
     align-items: center;
     cursor: pointer;
+    background: ${props => props?.access === "admin" ? "#ff980026" : "none"}
 
     :hover {
         background: ${(props) => props.theme.color_hover_item};
@@ -45,7 +51,7 @@ const ContactItem: React.FC<ContactItemProps> = ({chat}) => {
     }
 
     return (
-        <ContactItemStyled onClick={onClickHandler}>
+        <ContactItemStyled access={chat.contact.access} onClick={onClickHandler}>
             <ImageProfile contact={chat.contact}/>
             <div className="content">
                 <InfoProfile chat={chat}/>
