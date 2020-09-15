@@ -2,6 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import {Chat} from "../../../../../interfaces/Chat"
 import moment from "moment"
+import {Tag} from "antd"
 
 const InfoProfileStyled = styled.div`
     position: relative;
@@ -25,16 +26,25 @@ interface InfoProfileProps {
 
 const InfoProfile: React.FC<InfoProfileProps> = ({chat}) => {
     return (
-        <InfoProfileStyled>
-            <span>{chat.contact.last_name}</span>
-            <span>{chat.contact.first_name}</span>
-            <span className="time">
-                {
-                    chat.last_message &&
-                    moment(chat.last_message.created_at).format("DD MMM HH:mm")
-                }
-            </span>
-        </InfoProfileStyled>
+        <>
+            <InfoProfileStyled>
+                <span>{chat.contact.last_name}</span>
+                <span>{chat.contact.first_name}</span>
+                <span className="time">
+                    {
+                        chat.last_message &&
+                        moment(chat.last_message.created_at).format("DD MMM HH:mm")
+                    }
+                </span>
+            </InfoProfileStyled>
+            {
+                chat.contact?.group &&
+                <div>
+                    <Tag color="#f50">{chat.contact.id}</Tag>
+                    <Tag color="#f50">{chat.contact.group.title}</Tag>
+                </div>
+            }
+        </>
     )
 }
 

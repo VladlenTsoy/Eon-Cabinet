@@ -11,20 +11,21 @@ interface SearchProps {
 
 const Search: React.FC<SearchProps> = ({back, close}) => {
     const dispatch = useCommonDispatch()
-    let timeout = 0
 
-    const onChangeHandler = (e: any) => {
-        const search = e.target.value
-        clearTimeout(timeout)
-        timeout = setTimeout(() => {
-            console.log(search)
+    const onChangeHandler = (search: string) => {
+        if (search.trim() !== "")
             dispatch(fetchContactsBySearch({search}))
-        }, [500])
     }
 
     return <div>
         <div className="back" onClick={back}><ArrowLeftOutlined/></div>
-        <div><Input.Search placeholder="Введите Фамилию, Имя или Id" onChange={onChangeHandler}/></div>
+        <div>
+            <Input.Search
+                placeholder="Введите Фамилию, Имя или Id"
+                onSearch={onChangeHandler}
+                minLength={1}
+            />
+        </div>
         <div className="close" onClick={close}><CloseOutlined/></div>
     </div>
 }
