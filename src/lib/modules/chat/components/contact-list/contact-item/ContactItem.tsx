@@ -14,7 +14,7 @@ import {useUser} from "../../../../../../hooks/use-user"
 import {Contact} from "../../../interfaces/Contact"
 
 interface ContactItemStyledProps extends React.HTMLAttributes<HTMLDivElement> {
-    access?: Contact['access']
+    access?: Contact["access"]
 }
 
 export const ContactItemStyled: React.FC<ContactItemStyledProps> = styled.div<ContactItemStyledProps>`
@@ -46,8 +46,9 @@ const ContactItem: React.FC<ContactItemProps> = ({chat}) => {
     const lastMessage = useLastMessageByChatId(chat.chat_id) || chat.last_message
     const dispatch = useCommonDispatch()
 
-    const onClickHandler = () => {
-        dispatch(changeSelectedChatId(chat.chat_id))
+    const onClickHandler = (event: any) => {
+        if (!event.target.className.includes("ant-tag"))
+            dispatch(changeSelectedChatId(chat.chat_id))
     }
 
     return (

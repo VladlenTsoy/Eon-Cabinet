@@ -4,10 +4,13 @@ import {fetchChats} from "./fetchChats"
 import {CommonState} from "../../../../../store/common/store"
 import {addMessage} from "../messages/addMessage"
 import {createChat} from "./createChat"
+import moment from "moment"
 
 //
 export const chatsAdapter = createEntityAdapter<Chat>({
-    selectId: chat => chat.chat_id
+    selectId: chat => chat.chat_id,
+    sortComparer: (a, b) => a.last_message && b.last_message &&
+    moment(a.last_message.created_at).isAfter(b.last_message.created_at) ? 1 : 0
 })
 
 export interface StateProps {
@@ -39,6 +42,7 @@ const chatsSlice = createSlice({
         builder.addCase(fetchChats.rejected, state => {
             state.loading = false
         })
+
         //
         builder.addCase(addMessage.fulfilled, (state, action) => {
             const {chat_id} = action.payload
@@ -49,6 +53,7 @@ const chatsSlice = createSlice({
                 }
             })
         })
+
         //
         builder.addCase(createChat.fulfilled, (state, action) => {
             chatsAdapter.addOne(state, action.payload)

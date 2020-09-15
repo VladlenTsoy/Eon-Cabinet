@@ -4,6 +4,7 @@ import {Chat} from "../../../interfaces/Chat"
 import {useCommonDispatch} from "../../../../../../store/common/store"
 import {changeSelectedChatId} from "../../../reducer/chats/chatsSlice"
 import {useSelectChatsById} from "../../../reducer/chats/chatsSelectors"
+import Profile from "./profile/Profile"
 
 interface MoreProps {
     chatId: Chat["chat_id"]
@@ -18,12 +19,7 @@ const More: React.FC<MoreProps> = ({close, chatId}) => {
     return (
         <div>
             <div className="back" onClick={back}><ArrowLeftOutlined/></div>
-            <div>
-                {chat?
-                    `${chat.contact.last_name} ${chat.contact.first_name}`:
-                    'Загрузка...'
-                }
-            </div>
+            {chat ? <Profile contact={chat.contact}/> : "Загрузка..."}
             <div className="close" onClick={close}><CloseOutlined/></div>
         </div>
     )

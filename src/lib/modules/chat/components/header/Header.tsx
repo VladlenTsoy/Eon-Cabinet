@@ -16,7 +16,7 @@ const HeaderStyled = styled.div`
         height: 100%;
 
         > div {
-            padding: 0.5rem 0.5rem;
+            //padding: 0.5rem 0.5rem;
 
             &.back,
             &.search,
