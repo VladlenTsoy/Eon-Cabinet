@@ -1,6 +1,6 @@
 import React, {useState} from "react"
 import {MessageFilled} from "@ant-design/icons"
-import {SidebarButton} from "../sidebar-button/SidebarButton"
+import {SidebarButton} from "../../sidebar-button/SidebarButton"
 import ChatButton from "lib/modules/chat/components/ChatButton"
 
 const ChatItem: React.FC = () => {

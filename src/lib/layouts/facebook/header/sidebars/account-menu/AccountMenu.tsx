@@ -52,7 +52,7 @@ const AccountMenu: React.FC = ({children}) => {
                     overlay={menu}
                     arrow
                     placement="bottomRight"
-                    trigger={["click"]}
+                    // trigger={["click"]}
                 >
                     <SidebarButton active={visible}>
                         <CaretDownOutlined />
