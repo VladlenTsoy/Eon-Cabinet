@@ -46,7 +46,7 @@ const AccountMenu: React.FC = ({children}) => {
 
     return (
         <div>
-            <Badge count={5}>
+            <Badge>
                 <Dropdown
                     onVisibleChange={toggle}
                     overlay={menu}

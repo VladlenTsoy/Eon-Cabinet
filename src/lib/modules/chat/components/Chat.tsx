@@ -1,13 +1,13 @@
 import React, {useCallback, useState} from "react"
-import ContactList from "./contact-list/ContactList"
+import ContactList from "./containers/contact-list/ContactList"
 import Header from "./header/Header"
-import ChatMessages from "./chat-messages/ChatMessages"
+import ChatMessages from "./containers/chat-messages/ChatMessages"
 import styled from "styled-components"
 import More from "./header/more/More"
 import List from "./header/list/List"
 import Search from "./header/search/Search"
 import {useSelectedChatId} from "../reducer/chats/chatsSelectors"
-import ContactSearch from "./contact-search/ContactSearch"
+import ContactSearch from "./containers/contact-search/ContactSearch"
 
 const ChatStyled = styled.div`
   display: grid;

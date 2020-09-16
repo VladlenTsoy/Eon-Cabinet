@@ -1,6 +1,6 @@
 import React from "react"
-import {Avatar} from "../../../../../../ui"
-import {Chat} from "../../../../interfaces/Chat"
+import {Avatar} from "../../../../../../../ui"
+import {Chat} from "../../../../../interfaces/Chat"
 
 interface ImageProfileProps {
     contact: Chat['contact']

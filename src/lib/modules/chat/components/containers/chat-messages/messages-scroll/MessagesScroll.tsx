@@ -5,11 +5,11 @@ import {
     useSelectMessagesByChatId,
     useCurrentPageMessagesByChatId,
     useLastPageMessagesByChatId
-} from "../../../reducer/messages/messagesSelectors"
-import {Chat} from "../../../interfaces/Chat"
+} from "../../../../reducer/messages/messagesSelectors"
+import {Chat} from "../../../../interfaces/Chat"
 import LoadingBlock from "./loading-block/LoadingBlock"
-import {useCommonDispatch} from "../../../../../../store/common/store"
-import {fetchMessagesByChatId} from "../../../reducer/messages/fetchMessagesByChatId"
+import {useCommonDispatch} from "../../../../../../../store/common/store"
+import {fetchMessagesByChatId} from "../../../../reducer/messages/fetchMessagesByChatId"
 import MessagesContainer from "./messages-container/MessagesContainer"
 
 interface MessagesScrollStyledProps extends React.HTMLAttributes<HTMLDivElement> {

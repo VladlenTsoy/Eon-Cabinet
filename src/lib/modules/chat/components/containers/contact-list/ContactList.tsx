@@ -1,13 +1,13 @@
 import React, {useEffect} from "react"
 import styled from "styled-components"
 import ContactItem from "./contact-item/ContactItem"
-import {fetchChats} from "../../reducer/chats/fetchChats"
-import {useCommonDispatch} from "../../../../../store/common/store"
+import {fetchChats} from "../../../reducer/chats/fetchChats"
+import {useCommonDispatch} from "../../../../../../store/common/store"
 import {
     useSelectAllChats,
     useLoadingChats
-} from "../../reducer/chats/chatsSelectors"
-import {LoadingBlock} from "../../../../ui"
+} from "../../../reducer/chats/chatsSelectors"
+import {LoadingBlock} from "../../../../../ui"
 
 const ContactListStyled = styled.div`
     height: 100%;

@@ -4,10 +4,10 @@ import styled from "styled-components"
 import EmojiItem from "./emoji-item/EmojiItem"
 import TextareaItem from "./textarea-item/TextareaItem"
 import SendItem from "./send-item/SendItem"
-import {useUser} from "../../../../../../hooks/use-user"
+import {useUser} from "../../../../../../../hooks/use-user"
 import EmojiContainer from "./emoji-container/EmojiContainer"
-import {useCommonDispatch} from "../../../../../../store/common/store"
-import {addMessage} from "../../../reducer/messages/addMessage"
+import {useCommonDispatch} from "../../../../../../../store/common/store"
+import {addMessage} from "../../../../reducer/messages/addMessage"
 
 const InputMessageStyled = styled.form`
     display: grid;

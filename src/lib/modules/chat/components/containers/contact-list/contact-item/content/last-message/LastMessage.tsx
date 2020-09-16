@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
-import {Message} from "../../../../../interfaces/Message"
-import {useUser} from "../../../../../../../../hooks/use-user"
+import {Message} from "../../../../../../interfaces/Message"
+import {useUser} from "../../../../../../../../../hooks/use-user"
 
 const LastMessageStyled = styled.div`
     color: ${(props) => props.theme.color_second};

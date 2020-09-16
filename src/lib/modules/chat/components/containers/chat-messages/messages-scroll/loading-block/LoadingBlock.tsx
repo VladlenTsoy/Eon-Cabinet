@@ -1,8 +1,8 @@
 import React from "react"
 import styled from "styled-components"
-import {useLoadingMessagesByChatId} from "../../../../reducer/messages/messagesSelectors"
+import {useLoadingMessagesByChatId} from "../../../../../reducer/messages/messagesSelectors"
 import {LoadingOutlined} from "@ant-design/icons"
-import {Chat} from "../../../../interfaces/Chat"
+import {Chat} from "../../../../../interfaces/Chat"
 
 const LoadingStyled = styled.div`
     position: absolute;

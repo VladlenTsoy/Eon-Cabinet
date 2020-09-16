@@ -1,17 +1,17 @@
 import React from "react"
 import styled from "styled-components"
 import ImageProfile from "./image-profile/ImageProfile"
-import {Chat} from "../../../interfaces/Chat"
+import {Chat} from "../../../../interfaces/Chat"
 import LastMessage from "./content/last-message/LastMessage"
 import InfoProfile from "./content/info-profile/InfoProfile"
-import {changeSelectedChatId} from "../../../reducer/chats/chatsSlice"
+import {changeSelectedChatId} from "../../../../reducer/chats/chatsSlice"
 import {
     useLastMessageByChatId,
     useSelectCountNotReadByChatId
-} from "../../../reducer/messages/messagesSelectors"
-import {useCommonDispatch} from "../../../../../../store/common/store"
-import {useUser} from "../../../../../../hooks/use-user"
-import {Contact} from "../../../interfaces/Contact"
+} from "../../../../reducer/messages/messagesSelectors"
+import {useCommonDispatch} from "../../../../../../../store/common/store"
+import {useUser} from "../../../../../../../hooks/use-user"
+import {Contact} from "../../../../interfaces/Contact"
 
 interface ContactItemStyledProps extends React.HTMLAttributes<HTMLDivElement> {
     access?: Contact["access"]

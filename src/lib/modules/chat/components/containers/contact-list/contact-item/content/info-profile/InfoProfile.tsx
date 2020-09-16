@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import {Chat} from "../../../../../interfaces/Chat"
+import {Chat} from "../../../../../../interfaces/Chat"
 import moment from "moment"
 import {Tag} from "antd"
 import {useHistory} from "react-router-dom"

@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import moment from "moment"
-import {Message as MessageType} from "../../../../interfaces/Message"
+import {Message as MessageType} from "../../../../../interfaces/Message"
 
 interface MessageStyledProp extends React.HTMLAttributes<HTMLDivElement> {
     type: "inbox" | "outbox"

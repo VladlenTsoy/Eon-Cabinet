@@ -1,6 +1,6 @@
 import React from "react"
-import {useLoadingContacts, useSelectAllContacts} from "../../../reducer/contacts/contactsSelectors"
-import {LoadingBlock} from "../../../../../ui"
+import {useLoadingContacts, useSelectAllContacts} from "../../../../reducer/contacts/contactsSelectors"
+import {LoadingBlock} from "../../../../../../ui"
 import {Empty} from "antd"
 import ContactItem from "./contact-item/ContactItem"
 

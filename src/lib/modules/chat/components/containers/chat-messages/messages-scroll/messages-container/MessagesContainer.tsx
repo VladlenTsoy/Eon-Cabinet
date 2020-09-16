@@ -1,8 +1,8 @@
 import React from "react"
 import MessageComponent from "../message/Message"
 import styled from "styled-components"
-import {useUser} from "../../../../../../../hooks/use-user"
-import {Message} from "../../../../interfaces/Message"
+import {useUser} from "../../../../../../../../hooks/use-user"
+import {Message} from "../../../../../interfaces/Message"
 
 const MessagesContainerStyled = styled.div`
     display: flex;
