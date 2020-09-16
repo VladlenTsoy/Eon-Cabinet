@@ -27,3 +27,4 @@ export {default as UserImage} from './avatar/Avatar';
 export {default as DrawerActions} from './drawer/DrawerActions';
 export {default as Tabs} from './tabs/Tabs';
 export {default as TabPane} from './tabs/TabPane';
+export {default as Logo} from './logo/Logo';

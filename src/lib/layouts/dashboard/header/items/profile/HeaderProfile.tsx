@@ -16,15 +16,15 @@ const ProfileWrapper = styled(Link)<any>`
 `
 
 const WrapperProfileData = styled.div`
-    height: 46px;
     overflow: hidden;
     margin-left: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 `
 
 const UserName: React.FC<TextProps> = styled(Text)`
     display: block;
-    height: 10px;
-    line-height: 40px;
 `
 
 const UserId: React.FC<TextProps> = styled(Text)`

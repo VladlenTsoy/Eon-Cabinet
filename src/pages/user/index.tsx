@@ -4,7 +4,7 @@ import {useSelector} from "react-redux";
 import {userSelector} from "../../store/common/user/userSlice";
 
 const BlockedAccount = React.lazy(() => import("./blocked-account/BlockedAccount"));
-const Student = React.lazy(() => import("./student/Student"));
+const Student = React.lazy(() => import("./student/index"));
 const Teacher = React.lazy(() => import("./teacher/index"));
 
 const Index: React.FC = () => {

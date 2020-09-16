@@ -1,6 +1,6 @@
 import React from 'react';
 import {Card} from "lib/ui";
-import ProfileBlock from "../../../../../student/layouts/profile-block/ProfileBlock";
+import ProfileBlock from "../../../../../student/layouts/_old/profile-block/ProfileBlock";
 import ActionButtons from "./action-buttons/ActionButtons";
 import styled from "styled-components";
 import GroupCoins from "./group-coins/GroupCoins";
