@@ -32,6 +32,7 @@ const UserId: React.FC<TextProps> = styled(Text)`
     font-size: 80%;
 
     span {
+        line-height: initial;
         color: ${(props) => props.theme.color_warning};
     }
 `

@@ -5,14 +5,16 @@ import {
     QuestionCircleOutlined
 } from "@ant-design/icons"
 import {Badge, Dropdown, Menu, Modal} from "antd"
-// import {logoutUser} from "../../../../../../store/user/logoutUser";
 import {SidebarButton} from "lib/layouts/facebook/header/sidebars/sidebar-button/SidebarButton"
 import DarkSwitch from "../../../../dashboard/header/items/dark-switch/DarkSwitch"
 import {AccountItem} from "../../../../dashboard/header/laptop/account-menu/AccountMenu"
+import {useDispatch} from "react-redux"
+import {logoutUser} from "../../../../../../store/common/user/logoutUser"
 
 const confirm = Modal.confirm
 
 const AccountMenu: React.FC = ({children}) => {
+    const dispatch = useDispatch()
     const [visible, setVisible] = useState(false)
 
     const toggle = () => setVisible(!visible)
@@ -24,7 +26,7 @@ const AccountMenu: React.FC = ({children}) => {
             title: "Вы действительно хотите выйти?",
             icon: <QuestionCircleOutlined />,
             onOk: async () => {
-                // dispatch(logoutUser());
+                dispatch(logoutUser());
             }
         })
     }
