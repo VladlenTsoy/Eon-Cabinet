@@ -4,7 +4,7 @@ import HeaderProfile from "../items/profile/HeaderProfile"
 import HeaderItemLayout from "../../../../layouts/dashboard/header/HeaderItem.layout"
 import HeaderMenuLayout from "../../../../layouts/dashboard/header/HeaderMenu.layout"
 import AccountMenu from "./account-menu/AccountMenu"
-import Notifications from "../items/notifications/Notifications"
+import Notifications from "../items/notifications-item/NotificationsItem"
 import Chat from "../items/chat-item/ChatItem"
 
 interface LaptopProps {

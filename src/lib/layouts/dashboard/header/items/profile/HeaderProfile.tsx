@@ -25,14 +25,15 @@ const WrapperProfileData = styled.div`
 
 const UserName: React.FC<TextProps> = styled(Text)`
     display: block;
+    line-height: initial;
 `
 
 const UserId: React.FC<TextProps> = styled(Text)`
     font-weight: bolder;
     font-size: 80%;
+    line-height: initial;
 
     span {
-        line-height: initial;
         color: ${(props) => props.theme.color_warning};
     }
 `
