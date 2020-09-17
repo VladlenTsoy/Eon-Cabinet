@@ -1,45 +1,31 @@
 import React, {useState} from "react"
 import {
     CaretDownOutlined,
-    PoweroffOutlined,
-    QuestionCircleOutlined
+    PoweroffOutlined
 } from "@ant-design/icons"
-import {Badge, Dropdown, Menu, Modal} from "antd"
+import {Badge, Dropdown, Menu} from "antd"
 import {SidebarButton} from "lib/layouts/facebook/header/sidebars/sidebar-button/SidebarButton"
 import DarkSwitch from "../../../../dashboard/header/items/dark-switch/DarkSwitch"
 import {AccountItem} from "../../../../dashboard/header/laptop/account-menu/AccountMenu"
-import {useDispatch} from "react-redux"
-import {logoutUser} from "../../../../../../store/common/user/logoutUser"
-
-const confirm = Modal.confirm
+import {useUser} from "../../../../../../hooks/use-user"
 
 const AccountMenu: React.FC = ({children}) => {
-    const dispatch = useDispatch()
+    const {logout} = useUser()
     const [visible, setVisible] = useState(false)
 
-    const toggle = () => setVisible(!visible)
+    const toggle = (visible: boolean) =>
+        setVisible(visible)
 
-    // Выход
-    const logout = () => {
-        confirm({
-            zIndex: 1002,
-            title: "Вы действительно хотите выйти?",
-            icon: <QuestionCircleOutlined />,
-            onOk: async () => {
-                dispatch(logoutUser());
-            }
-        })
-    }
 
     const menu = (
         <Menu>
             {children}
-            <Menu.Divider />
+            <Menu.Divider/>
             <AccountItem key="theme">
-                <DarkSwitch />
+                <DarkSwitch/>
             </AccountItem>
             <AccountItem onClick={logout} key="exit">
-                <PoweroffOutlined /> Выход
+                <PoweroffOutlined/> Выход
             </AccountItem>
         </Menu>
     )
@@ -55,7 +41,7 @@ const AccountMenu: React.FC = ({children}) => {
                     // trigger={["click"]}
                 >
                     <SidebarButton active={visible}>
-                        <CaretDownOutlined />
+                        <CaretDownOutlined/>
                     </SidebarButton>
                 </Dropdown>
             </Badge>

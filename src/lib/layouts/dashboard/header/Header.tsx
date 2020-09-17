@@ -1,11 +1,8 @@
 import React from "react";
-import {Modal} from "antd";
 import {useScreenWindow} from "../../../../hooks/use-screen-window.effect";
 import Mobile from "./mobile/Mobile";
 import Laptop from "./laptop/Laptop";
-import {QuestionCircleOutlined} from "@ant-design/icons";
-import {useDispatch} from "react-redux";
-import {logoutUser} from "../../../../store/common/user/logoutUser";
+import {useUser} from "../../../../hooks/use-user"
 
 interface HeaderProps {
     collapsed: boolean;
@@ -13,22 +10,8 @@ interface HeaderProps {
     account?: JSX.Element[];
 }
 
-const confirm = Modal.confirm;
-
 const Header: React.FC<HeaderProps> = ({children, collapsed, account, toggleSidebar}) => {
-    const dispatch = useDispatch();
-
-    // Выход
-    const logout = () => {
-        confirm({
-            title: 'Вы действительно хотите выйти?',
-            icon: <QuestionCircleOutlined/>,
-            onOk: async () => {
-                dispatch(logoutUser());
-            },
-        });
-    };
-
+    const {logout} = useUser()
     const [, isBreakpoint] = useScreenWindow({breakpoint: 'md'});
 
     if (isBreakpoint)
