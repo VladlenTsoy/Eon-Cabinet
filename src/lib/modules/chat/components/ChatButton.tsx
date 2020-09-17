@@ -26,30 +26,37 @@ const ChatButton: React.FC<ChatButtonProps> = ({children, close, visible}) => {
     const selectedChatId = useSelectedChatId()
     const countNewMessages = useChatListeningMessage({userId})
 
-    const closeHandler = useCallback((visible: boolean) => {
-        if (!visible && selectedChatId)
-            socket.emit("left_the_chat", {chatId: selectedChatId, userId})
-    }, [selectedChatId, userId])
+    const closeHandler = useCallback(
+        (visible: boolean) => {
+            if (!visible && selectedChatId)
+                socket.emit("left_the_chat", {chatId: selectedChatId, userId})
+        },
+        [selectedChatId, userId]
+    )
 
-    return <div>
-        <Badge count={countNewMessages}>
-            {children}
-        </Badge>
-        <ChatDrawStyled
-            width={breakpoint ? "100%" : 480}
-            getContainer=".draw-container"
-            style={{position: "absolute"}}
-            closable={false}
-            mask={false}
-            visible={visible}
-            afterVisibleChange={closeHandler}
-            onClose={close}
-            zIndex={4}
-            notFooter
-        >
-            <Chat close={close}/>
-        </ChatDrawStyled>
-    </div>
+    return (
+        <div>
+            <Badge count={countNewMessages}>{children}</Badge>
+            <ChatDrawStyled
+                width={breakpoint ? "100%" : 480}
+                closable={false}
+                mask={false}
+                visible={visible}
+                afterVisibleChange={closeHandler}
+                onClose={close}
+                notFooter
+                {...(!breakpoint
+                    ? {
+                          getContainer: ".draw-container",
+                          style: {position: "absolute"},
+                          zIndex: 4
+                      }
+                    : {zIndex: 1004})}
+            >
+                <Chat close={close} />
+            </ChatDrawStyled>
+        </div>
+    )
 }
 
 export default ChatButton
