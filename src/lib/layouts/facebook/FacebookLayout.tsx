@@ -3,6 +3,8 @@ import {Layout} from "antd"
 import Header from "./header/Header"
 import {NavigationItemProps} from "./header/navigation/Navigation"
 import styled from "styled-components"
+import Footer from "./footer/Footer"
+import {useScreenWindow} from "../../../hooks/use-screen-window.effect"
 
 const ContainerStyled = styled.div`
   position: relative;
@@ -23,6 +25,8 @@ interface FacebookLayout {
 }
 
 const FacebookLayout: React.FC<FacebookLayout> = ({children, navigations, sidebars, accountMenu}) => {
+    const [, isBreakpoint] = useScreenWindow({breakpoint: 'lg'});
+
     return <Layout style={{height: "100vh"}}>
         <Header navigations={navigations} sidebars={sidebars} accountMenu={accountMenu}/>
         <ContainerStyled id="container" className="draw-container">
@@ -30,6 +34,7 @@ const FacebookLayout: React.FC<FacebookLayout> = ({children, navigations, sideba
                 {children}
             </ScrollStyled>
         </ContainerStyled>
+        {isBreakpoint && <Footer navigations={navigations}/>}
     </Layout>
 }
 
