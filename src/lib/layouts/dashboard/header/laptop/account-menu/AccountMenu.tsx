@@ -1,9 +1,9 @@
-import React from 'react';
-import {CaretDownOutlined} from '@ant-design/icons';
-import {Badge, Button, Dropdown, Menu} from "antd";
-import styled from "styled-components";
-import {PoweroffOutlined} from "@ant-design/icons";
-import DarkSwitch from "../../items/dark-switch/DarkSwitch";
+import React from "react"
+import {CaretDownOutlined} from "@ant-design/icons"
+import {Button, Dropdown, Menu} from "antd"
+import styled from "styled-components"
+import {PoweroffOutlined} from "@ant-design/icons"
+import DarkSwitch from "../../items/dark-switch/DarkSwitch"
 
 export const AccountItem = styled(Menu.Item)`
   &.ant-dropdown-menu-item{
@@ -13,7 +13,7 @@ export const AccountItem = styled(Menu.Item)`
     
   > div > span.anticon, span.anticon:first-child {
     font-size: 18px;
-    background: ${props => props.theme['@layout-body-background']};
+    background: ${props => props.theme["@layout-body-background"]};
     padding: 0.5rem;
     border-radius: 50%;
     margin-right: 0.75rem;
@@ -49,15 +49,13 @@ const AccountMenu: React.FC<AccountMenuProps> = ({logout, children}) => {
                 <PoweroffOutlined/> Выход
             </AccountItem>
         </Menu>
-    );
+    )
 
     return <>
-        <Badge count={5}>
-            <Dropdown overlay={menu} arrow placement="bottomRight">
-                <Button shape="circle" icon={<CaretDownOutlined/>}/>
-            </Dropdown>
-        </Badge>
-    </>;
-};
+        <Dropdown overlay={menu} arrow placement="bottomRight">
+            <Button shape="circle" icon={<CaretDownOutlined/>}/>
+        </Dropdown>
+    </>
+}
 
-export default AccountMenu;
+export default AccountMenu

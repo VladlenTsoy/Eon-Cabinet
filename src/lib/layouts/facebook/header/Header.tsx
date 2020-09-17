@@ -14,6 +14,10 @@ const HeaderStyled = styled.div`
     justify-content: space-between;
     position: relative;
     z-index: 1001;
+
+    @media (max-width: 576px) {
+        height: 55px;
+    }
 `
 
 interface HeaderProps {

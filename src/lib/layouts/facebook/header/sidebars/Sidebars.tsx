@@ -11,6 +11,14 @@ const SidebarsStyled = styled.div`
     > div:not(:last-child) {
         margin-right: 0.75rem;
     }
+
+    @media (max-width: 576px) {
+        padding: 0.5rem 0.5rem;
+
+        > div:not(:last-child) {
+            margin-right: 0.5rem;
+        }
+    }
 `
 
 interface SidebarsProps {
@@ -22,9 +30,7 @@ const Sidebars: React.FC<SidebarsProps> = ({sidebars, accountMenu}) => {
     return (
         <SidebarsStyled>
             {sidebars}
-            <AccountMenu key="account-menu">
-                {accountMenu}
-            </AccountMenu>
+            <AccountMenu key="account-menu">{accountMenu}</AccountMenu>
         </SidebarsStyled>
     )
 }
