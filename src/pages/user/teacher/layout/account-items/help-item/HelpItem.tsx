@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { InfoCircleOutlined } from '@ant-design/icons';
+import { QuestionOutlined } from '@ant-design/icons';
 import HelpButton from "../../../../../../lib/modules/help/components/HelpButton"
 
 const HelpItem = () => {
@@ -11,7 +11,7 @@ const HelpItem = () => {
     return <>
         <HelpButton visible={visible} close={close}>
             <div onClick={open}>
-                <InfoCircleOutlined /> Помощь
+                <QuestionOutlined /> Помощь
             </div>
         </HelpButton>
     </>;
