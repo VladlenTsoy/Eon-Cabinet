@@ -4,8 +4,6 @@ import {Select} from "antd";
 import {SelectProps} from "antd/es/select";
 import styled from "styled-components";
 import SearchOption from "./SearchOption";
-import {useLanguage} from "../../../../../../hooks/use-language";
-// import {pdfRender} from "../../../training/tasks/print/general";
 
 const SearchWrapper = styled.div`
   display: flex;
@@ -52,7 +50,6 @@ const SelectWrapper: React.FC<SelectProps<any>> = styled(Select)`
 
 // TODO - api
 const Search = () => {
-    const {language} = useLanguage();
     const [data, setData] = useState<any>([]);
     const [timer, setTimer] = useState<any>(0);
     const [loading, setLoading] = useState(false);
@@ -62,8 +59,6 @@ const Search = () => {
         if (value.trim().length) {
             setLoading(true);
             setTimer(setTimeout(async () => {
-                // let response = await api.user.get('/algorithm/check/list', {params: {search_id: value}});
-                // setData(response.data.length ? response.data : null);
                 setLoading(false);
             }, 1000));
         } else {
@@ -74,9 +69,7 @@ const Search = () => {
 
     const handleChange = async (value: any) => {
         if (value) {
-            const list = data.find((item: any) => item.id === Number(value));
-            const {pdfRender} = await import("../../../pages/training/settings/print/general");
-            await pdfRender(list.settings, list, language.common);
+            data.find((item: any) => item.id === Number(value));
         }
     };
 

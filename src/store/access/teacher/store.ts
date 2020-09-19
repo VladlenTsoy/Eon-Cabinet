@@ -6,6 +6,7 @@ import olympiad from './olympiad/olympiadSlice';
 import discipline from './discipline/disciplineSlice';
 import algorithm from './algorithm/algorithmSlice';
 import homework from './homework/homeworkSlice';
+import lists from './lists/listsSlice';
 import tasks from './tasks/tasksSlice';
 import students from './students/studentsSlice';
 import app from "../../common/app/appSlice";
@@ -33,6 +34,7 @@ export const teacherReducer = combineReducers({
     students,
     customExercises,
     homeworkExercises,
+    lists,
     // common
     app,
     language,
