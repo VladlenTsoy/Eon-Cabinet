@@ -13,6 +13,7 @@ import {useLanguage} from "../../../../../../hooks/use-language"
 import {useTeacherDispatch} from "../../../../../../store/access/teacher/store"
 import {getCookie, setCookie} from "../../../../../../utils/cookie"
 import {createList} from "../../../../../../store/access/teacher/lists/createList"
+import {changeExecutionMode, changeSetting} from "../../../../../../store/common/game/gameSplice"
 
 const Mental = React.lazy(() => import("./mental/Mental"))
 const Mnemonics = React.lazy(() => import("./mnemonics/Mnemonics"))
@@ -78,11 +79,11 @@ const Tasks: React.FC = () => {
      */
     const startOrPrintAndSaveSetting = useCallback(
         async (setting: any, print?: boolean) => {
-            // dispatch(changeExecutionMode("fetch"))
-            // dispatch(changeSetting(setting))
-            // await updateSetting(setting)
+            dispatch(changeExecutionMode("fetch"))
+            dispatch(changeSetting(setting))
+            await updateSetting(setting)
 
-            // if (print) {
+            if (print) {
             //     const {pdfRender} = await import("./print/general")
                 dispatch(createList({task, setting}))
                 // let url = "/algorithm/list"
@@ -96,8 +97,8 @@ const Tasks: React.FC = () => {
                     // const response = await api.user.get(url, {params: _setting});
                     // await pdfRender(_setting, response.data, language.common);
                 // }
-            // } else
-            //     history.push(`/training/${discipline}/${task}`)
+            } else
+                history.push(`/training/${discipline}/${task}`)
         },
         [history, discipline, task, dispatch, updateSetting, language.common]
     )

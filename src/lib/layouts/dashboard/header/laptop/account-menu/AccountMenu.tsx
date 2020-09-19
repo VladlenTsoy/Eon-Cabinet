@@ -6,30 +6,46 @@ import {PoweroffOutlined} from "@ant-design/icons"
 import DarkSwitch from "../../items/dark-switch/DarkSwitch"
 
 export const AccountItem = styled(Menu.Item)`
-  &.ant-dropdown-menu-item{
-    padding: 0.5rem 3rem 0.5rem 1rem;
-    font-size: 14px;
-  }
-    
-  > div > span.anticon, span.anticon:first-child {
-    font-size: 18px;
-    background: ${props => props.theme["@layout-body-background"]};
-    padding: 0.5rem;
-    border-radius: 50%;
-    margin-right: 0.75rem;
-    
-    &.invert {
-      filter: invert(100%)
+    &.ant-dropdown-menu-item {
+        padding: 0.5rem 3rem 0.5rem 1rem;
+        font-size: 14px;
     }
-  }
-  
-  .ant-badge {
-    margin-right: 0.75rem;
-    
-    span.anticon {
-      margin-right: 0;
+
+    > div > span.anticon,
+    span.anticon:first-child,
+    > div > span.ricon,
+    span.ricon:first-child {
+        font-size: 18px;
+        background: ${(props) => props.theme["@layout-body-background"]};
+        padding: 0.5rem;
+        border-radius: 50%;
+        margin-right: 0.75rem;
+
+        &.invert {
+            filter: invert(100%);
+        }
     }
-  }
+
+    .ricon {
+        line-height: 0;
+        display: inline-block;
+        //color: inherit;
+        //font-style: normal;
+        //text-align: center;
+        //text-transform: none;
+        //vertical-align: -0.125em;
+        //text-rendering: optimizeLegibility;
+        //-webkit-font-smoothing: antialiased;
+    }
+
+    .ant-badge {
+        margin-right: 0.75rem;
+
+        span.anticon,
+        span.ricon {
+            margin-right: 0;
+        }
+    }
 `
 
 interface AccountMenuProps {
@@ -37,25 +53,26 @@ interface AccountMenuProps {
 }
 
 const AccountMenu: React.FC<AccountMenuProps> = ({logout, children}) => {
-
     const menu = (
         <Menu>
             {children}
-            <Menu.Divider/>
+            <Menu.Divider />
             <AccountItem key="theme">
-                <DarkSwitch/>
+                <DarkSwitch />
             </AccountItem>
             <AccountItem onClick={logout} key="exit">
-                <PoweroffOutlined/> Выход
+                <PoweroffOutlined /> Выход
             </AccountItem>
         </Menu>
     )
 
-    return <>
-        <Dropdown overlay={menu} arrow placement="bottomRight">
-            <Button shape="circle" icon={<CaretDownOutlined/>}/>
-        </Dropdown>
-    </>
+    return (
+        <>
+            <Dropdown overlay={menu} arrow placement="bottomRight">
+                <Button shape="circle" icon={<CaretDownOutlined />} />
+            </Dropdown>
+        </>
+    )
 }
 
 export default AccountMenu

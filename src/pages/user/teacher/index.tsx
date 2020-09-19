@@ -1,6 +1,5 @@
 import React from 'react';
-import Layout from "lib/layouts/dashboard/Layout";
-import HeaderItems from "./layout/header-items/HeaderItems";
+import SidebarItems from "./layout/sidebar-items/SidebarItems";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Home from "./pages/home/Home";
 import Profile from "./pages/profile/Profile";
@@ -17,18 +16,19 @@ import EditorOlympiad from "./pages/olympiads/editor/Editor";
 import MoreOlympiad from "./pages/olympiads/more/More";
 import Settings from "./pages/settings/Settings";
 import Platform from "./pages/platform/Platform";
-import SidebarItems from "./layout/sidebar-items/SidebarItems";
+import {Navigations} from "./layout/navigation-items/NavigationItems";
 import DisciplinesProvider from "./providers/disciplines-provider/DisciplinesProvider";
 import CategoriesProvider from "./providers/categories-provider/CategoriesProvider";
 import AlgorithmsProvider from "./providers/algorithms-provider/AlgorithmsProvider";
 import AccountItems from "./layout/account-items/AccountItems";
+import FacebookLayout from "../../../lib/layouts/facebook/FacebookLayout"
 
 const Index: React.FC = () => {
     return <DisciplinesProvider>
         <CategoriesProvider>
             <AlgorithmsProvider>
                 <Router>
-                    <Layout header={HeaderItems} sidebar={SidebarItems} account={AccountItems}>
+                    <FacebookLayout sidebars={SidebarItems} navigations={Navigations} accountMenu={AccountItems}>
                         <Switch>
                             <Route exact path="/" component={Home}/>
                             <Route path="/profile" component={Profile}/>
@@ -48,7 +48,7 @@ const Index: React.FC = () => {
                             <Route path="/settings" component={Settings}/>
                             <Route path="/platform" component={Platform}/>
                         </Switch>
-                    </Layout>
+                    </FacebookLayout>
                 </Router>
             </AlgorithmsProvider>
         </CategoriesProvider>
