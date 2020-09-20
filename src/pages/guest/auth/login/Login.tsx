@@ -46,7 +46,7 @@ const Login: React.FC = () => {
         </Form.Item>
         <Form.Item>
             <Link to="/registration">
-                <Button block loading={loading}>
+                <Button block disabled={loading}>
                     Регистрация
                 </Button>
             </Link>

@@ -5,20 +5,21 @@ import {useState} from "react";
 import {FormItem} from "../../../../lib/ui";
 import {Link} from "react-router-dom";
 import AuthLayout from "../../../../lib/layouts/auth/AuthLayout";
+import {useDispatch} from "react-redux"
+import {forgotPassword} from "../../../../store/common/user/recoveryUser"
 
 const ForgotPasswordBlock = () => {
-    const [form] = Form.useForm();
     const [loading, setLoading] = useState<boolean>(false);
+    const dispatch = useDispatch();
 
     const onFinish = async (values: any) => {
         setLoading(true);
-        console.log(values);
-        await form.validateFields();
+        await dispatch(forgotPassword(values));
         setLoading(false);
     };
 
     return <AuthLayout title="Восстановление пароля" onFinish={onFinish}>
-        <FormItem name="login" requiredMsg="Введите почту!">
+        <FormItem name="email" requiredMsg="Введите почту!">
             <Input
                 prefix={<UserOutlined style={{color: 'rgba(0,0,0,.25)'}}/>}
                 placeholder="Введите почту"
