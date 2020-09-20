@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState} from "react"
 import {Dropdown, Menu} from "antd"
 import {useDispatch, useSelector} from "react-redux"
 import {disciplineSelector, changeActiveDisciplineId} from "store/access/teacher/discipline/disciplineSlice"
@@ -13,8 +13,11 @@ import {SidebarButton} from "../../../../../../lib/layouts/facebook/header/sideb
 import {AccountItem} from "../../../../../../lib/layouts/dashboard/header/laptop/account-menu/AccountMenu"
 
 const DisciplinesItem = () => {
+    const [active, setActive] = useState(false)
     const {disciplines, activeDisciplineId} = useSelector(disciplineSelector)
     const dispatch = useDispatch()
+
+    const toggle = (active: boolean) => setActive(active)
 
     const handleChange = (disciplineId: number) => {
         dispatch(resetCategorySlice())
@@ -39,11 +42,11 @@ const DisciplinesItem = () => {
 
     return <div>
         <Dropdown
-            // onVisibleChange={toggle}
+            onVisibleChange={toggle}
             overlay={menu}
             arrow
         >
-            <SidebarButton active={false}>
+            <SidebarButton active={active}>
                 {activeDisciplineId === 1 ? <CalculatorOutlined/> : <FaBrain/>}
             </SidebarButton>
         </Dropdown>

@@ -100,6 +100,14 @@ const Navigation: React.FC<NavigationProps> = ({menu}) => {
     const location = useLocation()
     const [, isBreakpoint] = useScreenWindow({breakpoint: "md"})
 
+    const arr = location.pathname.split("/")
+    arr.splice(0,1)
+
+    const updateActive = (link: string) => {
+        link = link.replace('/', '')
+        return arr.includes(link)
+    }
+
     return (
         <NavigationStyled>
             <nav>
@@ -110,13 +118,9 @@ const Navigation: React.FC<NavigationProps> = ({menu}) => {
                         title={item.title}
                         key={item.link}
                     >
-                        <li
-                            className={
-                                item.link === location.pathname ? "active" : ""
-                            }
-                        >
+                        <li className={updateActive(item.link) ? "active" : ""}>
                             <Link to={item.link}>
-                                {item.link === location.pathname
+                                {updateActive(item.link)
                                     ? item.iconActive
                                     : item.icon}
                             </Link>
