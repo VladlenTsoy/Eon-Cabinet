@@ -86,6 +86,7 @@ interface WordListTableProps {
     addSettingHomework?: (setting: any) => void;
 }
 
+// TODO - language
 const WordListTable: React.FC<WordListTableProps> = (
     {
         form,
@@ -96,8 +97,8 @@ const WordListTable: React.FC<WordListTableProps> = (
         deleteSetting
     }
 ) => {
-    const {language} = useLanguage();
-    const {common} = language;
+    // const {language} = useLanguage();
+    // const {common} = language;
 
     const [loading, setLoading] = useState(false);
 
@@ -124,8 +125,8 @@ const WordListTable: React.FC<WordListTableProps> = (
                     <tbody>
                     {severalFields.map((field: any, key) =>
                         <tr key={key}>
-                            <td className="mode">{common['tasksTraining']['wordsList']['mode'][field.value.mode]}</td>
-                            <td className="type">{common['tasksTraining']['wordsList']['type'][field.value.type]}</td>
+                            {/*<td className="mode">{common['tasksTraining']['wordsList']['mode'][field.value.mode]}</td>*/}
+                            {/*<td className="type">{common['tasksTraining']['wordsList']['type'][field.value.type]}</td>*/}
                             <td className="counter">
                                 <div>{field.value.count}</div>
                                 <Button

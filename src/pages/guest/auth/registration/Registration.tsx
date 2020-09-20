@@ -21,10 +21,7 @@ const Registration = () => {
             setLoading(false);
     }
 
-    return <AuthLayout
-        title="Регистрация"
-        onFinish={handleSubmit}
-    >
+    return <>
         <FormItem name="first_name" requiredMsg="Введите Имя!">
             <Input placeholder="Имя"/>
         </FormItem>
@@ -66,7 +63,7 @@ const Registration = () => {
                 <Button block icon={<ArrowLeftOutlined/>}>Назад</Button>
             </Link>
         </Form.Item>
-    </AuthLayout>;
+    </>;
 };
 
 export default Registration;

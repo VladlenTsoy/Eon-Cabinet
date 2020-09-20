@@ -5,12 +5,13 @@ interface PersonalitiesSettingBlockProps {
     setting: any;
 }
 
+// TODO - language
 const PersonalitiesSettingBlock:React.FC<PersonalitiesSettingBlockProps> = ({setting}) => {
-    const {language} = useLanguage();
+    // const {language} = useLanguage();
     return <>
         <tr>
             <td className="text-mute">Мод:</td>
-            <td>{language.common.mnemonicModeNames[setting.mode]}</td>
+            {/*<td>{language.common.mnemonicModeNames[setting.mode]}</td>*/}
             <td colSpan={2}/>
         </tr>
         <tr>

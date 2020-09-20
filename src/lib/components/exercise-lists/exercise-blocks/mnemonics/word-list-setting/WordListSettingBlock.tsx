@@ -14,8 +14,9 @@ interface WordListSettingBlockProps {
     setting: any;
 }
 
+// TODO - language
 const WordListSettingBlock: React.FC<WordListSettingBlockProps> = ({setting}) => {
-    const {language} = useLanguage();
+    // const {language} = useLanguage();
     return <>
         <tr>
             <TdAnzanWrapper colSpan={6}>
@@ -31,9 +32,9 @@ const WordListSettingBlock: React.FC<WordListSettingBlockProps> = ({setting}) =>
         {Object.values(setting.several).map((value: any, key) =>
             <tr key={key}>
                 <td className="text-mute">Мод:</td>
-                <td>{language.common.tasksTraining.wordsList.mode[value.mode]}</td>
+                {/*<td>{language.common.tasksTraining.wordsList.mode[value.mode]}</td>*/}
                 <td className="text-mute">Режим:</td>
-                <td>{language.common.tasksTraining.wordsList.type[value.type]}</td>
+                {/*<td>{language.common.tasksTraining.wordsList.type[value.type]}</td>*/}
                 <td className="text-mute">Кол-во:</td>
                 <td>{value.count}</td>
             </tr>

@@ -5,9 +5,9 @@ import {useLanguage} from "../../../../../../hooks/use-language";
 interface AnzanSettingBlockProps {
     setting: any;
 }
-
+// TODO LANGUAGE
 const AnzanSettingBlock: React.FC<AnzanSettingBlockProps> = ({setting}) => {
-    const {language} = useLanguage();
+    // const {language} = useLanguage();
     const [isMultiplication] = useState(setting.mode === 'divide' || setting.mode === 'multiply');
 
     return <>
@@ -15,11 +15,11 @@ const AnzanSettingBlock: React.FC<AnzanSettingBlockProps> = ({setting}) => {
         {isMultiplication ?
             <tr>
                 <td>Режим:</td>
-                <td>
-                    {language.common.lengthNames[setting.length]}&nbsp;
-                    {language.common.modeNames[setting.mode]}&nbsp;
-                    {setting.type === 'o' ? setting.theme : language.common.typeNames[1][setting.type]}
-                </td>
+                {/*<td>*/}
+                {/*    {language.common.lengthNames[setting.length]}&nbsp;*/}
+                {/*    {language.common.modeNames[setting.mode]}&nbsp;*/}
+                {/*    {setting.type === 'o' ? setting.theme : language.common.typeNames[1][setting.type]}*/}
+                {/*</td>*/}
                 {setting.anzan === 'list' ?
                     <>
                         <td>Таблиц:</td>
@@ -30,13 +30,13 @@ const AnzanSettingBlock: React.FC<AnzanSettingBlockProps> = ({setting}) => {
             </tr> : [
                 <tr key="mode">
                     <td>Мод:</td>
-                    <td><b>{language.common.modeNames[setting.mode]}</b></td>
+                    {/*<td><b>{language.common.modeNames[setting.mode]}</b></td>*/}
                     <td>Разряд чисел:</td>
                     <td>{`${setting.length}-значные`}</td>
                 </tr>,
                 <tr key="type">
                     <td>Режим:</td>
-                    <td>{language.common.typeNames[0][setting.type]}</td>
+                    {/*<td>{language.common.typeNames[0][setting.type]}</td>*/}
                     {setting.anzan === 'list' ?
                         <>
                             <td>Таблиц:</td>

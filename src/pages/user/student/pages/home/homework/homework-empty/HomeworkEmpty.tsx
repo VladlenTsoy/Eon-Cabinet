@@ -18,8 +18,9 @@ interface HomeworkEmptyProps {
     fetch: () => void;
 }
 
+// TODO - language
 const HomeworkEmpty: React.FC<HomeworkEmptyProps> = ({fetch}) => {
-    const {language} = useLanguage();
+    // const {language} = useLanguage();
     const updateHandler = () => fetch();
 
     return (
@@ -27,13 +28,13 @@ const HomeworkEmpty: React.FC<HomeworkEmptyProps> = ({fetch}) => {
             <Empty
                 description={
                     <>
-                        <DescriptionTitle>{language.common.empty}</DescriptionTitle>
-                        <span>{language.student.no_homework}</span>
+                        {/*<DescriptionTitle>{language.common.empty}</DescriptionTitle>*/}
+                        {/*<span>{language.student.no_homework}</span>*/}
                     </>
                 }
             >
                 <Button type="ghost" size="large" onClick={updateHandler} icon={<RedoOutlined />}>
-                    {language.student.refresh}
+                    {/*{language.student.refresh}*/}
                 </Button>
             </Empty>
         </EmptyWrapper>

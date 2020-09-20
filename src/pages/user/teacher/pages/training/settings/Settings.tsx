@@ -41,8 +41,9 @@ interface TasksRouteProps {
 }
 
 // TODO - api
+// TODO - language
 const Tasks: React.FC = () => {
-    const {language} = useLanguage()
+    // const {language} = useLanguage()
     const match = useRouteMatch<TasksRouteProps>()
     const history = useHistory()
     const {discipline, task} = match.params
@@ -100,7 +101,7 @@ const Tasks: React.FC = () => {
             } else
                 history.push(`/training/${discipline}/${task}`)
         },
-        [history, discipline, task, dispatch, updateSetting, language.common]
+        [history, discipline, task, dispatch, updateSetting]
     )
 
     return (

@@ -12,6 +12,7 @@ interface SelectLengthProps {
     isThemes: boolean;
 }
 
+// TODO - language
 const SelectLength: React.FC<SelectLengthProps> = (
     {
         typeAnzan,
@@ -20,7 +21,7 @@ const SelectLength: React.FC<SelectLengthProps> = (
         isThemes,
     }
 ) => {
-    const {language} = useLanguage();
+    // const {language} = useLanguage();
 
     return <Col sm={isMultiplication && !isThemes ? 12 : 8} xs={12}>
         <FormItem
@@ -34,7 +35,7 @@ const SelectLength: React.FC<SelectLengthProps> = (
                         disabled={typeAnzan === 'double' && Number(leng) > 7}
                         key={leng}
                         value={leng}>
-                        {isMultiplication ? language.common.lengthNames[leng] : leng}
+                        {/*{isMultiplication ? language.common.lengthNames[leng] : leng}*/}
                     </Option>
                 ) : null}
             </Select>

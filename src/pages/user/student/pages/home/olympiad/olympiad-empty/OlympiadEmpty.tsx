@@ -16,20 +16,21 @@ const EmptyWrapper = styled.div`
   border: 2px dashed ${props => props.theme.light_color_border}
 `;
 
+// TODO - language
 const OlympiadEmpty = () => {
-    const {language} = useLanguage();
+    // const {language} = useLanguage();
 
     return <EmptyWrapper className="animated bounceIn">
         <Empty
             description={
                 <>
-                    <DescriptionTitle>{language.common.empty}</DescriptionTitle>
-                    <span>{language.student.no_current_olympiads}</span>
+                    {/*<DescriptionTitle>{language.common.empty}</DescriptionTitle>*/}
+                    {/*<span>{language.student.no_current_olympiads}</span>*/}
                 </>
             }
         >
             <ButtonLink to="/olympiad" type="ghost" icon={<TrophyOutlined/>} size="large">
-                {language.student.open_the_list_of_olympiads}
+                {/*{language.student.open_the_list_of_olympiads}*/}
             </ButtonLink>
         </Empty>
     </EmptyWrapper>;

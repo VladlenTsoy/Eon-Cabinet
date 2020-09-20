@@ -6,8 +6,10 @@ import AuthLayout from "lib/layouts/auth/AuthLayout";
 import {FormItem} from "../../../../lib/ui";
 import {useDispatch} from "react-redux";
 import {authUser} from "../../../../store/common/user/authUser";
+import {useLanguage} from "../../../../hooks/use-language"
 
 const Login: React.FC = () => {
+    const {l} = useLanguage();
     const [loading, setLoading] = useState(false);
     const dispatch = useDispatch();
 
@@ -18,36 +20,36 @@ const Login: React.FC = () => {
     };
 
     return <AuthLayout
-        title="Авторизация"
-        subTitle="Вход в личный кабинет"
+        title={l('authorization')}
+        subTitle={l('login_to_your_account')}
         onFinish={handleSubmit}
     >
         <FormItem
             name="login"
             rules={[
-                {required: true, message: 'Введите E-mail!'},
-                // {type: 'email', message: 'Введен неверный E-mail!'}
+                {required: true, message: `${l('enter_email')}!`},
+                // {type: 'email', message: `${l('invalid_email')}!`}
             ]}
         >
-            <Input prefix={<UserOutlined/>} placeholder="Почта"/>
+            <Input prefix={<UserOutlined/>} placeholder={l('email')}/>
         </FormItem>
-        <FormItem name="password" requiredMsg="Введите пароль!">
-            <Input.Password prefix={<LockOutlined/>} placeholder="Пароль"/>
+        <FormItem name="password" requiredMsg={l('enter_password')}>
+            <Input.Password prefix={<LockOutlined/>} placeholder={l('password')}/>
         </FormItem>
         <div style={{textAlign: 'right', marginBottom: '0.5rem'}}>
             <Link to="/forgot-password">
-                Забыли пароль?
+                {l('forgot_password')}?
             </Link>
         </div>
         <Form.Item style={{marginBottom: '0.75rem'}}>
             <Button type="primary" htmlType="submit" block loading={loading}>
-                Войти
+                {l('login')}
             </Button>
         </Form.Item>
         <Form.Item>
             <Link to="/registration">
                 <Button block disabled={loading}>
-                    Регистрация
+                    {l('registration')}
                 </Button>
             </Link>
         </Form.Item>

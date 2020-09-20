@@ -37,10 +37,10 @@ const languageSlice = createSlice({
         },
         [fetchLanguage.fulfilled]: (state, action: PayloadAction<any>) => {
             //
-            // state.title = action.payload.title;
+            state.title = action.payload.title;
             state.data = action.payload.data;
-            // state.abbr = action.payload.abbr;
-            // state.languages = action.payload.languages;
+            state.abbr = action.payload.abbr;
+            state.languages = action.payload.languages;
             state.loading = false;
             //
             setCookie('language', state.abbr, { expires: 7 });

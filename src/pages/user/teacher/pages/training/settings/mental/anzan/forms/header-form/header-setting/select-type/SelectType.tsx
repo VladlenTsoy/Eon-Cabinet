@@ -11,6 +11,7 @@ interface SelectTypeProps {
     isThemes: boolean;
 }
 
+// TODO - language
 const SelectType:React.FC<SelectTypeProps> = (
     {
         types,
@@ -18,7 +19,7 @@ const SelectType:React.FC<SelectTypeProps> = (
         isThemes,
     }
 ) => {
-    const {language} = useLanguage();
+    // const {language} = useLanguage();
 
     return <Col sm={isMultiplication && !isThemes ? 12 : 8} xs={12}>
         <FormItem
@@ -29,7 +30,7 @@ const SelectType:React.FC<SelectTypeProps> = (
             <Select loading={!types.length}>
                 {types.length ? types.map((type: any) =>
                     <Option key={type} value={type}>
-                        {language.common.typeNames[isMultiplication ? 1 : 0][type]}
+                        {/*{language.common.typeNames[isMultiplication ? 1 : 0][type]}*/}
                     </Option>
                 ) : null}
             </Select>

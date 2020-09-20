@@ -13,8 +13,9 @@ interface RequestTableProps {
     setIsChange: (isChange: boolean) => void;
 }
 
+// TODO - language
 const RequestTable: React.FC<RequestTableProps> = ({olympiad, setIsChange}) => {
-    const {language} = useLanguage();
+    // const {language} = useLanguage();
     const [loading, students, , fetch] = useApiUserGeneral({
         url: `teacher/olympiad/${olympiad.id}/requests/students`,
         initValue: []
@@ -28,7 +29,7 @@ const RequestTable: React.FC<RequestTableProps> = ({olympiad, setIsChange}) => {
             <Empty
                 description={
                     <>
-                        <DescriptionTitle>{language.common.empty}</DescriptionTitle>
+                        {/*<DescriptionTitle>{language.common.empty}</DescriptionTitle>*/}
                         <span>Нет запросов от учеников.</span>
                     </>
                 }
