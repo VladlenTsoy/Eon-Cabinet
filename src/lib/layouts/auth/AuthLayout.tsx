@@ -1,9 +1,9 @@
-import React from 'react';
-import styled from "styled-components";
-import {Col, Row} from 'antd';
-import bgAuthWrapper from "../../../assets/images/pages/login_page_bg.svg";
-import Footer from "./Footer";
-import Card from "./Card";
+import React from "react"
+import styled from "styled-components"
+import {Col, Row} from "antd"
+import bgAuthWrapper from "../../../assets/images/pages/login_page_bg.svg"
+import Footer from "./Footer"
+import Card from "./Card"
 import HeaderLanguage from "./HeaderLanguage"
 
 const AuthStyled = styled.div`
@@ -14,13 +14,13 @@ const AuthStyled = styled.div`
   overflow-x: auto;
   align-items: center;
   padding-top: 1rem;
-`;
+`
 
 const AuthScrollStyled = styled.div`
   margin-top: auto;
   margin-bottom: auto;
   width: 100%;
-`;
+`
 
 interface AuthLayoutProps {
     title: string;
@@ -42,6 +42,6 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({title, subTitle, onFinish, child
         </AuthScrollStyled>
         <Footer/>
     </AuthStyled>
-};
+}
 
-export default AuthLayout;
+export default AuthLayout
