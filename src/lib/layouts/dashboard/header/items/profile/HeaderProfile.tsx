@@ -13,6 +13,14 @@ const ProfileWrapper = styled(Link)<any>`
     display: flex;
     align-items: center;
     margin-right: ${(props: any) => props.mr || "0.5rem"};
+    padding: 0.25rem 0.5rem;
+    border-radius: 10px;
+    margin-left: -0.5rem;
+    transition: all 0.3s ease-in-out;
+    
+    :hover {
+        background: ${(props: any) => props.theme["@layout-body-background"]};
+    }
 `
 
 const WrapperProfileData = styled.div`

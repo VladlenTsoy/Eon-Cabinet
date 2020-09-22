@@ -1,8 +1,13 @@
-import React from 'react';
-import LastExecuted from "./last-executed/LastExecuted";
-import Olympiad from "./olympiad/Olympiad";
-import ShortInfo from "./short-info/ShortInfo";
-import Notification from "./notification/Notification";
+import React from "react"
+import styled from "styled-components"
+import Homework from "./_homework/Homework"
+import Olympiad from "./_olympiad/Olympiad"
+
+const HomeContainerStyled = styled.div`
+    max-width: 750px;
+    margin: 0 auto;
+    width: 100%;
+`
 
 /**
  * Главная страница учителя
@@ -10,12 +15,12 @@ import Notification from "./notification/Notification";
  * @constructor
  */
 const Home: React.FC = () => {
-    return <>
-        <Notification/>
-        <ShortInfo/>
-        <LastExecuted/>
-        <Olympiad/>
-    </>;
-};
+    return (
+        <HomeContainerStyled>
+            <Homework/>
+            <Olympiad/>
+        </HomeContainerStyled>
+    )
+}
 
-export default Home;
+export default Home
