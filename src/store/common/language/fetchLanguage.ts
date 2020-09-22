@@ -1,9 +1,23 @@
 import {createAsyncThunk} from "@reduxjs/toolkit"
 import {apiRequest} from "utils/api"
+import {CommonThunkProps} from "../store"
+import {Language} from "../../../lib/types/common/Language"
 
-export const fetchLanguage: any = createAsyncThunk(
+type ReturnedType = {
+    id: string
+    title: string
+    abbr: string
+    data: any
+    languages: Language[]
+}
+
+interface AgrProps {
+    abbr: Language["abbr"]
+}
+
+export const fetchLanguage = createAsyncThunk<ReturnedType, AgrProps, CommonThunkProps>(
     "language/fetch",
-    async (abbr, {signal}) => {
+    async ({abbr}, {signal}) => {
         return await apiRequest("get", "language", {signal, api2: true, type: "guest", params: {abbr}})
     }
 )

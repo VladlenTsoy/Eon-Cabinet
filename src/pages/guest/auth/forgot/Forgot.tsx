@@ -4,7 +4,7 @@ import {Button, Input, Form} from "antd";
 import {useState} from "react";
 import {FormItem} from "../../../../lib/ui";
 import {Link} from "react-router-dom";
-import AuthLayout from "../../../../lib/layouts/auth/AuthLayout";
+import LoginLayout from "../../../../lib/layouts/auth/login/LoginLayout";
 import {useDispatch} from "react-redux"
 import {forgotPassword} from "../../../../store/common/user/recoveryUser"
 
@@ -18,7 +18,7 @@ const ForgotPasswordBlock = () => {
         setLoading(false);
     };
 
-    return <AuthLayout title="Восстановление пароля" onFinish={onFinish}>
+    return <LoginLayout title="Восстановление пароля" onFinish={onFinish}>
         <FormItem name="email" requiredMsg="Введите почту!">
             <Input
                 prefix={<UserOutlined style={{color: 'rgba(0,0,0,.25)'}}/>}
@@ -35,7 +35,7 @@ const ForgotPasswordBlock = () => {
                 <Button block icon={<ArrowLeftOutlined/>}>Назад</Button>
             </Link>
         </Form.Item>
-    </AuthLayout>
+    </LoginLayout>
 };
 
 export default ForgotPasswordBlock;

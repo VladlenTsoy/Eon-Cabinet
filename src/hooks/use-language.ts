@@ -1,11 +1,10 @@
-import {useSelector} from "react-redux";
-import {languageSelector} from "../store/common/language/languageSlice";
+import {useSelectCurrentLanguage} from "../store/common/language/languageSelectors"
 
 export const useLanguage = () => {
-    const language = useSelector(languageSelector);
+    const currentLanguage = useSelectCurrentLanguage();
 
     const lang = (key: string): any => {
-        return language.data[key];
+        return currentLanguage.data[key];
     }
 
     return {lang, l: lang}
