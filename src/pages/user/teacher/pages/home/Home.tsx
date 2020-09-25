@@ -2,6 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import Homework from "./_homework/Homework"
 import Olympiad from "./_olympiad/Olympiad"
+import InitialHint from "./initial-hint/InitialHint"
 
 const HomeContainerStyled = styled.div`
     max-width: 750px;
@@ -17,6 +18,7 @@ const HomeContainerStyled = styled.div`
 const Home: React.FC = () => {
     return (
         <HomeContainerStyled>
+            <InitialHint/>
             <Homework/>
             <Olympiad/>
         </HomeContainerStyled>
