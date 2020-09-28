@@ -15,6 +15,11 @@ const ContainerStyled = styled.div`
     align-items: center;
     gap: 1rem;
     //justify-content: center;
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
 `
 
 const StatisticStyled = styled.div`
@@ -72,7 +77,7 @@ const Step = () => {
                 <h2>Завершился 1 этап</h2>
             </Title2Styled>
             <ContainerStyled>
-                <Ratings/>
+                <Ratings />
                 <StatisticStyled>
                     <StudentStyled>
                         <span className="count-success">238</span>

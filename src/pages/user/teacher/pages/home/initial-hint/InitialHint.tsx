@@ -43,6 +43,11 @@ const InitialHintStyled = styled.div`
             font-weight: 600;
             color: ${(props) => props.theme.color_minimal};
             top: 32px;
+
+            @media (max-width: 768px) {
+                font-size: 30px;
+                top: 52px;
+            }
         }
 
         &.check {
@@ -65,11 +70,16 @@ const InitialHintStyled = styled.div`
         .title {
             text-align: center;
             margin-bottom: 0.5rem;
+            line-height: 1;
         }
 
         .image {
             width: 80px;
             margin: 0 auto;
+
+            @media (max-width: 768px) {
+                width: 60px;
+            }
 
             > img {
                 width: 100%;
@@ -90,6 +100,16 @@ const InitialHintStyled = styled.div`
 
                 img:last-child {
                     left: -2rem;
+                }
+
+                @media (max-width: 768px) {
+                    img:first-child {
+                        margin-left: -1rem;
+                    }
+
+                    img:last-child {
+                        left: -1.5rem;
+                    }
                 }
             }
         }

@@ -4,6 +4,7 @@ import {AccountItem} from "../../../../../lib/layouts/dashboard/header/laptop/ac
 import PaymentItem from "./payment-item/PaymentItem"
 import AboutItem from "./about-item/AboutItem"
 import ProfileItem from "./profile-item/ProfileItem"
+import SettingsItem from "./settings-item/SettingsItem"
 
 const AccountItems = [
     <AccountItem key="profile">
@@ -11,6 +12,9 @@ const AccountItems = [
     </AccountItem>,
     <AccountItem key="payment">
         <PaymentItem/>
+    </AccountItem>,
+    <AccountItem key="settings">
+        <SettingsItem/>
     </AccountItem>,
     <AccountItem key="help">
         <HelpItem/>

@@ -7,11 +7,11 @@ const CustomExercises = React.lazy(() => import("./custom-exercises/CustomExerci
 
 const Settings: React.FC = () => {
     return <Switch>
+        <Route exact path="/settings" component={Disciplines}/>
         <React.Suspense fallback={<>Загрузка...</>}>
             <Route path="/settings/payments" component={Payments}/>
             <Route path="/settings/custom-exercises" component={CustomExercises}/>
         </React.Suspense>
-        <Route path="/settings/disciplines" component={Disciplines}/>
     </Switch>
 };
 

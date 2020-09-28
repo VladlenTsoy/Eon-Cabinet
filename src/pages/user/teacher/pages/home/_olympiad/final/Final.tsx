@@ -12,9 +12,20 @@ const FinalStyled = styled.div`
     display: grid;
     gap: 1rem;
     align-items: center;
+    grid-template-columns: 1fr 1fr;
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+`
+
+const RatingsStyled = styled.div`
+    display: grid;
+    gap: 1rem;
+    align-items: center;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 1fr;
-    margin-bottom: 1rem;
 `
 
 const BlockStyled = styled.div`
@@ -38,34 +49,43 @@ const Final = () => {
         <Card>
             <h2>Победители</h2>
             <FinalStyled>
-                <BlockStyled>
-                    <div className="image">
-                        <img src={FirstSvg} alt="" />
-                    </div>
-                    <div className="profile">
-                        <Profile />
-                    </div>
-                </BlockStyled>
-                <BlockStyled>
-                    <div className="image">
-                        <img src={SecondSvg} alt="" />
-                    </div>
-                    <div className="profile">
-                        <Profile />
-                    </div>
-                </BlockStyled>
-                <BlockStyled>
-                    <div className="image">
-                        <img src={ThirdSvg} alt="" />
-                    </div>
-                    <div className="profile">
-                        <Profile />
-                    </div>
-                </BlockStyled>
+                <RatingsStyled>
+                    <BlockStyled>
+                        <div className="image">
+                            <img src={FirstSvg} alt="" />
+                        </div>
+                        <div className="profile">
+                            <Profile />
+                        </div>
+                    </BlockStyled>
+                    <BlockStyled>
+                        <div className="image">
+                            <img src={SecondSvg} alt="" />
+                        </div>
+                        <div className="profile">
+                            <Profile />
+                        </div>
+                    </BlockStyled>
+                    <BlockStyled>
+                        <div className="image">
+                            <img src={ThirdSvg} alt="" />
+                        </div>
+                        <div className="profile">
+                            <Profile />
+                        </div>
+                    </BlockStyled>
+                </RatingsStyled>
+                <div>
+                    <Button
+                        type="dashed"
+                        icon={<EyeOutlined />}
+                        block
+                        size="large"
+                    >
+                        Подробнее
+                    </Button>
+                </div>
             </FinalStyled>
-            <Button type="dashed" icon={<EyeOutlined />} block size="large">
-                Подробнее
-            </Button>
         </Card>
     )
 }

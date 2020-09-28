@@ -1,19 +1,19 @@
 import React from 'react';
-import Olympiad from "./olympiad/Olympiad";
-import Homework from "./homework/Homework";
-import Statistic from "./statistic/Statistic";
 import styled from "styled-components"
+import {Card} from "../../../../../lib/ui"
 
 const HomeStyled = styled.div`
-  max-width: 900px;
-  margin: 0 auto;
+    max-width: 750px;
+    margin: 0 auto;
+    width: 100%;
 `
 
 const Home: React.FC = () => {
     return <HomeStyled>
-        <Statistic/>
-        <Homework/>
-        <Olympiad/>
+
+        <Card>
+
+        </Card>
     </HomeStyled>
 };
 
