@@ -11,6 +11,7 @@ import {useUser} from "../../../../../../hooks/use-user"
 import {useScreenWindow} from "../../../../../../hooks/use-screen-window.effect"
 import {Drawer} from "../../../../../ui"
 import styled from "styled-components"
+import {useLocation} from "react-router-dom"
 
 const AccountMenuDrawStyled = styled(Drawer)`
     .ant-drawer-wrapper-body .ant-drawer-body {

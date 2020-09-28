@@ -1,18 +1,88 @@
-import React from 'react';
-import {Route, Switch} from 'react-router-dom';
-import Disciplines from "./disciplines/Disciplines";
+import React from "react"
+import Tab from "../../../../../lib/components/tabs/Tab"
+import {Card} from "../../../../../lib/ui"
+import Tabs from "../../../../../lib/components/tabs/Tabs"
+import {FolderOutlined} from "@ant-design/icons"
 
-const Payments = React.lazy(() => import("./payments/Payments"));
-const CustomExercises = React.lazy(() => import("./custom-exercises/CustomExercises"));
+const Categories = React.lazy(() => import("./categories/Categories"))
+const Payments = React.lazy(() => import("./payments/Payments"))
+const CustomExercises = React.lazy(
+    () => import("./custom-exercises/CustomExercises")
+)
 
 const Settings: React.FC = () => {
-    return <Switch>
-        <Route exact path="/settings" component={Disciplines}/>
-        <React.Suspense fallback={<>Загрузка...</>}>
-            <Route path="/settings/payments" component={Payments}/>
-            <Route path="/settings/custom-exercises" component={CustomExercises}/>
-        </React.Suspense>
-    </Switch>
-};
+    return (
+        <>
+            <Tabs>
+                <Tab
+                    title={
+                        <span>
+                            <FolderOutlined />
+                            Дисциплины
+                        </span>
+                    }
+                    key={`disciplines`}
+                >
+                    <Card>
+                        <div>asd</div>
+                    </Card>
+                </Tab>
+                <Tab
+                    title={
+                        <span>
+                            <FolderOutlined />
+                            Категории
+                        </span>
+                    }
+                    key={`categories`}
+                >
+                    <React.Suspense fallback={<>Загрузка...</>}>
+                        <Categories/>
+                    </React.Suspense>
 
-export default Settings;
+                </Tab>
+                <Tab
+                    title={
+                        <span>
+                            <FolderOutlined />
+                            Название формул
+                        </span>
+                    }
+                    key={`formulas`}
+                >
+                    <Card>
+                        <div>asd</div>
+                    </Card>
+                </Tab>
+                <Tab
+                    title={
+                        <span>
+                            <FolderOutlined />
+                            asdasd
+                        </span>
+                    }
+                    key={`custom-exercises`}
+                >
+                    <React.Suspense fallback={<>Загрузка...</>}>
+                        <CustomExercises />
+                    </React.Suspense>
+                </Tab>
+                <Tab
+                    title={
+                        <span>
+                            <FolderOutlined />
+                            Оплата
+                        </span>
+                    }
+                    key={`payments`}
+                >
+                    <React.Suspense fallback={<>Загрузка...</>}>
+                        <Payments />
+                    </React.Suspense>
+                </Tab>
+            </Tabs>
+        </>
+    )
+}
+
+export default Settings
