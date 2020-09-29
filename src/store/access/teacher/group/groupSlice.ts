@@ -6,20 +6,14 @@ import {createGroup} from "./createGroup";
 import {updateGroup} from "./updateGroup";
 import {deleteGroup} from "./deleteGroup";
 import {fetchGroup} from "./fetchGroup";
-import {fetchStatisticsGroups} from "./fetchStatisticsGroups";
 import {fetchSelectsGroups} from "./fetchSelectsGroups";
 
-//
 export const groupAdapter = createEntityAdapter<Group>({
     sortComparer: (a, b) => a.id > b.id ? 1 : 0
 })
 
 export interface StateProps {
     isSaved: boolean
-    statistics: {
-        loading: boolean
-        count: number
-    }
     selects: {
         [categoryId: number]: {
             loading?: boolean
@@ -45,10 +39,6 @@ export interface StateProps {
 const initialState = groupAdapter.getInitialState<StateProps>({
     isSaved: false,
     selects: [],
-    statistics: {
-        loading: false,
-        count: 0
-    },
     loading: false,
     page_size: 15,
     categories: []
@@ -103,7 +93,6 @@ const groupSlice = createSlice({
             const categoryId = Number(action.meta.arg.category_id)
             if (action.payload?.id)
                 groupAdapter.addOne(state, action.payload)
-            state.statistics.count++
             state.selects[categoryId] = {...state.selects[categoryId] || {}, force: true}
             state.categories[categoryId] = {...state.categories[categoryId] || {}, loading: false}
         })
@@ -141,7 +130,6 @@ const groupSlice = createSlice({
 
             const id = Number(action)
             const categoryId = Object.values(state.entities).find(group => group && group.id === id)?.category.id
-            state.statistics.count--
             if (categoryId) {
                 state.selects[categoryId] = {...state.selects[categoryId] || {}, force: true}
                 state.categories[categoryId] = {...state.categories[categoryId] || {}, loading: false}
@@ -152,18 +140,6 @@ const groupSlice = createSlice({
             const categoryId = Object.values(state.entities).find(group => group && group.id === id)?.category.id
             if (categoryId)
                 state.categories[categoryId] = {...state.categories[categoryId] || {}, loading: false}
-        })
-
-        // Загрузка статистики
-        builder.addCase(fetchStatisticsGroups.pending, state => {
-            state.statistics.loading = true
-        })
-        builder.addCase(fetchStatisticsGroups.fulfilled, (state, action) => {
-            state.statistics.count = action.payload
-            state.statistics.loading = false
-        })
-        builder.addCase(fetchStatisticsGroups.rejected, state => {
-            state.statistics.loading = false
         })
 
         // Загрузка групп для формы
@@ -184,13 +160,9 @@ const groupSlice = createSlice({
 
 export const groupSelector = (state: TeacherState) => state.group;
 
-// Can create a set of memoized selectors based on the location of this entity state
 export const {
     selectById: getGroupById,
-    // selectIds: selectGroupIds,
-    // selectEntities: selectGroupEntities,
     selectAll: selectAllGroups,
-    // selectTotal: selectTotalGroups
 } = groupAdapter.getSelectors<TeacherState>(state => state.group)
 
 export const {changeIsSaved, resetGroupSlice} = groupSlice.actions;

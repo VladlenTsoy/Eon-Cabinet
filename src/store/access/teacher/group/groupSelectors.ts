@@ -28,11 +28,6 @@ export const useSelectGroupsByCategoryId = (categoryId: Category['id']) => {
     return groups.filter(group => group.category.id === categoryId)
 }
 
-// Загрузка статистики групп
-export const useLoadingStatisticGroups = (): boolean => useSelector((state: TeacherState) => state.group.statistics.loading)
-// Загрузка кол-во групп
-export const useCountStatisticGroups = (): number => useSelector((state: TeacherState) => state.group.statistics.count)
-
 // Загрузка групп по категории для select
 export const useLoadingSelectsGroupsByCategoryId = (categoryId: Category['id']): boolean => useSelector((state: TeacherState) => state.group.selects[categoryId]?.loading || false)
 
