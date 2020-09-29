@@ -9,7 +9,6 @@ import {useChangeActionNavbar} from "hooks/use-change-action-navbar.effect"
 import {Col, Row} from "antd"
 import {Card, LoadingBlock} from "lib/ui"
 import styled from "styled-components"
-import {useLanguage} from "../../../../../../hooks/use-language"
 import {useTeacherDispatch} from "../../../../../../store/access/teacher/store"
 import {getCookie, setCookie} from "../../../../../../utils/cookie"
 import {createList} from "../../../../../../store/access/teacher/lists/createList"
@@ -40,17 +39,14 @@ interface TasksRouteProps {
     task: string
 }
 
-// TODO - api
-// TODO - language
 const Tasks: React.FC = () => {
-    // const {language} = useLanguage()
     const match = useRouteMatch<TasksRouteProps>()
     const history = useHistory()
     const {discipline, task} = match.params
     const dispatch = useTeacherDispatch()
 
     const _setting = getCookie(`setting_${discipline}_${task}`)
-    const setting = JSON.parse(String(_setting))
+    const setting = _setting ? JSON.parse(String(_setting)) : _setting
 
     useChangeActionNavbar({action: "/training"})
 
@@ -85,18 +81,18 @@ const Tasks: React.FC = () => {
             await updateSetting(setting)
 
             if (print) {
-            //     const {pdfRender} = await import("./print/general")
+                //     const {pdfRender} = await import("./print/general")
                 dispatch(createList({task, setting}))
                 // let url = "/algorithm/list"
                 // let _setting = setting
                 // _setting.print = true
                 // if (task === "24") {
                 //     url = `/custom-exercises/${_setting.custom_exercises_id}/print`
-                    // const response = await api.user.get(url, {params: _setting});
-                    // await pdfRender(response.data.settings, response.data, language.common);
+                // const response = await api.user.get(url, {params: _setting});
+                // await pdfRender(response.data.settings, response.data, language.common);
                 // } else {
-                    // const response = await api.user.get(url, {params: _setting});
-                    // await pdfRender(_setting, response.data, language.common);
+                // const response = await api.user.get(url, {params: _setting});
+                // await pdfRender(_setting, response.data, language.common);
                 // }
             } else
                 history.push(`/training/${discipline}/${task}`)
@@ -106,7 +102,7 @@ const Tasks: React.FC = () => {
 
     return (
         <React.Suspense
-            fallback={<LoadingBlock title="Загрузка упражнений..." />}
+            fallback={<LoadingBlock title="Загрузка упражнений..."/>}
         >
             <TasksWrapper
                 justify="center"

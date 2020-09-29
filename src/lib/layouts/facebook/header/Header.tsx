@@ -13,7 +13,8 @@ const HeaderStyled = styled.div`
     align-items: center;
     justify-content: space-between;
     position: relative;
-    z-index: 1001;
+    //z-index: 1001;
+    z-index: 500;
 
     @media (max-width: 576px) {
         height: 55px;

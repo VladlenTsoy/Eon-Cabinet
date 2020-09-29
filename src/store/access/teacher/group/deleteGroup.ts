@@ -11,7 +11,7 @@ export const deleteGroup = createAsyncThunk<ReturnedType, AgrProps, TeacherThunk
     'teacher/student/delete',
     async (groupId) => {
         //
-        const response = await apiRequest('delete', `teacher/group/${groupId}`);
+        const response = await apiRequest('delete', `teacher/group/${groupId}`, {api2: true});
         response && message({type: 'success', content: 'Вы успешно удалили группу!'});
         return groupId;
     }

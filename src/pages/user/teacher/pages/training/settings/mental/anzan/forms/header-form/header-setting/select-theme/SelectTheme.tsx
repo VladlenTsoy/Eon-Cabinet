@@ -11,7 +11,6 @@ interface SelectThemeProps {
     isThemes: boolean;
 }
 
-// TODO - language
 const SelectTheme: React.FC<SelectThemeProps> = (
     {
         themes,
@@ -19,7 +18,7 @@ const SelectTheme: React.FC<SelectThemeProps> = (
         isThemes
     }
 ) => {
-    // const {language} = useLanguage();
+    const {l} = useLanguage()
 
     return <>
         {!isMultiplication ?
@@ -32,7 +31,7 @@ const SelectTheme: React.FC<SelectThemeProps> = (
                     <Select loading={!themes.length}>
                         {themes.length ? themes.map((theme: any) =>
                             <Option key={theme} value={theme}>
-                                {/*{language.common.themeNames[theme] || theme}*/}
+                                {l('themeNames')[theme] || theme}
                             </Option>
                         ) : null}
                     </Select>

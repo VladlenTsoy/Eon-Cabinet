@@ -4,7 +4,7 @@ import {Button} from "antd"
 import styled from "styled-components"
 import {EyeOutlined} from "@ant-design/icons"
 import {useScreenWindow} from "../../../../../../hooks/use-screen-window.effect"
-import Header from "../_header/Header"
+import Header from "../header/Header"
 import Profile from "./profile/Profile"
 
 const StudentProgressStyled = styled.div`

@@ -5,7 +5,7 @@ import CheckSvg from "assets/images/hints/initial/check.svg"
 import GroupSvg from "assets/images/hints/initial/team-work.svg"
 import StudentSvg from "assets/images/hints/initial/student.svg"
 import Student2Svg from "assets/images/hints/initial/student_2.svg"
-import CategoriesSvg from "assets/images/hints/initial/folder.svg"
+// import CategoriesSvg from "assets/images/hints/initial/folder.svg"
 import SendSvg from "assets/images/hints/initial/send.svg"
 import HomeworkSvg from "assets/images/hints/initial/homework.svg"
 import FlagSvg from "assets/images/hints/initial/flag.svg"
@@ -119,6 +119,12 @@ const InitialHintStyled = styled.div`
 const InitialHint = () => {
     return (
         <Card>
+            <Card.Title
+                title="Добро пожаловать!"
+                subTitle={
+                    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, cumque, quasi. Animi aperiam facilis harum minus saepe sapiente sint soluta ut velit. Accusamus cumque delectus fuga, illum iste non odio!"
+                }
+            />
             <InitialHintStyled>
                 <div className="check">
                     <span className="number">1</span>

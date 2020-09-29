@@ -22,7 +22,7 @@ export const createGroup = createAsyncThunk<ReturnedType, AgrProps, TeacherThunk
 
         data.method_id = discipline.activeDisciplineId;
         //
-        const response = await apiRequest('post', `teacher/group`, {data});
+        const response = await apiRequest('post', `teacher/group`, {data, api2: true});
         response && message({type: 'success', content: 'Вы успешно создали группу!'});
         return response;
     }

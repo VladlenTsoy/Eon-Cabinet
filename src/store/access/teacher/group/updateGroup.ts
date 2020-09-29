@@ -11,7 +11,7 @@ interface AgrProps {
     data: {
         title: Group['title']
         category_id: Group['category']
-        method_id: Group['method_id']
+        // method_id: Group['method_id']
     }
 }
 
@@ -19,7 +19,7 @@ export const updateGroup = createAsyncThunk<ReturnedType, AgrProps, TeacherThunk
     'teacher/group/update',
     async ({groupId, data}) => {
         //
-        const response = await apiRequest('patch', `teacher/group/${groupId}`, {data});
+        const response = await apiRequest('patch', `teacher/group/${groupId}`, {data, api2: true});
         response && message({type: 'success', content: 'Вы успешно изменили группу!'});
         return response;
     }

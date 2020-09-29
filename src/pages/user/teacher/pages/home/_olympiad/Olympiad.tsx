@@ -1,5 +1,5 @@
 import React from "react"
-import Header from "../_header/Header"
+import Header from "../header/Header"
 import Step from "./step/Step"
 import Final from "./final/Final"
 

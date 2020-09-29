@@ -5,6 +5,7 @@ import PaymentItem from "./payment-item/PaymentItem"
 import AboutItem from "./about-item/AboutItem"
 import ProfileItem from "./profile-item/ProfileItem"
 import SettingsItem from "./settings-item/SettingsItem"
+import LanguageItem from "./language-item/LanguageItem"
 
 const AccountItems = [
     <AccountItem key="profile">
@@ -15,6 +16,9 @@ const AccountItems = [
     </AccountItem>,
     <AccountItem key="settings">
         <SettingsItem/>
+    </AccountItem>,
+    <AccountItem key="language">
+        <LanguageItem/>
     </AccountItem>,
     <AccountItem key="help">
         <HelpItem/>

@@ -71,9 +71,9 @@ const groupSlice = createSlice({
         })
         builder.addCase(fetchGroups.fulfilled, (state, action) => {
             const {categoryId} = action.meta.arg
-            const {total, last_page, current_page, data} = action.payload
+            const {total, last_page, current_page, results} = action.payload
 
-            groupAdapter.upsertMany(state, data)
+            groupAdapter.upsertMany(state, results)
             state.categories[categoryId] = {total, current_page, last_page, loading: false}
         })
         builder.addCase(fetchGroups.rejected, (state, action) => {
@@ -188,9 +188,9 @@ export const groupSelector = (state: TeacherState) => state.group;
 export const {
     selectById: getGroupById,
     // selectIds: selectGroupIds,
-    selectEntities: selectGroupEntities,
+    // selectEntities: selectGroupEntities,
     selectAll: selectAllGroups,
-    selectTotal: selectTotalGroups
+    // selectTotal: selectTotalGroups
 } = groupAdapter.getSelectors<TeacherState>(state => state.group)
 
 export const {changeIsSaved, resetGroupSlice} = groupSlice.actions;
