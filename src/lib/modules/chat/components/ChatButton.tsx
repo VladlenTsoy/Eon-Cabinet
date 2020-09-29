@@ -5,9 +5,10 @@ import {useSelectedChatId} from "../reducer/chats/chatsSelectors"
 import {useChatListeningMessage} from "../hooks/useChatListeningMessage"
 import socket from "../../../../utils/socket"
 import {Badge} from "antd"
-import Chat from "./Chat"
 import styled from "styled-components"
-import {Drawer} from "../../../ui"
+import {Drawer, LoadingBlock} from "../../../ui"
+
+const Chat = React.lazy(() => import("./Chat"))
 
 const ChatDrawStyled = styled(Drawer)`
     .ant-drawer-wrapper-body .ant-drawer-body {
@@ -53,7 +54,9 @@ const ChatButton: React.FC<ChatButtonProps> = ({children, close, visible}) => {
                       }
                     : {zIndex: 1004})}
             >
-                <Chat close={close} />
+                <React.Suspense fallback={<LoadingBlock/>}>
+                    <Chat close={close} />
+                </React.Suspense>
             </ChatDrawStyled>
         </div>
     )
