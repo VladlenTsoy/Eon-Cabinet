@@ -9,12 +9,18 @@ const HeaderStyled = styled.div`
     height: 60px;
     background: ${(props) => props.theme["@component-background"]};
     box-shadow: rgba(0, 0, 0, 0.05) 0 2px 15px 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     position: relative;
     //z-index: 1001;
     z-index: 500;
+`
+
+const ContainerStyled = styled.div`
+    max-width: ${(props) => props.theme.maxWidth};
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
     @media (max-width: 576px) {
         height: 55px;
@@ -36,9 +42,11 @@ const Header: React.FC<HeaderProps> = ({
 
     return (
         <HeaderStyled>
-            <LogoBlock />
-            {!isBreakpoint && <Navigation menu={navigations} />}
-            <Sidebars sidebars={sidebars} accountMenu={accountMenu} />
+            <ContainerStyled>
+                <LogoBlock />
+                {!isBreakpoint && <Navigation menu={navigations} />}
+                <Sidebars sidebars={sidebars} accountMenu={accountMenu} />
+            </ContainerStyled>
         </HeaderStyled>
     )
 }

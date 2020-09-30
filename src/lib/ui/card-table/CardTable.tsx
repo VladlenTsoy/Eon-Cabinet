@@ -1,20 +1,6 @@
 import React from "react";
 import Table from "antd/lib/table";
 import styled from "styled-components";
-import Card from "../card/Card";
-
-const CardWrapper = styled(Card)`
-  &.ant-card{
-    overflow-y: hidden;
-    overflow-x: auto;
-
-    .ant-card-body {
-      border-radius: 10px;
-      padding: 0;
-      white-space: nowrap;
-    }
-  }
-`;
 
 const TableWrapper = styled(Table)`
   .ant-table-body, .ant-table-body-outer {
@@ -37,8 +23,6 @@ const TableWrapper = styled(Table)`
 
 // TODO - возможно заменить на usingTable
 const CardTable: React.FC<any> = (props) =>
-    <CardWrapper>
         <TableWrapper {...props}/>
-    </CardWrapper>;
 
 export default CardTable;

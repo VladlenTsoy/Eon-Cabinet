@@ -28,3 +28,5 @@ export {default as DrawerActions} from './drawer/DrawerActions';
 export {default as Tabs} from './tabs/Tabs';
 export {default as TabPane} from './tabs/TabPane';
 export {default as Logo} from './logo/Logo';
+export {default as Button} from './button/Button';
+export {default as Stepper} from './stepper/Stepper';

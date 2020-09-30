@@ -19,6 +19,8 @@ export const _theme: any = {
         color_info: '#26c6da',
         shadow_info: '0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(0, 188, 212, 0.2)',
         gradient_info: 'linear-gradient(60deg, #26c6da, #00acc1)',
+
+        maxWidth: '1400px'
     },
 };
 

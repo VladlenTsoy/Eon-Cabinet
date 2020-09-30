@@ -12,7 +12,7 @@ import {changeActiveCategoryId} from 'store/access/teacher/category/categorySlic
 import styled from "styled-components"
 
 const GroupsStyled = styled.div`
-  max-width: 1200px;
+  max-width: ${props => props.theme.maxWidth};
   margin: 0 auto;
 `
 
