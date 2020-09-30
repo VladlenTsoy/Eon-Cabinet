@@ -4,7 +4,7 @@ import {Button} from "antd";
 import Modal from "../modal/Modal";
 import styled from "styled-components";
 
-const ModalWrapper = styled(Modal)`
+export const ModalMenuStyled = styled(Modal)`
   &.ant-modal .ant-modal-body{
     padding: 10px 1rem;
     
@@ -49,7 +49,7 @@ const ModalMenu: React.FC<ModalMenuProps> = ({children, button}) => {
     const close = () => setVisible(false);
 
     return <>
-        <ModalWrapper
+        <ModalMenuStyled
             centered
             width={320}
             closable={false}
@@ -60,7 +60,7 @@ const ModalMenu: React.FC<ModalMenuProps> = ({children, button}) => {
             <div className="menu" onClick={close}>
                 {children}
             </div>
-        </ModalWrapper>
+        </ModalMenuStyled>
         <span onClick={open}>{button || <Button type="primary" shape="circle" icon={<MenuOutlined/>}/>}</span>
     </>;
 };

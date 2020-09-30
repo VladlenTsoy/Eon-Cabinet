@@ -7,7 +7,7 @@ import styled from "styled-components";
 import {useDispatch} from "react-redux";
 import {sendCoins} from "store/access/teacher/students/sendСoins";
 import {useParams} from "react-router-dom";
-import {ParamsProps} from "../../../../Group";
+import {ParamsProps} from "../../../Group";
 import {useSelectSelectedStudentsByIdsGroupId} from "store/access/teacher/students/studentsSelectors";
 
 const ImageStyled = styled.div`

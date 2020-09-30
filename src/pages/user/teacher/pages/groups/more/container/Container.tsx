@@ -6,7 +6,7 @@ import {changeSelectedIds} from "../../../../../../../store/access/teacher/stude
 import styled from "styled-components"
 import {fetchStudents} from "../../../../../../../store/access/teacher/students/fetchStudents"
 import {useTeacherDispatch} from "../../../../../../../store/access/teacher/store"
-import Header from "./header/Header"
+import Header from "../header/Header"
 
 const ContainerStyled = styled.div`
     max-width: ${(props) => props.theme.maxWidth};

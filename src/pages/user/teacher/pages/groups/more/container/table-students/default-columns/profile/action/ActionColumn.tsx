@@ -1,19 +1,10 @@
 import React from 'react';
-import styled from "styled-components";
 import BlockButton from "./block/BlockButton";
 import TagNotifyButton from "./tag-notify/TagNotifyButton";
 import UnblockButton from "./unblock/UnblockButton";
 import Edit from "./edit/Edit";
-import {Student} from "../../../../../../../../../../lib/types/teacher/Student";
-
-const ActionColumnWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  
-  > a:not(:last-child), > button:not(:last-child), > span:not(:last-child){
-    margin-right: 0.5rem;
-  }
-`;
+import {Student} from "../../../../../../../../../../../lib/types/teacher/Student";
+import DeleteButton from "./delete/DeleteButton"
 
 interface ActionColumnProps {
     student: Student;
@@ -21,7 +12,7 @@ interface ActionColumnProps {
 }
 
 const ActionColumn: React.FC<ActionColumnProps> = ({student, fetch}) => {
-    return <ActionColumnWrapper>
+    return <>
         <Edit student={student}/>
         {
             student.is_blocked ?
@@ -30,7 +21,8 @@ const ActionColumn: React.FC<ActionColumnProps> = ({student, fetch}) => {
                     <UnblockButton student={student} fetch={fetch}/> :
                 <BlockButton student={student} fetch={fetch}/>
         }
-    </ActionColumnWrapper>;
+        <DeleteButton student={student} fetch={fetch}/>
+    </>;
 };
 
 export default ActionColumn;

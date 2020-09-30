@@ -18,7 +18,7 @@ const ButtonStyled: React.FC<ButtonStyledProps> = styled.button<
         padding: 0 15px;
         //color: rgba(0, 0, 0, 0.65);
         font-size: 14px;
-        line-height: 30px;
+        //line-height: 30px;
         //border: 1px solid #d9d9d9;
         //border-top-width: 1.02px;
         //border-left-width: 0;
@@ -30,7 +30,8 @@ const ButtonStyled: React.FC<ButtonStyledProps> = styled.button<
             box-shadow 0.3s;
         outline: none;
         width: ${(props) => (props.block ? "100%" : "auto")};
-
+        line-height: 1.5715;
+        
         :hover {
             color: ${(props) => props.theme.color_primary};
             border: 1px solid ${(props) => props.theme.color_primary};
@@ -76,7 +77,20 @@ const ButtonStyled: React.FC<ButtonStyledProps> = styled.button<
     &.vl-button-size-large {
         height: 40px;
         font-size: 16px;
-        line-height: 38px;
+        //line-height: 38px;
+    }
+
+    &.vl-button-circle {
+        padding: 4.9px 0;
+        border-radius: 50%;
+
+        .vl-button-icon {
+            margin-right: 0;
+        }
+
+        &.vl-button-size-large {
+            min-width: 40px;
+        }
     }
 
     .vl-button-icon {
@@ -91,8 +105,10 @@ interface ButtonProps {
     icon?: React.ReactFragment
     onClick?: ButtonStyledProps["onClick"]
     htmlType?: ButtonStyledProps["type"]
+    shape?: "circle"
     block?: boolean
     loading?: boolean
+    disabled?: boolean
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -103,6 +119,8 @@ const Button: React.FC<ButtonProps> = ({
     loading,
     htmlType = "button",
     block = false,
+    disabled = false,
+    shape,
     children
 }) => {
     return (
@@ -110,7 +128,10 @@ const Button: React.FC<ButtonProps> = ({
             type={htmlType}
             block={block}
             onClick={onClick}
-            className={`vl-button vl-button-type-${type} vl-button-size-${size}`}
+            disabled={disabled}
+            className={`vl-button vl-button-type-${type} vl-button-size-${size} ${
+                shape && `vl-button-${shape}`
+            }`}
         >
             {loading ? (
                 <span className="vl-button-icon">

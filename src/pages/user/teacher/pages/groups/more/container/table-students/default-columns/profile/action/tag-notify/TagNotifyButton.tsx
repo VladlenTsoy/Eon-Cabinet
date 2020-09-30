@@ -1,6 +1,6 @@
 import React from 'react';
 import { LockOutlined } from '@ant-design/icons';
-import {Button, Modal} from "antd";
+import {Modal} from "antd";
 
 interface TagNotifyButtonProps {
     student: any;
@@ -14,11 +14,9 @@ const TagNotifyButton: React.FC<TagNotifyButtonProps> = ({student}) => {
         });
     };
 
-    return (
-        <Button danger icon={<LockOutlined />} onClick={clickHandler}>
-            {student.day_block} д.
-        </Button>
-    );
+    return <div onClick={clickHandler}>
+        <LockOutlined/> {student.day_block} д.
+    </div>
 };
 
 export default TagNotifyButton;

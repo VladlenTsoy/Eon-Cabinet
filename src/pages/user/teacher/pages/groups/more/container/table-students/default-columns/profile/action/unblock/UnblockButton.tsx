@@ -1,8 +1,8 @@
 import React from 'react';
-import {UnlockOutlined} from '@ant-design/icons';
-import {Button, Modal} from "antd";
+import {UnlockFilled} from '@ant-design/icons';
+import {Modal} from "antd";
 import {useDispatch} from "react-redux";
-import {unblockStudent} from "../../../../../../../../../../../store/access/teacher/students/unblockStudent";
+import {unblockStudent} from "store/access/teacher/students/unblockStudent";
 
 interface UnblockButtonProps {
     student: any;
@@ -24,6 +24,8 @@ const UnblockButton: React.FC<UnblockButtonProps> = ({student}) => {
         });
     };
 
-    return <Button shape="circle" icon={<UnlockOutlined/>} size="large" onClick={clickHandler}/>;
+    return <div onClick={clickHandler}>
+        <UnlockFilled/>Разблокировать
+    </div>
 };
 export default UnblockButton;
