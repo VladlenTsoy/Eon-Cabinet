@@ -7,10 +7,9 @@ import {DescriptionTitle} from "lib/ui";
 import {changeIsSaved} from "store/access/teacher/group/groupSlice";
 import {useLanguage} from "hooks/use-language";
 
-// TODO - language
 const Empty: React.FC<RouteComponentProps> = ({history}) => {
-    // const {language} = useLanguage();
-    const dispatch = useDispatch();
+    const {l} = useLanguage()
+    const dispatch = useDispatch()
 
     const createHomeworkHandler = async () => {
         dispatch(changeIsSaved(true));
@@ -20,7 +19,7 @@ const Empty: React.FC<RouteComponentProps> = ({history}) => {
     return (
         <EmptyAntd description={
             <>
-                {/*<DescriptionTitle>{language.common.empty}</DescriptionTitle>*/}
+                <DescriptionTitle>{l('empty')}</DescriptionTitle>
                 <span>Создайте домашнее задание для того, чтобы отправить.</span>
             </>
         }>
