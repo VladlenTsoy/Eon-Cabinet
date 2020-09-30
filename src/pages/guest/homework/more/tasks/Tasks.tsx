@@ -9,9 +9,8 @@ interface TasksProps {
     id: string;
 }
 
-// TODO - language
 const Tasks:React.FC<TasksProps> = ({id}) => {
-    // const {language} = useLanguage();
+    const {l} = useLanguage()
     const [loading, tasks] = useApiUserGeneral({url: `guest/homework/${id}/tasks`, initValue: [], access: "guest"});
 
     // Загрузка
@@ -21,7 +20,7 @@ const Tasks:React.FC<TasksProps> = ({id}) => {
         return <Empty
             description={
                 <>
-                    {/*<DescriptionTitle>{language.common.empty}</DescriptionTitle>*/}
+                    <DescriptionTitle>{l('empty')}</DescriptionTitle>
                     <span>Произошла ошибка! В домашнем задание нет упражнений.</span>
                 </>
             }
