@@ -9,6 +9,12 @@ import {
 } from "../../../../../../store/access/teacher/category/categorySelectors";
 import {useTeacherDispatch} from "../../../../../../store/access/teacher/store";
 import {changeActiveCategoryId} from 'store/access/teacher/category/categorySlice'
+import styled from "styled-components"
+
+const GroupsStyled = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+`
 
 const Groups: React.FC = () => {
     const dispatch = useTeacherDispatch()
@@ -20,7 +26,7 @@ const Groups: React.FC = () => {
         dispatch(changeActiveCategoryId(Number(id)))
     }, [dispatch])
 
-    return <>
+    return <GroupsStyled>
         <NavButtons/>
         <Tabs defaultValue={activeCategoryId ? `category-${activeCategoryId}` : null} onChange={changeActiveCategory}>
             {categories
@@ -32,7 +38,7 @@ const Groups: React.FC = () => {
             }
         </Tabs>
 
-    </>
+    </GroupsStyled>
 };
 
 export default Groups;

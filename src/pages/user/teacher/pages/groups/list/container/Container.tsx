@@ -43,7 +43,7 @@ const Container: React.FC<ContainerProps> = ({categoryId}) => {
                 <>
                     <Row gutter={15}>
                         {groups.map((group) =>
-                            <Col xxl={6} xl={8} lg={12} xs={24} key={group.id}>
+                            <Col xl={8} lg={12} xs={24} key={group.id}>
                                 <GroupBlock group={group}/>
                             </Col>
                         )}
