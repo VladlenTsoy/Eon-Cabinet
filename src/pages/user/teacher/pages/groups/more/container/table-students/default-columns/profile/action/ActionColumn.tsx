@@ -5,6 +5,7 @@ import UnblockButton from "./unblock/UnblockButton";
 import Edit from "./edit/Edit";
 import {Student} from "../../../../../../../../../../../lib/types/teacher/Student";
 import DeleteButton from "./delete/DeleteButton"
+import HomeworkButton from "../../../../homework/HomeworkButton"
 
 interface ActionColumnProps {
     student: Student;
@@ -14,6 +15,7 @@ interface ActionColumnProps {
 const ActionColumn: React.FC<ActionColumnProps> = ({student, fetch}) => {
     return <>
         <Edit student={student}/>
+        <HomeworkButton studentId={student.id}/>
         {
             student.is_blocked ?
                 student.day_block && student.day_block > 0 ?

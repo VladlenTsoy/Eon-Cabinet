@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Button, Col, DatePicker, Form, Row} from "antd";
-import {DrawerActions, FormItem, InputEmail, InputLogin, InputPassword} from "lib/ui";
+import {DrawerActions, FormItem, InputEmail, InputPassword} from "lib/ui";
 import {updateStudent} from "store/access/teacher/students/updateStudent";
 import {createStudent} from "store/access/teacher/students/createStudent";
 import InputPhoto from "lib/ui/form/InputPhoto";
@@ -51,13 +51,12 @@ const FormItems: React.FC<FormItemsProps> = ({close, student}) => {
             <Col sm={12} xs={24}>
                 <FormItem name="first_name" label="Имя" requiredMsg="Введите имя!"/>
                 <InputEmail/>
-                <InputLogin/>
                 <SelectGroup/>
             </Col>
             <Col sm={12} xs={24}>
                 <FormItem name="last_name" label="Фамилия" requiredMsg="Введите фамилию!"/>
                 <FormItem name="phone" label="Телефон"/>
-                <InputPassword user={student}/>
+                <InputPassword user={student} label="Пароль"/>
                 <FormItem
                     name="date_of_birth"
                     label="Дата рождения"

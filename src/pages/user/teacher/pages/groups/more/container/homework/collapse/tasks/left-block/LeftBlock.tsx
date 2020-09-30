@@ -4,8 +4,8 @@ import lossIcon from "assets/images/illustrations/loss.svg";
 import { SettingOutlined } from '@ant-design/icons';
 import {Button} from "antd";
 import styled from "styled-components";
-import ExerciseLists from "../../../../../../../../../../lib/components/exercise-lists/ExerciseLists";
 import {Modal} from "lib/ui";
+import ExerciseLists from "lib/components/exercise-lists/ExerciseLists";
 
 const LeftBlockWrapper = styled.div`
   display: grid;

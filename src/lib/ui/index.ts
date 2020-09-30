@@ -16,7 +16,6 @@ export {default as NavigationButton} from './navigaion/ButtonNavigation';
 export {default as Drawer} from './drawer/Drawer';
 export {default as CardStatistic} from './card-statistic/CardStatistic';
 export {default as InputPhoto} from './form/InputPhoto';
-export {default as InputLogin} from './form/InputLogin';
 export {default as InputEmail} from './form/InputEmail';
 export {default as InputPassword} from './form/InputPassword';
 export {default as Modal} from './modal/Modal';

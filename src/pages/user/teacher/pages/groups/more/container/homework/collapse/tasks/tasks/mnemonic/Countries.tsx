@@ -1,8 +1,12 @@
 import React from "react";
 import { TrophyOutlined } from '@ant-design/icons';
-import {UserImage} from "../../../../../../../../../../../lib/ui";
+import {UserImage} from "lib/ui";
 
-const Personalities = ({totals}: any) => {
+interface CountriesProps {
+    totals: any;
+}
+
+const Countries: React.FC<CountriesProps> = ({totals}) => {
     return (
         <table>
             <thead>
@@ -21,20 +25,18 @@ const Personalities = ({totals}: any) => {
                             {key + 1}
                         </td>
                         <td>
-                            <TrophyOutlined className={`${total.result? 'warning' : 'secondary'}`} />
+                            <TrophyOutlined className={`${total.result ? 'warning' : 'secondary'}`} />
                         </td>
                         <td>
-                            {total.user.full_name ? total.user.full_name : 'Пусто'}
-                            {total.user.born ? total.user.born : null}
-                            {total.user.die ? total.user.die : null}
+                            {total.user.country ? total.user.country : 'Пусто'}
+                            {total.user.capital ? total.user.capital : null}
                         </td>
                         <td>
-                            <UserImage src={total.exercise.url_photo} alt={total.exercise.full_name}/>
+                            <UserImage src={total.exercise.url_flag} alt={total.exercise.country}/>
                         </td>
                         <td>
-                            {total.exercise.full_name ? total.exercise.full_name : 'Пусто'}
-                            {total.exercise.born ? total.exercise.born : null}
-                            {total.exercise.die ? total.exercise.die : null}
+                            {total.exercise.country ? total.exercise.country : 'Пусто'}
+                            {total.exercise.capital ? total.exercise.capital : null}
                         </td>
                     </tr>
                 )
@@ -43,4 +45,5 @@ const Personalities = ({totals}: any) => {
         </table>
     );
 };
-export default Personalities;
+
+export default Countries;

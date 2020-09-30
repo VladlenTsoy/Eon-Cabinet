@@ -5,7 +5,6 @@ import Home from "./pages/home/Home";
 import Profile from "./pages/profile/Profile";
 import Groups from "./pages/groups/list/Groups";
 import Group from "./pages/groups/more/Group";
-import Student from "./pages/groups/student/Student";
 import EditorHomework from "./pages/homework/editor/Editor";
 import Homework from "./pages/homework/list/Homework";
 import Training from "./pages/training/list/Training";
@@ -34,7 +33,6 @@ const Index: React.FC = () => {
                             <Route path="/profile" component={Profile}/>
                             <Route exact path="/groups" component={Groups}/>
                             <Route exact path="/groups/:id" component={Group}/>
-                            <Route path="/groups/:groupId/student/:id" component={Student}/>
                             <Route exact path="/homework" component={Homework}/>
                             <Route path="/homework/create" component={EditorHomework}/>
                             <Route path="/homework/:id/:duplicate" component={EditorHomework}/>

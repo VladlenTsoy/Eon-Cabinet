@@ -9,7 +9,7 @@ interface EditProps {
 
 const Edit: React.FC<EditProps> = ({student}) => {
     return <EditorButton title="Редактировать ученика" student={student}>
-        <EditFilled/> Редактировать ученика
+        <EditFilled/> Редактировать
     </EditorButton>
 }
 

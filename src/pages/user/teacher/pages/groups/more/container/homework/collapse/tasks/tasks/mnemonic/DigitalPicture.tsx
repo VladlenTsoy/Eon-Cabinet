@@ -1,12 +1,12 @@
-import React from "react";
+import React from 'react';
 import { TrophyOutlined } from '@ant-design/icons';
-import {UserImage} from "../../../../../../../../../../../lib/ui";
+import {UserImage} from "lib/ui";
 
-interface CountriesProps {
+interface DigitalPictureProps {
     totals: any;
 }
 
-const Countries: React.FC<CountriesProps> = ({totals}) => {
+const DigitalPicture:React.FC<DigitalPictureProps> = ({totals}) => {
     return (
         <table>
             <thead>
@@ -28,15 +28,13 @@ const Countries: React.FC<CountriesProps> = ({totals}) => {
                             <TrophyOutlined className={`${total.result ? 'warning' : 'secondary'}`} />
                         </td>
                         <td>
-                            {total.user.country ? total.user.country : 'Пусто'}
-                            {total.user.capital ? total.user.capital : null}
+                            {total.user.number || 'Пусто'}
                         </td>
                         <td>
-                            <UserImage src={total.exercise.url_flag} alt={total.exercise.country}/>
+                            <UserImage src={total.exercise.url_picture} alt={total.exercise.number}/>
                         </td>
                         <td>
-                            {total.exercise.country ? total.exercise.country : 'Пусто'}
-                            {total.exercise.capital ? total.exercise.capital : null}
+                            {total.exercise.number || 'Пусто'}
                         </td>
                     </tr>
                 )
@@ -46,4 +44,4 @@ const Countries: React.FC<CountriesProps> = ({totals}) => {
     );
 };
 
-export default Countries;
+export default DigitalPicture;
