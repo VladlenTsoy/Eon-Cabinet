@@ -3,19 +3,9 @@ import {useParams} from "react-router-dom"
 import {ParamsProps} from "../Group"
 import TableStudents from "./table-students/TableStudents"
 import {changeSelectedIds} from "../../../../../../../store/access/teacher/students/studentsSlice"
-import styled from "styled-components"
 import {fetchStudents} from "../../../../../../../store/access/teacher/students/fetchStudents"
 import {useTeacherDispatch} from "../../../../../../../store/access/teacher/store"
 import Header from "../header/Header"
-
-const ContainerStyled = styled.div`
-    max-width: ${(props) => props.theme.maxWidth};
-    margin: 0 auto;
-    width: 100%;
-    height: 100%;
-    background: ${(props) => props.theme["@component-background"]};
-    padding: 1.5rem 1rem;
-`
 
 const Container = () => {
     const {id} = useParams<ParamsProps>()
@@ -38,10 +28,10 @@ const Container = () => {
     const changeTabHandler = useCallback((val: "details" | "events") => setTab(val), [])
 
     return (
-        <ContainerStyled>
+        <>
             <Header tab={tab} changeTabHandler={changeTabHandler} />
             <TableStudents tab={tab} selectUsers={selectUserHandler} />
-        </ContainerStyled>
+        </>
     )
 }
 

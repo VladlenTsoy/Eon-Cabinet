@@ -4,12 +4,18 @@ import {NavigationItemProps} from "./header/navigation/Navigation"
 import styled from "styled-components"
 import Footer from "./footer/Footer"
 import {useScreenWindow} from "../../../hooks/use-screen-window.effect"
+import {useSelector} from "react-redux"
+import {appSelector} from "../../../store/common/app/appSlice"
 
 const LayoutStyled = styled.div`
     background: ${props => props.theme['@layout-body-background']};
 `
 
-const ContainerStyled = styled.div`
+interface ContainerStyledProps extends React.HTMLAttributes<HTMLDivElement>{
+    status: boolean
+}
+
+const ContainerStyled:React.FC<ContainerStyledProps> = styled.div<ContainerStyledProps>`
     position: relative;
     overflow: hidden;
     max-width: ${(props) => props.theme.maxWidth};
@@ -17,13 +23,15 @@ const ContainerStyled = styled.div`
     min-height: 100vh;
     padding: calc(1.5rem + 60px) 1rem 1.5rem;
     width: 100%;
+    //transition: background-color 0.3s ease-in-out;
+    background: ${props => props.status ? props.theme['@component-background'] :'none'};
 
     @media (max-width: 767px) {
         padding: calc(1rem + 60px) 0.5rem;
     }
 `
 
-const ScrollStyled = styled.div`
+const DrawContainerStyled = styled.div`
     position: fixed;
     left: 0;
     right: 0;
@@ -54,6 +62,7 @@ const FacebookLayout: React.FC<FacebookLayout> = ({
     sidebars,
     accountMenu
 }) => {
+    const {statusContainer} = useSelector(appSelector)
     const [, isBreakpoint] = useScreenWindow({breakpoint: "lg"})
 
     return (
@@ -63,8 +72,8 @@ const FacebookLayout: React.FC<FacebookLayout> = ({
                 sidebars={sidebars}
                 accountMenu={accountMenu}
             />
-            <ScrollStyled id="container" className="draw-container" />
-            <ContainerStyled>{children}</ContainerStyled>
+            <DrawContainerStyled id="container" className="draw-container" />
+            <ContainerStyled status={statusContainer}>{children}</ContainerStyled>
             {isBreakpoint && <Footer navigations={navigations} />}
         </LayoutStyled>
     )

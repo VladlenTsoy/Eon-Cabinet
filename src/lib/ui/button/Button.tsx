@@ -16,12 +16,7 @@ const ButtonStyled: React.FC<ButtonStyledProps> = styled.button<
         height: 32px;
         margin: 0;
         padding: 0 15px;
-        //color: rgba(0, 0, 0, 0.65);
         font-size: 14px;
-        //line-height: 30px;
-        //border: 1px solid #d9d9d9;
-        //border-top-width: 1.02px;
-        //border-left-width: 0;
         background: ${(props) => props.theme["@component-background"]};
         border-radius: 10px;
         border: 1px solid ${(props) => props.theme.color_border};
@@ -31,7 +26,7 @@ const ButtonStyled: React.FC<ButtonStyledProps> = styled.button<
         outline: none;
         width: ${(props) => (props.block ? "100%" : "auto")};
         line-height: 1.5715;
-        
+
         :hover {
             color: ${(props) => props.theme.color_primary};
             border: 1px solid ${(props) => props.theme.color_primary};
@@ -69,6 +64,20 @@ const ButtonStyled: React.FC<ButtonStyledProps> = styled.button<
         background: ${(props) => props.theme.color_primary};
 
         :hover {
+            background: ${(props) => props.theme.color_primary}cc;
+            color: #ffffff;
+            border: 0;
+        }
+    }
+
+    &.vl-button-type-warning {
+        border: 0;
+        color: #ffffff;
+        background: ${(props) => props.theme.color_warning};
+        box-shadow: 0 5px 10px 0 rgba(0,0,0,0.1);
+
+        :hover {
+            background: ${(props) => props.theme.color_warning}cc;
             color: #ffffff;
             border: 0;
         }
@@ -100,7 +109,7 @@ const ButtonStyled: React.FC<ButtonStyledProps> = styled.button<
 `
 
 interface ButtonProps {
-    type?: "default" | "primary" | "second"
+    type?: "default" | "primary" | "second" | "warning"
     size?: "small" | "middle" | "large"
     icon?: React.ReactFragment
     onClick?: ButtonStyledProps["onClick"]

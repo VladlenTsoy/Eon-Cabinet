@@ -30,6 +30,7 @@ const FormItems: React.FC<FormItemsProps> = ({group, close}) => {
     }
 
     return <Form
+        size="large"
         layout="vertical"
         onFinish={onFinishHandler}
         initialValues={
@@ -62,8 +63,7 @@ const FormItems: React.FC<FormItemsProps> = ({group, close}) => {
             </Select>
         </FormItem>
         <div className="actions-block">
-            <Button type="primary" htmlType="submit" loading={loading}>Сохранить</Button>
-            <Button onClick={close}>Отмена</Button>
+            <Button type="primary" htmlType="submit" loading={loading} block>Сохранить</Button>
         </div>
     </Form>
 };

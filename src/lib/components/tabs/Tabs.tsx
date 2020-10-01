@@ -7,6 +7,10 @@ const TabsStyled = styled.div`
     @media (max-width: 480px) {
         flex-direction: column;
     }
+
+    .top-extra {
+        margin-bottom: 1rem;
+    }
 `
 
 const MenuStyled = styled.div`
@@ -69,11 +73,13 @@ const TabStyled: React.FC<TabStyledProps> = styled.div<TabStyledProps>`
 `
 
 interface TabsProps {
+    topExtra?: React.ReactFragment
     defaultValue?: string | null
     onChange?: (key: string) => void
 }
 
 const Tabs: React.FC<TabsProps> = ({
+    topExtra,
     defaultValue = null,
     children,
     onChange
@@ -87,19 +93,22 @@ const Tabs: React.FC<TabsProps> = ({
 
     return (
         <TabsStyled>
-            <MenuStyled>
-                {React.Children.map(children, (child: any) => (
-                    <ItemStyled
-                        key={child.key}
-                        active={visible === child.key}
-                        onClick={() => clickHandler(child.key)}
-                    >
-                        {typeof child.props.title === "function"
-                            ? child.props.title(child.key === visible)
-                            : child.props.title}
-                    </ItemStyled>
-                ))}
-            </MenuStyled>
+            <div>
+                {topExtra && <div className="top-extra">{topExtra}</div>}
+                <MenuStyled>
+                    {React.Children.map(children, (child: any) => (
+                        <ItemStyled
+                            key={child.key}
+                            active={visible === child.key}
+                            onClick={() => clickHandler(child.key)}
+                        >
+                            {typeof child.props.title === "function"
+                                ? child.props.title(child.key === visible)
+                                : child.props.title}
+                        </ItemStyled>
+                    ))}
+                </MenuStyled>
+            </div>
             <ContainerStyled>
                 {React.Children.map(
                     children,

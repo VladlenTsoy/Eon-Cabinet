@@ -10,15 +10,7 @@ import {
     useSelectGroupById
 } from "../../../../../../store/access/teacher/group/groupSelectors"
 import {fetchGroup} from "../../../../../../store/access/teacher/group/fetchGroup"
-import styled from "styled-components"
-
-const GroupStyled = styled.div`
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-`
+import {changeStatusContainer} from "store/common/app/appSlice"
 
 export interface ParamsProps {
     id: string
@@ -38,6 +30,13 @@ const Group: React.FC = () => {
     })
 
     useEffect(() => {
+        dispatch(changeStatusContainer(true))
+        return () => {
+            dispatch(changeStatusContainer(false))
+        }
+    }, [dispatch])
+
+    useEffect(() => {
         const promise = dispatch(fetchGroup({id: Number(id)}))
         return () => {
             promise.abort()
@@ -47,9 +46,9 @@ const Group: React.FC = () => {
     if (!group && !loading) return <NotFound />
 
     return (
-        <GroupStyled>
+        <>
             <Container />
-        </GroupStyled>
+        </>
     )
 }
 

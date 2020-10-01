@@ -2,7 +2,7 @@ import React from 'react';
 import {EditOutlined} from '@ant-design/icons';
 import {Card, ButtonLink} from "lib/ui";
 import DeleteGroupButton from "./delete-button/DeleteGroupButton";
-import EditorButton from "../../nav-buttons/editor-button/EditorButton";
+import EditorButton from "../../tab-top-extra/editor-button/EditorButton";
 import {momentFormatCheckYear} from "../../../../../../../../utils/momentFormatCheckYear";
 import {Group} from "../../../../../../../../lib/types/teacher/Group";
 

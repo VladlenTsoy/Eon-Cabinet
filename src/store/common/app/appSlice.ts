@@ -4,6 +4,7 @@ import {getCookie, setCookie} from "../../../utils/cookie";
 
 interface StateProps {
     title: string;
+    statusContainer: boolean;
     action: string | null;
     spin: boolean;
     isDark: boolean;
@@ -12,6 +13,7 @@ interface StateProps {
 
 const initialState: StateProps = {
     title: 'Моя страница',
+    statusContainer: false,
     action: null,
     spin: false,
     isDark: getCookie('is_dark') === '1',
@@ -24,6 +26,9 @@ const appSlice = createSlice({
     reducers: {
         changeTitle(state, action: PayloadAction<StateProps["title"]>) {
             state.title = action.payload
+        },
+        changeStatusContainer(state, action: PayloadAction<StateProps["statusContainer"]>) {
+            state.statusContainer = action.payload
         },
         changeAction(state, action: PayloadAction<StateProps["action"]>) {
             state.action = action.payload
@@ -38,7 +43,7 @@ const appSlice = createSlice({
     }
 });
 
-export const {changeAction, changeSpin, changeTitle, changeIsDark} = appSlice.actions;
+export const {changeAction, changeStatusContainer, changeTitle, changeIsDark} = appSlice.actions;
 
 export const appSelector = (state: CommonState) => state.app;
 
