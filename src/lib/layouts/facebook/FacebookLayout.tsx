@@ -1,21 +1,25 @@
-import React from "react"
+import React, {useEffect} from "react"
 import Header from "./header/Header"
+import {useHistory} from "react-router-dom"
 import {NavigationItemProps} from "./header/navigation/Navigation"
 import styled from "styled-components"
 import Footer from "./footer/Footer"
 import {useScreenWindow} from "../../../hooks/use-screen-window.effect"
-import {useSelector} from "react-redux"
-import {appSelector} from "../../../store/common/app/appSlice"
+import {useDispatch, useSelector} from "react-redux"
+import {appSelector, changeTitle} from "../../../store/common/app/appSlice"
+import {Titles} from "../dashboard/header/laptop/title/Titles"
 
 const LayoutStyled = styled.div`
-    background: ${props => props.theme['@layout-body-background']};
+    background: ${(props) => props.theme["@layout-body-background"]};
 `
 
-interface ContainerStyledProps extends React.HTMLAttributes<HTMLDivElement>{
+interface ContainerStyledProps extends React.HTMLAttributes<HTMLDivElement> {
     status: boolean
 }
 
-const ContainerStyled:React.FC<ContainerStyledProps> = styled.div<ContainerStyledProps>`
+const ContainerStyled: React.FC<ContainerStyledProps> = styled.div<
+    ContainerStyledProps
+>`
     position: relative;
     overflow: hidden;
     max-width: ${(props) => props.theme.maxWidth};
@@ -24,9 +28,10 @@ const ContainerStyled:React.FC<ContainerStyledProps> = styled.div<ContainerStyle
     padding: calc(1.5rem + 60px) 1rem 1.5rem;
     width: 100%;
     //transition: background-color 0.3s ease-in-out;
-    background: ${props => props.status ? props.theme['@component-background'] :'none'};
+    background: ${(props) =>
+        props.status ? props.theme["@component-background"] : "none"};
 
-    @media (max-width: 767px) {
+    @media (max-width: 992px) {
         padding: calc(1rem + 60px) 0.5rem;
     }
 `
@@ -62,8 +67,28 @@ const FacebookLayout: React.FC<FacebookLayout> = ({
     sidebars,
     accountMenu
 }) => {
+    const history = useHistory()
     const {statusContainer} = useSelector(appSelector)
     const [, isBreakpoint] = useScreenWindow({breakpoint: "lg"})
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        if (history.listen) {
+            history.listen((location: any) => {
+                if (Titles[location.pathname])
+                    dispatch(changeTitle(Titles[location.pathname]))
+            })
+
+            if (Titles[history.location.pathname])
+                dispatch(changeTitle(Titles[history.location.pathname]))
+
+            return () => {
+                // @ts-ignore
+                history.listen = null
+            }
+        }
+    }, [history, dispatch])
 
     return (
         <LayoutStyled>
@@ -73,7 +98,9 @@ const FacebookLayout: React.FC<FacebookLayout> = ({
                 accountMenu={accountMenu}
             />
             <DrawContainerStyled id="container" className="draw-container" />
-            <ContainerStyled status={statusContainer}>{children}</ContainerStyled>
+            <ContainerStyled status={statusContainer}>
+                {children}
+            </ContainerStyled>
             {isBreakpoint && <Footer navigations={navigations} />}
         </LayoutStyled>
     )

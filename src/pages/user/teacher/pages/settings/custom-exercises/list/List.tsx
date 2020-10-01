@@ -1,8 +1,6 @@
 import React, {useEffect} from 'react';
-import {Navigation, NavigationButton, TablePagination} from "lib/ui";
 import {Link} from "react-router-dom";
 import {Tag} from "antd";
-import {PlusOutlined} from "@ant-design/icons";
 import {ModalMenu} from "lib/ui";
 import DeleteItem from "./Menu/delete-item/DeleteItem";
 import PrintItem from "./Menu/print-item/PrintItem";
@@ -74,13 +72,9 @@ const List: React.FC = () => {
     }, [dispatch])
 
     return <>
-        <Navigation>
             <Link to={`/settings/custom-exercises/create`}>
-                <NavigationButton type="primary" icon={<PlusOutlined/>}>
                     Создать примеры
-                </NavigationButton>
             </Link>
-        </Navigation>
         {/*<TablePagination columns={columns(() => null)} pagination={false} loading={loading} data={exercises} fetch={() => null}/>*/}
     </>;
 };

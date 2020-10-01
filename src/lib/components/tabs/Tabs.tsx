@@ -8,8 +8,22 @@ const TabsStyled = styled.div`
         flex-direction: column;
     }
 
-    .top-extra {
-        margin-bottom: 1rem;
+    .menu-block {
+        width: min-content;
+
+        .top-extra {
+            margin-bottom: 1rem;
+
+            > * {
+                white-space: nowrap;
+
+                &:not(:last-child) {
+                    margin-bottom: 0.5rem;
+                    display: inline-flex;
+                    width: 100%;
+                }
+            }
+        }
     }
 `
 
@@ -57,6 +71,7 @@ const ItemStyled: React.FC<ItemStyledProps> = styled.div<ItemStyledProps>`
 const ContainerStyled = styled.div`
     padding-left: 1rem;
     width: 100%;
+    overflow: hidden;
 
     @media (max-width: 480px) {
         padding-top: 1rem;
@@ -93,7 +108,7 @@ const Tabs: React.FC<TabsProps> = ({
 
     return (
         <TabsStyled>
-            <div>
+            <div className="menu-block">
                 {topExtra && <div className="top-extra">{topExtra}</div>}
                 <MenuStyled>
                     {React.Children.map(children, (child: any) => (

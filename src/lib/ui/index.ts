@@ -11,8 +11,6 @@ export {default as Alert} from './alert/Alert';
 export {default as Legend} from './legend/Legend';
 export {default as Coins} from './coins/Coins';
 export {default as Spin} from './spin/Spin';
-export {default as Navigation} from './navigaion/Navigation';
-export {default as NavigationButton} from './navigaion/ButtonNavigation';
 export {default as Drawer} from './drawer/Drawer';
 export {default as CardStatistic} from './card-statistic/CardStatistic';
 export {default as InputPhoto} from './form/InputPhoto';

@@ -8,6 +8,7 @@ import {
     useSelectAllCategories
 } from "../../../../../../../store/access/teacher/category/categorySelectors";
 import {useTeacherDispatch} from "../../../../../../../store/access/teacher/store";
+import TabTopExtra from "../tab-top-extra/TabTopExtra"
 
 interface TabsCategoriesProps {
 }
@@ -22,7 +23,7 @@ const Container: React.FC<TabsCategoriesProps> = () => {
         dispatch(changeActiveCategoryId(Number(id)))
     }, [dispatch])
 
-    return <Tabs defaultValue={activeCategoryId ? `category-${activeCategoryId}` : null} onChange={changeActiveCategory}>
+    return <Tabs topExtra={<TabTopExtra/>} defaultValue={activeCategoryId ? `category-${activeCategoryId}` : null} onChange={changeActiveCategory}>
         {categories.map((category) =>
             <Tab title={category.title} key={`category-${category.id}`}>
                 <TableHomework categoryId={category.id}/>

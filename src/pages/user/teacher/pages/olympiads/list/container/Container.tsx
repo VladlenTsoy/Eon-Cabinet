@@ -1,24 +1,23 @@
 import React from 'react';
-import {Tabs, TabPane} from "lib/ui";
-import {useScreenWindow} from "../../../../../../../hooks/use-screen-window.effect";
+import Tab from "lib/components/tabs/Tab"
+import Tabs from "lib/components/tabs/Tabs"
 import Futures from "./futures/Futures";
 import Currents from "./currents/Currents";
 import Pasts from "./pasts/Pasts";
 import {HistoryOutlined, ClockCircleOutlined, FlagOutlined} from "@ant-design/icons";
+import TabTopExtra from "../tab-top-extra/TabTopExtra"
 
 const Container = () => {
-    const [, isBreakpoint] = useScreenWindow({breakpoint: 'sm'});
-
-    return <Tabs defaultActiveKey={'current'} tabPosition={isBreakpoint ? 'top' : 'left'} style={{minHeight: '200px'}} type="card">
-        <TabPane tab={<span><HistoryOutlined/>Прошедшие</span>} key="past">
+    return <Tabs topExtra={<TabTopExtra/>} defaultValue={'current'}>
+        <Tab title={<span><HistoryOutlined/>Прошедшие</span>} key="past">
             <Pasts/>
-        </TabPane>
-        <TabPane tab={<span><FlagOutlined/>Текушие</span>} key="current">
+        </Tab>
+        <Tab title={<span><FlagOutlined/>Текушие</span>} key="current">
             <Currents/>
-        </TabPane>
-        <TabPane tab={<span><ClockCircleOutlined/>Будущие</span>} key="future">
+        </Tab>
+        <Tab title={<span><ClockCircleOutlined/>Будущие</span>} key="future">
             <Futures/>
-        </TabPane>
+        </Tab>
     </Tabs>
 };
 

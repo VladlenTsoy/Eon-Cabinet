@@ -7,5 +7,9 @@ export const useChangeTitle = ({title}: any) => {
 
     useEffect(() => {
         dispatch(changeTitle(title));
+
+        return () => {
+            dispatch(changeTitle('Eon - программа развития интеллекта.'))
+        }
     }, [title, dispatch]);
 };

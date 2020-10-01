@@ -11,7 +11,7 @@ interface CardGroupProps {
 }
 
 const CardGroup: React.FC<CardGroupProps> = ({group}) => {
-    return <Card>
+    return <Card className="animated fadeIn">
         <Card.Header title="Группа" icons>
             <EditorButton title="Редактировать группу" group={group}>
                 <EditOutlined/>

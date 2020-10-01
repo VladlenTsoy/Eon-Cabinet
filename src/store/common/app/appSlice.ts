@@ -12,11 +12,14 @@ interface StateProps {
 }
 
 const initialState: StateProps = {
+    // Название страницы
     title: 'Моя страница',
+    // Цвет контейнреа
     statusContainer: false,
+    // Режим темы
+    isDark: getCookie('is_dark') === '1',
     action: null,
     spin: false,
-    isDark: getCookie('is_dark') === '1',
     setting: null,
 };
 
@@ -25,6 +28,7 @@ const appSlice = createSlice({
     initialState,
     reducers: {
         changeTitle(state, action: PayloadAction<StateProps["title"]>) {
+            document.title = `Eon - ${action.payload}`
             state.title = action.payload
         },
         changeStatusContainer(state, action: PayloadAction<StateProps["statusContainer"]>) {

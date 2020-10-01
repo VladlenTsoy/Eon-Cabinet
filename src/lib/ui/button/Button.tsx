@@ -19,7 +19,7 @@ const ButtonStyled: React.FC<ButtonStyledProps> = styled.button<
         font-size: 14px;
         background: ${(props) => props.theme["@component-background"]};
         border-radius: 10px;
-        border: 1px solid ${(props) => props.theme.color_border};
+        border: 1px solid ${(props) => props.theme.light_color_border};
         cursor: pointer;
         transition: color 0.3s, background 0.3s, border-color 0.3s,
             box-shadow 0.3s;
