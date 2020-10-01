@@ -1,24 +1,44 @@
 import React from "react"
-import {Layout} from "antd"
 import Header from "./header/Header"
 import {NavigationItemProps} from "./header/navigation/Navigation"
 import styled from "styled-components"
 import Footer from "./footer/Footer"
 import {useScreenWindow} from "../../../hooks/use-screen-window.effect"
 
+const LayoutStyled = styled.div`
+    background: ${props => props.theme['@layout-body-background']};
+`
+
 const ContainerStyled = styled.div`
     position: relative;
     overflow: hidden;
-    height: 100%;
+    max-width: ${(props) => props.theme.maxWidth};
+    margin: 0 auto;
+    min-height: 100vh;
+    padding: calc(1.5rem + 60px) 1rem 1.5rem;
+    width: 100%;
+
+    @media (max-width: 767px) {
+        padding: calc(1rem + 60px) 0.5rem;
+    }
 `
 
 const ScrollStyled = styled.div`
-    overflow-y: auto;
-    height: 100%;
-    padding: 1rem;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 60px;
+    bottom: 0;
+    z-index: 5;
+    pointer-events: none;
+
+    > div {
+        pointer-events: all;
+    }
 
     @media (max-width: 767px) {
-        padding: 1rem 0.5rem;
+        top: 60px;
+        bottom: 60px;
     }
 `
 
@@ -37,17 +57,16 @@ const FacebookLayout: React.FC<FacebookLayout> = ({
     const [, isBreakpoint] = useScreenWindow({breakpoint: "lg"})
 
     return (
-        <Layout style={{height: "100vh"}}>
+        <LayoutStyled>
             <Header
                 navigations={navigations}
                 sidebars={sidebars}
                 accountMenu={accountMenu}
             />
-            <ContainerStyled id="container" className="draw-container">
-                <ScrollStyled>{children}</ScrollStyled>
-            </ContainerStyled>
+            <ScrollStyled id="container" className="draw-container" />
+            <ContainerStyled>{children}</ContainerStyled>
             {isBreakpoint && <Footer navigations={navigations} />}
-        </Layout>
+        </LayoutStyled>
     )
 }
 

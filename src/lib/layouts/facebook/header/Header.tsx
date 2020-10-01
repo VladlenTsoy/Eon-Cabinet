@@ -9,7 +9,9 @@ const HeaderStyled = styled.div`
     height: 60px;
     background: ${(props) => props.theme["@component-background"]};
     box-shadow: rgba(0, 0, 0, 0.05) 0 2px 15px 0;
-    position: relative;
+    position: fixed;
+    left: 0;
+    right: 0;
     //z-index: 1001;
     z-index: 500;
 `
@@ -17,14 +19,11 @@ const HeaderStyled = styled.div`
 const ContainerStyled = styled.div`
     max-width: ${(props) => props.theme.maxWidth};
     width: 100%;
+    height: 100%;
     margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    @media (max-width: 576px) {
-        height: 55px;
-    }
 `
 
 interface HeaderProps {

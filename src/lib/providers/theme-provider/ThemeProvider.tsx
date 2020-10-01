@@ -3,7 +3,7 @@ import {ThemeProvider as ThemeProviderStyled} from "styled-components";
 import {useSelector} from "react-redux";
 import {_theme, blackTheme, whiteTheme} from 'styles/_theme';
 import {appSelector} from "../../../store/common/app/appSlice";
-import {Spin} from "../../ui";
+// import {Spin} from "../../ui";
 import {GlobalStyle} from "../../../styles/global";
 
 const ThemeProvider: React.FC = ({children}) => {
@@ -42,9 +42,9 @@ const ThemeProvider: React.FC = ({children}) => {
 
     return <ThemeProviderStyled theme={userTheme}>
         <GlobalStyle/>
-        <Spin spinning={app.spin} tip="Изменяем тему...">
+        {/*<Spin spinning={app.spin} tip="Изменяем тему...">*/}
             {children}
-        </Spin>
+        {/*</Spin>*/}
     </ThemeProviderStyled>
 };
 

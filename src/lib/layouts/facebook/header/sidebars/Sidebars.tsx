@@ -7,6 +7,7 @@ const SidebarsStyled = styled.div`
     padding: 0.5rem 1rem;
     display: flex;
     z-index: 5;
+    align-items: center;
 
     > div:not(:last-child) {
         margin-right: 0.75rem;
