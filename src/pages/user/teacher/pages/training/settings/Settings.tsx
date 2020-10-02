@@ -5,7 +5,7 @@ import {
     useRouteMatch
 } from "react-router-dom"
 import {Switch, Route} from "react-router"
-import {useChangeActionNavbar} from "hooks/use-change-action-navbar.effect"
+import {useChangeActionNavbar} from "hooks/old/use-change-action-navbar.effect"
 import {Col, Row} from "antd"
 import {Card, LoadingBlock} from "lib/ui"
 import styled from "styled-components"

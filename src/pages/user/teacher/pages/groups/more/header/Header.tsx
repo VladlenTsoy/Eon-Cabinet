@@ -4,6 +4,7 @@ import {Button} from "lib/ui"
 import {CarryOutFilled, IdcardFilled} from "@ant-design/icons"
 import DetailsActions from "./details-actions/DetailsActions"
 import HomeworkActions from "./homework-actions/HomeworkActions"
+import {TabStudentsType} from "../Group"
 
 const HeaderStyled = styled.div`
     display: flex;
@@ -25,8 +26,8 @@ const HeaderStyled = styled.div`
 `
 
 interface HeaderProps {
-    tab: "details" | "events"
-    changeTabHandler: (val: "details" | "events") => void
+    tab: TabStudentsType
+    changeTabHandler: (val: TabStudentsType) => void
 }
 
 const Header: React.FC<HeaderProps> = ({tab, changeTabHandler}) => {

@@ -1,6 +1,4 @@
-import React, {useEffect} from "react"
-import {useChangeTitle} from "../../../../../../hooks/use-change-title.effect"
-import {useChangeActionNavbar} from "../../../../../../hooks/use-change-action-navbar.effect"
+import React, {useCallback, useEffect, useState} from "react"
 import {useParams} from "react-router-dom"
 import Container from "./container/Container"
 import {useTeacherDispatch} from "../../../../../../store/access/teacher/store"
@@ -10,7 +8,10 @@ import {
     useSelectGroupById
 } from "../../../../../../store/access/teacher/group/groupSelectors"
 import {fetchGroup} from "../../../../../../store/access/teacher/group/fetchGroup"
-import {changeStatusContainer} from "store/common/app/appSlice"
+import {useChangeConfigPageEffect} from "../../../../../../hooks/use-change-config-page.effect"
+import Header from "./header/Header"
+
+export type TabStudentsType = "details" | "homework" | "events"
 
 export interface ParamsProps {
     id: string
@@ -21,20 +22,15 @@ const Group: React.FC = () => {
     const group = useSelectGroupById(Number(id))
     const loading = useLoadingGroups()
     const dispatch = useTeacherDispatch()
+    const [tab, setTab] = useState<TabStudentsType>("details")
 
-    useChangeActionNavbar({action: "/groups"})
-    useChangeTitle({
-        title: loading
-            ? "Группа: Загрузка..."
-            : `Группа: ${group?.title || "Недоступна"}`
+    const changeTabHandler = useCallback((val: TabStudentsType) => setTab(val), [])
+
+    useChangeConfigPageEffect({
+        title: loading ? "Группа: Загрузка..." : `Группа: ${group?.title || "Недоступна"}`,
+        action: "/groups",
+        container: true
     })
-
-    useEffect(() => {
-        dispatch(changeStatusContainer(true))
-        return () => {
-            dispatch(changeStatusContainer(false))
-        }
-    }, [dispatch])
 
     useEffect(() => {
         const promise = dispatch(fetchGroup({id: Number(id)}))
@@ -47,7 +43,8 @@ const Group: React.FC = () => {
 
     return (
         <>
-            <Container />
+            <Header tab={tab} changeTabHandler={changeTabHandler} />
+            <Container tab={tab} />
         </>
     )
 }

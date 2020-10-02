@@ -4,8 +4,8 @@ import styled from "styled-components";
 import {useApiUserGeneral} from "hooks/use-api-user-general.effect";
 import {LoadingBlock} from "lib/ui";
 import {Typography} from "antd";
-import {useChangeActionNavbar} from "hooks/use-change-action-navbar.effect";
-import {useChangeTitle} from "hooks/use-change-title.effect";
+import {useChangeActionNavbar} from "hooks/old/use-change-action-navbar.effect";
+import {useChangeTitle} from "hooks/old/use-change-title.effect";
 import Steps from "./steps/Steps";
 import Info from "./info/Info";
 

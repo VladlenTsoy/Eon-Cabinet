@@ -3,7 +3,7 @@ import {
     useCurrentPageGroupsByCategoryId,
     useLastPageGroupsByCategoryId,
     useLoadingGroupsByCategoryId,
-    useSelectGroupsByCategoryId
+    useSelectGroupsByCategoryId,
 } from "../../../../../../../store/access/teacher/group/groupSelectors"
 import {useTeacherDispatch} from "../../../../../../../store/access/teacher/store"
 import {fetchGroups} from "../../../../../../../store/access/teacher/group/fetchGroups"
@@ -15,7 +15,7 @@ import {Category} from "../../../../../../../lib/types/common/Category"
 import {ArrowDownOutlined} from "@ant-design/icons"
 import styled from "styled-components"
 
-const QueueAnimStyled = styled.div`
+const GridContainerStyled = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 0 1rem;
@@ -34,7 +34,7 @@ const Container: React.FC<ContainerProps> = ({categoryId}) => {
     const [page, setPage] = useState(currentPage)
 
     const clickMoreHandler = () => {
-        setPage((prevState) => ++prevState)
+        setPage(prevState => ++prevState)
     }
 
     useEffect(() => {
@@ -48,11 +48,11 @@ const Container: React.FC<ContainerProps> = ({categoryId}) => {
         <Spin spinning={loading} tip="Загрузка...">
             {groups.length ? (
                 <>
-                    <QueueAnimStyled>
-                        {groups.map((group) => (
+                    <GridContainerStyled>
+                        {groups.map(group => (
                             <GroupBlock group={group} key={group.id} />
                         ))}
-                    </QueueAnimStyled>
+                    </GridContainerStyled>
                     {lastPage > currentPage && (
                         <div>
                             <Button

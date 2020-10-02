@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {changeAction} from "../store/common/app/appSlice";
+import {changeAction} from "../../store/common/app/appSlice";
 import {useDispatch} from "react-redux";
 
 type Props = (params: { action: string }) => void

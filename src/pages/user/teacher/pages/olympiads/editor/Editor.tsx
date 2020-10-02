@@ -1,5 +1,5 @@
 import React from 'react';
-import {useChangeActionNavbar} from "hooks/use-change-action-navbar.effect";
+import {useChangeActionNavbar} from "hooks/old/use-change-action-navbar.effect";
 import StepsSetting from "./steps-setting/StepsSetting";
 
 const EditorOlympiad = () => {

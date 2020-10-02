@@ -1,4 +1,4 @@
-import antd from "antd";
+import {message as messageAntd} from "antd";
 import {MessageType} from "antd/es/message"
 
 interface ParamsProps {
@@ -18,5 +18,5 @@ export const message: MessageProps = (
         duration= 3
     }
 ) => {
-    return antd.message[type]({content, key, duration})
+    return messageAntd[type]({content, key, duration})
 };
