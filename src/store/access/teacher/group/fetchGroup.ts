@@ -7,15 +7,12 @@ interface ArgProps {
     id: Group['id']
 }
 
-type ReturnedType = {
-    total: number
-    data: Group[]
-}
+type ReturnedType = Group
 
 export const fetchGroup = createAsyncThunk<ReturnedType, ArgProps, TeacherThunkProps>(
     'teacher/group/fetch',
     async ({id}, {signal}) => {
-        return await apiRequest('get', `teacher/group/${id}`, {signal});
+        return await apiRequest('get', `teacher/group/${id}`, {signal, api2: true});
     },
     {
         condition({id}, {getState}) {

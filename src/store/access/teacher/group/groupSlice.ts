@@ -76,8 +76,7 @@ const groupSlice = createSlice({
             state.loading = true
         })
         builder.addCase(fetchGroup.fulfilled, (state, action) => {
-            groupAdapter.upsertMany(state, action.payload.data)
-            // state.total = action.payload.total
+            groupAdapter.upsertOne(state, action.payload)
             state.loading = false
         })
         builder.addCase(fetchGroup.rejected, (state) => {
