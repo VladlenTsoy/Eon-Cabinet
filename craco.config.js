@@ -21,6 +21,7 @@ module.exports = {
                     ]
                 })
             webpackConfig.optimization = {
+                minimize: isEnvProduction,
                 splitChunks: {
                     chunks: 'all',
                     maxInitialRequests: Infinity,
