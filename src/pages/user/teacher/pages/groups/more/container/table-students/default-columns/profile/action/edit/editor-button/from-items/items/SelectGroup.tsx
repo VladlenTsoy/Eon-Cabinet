@@ -1,15 +1,15 @@
 import {Select} from "antd";
 import React, {useEffect} from "react";
-import {FormItem} from "../../../../../../../../../../lib/ui";
-import {useTeacherDispatch} from "../../../../../../../../../../store/access/teacher/store";
+import {FormItem} from "../../../../../../../../../../../../../../../lib/ui";
+import {useTeacherDispatch} from "../../../../../../../../../../../../../../../store/access/teacher/store";
 import {useParams} from "react-router-dom";
-import {ParamsProps} from "../../../../Group";
+import {ParamsProps} from "../../../../../../../../../Group";
 import {
     useLoadingSelectsGroupsByCategoryId,
     useAllSelectsGroupsByCategoryId,
     useSelectGroupById
-} from "../../../../../../../../../../store/access/teacher/group/groupSelectors";
-import {fetchSelectsGroups} from "../../../../../../../../../../store/access/teacher/group/fetchSelectsGroups";
+} from "../../../../../../../../../../../../../../../store/access/teacher/group/groupSelectors";
+import {fetchSelectsGroups} from "../../../../../../../../../../../../../../../store/access/teacher/group/fetchSelectsGroups";
 
 const {Option} = Select;
 

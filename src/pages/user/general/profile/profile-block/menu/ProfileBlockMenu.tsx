@@ -6,7 +6,7 @@ import ItemColor from "./item-color/ItemColor";
 // import ItemBlock from "../../../../director-franchise/layouts/items/ItemBlock";
 import ItemPassword from "./item-password/ItemPassword";
 import ItemEmailVerification from "./ItemEmailVerification";
-import EditorButton from "../../../../teacher/pages/groups/more/nav-buttons/editor-button/EditorButton";
+import EditorButton from "../../../../teacher/pages/groups/more/container/table-students/default-columns/profile/action/edit/editor-button/EditorButton";
 
 const MenuWrapper = styled(Menu)`
   &.ant-menu {

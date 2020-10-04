@@ -1,15 +1,15 @@
 import React, {useState} from 'react';
 import {Button, Col, DatePicker, Form, Row} from "antd";
-import {DrawerActions, FormItem, InputEmail, InputPassword} from "lib/ui";
+import {DrawerActions, FormItem} from "lib/ui";
 import {updateStudent} from "store/access/teacher/students/updateStudent";
 import {createStudent} from "store/access/teacher/students/createStudent";
 import InputPhoto from "lib/ui/form/InputPhoto";
 import SelectGroup from "./items/SelectGroup";
 import {SaveOutlined} from "@ant-design/icons";
 import {useParams} from "react-router-dom";
-import {ParamsProps} from "../../../Group";
-import {Student} from "../../../../../../../../../lib/types/teacher/Student";
-import {useTeacherDispatch} from "../../../../../../../../../store/access/teacher/store";
+import {ParamsProps} from "../../../../../../../../Group";
+import {Student} from "../../../../../../../../../../../../../../lib/types/teacher/Student";
+import {useTeacherDispatch} from "../../../../../../../../../../../../../../store/access/teacher/store";
 
 interface FormItemsProps {
     close: () => void;
@@ -48,15 +48,15 @@ const FormItems: React.FC<FormItemsProps> = ({close, student}) => {
             <Col span={24}>
                 <InputPhoto form={form}/>
             </Col>
-            <Col sm={12} xs={24}>
-                <FormItem name="first_name" label="Имя" requiredMsg="Введите имя!"/>
-                <InputEmail/>
+            <Col span={24}>
                 <SelectGroup/>
             </Col>
             <Col sm={12} xs={24}>
-                <FormItem name="last_name" label="Фамилия" requiredMsg="Введите фамилию!"/>
+                <FormItem name="first_name" label="Имя" requiredMsg="Введите имя!"/>
                 <FormItem name="phone" label="Телефон"/>
-                <InputPassword user={student} label="Пароль"/>
+            </Col>
+            <Col sm={12} xs={24}>
+                <FormItem name="last_name" label="Фамилия" requiredMsg="Введите фамилию!"/>
                 <FormItem
                     name="date_of_birth"
                     label="Дата рождения"

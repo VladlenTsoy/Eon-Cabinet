@@ -17,7 +17,7 @@ export const sendCoins = createAsyncThunk<ReturnedType, ParamsProps, TeacherThun
     'teacher/student/send/coins',
     async (data) => {
         //
-        const response = await apiRequest('post', `teacher/coin/sent`, {data});
+        const response = await apiRequest('post', `teacher/coin/sent`, {data, api2: true});
         response && message({type: 'success', content: "Вы успешно отправили монеты!"});
         return data;
     }

@@ -12,7 +12,7 @@ export const updateStudent = createAsyncThunk<any, ParamsProps, TeacherThunkProp
     'teacher/student/update',
     async ({studentId, data}) => {
         //
-        const response = await apiRequest('post', `teacher/student/${studentId}`, {data});
+        const response = await apiRequest('post', `teacher/student/${studentId}`, {data, api2: true});
         response && message({type: 'success', content: "Вы успешно изменили данные ученика!"});
         return response;
     }

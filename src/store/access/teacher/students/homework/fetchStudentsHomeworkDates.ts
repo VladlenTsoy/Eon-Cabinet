@@ -15,6 +15,7 @@ export const fetchStudentsHomeworkDates = createAsyncThunk<ReturnedType, AgrProp
     async ({groupId}, {signal, getState}) => {
         const {students} = getState();
         return await apiRequest('post', `/teacher/students/${groupId}/homework/dates`, {
+            api2: true,
             signal,
             data: {startOfWeek: students.homework.startOfWeek, endOfWeek: students.homework.endOfWeek}
         });

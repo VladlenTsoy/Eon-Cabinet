@@ -12,7 +12,6 @@ const DrawerEditor: React.FC<DrawerEditorProps> = ({title, visible, close, width
     return <Drawer
         title={title}
         width={width || 650}
-        closable={false}
         destroyOnClose={true}
         onClose={close}
         visible={visible}

@@ -52,6 +52,7 @@ interface UserImageProps extends React.HTMLAttributes<HTMLDivElement> {
     mr?: string,
 }
 
+// TODO - update
 const Avatar: React.FC<UserImageProps> = (
     {
         src,
@@ -67,6 +68,7 @@ const Avatar: React.FC<UserImageProps> = (
 
     useEffect(() => {
         const image = new Image();
+        setImage(src)
         image.src = src;
         image.onerror = () => {
             setImage(DefaultImage);

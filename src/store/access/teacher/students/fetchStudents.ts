@@ -10,7 +10,7 @@ interface AgrProps {
 export const fetchStudents = createAsyncThunk<any, AgrProps, TeacherThunkProps>(
     'teacher/students/fetch/details',
     async ({groupId}, {signal}) => {
-        return await apiRequest('get', `/teacher/students/${groupId}`, {signal})
+        return await apiRequest('get', `/teacher/students/${groupId}`, {signal, api2: true})
     },
     {
         condition({groupId, force}, {getState}) {

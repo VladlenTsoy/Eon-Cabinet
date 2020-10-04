@@ -11,7 +11,6 @@ const InputPasswordWrapper = styled.div`
     .ant-switch {
         position: absolute;
         right: 0;
-        top: 10px;
         z-index: 5;
 
         @media (max-width: 576px) {

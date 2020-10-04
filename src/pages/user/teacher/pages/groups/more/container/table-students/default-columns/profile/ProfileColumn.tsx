@@ -3,6 +3,7 @@ import {UserImage} from "../../../../../../../../../../lib/ui";
 import styled from "styled-components";
 import {ModalMenuStyled} from "../../../../../../../../../../lib/ui/modal-menu/ModalMenu"
 import ActionColumn from "./action/ActionColumn"
+import {Student} from "../../../../../../../../../../lib/types/teacher/Student"
 
 const UserNameWrapper = styled.div`
    display: flex;
@@ -16,7 +17,7 @@ const UserNameWrapper = styled.div`
 `;
 
 interface ProfileColumnProps {
-    student: any;
+    student: Student;
 }
 
 const ProfileColumn:React.FC<ProfileColumnProps> = ({student}) => {
@@ -27,7 +28,7 @@ const ProfileColumn:React.FC<ProfileColumnProps> = ({student}) => {
     return <>
         <UserNameWrapper onClick={open}>
             <UserImage
-                src={student.image}
+                src={student.url_image}
                 alt={`${student.last_name} ${student.first_name}`}
                 width="50px"
                 mr="0.75rem"/>

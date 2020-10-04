@@ -8,6 +8,7 @@ export interface Student {
     date_of_birth: string | object | null;
     group_id: number;
     image: string;
+    url_image: string;
     is_blocked: boolean;
     day_block: number | null;
     day_unblock: number | null;

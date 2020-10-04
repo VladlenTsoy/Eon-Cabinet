@@ -1,16 +1,13 @@
 import {createEntityAdapter, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {TeacherState} from "../store";
-import {statisticExtraReducers, statisticState, StatisticState} from "./statistic/statistic";
 import {recentHomeworkExtraReducers, RecentHomeworkState, recentHomeworkState} from "./recent-homework/recentHomework";
 import {homeworkExtraReducer, homeworkReducer, homeworkState, HomeworkState} from "./homework/homework";
-import {selectedExtraReducers, selectedReducers, selectedState, SelectedState} from "./selected/selected";
 import {Student} from "../../../../lib/types/teacher/Student";
 import {fetchStudents} from "./fetchStudents";
 import {Group} from "../../../../lib/types/teacher/Group";
 import {createStudent} from "./createStudent";
 import {updateStudent} from "./updateStudent";
 import {deleteStudent} from "./deleteStudent";
-import {deleteStudents} from "./deleteStudents";
 import {sendCoins} from "./sendСoins";
 import {blockStudent} from "./blockStudent";
 import {unblockStudent} from "./unblockStudent";
@@ -26,8 +23,6 @@ export interface StateProps {
 
     homework: HomeworkState
     recentHomework: RecentHomeworkState
-    statistic: StatisticState
-    selected: SelectedState
 }
 
 const initialState = studentAdapter.getInitialState<StateProps>({
@@ -36,8 +31,6 @@ const initialState = studentAdapter.getInitialState<StateProps>({
 
     homework: homeworkState,
     recentHomework: recentHomeworkState,
-    statistic: statisticState,
-    selected: selectedState,
 });
 
 const studentsSlice = createSlice({
@@ -49,7 +42,6 @@ const studentsSlice = createSlice({
             const {ids, groupId} = action.payload
             state.selectedIds[groupId] = ids;
         },
-        ...selectedReducers,
         ...homeworkReducer
     },
     extraReducers: (builder) => {
@@ -100,18 +92,6 @@ const studentsSlice = createSlice({
             state.loading = false;
         })
         builder.addCase(deleteStudent.rejected, (state) => {
-            state.loading = false;
-        })
-
-        // Удаление учеников
-        builder.addCase(deleteStudents.pending, (state) => {
-            state.loading = true;
-        })
-        builder.addCase(deleteStudents.fulfilled, (state, action) => {
-            studentAdapter.removeMany(state, action.payload)
-            state.loading = false;
-        })
-        builder.addCase(deleteStudents.rejected, (state) => {
             state.loading = false;
         })
 
@@ -172,8 +152,6 @@ const studentsSlice = createSlice({
 
         homeworkExtraReducer(builder)
         recentHomeworkExtraReducers(builder)
-        statisticExtraReducers(builder)
-        selectedExtraReducers(builder)
     }
 })
 
@@ -182,10 +160,10 @@ export const studentsSelector = (state: TeacherState) => state.students;
 // Can create a set of memoized selectors based on the location of this entity state
 export const {
     selectById: getStudentById,
-    selectIds: selectStudentIds,
-    selectEntities: selectStudentEntities,
-    selectAll: selectAllStudents,
-    selectTotal: selectTotalStudents
+    // selectIds: selectStudentIds,
+    // selectEntities: selectStudentEntities,
+    // selectAll: selectAllStudents,
+    // selectTotal: selectTotalStudents
 } = studentAdapter.getSelectors<TeacherState>(state => state.students)
 
 export const {changeSelectedIds, nextWeek, prevWeek, resetStudentSlice} = studentsSlice.actions;

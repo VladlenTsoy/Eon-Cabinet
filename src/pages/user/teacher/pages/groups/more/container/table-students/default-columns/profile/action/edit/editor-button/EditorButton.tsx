@@ -1,9 +1,9 @@
 import React, {useCallback, useState} from "react";
-import {useScreenWindow} from "../../../../../../../../hooks/use-screen-window.effect";
-import DrawerEditor from "../../../../../../../../lib/ui/drawer-editor/DrawerEditor";
+import {useScreenWindow} from "../../../../../../../../../../../../../hooks/use-screen-window.effect";
+import DrawerEditor from "../../../../../../../../../../../../../lib/ui/drawer-editor/DrawerEditor";
 import FormItems from "./from-items/FormItems";
 import moment from "moment";
-import {Student} from "../../../../../../../../lib/types/teacher/Student";
+import {Student} from "../../../../../../../../../../../../../lib/types/teacher/Student";
 
 interface EditorStudentButtonProps {
     title: string;
@@ -25,13 +25,14 @@ const EditorButton: React.FC<EditorStudentButtonProps> = ({title, children, stud
             visible={visible}
             close={close}
             title={title}
-            width={breakpoint ? '100%' : 650}
+            width={breakpoint ? '100%' : 550}
         >
             <FormItems
                 close={close}
                 student={
                     student ? {
                         ...student,
+                        image: student.url_image,
                         date_of_birth: student.date_of_birth ? moment(student.date_of_birth, 'YYYY-MM-DD') : null
                     } : undefined
                 }/>
