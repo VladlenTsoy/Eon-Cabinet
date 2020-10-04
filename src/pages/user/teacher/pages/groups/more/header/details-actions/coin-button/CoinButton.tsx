@@ -9,6 +9,8 @@ import {sendCoins} from "store/access/teacher/students/sendСoins";
 import {useParams} from "react-router-dom";
 import {ParamsProps} from "../../../Group";
 import {useSelectSelectedStudentsByIdsGroupId} from "store/access/teacher/students/studentsSelectors";
+import checkStudentGif from "../../../../../../../../../assets/images/hints/check-student.gif"
+import {Modal as AntdModal} from "antd";
 
 const ImageStyled = styled.div`
   margin-bottom: 1rem;
@@ -47,6 +49,16 @@ const CoinButton: React.FC = () => {
         setVisible(false)
     }
 
+    const disabledHandler = () => {
+        AntdModal.info({
+            title: 'Выберите учеников!',
+            content: <>
+                <p>Отметьте учеников в списке для отправки домашнего задания.</p>
+                <img src={checkStudentGif} alt="Выберите учеников!" width="100%"/>
+            </>
+        });
+    };
+
     return <>
         <Button
             type="second"
@@ -56,7 +68,7 @@ const CoinButton: React.FC = () => {
                     <img src={CoinSvg} alt="монеты" />
                 </IconCoinStyled>
             }
-            onClick={open}
+            onClick={selectedIds.length ? open : disabledHandler}
         >
             Монеты
         </Button>
