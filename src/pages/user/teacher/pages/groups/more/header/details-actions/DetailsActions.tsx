@@ -1,14 +1,11 @@
 import React from "react"
-import {Button} from "../../../../../../../../lib/ui"
-import {UserAddOutlined} from "@ant-design/icons"
 import CoinButton from "./coin-button/CoinButton"
+import AddStudent from "./add-student/AddStudent"
 
 const DetailsActions = () => {
     return (
         <>
-            <Button type="second" size="large" icon={<UserAddOutlined />}>
-                Добавить ученика
-            </Button>
+            <AddStudent/>
             <CoinButton/>
         </>
     )

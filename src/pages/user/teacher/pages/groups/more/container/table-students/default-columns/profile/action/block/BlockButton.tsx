@@ -6,7 +6,6 @@ import {useDispatch} from "react-redux"
 
 interface BlockButtonProps {
     student: any
-    fetch: () => void
 }
 
 const BlockButton: React.FC<BlockButtonProps> = ({student}) => {

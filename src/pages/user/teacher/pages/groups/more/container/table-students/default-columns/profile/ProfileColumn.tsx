@@ -43,7 +43,7 @@ const ProfileColumn:React.FC<ProfileColumnProps> = ({student}) => {
             zIndex={999}
         >
             <div className="menu" onClick={close}>
-                <ActionColumn student={student} fetch={()=> null}/>
+                <ActionColumn student={student}/>
             </div>
         </ModalMenuStyled>
         </>

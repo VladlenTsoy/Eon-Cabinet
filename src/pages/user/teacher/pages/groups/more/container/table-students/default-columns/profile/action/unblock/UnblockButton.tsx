@@ -6,7 +6,6 @@ import {unblockStudent} from "store/access/teacher/students/unblockStudent";
 
 interface UnblockButtonProps {
     student: any;
-    fetch: () => void;
 }
 
 const UnblockButton: React.FC<UnblockButtonProps> = ({student}) => {

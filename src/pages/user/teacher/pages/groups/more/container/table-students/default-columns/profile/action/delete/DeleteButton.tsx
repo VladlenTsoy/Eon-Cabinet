@@ -6,10 +6,9 @@ import {Modal} from "antd"
 
 interface DeleteButtonProps {
     student: any;
-    fetch: () => void;
 }
 
-const DeleteButton:React.FC<DeleteButtonProps> = ({student, fetch}) => {
+const DeleteButton:React.FC<DeleteButtonProps> = ({student}) => {
     const dispatch = useDispatch()
 
     const deleteUsers = () => {
@@ -19,7 +18,6 @@ const DeleteButton:React.FC<DeleteButtonProps> = ({student, fetch}) => {
             okType: 'danger',
             async onOk() {
                 await dispatch(deleteStudent(student.id))
-                fetch()
             },
         });
     };

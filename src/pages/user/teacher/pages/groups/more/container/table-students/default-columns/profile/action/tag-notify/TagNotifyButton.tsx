@@ -15,7 +15,7 @@ const TagNotifyButton: React.FC<TagNotifyButtonProps> = ({student}) => {
     };
 
     return <div onClick={clickHandler}>
-        <LockOutlined/> {student.day_block} д.
+        <LockOutlined/> Осталось {student.day_block} д.
     </div>
 };
 
