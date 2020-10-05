@@ -4,6 +4,7 @@ import {Typography} from "antd";
 import styled from "styled-components";
 import moment from "moment";
 import {useLanguage} from "../../../../../../../../../../../../../../hooks/use-language"
+import {StudentSentHomeworkTask} from "../../../../../../../../../../../../../../lib/types/teacher/StudentHomework"
 
 const {Text} = Typography;
 
@@ -47,7 +48,7 @@ const HeaderWrapper = styled.div`
 `;
 
 interface HeaderCollapseHomeworkProps {
-    task: any;
+    task: StudentSentHomeworkTask;
 }
 
 const Header: React.FC<HeaderCollapseHomeworkProps> = ({task}) => {

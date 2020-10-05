@@ -4,14 +4,14 @@ import ExerciseLists
 import {LoadingBlock} from "lib/ui";
 import {useTeacherDispatch} from "store/access/teacher/store";
 import {fetchExercisesByHomeworkId} from "store/access/teacher/homework-exercises/fetchExercisesByHomeworkId";
-import {StudentHomework} from "store/access/teacher/student-homework/studentHomeworkSlice";
 import {
     useLoadingHomeworkExercises,
     useSelectHomeworkExercisesByHomeworkId
 } from "store/access/teacher/homework-exercises/homeworkExercisesSelectors";
+import {Homework} from "../../../../../../../../../../../../../lib/types/teacher/Homework"
 
 interface ExercisesProps {
-    homeworkId: StudentHomework['id'];
+    homeworkId: Homework['id'];
 }
 
 const Exercises: React.FC<ExercisesProps> = ({homeworkId}) => {

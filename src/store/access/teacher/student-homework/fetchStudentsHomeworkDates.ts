@@ -1,9 +1,9 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {apiRequest} from "../../../../utils/api";
 import {TeacherThunkProps} from "../store";
-import {StudentHomework} from "./studentHomeworkSlice";
+import {StudentSentHomework} from "../../../../lib/types/teacher/StudentHomework"
 
-type ReturnedType = { [week: number]: { [userId: number]: StudentHomework[] } }
+type ReturnedType = { [week: number]: { [userId: number]: StudentSentHomework[] } }
 
 interface AgrProps {
     groupId: number;

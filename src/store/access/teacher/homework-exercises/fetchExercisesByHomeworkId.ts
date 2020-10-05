@@ -1,13 +1,12 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {apiRequest} from "../../../../utils/api";
-import {StudentHomework} from "../student-homework/studentHomeworkSlice";
 import {TeacherThunkProps} from "../store";
-import {Exercise} from "../../../../lib/types/teacher/Homework";
+import {Exercise, Homework} from "../../../../lib/types/teacher/Homework"
 
 type ReturnedType = Exercise[]
 
 interface ArgProps {
-    homeworkId: StudentHomework['id']
+    homeworkId: Homework['id']
 }
 
 export const fetchExercisesByHomeworkId = createAsyncThunk<ReturnedType, ArgProps, TeacherThunkProps>(
