@@ -1,6 +1,6 @@
 import {useCallback, useEffect} from "react"
-import {nextWeek, prevWeek} from "../../../../../../../store/access/teacher/students/studentsSlice"
-import {fetchStudentsHomeworkDates} from "../../../../../../../store/access/teacher/students/homework/fetchStudentsHomeworkDates"
+import {nextWeek, prevWeek} from "../../../../../../../store/access/teacher/student-homework/studentHomeworkSlice"
+import {fetchStudentsHomeworkDates} from "../../../../../../../store/access/teacher/student-homework/fetchStudentsHomeworkDates"
 import {useTeacherDispatch} from "../../../../../../../store/access/teacher/store"
 import {TabStudentsType} from "../Group"
 

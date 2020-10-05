@@ -4,12 +4,12 @@ import {Spin} from "antd";
 import Empty from "./empty/Empty";
 import HomeworkBadge from "./homework-badge/HomeworkBadge";
 import Title from "./title/Title";
-import {Homework} from "../../../../../../../../../../store/access/teacher/students/homework/homework";
+import {StudentHomework} from "../../../../../../../../../../store/access/teacher/student-homework/studentHomeworkSlice";
 
 interface DayCellProps {
     day: any;
     loading: boolean;
-    events: { [userId: number]: Homework[] } | null | undefined;
+    events: { [userId: number]: StudentHomework[] } | null | undefined;
 }
 
 const DayCell = ({day, events, loading}: DayCellProps) => {

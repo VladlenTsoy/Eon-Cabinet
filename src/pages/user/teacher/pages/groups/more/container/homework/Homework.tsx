@@ -7,9 +7,7 @@ import Collapse from "./collapse/Collapse"
 import styled from "styled-components"
 import {useScreenWindow} from "hooks/use-screen-window.effect"
 import {useTeacherDispatch} from "store/access/teacher/store"
-import {useSelector} from "react-redux"
 import {fetchStudentHomeworkPaginate} from "store/access/teacher/students/selected/homework/fetchStudentHomeworkPaginate"
-import {studentsSelector} from "store/access/teacher/students/studentsSlice"
 
 const {TabPane} = Tabs
 
@@ -52,8 +50,10 @@ interface HomeworkProps {
 }
 
 const Homework: React.FC<HomeworkProps> = ({id}) => {
-    const {selected} = useSelector(studentsSelector)
-    const {homework} = selected
+    const homework = {
+        data: [],
+        loading: false
+    }
     const dispatch = useTeacherDispatch()
     const [page, setPage] = useState(1)
     const [isMore, setIsMore] = useState(true)

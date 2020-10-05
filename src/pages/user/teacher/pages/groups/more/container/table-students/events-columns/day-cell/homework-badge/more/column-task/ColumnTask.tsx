@@ -2,10 +2,10 @@ import React from 'react';
 import {CheckCircleOutlined, ClockCircleOutlined, ExclamationCircleOutlined} from '@ant-design/icons';
 import styled from "styled-components";
 import moment from "moment";
-import {StudentHomeworkTask} from "../../../../../../../../../../../../../store/access/teacher/students/homework/homework";
+import {HomeworkTask} from "store/access/teacher/student-homework/studentHomeworkSlice";
 
 interface ColumnTask {
-    task: StudentHomeworkTask;
+    task: HomeworkTask
 }
 
 const WrapperTaskLeadTime = styled.div`

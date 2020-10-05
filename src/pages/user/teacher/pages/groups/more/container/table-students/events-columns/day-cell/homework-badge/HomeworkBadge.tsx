@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import styled from "styled-components";
 import {CheckCircleOutlined, ClockCircleOutlined, DeleteOutlined} from '@ant-design/icons';
-import {Homework} from "../../../../../../../../../../../store/access/teacher/students/homework/homework";
+import {StudentHomework} from "../../../../../../../../../../../store/access/teacher/student-homework/studentHomeworkSlice";
 import {Modal} from "lib/ui";
 import {Modal as ModalAntd} from "antd";
 import More from "./more/More";
@@ -9,7 +9,7 @@ import {cancelStudentHomework} from "../../../../../../../../../../../store/acce
 import {useDispatch} from "react-redux";
 import {useParams} from "react-router-dom";
 import {ParamsProps} from "../../../../../Group";
-import {fetchStudentsHomeworkDates} from "../../../../../../../../../../../store/access/teacher/students/homework/fetchStudentsHomeworkDates";
+import {fetchStudentsHomeworkDates} from "../../../../../../../../../../../store/access/teacher/student-homework/fetchStudentsHomeworkDates";
 
 interface HomeworkBadgeStyledProps extends React.HTMLAttributes<HTMLDivElement> {
     status: 'completing' | 'completed' | 'failed'
@@ -95,7 +95,7 @@ const HomeworkBadgeStyled: React.FC<HomeworkBadgeStyledProps> = styled.div<Homew
 `;
 
 interface HomeworkBadgeProps {
-    homework: Homework
+    homework: StudentHomework
 }
 
 const HomeworkBadge: React.FC<HomeworkBadgeProps> = ({homework}) => {

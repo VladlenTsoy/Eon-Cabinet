@@ -1,7 +1,6 @@
 import React from "react"
 import TableStudentsLayout from "./TableStudents.layout"
 import {useSelector} from "react-redux"
-import {studentsSelector} from "../../../../../../../../store/access/teacher/students/studentsSlice"
 import DataColumns from "./data-columns/DataColumns"
 import DefaultColumns from "./default-columns/DefaultColumns"
 import {useParams} from "react-router-dom"
@@ -13,6 +12,7 @@ import {
     useSelectSelectedStudentsByIdsGroupId
 } from "../../../../../../../../store/access/teacher/students/studentsSelectors"
 import {useHomeworkDates} from "../useHomeworkDates"
+import {studentHomeworkSelector} from "../../../../../../../../store/access/teacher/student-homework/studentHomeworkSlice"
 
 interface TableStudentsProps {
     tab: TabStudentsType
@@ -21,7 +21,7 @@ interface TableStudentsProps {
 
 const TableStudents: React.FC<TableStudentsProps> = ({tab, selectUsers}) => {
     const {id} = useParams<ParamsProps>()
-    const {homework} = useSelector(studentsSelector)
+    const homework = useSelector(studentHomeworkSelector)
 
     // Студенты
     const loading = useLoadingStudents()

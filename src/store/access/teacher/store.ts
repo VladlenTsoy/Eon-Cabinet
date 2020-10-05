@@ -9,6 +9,7 @@ import homework from './homework/homeworkSlice';
 import lists from './lists/listsSlice';
 import tasks from './tasks/tasksSlice';
 import students from './students/studentsSlice';
+import studentHomework from './student-homework/studentHomeworkSlice';
 import app from "../../common/app/appSlice";
 import language from "../../common/language/languageSlice";
 import game from "../../common/game/gameSplice";
@@ -32,6 +33,7 @@ export const teacherReducer = combineReducers({
     homework,
     tasks,
     students,
+    studentHomework,
     customExercises,
     homeworkExercises,
     lists,

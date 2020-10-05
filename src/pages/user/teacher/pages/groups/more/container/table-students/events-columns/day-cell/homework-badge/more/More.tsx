@@ -1,5 +1,5 @@
 import React from 'react';
-import {Homework} from "../../../../../../../../../../../../store/access/teacher/students/homework/homework";
+import {StudentHomework} from "store/access/teacher/student-homework/studentHomeworkSlice";
 import ColumnTask from "./column-task/ColumnTask";
 import styled from "styled-components";
 
@@ -10,7 +10,7 @@ const MoreStyled = styled.div`
 `
 
 interface MoreProps {
-    homework: Homework
+    homework: StudentHomework
 }
 
 const More: React.FC<MoreProps> = ({homework}) => {

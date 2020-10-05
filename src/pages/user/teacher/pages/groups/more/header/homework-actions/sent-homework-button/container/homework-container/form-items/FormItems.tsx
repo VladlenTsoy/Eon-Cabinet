@@ -10,7 +10,7 @@ import Exercises from "./exercises/Exercises";
 import {SaveOutlined} from "@ant-design/icons";
 import {sentHomeworkStudents} from "store/access/teacher/students/homework/sentHomeworkStudent";
 import {ParamsProps} from "../../../../../../Group";
-import {fetchStudentsHomeworkDates} from "store/access/teacher/students/homework/fetchStudentsHomeworkDates";
+import {fetchStudentsHomeworkDates} from "store/access/teacher/student-homework/fetchStudentsHomeworkDates";
 import {Homework} from "lib/types/teacher/Homework";
 
 const {TextArea} = Input;
