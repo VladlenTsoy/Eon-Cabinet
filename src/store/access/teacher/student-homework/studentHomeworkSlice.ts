@@ -4,7 +4,10 @@ import {fetchStudentsHomeworkDates} from "./fetchStudentsHomeworkDates"
 import {TeacherState} from "../store"
 
 export interface HomeworkTask {
-    task_name: string;
+    task: {
+        id: number
+        title: string
+    }
     first: {
         count_success: number;
         exodus: boolean;

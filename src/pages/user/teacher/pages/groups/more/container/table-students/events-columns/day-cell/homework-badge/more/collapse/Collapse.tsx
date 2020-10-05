@@ -2,11 +2,12 @@ import React from "react";
 import {Collapse} from "antd";
 import Tasks from "./tasks/Tasks";
 import Header from "./header/Header";
+import {StudentHomework} from "../../../../../../../../../../../../../store/access/teacher/student-homework/studentHomeworkSlice"
 
 const {Panel} = Collapse;
 
 interface CollapseHomeworkProps {
-    homework: any;
+    homework: StudentHomework;
 }
 
 const CollapseHomework: React.FC<CollapseHomeworkProps> = ({homework}) => {

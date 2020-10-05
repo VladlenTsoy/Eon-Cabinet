@@ -141,8 +141,6 @@ const studentsSlice = createSlice({
     }
 })
 
-export const studentsSelector = (state: TeacherState) => state.students
-
 export const {
     selectById: getStudentById
     // selectIds: selectStudentIds,

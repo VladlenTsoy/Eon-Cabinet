@@ -2,10 +2,10 @@ import React, {useState} from 'react';
 import styled from "styled-components";
 import {CheckCircleOutlined, ClockCircleOutlined, DeleteOutlined} from '@ant-design/icons';
 import {StudentHomework} from "../../../../../../../../../../../store/access/teacher/student-homework/studentHomeworkSlice";
-import {Modal} from "lib/ui";
+import {Drawer} from "lib/ui"
 import {Modal as ModalAntd} from "antd";
 import More from "./more/More";
-import {cancelStudentHomework} from "../../../../../../../../../../../store/access/teacher/students/homework/cancelStudentHomework";
+import {cancelStudentHomework} from "../../../../../../../../../../../store/access/teacher/student-homework/cancelStudentHomework";
 import {useDispatch} from "react-redux";
 import {useParams} from "react-router-dom";
 import {ParamsProps} from "../../../../../Group";
@@ -132,13 +132,14 @@ const HomeworkBadge: React.FC<HomeworkBadgeProps> = ({homework}) => {
                 </div>
             }
         </HomeworkBadgeStyled>
-        <Modal
+        <Drawer
             title={`Уровень: ${homework.level}`}
             visible={moreVisible}
-            onCancel={closeMore}
+            onClose={closeMore}
+            width="100%"
         >
             <More homework={homework}/>
-        </Modal>
+        </Drawer>
     </>;
 };
 

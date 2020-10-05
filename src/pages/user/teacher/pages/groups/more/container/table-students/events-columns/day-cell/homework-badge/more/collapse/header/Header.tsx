@@ -3,6 +3,7 @@ import {CheckCircleOutlined, ClockCircleOutlined, CloseCircleOutlined} from '@an
 import {Typography} from "antd";
 import styled from "styled-components";
 import moment from "moment";
+import {useLanguage} from "../../../../../../../../../../../../../../hooks/use-language"
 
 const {Text} = Typography;
 
@@ -50,7 +51,10 @@ interface HeaderCollapseHomeworkProps {
 }
 
 const Header: React.FC<HeaderCollapseHomeworkProps> = ({task}) => {
+    const {l} = useLanguage()
+
     const updateName = (_task: any) => {
+        const title = l('taskNames')[_task.task.discipline_id][_task.task.title]
         switch (Number(_task.task_id)) {
             case 1:
             case 2:
@@ -58,9 +62,9 @@ const Header: React.FC<HeaderCollapseHomeworkProps> = ({task}) => {
             case 4:
             case 23:
             case 24:
-                return _task.task_name + ` (${_task.settings.anzan === 'double' ? 'Двойной' : _task.settings.anzan === 'turbo' ? 'Турбо' : _task.settings.anzan === 'list' ? 'Листы' : 'Обычный'})`;
+                return title + ` (${_task.settings.anzan === 'double' ? 'Двойной' : _task.settings.anzan === 'turbo' ? 'Турбо' : _task.settings.anzan === 'list' ? 'Листы' : 'Обычный'})`;
         }
-        return _task.task_name;
+        return title
     };
 
     return <HeaderWrapper>

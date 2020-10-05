@@ -1,5 +1,5 @@
 import React from "react"
-import ResultMoreLayout from "../../../../../../../../../../../general/tasks/layouts/result/result-more/ResultMore.layout"
+import ResultMoreLayout from "../../../../../../../../../../../../../../../general/tasks/layouts/result/result-more/ResultMore.layout"
 import {TrophyOutlined} from "@ant-design/icons"
 
 interface FlashAnzanProps {
