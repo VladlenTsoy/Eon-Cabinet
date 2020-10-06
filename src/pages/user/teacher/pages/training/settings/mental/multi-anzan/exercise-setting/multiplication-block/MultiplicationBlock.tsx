@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
 import TextFit from "./TextFit";
+import {useLanguage} from "../../../../../../../../../../hooks/use-language"
 
 const MultiplicationWrapper = styled.div`
   padding: 0 1rem;
@@ -37,18 +38,17 @@ interface MultiplicationProps {
     setting: any;
 }
 
-// TODO - language
-const MultiplicationBlock: React.FC<MultiplicationProps> = ({}) => {
-    // const language = useSelector(languageSelector)
+const MultiplicationBlock: React.FC<MultiplicationProps> = ({setting}) => {
+    const {l} = useLanguage()
 
     return <MultiplicationWrapper>
         <span className="title">Режим</span>
         <div className="fit">
         <TextFit>
             <div className="desc">
-                {/*{language.data?.common.lengthNames[setting.length]}&nbsp;*/}
-                {/*<span>{language.data?.common.modeNames[setting.mode]}&nbsp;</span>*/}
-                {/*{setting.type === 'o' ? setting.theme : language.data?.common.typeNames[1][setting.type]}*/}
+                {l('lengthNames')[setting.length]}&nbsp;
+                <span>{l('modeNames')[setting.mode]}&nbsp;</span>
+                {setting.type === 'o' ? setting.theme : l('typeNames')[1][setting.type]}
             </div>
         </TextFit>
         </div>

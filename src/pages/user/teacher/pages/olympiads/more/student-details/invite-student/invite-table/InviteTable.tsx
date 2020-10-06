@@ -72,11 +72,10 @@ interface InviteTableProps {
 }
 
 // TODO - api
-// TODO - language
 const InviteTable: React.FC<InviteTableProps> = ({olympiad, fetch}) => {
-    // const {language} = useLanguage();
+    const {l} = useLanguage();
     const [timer, setTimer] = useState<any>(0);
-    const [students, setStudents] = useState<never[]>([]);
+    const [students] = useState<never[]>([]);
     const [loading, setLoading] = useState(false);
     const [selected, setSelected] = useState<any>([]);
 
@@ -125,9 +124,9 @@ const InviteTable: React.FC<InviteTableProps> = ({olympiad, fetch}) => {
                     </TableWrapper>
                 </ScrollWrapper> :
                 <Empty
-                    // description={
-                        // <DescriptionTitle>{language.common.empty}</DescriptionTitle>
-                    // }
+                    description={
+                        <DescriptionTitle>{l('empty')}</DescriptionTitle>
+                    }
                 /> :
             <LoadingBlock/>
         }

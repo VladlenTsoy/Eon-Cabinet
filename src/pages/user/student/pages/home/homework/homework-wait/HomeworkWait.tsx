@@ -19,14 +19,13 @@ interface HomeworkWait {
 
 }
 
-// TODO - language
 const HomeworkWait:React.FC<HomeworkWait> = () => {
-    // const {language} = useLanguage();
+    const {l} = useLanguage();
 
     return (
       <WaitWrapper to={''}>
           <HomeOutlined />
-          {/*<span>{language.common.empty}</span>*/}
+          <span>{l('empty')}</span>
       </WaitWrapper>
     );
 };

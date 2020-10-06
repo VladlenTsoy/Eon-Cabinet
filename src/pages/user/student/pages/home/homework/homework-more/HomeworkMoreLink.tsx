@@ -35,14 +35,13 @@ export const MoreWrapper: any = styled(Link)`
    }
 `;
 
-// TODO - language
 const HomeworkMoreLink = () => {
-    // const {language} = useLanguage();
+    const {l} = useLanguage();
 
     return (
       <MoreWrapper to="/homework" className="animated fadeIn">
           <ArrowRightOutlined />
-          {/*<span>{language.student.view_all_homework}</span>*/}
+          <span>{l('view_all_homework')}</span>
       </MoreWrapper>
     );
 };

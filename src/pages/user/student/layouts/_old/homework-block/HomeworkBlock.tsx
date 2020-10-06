@@ -47,9 +47,8 @@ interface HomeworkBlockProps {
     homework: any;
 }
 
-// TODO - language
 const HomeworkBlock: React.FC<HomeworkBlockProps> = ({homework}) => {
-    // const {language} = useLanguage();
+    const {l} = useLanguage();
     return (
         <Card className="animated fadeIn">
             <HomeworkWrapper>
@@ -57,12 +56,12 @@ const HomeworkBlock: React.FC<HomeworkBlockProps> = ({homework}) => {
                     {homework.status === 1 ? <CheckCircleOutlined/> : <HomeOutlined/>}
                 </div>
                 <div className="info-block">
-                    {/*<p className="sub-title">{language.common.homework}</p>*/}
-                    {/*<p className="title">{language.common.level} № {homework.level}</p>*/}
+                    <p className="sub-title">{l('homework')}</p>
+                    <p className="title">{l('level')} № {homework.level}</p>
                 </div>
                 <Link to={`/homework/${homework.id}`}>
                     <Button icon={<FlagOutlined/>} block>
-                        {/*{language.common.more}*/}
+                        {l('more')}
                     </Button>
                 </Link>
             </HomeworkWrapper>

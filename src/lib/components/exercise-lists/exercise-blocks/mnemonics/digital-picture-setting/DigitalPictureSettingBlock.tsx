@@ -5,7 +5,6 @@ interface DigitalPictureSettingBlockProps {
     setting: any;
 }
 
-// TODO - language
 const DigitalPictureSettingBlock: React.FC<DigitalPictureSettingBlockProps> = ({setting}) => {
     const {l} = useLanguage();
     return <>

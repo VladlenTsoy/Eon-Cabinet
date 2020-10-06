@@ -32,11 +32,9 @@ interface WordListFormHeaderProps {
     addSetting: any;
 }
 
-// TODO - language
 const WordListFormHeader: React.FC<WordListFormHeaderProps> = ({addSetting}) => {
     const [isBreakpoint] = useScreenWindow({breakpoint: 'md'});
-    // const {language} = useLanguage();
-    // const {common} = language;
+    const {l} = useLanguage();
 
     const submitHandler = (values: any) => {
         addSetting(values);
@@ -57,26 +55,26 @@ const WordListFormHeader: React.FC<WordListFormHeaderProps> = ({addSetting}) => 
                 <Col xl={7} md={8} xs={12}>
                     <FormItem
                         name="mode"
-                        // label={common.mode}
+                        label={l('mode')}
                         requiredMsg="Выберите режим!"
                     >
                         <Select>
-                            {/*{common.tasksTraining.wordsList.mode.map((type: string, key: number) =>*/}
-                            {/*    <Option value={key} key={key}>{type}</Option>*/}
-                            {/*)}*/}
+                            {l('tasksTraining').wordsList.mode.map((type: string, key: number) =>
+                                <Option value={key} key={key}>{type}</Option>
+                            )}
                         </Select>
                     </FormItem>
                 </Col>
                 <Col xl={7} md={8} xs={12}>
                     <FormItem
                         name="type"
-                        // label={common.type}
+                        label={l('type')}
                         requiredMsg="Выберите тип!"
                     >
                         <Select>
-                            {/*{common.tasksTraining.wordsList.type.map((type: string, key: number) =>*/}
-                            {/*    <Option value={key} key={key}>{type}</Option>*/}
-                            {/*)}*/}
+                            {l('tasksTraining').wordsList.type.map((type: string, key: number) =>
+                                <Option value={key} key={key}>{type}</Option>
+                            )}
                         </Select>
                     </FormItem>
                 </Col>
@@ -84,7 +82,7 @@ const WordListFormHeader: React.FC<WordListFormHeaderProps> = ({addSetting}) => 
                     <CounterWrapper>
                         <FormItem
                             name="count"
-                            // label={common.qty}
+                            label={l('qty')}
                             requiredMsg="Введите кол-во!"
                             marginBottom="0"
                         >

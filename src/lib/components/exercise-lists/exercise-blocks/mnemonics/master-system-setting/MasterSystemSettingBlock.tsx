@@ -5,7 +5,6 @@ interface MasterSystemSettingBlockProps {
     setting: any;
 }
 
-// TODO - language
 const MasterSystemSettingBlock: React.FC<MasterSystemSettingBlockProps> = ({setting}) => {
     const {l} = useLanguage();
     return <>

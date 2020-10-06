@@ -5,7 +5,6 @@ interface PersonalitiesSettingBlockProps {
     setting: any;
 }
 
-// TODO - language
 const PersonalitiesSettingBlock:React.FC<PersonalitiesSettingBlockProps> = ({setting}) => {
     const {l} = useLanguage();
     return <>

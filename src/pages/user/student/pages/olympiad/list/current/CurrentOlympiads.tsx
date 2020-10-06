@@ -31,11 +31,10 @@ interface CurrentOlympiadsProps {
 
 }
 
-// TODO - language
 const CurrentOlympiads: React.FC<CurrentOlympiadsProps> = () => {
     const {width} = useWindowSize();
     const [, isBreakpoint] = useScreenWindow({breakpoint: 'md'});
-    // const {language} = useLanguage();
+    const {l} = useLanguage();
     const [loading, olympiads, , fetch] = useApiUserGeneral({
         url: 'student/olympiads/current',
         initValue: [],
@@ -49,13 +48,13 @@ const CurrentOlympiads: React.FC<CurrentOlympiadsProps> = () => {
             <Empty
                 description={
                     <>
-                        {/*<DescriptionTitle>{language.common.empty}</DescriptionTitle>*/}
+                        <DescriptionTitle>{l('empty')}</DescriptionTitle>
                         <span>Нет текущих олимпиад.</span>
                     </>
                 }
             >
                 <Button type="ghost" size="large" onClick={fetch} icon={<RedoOutlined />}>
-                    {/*{language.student.refresh}*/}
+                    {l('refresh')}
                 </Button>
             </Empty>
         );

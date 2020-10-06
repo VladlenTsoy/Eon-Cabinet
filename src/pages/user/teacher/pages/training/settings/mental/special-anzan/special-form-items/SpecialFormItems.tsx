@@ -7,19 +7,18 @@ import {useLanguage} from "../../../../../../../../../hooks/use-language";
 interface SpecialFormItemsProps {
 }
 
-// TODO - language
 const SpecialFormItems: React.FC<SpecialFormItemsProps> = () => {
-    // const {language} = useLanguage();
+    const {l} = useLanguage();
 
     return <Row gutter={15}>
         <Col span={24}>
             <Form.Item name="mode" required>
                 <Radio.Group className="setting-mode" buttonStyle="solid">
                     <Radio.Button value="plus">
-                        {/*{language.common.modeNames['plus']}*/}
+                        {l('modeNames')['plus']}
                     </Radio.Button>
                     <Radio.Button value="plus-minus">
-                        {/*{language.common.modeNames['plus-minus']}*/}
+                        {l('modeNames')['plus-minus']}
                     </Radio.Button>
                 </Radio.Group>
             </Form.Item>
