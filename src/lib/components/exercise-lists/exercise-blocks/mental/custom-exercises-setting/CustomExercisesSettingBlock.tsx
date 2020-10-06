@@ -13,9 +13,8 @@ interface CustomExercisesSettingBlockProps {
     setting: any;
 }
 
-// TODO - language
 const CustomExercisesSettingBlock: React.FC<CustomExercisesSettingBlockProps> = ({setting}) => {
-    // const {language} = useLanguage();
+    const {l} = useLanguage();
     const [isMultiplication] = useState(setting.mode === 'divide' || setting.mode === 'multiply');
 
     return <>
@@ -30,7 +29,7 @@ const CustomExercisesSettingBlock: React.FC<CustomExercisesSettingBlockProps> = 
                 <tr>
                     <td>Режим:</td>
                     <td>
-                        {/*{language.common.modeNames[setting.mode]}&nbsp;*/}
+                        {l('modeNames')[setting.mode]}&nbsp;
                     </td>
                     {setting.anzan === 'list' ?
                         <>
@@ -42,7 +41,7 @@ const CustomExercisesSettingBlock: React.FC<CustomExercisesSettingBlockProps> = 
                 </tr> : [
                     <tr key="mode">
                         <td>Мод:</td>
-                        {/*<td><b>{language.common.modeNames[setting.mode]}</b></td>*/}
+                        <td><b>{l('modeNames')[setting.mode]}</b></td>
                         {setting.anzan === 'list' ?
                             <>
                                 <td>Таблиц:</td>

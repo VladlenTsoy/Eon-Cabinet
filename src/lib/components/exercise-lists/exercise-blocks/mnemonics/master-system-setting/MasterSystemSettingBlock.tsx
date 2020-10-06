@@ -7,11 +7,11 @@ interface MasterSystemSettingBlockProps {
 
 // TODO - language
 const MasterSystemSettingBlock: React.FC<MasterSystemSettingBlockProps> = ({setting}) => {
-    // const {language} = useLanguage();
+    const {l} = useLanguage();
     return <>
         <tr>
             <td className="text-mute">Мод:</td>
-            {/*<td>{language.common.mnemonic3ModeNames[setting.mode]}</td>*/}
+            <td>{l('mnemonic3ModeNames')[setting.mode]}</td>
             <td colSpan={2}/>
         </tr>
         <tr>

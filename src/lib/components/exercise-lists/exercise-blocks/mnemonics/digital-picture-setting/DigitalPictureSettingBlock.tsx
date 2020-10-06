@@ -7,11 +7,11 @@ interface DigitalPictureSettingBlockProps {
 
 // TODO - language
 const DigitalPictureSettingBlock: React.FC<DigitalPictureSettingBlockProps> = ({setting}) => {
-    // const {language} = useLanguage();
+    const {l} = useLanguage();
     return <>
         <tr>
             <td className="text-mute">Мод:</td>
-            {/*<td>{language.common.mnemonicModeNames[setting.mode]}</td>*/}
+            <td>{l('mnemonicModeNames')[setting.mode]}</td>
             <td className="text-mute">Кол-во:</td>
             <td>{setting.count}</td>
         </tr>

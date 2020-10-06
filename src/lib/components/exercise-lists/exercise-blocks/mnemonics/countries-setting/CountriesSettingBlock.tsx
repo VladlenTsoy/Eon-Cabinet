@@ -5,13 +5,12 @@ interface CountriesSettingBlockProps {
     setting: any;
 }
 
-// TODO - language
 const CountriesSettingBlock: React.FC<CountriesSettingBlockProps> = ({setting}) => {
-    // const {language} = useLanguage();
+    const {l} = useLanguage();
     return <>
         <tr>
             <td className="text-mute">Мод:</td>
-            {/*<td>{language.common.mnemonicModeNames[setting.mode]}</td>*/}
+            <td>{l('mnemonicModeNames')[setting.mode]}</td>
             <td colSpan={2}/>
         </tr>
         <tr>

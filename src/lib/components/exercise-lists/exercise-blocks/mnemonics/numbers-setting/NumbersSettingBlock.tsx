@@ -15,9 +15,8 @@ interface NumbersSettingBlockProps {
     setting: any;
 }
 
-// TODO - language
 const NumbersSettingBlock:React.FC<NumbersSettingBlockProps> = ({setting}) => {
-    // const {language} = useLanguage();
+    const {l} = useLanguage();
     return <>
         <tr>
             <TdAnzanWrapper colSpan={6}>
@@ -32,7 +31,7 @@ const NumbersSettingBlock:React.FC<NumbersSettingBlockProps> = ({setting}) => {
         </tr>
         <tr>
             <td className="text-mute">Мод:</td>
-            {/*<td>{language.common.mnemonic2ModeNames[setting.mode]}</td>*/}
+            <td>{l('mnemonic2ModeNames')[setting.mode]}</td>
             <td colSpan={2}/>
         </tr>
         <tr>
