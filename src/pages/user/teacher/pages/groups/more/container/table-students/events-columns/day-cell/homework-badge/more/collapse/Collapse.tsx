@@ -2,7 +2,7 @@ import React from "react"
 import {Collapse} from "antd"
 import Tasks from "./tasks/Tasks"
 import Header from "./header/Header"
-import {StudentSentHomeworkTask} from "../../../../../../../../../../../../../lib/types/teacher/StudentHomework"
+import {StudentSentHomeworkTask} from "lib/types/teacher/StudentHomework"
 
 const {Panel} = Collapse
 
