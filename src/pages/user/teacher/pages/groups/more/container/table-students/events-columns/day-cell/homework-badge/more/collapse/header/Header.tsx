@@ -83,8 +83,8 @@ const Header: React.FC<HeaderCollapseHomeworkProps> = ({task}) => {
             {updateName(task)}
         </div>
         <div>
-            <Text type="secondary">Всего:</Text> {task.count_all}
-            <Text type="secondary"> \ Выполнено:</Text> {task.first ? task.first.count_success : 0}
+            <Text type="secondary">Выполнено:</Text> {task.first ? task.first.count_success : 0}
+            <Text type="secondary"> / Всего:</Text> {task.count_all}
         </div>
     </HeaderWrapper>
 };
