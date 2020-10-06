@@ -2,6 +2,7 @@ import {Homework} from "./Homework"
 import {Task} from "./Task"
 
 export interface StudentSentHomeworkTask {
+    homework_id: Homework['id']
     task: {
         id: Task["id"]
         title: Task["title"]

@@ -32,10 +32,10 @@ const studentHomeworkTasksSlice = createSlice({
 })
 
 export const {
-    selectById: getStudentHomeworkTasksById,
+    // selectById: getStudentHomeworkTasksById,
     // selectIds: selectStudentIds,
     // selectEntities: selectStudentEntities,
-    selectAll: selectAllStudentHomeworkTasks,
+    // selectAll: selectAllStudentHomeworkTasks,
     // selectTotal: selectTotalStudents
 } = studentHomeworkTasksAdapter.getSelectors<TeacherState>(state => state.studentHomeworkTasks)
 

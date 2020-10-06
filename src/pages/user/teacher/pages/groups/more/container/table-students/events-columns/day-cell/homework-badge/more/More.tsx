@@ -5,7 +5,7 @@ import {StudentSentHomework} from "lib/types/teacher/StudentHomework"
 import {fetchStudentsHomeworkTasks} from "store/access/teacher/student-homework-tasks/fetchStudentHomeworkTasks"
 import {useTeacherDispatch} from "store/access/teacher/store"
 import {
-    useAllStudentHomeworkTasks,
+    useStudentHomeworkTasksBySentId,
     useLoadingStudentHomeworkTasks
 } from "store/access/teacher/student-homework-tasks/studentHomeworkTasksSelectors"
 import {LoadingBlock} from "lib/ui"
@@ -20,7 +20,7 @@ interface MoreProps {
 const More: React.FC<MoreProps> = ({homework}) => {
     const dispatch = useTeacherDispatch()
     const loading = useLoadingStudentHomeworkTasks()
-    const tasks = useAllStudentHomeworkTasks()
+    const tasks = useStudentHomeworkTasksBySentId(homework.homework.id)
 
     useEffect(() => {
         const promise = dispatch(fetchStudentsHomeworkTasks({sentId: homework.id}))
