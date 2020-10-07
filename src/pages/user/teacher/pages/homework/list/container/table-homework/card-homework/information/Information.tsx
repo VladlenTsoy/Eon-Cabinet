@@ -31,7 +31,7 @@ const ContentStyled = styled.div`
   
   @media (max-width: 1600px) {
     grid-template-columns: 100px 1fr;
-    gap: 0 0.5rem;
+    gap: 0.5rem;
     
     .date {
       font-size: 20px;

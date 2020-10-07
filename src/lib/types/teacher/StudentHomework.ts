@@ -32,7 +32,6 @@ export interface StudentSentHomework {
     count_all: number
     count_success: number
     status: number;
-    // tasks: StudentSentHomeworkTask[];
     user_id: number;
     created_at: string;
 }

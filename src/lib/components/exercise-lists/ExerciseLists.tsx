@@ -16,6 +16,7 @@ import MasterSystemSettingBlock from "./exercise-blocks/mnemonics/master-system-
 import CountriesSettingBlock from "./exercise-blocks/mnemonics/countries-setting/CountriesSettingBlock";
 import DigitalPictureSettingBlock from "./exercise-blocks/mnemonics/digital-picture-setting/DigitalPictureSettingBlock";
 import CustomExercisesSettingBlock from "./exercise-blocks/mental/custom-exercises-setting/CustomExercisesSettingBlock";
+import {useLanguage} from "../../../hooks/use-language"
 
 const ExerciseTitleWrapper = styled.div`
   text-align: center;
@@ -39,6 +40,7 @@ interface ExerciseWrapperProps {
 }
 
 const ExerciseLists: React.FC<ExerciseWrapperProps> = ({exercise, deleteExercise, edit}) => {
+    const {l} = useLanguage()
     const outputSetting = () => {
         let setting;
         switch (exercise.task_id) {
@@ -101,7 +103,7 @@ const ExerciseLists: React.FC<ExerciseWrapperProps> = ({exercise, deleteExercise
 
     return (
         <ExerciseTitleWrapper>
-            <h2>{exercise.task_name}</h2>
+            <h2>{l('taskNames')[exercise.task.discipline_id][exercise.task.title]}</h2>
             {outputSetting()}
             {edit ?
                 <Button danger size="small" icon={<DeleteOutlined/>} onClick={deleteExercise}/> :

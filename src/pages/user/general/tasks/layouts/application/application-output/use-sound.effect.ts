@@ -25,7 +25,7 @@ export const useSoundEffect: UseSoundEffectTypes = (
         } else if (type === 'ru' || type === 'en') {
             if (typeof output !== 'string' && typeof output !== 'number') return;
 
-            const urlAudio = require(`assets/sounds/numbers/${type}/${output}.mp3`);
+            const urlAudio = (`http://192.168.1.37:4000/sounds/numbers/${type}/${output}.mp3`);
             const sound = new Audio(urlAudio);
             sound.currentTime = type === 'en' ? 0.125 : 0.085;
             let playbackRate = 1.5;

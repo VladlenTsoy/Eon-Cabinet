@@ -12,7 +12,7 @@ interface ArgProps {
 export const fetchExercisesByHomeworkId = createAsyncThunk<ReturnedType, ArgProps, TeacherThunkProps>(
     'teacher/homework-exercises/fetch',
     async ({homeworkId}, {signal}) => {
-        return await apiRequest('get', `/teacher/tasks/homework/${homeworkId}/`, {signal})
+        return await apiRequest('get', `/teacher/tasks/homework/${homeworkId}/`, {signal, api2: true})
     },
     {
         condition({homeworkId}, {getState}) {

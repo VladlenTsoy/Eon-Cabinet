@@ -1,15 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import {Typography} from "antd"
 import {PlusOutlined} from "@ant-design/icons"
-
-const {Title} = Typography
-
-const ContainerStyled = styled.div`
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 1.5rem;
-`
 
 const TasksContainerStyled = styled.div`
     display: grid;
@@ -51,22 +42,19 @@ const TaskStyled = styled.div`
 
 const Container = () => {
     return (
-        <ContainerStyled>
-            <Title level={3}>Создание Уровня #2</Title>
-            <div>
-                <TasksContainerStyled>
+        <>
+            <TasksContainerStyled>
 
-                    <TaskStyled>
-                        <h2>Анзан</h2>
-                    </TaskStyled>
+                <TaskStyled>
+                    <h2>Анзан</h2>
+                </TaskStyled>
 
-                    <AddTaskStyled>
-                        <PlusOutlined />
-                        <span className="title">Добавить задание</span>
-                    </AddTaskStyled>
-                </TasksContainerStyled>
-            </div>
-        </ContainerStyled>
+                <AddTaskStyled>
+                    <PlusOutlined/>
+                    <span className="title">Добавить задание</span>
+                </AddTaskStyled>
+            </TasksContainerStyled>
+        </>
     )
 }
 

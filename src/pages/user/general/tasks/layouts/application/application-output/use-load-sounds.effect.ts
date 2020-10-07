@@ -39,7 +39,7 @@ export const useLoadSoundsEffect: LoadSoundTypes = ({setting}) => {
 
     const createAudios = useCallback((numbers: number[]) => {
         return numbers.map((number) => {
-            const urlAudio = require(`assets/sounds/numbers/${setting.sound}/${number}.mp3`);
+            const urlAudio = `http://192.168.1.37:4000/sounds/numbers/${setting.sound}/${number}.mp3`;
             return new Audio(urlAudio);
         });
     }, [setting]);
