@@ -39,7 +39,8 @@ export const useLoadSoundsEffect: LoadSoundTypes = ({setting}) => {
 
     const createAudios = useCallback((numbers: number[]) => {
         return numbers.map((number) => {
-            const urlAudio = require(`assets/sounds/numbers/${setting.sound}/${number}.mp3`);
+            const publicPath = process.env.NODE_ENV === 'production' ? 'https://api.eon.uz' : 'http://192.168.1.37:8000'
+            const urlAudio = (`${publicPath}/sounds/numbers/${setting.sound}/${number}.mp3`);
             return new Audio(urlAudio);
         });
     }, [setting]);
