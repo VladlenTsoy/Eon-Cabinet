@@ -8,6 +8,6 @@ type ReturnedType = Discipline[]
 export const fetchDisciplines = createAsyncThunk<ReturnedType, undefined, TeacherThunkProps>(
     'teacher/discipline/fetch',
     async () => {
-        return await apiRequest('get', 'teacher/disciplines')
+        return await apiRequest('get', 'teacher/disciplines', {api2: true})
     }
 )

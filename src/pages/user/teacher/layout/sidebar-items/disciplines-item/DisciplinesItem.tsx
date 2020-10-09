@@ -11,8 +11,10 @@ import {FaBrain} from "react-icons/fa"
 import {CalculatorOutlined} from "@ant-design/icons"
 import {SidebarButton} from "../../../../../../lib/layouts/facebook/header/sidebars/sidebar-button/SidebarButton"
 import {AccountItem} from "../../../../../../lib/layouts/dashboard/header/laptop/account-menu/AccountMenu"
+import {useLanguage} from "../../../../../../hooks/use-language"
 
 const DisciplinesItem = () => {
+    const {l} = useLanguage()
     const [active, setActive] = useState(false)
     const {disciplines, activeDisciplineId} = useSelector(disciplineSelector)
     const dispatch = useDispatch()
@@ -34,7 +36,7 @@ const DisciplinesItem = () => {
                 <AccountItem key={discipline.id} onClick={() => handleChange(discipline.id)}>
                     {discipline.id === 1 && <CalculatorOutlined/>}
                     {discipline.id === 2 && <span className="ricon"><FaBrain/></span>}
-                    {discipline.title}
+                    {l('methods')[discipline.title]}
                 </AccountItem>
             )}
         </Menu>

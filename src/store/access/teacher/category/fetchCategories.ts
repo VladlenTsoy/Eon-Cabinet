@@ -8,6 +8,6 @@ type ReturnedType = Category[]
 export const fetchCategories = createAsyncThunk<ReturnedType, undefined, TeacherThunkProps>(
     'category/fetch',
     async () => {
-        return apiRequest('get', 'categories', {type: "teacher"})
+        return apiRequest('get', 'categories', {type: "teacher", api2: true})
     }
 )

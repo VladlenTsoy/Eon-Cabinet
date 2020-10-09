@@ -5,6 +5,6 @@ import {TeacherThunkProps} from "../store";
 export const fetchAlgorithms = createAsyncThunk<any, undefined, TeacherThunkProps>(
     'algorithm/fetch',
     async () => {
-        return await apiRequest('get', 'teacher/algorithms');
+        return await apiRequest('get', 'teacher/algorithms', {api2: true});
     }
 )
