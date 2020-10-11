@@ -27,6 +27,6 @@ export const authUser = createAsyncThunk<ReturnedType, ArgsProps, CommonThunkPro
                 height: window.screen.height
             },
         }
-        return await apiRequest('post', `login`, {data: {...data, ...detect}, signal, type: 'guest'});
+        return await apiRequest('post', `login`, {data: {...data, ...detect}, signal, type: 'guest', api2: true});
     },
 )

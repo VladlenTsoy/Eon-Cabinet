@@ -56,7 +56,7 @@ const HeaderProfile: React.FC<HeaderProfileProps> = ({mr}) => {
     return (
         <ProfileWrapper to="/profile" mr={mr}>
             <Avatar
-                src={user.image}
+                src={user.url_image}
                 alt={`${user.last_name} ${user.first_name}`}
             />
             <WrapperProfileData>

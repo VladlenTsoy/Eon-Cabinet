@@ -9,7 +9,7 @@ type ReturnedType = User
 export const fetchUser = createAsyncThunk<ReturnedType, undefined, CommonThunkProps>(
     'user/fetch',
     async (_, {signal}) => {
-        return await apiRequest('get', `/`, {signal})
+        return await apiRequest('get', `/`, {signal, api2: true})
             .catch((e) => {
                 if (e.message === 'error_token')
                     removeCookie('token_access');

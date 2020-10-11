@@ -9,6 +9,6 @@ interface ReturnedType {
 export const logoutUser = createAsyncThunk<ReturnedType, undefined, TeacherThunkProps>(
     'user/logout',
     async (_, {signal}) => {
-        return await apiRequest('delete', `logout`, {signal});
+        return await apiRequest('delete', `logout`, {signal, api2: true});
     },
 );

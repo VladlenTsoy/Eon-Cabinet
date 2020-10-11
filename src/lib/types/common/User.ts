@@ -4,7 +4,7 @@ export interface User {
     last_name: string;
     email: string;
     email_verified_at?: string;
-    image: string;
+    url_image: string;
     access: 'student' | 'teacher' | 'director-franchise' | 'admin';
     status: 'active' | 'test'
     lang_id?: string

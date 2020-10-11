@@ -8,7 +8,7 @@ type ReturnedType = Task[]
 export const fetchTasks = createAsyncThunk<ReturnedType, undefined, TeacherThunkProps>(
     'tasks/fetch',
     async (_, {signal}) => {
-        return await apiRequest('get', `/tasks`, {type: 'teacher', signal});
+        return await apiRequest('get', `/tasks`, {type: 'teacher', signal, api2: true});
     },
     {
         condition(_, {getState}: any): any {

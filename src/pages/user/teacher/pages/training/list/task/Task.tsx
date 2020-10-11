@@ -5,6 +5,7 @@ import {Typography} from "antd";
 import {Card} from "lib/ui";
 import styled from "styled-components";
 import {Task} from "../../../../../../../lib/types/teacher/Task";
+import {useLanguage} from "../../../../../../../hooks/use-language"
 
 const {Title} = Typography;
 
@@ -45,12 +46,14 @@ interface TaskBlockProps {
 }
 
 const TaskBlock: React.FC<TaskBlockProps> = ({task}) => {
+    const {l} = useLanguage()
+
     return <TaskCardWrapper block={task.block}>
         <div className="image-block">
-            <img src={task.image} alt={task.title}/>
+            <img src={task.url_image} alt={l('taskNames')[task.discipline_id][task.title]}/>
         </div>
         <div className="container-block">
-            <Title level={4}>{task.title}</Title>
+            <Title level={4}>{l('taskNames')[task.discipline_id][task.title]}</Title>
             <Link to={`/training/${task.discipline_id}/${task.id}/setting`}>
                 <FlagOutlined/>
                 Начать
