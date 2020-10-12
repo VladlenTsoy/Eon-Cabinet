@@ -20,8 +20,9 @@ export {default as DrawerActions} from './drawer/DrawerActions';
 export {default as Tabs} from './tabs/Tabs';
 export {default as TabPane} from './tabs/TabPane';
 export {default as Logo} from './logo/Logo';
-export {default as Button} from './button/Button';
 
+/* Кнопка */
+export {default as Button} from './button/Button';
 /* Фото профиля */
 export {default as Avatar} from './avatar/Avatar';
 /* Input Number Stepper */

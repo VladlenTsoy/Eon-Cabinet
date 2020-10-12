@@ -63,6 +63,7 @@ const Avatar: React.FC<UserImageProps> = ({src, alt, width = "38px", mr}) => {
         image.onload = () => setLoading(false)
         return () => {
             image.onload = null
+            image.onerror = null
         }
     }, [src])
 
