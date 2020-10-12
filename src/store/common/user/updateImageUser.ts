@@ -16,7 +16,7 @@ export const updateImageUser = createAsyncThunk<ReturnedType, ParamsProps, Teach
     async ({userId, data}, {getState}) => {
         const {language} = getState()
         //
-        const response = await apiRequest('post', `/${userId}/image`, {data});
+        const response = await apiRequest('post', `/${userId}/image`, {data, api2: true});
         response && message({
             type: 'success',
             content: `${language.data.common['youHaveSuccessfullyChangedThePhoto']}!`

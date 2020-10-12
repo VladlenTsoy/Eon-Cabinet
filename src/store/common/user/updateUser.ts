@@ -15,7 +15,7 @@ export const updateUser = createAsyncThunk<ReturnedType, ArgsProps, CommonThunkP
     'user/update',
     async ({userId, data}) => {
         //
-        const response = await apiRequest('patch', `/${userId}`, {data});
+        const response = await apiRequest('patch', `/${userId}`, {data, api2: true});
         response && message({type: 'success', content: 'Вы успешно обновили данные пользователя!'});
         return response;
     }

@@ -37,14 +37,14 @@ const PhotoBlock: React.FC = () => {
             img.type !== "image/gif")
             return message.error('Неверный формат, попробуйте другую фотографию!');
 
-        data.append("images", img);
+        data.append("image", img);
         setLoading(true);
         await dispatch(updateImageUser({userId: user.id, data}))
         setLoading(false);
     };
 
     return <AvatarLabelWrapper>
-        <img src={user.image} alt={`${user.first_name} ${user.last_name}`}/>
+        <img src={user.url_image} alt={`${user.first_name} ${user.last_name}`}/>
         <input type="file" accept="image/x-png,image/gif,image/jpeg" onChange={handleChangeImage}/>
         <IconsWrapper>
             {

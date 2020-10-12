@@ -8,7 +8,18 @@ import {useCallback} from "react"
 
 const confirm = Modal.confirm
 
-export const useUser = (): any => {
+type Props = () => any
+
+// {
+//     userId: User['id'] | undefined,
+//         user: User | null,
+//     updateUser: (data: any) => void,
+//     logout: () => void,
+//     token: string | null,
+//     loading: boolean
+// }
+
+export const useUser:Props = () => {
     const user = useSelector(userSelector)
     const dispatch = useDispatch()
 
