@@ -1,7 +1,7 @@
 import React from "react"
 import {Logo} from "lib/ui"
 import styled from "styled-components"
-import HeaderProfile from "../../../dashboard/header/items/profile/HeaderProfile"
+import HeaderProfile from "./profile/HeaderProfile"
 
 const LogoBlockStyled = styled.div`
     display: flex;

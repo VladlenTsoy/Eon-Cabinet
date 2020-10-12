@@ -1,7 +1,7 @@
 import React from 'react';
 import {IoMdMoon, IoMdSunny} from "react-icons/all";
 import {useDispatch, useSelector} from "react-redux";
-import {appSelector, changeIsDark} from "../../../../../../store/common/app/appSlice";
+import {appSelector, changeIsDark} from "../../../../../../../../store/common/app/appSlice";
 
 const DarkSwitch: React.FC = () => {
     const {isDark} = useSelector(appSelector);

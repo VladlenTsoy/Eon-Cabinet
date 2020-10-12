@@ -7,7 +7,7 @@ import Footer from "./footer/Footer"
 import {useScreenWindow} from "../../../hooks/use-screen-window.effect"
 import {useDispatch, useSelector} from "react-redux"
 import {appSelector, changeTitle} from "../../../store/common/app/appSlice"
-import {Titles} from "../dashboard/header/laptop/title/Titles"
+import {Titles} from "../../../utils/Titles"
 
 const LayoutStyled = styled.div`
     background: ${(props) => props.theme["@layout-body-background"]};

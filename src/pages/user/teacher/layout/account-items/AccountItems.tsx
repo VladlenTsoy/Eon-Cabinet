@@ -1,6 +1,6 @@
 import React from "react"
 import HelpItem from "./help-item/HelpItem"
-import {AccountItem} from "../../../../../lib/layouts/dashboard/header/laptop/account-menu/AccountMenu"
+import {AccountItem} from "../../../../../lib/layouts/facebook/header/sidebars/account-menu/AccountItem"
 import PaymentItem from "./payment-item/PaymentItem"
 import AboutItem from "./about-item/AboutItem"
 import ProfileItem from "./profile-item/ProfileItem"

@@ -5,13 +5,12 @@ import {
 } from "@ant-design/icons"
 import {Dropdown, Menu} from "antd"
 import {SidebarButton} from "lib/layouts/facebook/header/sidebars/sidebar-button/SidebarButton"
-import DarkSwitch from "../../../../dashboard/header/items/dark-switch/DarkSwitch"
-import {AccountItem} from "../../../../dashboard/header/laptop/account-menu/AccountMenu"
+import DarkSwitch from "./items/dark-switch/DarkSwitch"
+import {AccountItem} from "./AccountItem"
 import {useUser} from "../../../../../../hooks/use-user"
 import {useScreenWindow} from "../../../../../../hooks/use-screen-window.effect"
 import {Drawer} from "../../../../../ui"
 import styled from "styled-components"
-import {useLocation} from "react-router-dom"
 
 const AccountMenuDrawStyled = styled(Drawer)`
     .ant-drawer-wrapper-body .ant-drawer-body {

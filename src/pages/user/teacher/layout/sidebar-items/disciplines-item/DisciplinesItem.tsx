@@ -10,7 +10,7 @@ import {resetCategorySlice} from "store/access/teacher/category/categorySlice"
 import {FaBrain} from "react-icons/fa"
 import {CalculatorOutlined} from "@ant-design/icons"
 import {SidebarButton} from "../../../../../../lib/layouts/facebook/header/sidebars/sidebar-button/SidebarButton"
-import {AccountItem} from "../../../../../../lib/layouts/dashboard/header/laptop/account-menu/AccountMenu"
+import {AccountItem} from "../../../../../../lib/layouts/facebook/header/sidebars/account-menu/AccountItem"
 import {useLanguage} from "../../../../../../hooks/use-language"
 
 const DisciplinesItem = () => {
