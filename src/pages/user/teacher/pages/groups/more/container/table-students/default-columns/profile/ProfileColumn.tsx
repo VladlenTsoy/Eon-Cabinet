@@ -1,5 +1,5 @@
 import React, {useState} from "react"
-import {UserImage} from "../../../../../../../../../../lib/ui";
+import {Avatar} from "../../../../../../../../../../lib/ui";
 import styled from "styled-components";
 import {ModalMenuStyled} from "../../../../../../../../../../lib/ui/modal-menu/ModalMenu"
 import ActionColumn from "./action/ActionColumn"
@@ -27,7 +27,7 @@ const ProfileColumn:React.FC<ProfileColumnProps> = ({student}) => {
 
     return <>
         <UserNameWrapper onClick={open}>
-            <UserImage
+            <Avatar
                 src={student.url_image}
                 alt={`${student.last_name} ${student.first_name}`}
                 width="50px"

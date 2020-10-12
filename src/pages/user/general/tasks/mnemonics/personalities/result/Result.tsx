@@ -1,7 +1,7 @@
 import React from 'react';
 import {useSelector} from "react-redux";
 import {TrophyOutlined} from '@ant-design/icons';
-import {UserImage} from "../../../../../../../lib/ui";
+import {Avatar} from "../../../../../../../lib/ui";
 import moment from "moment";
 import ResultMoreLayout from "../../../layouts/result/result-more/ResultMore.layout";
 import {gameSelector} from "../../../../../../../store/common/game/gameSplice";
@@ -32,7 +32,7 @@ const ResultBlock = () => {
                             <TrophyOutlined/>
                         </td>
                         <td rowSpan={mode > 1 ? 2 : 1}>
-                            <UserImage
+                            <Avatar
                                 width="150px"
                                 className="image"
                                 src={total.exercise.url_photo}

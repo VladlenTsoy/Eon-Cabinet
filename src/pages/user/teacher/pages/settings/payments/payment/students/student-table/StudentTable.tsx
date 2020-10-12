@@ -1,5 +1,5 @@
 import React from 'react';
-import {UserImage} from "../../../../../../../../../lib/ui";
+import {Avatar} from "../../../../../../../../../lib/ui";
 import { MinusOutlined } from '@ant-design/icons';
 import {Button} from "antd";
 import styled from "styled-components";
@@ -42,7 +42,7 @@ const StudentTable = () => {
             <tr>
                 <td>
                     <UserNameWrapper to={`/groups/1/student/5`}>
-                        <UserImage
+                        <Avatar
                             src="http://api.eon.loc/images/users/5/65fee7998e5521175390b9ac1b127dc6.jpg"
                             alt={''}
                             width="38px"
@@ -50,7 +50,7 @@ const StudentTable = () => {
                         Цой Владлен
                     </UserNameWrapper>
                     {/*<UserNameWrapper to={`/groups/${record.group_id}/student/${record.id}`}>*/}
-                    {/*    <UserImage*/}
+                    {/*    <Avatar*/}
                     {/*        src={record.image}*/}
                     {/*        alt={`${record.last_name} ${record.first_name}`}*/}
                     {/*        width="38px"*/}
@@ -70,7 +70,7 @@ const StudentTable = () => {
             <tr>
                 <td>
                     <UserNameWrapper to={`/groups/1/student/5`}>
-                        <UserImage
+                        <Avatar
                             src="http://api.eon.loc/images/users/5/65fee7998e5521175390b9ac1b127dc6.jpg"
                             alt={''}
                             width="38px"
@@ -78,7 +78,7 @@ const StudentTable = () => {
                         Цой Владлен
                     </UserNameWrapper>
                     {/*<UserNameWrapper to={`/groups/${record.group_id}/student/${record.id}`}>*/}
-                    {/*    <UserImage*/}
+                    {/*    <Avatar*/}
                     {/*        src={record.image}*/}
                     {/*        alt={`${record.last_name} ${record.first_name}`}*/}
                     {/*        width="38px"*/}

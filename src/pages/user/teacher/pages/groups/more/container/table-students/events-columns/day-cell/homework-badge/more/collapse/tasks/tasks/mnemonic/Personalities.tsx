@@ -1,6 +1,6 @@
 import React from "react";
 import { TrophyOutlined } from '@ant-design/icons';
-import {UserImage} from "lib/ui";
+import {Avatar} from "lib/ui";
 
 const Personalities = ({totals}: any) => {
     return (
@@ -29,7 +29,7 @@ const Personalities = ({totals}: any) => {
                             {total.user.die ? total.user.die : null}
                         </td>
                         <td>
-                            <UserImage src={total.exercise.url_photo} alt={total.exercise.full_name}/>
+                            <Avatar src={total.exercise.url_photo} alt={total.exercise.full_name}/>
                         </td>
                         <td>
                             {total.exercise.full_name ? total.exercise.full_name : 'Пусто'}

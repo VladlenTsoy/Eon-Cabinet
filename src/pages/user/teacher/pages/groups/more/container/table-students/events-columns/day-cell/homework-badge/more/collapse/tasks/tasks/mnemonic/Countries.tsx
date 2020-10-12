@@ -1,6 +1,6 @@
 import React from "react";
 import { TrophyOutlined } from '@ant-design/icons';
-import {UserImage} from "lib/ui";
+import {Avatar} from "lib/ui";
 
 interface CountriesProps {
     totals: any;
@@ -32,7 +32,7 @@ const Countries: React.FC<CountriesProps> = ({totals}) => {
                             {total.user.capital ? total.user.capital : null}
                         </td>
                         <td>
-                            <UserImage src={total.exercise.url_flag} alt={total.exercise.country}/>
+                            <Avatar src={total.exercise.url_flag} alt={total.exercise.country}/>
                         </td>
                         <td>
                             {total.exercise.country ? total.exercise.country : 'Пусто'}

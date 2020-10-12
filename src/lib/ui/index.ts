@@ -6,7 +6,9 @@ export {default as Card} from './card/Card';
 export {default as FormItem} from './form/form-item/FormItem';
 export {default as ModalMenu} from './modal-menu/ModalMenu';
 export {default as GrayIcon} from './gray-icon/GrayIcon';
+/**/
 export {default as Avatar} from './avatar/Avatar';
+/***/
 export {default as Alert} from './alert/Alert';
 export {default as Coins} from './coins/Coins';
 export {default as Spin} from './spin/Spin';
@@ -18,7 +20,6 @@ export {default as Modal} from './modal/Modal';
 export {default as DescriptionTitle} from './empty/DescriptionTitle.layout';
 export {default as HeaderItem} from '../layouts/dashboard/header/HeaderItem.layout';
 export {default as TablePagination} from './table-pagination/TablePagination';
-export {default as UserImage} from './avatar/Avatar';
 export {default as DrawerActions} from './drawer/DrawerActions';
 export {default as Tabs} from './tabs/Tabs';
 export {default as TabPane} from './tabs/TabPane';

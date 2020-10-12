@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import {FormItem, UserImage} from "../../../../../../../../lib/ui";
+import {FormItem, Avatar} from "../../../../../../../../lib/ui";
 import {DatePicker} from "antd";
 import {useSelector} from "react-redux";
 import {useScreenWindow} from "../../../../../../../../hooks/use-screen-window.effect";
@@ -44,7 +44,7 @@ const InputAnswer: React.FC<InputAnswerProps> = ({total, totalKey}) => {
     const [, isBreakpoint] = useScreenWindow({breakpoint: 'sm'});
 
     return <InputWrapper>
-        <UserImage
+        <Avatar
             width={isBreakpoint ? '115px' : '150px'}
             className="image"
             src={total.exercise.url_photo}

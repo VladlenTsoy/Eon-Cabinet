@@ -1,6 +1,6 @@
 import React from 'react';
 import { TrophyOutlined } from '@ant-design/icons';
-import {UserImage} from "lib/ui";
+import {Avatar} from "lib/ui";
 
 interface DigitalPictureProps {
     totals: any;
@@ -31,7 +31,7 @@ const DigitalPicture:React.FC<DigitalPictureProps> = ({totals}) => {
                             {total.user.number || 'Пусто'}
                         </td>
                         <td>
-                            <UserImage src={total.exercise.url_picture} alt={total.exercise.number}/>
+                            <Avatar src={total.exercise.url_picture} alt={total.exercise.number}/>
                         </td>
                         <td>
                             {total.exercise.number || 'Пусто'}
