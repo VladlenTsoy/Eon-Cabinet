@@ -1,6 +1,6 @@
 import React from 'react';
 import {EditOutlined} from '@ant-design/icons';
-import {Card, ButtonLink} from "lib/ui";
+import {Card, Button} from "lib/ui";
 import DeleteGroupButton from "./delete-button/DeleteGroupButton";
 import EditorButton from "../../tab-top-extra/editor-button/EditorButton";
 import {momentFormatCheckYear} from "../../../../../../../../utils/momentFormatCheckYear";
@@ -26,9 +26,9 @@ const CardGroup: React.FC<CardGroupProps> = ({group}) => {
                 item: group.last_homework ? momentFormatCheckYear(group.last_homework.created_at) : 'Неизвестно'
             },
         ]}/>
-        <ButtonLink to={`groups/${group.id}`} type="primary" size="large" block>
+        <Button type="primary" to={`groups/${group.id}`} size="large" block>
             Подробнее
-        </ButtonLink>
+        </Button>
     </Card>;
 };
 
