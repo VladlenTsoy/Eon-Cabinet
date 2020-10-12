@@ -27,11 +27,15 @@ const Groups: React.FC = () => {
         <Tabs
             topExtra={<TabTopExtra />}
             defaultValue={
-                activeCategoryId ? `category-${activeCategoryId}` : null
+                activeCategoryId
+                    ? `category-${activeCategoryId}`
+                    : categories[0]
+                    ? `category-${categories[0].id}`
+                    : null
             }
             onChange={changeActiveCategory}
         >
-            {categories.map((category) => (
+            {categories.map(category => (
                 <Tab title={category.title} key={`category-${category.id}`}>
                     <Container categoryId={category.id} />
                 </Tab>
