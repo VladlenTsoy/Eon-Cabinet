@@ -1,16 +1,14 @@
-import React from 'react';
-import {Loader} from "../../lib/ui";
-import {useRouteMatch} from "react-router-dom";
+import React from "react"
+import {Loader} from "../../lib/ui"
 
-const Auth = React.lazy(() => import("./auth/index"));
-const Homework = React.lazy(() => import("./homework/index"));
+const Auth = React.lazy(() => import("./auth/index"))
 
 const Index = () => {
-    const match = useRouteMatch({path: '/guest'});
+    return (
+        <React.Suspense fallback={<Loader text="Загрузка доступа..." />}>
+            <Auth />
+        </React.Suspense>
+    )
+}
 
-    return <React.Suspense fallback={<Loader text="Загрузка доступа..."/>}>
-        {match ? <Homework/> : <Auth/>}
-    </React.Suspense>
-};
-
-export default Index;
+export default Index
