@@ -1,9 +1,9 @@
 import React, {useState} from "react"
 import {LockOutlined, UserOutlined} from "@ant-design/icons"
-import {Button, Input, Form} from "antd"
+import {Input, Form} from "antd"
 import {Link} from "react-router-dom"
 import LoginLayout from "lib/layouts/auth/login/LoginLayout"
-import {FormItem} from "../../../../lib/ui"
+import {FormItem, Button} from "../../../../lib/ui"
 import {useDispatch} from "react-redux"
 import {authUser} from "../../../../store/common/user/authUser"
 import {useLanguage} from "../../../../hooks/use-language"
@@ -64,13 +64,14 @@ const Login: React.FC = () => {
                     htmlType="submit"
                     block
                     loading={loading}
+                    size="large"
                 >
                     {l("login")}
                 </Button>
             </Form.Item>
             <Form.Item>
                 <Link to="/registration">
-                    <Button block disabled={loading} icon={<UserAddOutlined />}>
+                    <Button block disabled={loading} size="large" icon={<UserAddOutlined />}>
                         {l("registration")}
                     </Button>
                 </Link>

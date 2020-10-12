@@ -1,6 +1,6 @@
 import React, {useState} from "react"
-import {FormItem, InputPassword} from "lib/ui"
-import {Button, Form, Input} from "antd"
+import {FormItem, InputPassword, Button} from "lib/ui"
+import {Form, Input} from "antd"
 import {useHistory} from "react-router-dom"
 import {useDispatch} from "react-redux"
 import {registrationUser} from "../../../../store/common/user/registrationUser"

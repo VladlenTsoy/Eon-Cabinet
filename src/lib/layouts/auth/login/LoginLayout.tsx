@@ -1,6 +1,5 @@
 import React from "react"
 import styled from "styled-components"
-import {Col, Row} from "antd"
 import bgLoginWrapper from "../../../../assets/images/pages/login_page_bg.svg"
 import Footer from "./Footer"
 import Card from "./Card"
@@ -23,6 +22,13 @@ const LoginScrollStyled = styled.div`
     width: 100%;
 `
 
+const ColumnStyled = styled.div`
+  max-width: 420px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 1rem;
+`
+
 interface LoginLayoutProps {
     title: string
     subTitle?: string
@@ -39,8 +45,7 @@ const LoginLayout: React.FC<LoginLayoutProps> = ({
         <LoginStyled>
             <HeaderLanguage />
             <LoginScrollStyled>
-                <Row justify="center" align="middle">
-                    <Col xxl={6} xl={8} lg={7} md={10} sm={16} xs={22}>
+                    <ColumnStyled>
                         <Card
                             title={title}
                             subTitle={subTitle}
@@ -48,8 +53,7 @@ const LoginLayout: React.FC<LoginLayoutProps> = ({
                         >
                             {children}
                         </Card>
-                    </Col>
-                </Row>
+                    </ColumnStyled>
             </LoginScrollStyled>
             <Footer />
         </LoginStyled>
