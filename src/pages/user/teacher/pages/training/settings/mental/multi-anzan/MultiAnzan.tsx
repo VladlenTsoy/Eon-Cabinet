@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import styled from "styled-components";
-import {Modal} from "antd";
 import HeaderBlock from "./header-block/HeaderBlock";
 import MultiGridLayout from "../../../../../../general/tasks/mental/multi-anzan/layouts/MultiGrid.layout";
 import InformationBlock from "./information-block/InformationBlock";
 import ExerciseSetting from "./exercise-setting/ExerciseSetting";
+import {warning} from "../../../../../../../../utils/confirm"
 
 const Wrapper = styled.div`
   height: 100%;
@@ -78,9 +78,10 @@ const MultiAnzan: React.FC<MultiAnzanProps> = (
         if (exercises.length > 1)
             await startApplication({...setting, windows: exercises});
         else {
-            Modal.warning({
+           await warning({
                 title: 'Добавьте участников!',
                 content: 'Минимум два участника должно быть для старта упражнения.',
+                okText: 'Ок'
             });
             throw new Error();
         }

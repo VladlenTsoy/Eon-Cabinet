@@ -26,6 +26,7 @@ interface TimerBlockProps {
     afterMessage?: any;
 }
 
+// Todo Modal
 const TimerBlock: React.FC<TimerBlockProps> = ({time, afterMessage}) => {
     // Сообщение при завершении времени
     const timeIsRunningOut = () => {
