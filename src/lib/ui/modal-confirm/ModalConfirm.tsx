@@ -1,20 +1,20 @@
-import React, {useEffect, useRef, useState} from "react"
+import React, {useCallback, useEffect, useRef, useState} from "react"
 import {QuestionCircleOutlined} from "@ant-design/icons"
-import {Button} from "lib/ui"
 import style from "./Modal.module.css"
-import {ConfirmParamsProps} from "../../../utils/confirm"
+import {DialogParamsProps} from "./Dialog"
+import Actions from "./actions/Actions"
 
 interface ModalConfirmProps {
     title: string
     content?: React.ReactNode
     resolve: (response: any) => void
     destroy: () => void
-    icon?: ConfirmParamsProps["icon"]
-    okType?: ConfirmParamsProps["okType"]
-    onOk?: ConfirmParamsProps["onOk"]
-    onCancel?: ConfirmParamsProps["onOk"]
-    okText: ConfirmParamsProps["okText"]
-    cancelText: ConfirmParamsProps["cancelText"]
+    icon?: DialogParamsProps["icon"]
+    okType?: DialogParamsProps["okType"]
+    onOk?: DialogParamsProps["onOk"]
+    onCancel?: DialogParamsProps["onOk"]
+    okText: DialogParamsProps["okText"]
+    cancelText?: DialogParamsProps["cancelText"]
 }
 
 const ModalConfirm: React.FC<ModalConfirmProps> = ({
@@ -30,32 +30,31 @@ const ModalConfirm: React.FC<ModalConfirmProps> = ({
     destroy
 }) => {
     const wrapperRef = useRef<HTMLDivElement>(null)
-    const okButtonRef = useRef<HTMLButtonElement>(null)
     const [okLoading, setOkLoading] = useState(false)
     const [classes, setClasses] = useState("fadeIn")
 
-    const fadeOutAnimation = async () => {
+    const fadeOutAnimation = useCallback(async () => {
         setClasses("fadeOut")
         setOkLoading(false)
         setTimeout(async () => {
             destroy()
         }, 300)
-    }
+    }, [destroy])
 
-    const closeHandler = async () => {
+    const closeHandler = useCallback(async () => {
         if (!okLoading) {
             onCancel && (await onCancel())
             resolve(false)
             await fadeOutAnimation()
         }
-    }
+    }, [onCancel, resolve])
 
-    const okHandler = async () => {
+    const okHandler = useCallback(async () => {
         setOkLoading(!!onOk)
         onOk && (await onOk())
         resolve(true)
         await fadeOutAnimation()
-    }
+    }, [onOk, resolve, fadeOutAnimation])
 
     const onWrapperKeyDown = async (e: React.KeyboardEvent<HTMLDivElement>) => {
         if (e.key === "Escape") {
@@ -67,8 +66,7 @@ const ModalConfirm: React.FC<ModalConfirmProps> = ({
 
     useEffect(() => {
         if (wrapperRef.current) wrapperRef.current.focus()
-        if (okButtonRef.current) okButtonRef.current.focus()
-    }, [wrapperRef.current, okButtonRef.current])
+    }, [wrapperRef.current])
 
     return (
         <div
@@ -85,14 +83,14 @@ const ModalConfirm: React.FC<ModalConfirmProps> = ({
                         <span className={style.confirmContainerTitle}>{title}</span>
                         <div className={style.confirmContainerContent}>{content}</div>
                     </div>
-                    <div className={style.confirmActions}>
-                        <Button onClick={closeHandler} disabled={okLoading}>
-                            {cancelText}
-                        </Button>
-                        <Button type={okType} onClick={okHandler} loading={okLoading} ref={okButtonRef}>
-                            {okText}
-                        </Button>
-                    </div>
+                    <Actions
+                        okLoading={okLoading}
+                        okText={okText}
+                        okType={okType}
+                        okHandler={okHandler}
+                        closeHandler={closeHandler}
+                        cancelText={cancelText}
+                    />
                 </div>
             </div>
         </div>

@@ -1,0 +1,9 @@
+
+.confirmActions {
+    float: right;
+    margin-top: 24px;
+}
+
+.confirmActions button:not(:last-child) {
+    margin-right: 0.5rem;
+}
