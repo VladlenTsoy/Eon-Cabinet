@@ -37,18 +37,4 @@ const Modal: React.FC<ModalProps> = styled(AntdModal)`
     }
 `
 
-const ModalStyled = styled.div`
-  
-`
-
-interface _ModalProps {
-    title: string
-}
-
-const _Modal: React.FC<_ModalProps> = () => {
-    return <ModalStyled>
-
-    </ModalStyled>
-}
-
 export default Modal
