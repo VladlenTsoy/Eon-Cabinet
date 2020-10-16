@@ -1,6 +1,6 @@
 import React, {useState} from "react";
-import {Select, Form, Button} from "antd";
-import {FormItem} from "lib/ui";
+import {Select, Form} from "antd";
+import {FormItem, Button} from "lib/ui";
 import {updateGroup} from "store/access/teacher/group/updateGroup";
 import {createGroup} from "store/access/teacher/group/createGroup";
 import {Group} from "../../../../../../../../../lib/types/teacher/Group";
@@ -63,7 +63,7 @@ const FormItems: React.FC<FormItemsProps> = ({group, close}) => {
             </Select>
         </FormItem>
         <div className="actions-block">
-            <Button type="primary" htmlType="submit" loading={loading} block>Сохранить</Button>
+            <Button type="primary" htmlType="submit" size="large" loading={loading} block>Сохранить</Button>
         </div>
     </Form>
 };

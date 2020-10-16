@@ -1,4 +1,3 @@
-export {default as ButtonLink} from './button-link/ButtonLink';
 export {default as GrayIcon} from './gray-icon/GrayIcon';
 export {default as Alert} from './alert/Alert';
 export {default as Coins} from './coins/Coins';

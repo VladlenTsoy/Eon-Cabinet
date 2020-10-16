@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import ReactGA from 'react-ga';
 import "styles/themes/default.less";
 import "styles/themes/dark.less";
+import "styles/__style.css";
 import {Provider} from "react-redux";
 import LanguageProvider from "./lib/providers/language-provider/LanguageProvider";
 import UserProvider from "./lib/providers/user-provider/UserProvider";

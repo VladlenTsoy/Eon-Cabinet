@@ -13,13 +13,13 @@ const HeaderStyled = styled.div`
 
     .tabs {
         margin-right: auto;
-        > .vl-button:not(:last-child) {
+        > .vl-btn:not(:last-child) {
             margin-right: 0.5rem;
         }
     }
 
     .right-actions {
-        > .vl-button:not(:last-child) {
+        > .vl-btn:not(:last-child) {
             margin-right: 0.5rem;
         }
     }

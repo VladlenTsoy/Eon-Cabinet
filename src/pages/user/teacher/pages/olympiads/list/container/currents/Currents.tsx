@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {ButtonLink, Card, TablePagination} from "../../../../../../../../lib/ui";
+import {Button, Card, TablePagination} from "../../../../../../../../lib/ui";
 import LeftToOlympiad
     from "../../../../../../../../lib/components/olympiad-timer-left/OlympiadTimerLeft";
 import {useDispatch, useSelector} from "react-redux";
@@ -40,7 +40,7 @@ const Currents: React.FC = () => {
         },
         {
             render: (text: any, record: any) =>
-                <ButtonLink type="link" to={`olympiad/${record.id}`}>Подробнее </ButtonLink>
+                <Button type="link" to={`olympiad/${record.id}`}>Подробнее </Button>
         }
     ];
 

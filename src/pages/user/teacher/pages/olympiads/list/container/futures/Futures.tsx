@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {ButtonLink, Card, TablePagination} from "../../../../../../../../lib/ui";
+import {Button, Card, TablePagination} from "../../../../../../../../lib/ui";
 import {useDispatch, useSelector} from "react-redux";
 import {olympiadSelector} from "../../../../../../../../store/access/teacher/olympiad/olympiadSlice";
 import {fetchFutureOlympiads} from "../../../../../../../../store/access/teacher/olympiad/future/fetchFutureOlympiads";
@@ -44,7 +44,7 @@ const Futures: React.FC = () => {
         },
         {
             render: (text: any, record: any) =>
-                <ButtonLink type="link" to={`olympiad/${record.id}`}>Подробнее </ButtonLink>
+                <Button type="link" to={`olympiad/${record.id}`}>Подробнее </Button>
         }
     ];
 

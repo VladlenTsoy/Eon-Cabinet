@@ -1,0 +1,123 @@
+.btn {
+    position: relative;
+    display: inline-block;
+    height: 32px;
+    margin: 0;
+    padding: 0 15px;
+    font-size: 14px;
+    background: var(--component-background);
+    border-radius: 10px;
+    border: 1px solid var(--border-light-color);
+    cursor: pointer;
+    transition: color 0.3s, background 0.3s, border-color 0.3s, box-shadow 0.3s;
+    outline: none;
+    line-height: 1.5715;
+}
+
+.btn:hover {
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+}
+
+.btn:active {
+    /*color: var(--color-primary);*/
+    /*border: 1px solid var(--color-primary);*/
+    animation: clickAnimate 0.2s ease-in-out;
+}
+
+
+@keyframes clickAnimate {
+    from {
+        box-shadow: 0 0 0 2.5px var(--color-primary-push-from)
+    }
+    to {
+        box-shadow: 0 0 0 5px var(--color-primary-push-to);
+    }
+}
+
+/** Button Block **/
+.btn-block {
+    width: 100%;
+}
+
+/** Second **/
+.btn-second {
+    border: 0;
+    background: var(--layout-body-background);
+}
+
+
+.btn-second:hover {
+    color: var(--color-strong);
+    border: 0;
+}
+
+/** Default **/
+.btn-default {
+}
+
+.btn-default:hover {
+}
+
+/** Primary **/
+.btn-primary {
+    border: 0;
+    color: #ffffff;
+    background: var(--color-primary);
+}
+
+.btn-primary:hover {
+    background: var(--color-primary-hover);
+    color: #ffffff;
+    border: 0;
+}
+
+/** Warning **/
+.btn-warning {
+    border: 0;
+    color: #ffffff;
+    background: var(--color-warning);
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+.btn-warning:hover {
+    background: var(--color-warning-hover);
+    color: #ffffff;
+    border: 0;
+}
+
+/** Middle **/
+.btn-middle {
+}
+
+/** Large **/
+.btn-large {
+    height: 40px;
+    font-size: 16px;
+}
+
+/** Circle **/
+.btn-circle {
+    padding: 4.9px 0;
+    border-radius: 50%;
+}
+
+/** Circle Middle **/
+.btn-middle.btn-circle {
+    min-width: 32px;
+}
+
+/** Circle Large **/
+.btn-large.btn-circle {
+    min-width: 40px;
+}
+
+.btn-circle .icon {
+    margin-right: 0;
+}
+
+/** Icon **/
+.icon {
+    display: inline-block;
+    margin-right: 0.5rem;
+}

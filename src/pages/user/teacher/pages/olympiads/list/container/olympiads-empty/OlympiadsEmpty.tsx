@@ -1,5 +1,5 @@
 import React from 'react';
-import {ButtonLink, DescriptionTitle} from "../../../../../../../../lib/ui";
+import {Button, DescriptionTitle} from "../../../../../../../../lib/ui";
 import {Empty} from "antd";
 import {PlusOutlined} from "@ant-design/icons";
 
@@ -12,9 +12,9 @@ const OlympiadsEmpty = () => {
             </>
         }
     >
-        <ButtonLink type="ghost" size="large" to="/olympiad/create" icon={<PlusOutlined/>}>
+        <Button type="ghost" size="large" to="/olympiad/create" icon={<PlusOutlined/>}>
             Создать олимпиаду
-        </ButtonLink>
+        </Button>
     </Empty>;
 };
 

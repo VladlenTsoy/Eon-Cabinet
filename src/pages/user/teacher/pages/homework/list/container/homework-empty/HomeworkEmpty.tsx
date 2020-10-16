@@ -1,5 +1,5 @@
 import React from 'react';
-import {ButtonLink, DescriptionTitle} from "../../../../../../../../lib/ui";
+import {Button, DescriptionTitle} from "../../../../../../../../lib/ui";
 import {Empty} from "antd";
 import {PlusOutlined} from "@ant-design/icons";
 
@@ -12,9 +12,9 @@ const HomeworkEmpty = () => {
             </>
         }
     >
-        <ButtonLink type="ghost" size="large" to="/homework/create" icon={<PlusOutlined/>}>
+        <Button type="ghost" size="large" to="/homework/create" icon={<PlusOutlined/>}>
             Создать домашнее задание
-        </ButtonLink>
+        </Button>
     </Empty>;
 };
 

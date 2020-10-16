@@ -1,0 +1,29 @@
+:root {
+    --component-background: #ffffff;
+    --border-light-color: rgba(0, 0, 0, 0.1);
+    --layout-body-background: #f0f2f5;
+    --color-strong: rgba(0, 0, 0, 0.85);
+
+    --color-primary: #8e24aa;
+    --color-primary-hover: #8e24aacc;
+
+    --color-primary-push-from: #8e24aa26;
+    --color-primary-push-to: #8e24aa00;
+
+    --color-warning: #ff9800;
+    --color-warning-hover: #ff9800cc;
+}
+
+[data-theme="default"] {
+    --component-background: #ffffff;
+    --border-light-color: rgba(0, 0, 0, 0.1);
+    --layout-body-background: #f0f2f5;
+    --color-strong: rgba(0, 0, 0, 0.85);
+}
+
+[data-theme="dark"] {
+    --component-background: #141414;
+    --border-light-color: rgba(255,255,255,0.1);
+    --layout-body-background: #000000;
+    --color-strong: rgba(255,255,255, 1);
+}
