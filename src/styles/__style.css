@@ -12,6 +12,13 @@
 
     --color-warning: #ff9800;
     --color-warning-hover: #ff9800cc;
+
+    --color-info: #26c6da;
+
+    --color-danger: #f55a4e;
+    --color-danger-hover: #f55a4ecc;
+
+    --color-success: #5cb860;
 }
 
 [data-theme="default"] {
