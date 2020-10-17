@@ -1,0 +1,27 @@
+.tabs {
+    display: flex;
+}
+
+@media (max-width: 480px) {
+    .tabs {
+        flex-direction: column;
+    }
+}
+
+.menu {
+    width: min-content;
+}
+
+.extra {
+    margin-bottom: 1rem;
+}
+
+.extra > *{
+    white-space: nowrap;
+}
+
+.extra > *:not(:last-child) {
+    margin-bottom: 0.5rem;
+    display: inline-flex;
+    width: 100%;
+}

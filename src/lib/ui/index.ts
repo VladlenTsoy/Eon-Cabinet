@@ -13,9 +13,6 @@ export {default as Avatar} from './avatar/Avatar';
 export {default as Stepper} from './stepper/Stepper';
 /* Фиолетовое лого */
 export {default as Logo} from './logo/Logo';
-/* Табы */
-export {default as Tabs} from './tabs/Tabs';
-export {default as TabPane} from './tabs/TabPane';
 /* Drawer */
 export {default as Drawer} from './drawer/Drawer';
 export {default as DrawerActions} from './drawer/DrawerActions';

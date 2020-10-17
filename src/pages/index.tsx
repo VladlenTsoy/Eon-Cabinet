@@ -1,6 +1,5 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import ReactGA from "react-ga";
 import {Loader} from "../lib/ui";
 import {useSelector} from "react-redux";
 import {userSelector} from "../store/common/user/userSlice";
@@ -11,14 +10,6 @@ const User = React.lazy(() => import("./user/index"));
 
 const Index = () => {
     const user = useSelector(userSelector);
-
-    useEffect(() => {
-        if (process.env.NODE_ENV === 'production')
-            window.onload = () => {
-                ReactGA.initialize('UA-129675719-1');
-                ReactGA.pageview(window.location.pathname + window.location.search);
-            }
-    }, []);
 
     // Fetch language and current user data
     return <React.Suspense fallback={<Loader text="Загрузка доступа..."/>}>

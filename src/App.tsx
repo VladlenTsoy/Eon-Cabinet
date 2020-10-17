@@ -1,5 +1,4 @@
-import React, {useEffect} from 'react';
-import ReactGA from 'react-ga';
+import React from 'react';
 import "styles/themes/default.less";
 import "styles/themes/dark.less";
 import "styles/__style.css";
@@ -13,19 +12,6 @@ import BrowserSupportProvider from "./lib/providers/browser-support-provider/Bro
 import ThemeProvider from "./lib/providers/theme-provider/ThemeProvider";
 
 const App: React.FC = () => {
-
-    useEffect(() => {
-        if (process.env.NODE_ENV === 'production') {
-            const timeout = setTimeout(() => {
-                ReactGA.initialize('UA-129675719-1');
-                ReactGA.pageview(window.location.pathname + window.location.search);
-            })
-            return () => {
-                clearTimeout(timeout);
-            }
-        }
-    }, []);
-
     return <BrowserSupportProvider>
         <Provider store={store}>
             <ThemeProvider>
