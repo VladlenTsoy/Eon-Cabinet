@@ -1,40 +1,59 @@
-import React from "react"
-import {Modal as AntdModal} from "antd"
-import {ModalProps} from "antd/es/modal"
-import styled from "styled-components"
+import React, {useEffect, useRef} from "react"
+import {CloseOutlined} from "@ant-design/icons"
+import style from "./Modal.module.css"
+import ReactDOM from "react-dom"
+import Mask from "./mask/Mask"
 
-const Modal: React.FC<ModalProps> = styled(AntdModal)`
-    .ant-modal-content {
-        border-radius: 10px;
-        overflow: hidden;
-        box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
+// interface _ModalProps {
+//     title: string
+//     width: string
+//     visible: boolean
+//     centered?: boolean
+//     onCancel: () => void
+// }
 
-        .ant-modal-header {
-            border-bottom: 0 solid #e8e8e8;
-            border-radius: 10px 10px 0 0;
+const _Modal: React.FC<any> = ({children, title, centered, width, visible, onCancel}) => {
+    const containerRef = useRef<HTMLElement>()
+    const initRef = useRef<boolean>(false)
 
-            .ant-modal-title {
-                font-size: 20px;
-            }
-        }
+    if (visible && !initRef.current) {
+        const modal = document.createElement("div")
+        document.body.appendChild(modal)
 
-        .ant-modal-body {
-            padding: 10px 1rem 1rem;
-
-            .actions-block {
-                text-align: right;
-
-                button:first-child {
-                    margin-right: 0.5rem;
-                }
-            }
-        }
-
-        .ant-modal-footer {
-            display: none;
-            border-top: 0 solid #e8e8e8;
-        }
+        initRef.current = true
+        containerRef.current = modal
     }
-`
 
-export default Modal
+    const closeHandler = async () => {
+        onCancel()
+    }
+
+    useEffect(() => {
+        return () => {
+            // [Legacy] This should not be handle by Portal but parent PortalWrapper instead.
+            // Since some component use `Portal` directly, we have to keep the logic here.
+            containerRef.current?.parentNode?.removeChild(containerRef.current)
+        }
+    }, [])
+
+    return containerRef.current
+        ? ReactDOM.createPortal(
+              <Mask closeHandler={closeHandler} centered={centered} visible={visible}>
+                  <div className={style.modal} role="document" style={{maxWidth: width}}>
+                      <button className={style.btnClose}>
+                          <span className={style.iconClose}>
+                              <CloseOutlined />
+                          </span>
+                      </button>
+                      <div className={style.header}>
+                          <div className={style.title}>{title}</div>
+                      </div>
+                      <div className={style.container}>{children}</div>
+                  </div>
+              </Mask>,
+              containerRef.current
+          )
+        : null
+}
+
+export default _Modal

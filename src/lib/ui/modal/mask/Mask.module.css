@@ -1,0 +1,48 @@
+.mask {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 999;
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
+    tab-index: -1;
+}
+
+.maskCenter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.maskTop {
+    padding-top: 100px;
+}
+
+.mask.open {
+    animation-name: open
+}
+
+.mask.close {
+    animation-name: close
+}
+
+@keyframes open {
+    0% {
+        opacity: 0
+    }
+    to {
+        opacity: 1
+    }
+}
+
+@keyframes close {
+    0% {
+        opacity: 1
+    }
+    to {
+        opacity: 0;
+    }
+}
