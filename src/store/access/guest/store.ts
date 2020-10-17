@@ -1,4 +1,4 @@
-import {configureStore, combineReducers} from "@reduxjs/toolkit";
+import {configureStore, combineReducers, getDefaultMiddleware} from "@reduxjs/toolkit"
 import app from "../../common/app/appSlice";
 import language from "../../common/language/languageSlice";
 import game from "../../common/game/gameSplice";
@@ -14,4 +14,5 @@ export const guestReducer = combineReducers({
 
 export const store = configureStore({
     reducer: guestReducer,
+    middleware: [...getDefaultMiddleware({immutableCheck: false})]
 });
