@@ -2,7 +2,7 @@ import React from 'react';
 import {StopOutlined} from '@ant-design/icons';
 import {Button, Modal, Typography} from "antd";
 import styled from "styled-components";
-import {useHistory, RouteComponentProps} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import ButtonSaveOlympiad from "../../../editor/steps-setting/actions/save/ButtonSaveOlympiad";
 import {useDispatch} from "react-redux";
 import {deleteOlympiad} from "../../../../../../../../store/access/teacher/olympiad/deleteOlympiad";

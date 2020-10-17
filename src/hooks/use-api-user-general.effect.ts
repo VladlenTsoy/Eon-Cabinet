@@ -1,7 +1,4 @@
-import {useCallback, useEffect, useMemo, useState} from "react";
-import axios from "axios";
-
-const CancelToken = axios.CancelToken;
+import {useCallback, useState} from "react";
 
 type FH<P = {}> = FunctionHook<P>;
 
@@ -22,33 +19,15 @@ type FHProps<P> = {
 // TODO - api
 export const useApiUserGeneral: FH = (
     {
-        url,
-        cancel,
-        method = 'get',
-        config = {},
         initValue,
-        afterRequest,
-        access = 'user'
     }
 ) => {
-    const [configuration] = useState<any>(config);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string>();
-    const [data, setData] = useState(initValue);
-    const source = useMemo(() => CancelToken.source(), []);
+    const [loading] = useState(true);
+    const [error] = useState<string>();
+    const [data] = useState(initValue);
 
-    const fetch = useCallback((params?) => {
-    }, [method, access, url, configuration, source.token]);
-
-    useEffect(() => {
-        if (!cancel) {
-            fetch();
-            return () => {
-                source.cancel();
-            }
-        } else
-            setLoading(false);
-    }, [fetch, source, cancel]);
+    const fetch = useCallback(() => {
+    }, []);
 
     return [loading, data, error, fetch];
 };

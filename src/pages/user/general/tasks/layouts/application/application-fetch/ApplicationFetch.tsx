@@ -53,7 +53,7 @@ const ApplicationFetch: React.FC<ApplicationFetchProps> = (
     const fetch = useCallback(async () => {
          const action = await dispatch(fetchGameExercises({requestSetting, setting, user}))
         return action.payload
-    }, [user, setting, dispatch]);
+    }, [user, setting, dispatch, requestSetting]);
 
     const createAndUpdateTotals = useCallback(async (data) => {
         pictures && await picturesLoad(data);

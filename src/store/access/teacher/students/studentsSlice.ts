@@ -95,6 +95,7 @@ const studentsSlice = createSlice({
                     const update = {..._student, coins}
                     studentAdapter.updateOne(state, {id, changes: update})
                 }
+                return id
             })
             state.loading = false
         })
@@ -141,13 +142,14 @@ const studentsSlice = createSlice({
     }
 })
 
-export const {
-    selectById: getStudentById
+// export const {
+    // selectById: getStudentById
     // selectIds: selectStudentIds,
     // selectEntities: selectStudentEntities,
     // selectAll: selectAllStudents,
     // selectTotal: selectTotalStudents
-} = studentAdapter.getSelectors<TeacherState>(state => state.students)
+// } =
+    studentAdapter.getSelectors<TeacherState>(state => state.students)
 
 export const {changeSelectedIds, resetStudentSlice} = studentsSlice.actions
 

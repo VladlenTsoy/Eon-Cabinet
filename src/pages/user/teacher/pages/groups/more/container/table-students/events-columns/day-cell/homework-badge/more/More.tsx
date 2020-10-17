@@ -27,7 +27,7 @@ const More: React.FC<MoreProps> = ({homework}) => {
         return () => {
             promise.abort()
         }
-    }, [dispatch])
+    }, [dispatch, homework.id])
 
     if (loading)
         return <LoadingBlock/>

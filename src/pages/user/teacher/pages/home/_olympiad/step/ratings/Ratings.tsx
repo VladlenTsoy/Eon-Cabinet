@@ -1,5 +1,5 @@
 import React from "react"
-import {Avatar, Card} from "../../../../../../../../lib/ui"
+import {Avatar} from "../../../../../../../../lib/ui"
 import styled from "styled-components"
 
 const RatingsStyled = styled.div`

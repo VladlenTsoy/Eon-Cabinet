@@ -23,7 +23,7 @@ const Container: React.FC<ContainerProps> = ({tab}) => {
 
     const selectUserHandler = useCallback(
         (ids: number[]) => dispatch(changeSelectedIds({groupId: Number(id), ids})),
-        [dispatch]
+        [dispatch, id]
     )
 
     return <TableStudents tab={tab} selectUsers={selectUserHandler} />

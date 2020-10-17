@@ -33,7 +33,7 @@ export const useHomeworkDates: Props = ({id, tab, homework}) => {
             clearTimeout(timeout)
             promise && promise.abort()
         }
-    }, [homework.weekState, dispatch])
+    }, [homework.weekState, dispatch, id])
 
     useEffect(() => {
         let parents = document.querySelectorAll(".td-events-table")

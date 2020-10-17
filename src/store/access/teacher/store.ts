@@ -1,4 +1,4 @@
-import {configureStore, combineReducers} from "@reduxjs/toolkit";
+import {configureStore, combineReducers, getDefaultMiddleware} from "@reduxjs/toolkit"
 import {useDispatch} from 'react-redux'
 import group from './group/groupSlice';
 import category from './category/categorySlice';
@@ -62,4 +62,5 @@ export const useTeacherDispatch = () => useDispatch<AppDispatch>()
 
 export const store = configureStore({
     reducer: teacherReducer,
+    middleware: [...getDefaultMiddleware({immutableCheck: false})]
 });

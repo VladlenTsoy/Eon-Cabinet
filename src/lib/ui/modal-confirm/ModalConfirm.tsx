@@ -47,7 +47,7 @@ const ModalConfirm: React.FC<ModalConfirmProps> = ({
             resolve(false)
             await fadeOutAnimation()
         }
-    }, [onCancel, resolve])
+    }, [onCancel, resolve, fadeOutAnimation, okLoading])
 
     const okHandler = useCallback(async () => {
         setOkLoading(!!onOk)
@@ -66,7 +66,7 @@ const ModalConfirm: React.FC<ModalConfirmProps> = ({
 
     useEffect(() => {
         if (wrapperRef.current) wrapperRef.current.focus()
-    }, [wrapperRef.current])
+    }, [wrapperRef])
 
     return (
         <div

@@ -70,7 +70,7 @@ const EmojiContainer: React.FC<EmojiContainerProps> = ({
                 )
             })
         })
-    }, [])
+    }, [setMessage])
 
     return (
         <EmojiContainerStyled
@@ -79,16 +79,16 @@ const EmojiContainer: React.FC<EmojiContainerProps> = ({
             onMouseEnter={mouseEnterHandler}
             className={active ? "fadeInUp" : ""}
         >
-            <span>😄</span>
-            <span>😂</span>
-            <span>😅</span>
-            <span>😉</span>
-            <span>😔</span>
-            <span>😩</span>
-            <span>😭</span>
-            <span>😑</span>
-            <span>😘</span>
-            <span>😍</span>
+            <span role="img" aria-label="smile">😄</span>
+            <span role="img" aria-label="smile">😂</span>
+            <span role="img" aria-label="smile">😅</span>
+            <span role="img" aria-label="smile">😉</span>
+            <span role="img" aria-label="smile">😔</span>
+            <span role="img" aria-label="smile">😩</span>
+            <span role="img" aria-label="smile">😭</span>
+            <span role="img" aria-label="smile">😑</span>
+            <span role="img" aria-label="smile">😘</span>
+            <span role="img" aria-label="smile">😍</span>
         </EmojiContainerStyled>
     )
 }

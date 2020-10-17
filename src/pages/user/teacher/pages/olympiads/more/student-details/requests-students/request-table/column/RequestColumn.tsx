@@ -1,6 +1,6 @@
 import React from 'react';
 import Avatar from "../../../../../../../../../../lib/ui/avatar/Avatar";
-import {Button, Modal, notification} from "antd";
+import {Button, Modal} from "antd";
 
 interface RequestColumnProps {
     student: any;

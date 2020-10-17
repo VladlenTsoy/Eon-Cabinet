@@ -52,7 +52,7 @@ const MoreOlympiad: React.FC<MoreOlympiadProps> = ({match}) => {
         return () => {
             promise.abort()
         }
-    }, [])
+    }, [dispatch, match.params.id])
 
     if (loading || !olympiad)
         return <LoadingBlock/>;

@@ -31,12 +31,13 @@ const studentHomeworkTasksSlice = createSlice({
     }
 })
 
-export const {
-    // selectById: getStudentHomeworkTasksById,
-    // selectIds: selectStudentIds,
-    // selectEntities: selectStudentEntities,
-    // selectAll: selectAllStudentHomeworkTasks,
-    // selectTotal: selectTotalStudents
-} = studentHomeworkTasksAdapter.getSelectors<TeacherState>(state => state.studentHomeworkTasks)
+// export const {
+//     // selectById: getStudentHomeworkTasksById,
+//     // selectIds: selectStudentIds,
+//     // selectEntities: selectStudentEntities,
+//     // selectAll: selectAllStudentHomeworkTasks,
+//     // selectTotal: selectTotalStudents
+// } =
+studentHomeworkTasksAdapter.getSelectors<TeacherState>(state => state.studentHomeworkTasks)
 
 export default studentHomeworkTasksSlice.reducer

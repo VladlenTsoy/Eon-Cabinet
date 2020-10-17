@@ -28,7 +28,7 @@ const ChatMessages: React.FC<ChatMessagesProps> = ({chatId}) => {
     useEffect(() => {
         if (messages.length)
             dispatch(updateMessages(messages))
-    }, [messages])
+    }, [messages, dispatch])
 
     useEffect(() => {
         socket.emit("joined_the_chat", {chatId, userId})

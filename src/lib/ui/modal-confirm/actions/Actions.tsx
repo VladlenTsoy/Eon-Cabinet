@@ -27,7 +27,7 @@ const Actions: React.FC<ActionsProps> = ({
                 if (okButtonRef.current)
                     okButtonRef.current.focus()
             })
-    }, [okButtonRef.current])
+    }, [okButtonRef])
 
     return (
         <div className={style.confirmActions}>

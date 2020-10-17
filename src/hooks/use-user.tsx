@@ -35,7 +35,7 @@ export const useUser:Props = () => {
                 dispatch(logoutUser());
             }
         })
-    }, [])
+    }, [dispatch])
 
     return {
         userId: user.detail?.id,

@@ -1,4 +1,4 @@
-import React, {useEffect} from "react"
+import React, {useEffect, useState} from "react"
 import {SmileOutlined} from "@ant-design/icons"
 import styled from "styled-components"
 
@@ -24,22 +24,22 @@ interface EmojiItemProps {
 }
 
 const EmojiItem: React.FC<EmojiItemProps> = ({setEmojiVisible, active}) => {
-    let a: any;
+    const [_timeout, _setTimeout] = useState<any>(null)
 
     const mouseEnterHandler = () => {
-        clearTimeout(a)
+        clearTimeout(_timeout)
         setEmojiVisible(true)
     }
 
     const mouseLeaveHandler = () => {
-        a = setTimeout(() => setEmojiVisible(false), 500)
+        _setTimeout(setTimeout(() => setEmojiVisible(false), 500))
     }
 
     useEffect(() => {
         return () => {
-            clearTimeout(a)
+            clearTimeout(_timeout)
         }
-    }, [])
+    }, [_timeout])
 
     return (
         <EmojiItemStyled

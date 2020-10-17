@@ -129,7 +129,7 @@ const StudentsMore: React.FC<StudentsMoreProps> = ({step}) => {
         return () => {
             promise.abort()
         }
-    }, [dispatch])
+    }, [dispatch, step.id])
 
     return <Wrapper>
         <Title level={4}>Участники</Title>

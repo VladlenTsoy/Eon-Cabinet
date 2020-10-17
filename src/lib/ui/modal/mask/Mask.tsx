@@ -38,7 +38,7 @@ const Mask: React.FC<MaskProps> = ({children, maskClosable = true, visible, cent
                 }
             }
         }
-    }, [wrapperRef.current, visible])
+    }, [wrapperRef, visible])
 
     return (
         <div

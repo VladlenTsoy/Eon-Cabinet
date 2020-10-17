@@ -54,7 +54,7 @@ const MessagesScroll: React.FC<MessagesScrollProps> = ({chatId}) => {
         return () => {
             promise.abort()
         }
-    }, [dispatch, page])
+    }, [dispatch, page, chatId])
 
     const scrollMoreHandler = useCallback(
         (event) => {

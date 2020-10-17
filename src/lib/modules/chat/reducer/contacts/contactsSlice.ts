@@ -38,6 +38,6 @@ export const {
     selectAll: selectAllContacts
 } = contactsAdapter.getSelectors<CommonState>(state => state.contacts)
 
-export const {} = contactsSlice.actions
+// export const {} = contactsSlice.actions
 
 export default contactsSlice.reducer

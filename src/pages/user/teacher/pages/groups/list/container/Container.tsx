@@ -41,7 +41,7 @@ const Container: React.FC<ContainerProps> = ({categoryId}) => {
         return () => {
             promise.abort()
         }
-    }, [page, dispatch])
+    }, [page, dispatch, categoryId])
 
     return (
         <Spin spinning={loading} tip="Загрузка...">
