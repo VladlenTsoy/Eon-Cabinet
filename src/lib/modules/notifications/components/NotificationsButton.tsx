@@ -1,7 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import {Drawer} from "../../../ui"
-import {Badge} from "antd"
+import {Badge, Drawer} from "lib/ui"
 import {useScreenWindow} from "../../../../hooks/use-screen-window.effect"
 import Notifications from "./Notifications"
 

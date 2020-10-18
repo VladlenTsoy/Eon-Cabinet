@@ -1,0 +1,97 @@
+.badge {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-variant: tabular-nums;
+    list-style: none;
+    -webkit-font-feature-settings: "tnum";
+    font-feature-settings: "tnum";
+    position: relative;
+    display: inline-block;
+    color: unset;
+    line-height: 1;
+}
+
+.dot {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(50%,-50%);
+    transform-origin: 100% 0;
+    z-index: auto;
+    width: 6px;
+    height: 6px;
+    border-radius: 100%;
+    -webkit-box-shadow: 0 0 0 1px #fff;
+    box-shadow: 0 0 0 1px #fff;
+}
+
+.number {
+    overflow: hidden;
+    z-index: auto;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    color: #fff;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+    white-space: nowrap;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 0 0 1px #fff;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(50%,-50%);
+    transform-origin: 100% 0;
+}
+
+.default {
+    background: var(--component-background);
+}
+
+.error {
+    background: var(--color-danger);
+}
+
+.success {
+    background: var(--color-success);
+}
+
+.info {
+    background: var(--color-info);
+}
+
+.warning {
+    background: var(--color-warning);
+}
+
+.processing {
+    background: var(--color-primary);
+}
+
+.processing:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 1px solid var(--color-primary);
+    border-radius: 50%;
+    animation: antStatusProcessing 1.2s ease-in-out infinite;
+    content: "";
+}
+
+@keyframes antStatusProcessing {
+    0% {
+        -webkit-transform: scale(0.8);
+        transform: scale(0.8);
+        opacity: 0.5;
+    }
+    to {
+        -webkit-transform: scale(2.4);
+        transform: scale(2.4);
+        opacity: 0;
+    }
+}
