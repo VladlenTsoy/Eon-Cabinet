@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
-import {Input, Empty} from "antd";
+import {Input} from "antd";
 import styled from "styled-components";
-import {LoadingBlock} from "lib/ui";
+import {LoadingBlock, Empty} from "lib/ui";
 import InviteColumn from "./column/InviteColumn";
-import {DescriptionTitle} from "../../../../../../../../../lib/ui";
 import {useLanguage} from "../../../../../../../../../hooks/use-language";
 
 const {Search} = Input;
@@ -124,9 +123,7 @@ const InviteTable: React.FC<InviteTableProps> = ({olympiad, fetch}) => {
                     </TableWrapper>
                 </ScrollWrapper> :
                 <Empty
-                    description={
-                        <DescriptionTitle>{l('empty')}</DescriptionTitle>
-                    }
+                    title={l('empty')}
                 /> :
             <LoadingBlock/>
         }

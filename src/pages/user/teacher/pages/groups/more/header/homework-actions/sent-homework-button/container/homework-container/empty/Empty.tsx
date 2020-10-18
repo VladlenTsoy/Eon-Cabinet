@@ -1,9 +1,8 @@
 import React from 'react';
 import { FileAddOutlined } from '@ant-design/icons';
-import {Empty as EmptyAntd} from "antd";
 import {withRouter, RouteComponentProps} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {DescriptionTitle, Button} from "lib/ui";
+import {Empty as EmptyLib, Button} from "lib/ui";
 import {changeIsSaved} from "store/access/teacher/group/groupSlice";
 import {useLanguage} from "hooks/use-language";
 
@@ -17,12 +16,9 @@ const Empty: React.FC<RouteComponentProps> = ({history}) => {
     };
 
     return (
-        <EmptyAntd description={
-            <>
-                <DescriptionTitle>{l('empty')}</DescriptionTitle>
-                <span>Создайте домашнее задание для того, чтобы отправить.</span>
-            </>
-        }>
+        <EmptyLib
+            title={l('empty')}
+            description={"Создайте домашнее задание для того, чтобы отправить."}>
             <Button
                 type="ghost"
                 icon={<FileAddOutlined />}
@@ -31,7 +27,7 @@ const Empty: React.FC<RouteComponentProps> = ({history}) => {
             >
                 Создать домащнее задание
             </Button>
-        </EmptyAntd>
+        </EmptyLib>
     );
 };
 

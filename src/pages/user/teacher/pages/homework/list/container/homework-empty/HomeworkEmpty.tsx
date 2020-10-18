@@ -1,16 +1,11 @@
 import React from 'react';
-import {Button, DescriptionTitle} from "../../../../../../../../lib/ui";
-import {Empty} from "antd";
+import {Button, Empty} from "lib/ui";
 import {PlusOutlined} from "@ant-design/icons";
 
 const HomeworkEmpty = () => {
     return <Empty
-        description={
-            <>
-                <DescriptionTitle>Пусто</DescriptionTitle>
-                <span>Нет сохраненных домашних заданий</span>
-            </>
-        }
+        title="Пусто"
+        description="Нет сохраненных домашних заданий"
     >
         <Button type="ghost" size="large" to="/homework/create" icon={<PlusOutlined/>}>
             Создать домашнее задание

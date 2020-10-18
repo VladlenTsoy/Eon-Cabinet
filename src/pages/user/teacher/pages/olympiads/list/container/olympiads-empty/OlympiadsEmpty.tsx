@@ -1,16 +1,11 @@
 import React from 'react';
-import {Button, DescriptionTitle} from "../../../../../../../../lib/ui";
-import {Empty} from "antd";
+import {Button, Empty} from "../../../../../../../../lib/ui";
 import {PlusOutlined} from "@ant-design/icons";
 
 const OlympiadsEmpty = () => {
     return <Empty
-        description={
-            <>
-                <DescriptionTitle>Пусто</DescriptionTitle>
-                <span>Нет сохраненных олимпиад</span>
-            </>
-        }
+        title="Пусто"
+        description={"Нет сохраненных олимпиад"}
     >
         <Button type="ghost" size="large" to="/olympiad/create" icon={<PlusOutlined/>}>
             Создать олимпиаду

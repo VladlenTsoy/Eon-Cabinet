@@ -1,11 +1,9 @@
 import React from 'react';
 import { RedoOutlined } from '@ant-design/icons';
-import {Button, Empty} from "antd";
-import {LoadingBlock} from "lib/ui";
+import {Button, Empty, Spin, LoadingBlock} from "lib/ui";
 import RequestColumn from "./column/RequestColumn";
 import {ScrollWrapper, TableWrapper} from "../../invite-student/invite-table/InviteTable";
 import {useApiUserGeneral} from "../../../../../../../../../hooks/use-api-user-general.effect";
-import {DescriptionTitle, Spin} from "../../../../../../../../../lib/ui";
 import {useLanguage} from "../../../../../../../../../hooks/use-language";
 
 interface RequestTableProps {
@@ -26,12 +24,8 @@ const RequestTable: React.FC<RequestTableProps> = ({olympiad, setIsChange}) => {
     if (!students.length)
         return (
             <Empty
-                description={
-                    <>
-                        <DescriptionTitle>{l('empty')}</DescriptionTitle>
-                        <span>Нет запросов от учеников.</span>
-                    </>
-                }
+                title={l('empty')}
+                description={"Нет запросов от учеников."}
             >
                 <Button icon={<RedoOutlined />} onClick={() => fetch()} size="large">Обновить</Button>
             </Empty>

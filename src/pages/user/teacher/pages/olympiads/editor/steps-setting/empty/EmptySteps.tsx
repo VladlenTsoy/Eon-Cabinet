@@ -1,7 +1,7 @@
 import React from 'react';
 import { PlusCircleOutlined } from '@ant-design/icons';
-import {Button, Col, Empty, Row} from 'antd';
-import {DescriptionTitle} from "lib/ui";
+import {Button, Col, Row} from 'antd';
+import {Empty} from "lib/ui";
 import EditorStepButton from "../editor-step-button/EditorStepButton";
 
 const rowStyle = {
@@ -25,12 +25,8 @@ const EmptySteps: React.FC<EmptyStepsProps> = (
         <Row align="middle"  justify="center" style={rowStyle}>
             <Col xl={8} md={12} xs={24}>
                 <Empty
-                    description={
-                        <>
-                            <DescriptionTitle>Создайте этап</DescriptionTitle>
-                            <span>Олимпиада делиться по этапам, ученик может перейти на следующий этап только если пройдет предыдущие этапы. Формируйте этапы по сложности от самого легкого до самого сложного.</span>
-                        </>
-                    }
+                    title="Создайте этап"
+                    description={"Олимпиада делиться по этапам, ученик может перейти на следующий этап только если пройдет предыдущие этапы. Формируйте этапы по сложности от самого легкого до самого сложного."}
                 >
                     <EditorStepButton
                         key="empty-create"

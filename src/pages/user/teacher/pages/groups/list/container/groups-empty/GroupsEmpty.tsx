@@ -1,15 +1,10 @@
 import React from 'react';
-import {DescriptionTitle} from "lib/ui";
-import {Empty} from "antd";
+import {Empty} from "lib/ui";
 
 const GroupsEmpty = () => {
     return <Empty
-        description={
-            <>
-                <DescriptionTitle>Пусто</DescriptionTitle>
-                <span>Создайте группу для добавления учеников</span>
-            </>
-        }
+        title="Пусто"
+        description="Создайте группу для добавления учеников"
     >
     </Empty>;
 };
