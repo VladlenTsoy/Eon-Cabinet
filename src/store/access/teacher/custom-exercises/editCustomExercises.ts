@@ -1,7 +1,7 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {TeacherThunkProps} from "../store";
 import {apiRequest} from "../../../../utils/api";
-import {message} from "../../../../utils/message";
+import {message} from "lib/ui";
 
 type ArgProps = any
 

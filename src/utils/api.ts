@@ -1,5 +1,5 @@
 import axios from "axios"
-import {message} from "./message"
+import {message} from "lib/ui"
 import {Discipline} from "../lib/types/common/Discipline"
 import {getCookie, removeCookie, setCookie} from "./cookie"
 

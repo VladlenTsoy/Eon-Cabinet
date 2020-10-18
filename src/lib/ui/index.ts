@@ -6,7 +6,7 @@ export {default as TablePagination} from "./data-display/table-pagination/TableP
 
 /* Пусто */
 export {default as Empty} from "./data-display/empty/Empty"
-/* */
+/* Значок */
 export {default as Badge} from "./data-display/badge/Badge"
 /* Кнопка */
 export {default as Button} from "./general/button/Button"
@@ -22,6 +22,8 @@ export {default as DrawerActions} from "./feedback/drawer/DrawerActions"
 /* Modal */
 export {default as Modal} from "./feedback/modal/Modal"
 export {confirm, warning, info} from "./feedback/modal/confirm"
+/* Сообщение */
+export {message} from "./feedback/message/message"
 /* Modal Menu */
 export {default as ModalMenu} from "./feedback/modal-menu/ModalMenu"
 /* Card */

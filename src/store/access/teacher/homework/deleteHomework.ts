@@ -1,6 +1,6 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {apiRequest} from "../../../../utils/api";
-import {message} from "../../../../utils/message";
+import {message} from "lib/ui";
 import {Homework} from "../../../../lib/types/teacher/Homework";
 import {TeacherThunkProps} from "../store";
 

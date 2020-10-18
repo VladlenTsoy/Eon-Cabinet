@@ -18,9 +18,11 @@ const Badge: React.FC<BadgeProps> = ({
     return (
         <div className={style.badge}>
             {children}
-            <sup className={`${dot ? style.dot : style.number} ${style[status]}`}>
-                {!dot ? (count > overflowCount ? `${overflowCount}+` : count) : null}
-            </sup>
+            {count !== 0 && (
+                <sup className={`${dot ? style.dot : style.number} ${style[status]}`}>
+                    {!dot ? (count > overflowCount ? `${overflowCount}+` : count) : null}
+                </sup>
+            )}
         </div>
     )
 }

@@ -1,0 +1,61 @@
+.wrapper {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color: var(--color-main);
+    font-size: 14px;
+    font-variant: tabular-nums;
+    line-height: 1.5715;
+    list-style: none;
+    -webkit-font-feature-settings: "tnum";
+    font-feature-settings: "tnum";
+    position: fixed;
+    top: 8px;
+    left: 0;
+    z-index: 1010;
+    width: 100%;
+    pointer-events: none;
+}
+
+.notice {
+    padding: 8px;
+    text-align: center;
+}
+
+.message {
+    display: inline-block;
+    padding: 10px 16px;
+    background: var(--component-background);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    pointer-events: all;
+    overflow: hidden;
+}
+
+.icon {
+    position: relative;
+    top: 1px;
+    margin-right: 8px;
+    font-size: 16px;
+}
+
+.success {
+    color: var(--color-success);
+}
+
+.error {
+    color: var(--color-danger);
+}
+
+.info {
+    color: var(--color-info);
+}
+
+.warning {
+    color: var(--color-warning);
+}
+
+.loading {
+    color: var(--color-primary);
+}
