@@ -1,6 +1,5 @@
 import React from 'react';
-import {Card} from "lib/ui";
-import {Button} from "antd";
+import {Card, Button} from "lib/ui";
 import {ArrowLeftOutlined} from '@ant-design/icons';
 import {useHistory, useParams} from 'react-router-dom';
 import {ResultMatchProps} from "../../Result";

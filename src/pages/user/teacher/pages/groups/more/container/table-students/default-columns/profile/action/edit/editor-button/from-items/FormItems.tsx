@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import {Button, Col, DatePicker, Form, Row} from "antd";
-import {DrawerActions, FormItem} from "lib/ui";
+import {Col, DatePicker, Form, Row} from "antd";
+import {Button, DrawerActions, FormItem} from "lib/ui";
 import {updateStudent} from "store/access/teacher/students/updateStudent";
 import {createStudent} from "store/access/teacher/students/createStudent";
 import InputPhoto from "lib/ui/form/InputPhoto";

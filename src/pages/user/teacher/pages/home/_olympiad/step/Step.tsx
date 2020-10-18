@@ -1,7 +1,6 @@
 import React from "react"
 import Ratings from "./ratings/Ratings"
-import {Button} from "antd"
-import {Card} from "../../../../../../../lib/ui"
+import {Card, Button} from "lib/ui"
 import styled from "styled-components"
 import {EyeOutlined} from "@ant-design/icons"
 

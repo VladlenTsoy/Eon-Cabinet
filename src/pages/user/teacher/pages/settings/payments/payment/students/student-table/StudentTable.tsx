@@ -1,7 +1,6 @@
 import React from 'react';
-import {Avatar} from "../../../../../../../../../lib/ui";
+import {Avatar, Button} from "lib/ui";
 import { MinusOutlined } from '@ant-design/icons';
-import {Button} from "antd";
 import styled from "styled-components";
 import {Link} from "react-router-dom";
 
@@ -64,7 +63,7 @@ const StudentTable = () => {
                 <td>Ментальная арифметика</td>
                 <td>10 000 сум</td>
                 <td>
-                    <Button danger icon={<MinusOutlined />} shape="circle" size="small"/>
+                    <Button type="danger" icon={<MinusOutlined />} shape="circle" size="small"/>
                 </td>
             </tr>
             <tr>
@@ -92,7 +91,7 @@ const StudentTable = () => {
                 <td>Ментальная арифметика</td>
                 <td>10 000 сум</td>
                 <td>
-                    <Button danger icon={<MinusOutlined />} shape="circle" size="small"/>
+                    <Button type="danger" icon={<MinusOutlined />} shape="circle" size="small"/>
                 </td>
             </tr>
             </tbody>

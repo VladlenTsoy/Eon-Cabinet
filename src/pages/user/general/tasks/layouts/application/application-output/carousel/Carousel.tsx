@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import styled from "styled-components";
 import Number from "./number/Number";
-import {Button} from "antd";
+import {Button} from "lib/ui";
 import {FlagOutlined} from '@ant-design/icons';
 import CarouselLayout from "./Carousel.layout";
 

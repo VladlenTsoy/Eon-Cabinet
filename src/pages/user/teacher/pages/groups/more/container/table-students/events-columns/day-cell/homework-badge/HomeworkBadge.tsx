@@ -1,8 +1,7 @@
 import React, {useState} from "react"
 import styled from "styled-components"
 import {CheckCircleOutlined, ClockCircleOutlined, DeleteOutlined} from "@ant-design/icons"
-import {Drawer} from "lib/ui"
-import {Modal as ModalAntd} from "antd"
+import {Drawer, confirm} from "lib/ui"
 import More from "./more/More"
 import {cancelStudentHomework} from "../../../../../../../../../../../store/access/teacher/student-homework/cancelStudentHomework"
 import {useDispatch} from "react-redux"
@@ -108,12 +107,14 @@ const HomeworkBadge: React.FC<HomeworkBadgeProps> = ({homework}) => {
     const closeMore = () => setMoreVisible(false)
 
     const cancelHomeworkHandler = () => {
-        ModalAntd.confirm({
+        confirm({
             title: `Отменить отправку домашнего задания (Уровень: ${homework.homework.level}) ?`,
             async onOk() {
                 await dispatch(cancelStudentHomework(homework.id))
                 await dispatch(fetchStudentsHomeworkDates({groupId: Number(id), force: true}))
-            }
+            },
+            okText: 'Да',
+            cancelText: 'Нет',
         })
     }
 

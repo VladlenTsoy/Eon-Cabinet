@@ -1,6 +1,7 @@
 import React from "react";
 import {LockOutlined, SaveOutlined} from '@ant-design/icons';
-import {Button, Input, Form} from "antd";
+import {Input, Form} from "antd";
+import {Button} from "lib/ui";
 import {useState} from "react";
 import {useDispatch} from "react-redux";
 import {updatePasswordUser} from "../../../../../../../../store/common/user/updatePasswordUser";

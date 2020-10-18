@@ -2,9 +2,8 @@ import React, {useState} from 'react';
 import winIcon from "assets/images/illustrations/win.svg";
 import lossIcon from "assets/images/illustrations/loss.svg";
 import { SettingOutlined } from '@ant-design/icons';
-import {Button} from "antd";
 import styled from "styled-components";
-import {Modal} from "lib/ui";
+import {Modal, Button} from "lib/ui";
 import ExerciseLists from "lib/components/exercise-lists/ExerciseLists";
 
 const LeftBlockWrapper = styled.div`

@@ -1,6 +1,6 @@
 import React from 'react';
 import {ArrowRightOutlined, FlagOutlined, HistoryOutlined} from '@ant-design/icons';
-import {Button} from "antd";
+import {Button} from "lib/ui";
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
 import {nextGame, repeatGame, completionGame, gameSelector} from "store/common/game/gameSplice";
@@ -81,13 +81,13 @@ const ActionIntermediate: React.FC<ActionIntermediateProps> = ({checkResult}) =>
         {currentTimes + 1 >= setting.times ?
             <Button type="primary" size="large" autoFocus icon={<FlagOutlined/>}
                     onClick={completionTask}>Завершить</Button> :
-            <Button.Group size="large">
+            <div>
                 <Button icon={<FlagOutlined/>} onClick={completionTask}>Завершить</Button>
                 <Button type="primary" size="large" autoFocus onClick={nextExercise}>
                     Следующее
                     <ArrowRightOutlined/>
                 </Button>
-            </Button.Group>
+            </div>
         }
     </ActionWrapper>
 };

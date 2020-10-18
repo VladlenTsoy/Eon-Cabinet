@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Button} from "antd";
+import {Button} from "lib/ui";
 
 interface SendingMessageProps {
     updateIsSent: any;

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button} from "antd";
+import {Button} from "lib/ui";
 import EditorExercises from "../editor-exercise/EditorExercises";
 import {FlagOutlined, UndoOutlined, UserAddOutlined} from '@ant-design/icons';
 
@@ -32,7 +32,7 @@ const HeaderAction: React.FC<HeaderActionProps> = (
                     </Button>
                 </EditorExercises>
         }
-        <Button.Group size="large">
+        <div>
             <Button
                 icon={<UndoOutlined/>}
                 onClick={handlerClear}
@@ -48,7 +48,7 @@ const HeaderAction: React.FC<HeaderActionProps> = (
             >
                 Начать
             </Button>
-        </Button.Group>
+        </div>
     </>
 };
 

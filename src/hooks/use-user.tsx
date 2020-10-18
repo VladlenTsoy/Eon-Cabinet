@@ -3,10 +3,8 @@ import {useDispatch, useSelector} from "react-redux"
 import {userSelector} from "../store/common/user/userSlice";
 import {logoutUser} from "../store/common/user/logoutUser"
 import {QuestionCircleOutlined} from "@ant-design/icons"
-import {Modal} from "antd"
+import {confirm} from "lib/ui"
 import {useCallback} from "react"
-
-const confirm = Modal.confirm
 
 type Props = () => any
 
@@ -26,14 +24,16 @@ export const useUser:Props = () => {
     const updateUser = () => {}
 
     // Выход
-    const logout = useCallback(() => {
-        confirm({
+    const logout = useCallback(async () => {
+        await confirm({
             zIndex: 1002,
             title: "Вы действительно хотите выйти?",
             icon: <QuestionCircleOutlined />,
             onOk: async () => {
                 dispatch(logoutUser());
-            }
+            },
+            okText: 'Да',
+            cancelText: 'Нет',
         })
     }, [dispatch])
 

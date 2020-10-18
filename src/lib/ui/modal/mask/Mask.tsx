@@ -46,7 +46,7 @@ const Mask: React.FC<MaskProps> = ({
                 }
             }
         }
-    }, [wrapperRef, visible])
+    }, [wrapperRef, visible, centered])
 
     return (
         <div

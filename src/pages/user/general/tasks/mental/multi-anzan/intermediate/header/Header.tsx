@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
 import {ArrowRightOutlined, FlagOutlined, HistoryOutlined} from '@ant-design/icons';
-import {Button} from "antd";
+import {Button} from "lib/ui";
 import {nextGame, completionGame, repeatGame, gameSelector} from "store/common/game/gameSplice";
 import {useDispatch, useSelector} from "react-redux";
 

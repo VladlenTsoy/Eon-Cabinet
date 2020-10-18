@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import {Button, Form, Input, Select} from "antd";
-import {DrawerActions, FormItem} from "lib/ui";
+import {Form, Input, Select} from "antd";
+import {Button, DrawerActions, FormItem} from "lib/ui";
 import {SaveOutlined} from "@ant-design/icons";
 import {updateOlympiad} from "../../../../../../../../../../store/access/teacher/olympiad/updateOlympiad";
 import {createOlympiad} from "../../../../../../../../../../store/access/teacher/olympiad/createOlympiad";

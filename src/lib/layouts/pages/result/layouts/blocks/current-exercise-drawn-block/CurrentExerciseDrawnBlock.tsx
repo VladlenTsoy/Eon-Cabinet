@@ -1,6 +1,5 @@
 import React, {useCallback, useState} from 'react';
-import {Card, Drawer} from "../../../../../../ui";
-import {Button, Modal} from "antd";
+import {Button, confirm, Card, Drawer} from "lib/ui";
 import {EyeOutlined, ThunderboltOutlined, QuestionCircleOutlined} from '@ant-design/icons';
 import {useSelector} from "react-redux";
 import {gameSelector} from "../../../../../../../store/common/game/gameSplice";
@@ -37,11 +36,13 @@ const CurrentExerciseDrawnBLock: React.FC<CurrentExerciseDrawnBlockProps> = (
 
     const open = () => {
         if (resultId && !isView) {
-            Modal.confirm({
+            confirm({
                 icon: <QuestionCircleOutlined/>,
                 title: 'Просмотреть ответы?',
                 content: 'После просмотра ответов вы не можете повторить упражнение с текущими примерами при следующем выполнении будут сгенерированы новые примеры.',
-                onOk: viewResult
+                onOk: viewResult,
+                okText: 'Да',
+                cancelText: 'Нет',
             });
         } else
             setVisible(true);

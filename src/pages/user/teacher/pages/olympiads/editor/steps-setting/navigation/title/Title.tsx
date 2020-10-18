@@ -1,7 +1,7 @@
 import React from 'react';
 import EditorStepButton from "../../editor-step-button/EditorStepButton";
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
-import {Button} from "antd";
+import {Button} from "lib/ui";
 import styled from "styled-components";
 
 const TitleWrapper = styled.div`
@@ -70,7 +70,7 @@ const Title: React.FC<TitleProps> = (
                 </EditorStepButton>
                 <Button
                     icon={<DeleteOutlined />}
-                    danger
+                    type="danger"
                     shape="circle-outline"
                     size="small"
                     onClick={() => deleteHandler(stepKey)}

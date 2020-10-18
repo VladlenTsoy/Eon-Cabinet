@@ -34,3 +34,18 @@ export const warning: WarningProps = async ({title, content, okText}) => {
         icon: <ExclamationCircleOutlined />
     })
 }
+
+/**
+ *
+ * @param title
+ * @param content
+ * @param okText
+ */
+export const info: WarningProps = async ({title, content, okText}) => {
+    return await Digital({
+        title,
+        content,
+        okText,
+        icon: <ExclamationCircleOutlined />
+    })
+}

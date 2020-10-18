@@ -1,7 +1,7 @@
 import React from 'react';
-import {Col, Row, Form, Button, Typography} from "antd";
+import {Col, Row, Form, Typography} from "antd";
 import styled from "styled-components";
-import {Card} from "lib/ui";
+import {Card, Button} from "lib/ui";
 import {
     addSuccessStats,
     changeStatus,

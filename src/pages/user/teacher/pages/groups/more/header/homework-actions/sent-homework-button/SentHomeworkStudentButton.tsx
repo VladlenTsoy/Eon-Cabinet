@@ -5,11 +5,10 @@ import {useSelector} from "react-redux";
 import {groupSelector} from "store/access/teacher/group/groupSlice";
 import Container from "./container/Container";
 import checkStudentGif from "assets/images/hints/check-student.gif";
-import {Modal} from "antd";
 import {useParams} from "react-router-dom";
 import {ParamsProps} from "../../../Group";
 import {useSelectSelectedStudentsByIdsGroupId} from "store/access/teacher/students/studentsSelectors";
-import {Button} from "../../../../../../../../../lib/ui"
+import {Button, info} from "lib/ui"
 import {SendOutlined} from "@ant-design/icons"
 
 const SentHomeworkStudentButton: React.FC = () => {
@@ -24,12 +23,13 @@ const SentHomeworkStudentButton: React.FC = () => {
 
     //
     const disabledHandler = () => {
-        Modal.info({
+        info({
             title: 'Выберите учеников!',
             content: <>
                 <p>Отметьте учеников в списке для отправки домашнего задания.</p>
                 <img src={checkStudentGif} alt="Выберите учеников!" width="100%"/>
-            </>
+            </>,
+            okText: 'Ок'
         });
     };
 

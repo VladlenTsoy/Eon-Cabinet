@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import {DrawerActions, FormItem} from "lib/ui";
-import {Button, Input, Select, Form, Divider, Empty} from "antd";
+import {DrawerActions, FormItem, Button} from "lib/ui";
+import {Input, Select, Form, Divider, Empty} from "antd";
 import moment from "moment";
 import {changeIsSaved} from "store/access/teacher/group/groupSlice";
 import {useHistory, useParams} from "react-router-dom";

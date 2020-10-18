@@ -18,6 +18,7 @@ const Dialog: React.FC<DialogWrapperProps> = ({
     cancelText,
     okText,
     resolve,
+    zIndex,
     destroy
 }) => {
     const [visible, setVisible] = useState(true)
@@ -47,7 +48,7 @@ const Dialog: React.FC<DialogWrapperProps> = ({
     }, [onOk, resolve, fadeOutAnimation])
 
     return (
-        <Mask visible={visible} closeHandler={closeHandler} maskClosable={false}>
+        <Mask visible={visible} closeHandler={closeHandler} maskClosable={false} zIndex={zIndex}>
             <Confirm
                 title={title}
                 okLoading={okLoading}

@@ -1,6 +1,6 @@
 import React from 'react';
 import {DeleteOutlined} from '@ant-design/icons';
-import {Button} from "antd";
+import {Button} from "lib/ui";
 import styled from "styled-components";
 import AnzanSettingBlock from "./exercise-blocks/mental/anzan-setting/AnzanSettingBlock";
 import ModsConfig from "./exercise-blocks/config/ModsConfig";
@@ -106,7 +106,7 @@ const ExerciseLists: React.FC<ExerciseWrapperProps> = ({exercise, deleteExercise
             <h2>{l('taskNames')[exercise.task.discipline_id][exercise.task.title]}</h2>
             {outputSetting()}
             {edit ?
-                <Button danger size="small" icon={<DeleteOutlined/>} onClick={deleteExercise}/> :
+                <Button type="danger" size="small" icon={<DeleteOutlined/>} onClick={deleteExercise}/> :
                 null}
         </ExerciseTitleWrapper>
     );

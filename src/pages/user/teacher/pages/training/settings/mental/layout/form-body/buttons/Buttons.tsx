@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
-import {Button} from "antd";
+import {Button} from "lib/ui";
 import styled from "styled-components";
 import {EditOutlined, FlagOutlined, PlusOutlined, PrinterOutlined, UndoOutlined} from '@ant-design/icons';
 import {FormInstance} from "antd/es/form";
 
-const ButtonGroupWrapper = styled(Button.Group)`
+const ButtonGroupWrapper = styled.div`
   width: 100%;
   justify-content: center;
 `;
@@ -79,7 +79,7 @@ const Buttons: React.FC<ButtonsProps> = (
         setLoading(false);
     };
 
-    return <ButtonGroupWrapper size="large">
+    return <ButtonGroupWrapper>
         {
             addSettingHomework ?
                 isEdit ?

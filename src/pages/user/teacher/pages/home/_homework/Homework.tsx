@@ -1,6 +1,5 @@
 import React from "react"
-import {Card} from "../../../../../../lib/ui"
-import {Button} from "antd"
+import {Card, Button} from "lib/ui"
 import styled from "styled-components"
 import {EyeOutlined} from "@ant-design/icons"
 import {useScreenWindow} from "../../../../../../hooks/use-screen-window.effect"

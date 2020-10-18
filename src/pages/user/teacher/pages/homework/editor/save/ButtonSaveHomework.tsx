@@ -1,9 +1,8 @@
 import React, {useCallback, useState} from 'react';
 import {ArrowRightOutlined} from '@ant-design/icons';
-import {Button} from "antd";
 import {useHistory, useParams} from "react-router-dom";
 import {useSelector} from "react-redux";
-import {Modal} from "lib/ui";
+import {Button, Modal} from "lib/ui";
 import FormItems from "./form-items/FormItems";
 import {groupSelector} from "../../../../../../../store/access/teacher/group/groupSlice";
 import {ParamsProps} from "../../../groups/more/Group";

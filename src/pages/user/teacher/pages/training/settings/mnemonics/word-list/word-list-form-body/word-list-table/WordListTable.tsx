@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {DeleteOutlined, FlagOutlined, PlusOutlined, UndoOutlined} from '@ant-design/icons';
-import {Button, Empty, InputNumber, Form} from "antd";
-import {FormItem} from "../../../../../../../../../../lib/ui";
+import {Empty, InputNumber, Form} from "antd";
+import {Button, FormItem} from "lib/ui";
 import styled from "styled-components";
 import {FormInstance} from "antd/es/form";
 import {useLanguage} from "../../../../../../../../../../hooks/use-language";
@@ -72,7 +72,7 @@ const TableWrapper = styled.div`
   }
 `;
 
-const ButtonGroupWrapper = styled(Button.Group)`
+const ButtonGroupWrapper = styled.div`
   width: 100%;
   text-align: center;
 `;
@@ -129,7 +129,7 @@ const WordListTable: React.FC<WordListTableProps> = (
                                 <div>{field.value.count}</div>
                                 <Button
                                     ghost
-                                    danger
+                                    type="danger"
                                     icon={<DeleteOutlined/>}
                                     shape="circle"
                                     onClick={() => deleteSetting(field.name[1])}
@@ -152,7 +152,7 @@ const WordListTable: React.FC<WordListTableProps> = (
                 <InputNumber style={{width: '100%'}} min={0.1} max={30} step={0.1}/>
             </FormItem>
         </TableWrapper>
-        <ButtonGroupWrapper size="large">
+        <ButtonGroupWrapper>
             {addSettingHomework ?
                 <Button htmlType="submit" type="primary" icon={<PlusOutlined/>}>Добавить</Button> :
                 <>

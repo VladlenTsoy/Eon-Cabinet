@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
-import {FormItem, Modal} from "lib/ui";
 import CoinSvg from "assets/images/icons/coin.svg";
 import {Form} from "antd";
-import {Stepper, Button} from "lib/ui";
+import {FormItem, Modal, info, Stepper, Button} from "lib/ui";
 import styled from "styled-components";
 import {useDispatch} from "react-redux";
 import {sendCoins} from "store/access/teacher/students/sendСoins";
@@ -10,7 +9,6 @@ import {useParams} from "react-router-dom";
 import {ParamsProps} from "../../../Group";
 import {useSelectSelectedStudentsByIdsGroupId} from "store/access/teacher/students/studentsSelectors";
 import checkStudentGif from "../../../../../../../../../assets/images/hints/check-student.gif"
-import {Modal as AntdModal} from "antd";
 
 const ImageStyled = styled.div`
   margin-bottom: 1rem;
@@ -50,12 +48,13 @@ const CoinButton: React.FC = () => {
     }
 
     const disabledHandler = () => {
-        AntdModal.info({
+        info({
             title: 'Выберите учеников!',
             content: <>
                 <p>Отметьте учеников в списке для отправки домашнего задания.</p>
                 <img src={checkStudentGif} alt="Выберите учеников!" width="100%"/>
-            </>
+            </>,
+            okText: 'Ок'
         });
     };
 

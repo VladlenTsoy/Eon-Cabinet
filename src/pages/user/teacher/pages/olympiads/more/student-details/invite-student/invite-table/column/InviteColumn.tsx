@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
-import Avatar from "../../../../../../../../../../lib/ui/avatar/Avatar";
 import { CheckOutlined, UserAddOutlined } from '@ant-design/icons';
-import {Button} from "antd";
+import {Button, Avatar} from "lib/ui";
 
 interface InviteColumnProps {
     student: any;

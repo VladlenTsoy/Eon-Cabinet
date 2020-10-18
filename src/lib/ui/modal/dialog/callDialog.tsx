@@ -4,12 +4,14 @@ import ReactDOM from "react-dom"
 import Dialog from "./Dialog"
 
 export interface CallDialogParamsProps {
+    type?: "error"
     title: string
     icon?: React.ReactNode
     content?: React.ReactNode
     okType?: ButtonProps["type"]
     okText: string
     cancelText?: string
+    zIndex?: number
     onOk?: (...args: any[]) => any
     onCancel?: (...args: any[]) => any
 }
@@ -24,7 +26,8 @@ export const Digital: CallDialogProps = async ({
     cancelText,
     okText,
     okType,
-    icon
+    icon,
+    zIndex
 }) => {
     return await new Promise(resolve => {
         const modal = document.createElement("div")
@@ -36,18 +39,22 @@ export const Digital: CallDialogProps = async ({
 
         setTimeout(() => {
             document.body.appendChild(modal)
-            ReactDOM.render(<Dialog
-                title={title}
-                onCancel={onCancel}
-                resolve={resolve}
-                destroy={destroy}
-                onOk={onOk}
-                content={content}
-                icon={icon}
-                okText={okText}
-                okType={okType}
-                cancelText={cancelText}
-            />, modal)
+            ReactDOM.render(
+                <Dialog
+                    zIndex={zIndex}
+                    title={title}
+                    onCancel={onCancel}
+                    resolve={resolve}
+                    destroy={destroy}
+                    onOk={onOk}
+                    content={content}
+                    icon={icon}
+                    okText={okText}
+                    okType={okType}
+                    cancelText={cancelText}
+                />,
+                modal
+            )
         })
     })
 }

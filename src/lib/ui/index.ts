@@ -18,7 +18,7 @@ export {default as Drawer} from './drawer/Drawer';
 export {default as DrawerActions} from './drawer/DrawerActions';
 /* Modal */
 export {default as Modal} from './modal/Modal';
-export {confirm, warning} from './modal/confirm';
+export {confirm, warning, info} from './modal/confirm';
 /* Modal Menu */
 export {default as ModalMenu} from './modal-menu/ModalMenu';
 /* Card */

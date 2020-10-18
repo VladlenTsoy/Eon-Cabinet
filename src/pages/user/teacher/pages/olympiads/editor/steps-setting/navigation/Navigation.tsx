@@ -1,5 +1,6 @@
 import React, {useCallback} from 'react';
-import {Modal, Steps} from "antd";
+import {Steps} from "antd";
+import {confirm} from "lib/ui";
 import Title from "./title/Title";
 import moment from "moment";
 
@@ -33,14 +34,16 @@ const Navigation: React.FC<NavigationProps> = (
     }
 ) => {
     const deleteHandler = useCallback((key: number) => {
-        Modal.confirm({
+        confirm({
             okType: 'danger',
             title: `Хотите удалить этап (${steps[key].title})?`,
             onOk() {
                 if (key !== 0)
                     onChangeHandler(current === key ? key - 1 : key);
                 deleteStep(key);
-            }
+            },
+            okText: 'Да',
+            cancelText: 'Нет'
         });
     }, [deleteStep, onChangeHandler, steps, current]);
 

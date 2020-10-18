@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
 import { EyeOutlined, ThunderboltOutlined } from '@ant-design/icons';
-import { Button } from "antd";
-import {Drawer} from "lib/ui";
-import {Card} from "lib/ui";
+import {Button, Drawer, Card} from "lib/ui";
 
 interface CurrentExerciseProps {
     stats: {

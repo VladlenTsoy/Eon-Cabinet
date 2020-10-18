@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {PlusOutlined, SaveOutlined} from '@ant-design/icons';
-import {Button, Form} from "antd";
-import {FormItem, Modal} from "lib/ui";
+import {Form} from "antd";
+import {Button, FormItem, Modal} from "lib/ui";
 import RangePicker from "./range-picker/RangePicker";
 import moment from "moment";
 

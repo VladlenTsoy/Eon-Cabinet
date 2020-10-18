@@ -103,6 +103,15 @@
     border: 0;
 }
 
+/** Dashed **/
+.btn-dashed {
+    border: 1px dashed var(--border-light-color);
+}
+
+.btn-dashed:hover {
+    border: 1px dashed var(--color-primary-hover);
+}
+
 /** Middle **/
 .btn-middle {
 }

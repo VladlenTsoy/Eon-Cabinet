@@ -1,6 +1,5 @@
 import React from 'react';
-import {Card} from "lib/ui";
-import {Button} from "antd";
+import {Button, Card} from "lib/ui";
 import {HistoryOutlined} from "@ant-design/icons";
 import {useDispatch} from "react-redux";
 import {clearGame, refreshGame} from "store/common/game/gameSplice";
