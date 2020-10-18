@@ -1,16 +1,3 @@
-.dialog {
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: 0;
-    background: rgba(0, 0, 0, 0.4);
-    z-index: 999;
-    padding-top: 100px;
-    animation-duration: 0.3s;
-    animation-fill-mode: both;
-}
-
 .modal {
     background: var(--component-background);
     max-width: 400px;
@@ -27,11 +14,11 @@
 @keyframes fadeInDown {
     0% {
         opacity: 0;
-        transform: translate3d(0, -100%, 0)
+        transform: translate3d(0, -100%, 0);
     }
     to {
         opacity: 1;
-        transform: translateZ(0)
+        transform: translateZ(0);
     }
 }
 
@@ -43,7 +30,6 @@
 }
 
 .header {
-    border-bottom: 0 solid #e8e8e8;
     border-radius: 10px 10px 0 0;
     padding: 16px 24px;
     color: rgba(0, 0, 0, 0.65);
@@ -64,7 +50,7 @@
     right: 0;
     z-index: 10;
     padding: 0;
-    color: rgba(0, 0, 0, 0.45);
+    color: var(--color-second);
     font-weight: 700;
     line-height: 1;
     text-decoration: none;
@@ -73,6 +59,11 @@
     outline: 0;
     cursor: pointer;
     transition: color 0.3s;
+}
+
+.btnClose:hover {
+    color: var(--color-main);
+    cursor: pointer;
 }
 
 .iconClose {

@@ -3,7 +3,7 @@ import {ArrowRightOutlined} from '@ant-design/icons';
 import {Button} from "antd";
 import {useHistory, useParams} from "react-router-dom";
 import {useSelector} from "react-redux";
-import ModalEditor from "../../../../../../../lib/ui/modal-editor/ModalEditor";
+import {Modal} from "lib/ui";
 import FormItems from "./form-items/FormItems";
 import {groupSelector} from "../../../../../../../store/access/teacher/group/groupSlice";
 import {ParamsProps} from "../../../groups/more/Group";
@@ -31,7 +31,7 @@ const ButtonSaveHomework: React.FC<ButtonSaveHomeworkProps> = ({homework, exerci
 
     return <>
         <Button type="primary" icon={<ArrowRightOutlined/>} onClick={open} block>Далее</Button>
-        <ModalEditor
+        <Modal
             width={550}
             title={isSaved ? `Сохранить для ${group?.title}` : "Сохранить"}
             visible={visible}
@@ -43,7 +43,7 @@ const ButtonSaveHomework: React.FC<ButtonSaveHomeworkProps> = ({homework, exerci
                 fetch={fetch}
                 close={close}
             />
-        </ModalEditor>
+        </Modal>
     </>
 };
 

@@ -23,7 +23,7 @@ const ItemColor: React.FC<ItemColorProps> = ({currentUser}) => {
             width={300}
             visible={visible}
             onCancel={close}
-            okButtonProps={{hidden: true}}
+            // okButtonProps={{hidden: true}}
         >
             <ColorModalBlock currentUser={currentUser}/>
         </Modal>

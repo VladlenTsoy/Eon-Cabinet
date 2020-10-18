@@ -1,7 +1,7 @@
 import React, {useState} from "react"
-import {Avatar} from "../../../../../../../../../../lib/ui";
+import {Avatar, Modal} from "lib/ui";
 import styled from "styled-components";
-import {ModalMenuStyled} from "../../../../../../../../../../lib/ui/modal-menu/ModalMenu"
+import {MenuStyled} from "../../../../../../../../../../lib/ui/modal-menu/ModalMenu"
 import ActionColumn from "./action/ActionColumn"
 import {Student} from "../../../../../../../../../../lib/types/teacher/Student"
 
@@ -34,7 +34,7 @@ const ProfileColumn:React.FC<ProfileColumnProps> = ({student}) => {
                 mr="0.75rem"/>
             {student.last_name} {student.first_name}
         </UserNameWrapper>
-        <ModalMenuStyled
+        <Modal
             centered
             width={320}
             closable={false}
@@ -42,10 +42,10 @@ const ProfileColumn:React.FC<ProfileColumnProps> = ({student}) => {
             onCancel={close}
             zIndex={999}
         >
-            <div className="menu" onClick={close}>
+            <MenuStyled onClick={close}>
                 <ActionColumn student={student}/>
-            </div>
-        </ModalMenuStyled>
+            </MenuStyled>
+        </Modal>
         </>
 };
 

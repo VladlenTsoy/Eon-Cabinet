@@ -4,7 +4,7 @@ import HeaderBlock from "./header-block/HeaderBlock";
 import MultiGridLayout from "../../../../../../general/tasks/mental/multi-anzan/layouts/MultiGrid.layout";
 import InformationBlock from "./information-block/InformationBlock";
 import ExerciseSetting from "./exercise-setting/ExerciseSetting";
-import {warning} from "../../../../../../../../utils/confirm"
+import {warning} from "lib/ui"
 
 const Wrapper = styled.div`
   height: 100%;

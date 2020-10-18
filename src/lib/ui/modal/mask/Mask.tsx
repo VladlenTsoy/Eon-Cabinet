@@ -5,10 +5,18 @@ interface MaskProps {
     maskClosable?: boolean
     visible: boolean
     centered?: boolean
+    zIndex?: number
     closeHandler: () => Promise<void>
 }
 
-const Mask: React.FC<MaskProps> = ({children, maskClosable = true, visible, centered, closeHandler}) => {
+const Mask: React.FC<MaskProps> = ({
+    children,
+    maskClosable = true,
+    zIndex = 1000,
+    visible,
+    centered,
+    closeHandler
+}) => {
     const wrapperRef = useRef<HTMLDivElement>(null)
 
     const onWrapperKeyDown = async (e: React.KeyboardEvent<HTMLDivElement>) => {
@@ -26,7 +34,7 @@ const Mask: React.FC<MaskProps> = ({children, maskClosable = true, visible, cent
     useEffect(() => {
         if (wrapperRef.current) {
             if (visible) {
-                wrapperRef.current.style.display = "flex"
+                wrapperRef.current.style.display = centered ? "flex" : "block"
                 wrapperRef.current.focus()
             } else {
                 let timeout = setTimeout(() => {
@@ -49,6 +57,7 @@ const Mask: React.FC<MaskProps> = ({children, maskClosable = true, visible, cent
             className={`${visible ? style.open : style.close} ${style.mask} ${
                 centered ? style.maskCenter : style.maskTop
             }`}
+            style={{zIndex}}
             ref={wrapperRef}
         >
             {children}

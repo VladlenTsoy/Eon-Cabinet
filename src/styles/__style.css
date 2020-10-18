@@ -32,6 +32,7 @@
 
 [data-theme="default"] {
     --component-background: #ffffff;
+    --component-background-opacity: #ffffff73;
     --border-light-color: rgba(0, 0, 0, 0.1);
     --layout-body-background: #f0f2f5;
 
@@ -42,6 +43,7 @@
 
 [data-theme="dark"] {
     --component-background: #141414;
+    --component-background-opacity: #14141473;
     --border-light-color: rgba(255,255,255,0.1);
     --layout-body-background: #000000;
 

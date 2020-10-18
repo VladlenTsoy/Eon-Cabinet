@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
 import {PlusOutlined, SaveOutlined} from '@ant-design/icons';
 import {Button, Form} from "antd";
-import {FormItem} from "lib/ui";
-import ModalEditor from "lib/ui/modal-editor/ModalEditor";
+import {FormItem, Modal} from "lib/ui";
 import RangePicker from "./range-picker/RangePicker";
 import moment from "moment";
 
@@ -45,11 +44,10 @@ const EditorStepButton: React.FC<EditorStepButtonProps> = (
     };
 
     return <>
-        <ModalEditor
+        <Modal
             onCancel={close}
             visible={visible}
             title={step && step.title ? 'Редактирование этапа' : 'Создание этапа'}
-            destroyOnClose={false}
         >
             <Form
                 onFinish={onSubmitHandler}
@@ -71,7 +69,7 @@ const EditorStepButton: React.FC<EditorStepButtonProps> = (
                     <Button type="primary" block icon={<PlusOutlined/>} htmlType="submit">Создать</Button>
                 }
             </Form>
-        </ModalEditor>
+        </Modal>
         <span onClick={onClickOpenModal}>
             {children}
         </span>

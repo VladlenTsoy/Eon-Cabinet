@@ -9,6 +9,8 @@
     animation-duration: 0.3s;
     animation-fill-mode: both;
     tab-index: -1;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
 }
 
 .maskCenter {
@@ -22,25 +24,25 @@
 }
 
 .mask.open {
-    animation-name: open
+    animation-name: open;
 }
 
 .mask.close {
-    animation-name: close
+    animation-name: close;
 }
 
 @keyframes open {
     0% {
-        opacity: 0
+        opacity: 0;
     }
     to {
-        opacity: 1
+        opacity: 1;
     }
 }
 
 @keyframes close {
     0% {
-        opacity: 1
+        opacity: 1;
     }
     to {
         opacity: 0;

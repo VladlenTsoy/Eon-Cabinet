@@ -1,6 +1,6 @@
 import React, {useCallback, useState} from "react";
 import FormItems from "./form-items/FormItems";
-import ModalEditor from "../../../../../../../../lib/ui/modal-editor/ModalEditor";
+import {Modal} from "lib/ui";
 import {Group} from "../../../../../../../../lib/types/teacher/Group";
 
 interface EditorButtonProps {
@@ -24,7 +24,8 @@ const EditorButton: React.FC<EditorButtonProps> = (
         <span onClick={open}>
             {children}
         </span>
-        <ModalEditor
+        <Modal
+            width={300}
             title={title}
             visible={visible}
             onCancel={close}
@@ -33,7 +34,7 @@ const EditorButton: React.FC<EditorButtonProps> = (
                 group={group}
                 close={close}
             />
-        </ModalEditor>
+        </Modal>
     </>
 };
 

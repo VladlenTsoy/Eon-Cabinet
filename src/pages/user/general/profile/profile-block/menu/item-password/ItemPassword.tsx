@@ -20,13 +20,12 @@ const ItemPassword:React.FC<ItemPasswordProps> = ({currentUser}) => {
         </div>
       <Modal
           title="Изменить пароль"
-          className="form-modal"
           centered
           width={300}
           visible={visible}
           onCancel={close}
-          cancelButtonProps={{hidden: true}}
-          okButtonProps={{hidden: true}}
+          // cancelButtonProps={{hidden: true}}
+          // okButtonProps={{hidden: true}}
       >
           <PasswordBlock currentUser={currentUser} closeModal={close}/>
       </Modal>

@@ -1,15 +1,15 @@
 import React, {useEffect, useRef} from "react"
 import style from "./Actions.module.css"
-import {Button} from "../../index"
-import {DialogParamsProps} from "../Dialog"
+import {Button} from "../../../../index"
+import {CallDialogParamsProps} from "../../callDialog"
 
 interface ActionsProps {
     okLoading: boolean
-    okType?: DialogParamsProps["okType"]
-    okHandler: DialogParamsProps["onOk"]
-    closeHandler: DialogParamsProps["onOk"]
-    okText: DialogParamsProps["okText"]
-    cancelText?: DialogParamsProps["cancelText"]
+    okType?: CallDialogParamsProps["okType"]
+    okHandler: CallDialogParamsProps["onOk"]
+    closeHandler: CallDialogParamsProps["onOk"]
+    okText: CallDialogParamsProps["okText"]
+    cancelText?: CallDialogParamsProps["cancelText"]
 }
 
 const Actions: React.FC<ActionsProps> = ({

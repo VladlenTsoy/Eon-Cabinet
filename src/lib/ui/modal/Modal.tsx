@@ -1,57 +1,56 @@
-import React, {useEffect, useRef} from "react"
+import React from "react"
 import {CloseOutlined} from "@ant-design/icons"
 import style from "./Modal.module.css"
-import ReactDOM from "react-dom"
 import Mask from "./mask/Mask"
+import Portal from "./portal/Portal"
 
-// interface _ModalProps {
-//     title: string
-//     width: string
-//     visible: boolean
-//     centered?: boolean
-//     onCancel: () => void
-// }
+interface ModalProps {
+    title?: string
+    width?: string | number
+    visible: boolean
+    centered?: boolean
+    closable?: boolean
+    zIndex?: number
+    onCancel: () => void
+}
 
-const _Modal: React.FC<any> = ({children, title, centered, width, visible, onCancel}) => {
-    const containerRef = useRef<HTMLElement>()
-    const initRef = useRef<boolean>(false)
-
-    if (visible && !initRef.current) {
-        const modal = document.createElement("div")
-        document.body.appendChild(modal)
-
-        initRef.current = true
-        containerRef.current = modal
-    }
-
+const Modal: React.FC<ModalProps> = ({
+    children,
+    title,
+    centered,
+    closable = true,
+    width = 416,
+    visible,
+    zIndex,
+    onCancel
+}) => {
     const closeHandler = async () => {
         onCancel()
     }
 
-    useEffect(() => {
-        return () => {
-            containerRef.current?.parentNode?.removeChild(containerRef.current)
-        }
-    }, [])
+    const _width = typeof width === "number" ? width + "px" : width
 
-    return containerRef.current
-        ? ReactDOM.createPortal(
-              <Mask closeHandler={closeHandler} centered={centered} visible={visible}>
-                  <div className={style.modal} role="document" style={{maxWidth: width}}>
-                      <button className={style.btnClose}>
-                          <span className={style.iconClose}>
-                              <CloseOutlined />
-                          </span>
-                      </button>
-                      <div className={style.header}>
-                          <div className={style.title}>{title}</div>
-                      </div>
-                      <div className={style.container}>{children}</div>
-                  </div>
-              </Mask>,
-              containerRef.current
-          )
-        : null
+    return (
+        <Portal visible={visible}>
+            <Mask closeHandler={closeHandler} centered={centered} visible={visible} zIndex={zIndex}>
+                <div className={style.modal} role="document" style={{maxWidth: _width}}>
+                    {closable && (
+                        <button className={style.btnClose} onClick={closeHandler}>
+                            <span className={style.iconClose}>
+                                <CloseOutlined />
+                            </span>
+                        </button>
+                    )}
+                    {title && (
+                        <div className={style.header}>
+                            <div className={style.title}>{title}</div>
+                        </div>
+                    )}
+                    <div className={style.container}>{children}</div>
+                </div>
+            </Mask>
+        </Portal>
+    )
 }
 
-export default _Modal
+export default Modal

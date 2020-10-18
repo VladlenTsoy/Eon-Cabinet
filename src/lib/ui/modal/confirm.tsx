@@ -1,14 +1,14 @@
 import * as React from "react"
 import {ExclamationCircleOutlined} from "@ant-design/icons"
-import {DialogParamsProps, Digital} from "../lib/ui/modal-confirm/Dialog"
+import {CallDialogParamsProps, Digital} from "./dialog/callDialog"
 
-type MessageProps = (params: DialogParamsProps) => Promise<boolean>
+type MessageProps = (params: CallDialogParamsProps) => Promise<boolean>
 
 /**
  *
  * @param props
  */
-export const confirm: MessageProps = async (props) => {
+export const confirm: MessageProps = async props => {
     return await Digital(props)
 }
 
@@ -31,6 +31,6 @@ export const warning: WarningProps = async ({title, content, okText}) => {
         title,
         content,
         okText,
-        icon: <ExclamationCircleOutlined/>
+        icon: <ExclamationCircleOutlined />
     })
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { LockOutlined } from '@ant-design/icons';
-import {warning} from "../../../../../../../../../../../../utils/confirm"
+import {warning} from "lib/ui"
 
 interface TagNotifyButtonProps {
     student: any;
