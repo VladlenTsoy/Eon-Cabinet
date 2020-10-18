@@ -1,6 +1,6 @@
 import React from "react"
-import Tabs from "../../../../../../lib/components/tabs/Tabs"
-import Tab from "../../../../../../lib/components/tabs/Tab"
+import Tabs from "../../../../../../lib/ui/data-display/tabs/Tabs"
+import Tab from "../../../../../../lib/ui/data-display/tabs/Tab"
 import {FolderOutlined, FolderOpenOutlined} from "@ant-design/icons"
 import {Card} from "../../../../../../lib/ui"
 

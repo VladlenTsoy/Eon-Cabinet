@@ -2,8 +2,12 @@
     --component-background: #ffffff;
     /* ?? */
     --component-background-opacity: #ffffff73;
-    --border-light-color: rgba(0, 0, 0, 0.1);
     --layout-body-background: #f0f2f5;
+
+    /* Border */
+    --border-light-color: rgba(0, 0, 0, 0.1);
+    --border-radius: 10px;
+
 
     /***/
     --box-shadow: 0 5px 10px 0 rgba(0,0,0,0.1);
@@ -12,7 +16,9 @@
     --color-main: rgba(0, 0, 0, 0.65);
     --color-strong: rgba(0, 0, 0, 0.85);
     --color-second: rgba(0, 0, 0, 0.45);
+}
 
+[data-mode="default"] {
     --color-primary: #8e24aa;
     --color-primary-hover: #8e24aacc;
 

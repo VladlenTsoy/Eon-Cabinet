@@ -1,6 +1,6 @@
 import React, {useEffect, useRef} from "react"
 import style from "./Actions.module.css"
-import {Button} from "../../../../index"
+import {Button} from "../../../../../index"
 import {CallDialogParamsProps} from "../../callDialog"
 
 interface ActionsProps {

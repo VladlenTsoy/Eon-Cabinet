@@ -2,7 +2,7 @@ import React from "react"
 import {LoadingOutlined} from "@ant-design/icons"
 import {Spin} from "antd"
 import styled from "styled-components"
-import {useLanguage} from "../../../hooks/use-language"
+import {useLanguage} from "../../../../hooks/use-language"
 
 interface LoadingStyledProps extends React.HTMLAttributes<HTMLDivElement> {
     maxHeight: string

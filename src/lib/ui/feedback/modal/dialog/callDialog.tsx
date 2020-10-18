@@ -1,5 +1,5 @@
 import * as React from "react"
-import {ButtonProps} from "../../button/Button"
+import {ButtonProps} from "../../../general/button/Button"
 import ReactDOM from "react-dom"
 import Dialog from "./Dialog"
 

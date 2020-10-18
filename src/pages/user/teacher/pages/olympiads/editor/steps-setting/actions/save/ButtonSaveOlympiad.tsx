@@ -3,7 +3,7 @@ import SaveOlympiadItems from "./items/SaveOlympiadItems"
 import {EditOutlined, FlagOutlined} from "@ant-design/icons"
 import {Button} from "antd"
 import {useScreenWindow} from "../../../../../../../../../hooks/use-screen-window.effect"
-import DrawerEditor from "../../../../../../../../../lib/ui/drawer-editor/DrawerEditor"
+import DrawerEditor from "../../../../../../../../../lib/ui/feedback/drawer-editor/DrawerEditor"
 
 interface ButtonSaveOlympiadProps {
     olympiad?: any

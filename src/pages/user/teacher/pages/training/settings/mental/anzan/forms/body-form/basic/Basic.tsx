@@ -1,7 +1,7 @@
 import React from 'react';
 import {Col, Row} from "antd";
 import {FormItem} from "../../../../../../../../../../../lib/ui";
-import Stepper from "../../../../../../../../../../../lib/ui/stepper/Stepper";
+import Stepper from "../../../../../../../../../../../lib/ui/data-entry/stepper/Stepper";
 
 interface BasicProps {
     length: string;

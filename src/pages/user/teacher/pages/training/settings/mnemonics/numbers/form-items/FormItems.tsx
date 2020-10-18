@@ -4,7 +4,7 @@ import {FormItem} from "../../../../../../../../../lib/ui";
 import {RadioWrapper} from "../../../mental/anzan/forms/type-form/TypeForm";
 import ConfigBlock from "../../../config/Config";
 import {FileOutlined} from '@ant-design/icons';
-import Stepper from "../../../../../../../../../lib/ui/stepper/Stepper";
+import Stepper from "../../../../../../../../../lib/ui/data-entry/stepper/Stepper";
 
 interface FormItemsProps {
     typeTask: string;

@@ -1,12 +1,12 @@
 import React from "react"
 import {EditOutlined, LoadingOutlined} from "@ant-design/icons"
 import {message} from "antd"
-import {confirm} from "lib/ui"
+import {confirm} from "../.."
 import {useState} from "react"
 import {IconsWrapper, IconWrapper, IconEditWrapper} from "./IconsWrapper"
 import AvatarLabelWrapper from "./Label"
-import {updateImageUser} from "../../../store/common/user/updateImageUser"
-import {useUser} from "../../../hooks/use-user"
+import {updateImageUser} from "../../../../store/common/user/updateImageUser"
+import {useUser} from "../../../../hooks/use-user"
 import {useDispatch} from "react-redux"
 
 const PhotoBlock: React.FC = () => {

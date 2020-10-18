@@ -2,7 +2,7 @@ import * as React from "react";
 import {Typography} from "antd";
 import {Card} from "lib/ui";
 import {useEffect, useState} from "react";
-import PhotoBlock from "../../../../../lib/ui/avatar/Photo";
+import PhotoBlock from "../../../../../lib/ui/data-display/avatar/Photo";
 import ProfileBlockMenu from "./menu/ProfileBlockMenu";
 import styled from "styled-components";
 import {useDispatch} from "react-redux";

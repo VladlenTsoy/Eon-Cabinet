@@ -1,6 +1,6 @@
 import React from 'react';
 import {FormItem} from "lib/ui";
-import Stepper from "lib/ui/stepper/Stepper";
+import Stepper from "lib/ui/data-entry/stepper/Stepper";
 
 interface TimeItemProps {
     typeTask: string;

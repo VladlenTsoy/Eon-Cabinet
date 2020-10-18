@@ -1,6 +1,6 @@
 import React, {useCallback, useState} from "react";
 import {useScreenWindow} from "hooks/use-screen-window.effect";
-import DrawerEditor from "lib/ui/drawer-editor/DrawerEditor";
+import DrawerEditor from "lib/ui/feedback/drawer-editor/DrawerEditor";
 import {useSelector} from "react-redux";
 import {groupSelector} from "store/access/teacher/group/groupSlice";
 import Container from "./container/Container";

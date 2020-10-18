@@ -1,9 +1,9 @@
 import React, {useState} from "react"
 import {Input, Switch} from "antd"
-import {FormItem} from "../index"
+import {FormItem} from "../../index"
 import styled from "styled-components"
 import {FormItemProps} from "antd/es/form"
-import {useLanguage} from "../../../hooks/use-language"
+import {useLanguage} from "../../../../hooks/use-language"
 
 const InputPasswordWrapper = styled.div`
     position: relative;

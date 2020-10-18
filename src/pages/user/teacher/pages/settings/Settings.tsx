@@ -1,7 +1,7 @@
 import React from "react"
-import Tab from "../../../../../lib/components/tabs/Tab"
+import Tab from "../../../../../lib/ui/data-display/tabs/Tab"
 import {Card} from "../../../../../lib/ui"
-import Tabs from "../../../../../lib/components/tabs/Tabs"
+import Tabs from "../../../../../lib/ui/data-display/tabs/Tabs"
 import {FolderOutlined} from "@ant-design/icons"
 
 const Categories = React.lazy(() => import("./categories/Categories"))

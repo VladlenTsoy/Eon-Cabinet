@@ -1,7 +1,7 @@
 import React, {useState} from "react"
 import {Avatar, Modal} from "lib/ui";
 import styled from "styled-components";
-import {MenuStyled} from "../../../../../../../../../../lib/ui/modal-menu/ModalMenu"
+import {MenuStyled} from "../../../../../../../../../../lib/ui/feedback/modal-menu/ModalMenu"
 import ActionColumn from "./action/ActionColumn"
 import {Student} from "../../../../../../../../../../lib/types/teacher/Student"
 

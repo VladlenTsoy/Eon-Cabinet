@@ -2,7 +2,7 @@ import React from 'react';
 import {Col, Row, Select} from "antd";
 import {FormItem} from "../../../../../../../../lib/ui";
 import FormSettingLayout from "../../mental/layout/form-setting/FormSetting.layout";
-import Stepper from "../../../../../../../../lib/ui/stepper/Stepper";
+import Stepper from "../../../../../../../../lib/ui/data-entry/stepper/Stepper";
 
 interface CountriesProps {
     userSetting?: any;

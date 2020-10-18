@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import styled from "styled-components";
 import moment from "moment";
-import Avatar from "../../../../../../../../../lib/ui/avatar/Avatar";
+import Avatar from "../../../../../../../../../lib/ui/data-display/avatar/Avatar";
 import {Typography, Popover} from "antd";
 import StepSuccess from "assets/images/olympiad/step_success.svg";
 import {useTeacherDispatch} from "../../../../../../../../../store/access/teacher/store";

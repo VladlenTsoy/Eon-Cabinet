@@ -1,6 +1,6 @@
 import React, {useState} from "react"
 import {MenuOutlined} from "@ant-design/icons"
-import Button from "../button/Button"
+import Button from "../../general/button/Button"
 import Modal from "../modal/Modal"
 import styled from "styled-components"
 

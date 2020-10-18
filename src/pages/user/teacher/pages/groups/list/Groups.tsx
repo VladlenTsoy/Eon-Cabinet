@@ -1,7 +1,7 @@
 import React, {useCallback} from "react"
 import Container from "./container/Container"
-import Tab from "../../../../../../lib/components/tabs/Tab"
-import Tabs from "../../../../../../lib/components/tabs/Tabs"
+import Tab from "../../../../../../lib/ui/data-display/tabs/Tab"
+import Tabs from "../../../../../../lib/ui/data-display/tabs/Tabs"
 import {
     useActiveCategoryId,
     useSelectAllCategories

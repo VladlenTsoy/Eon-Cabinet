@@ -1,7 +1,7 @@
 import React from 'react';
 import {Col, Row} from "antd";
-import FormItem from "lib/ui/form/form-item/FormItem";
-import Stepper from "../../../../../../../../../../../lib/ui/stepper/Stepper";
+import FormItem from "lib/ui/data-entry/form/form-item/FormItem";
+import Stepper from "../../../../../../../../../../../lib/ui/data-entry/stepper/Stepper";
 
 const List: React.FC = () => {
     return <Row gutter={15}>

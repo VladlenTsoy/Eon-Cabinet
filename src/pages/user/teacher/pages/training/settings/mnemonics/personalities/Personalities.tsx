@@ -2,7 +2,7 @@ import React from 'react';
 import {FormItem} from "lib/ui";
 import {Col, Row, Select} from "antd";
 import FormSettingLayout from "../../mental/layout/form-setting/FormSetting.layout";
-import Stepper from "../../../../../../../../lib/ui/stepper/Stepper";
+import Stepper from "../../../../../../../../lib/ui/data-entry/stepper/Stepper";
 
 interface PersonalitiesProps {
     userSetting?: any;

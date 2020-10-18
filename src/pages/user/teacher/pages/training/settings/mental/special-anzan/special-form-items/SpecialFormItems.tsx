@@ -1,7 +1,7 @@
 import React from 'react';
 import {Col, Form, InputNumber, Radio, Row} from "antd";
 import {FormItem} from "../../../../../../../../../lib/ui";
-import Stepper from "../../../../../../../../../lib/ui/stepper/Stepper";
+import Stepper from "../../../../../../../../../lib/ui/data-entry/stepper/Stepper";
 import {useLanguage} from "../../../../../../../../../hooks/use-language";
 
 interface SpecialFormItemsProps {

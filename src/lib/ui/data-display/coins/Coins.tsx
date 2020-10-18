@@ -1,5 +1,5 @@
 import React from "react";
-import image from "../../../assets/images/icons/coin.svg";
+import image from "../../../../assets/images/icons/coin.svg";
 import styled from "styled-components";
 
 const CoinsWrapper = styled.div`

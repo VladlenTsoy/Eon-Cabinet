@@ -3,7 +3,7 @@ import {Col, DatePicker, Form, Row} from "antd";
 import {Button, DrawerActions, FormItem} from "lib/ui";
 import {updateStudent} from "store/access/teacher/students/updateStudent";
 import {createStudent} from "store/access/teacher/students/createStudent";
-import InputPhoto from "lib/ui/form/InputPhoto";
+import InputPhoto from "lib/ui/data-entry/form/InputPhoto";
 import SelectGroup from "./items/SelectGroup";
 import {SaveOutlined} from "@ant-design/icons";
 import {useParams} from "react-router-dom";
