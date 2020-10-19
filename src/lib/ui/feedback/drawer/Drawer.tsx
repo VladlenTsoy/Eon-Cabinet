@@ -1,46 +1,56 @@
-import React from "react";
-import {Drawer as AntdDrawer} from 'antd';
-import {DrawerProps} from 'antd/es/drawer';
-import styled from "styled-components";
+import React, {useEffect} from "react"
+import Portal from "../modal/portal/Portal"
+import Mask from "../modal/mask/Mask"
+import _style from "./Drawer.module.css"
 
-const DrawerWrapper = styled(({notFooter, children, ...props}: any) => (
-    <AntdDrawer {...props}>{children}</AntdDrawer>
-))`
-  .ant-drawer-close{
-    width: 46px;
-    height: 46px;
-    line-height: 46px;
-    color: ${props => props.theme.color_main};
-    padding: 0;
-    
-    &:focus, &:hover{
-      color: ${props => props.theme.color_black};
-    }
-  }
-  .ant-drawer-wrapper-body{
-    height: 100%;
-    overflow: hidden;
-      .ant-drawer-header{
-        border: 0;
-        box-shadow: 0 2px 15px 0 rgba(0,0,0,.05);
-        padding: 12px 24px;
-      }
-      .ant-drawer-body{
-        padding-bottom: ${(props: any) => props.notFooter ? '1rem' : '52px'};
-        height: ${(props: any) => props.notFooter ? 'auto' : 'calc(100% - 98px)'};
-        overflow-y: auto;
-      }
-  }
-`;
-
-export type DrawerCustomProps = DrawerProps & {
-    notFooter?: boolean;
+interface _DrawerProps {
+    title?: React.ReactNode
+    width?: string | number
+    visible: boolean
+    closable?: boolean
+    zIndex?: number
+    onClose: () => void
+    getContainer?: string
+    style?: any
+    mask?: boolean
+    placement?: "top" | "right" | "bottom" | "left"
+    afterVisibleChange?: (visible: boolean) => void
+    destroyOnClose?: boolean
+    footer?: React.ReactNode
+    notFooter?: any
 }
 
-const Drawer: React.FC<DrawerCustomProps> = ({notFooter, ...props}) => {
-    return <DrawerWrapper {...props} notFooter={notFooter}>
-        {props.children}
-    </DrawerWrapper>;
-};
+const _Drawer: React.FC<_DrawerProps> = ({
+    children,
+    visible = false,
+    onClose,
+    width = 256,
+    closable = true,
+    zIndex = 1000,
+    getContainer,
+    style,
+    mask = true,
+    placement = "right",
+    afterVisibleChange,
+    destroyOnClose = false
+}) => {
+    const closeHandler = async () => {
+        onClose()
+    }
 
-export default Drawer;
+    return (
+        <Portal visible={visible} getContainer={getContainer} destroyOnClose={destroyOnClose}>
+            <div className={`${_style.drawer} ${visible ? _style.open : ""}`} style={{zIndex}} tabIndex={-1}>
+                {mask && <Mask visible={visible} closeHandler={closeHandler} />}
+                <div
+                    className={`${_style.drawerContent} ${_style[placement]} ${visible ? "" : _style.back}`}
+                    style={{width, ...style}}
+                >
+                    {children}
+                </div>
+            </div>
+        </Portal>
+    )
+}
+
+export default _Drawer
