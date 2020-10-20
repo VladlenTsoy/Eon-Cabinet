@@ -1,8 +1,9 @@
 import React from "react"
-import {CloseOutlined} from "@ant-design/icons"
-import style from "./Modal.module.css"
 import Mask from "./mask/Mask"
 import Portal from "./portal/Portal"
+import Wrapper from "./wrapper/Wrapper"
+import ModalCard from "./modal-card/ModalCard"
+import WrapperCard from "./wrapper-card/WrapperCard"
 
 interface ModalProps {
     title?: string
@@ -10,15 +11,19 @@ interface ModalProps {
     visible: boolean
     centered?: boolean
     closable?: boolean
+    maskClosable?: boolean
     zIndex?: number
+    mask?: boolean
     onCancel: () => void
 }
 
 const Modal: React.FC<ModalProps> = ({
     children,
     title,
-    centered,
+    centered = false,
     closable = true,
+    maskClosable = true,
+    mask = true,
     width = 416,
     visible,
     zIndex,
@@ -28,27 +33,24 @@ const Modal: React.FC<ModalProps> = ({
         onCancel()
     }
 
-    const _width = typeof width === "number" ? width + "px" : width
-
     return (
         <Portal visible={visible}>
-            <Mask closeHandler={closeHandler} centered={centered} visible={visible} zIndex={zIndex}>
-                <div className={style.modal} role="document" style={{maxWidth: _width}}>
-                    {closable && (
-                        <button className={style.btnClose} onClick={closeHandler}>
-                            <span className={style.iconClose}>
-                                <CloseOutlined />
-                            </span>
-                        </button>
-                    )}
-                    {title && (
-                        <div className={style.header}>
-                            <div className={style.title}>{title}</div>
-                        </div>
-                    )}
-                    <div className={style.container}>{children}</div>
-                </div>
-            </Mask>
+            <div>
+                {mask && <Mask visible={visible} />}
+                <Wrapper
+                    closeHandler={closeHandler}
+                    centered={centered}
+                    visible={visible}
+                    zIndex={zIndex}
+                    maskClosable={maskClosable}
+                >
+                    <WrapperCard visible={visible} centered={centered} width={width}>
+                        <ModalCard closable={closable} closeHandler={closeHandler} title={title}>
+                            {children}
+                        </ModalCard>
+                    </WrapperCard>
+                </Wrapper>
+            </div>
         </Portal>
     )
 }

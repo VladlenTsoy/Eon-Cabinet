@@ -1,0 +1,25 @@
+.wrapper {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
+    tab-index: -1;
+}
+
+.center {
+    text-align: center;
+}
+
+.center:before {
+    display: inline-block;
+    width: 0;
+    height: 100%;
+    vertical-align: middle;
+    content: "";
+}
+
+.top {
+}

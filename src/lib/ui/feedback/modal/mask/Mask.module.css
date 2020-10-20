@@ -1,26 +1,14 @@
 .mask {
     position: fixed;
-    left: 0;
+    top: 0;
     right: 0;
     bottom: 0;
-    top: 0;
-    background: rgba(0, 0, 0, 0.4);
-    /*z-index: 999;*/
+    left: 0;
+    z-index: 999;
+    height: 100%;
+    background-color: rgba(0,0,0,.45);
     animation-duration: 0.3s;
     animation-fill-mode: both;
-    tab-index: -1;
-    /*padding-left: 0.5rem;*/
-    /*padding-right: 0.5rem;*/
-}
-
-.maskCenter {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.maskTop {
-    padding-top: 100px;
 }
 
 .mask.open {

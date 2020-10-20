@@ -12,6 +12,8 @@ export interface CallDialogParamsProps {
     okText: string
     cancelText?: string
     zIndex?: number
+    mask?: boolean
+    centered?: boolean
     onOk?: (...args: any[]) => any
     onCancel?: (...args: any[]) => any
 }
@@ -27,7 +29,9 @@ export const Digital: CallDialogProps = async ({
     okText,
     okType,
     icon,
-    zIndex
+    zIndex,
+    mask,
+    centered
 }) => {
     return await new Promise(resolve => {
         const modal = document.createElement("div")
@@ -52,11 +56,11 @@ export const Digital: CallDialogProps = async ({
                     okText={okText}
                     okType={okType}
                     cancelText={cancelText}
+                    mask={mask}
+                    centered={centered}
                 />,
                 modal
             )
         })
     })
 }
-
-export default Digital

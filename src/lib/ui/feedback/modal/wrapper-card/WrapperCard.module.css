@@ -1,0 +1,47 @@
+.modal {
+    position: relative;
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
+    top: 100px;
+    margin: 0 auto;
+    max-width: calc(100vw - 16px);
+    padding: 0 0 24px;
+}
+
+.open {
+    animation-name: open;
+}
+
+.close {
+    animation-name: close;
+}
+
+@keyframes open {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, -100%, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translateZ(0);
+    }
+}
+
+@keyframes close {
+    0% {
+        opacity: 1;
+        transform: translateZ(0);
+    }
+    to {
+        opacity: 0;
+        transform: translate3d(0, -100%, 0);
+    }
+}
+
+
+.centered {
+    top: 0;
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+}
