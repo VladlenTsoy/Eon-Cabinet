@@ -8,9 +8,8 @@
     --border-light-color: rgba(0, 0, 0, 0.1);
     --border-radius: 10px;
 
-
     /***/
-    --box-shadow: 0 5px 10px 0 rgba(0,0,0,0.1);
+    --box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
 
     /***/
     --color-main: rgba(0, 0, 0, 0.65);
@@ -50,15 +49,28 @@
 [data-theme="dark"] {
     --component-background: #141414;
     --component-background-opacity: #14141473;
-    --border-light-color: rgba(255,255,255,0.1);
+    --border-light-color: rgba(255, 255, 255, 0.1);
     --layout-body-background: #000000;
 
-    --color-main: rgba(255,255,255, 0.85);
-    --color-strong: rgba(255,255,255, 1);
-    --color-second: rgba(255,255,255, 0.65);
+    --color-main: rgba(255, 255, 255, 0.85);
+    --color-strong: rgba(255, 255, 255, 1);
+    --color-second: rgba(255, 255, 255, 0.65);
 }
 
-
-.ant-empty-img-simple-path {
-    fill: #fafafa;
+.basic {
+    color: var(--color-main);
 }
+
+.warning {
+    color: var(--color-warning);
+}
+.success {
+    color: var(--color-success);
+}
+.danger {
+    color: var(--color-danger);
+}
+.second {
+    color: var(--color-second);
+}
+/*.minimal { color: var(--); }*/

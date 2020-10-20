@@ -1,9 +1,7 @@
 import React from 'react';
 import { DollarOutlined } from '@ant-design/icons';
-import {Button, Typography} from "antd";
+import {Button, Title} from "lib/ui";
 import styled from "styled-components";
-
-const {Title, Text} = Typography;
 
 const TotalWrapper = styled.div`
   display: flex;
@@ -40,7 +38,7 @@ const Total:React.FC<TotalProps> = () => {
       <TotalWrapper>
           <div className="price">
               <Title level={4}>
-                  <Text type="secondary">Итог:</Text>
+                  <span className="second">Итог:</span>
                   3 840 000 сум
               </Title>
           </div>

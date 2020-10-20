@@ -1,14 +1,11 @@
 import React, {useState} from 'react';
-import {Button, Col, DatePicker, Form, Row, Typography} from "antd";
-import {Card} from "lib/ui";
-import {FormItem} from "../../../../../lib/ui";
+import {Col, DatePicker, Form, Row} from "antd";
+import {Card, FormItem, Button, Title} from "lib/ui";
 import styled from "styled-components";
 import moment from 'moment';
 import {useUser} from "../../../../../hooks/use-user";
 import {useDispatch} from "react-redux";
 import {updateUser} from "../../../../../store/common/user/updateUser";
-
-const {Title} = Typography;
 
 const ProfileTitle = styled(Title)`
    text-align: center;

@@ -1,63 +1,62 @@
-import React, {useState} from 'react';
-import {RedoOutlined} from '@ant-design/icons';
-import {DatePicker, Button, Radio, Typography, Form} from "antd";
-import {Alert} from "../../../../../../../../lib/ui";
-import styled from "styled-components";
-import moment from "moment";
+import React, {useState} from "react"
+import {RedoOutlined} from "@ant-design/icons"
+import {DatePicker, Radio, Form} from "antd"
+import {Title, Button, Alert} from "lib/ui"
+import styled from "styled-components"
+import moment from "moment"
 
-const {RangePicker} = DatePicker;
-const {Title} = Typography;
+const {RangePicker} = DatePicker
 
 const DayOfWeekWrapper = styled.div`
-  text-align: center;
-  
-  .ant-alert{
-    text-align: left;
-    margin: 1rem 0 0;
-  }
-  
-  .ant-calendar-picker{
-    margin-bottom: 1rem;  
-  }
-  
-  .ant-btn{
-     margin-bottom: 1rem;
-  }
-`;
+    text-align: center;
+
+    .ant-alert {
+        text-align: left;
+        margin: 1rem 0 0;
+    }
+
+    .ant-calendar-picker {
+        margin-bottom: 1rem;
+    }
+
+    .ant-btn {
+        margin-bottom: 1rem;
+    }
+`
 
 const DayOfWeek = () => {
-    const [visible, setVisible] = useState(false);
-    const [user, setUser] = useState<any>(null);
-    const [answer, setAnswer] = useState<any>(null);
+    const [visible, setVisible] = useState(false)
+    const [user, setUser] = useState<any>(null)
+    const [answer, setAnswer] = useState<any>(null)
 
     const onFinishHandler = (values: any) => {
-        setVisible(false);
-        const [start, end] = values.period;
+        setVisible(false)
+        const [start, end] = values.period
         if (start && end) {
-            const date = new Date(start.valueOf() + Math.random() * (end.valueOf() - start.valueOf()));
-            setAnswer(date);
+            const date = new Date(start.valueOf() + Math.random() * (end.valueOf() - start.valueOf()))
+            setAnswer(date)
         }
-        setUser(undefined);
-    };
+        setUser(undefined)
+    }
 
     const changeWeekHandler = (e: any) => {
-        setUser(e.target.value);
-        setVisible(true);
-    };
+        setUser(e.target.value)
+        setVisible(true)
+    }
 
     return (
         <DayOfWeekWrapper>
             <Form onFinish={onFinishHandler}>
                 <Form.Item name="period">
-                    <RangePicker size="large" bordered={false} style={{width: '100%', textAlign: 'center'}}/>
+                    <RangePicker size="large" bordered={false} style={{width: "100%", textAlign: "center"}} />
                 </Form.Item>
-                <Button type="primary" htmlType="submit" icon={<RedoOutlined/>} block size="large">
+                <Button type="primary" htmlType="submit" icon={<RedoOutlined />} block size="large">
                     Обновить дату
                 </Button>
             </Form>
-            {answer ?
+            {answer ? (
                 <>
-                    <Title level={1}>Дата: {moment(answer).format('DD.MM.YYYY')}</Title>
+                    <Title level={1}>Дата: {moment(answer).format("DD.MM.YYYY")}</Title>
                     <Radio.Group buttonStyle="solid" onChange={changeWeekHandler} value={user} size="large">
                         <Radio.Button value="1">Пн</Radio.Button>
                         <Radio.Button value="2">Вт</Radio.Button>
@@ -67,16 +66,27 @@ const DayOfWeek = () => {
                         <Radio.Button value="6">Сб</Radio.Button>
                         <Radio.Button value="0">Вс</Radio.Button>
                     </Radio.Group>
-                </> : null
-            }
-            {visible && user && answer ?
-                Number(user) === Number(answer.getDay()) ?
-                    <Alert message="Успех!" description="Вы успешно выбрали день недели." type="success" showIcon/> :
-                    <Alert message="Ошибка!" description="Выбранный вами день недели не верный." type="error" showIcon/>
-                : null
-            }
+                </>
+            ) : null}
+            {visible && user && answer ? (
+                Number(user) === Number(answer.getDay()) ? (
+                    <Alert
+                        message="Успех!"
+                        description="Вы успешно выбрали день недели."
+                        type="success"
+                        showIcon
+                    />
+                ) : (
+                    <Alert
+                        message="Ошибка!"
+                        description="Выбранный вами день недели не верный."
+                        type="error"
+                        showIcon
+                    />
+                )
+            ) : null}
         </DayOfWeekWrapper>
-    );
-};
+    )
+}
 
-export default DayOfWeek;
+export default DayOfWeek

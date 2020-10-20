@@ -1,13 +1,11 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import {FlagOutlined} from '@ant-design/icons';
-import {Typography} from "antd";
+import {Title} from "lib/ui";
 import {Card} from "lib/ui";
 import styled from "styled-components";
 import {Task} from "../../../../../../../lib/types/teacher/Task";
 import {useLanguage} from "../../../../../../../hooks/use-language"
-
-const {Title} = Typography;
 
 const TaskCardWrapper: any = styled(Card)`
   margin-bottom: 1rem;

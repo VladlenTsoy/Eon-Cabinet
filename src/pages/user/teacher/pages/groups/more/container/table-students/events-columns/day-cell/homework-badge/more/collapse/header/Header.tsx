@@ -1,12 +1,9 @@
 import React from "react";
 import {CheckCircleOutlined, ClockCircleOutlined, CloseCircleOutlined} from '@ant-design/icons';
-import {Typography} from "antd";
 import styled from "styled-components";
 import moment from "moment";
 import {useLanguage} from "../../../../../../../../../../../../../../hooks/use-language"
 import {StudentSentHomeworkTask} from "../../../../../../../../../../../../../../lib/types/teacher/StudentHomework"
-
-const {Text} = Typography;
 
 const HeaderWrapper = styled.div`
   display: flex;
@@ -83,8 +80,8 @@ const Header: React.FC<HeaderCollapseHomeworkProps> = ({task}) => {
             {updateName(task)}
         </div>
         <div>
-            <Text type="secondary">Выполнено:</Text> {task.first ? task.first.count_success : 0}
-            <Text type="secondary"> / Всего:</Text> {task.count_all}
+            <span className="second">Выполнено:</span> {task.first ? task.first.count_success : 0}
+            <span className="second"> / Всего:</span> {task.count_all}
         </div>
     </HeaderWrapper>
 };

@@ -1,14 +1,11 @@
 import React from 'react';
 import {StopOutlined} from '@ant-design/icons';
-import {Button, Modal, Typography} from "antd";
+import {Button, Title, confirm} from "lib/ui";
 import styled from "styled-components";
 import {useHistory} from "react-router-dom";
 import ButtonSaveOlympiad from "../../../editor/steps-setting/actions/save/ButtonSaveOlympiad";
 import {useDispatch} from "react-redux";
 import {deleteOlympiad} from "../../../../../../../../store/access/teacher/olympiad/deleteOlympiad";
-
-const {Title} = Typography;
-const {confirm} = Modal;
 
 const TitleWrapper = styled.div`
   display: flex;
@@ -88,7 +85,7 @@ const TitleInfo: React.FC<TitleProps> = ({olympiad, fetch}) => {
                 />
                 {
                     Number(olympiad.status) === 0 ?
-                        <Button danger icon={<StopOutlined/>} ghost onClick={finishOlympiad}>Отменить
+                        <Button type="danger" icon={<StopOutlined/>} ghost onClick={finishOlympiad}>Отменить
                             олимпиаду</Button> : null
                 }
             </div>

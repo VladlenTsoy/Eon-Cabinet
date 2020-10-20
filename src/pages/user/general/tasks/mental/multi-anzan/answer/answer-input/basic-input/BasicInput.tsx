@@ -1,9 +1,6 @@
 import React from 'react';
-import {FormItem} from "../../../../../../../../../lib/ui";
+import {FormItem, Title} from "lib/ui";
 import styled from "styled-components";
-import {Typography} from "antd";
-
-const {Title} = Typography;
 
 export const BasicWrapper = styled.div`
   margin: 0 auto;

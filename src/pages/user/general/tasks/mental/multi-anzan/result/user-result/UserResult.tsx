@@ -2,8 +2,7 @@ import React, {useCallback, useEffect, useState} from 'react';
 import styled from "styled-components";
 import {useSelector} from "react-redux";
 import TrophyResultIntermediate from "../../../../layouts/intermediate/result-intermediate/trophy-result/TrophyResultIntermediate";
-import {Button, Typography} from "antd";
-import {Modal} from "../../../../../../../../lib/ui";
+import {Modal, Button, Title} from "lib/ui";
 import {LoadingBlock} from "lib/ui";
 import MoreModal from "./more-modal/MoreModal";
 import {gameSelector} from "../../../../../../../../store/common/game/gameSplice";
@@ -13,8 +12,6 @@ const LossSound = require("assets/sounds/loss.mp3");
 
 const BuzzWinSound = new Audio(WinSound);
 const BuzzLossSound = new Audio(LossSound);
-
-const {Title} = Typography;
 
 const UserResultWrapper = styled.div`
   display: flex;

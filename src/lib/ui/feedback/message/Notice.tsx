@@ -11,9 +11,12 @@ interface MessageProps {
 
 const Notice: React.FC<MessageProps> = ({duration = 1.5, content, type, onClose}) => {
     useEffect(() => {
-        setTimeout(() => {
+        let timeout = setTimeout(() => {
             onClose && onClose()
         }, duration * 1000)
+        return () => {
+            clearTimeout(timeout)
+        }
     }, [duration, onClose])
 
     return (

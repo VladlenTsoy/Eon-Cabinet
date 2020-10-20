@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Typography} from "antd";
+import {Title} from "lib/ui";
 import styled from "styled-components";
 import TrophyResultIntermediate from "./trophy-result/TrophyResultIntermediate";
 import BgConfettiIntermediate from "../layouts/bg-confetti/BgConfettiIntermediate.layout";
@@ -9,8 +9,6 @@ const LossSound = require("assets/sounds/loss.mp3");
 
 const BuzzWinSound = new Audio(WinSound);
 const BuzzLossSound = new Audio(LossSound);
-
-const {Title} = Typography;
 
 const CardWrapper = styled.div`
   .result-content {

@@ -3,9 +3,7 @@ import InviteStudentButton from "./invite-student/InviteStudentButton";
 import RequestsStudentsButton from "./requests-students/RequestsStudentsButton";
 import styled from "styled-components";
 import { UsergroupAddOutlined } from '@ant-design/icons';
-import { Typography } from "antd";
-
-const {Title} = Typography;
+import { Title } from "lib/ui";
 
 const Wrapper = styled.div`
   margin: 2rem 0;

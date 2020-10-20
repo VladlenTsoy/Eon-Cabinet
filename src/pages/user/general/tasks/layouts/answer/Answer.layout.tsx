@@ -1,7 +1,7 @@
 import React from 'react';
-import {Col, Row, Form, Typography} from "antd";
+import {Col, Row, Form} from "antd";
 import styled from "styled-components";
-import {Card, Button} from "lib/ui";
+import {Card, Button, Title} from "lib/ui";
 import {
     addSuccessStats,
     changeStatus,
@@ -10,8 +10,6 @@ import {
 } from "../../../../../../store/common/game/gameSplice";
 import {useDispatch} from "react-redux";
 import {ArrowRightOutlined} from '@ant-design/icons';
-
-const {Title} = Typography;
 
 const RowWrapper = styled(Row)`
   height: 100%;

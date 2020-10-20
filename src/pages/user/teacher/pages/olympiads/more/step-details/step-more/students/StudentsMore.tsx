@@ -1,16 +1,13 @@
 import React, {useEffect} from 'react';
 import styled from "styled-components";
 import moment from "moment";
-import Avatar from "../../../../../../../../../lib/ui/data-display/avatar/Avatar";
-import {Typography, Popover} from "antd";
+import {Popover} from "antd";
 import StepSuccess from "assets/images/olympiad/step_success.svg";
 import {useTeacherDispatch} from "../../../../../../../../../store/access/teacher/store";
 import {fetchOlympiadStepStudents} from "../../../../../../../../../store/access/teacher/olympiad/detail/students/fetchOlympiadStudents";
 import {useSelector} from "react-redux";
 import {olympiadSelector} from "../../../../../../../../../store/access/teacher/olympiad/olympiadSlice";
-import {TablePagination} from "../../../../../../../../../lib/ui";
-
-const {Title} = Typography;
+import {TablePagination, Avatar, Title} from "lib/ui";
 
 const Wrapper = styled.div`
   padding: 2rem 0;

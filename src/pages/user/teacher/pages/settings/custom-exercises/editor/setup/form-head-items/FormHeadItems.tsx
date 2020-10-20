@@ -1,8 +1,6 @@
 import React from 'react';
-import {Form, Radio, Typography} from "antd";
+import {Form, Radio} from "antd";
 import styled from "styled-components";
-
-const {Text} = Typography;
 
 const RadioWrapper = styled(Radio.Group)`
   &.ant-radio-group {
@@ -58,9 +56,9 @@ const FormHeadItems: React.FC<TypeTaskItemProps> = () => {
         </Form.Item>
 
         <p>
-            <Text type="secondary">
+            <span className="second">
                 Выберите арифметическое действия в котором будут создаваться примеры.
-            </Text>
+            </span>
         </p>
 
         <Form.Item name="mode">

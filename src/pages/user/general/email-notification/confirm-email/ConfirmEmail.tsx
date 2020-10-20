@@ -1,12 +1,10 @@
 import React, {useState} from 'react';
 import styled from "styled-components";
-import {Typography} from "antd";
+import {Title} from "lib/ui";
 import ConfirmEmailBg from "../../../../../assets/images/pages/login_page_bg.svg";
 import FormVerificationCode from "./FormVerificationCode";
 import SendingMessage from "./SendingMessage";
 import SuccessfulResult from "./SuccessfulResult";
-
-const {Title} = Typography;
 
 const SendingMessageWrapper = styled.div`
   text-align: center;

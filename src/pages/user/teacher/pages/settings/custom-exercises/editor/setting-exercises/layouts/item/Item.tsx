@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import {Typography} from "antd";
-
-const {Title} = Typography;
+import {Title} from "lib/ui";
 
 const ItemBlock = styled.div`
   display: inline-block;

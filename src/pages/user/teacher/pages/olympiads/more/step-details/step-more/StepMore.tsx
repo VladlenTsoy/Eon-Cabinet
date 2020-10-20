@@ -1,11 +1,9 @@
 import React from 'react';
 import styled from "styled-components";
 import { BuildOutlined, TeamOutlined, TrophyOutlined } from '@ant-design/icons';
-import { Typography } from "antd";
+import {Title} from "lib/ui";
 import StudentsMore from "./students/StudentsMore";
 import TasksBtn from "./tasks/TasksBtn";
-
-const {Title} = Typography;
 
 const StepMoreWrapper = styled.div`
   text-align: center;

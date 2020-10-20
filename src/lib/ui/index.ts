@@ -6,6 +6,8 @@ export {default as TablePagination} from "./data-display/table-pagination/TableP
 
 /* Пусто */
 export {default as Empty} from "./data-display/empty/Empty"
+/* Заголовки */
+export {default as Title} from "./general/typography/title/Title"
 /* Значок */
 export {default as Badge} from "./data-display/badge/Badge"
 /* Кнопка */

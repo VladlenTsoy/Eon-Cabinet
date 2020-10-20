@@ -1,14 +1,11 @@
 import React from 'react';
 import styled from "styled-components";
 import {BasicWrapper} from "../basic-input/BasicInput";
-import {FormItem} from "../../../../../../../../../lib/ui";
-import {Typography} from "antd";
+import {FormItem, Title} from "lib/ui";
 import {useSelector} from "react-redux";
 import TextFit
     from "../../../../../../../teacher/pages/training/settings/mental/multi-anzan/exercise-setting/multiplication-block/TextFit";
 import {gameSelector} from "../../../../../../../../../store/common/game/gameSplice";
-
-const {Title} = Typography;
 
 const GroupWrapper = styled(BasicWrapper)`
   h2.ant-typography{

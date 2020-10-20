@@ -1,10 +1,7 @@
 import React from 'react';
 import {Input, InputNumber} from "antd";
-import {Typography} from "antd";
 import styled from "styled-components";
-import {FormItem} from "lib/ui";
-
-const {Title} = Typography;
+import {FormItem, Title} from "lib/ui";
 
 const AnswerInputWrapper = styled.div`
   h4.ant-typography{

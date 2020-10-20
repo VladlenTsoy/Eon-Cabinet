@@ -1,12 +1,9 @@
 import React from "react"
 import styled from "styled-components"
 import {Link} from "react-router-dom"
-import {Typography} from "antd"
 import {TextProps} from "antd/es/typography/Text"
-import Avatar from "../../../../../ui/data-display/avatar/Avatar"
+import {Avatar} from "lib/ui"
 import {useUser} from "../../../../../../hooks/use-user"
-
-const {Text} = Typography
 
 const ProfileWrapper = styled(Link)<any>`
     color: ${(props) => props.theme.color_main};
@@ -31,12 +28,12 @@ const WrapperProfileData = styled.div`
     justify-content: center;
 `
 
-const UserName: React.FC<TextProps> = styled(Text)`
+const UserName: React.FC<TextProps> = styled.span`
     display: block;
     line-height: initial;
 `
 
-const UserId: React.FC<TextProps> = styled(Text)`
+const UserId: React.FC<TextProps> = styled.span`
     font-weight: bolder;
     font-size: 80%;
     line-height: initial;
@@ -63,7 +60,7 @@ const HeaderProfile: React.FC<HeaderProfileProps> = ({mr}) => {
                 <UserName>
                     {user.last_name} {user.first_name}
                 </UserName>
-                <UserId type="secondary">
+                <UserId className="second">
                     Ваш ID: <span>{user.id}</span>
                 </UserId>
             </WrapperProfileData>

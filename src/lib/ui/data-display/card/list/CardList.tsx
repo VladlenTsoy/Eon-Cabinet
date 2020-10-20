@@ -1,8 +1,5 @@
 import * as React from "react";
 import styled from "styled-components";
-import {Typography} from "antd";
-
-const {Text} = Typography;
 
 const CardListWrapper = styled.div`
     margin-bottom: 1rem;
@@ -22,7 +19,7 @@ const CardList: React.FC<CardListProps> = ({list}) =>
     <CardListWrapper>
         {list.map((data: any, key: number) =>
             <p key={key}>
-                <Text type="secondary">{data.title}:</Text> {data.item}
+                <span className="second">{data.title}:</span> {data.item}
             </p>
         )}
     </CardListWrapper>;
