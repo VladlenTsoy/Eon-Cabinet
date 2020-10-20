@@ -1,7 +1,9 @@
-import React, {useEffect} from "react"
+import React from "react"
 import Portal from "../modal/portal/Portal"
 import Mask from "../modal/mask/Mask"
-import _style from "./Drawer.module.css"
+import styled from "./Drawer.module.css"
+import Wrapper from "../modal/wrapper/Wrapper"
+import DrawerCard from "./drawer-card/DrawerCard"
 
 interface _DrawerProps {
     title?: React.ReactNode
@@ -25,7 +27,7 @@ const _Drawer: React.FC<_DrawerProps> = ({
     visible = false,
     onClose,
     width = 256,
-    closable = true,
+    // closable = true,
     zIndex = 1000,
     getContainer,
     style,
@@ -36,18 +38,28 @@ const _Drawer: React.FC<_DrawerProps> = ({
 }) => {
     const closeHandler = async () => {
         onClose()
+        setTimeout(() => afterVisibleChange && afterVisibleChange(visible), 300)
     }
 
     return (
         <Portal visible={visible} getContainer={getContainer} destroyOnClose={destroyOnClose}>
-            <div className={`${_style.drawer} ${visible ? _style.open : ""}`} style={{zIndex}} tabIndex={-1}>
-                {mask && <Mask visible={visible} closeHandler={closeHandler} />}
-                <div
-                    className={`${_style.drawerContent} ${_style[placement]} ${visible ? "" : _style.back}`}
-                    style={{width, ...style}}
+            <div>
+                {mask && <Mask visible={visible} />}
+                <Wrapper
+                    visible={visible}
+                    closeHandler={closeHandler}
+                    style={{...style, pointerEvents: mask ? "all" : "none"}}
+                    zIndex={zIndex}
                 >
-                    {children}
-                </div>
+                    <div
+                        className={`${styled.drawer} ${visible ? styled.open : styled.back} ${
+                            styled[placement]
+                        } `}
+                        style={{width}}
+                    >
+                        <DrawerCard>{children}</DrawerCard>
+                    </div>
+                </Wrapper>
             </div>
         </Portal>
     )

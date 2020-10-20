@@ -1,5 +1,5 @@
 import React, {useEffect, useRef} from "react"
-import style from "./Wrapper.module.css"
+import styled from "./Wrapper.module.css"
 
 interface WrapperProps {
     maskClosable?: boolean
@@ -7,15 +7,17 @@ interface WrapperProps {
     centered?: boolean
     zIndex?: number
     closeHandler: () => Promise<void>
+    style?: any
 }
 
 const Wrapper: React.FC<WrapperProps> = ({
     closeHandler,
     visible,
-    maskClosable,
+    maskClosable = true,
     centered,
+    style,
     children,
-    zIndex = 1000
+    zIndex = 999
 }) => {
     const wrapperRef = useRef<HTMLDivElement>(null)
 
@@ -55,8 +57,8 @@ const Wrapper: React.FC<WrapperProps> = ({
             role="dialog"
             onKeyDown={onWrapperKeyDown}
             ref={wrapperRef}
-            style={{zIndex}}
-            className={`${style.wrapper} ${centered ? style.center : style.top}`}
+            style={{...style, zIndex}}
+            className={`${styled.wrapper} ${centered ? styled.center : styled.top}`}
         >
             {children}
         </div>
