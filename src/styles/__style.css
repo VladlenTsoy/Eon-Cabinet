@@ -1,3 +1,5 @@
+@import "reset.css";
+
 :root {
     --component-background: #ffffff;
     /* ?? */
@@ -15,6 +17,11 @@
     --color-main: rgba(0, 0, 0, 0.65);
     --color-strong: rgba(0, 0, 0, 0.85);
     --color-second: rgba(0, 0, 0, 0.45);
+    --color-minimum: rgba(0, 0, 0, 0.25);
+
+    /***/
+    --font-size-base: 14px;
+    --font-family: "Museo Cyrl", Helvetica, Arial, sans-serif;
 }
 
 [data-mode="default"] {
@@ -57,6 +64,8 @@
     --color-second: rgba(255, 255, 255, 0.65);
 }
 
+/* */
+
 .basic {
     color: var(--color-main);
 }
@@ -64,13 +73,17 @@
 .warning {
     color: var(--color-warning);
 }
+
 .success {
     color: var(--color-success);
 }
+
 .danger {
     color: var(--color-danger);
 }
+
 .second {
     color: var(--color-second);
 }
+
 /*.minimal { color: var(--); }*/

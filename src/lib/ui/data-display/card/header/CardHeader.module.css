@@ -1,0 +1,27 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.actions > .anticon {
+    font-size: initial;
+    cursor: pointer;
+}
+
+.actions.icons > .anticon {
+    font-size: 18px;
+}
+
+.actions > .anticon :hover {
+    color: var(--color-primary);
+}
+
+.actions > .anticon:first-child {
+    margin-right: initial;
+}
+
+.actions.icons > .anticon:first-child {
+    margin-right: 1rem;
+}

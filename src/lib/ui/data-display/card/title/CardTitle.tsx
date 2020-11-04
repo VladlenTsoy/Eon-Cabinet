@@ -1,8 +1,7 @@
 import React from "react";
-import {Typography} from "antd";
+import {Title} from "lib/ui";
+import style from './CardTitle.module.css'
 import styled from "styled-components";
-
-const {Title} = Typography;
 
 const TitleWrapper = styled(Title)`
  &.ant-typography{
