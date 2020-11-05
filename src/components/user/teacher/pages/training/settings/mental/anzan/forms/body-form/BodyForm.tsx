@@ -83,7 +83,8 @@ const BodyForm: React.FC<AnzanFormBodyProps> = (
             mods={
                 isMultiplication ?
                     {
-                        group: !isMultiAnzan && typeTask !== 'list'
+                        group: !isMultiAnzan && typeTask !== 'list',
+                        comma: true,
                     } :
                     {
                         plus: true,
