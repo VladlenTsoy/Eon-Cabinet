@@ -32,7 +32,7 @@
     "animate.css": "^3.7.2",
     "antd": "4.1.2",
     "axios": "^0.19.2",
-    "babel-loader": "^8.1.0",
+    "babel-loader": "8.1.0",
     "babel-plugin-import": "^1.13.0",
     "craco-babel-loader": "^0.1.4",
     "craco-less": "^1.17.0",
