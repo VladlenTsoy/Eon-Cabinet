@@ -40,8 +40,8 @@ const Results = () => {
 
     return (
         <div>
-            {results.map((result: any) =>
-                <StepStyled>
+            {results.map((result: any, key: number) =>
+                <StepStyled key={key}>
                     <h3>Этап #{result.step + 1} <span>/</span> {result.title}</h3>
                     <TableStyled>
                         <thead>
@@ -54,44 +54,48 @@ const Results = () => {
                         <th>Выполненно</th>
                         </thead>
                         <tbody>
-                        {result.users.map((user: any, key: number) => [
-                            <tr key={`a_${key}`}>
-                                <td rowSpan={user.results.length}>{user.student.id}</td>
-                                <td rowSpan={user.results.length}>
-                                    <Avatar src={user.student.image} alt={user.student.first_name}/>
-                                </td>
-                                <td rowSpan={user.results.length}>{user.student.first_name} {user.student.last_name}</td>
-                                {
-                                    user.results[0] && [
-                                        <td key={`title-${key}`}>{user.results[0].title}</td>,
-                                        <td key={`exodus-${key}`}>
-                                            {
-                                                user.results[0].result.exodus ?
-                                                    <Tag color="success">Успех</Tag>:
-                                                    <Tag color="error">Ошибка</Tag>
-                                            }
-                                        </td>,
-                                        <td key={`countAll-${key}`}>{user.results[0].result.countAll}</td>,
-                                        <td key={`countSuccess-${key}`}>{user.results[0].result.countSuccess}</td>
-                                    ]
-                                }
-                            </tr>,
-                            user.results && user.results.length > 1 &&
-                            user.results.map((result: any, index: number) =>
-                                index !== 0 ? <tr key={`b_${key}_${index}`}>
-                                    <td>{result.title}</td>
-                                    <td>
+                        {result.users.map((user: any, key: number) => {
+                                const rowSpan = user.results.length > 0 ? user.results.length : 1
+                                return user.student && [
+                                    <tr key={`a_${key}`}>
+                                        <td rowSpan={rowSpan}>{user.student.id}</td>
+                                        <td rowSpan={rowSpan}>
+                                            <Avatar src={user.student.image} alt={user.student.first_name}/>
+                                        </td>
+                                        <td rowSpan={rowSpan}>{user.student.first_name} {user.student.last_name}</td>
                                         {
-                                            result.result.exodus ?
-                                                <Tag color="success">Успех</Tag>:
-                                                <Tag color="error">Ошибка</Tag>
+                                            user.results[0] && [
+                                                <td key={`title-${key}`}>{user.results[0].title}</td>,
+                                                <td key={`exodus-${key}`}>
+                                                    {
+                                                        user.results[0].result.exodus ?
+                                                            <Tag color="success">Успех</Tag> :
+                                                            <Tag color="error">Ошибка</Tag>
+                                                    }
+                                                </td>,
+                                                <td key={`countAll-${key}`}>{user.results[0].result.countAll}</td>,
+                                                <td key={`countSuccess-${key}`}>{user.results[0].result.countSuccess}</td>
+                                            ]
                                         }
-                                    </td>
-                                    <td>{result.result.countAll}</td>
-                                    <td>{result.result.countSuccess}</td>
-                                </tr> : null
-                            )
-                        ])}
+                                    </tr>,
+                                    user.results && user.results.length > 1 &&
+                                    user.results.map((result: any, index: number) =>
+                                        index !== 0 ? <tr key={`b_${key}_${index}`}>
+                                            <td>{result.title}</td>
+                                            <td>
+                                                {
+                                                    result.result.exodus ?
+                                                        <Tag color="success">Успех</Tag> :
+                                                        <Tag color="error">Ошибка</Tag>
+                                                }
+                                            </td>
+                                            <td>{result.result.countAll}</td>
+                                            <td>{result.result.countSuccess}</td>
+                                        </tr> : null
+                                    )
+                                ]
+                            }
+                        )}
                         </tbody>
                     </TableStyled>
                 </StepStyled>
