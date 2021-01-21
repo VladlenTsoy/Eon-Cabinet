@@ -33,7 +33,6 @@ const TableStyled = styled.table`
 const Results = () => {
     const {id} = useParams()
     const [loading, results] = useApiUserGeneral({url: `teacher/olympiad/${id}/results`})
-    console.log(results)
 
     if (loading)
         return <LoadingBlock/>
