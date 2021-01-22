@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
 import winIcon from "assets/images/illustrations/win.svg";
 import lossIcon from "assets/images/illustrations/loss.svg";
-import { SettingOutlined } from '@ant-design/icons';
-import {Button} from "antd";
+import { SettingOutlined, DownloadOutlined } from '@ant-design/icons';
+import {Button, message} from "antd"
 import styled from "styled-components";
 import ExerciseLists from "../../../../../../homework/editor/tabs-tasks/added-exercises/exercise-lists/ExerciseLists";
 import {Modal} from "lib";
+import {useAppContext} from "../../../../../../../../../../store/context/use-app-context"
 
 const LeftBlockWrapper = styled.div`
   display: grid;
@@ -48,10 +49,29 @@ interface LeftBlockProps {
 }
 
 const LeftBlock: React.FC<LeftBlockProps> = ({task, state, setState}) => {
+    const {language} = useAppContext();
     const [visible, setVisible] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const open = () => setVisible(true);
     const close = () => setVisible(false);
+
+    const clickHandler = async () => {
+        setLoading(true)
+        const {pdfRender} = await import("../../../../../../../pages/training/settings/print/general");
+
+        try {
+            task.data = task.first.totals
+            if(task.settings?.custom_exercises_id && (task.settings.mode === 'multiply' || task.settings.mode === 'divide'))
+            task.data = task.data.map((val: any) => ({...val, exercise: `${val.exercise[0]} ${task.settings.mode === 'multiply' ? '*':'/'} ${val.exercise[0]}`}))
+            await pdfRender(task.settings, task, language.common);
+            setLoading(false)
+        } catch (e) {
+            console.error(e)
+            message.error('Ошибка!')
+            setLoading(false)
+        }
+    }
 
     const clickStateHandler = () => {
         setState(state === 'first' ? 'second' : 'first');
@@ -67,6 +87,7 @@ const LeftBlock: React.FC<LeftBlockProps> = ({task, state, setState}) => {
                      className="exodus"/>
             }
             <Button disabled={!task.second} onClick={clickStateHandler}>Попытка №{state === 'first' ? '2' : '1'}</Button>
+            <Button icon={<DownloadOutlined />} onClick={clickHandler} loading={loading}>Скачать</Button>
             <Button icon={<SettingOutlined />} onClick={open}>Настройки</Button>
             <Modal
                 visible={visible}
