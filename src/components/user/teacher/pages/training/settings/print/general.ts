@@ -120,8 +120,8 @@ const updateTheRowsInTheTables = ({_rows, settings, columns, answ, users}: any) 
                 columns[k] = columns[k] || [];
                 columns[k].push({title: alpha[ke], dataKey: ke});
 
-                if(users.length)
-                    rows.push(userTables[k][ke].user);
+                if(users?.length)
+                    rows.push(userTables[k][ke].user || '');
                 else
                     rows.push('');
                 return rows.map((column: any, key: string | number) => {
@@ -161,12 +161,12 @@ const updateTheRowsInTheTablesTwo = ({_rows, settings, columns, answ, users}: an
                 columnEmpty = [];
 
             columnEmpty.push({title: '#', dataKey: 0});
-            if(users)
+            if(users?.length)
                 answerEmpty.push('');
             rows.map((column: any, key: number) => {
                 columnEmpty.push({title: alpha[key], dataKey: key + 1});
-                if(users)
-                    answerEmpty.push(`${userTables[k][ke][key].user}`);
+                if(users?.length)
+                    answerEmpty.push(userTables[k][ke][key].user || '');
                 else
                     answerEmpty.push('');
                 return column;
