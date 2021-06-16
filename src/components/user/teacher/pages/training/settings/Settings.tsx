@@ -97,8 +97,7 @@ const Tasks: React.FC = () => {
             await updateSetting(setting);
             if (print) {
                 let url = '/algorithm/list';
-                let _setting = setting;
-                _setting.print = true;
+                let _setting = Object.assign({print: true}, setting);
 
                 const {pdfRender} = await import("./print/general");
 

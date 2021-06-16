@@ -1,6 +1,6 @@
-import React from 'react';
-import {FormItem} from "../../../../../../../../../lib";
-import {Input} from "antd";
+import React from "react"
+import {FormItem} from "../../../../../../../../../lib"
+import {Input} from "antd"
 
 interface RowAnswerProps {
     autoFocus?: boolean;
@@ -21,8 +21,8 @@ const ColumnAnswer: React.FC<RowAnswerProps> = (
                 <td key={rowKey}>
                     <FormItem name={[...name, rowKey]} marginBottom="0">
                         <Input
-                            style={{width: '100%', minWidth: '80px',}}
-                            type="number"
+                            style={{width: "100%", minWidth: "80px"}}
+                            type="text"
                             placeholder="Ответ"
                             autoComplete="off"
                             autoFocus={!!autoFocus && rowKey === 0}
@@ -31,7 +31,7 @@ const ColumnAnswer: React.FC<RowAnswerProps> = (
                 </td>
             )
         }
-    </>;
-};
+    </>
+}
 
-export default React.memo(ColumnAnswer);
+export default React.memo(ColumnAnswer)

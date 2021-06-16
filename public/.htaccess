@@ -14,8 +14,47 @@ RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301,NE]
   RewriteRule . /index.html [L]
 </IfModule>
 
+<FilesMatch (\.css.gz|\.js.gz|\.css|\.js|\.json|sprites\.png)$>
+    <ifModule mod_headers.c>
+        Header unset ETag
+        Header unset Expires
+        Header set Cache-Control "no-cache"
+    </ifModule>
+</FilesMatch>
+
 <ifModule mod_headers.c>
-  <FilesMatch ".(flv|gif|jpg|jpeg|png|ico|swf|js|css|pdf|otf|mp3|wav|svg|txt|ogg)$">
+  <FilesMatch ".(flv|gif|jpg|jpeg|png|ico|swf|pdf|otf|mp3|wav|svg|txt|ogg)$">
     Header set Cache-Control "max-age=31536000"
   </FilesMatch>
 </ifModule>
+
+<IfModule mod_deflate.c>
+  # Compress HTML, CSS, JavaScript, Text, XML and fonts
+  AddOutputFilterByType DEFLATE application/javascript
+  AddOutputFilterByType DEFLATE application/rss+xml
+  AddOutputFilterByType DEFLATE application/vnd.ms-fontobject
+  AddOutputFilterByType DEFLATE application/x-font
+  AddOutputFilterByType DEFLATE application/x-font-opentype
+  AddOutputFilterByType DEFLATE application/x-font-otf
+  AddOutputFilterByType DEFLATE application/x-font-truetype
+  AddOutputFilterByType DEFLATE application/x-font-ttf
+  AddOutputFilterByType DEFLATE application/x-javascript
+  AddOutputFilterByType DEFLATE application/xhtml+xml
+  AddOutputFilterByType DEFLATE application/xml
+  AddOutputFilterByType DEFLATE font/opentype
+  AddOutputFilterByType DEFLATE font/otf
+  AddOutputFilterByType DEFLATE font/ttf
+  AddOutputFilterByType DEFLATE image/svg+xml
+  AddOutputFilterByType DEFLATE image/x-icon
+  AddOutputFilterByType DEFLATE text/css
+  AddOutputFilterByType DEFLATE text/html
+  AddOutputFilterByType DEFLATE text/javascript
+  AddOutputFilterByType DEFLATE text/plain
+  AddOutputFilterByType DEFLATE text/xml
+
+  # Remove browser bugs (only needed for really old browsers)
+  BrowserMatch ^Mozilla/4 gzip-only-text/html
+  BrowserMatch ^Mozilla/4\.0[678] no-gzip
+  BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+  Header append Vary User-Agent
+</IfModule>

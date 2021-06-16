@@ -16,7 +16,7 @@ const ImageWrapper = styled.div`
  }
 `;
 
-const IconWrapper = styled(ImageWrapper)`
+const IconWrapper = styled<any>(ImageWrapper)`
    display: flex;
    align-items: center;
    justify-content: center;

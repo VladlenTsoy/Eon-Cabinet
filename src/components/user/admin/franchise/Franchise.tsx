@@ -10,7 +10,7 @@ import {PlusOutlined} from "@ant-design/icons";
 const Franchise: React.FC<any> = ({match}) => {
     const {api} = useAppContext();
     const [loading, setLoading] = useState(false);
-    const [franchise, setFranchise] = useState();
+    const [franchise, setFranchise] = useState<any>();
 
     useChangeTitle({title: franchise ? `Франшиза: ${franchise.title}` : 'Франшиза: Загрузка...'});
     useChangeActionNavbar({action: 'back'});

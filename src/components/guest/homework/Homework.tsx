@@ -8,7 +8,7 @@ import {useParams} from "react-router-dom";
 
 
 const Homework = () => {
-    const {id} = useParams();
+    const {id} = useParams<any>();
     const [loading, homework, error] = useApiUserGeneral({url: `guest/homework/${id}`, access: 'guest'});
 
     // Загрузка

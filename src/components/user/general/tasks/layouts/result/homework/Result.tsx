@@ -22,7 +22,7 @@ const Result: React.FC = ({children}) => {
 
     const result: boolean = stats.all !== 0 && stats.all === stats.success;
     const [loading, setLoading] = useState(true);
-    const [resultData, setResultData] = useState();
+    const [resultData, setResultData] = useState<any>();
     const [isView, setIsView] = useState(!homeworkId);
 
     const updateIsView = useCallback((state: boolean) => {

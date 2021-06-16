@@ -22,7 +22,7 @@ const Application: React.FC<ApplicationProps> = ({otherUrl}) => {
     const [isMultiplication] = useState(setting.mode === 'divide' || setting.mode === 'multiply');
 
     // Update exercise mirror
-    const [updateExercises, updateMirror] = useUpdateOutputEffect({extra: setting.extra});
+    const [updateExercises, updateMirror, , updateComma] = useUpdateOutputEffect({extra: setting.extra});
 
     /**
      * Создание Totals
@@ -60,12 +60,14 @@ const Application: React.FC<ApplicationProps> = ({otherUrl}) => {
         const flattenAnswers = flattenDepth(answers, 2);
 
         const createdTotals = totals.map((total: any, key: number) => {
-            if (Number(total.answer) === Number(flattenAnswers[key]))
+            const flAnsw = String(flattenAnswers[key]).replace(/\D+/g,"")
+
+            if (Number(total.answer) === Number(flAnsw))
                 success++;
 
             return {
                 ...total,
-                result: Number(total.answer) === Number(flattenAnswers[key]),
+                result: Number(total.answer) === Number(flAnsw),
                 user: flattenAnswers[key]
             };
         });
@@ -90,7 +92,7 @@ const Application: React.FC<ApplicationProps> = ({otherUrl}) => {
     // Обновление вывода цифр
     const addOutputToTotals = useCallback((exercise) =>
             isMultiplication ?
-                [exercise[0] + (setting.mode === 'multiply' ? ' * ' : ' / ') + exercise[1]] :
+                [updateComma(exercise[0]) + (setting.mode === 'multiply' ? ' * ' : ' / ') + updateComma(exercise[1])] :
                 updateExercises(exercise),
         [isMultiplication, setting, updateExercises]);
 

@@ -9,14 +9,14 @@ import {PlusOutlined} from "@ant-design/icons";
 
 const Center: React.FC<any> = ({match}) => {
     const {api} = useAppContext();
-    const [center, setCenter] = useState();
+    const [center, setCenter] = useState<any>();
     const [loading, setLoading] = useState(true);
 
     const fetch = () => {
         setLoading(true);
     };
 
-    useChangeTitle({title: center ? `Центр: ${center!.title}` : 'Центр: Загрузка...'});
+    useChangeTitle({title: center ? `Центр: ${center?.title}` : 'Центр: Загрузка...'});
     useChangeActionNavbar({action: 'back'});
 
     const fetchCenters = useCallback(async () => {

@@ -9,7 +9,7 @@ interface MatchProps {
 const Tasks: React.FC = () => {
     const {params} = useRouteMatch<MatchProps>();
     const {sentOlympiadId} = params;
-    return <TasksRoutes urlBack={`/olympiads/${sentOlympiadId}`} urlRoute="/olympiads/:sentOlympiadId/:taskOlympiadId"/>;
+    return <TasksRoutes urlBack={`/olympiads/${sentOlympiadId}`} urlRoute="/olympiads/:olympiadId/:sentOlympiadId/:taskOlympiadId"/>;
 };
 
 export default Tasks;

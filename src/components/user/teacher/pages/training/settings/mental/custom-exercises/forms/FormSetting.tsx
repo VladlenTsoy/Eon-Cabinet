@@ -81,7 +81,7 @@ const FormSetting: React.FC<FormSettingProps> = (
     }, [updateTitles, exercises]);
 
     const updateTypeTasks = useCallback(({allFields, categories, category, user = false,}) => {
-        if (!category) return false;
+        if (!(category && exercises[category])) return false;
         let typeTasks = Object.keys(exercises[category]);
         let typeTask = user ? user.anzan : typeTasks[0];
         return updateModes({allFields, categories, category, typeTask, typeTasks, user});
