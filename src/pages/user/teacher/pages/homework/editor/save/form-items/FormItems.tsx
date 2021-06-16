@@ -22,7 +22,7 @@ interface FormItemsProps {
 
 const FormItems: React.FC<FormItemsProps> = ({homework, close, fetch, exercises}) => {
     const categories = useSelectAllCategories();
-    const {duplicate} = useParams();
+    const {duplicate} = useParams<any>();
     // TODO - note group id params
     const {id} = useParams<ParamsProps>();
     const group = useSelectGroupById(Number(id));

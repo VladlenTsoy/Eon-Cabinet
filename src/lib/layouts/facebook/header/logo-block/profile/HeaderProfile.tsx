@@ -6,7 +6,7 @@ import {Avatar} from "lib/ui"
 import {useUser} from "../../../../../../hooks/use-user"
 
 const ProfileWrapper = styled(Link)<any>`
-    color: ${(props) => props.theme.color_main};
+    color: ${props => props.theme.color_main};
     display: flex;
     align-items: center;
     margin-right: ${(props: any) => props.mr || "0.5rem"};
@@ -14,7 +14,7 @@ const ProfileWrapper = styled(Link)<any>`
     border-radius: 10px;
     margin-left: -0.5rem;
     transition: all 0.3s ease-in-out;
-    
+
     :hover {
         background: ${(props: any) => props.theme["@layout-body-background"]};
     }
@@ -28,18 +28,18 @@ const WrapperProfileData = styled.div`
     justify-content: center;
 `
 
-const UserName: React.FC<TextProps> = styled.span`
+const UserName: any = styled.span`
     display: block;
     line-height: initial;
 `
 
-const UserId: React.FC<TextProps> = styled.span`
+const UserId: any = styled.span`
     font-weight: bolder;
     font-size: 80%;
     line-height: initial;
 
     span {
-        color: ${(props) => props.theme.color_warning};
+        color: ${props => props.theme.color_warning};
     }
 `
 
@@ -52,10 +52,7 @@ const HeaderProfile: React.FC<HeaderProfileProps> = ({mr}) => {
 
     return (
         <ProfileWrapper to="/profile" mr={mr}>
-            <Avatar
-                src={user.url_image}
-                alt={`${user.last_name} ${user.first_name}`}
-            />
+            <Avatar src={user.url_image} alt={`${user.last_name} ${user.first_name}`} />
             <WrapperProfileData>
                 <UserName>
                     {user.last_name} {user.first_name}

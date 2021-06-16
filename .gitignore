@@ -30,3 +30,6 @@ debug.log
 
 # firebase function
 /functions
+
+.vscode
+yarn.lock

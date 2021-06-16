@@ -20,7 +20,7 @@ const List: React.FC<ListProps> = ({checkHandler}) => {
     const {totals, setting} = useSelector(gameSelector);
     const dispatch = useDispatch();
 
-    const [outputs, setOutputs] = useState();
+    const [outputs, setOutputs] = useState<any>();
 
     const submitHandler = (values: any) => {
         const {status, totals, success} = checkHandler(values);

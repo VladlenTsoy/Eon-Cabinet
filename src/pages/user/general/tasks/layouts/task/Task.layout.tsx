@@ -21,7 +21,7 @@ const TaskLayout: React.FC<TaskProps> = (
         result
     }
 ) => {
-    const {params} = useRouteMatch();
+    const {params} = useRouteMatch<any>();
     const {status} = useSelector(gameSelector);
 
     return <>

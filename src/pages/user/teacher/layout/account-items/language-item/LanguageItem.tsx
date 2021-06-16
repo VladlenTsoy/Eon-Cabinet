@@ -33,18 +33,18 @@ const LanguageItemStyled = styled.div`
     }
 
     :hover {
-        background: ${(props) => props.theme.color_hover_item};
+        background: ${props => props.theme.color_hover_item};
     }
 
     :not(:last-child) {
-        border-bottom: 1px solid ${(props) => props.theme.light_color_border};
+        border-bottom: 1px solid ${props => props.theme.light_color_border};
     }
 `
 
 const LanguageItem = () => {
     const currentLanguage = useSelectCurrentLanguage()
     const languages = useSelectAllLanguages()
-    const [visible, setVisible] = useState()
+    const [visible, setVisible] = useState<boolean>(false)
     const dispatch = useDispatch()
 
     const open = () => setVisible(true)
@@ -61,7 +61,7 @@ const LanguageItem = () => {
             </div>
             <Modal title="Языки" onCancel={close} visible={visible} width={300}>
                 <LanguagesListStyled>
-                    {languages.map((language) => (
+                    {languages.map(language => (
                         <LanguageItemStyled key={language.id} onClick={() => handlerChange(language.abbr)}>
                             <img src={language.url_icon} alt={language.abbr} />
                             <span className="title">{language.title}</span>

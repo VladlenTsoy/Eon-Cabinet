@@ -33,7 +33,7 @@ const DeleteExercise = styled.div`
   }
 `;
 
-const EditExercise = styled(DeleteExercise)`
+const EditExercise = styled<any>(DeleteExercise)`
   right: 30px;
   
   :hover{

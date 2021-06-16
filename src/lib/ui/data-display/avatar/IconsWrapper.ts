@@ -23,7 +23,7 @@ export const IconWrapper = styled.p`
  }
 `;
 
-export const IconEditWrapper = styled(IconsWrapper)`
+export const IconEditWrapper = styled<any>(IconsWrapper)`
  .anticon {
     font-size: 20px;
     margin-right: 0.5rem;
