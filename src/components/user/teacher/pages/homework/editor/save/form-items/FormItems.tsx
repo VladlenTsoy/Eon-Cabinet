@@ -21,7 +21,7 @@ interface FormItemsProps {
 const FormItems: React.FC<FormItemsProps> = ({homework, close, fetch, disciplineId, exercises}) => {
     const {api} = useAppContext();
     const app = useSelector(appSelector);
-    const {duplicate} = useParams();
+    const {duplicate} = useParams<any>();
     const {group, isSaved} = useSelector(groupSelector);
     const [loading, setLoading] = useState(false);
 

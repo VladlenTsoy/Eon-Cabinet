@@ -8,7 +8,7 @@ interface MoreLinkProps {
 }
 
 const MoreLink: React.FC<MoreLinkProps> = ({children, homework}) => {
-    const [visible, setVisible] = useState();
+    const [visible, setVisible] = useState<boolean>(false);
 
     const open = () => setVisible(true);
     const close = () => setVisible(false);

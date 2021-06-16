@@ -9,7 +9,7 @@ import {useAppContext} from "../../../../../store/context/use-app-context";
 const FranchiseSetting: React.FC<any> = () => {
     const {api} = useAppContext();
     const [loading, setLoading] = useState(true);
-    const [franchise, setFranchise] = useState();
+    const [franchise, setFranchise] = useState<any>();
 
     const fetch = useCallback(async () => {
         const response = await api.user.get('/director-franchise/franchise');
