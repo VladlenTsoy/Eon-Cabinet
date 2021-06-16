@@ -14,11 +14,15 @@ const MoreHomeworkItem: React.FC<any> = ({homework}) => {
     const [loading, tasks] = useApiUserGeneral({url: `/teacher/tasks/homework/${homework.id}`, initValue: []});
     return <>
         <Row>
-            <Col span={12}>
+            <Col span={8}>
+                <SubTitle>ID:</SubTitle>
+                {homework.id}
+            </Col>
+            <Col span={8}>
                 <SubTitle>Уровень:</SubTitle>
                 {homework.level}
             </Col>
-            <Col span={12}>
+            <Col span={8}>
                 <SubTitle>Дата создания:</SubTitle>
                 {moment(homework.created_at).format('DD/MM/YYYY')}
             </Col>

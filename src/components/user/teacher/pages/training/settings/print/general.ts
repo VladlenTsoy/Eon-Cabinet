@@ -11,22 +11,24 @@ export const alphabet = (charA: any, charZ: any) => {
 };
 
 // Настройка вида таблицы
-const configTable = (startY: any) => ({
-    useCss: true,
-    theme: 'grid',
-    startY: startY,
-    pageBreak: 'auto',
-    margin: {horizontal: 10, top: 10, bottom: 10},
-    headStyles: {fillColor: [0, 188, 212], textColor: [255, 255, 255]},
-    styles: {
-        font: 'museo',
-        fontStyle: "normal",
-        cellPadding: 1.4, // a number, array or object (see margin below)
-        overflow: 'linebreak',
-        valign: 'middle',
-        halign: 'center'
-    },
-});
+const configTable = (startY: any) => {
+    return {
+        useCss: true,
+        theme: 'grid',
+        startY: startY,
+        pageBreak: 'auto',
+        margin: {horizontal: 10, top: 10, bottom: 10},
+        headStyles: {fillColor: [0, 188, 212], textColor: [255, 255, 255]},
+        styles: {
+            font: 'museo',
+            fontStyle: "normal",
+            cellPadding: 1.4, // a number, array or object (see margin below)
+            overflow: 'linebreak',
+            valign: 'middle',
+            halign: 'center'
+        },
+    }
+};
 
 // Добавление данных на лист
 const decorList = ({doc, setting, options}: any) => {
@@ -72,6 +74,7 @@ export const pdfRender = async (setting: any, data: any, language: any) => {
             settings: setting,
             startPage: null,
             title,
+            users: data.data.map((task: any) => ({user: task.user, result: task.result}))
         });
         // Вывод ответов doc, rows, settings, userData, startPage, title
         renderTableOne({
@@ -89,7 +92,8 @@ export const pdfRender = async (setting: any, data: any, language: any) => {
             rows: data.data.map((task: any) => task.exercise),
             settings: setting,
             startPage: null,
-            title
+            title,
+            users: data.data.map((task: any) => ({user: task.user, result: task.result}))
         });
         renderTableTwo({
             doc,
@@ -105,18 +109,21 @@ export const pdfRender = async (setting: any, data: any, language: any) => {
 
 
 //
-const updateTheRowsInTheTables = ({_rows, settings, columns, answ}: any) => {
+const updateTheRowsInTheTables = ({_rows, settings, columns, answ, users}: any) => {
     let alpha = alphabet('A', 'Z'),
         tableForPdf: any = [],
-        tables = _.chunk(_rows, settings.column);
-
+        tables = _.chunk(_rows, settings.column),
+        userTables:any = _.chunk(users, settings.column);
     if (!answ)
         tables.map((table: any, k: number) =>
             table.map((rows: any, ke: number) => {
                 columns[k] = columns[k] || [];
                 columns[k].push({title: alpha[ke], dataKey: ke});
 
-                rows.push('');
+                if(users?.length)
+                    rows.push(userTables[k][ke].user || '');
+                else
+                    rows.push('');
                 return rows.map((column: any, key: string | number) => {
                     tableForPdf[k] = tableForPdf[k] || [];
                     tableForPdf[k][key] = tableForPdf[k][key] || [];
@@ -141,10 +148,11 @@ const updateTheRowsInTheTables = ({_rows, settings, columns, answ}: any) => {
     return [columns, tableForPdf];
 };
 
-const updateTheRowsInTheTablesTwo = ({_rows, settings, columns, answ}: any) => {
+const updateTheRowsInTheTablesTwo = ({_rows, settings, columns, answ, users}: any) => {
     let alpha = alphabet('A', 'Z'),
         tableForPdf: any = [],
-        tables = _.chunk(_.chunk(_rows, settings.column), settings.rows);
+        tables = _.chunk(_.chunk(_rows, settings.column), settings.rows),
+        userTables: any = _.chunk(_.chunk(users, settings.column), settings.rows);
 
     tables.map((table: any, k: number) => {
         tableForPdf[k] = [];
@@ -153,9 +161,14 @@ const updateTheRowsInTheTablesTwo = ({_rows, settings, columns, answ}: any) => {
                 columnEmpty = [];
 
             columnEmpty.push({title: '#', dataKey: 0});
+            if(users?.length)
+                answerEmpty.push('');
             rows.map((column: any, key: number) => {
                 columnEmpty.push({title: alpha[key], dataKey: key + 1});
-                answerEmpty.push('');
+                if(users?.length)
+                    answerEmpty.push(userTables[k][ke][key].user || '');
+                else
+                    answerEmpty.push('');
                 return column;
             });
 
@@ -174,7 +187,7 @@ const updateTheRowsInTheTablesTwo = ({_rows, settings, columns, answ}: any) => {
 
 export const renderTableOne = ({doc, rows, settings,
                                    // userData,
-                                   startPage, title}: any) => {
+                                   startPage, title, users}: any) => {
     /**
      * column       =   {title: "A", dataKey: 0} Вывод тайтла и ключа
      * tableForPdf  =   [Таблица [Строка [Колона ]]]
@@ -183,7 +196,8 @@ export const renderTableOne = ({doc, rows, settings,
         _rows: rows,
         settings,
         columns: [],
-        answ: startPage
+        answ: startPage,
+        users
     });
 
     /** Вывод размеров
@@ -244,9 +258,9 @@ export const renderTableOne = ({doc, rows, settings,
 
 export const renderTableTwo = ({doc, rows, settings,
                                    // userData,
-                                   startPage, title}: any) => {
+                                   startPage, title, users}: any) => {
     // _rows, settings, columns, answ
-    let [columns, tableForPdf] = updateTheRowsInTheTablesTwo({_rows: rows, settings, columns: [], answ: startPage});
+    let [columns, tableForPdf] = updateTheRowsInTheTablesTwo({_rows: rows, settings, columns: [], answ: startPage, users});
     let [pages, numberOfTablesOnOneList, lastPage, rowHeight, heightList] = sheetMeshSetting({
         doc,
         tables: tableForPdf

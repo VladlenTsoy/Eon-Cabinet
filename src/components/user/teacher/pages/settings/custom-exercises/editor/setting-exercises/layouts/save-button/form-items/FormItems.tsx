@@ -1,14 +1,13 @@
-import React, {useState} from 'react';
-import {useSelector} from "react-redux";
-import {Button, Form, Input, message, Select} from "antd";
-import {FormItem} from "../../../../../../../../../../../lib";
-import {SaveOutlined} from "@ant-design/icons";
-import {useHistory} from "react-router-dom";
-import {useAppContext} from "../../../../../../../../../../../store/context/use-app-context";
-import {appSelector} from "../../../../../../../../../../../store/reducers/common/app/appSlice";
+import React, {useState} from "react"
+import {Button, Form, Input, message, Select} from "antd"
+import {FormItem} from "../../../../../../../../../../../lib"
+import {SaveOutlined} from "@ant-design/icons"
+import {useHistory} from "react-router-dom"
+import {useAppContext} from "../../../../../../../../../../../store/context/use-app-context"
+import {useApiUserGeneral} from "../../../../../../../../../../../effects/use-api-user-general.effect"
 
-const {TextArea} = Input;
-const {Option} = Select;
+const {TextArea} = Input
+const {Option} = Select
 
 interface FormItemsProps {
     exercises: any[];
@@ -16,18 +15,20 @@ interface FormItemsProps {
 }
 
 const FormItems: React.FC<FormItemsProps> = ({exercises, setting}) => {
-    const history = useHistory();
-    const app = useSelector(appSelector);
-    const {api} = useAppContext();
-    const {categories} = app;
-    const [loading, setLoading] = useState(false);
+    const history = useHistory()
+    const {api} = useAppContext()
+    const [categoriesLoading, categories] = useApiUserGeneral({
+        url: "/teacher/custom-exercises-categories",
+        initValue: []
+    })
+    const [loading, setLoading] = useState(false)
 
     const onFinishHandler = async (values: any) => {
-        setLoading(true);
-        await api.user.post('/teacher/custom-exercises', {...values, setting, exercises});
-        message.success(`Вы успешно создали примеры!`);
-        history.push('/settings/custom-exercises');
-    };
+        setLoading(true)
+        await api.user.post("/teacher/custom-exercises", {...values, setting, exercises})
+        message.success(`Вы успешно создали примеры!`)
+        history.push("/settings/custom-exercises")
+    }
 
     return <Form layout="vertical" onFinish={onFinishHandler}>
         <FormItem name="title" label="Название" requiredMsg="Введите название!"/>
@@ -37,14 +38,13 @@ const FormItems: React.FC<FormItemsProps> = ({exercises, setting}) => {
             requiredMsg="Выберите категорию!"
             shouldUpdate={(prevValues, currentValues) => prevValues.method_id !== currentValues.method_id}
         >
-            <Select>
+            <Select loading={categoriesLoading}>
                 {
-                    categories.filter((category: any) => category.discipline_id === 1)
-                        .map((category: any) =>
-                            <Option key={category.id} value={category.id}>
-                                {category.title}
-                            </Option>
-                        )
+                    categories.map((category: any) =>
+                        <Option key={category.id} value={category.id}>
+                            {category.title}
+                        </Option>
+                    )
                 }
             </Select>
         </FormItem>
@@ -52,7 +52,7 @@ const FormItems: React.FC<FormItemsProps> = ({exercises, setting}) => {
             <TextArea/>
         </FormItem>
         <Button htmlType="submit" block type="primary" loading={loading} icon={<SaveOutlined/>}>Сохранить</Button>
-    </Form>;
-};
+    </Form>
+}
 
-export default FormItems;
+export default FormItems

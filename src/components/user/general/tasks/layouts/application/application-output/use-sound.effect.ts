@@ -25,7 +25,8 @@ export const useSoundEffect: UseSoundEffectTypes = (
         } else if (type === 'ru' || type === 'en') {
             if (typeof output !== 'string' && typeof output !== 'number') return;
 
-            const urlAudio = require(`assets/sounds/numbers/${type}/${output}.mp3`);
+            const publicPath = process.env.NODE_ENV === 'production' ? 'https://api.eon.uz' : 'http://192.168.1.37:8000'
+            const urlAudio = (`${publicPath}/sounds/numbers/${type}/${output}.mp3`);
             const sound = new Audio(urlAudio);
             sound.currentTime = type === 'en' ? 0.125 : 0.085;
             let playbackRate = 1.5;

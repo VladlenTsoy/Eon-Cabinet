@@ -23,7 +23,7 @@ const List: React.FC<ListProps> = ({isMultiplication}) => {
                 label="Столбцов"
                 requiredMsg="Введите кол-во столбцов!"
             >
-                <InputNumber min={6} max={6} style={{width: '100%'}}/>
+                <InputNumber min={2} max={9} style={{width: '100%'}}/>
             </FormItem>
         </Col>
         <Col sm={isMultiplication ? 8 : 6} xs={isMultiplication ? 8 : 12}>

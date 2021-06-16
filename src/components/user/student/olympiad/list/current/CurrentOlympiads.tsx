@@ -1,16 +1,16 @@
-import React from 'react';
-import { RedoOutlined } from '@ant-design/icons';
-import {Button, Carousel, Empty} from "antd";
-import styled from "styled-components";
-import {chunk} from "lodash";
-import {LoadingBlock} from "lib";
-import NextArrow from "../../../../teacher/pages/home/olympiad/olympiad-carousel/next-arrow/NextArrow";
-import {useApiUserGeneral} from "../../../../../../effects/use-api-user-general.effect";
-import CardOlympiad from "./card/CardOlympiad";
-import {DescriptionTitle} from "../../../../../../lib";
-import {useAppContext} from "store/context/use-app-context";
-import {useScreenWindow} from "../../../../../../effects/use-screen-window.effect";
-import {useWindowSize} from "react-use";
+import React from "react"
+import {RedoOutlined} from "@ant-design/icons"
+import {Button, Carousel, Empty} from "antd"
+import styled from "styled-components"
+import {chunk} from "lodash"
+import {LoadingBlock} from "lib"
+import NextArrow from "../../../../teacher/pages/home/olympiad/olympiad-carousel/next-arrow/NextArrow"
+import {useApiUserGeneral} from "../../../../../../effects/use-api-user-general.effect"
+import CardOlympiad from "./card/CardOlympiad"
+import {DescriptionTitle} from "../../../../../../lib"
+import {useAppContext} from "store/context/use-app-context"
+import {useScreenWindow} from "../../../../../../effects/use-screen-window.effect"
+import {useWindowSize} from "react-use"
 
 const CardsWrapper = styled.div`
   display: grid;
@@ -25,23 +25,28 @@ const CardsWrapper = styled.div`
   @media (max-width: 768px){
     grid-template-columns: 1fr;
   }
-`;
+`
 
 interface CurrentOlympiadsProps {
-
+    setKey: any
 }
 
-const CurrentOlympiads: React.FC<CurrentOlympiadsProps> = () => {
-    const {width} = useWindowSize();
-    const [, isBreakpoint] = useScreenWindow({breakpoint: 'md'});
-    const {language} = useAppContext();
-    const [loading, olympiads, , fetch] = useApiUserGeneral({
-        url: 'student/olympiads/current',
-        initValue: [],
-    });
+const CurrentOlympiads: React.FC<CurrentOlympiadsProps> = ({setKey}) => {
+    const {width} = useWindowSize()
+    const [, isBreakpoint] = useScreenWindow({breakpoint: "md"})
+    const {language} = useAppContext()
+    const [loading, olympiads, , _fetch] = useApiUserGeneral({
+        url: "student/olympiads/current",
+        initValue: []
+    })
+
+    const fetch = () => {
+        setKey((key: number) => ++key)
+        _fetch()
+    }
 
     if (loading)
-        return <LoadingBlock maxHeight="250px"/>;
+        return <LoadingBlock maxHeight="250px"/>
 
     if (!olympiads.length)
         return (
@@ -53,13 +58,13 @@ const CurrentOlympiads: React.FC<CurrentOlympiadsProps> = () => {
                     </>
                 }
             >
-                <Button type="ghost" size="large" onClick={fetch} icon={<RedoOutlined />}>
+                <Button type="ghost" size="large" onClick={() => fetch()} icon={<RedoOutlined/>}>
                     {language.student.refresh}
                 </Button>
             </Empty>
-        );
+        )
 
-    const size = width > 1200 ? 3 : width > 992 ? 2 : isBreakpoint ? 1 : 2;
+    const size = width > 1200 ? 3 : width > 992 ? 2 : isBreakpoint ? 1 : 2
 
     return <Carousel
         dots={false}
@@ -78,7 +83,7 @@ const CurrentOlympiads: React.FC<CurrentOlympiadsProps> = () => {
                 </div>
             )
         }
-    </Carousel>;
-};
+    </Carousel>
+}
 
-export default CurrentOlympiads;
+export default CurrentOlympiads

@@ -5,7 +5,7 @@ interface SettingProps {
     extra: ExtraTypes;
 }
 
-type ReturnTypes = [(exercises: (string | number)[]) => (string | number)[], (exercises: any[]) => any[], (output: string) => string];
+type ReturnTypes = [(exercises: (string | number)[]) => (string | number)[], (exercises: any[]) => any[], (output: string) => string, (output: string) => string];
 
 type UpdateOutputEffectTypes = (setting: SettingProps) => ReturnTypes;
 
@@ -14,12 +14,14 @@ export const useUpdateOutputEffect: UpdateOutputEffectTypes = ({extra}) => {
         return exercises.map((int: any) => Number(`${int}${Math.abs(int)}`));
     }, []);
 
+    const updateComma = useCallback((output) => output.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","), [])
+
     const updaterOutput = useCallback((output) => {
         if (extra) {
             if (extra.includes('plus') && Math.sign(output) !== -1)
                 output = '+' + output;
             if (extra.includes('comma'))
-                output = output.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                output = updateComma(output)
 
             return output;
         }
@@ -29,5 +31,5 @@ export const useUpdateOutputEffect: UpdateOutputEffectTypes = ({extra}) => {
         return exercises.map((exercise: any) => updaterOutput(exercise));
     }, [updaterOutput]);
 
-    return [updateExercises, updateMirror, updaterOutput];
+    return [updateExercises, updateMirror, updaterOutput, updateComma];
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import { AppstoreOutlined, HomeOutlined, TeamOutlined, TrophyOutlined, UserOutlined } from '@ant-design/icons';
+import { AppstoreOutlined, HomeOutlined, TrophyOutlined, UserOutlined } from '@ant-design/icons';
 import {Link} from "react-router-dom";
 import {SidebarItem} from "layouts";
 
@@ -22,12 +22,12 @@ const SidebarItems = [
             <span>Домашнее задание</span>
         </Link>
     </SidebarItem>,
-    <SidebarItem key="/group">
-        <Link to="/group">
-            <TeamOutlined />
-            <span>Группа</span>
-        </Link>
-    </SidebarItem>,
+    // <SidebarItem key="/group">
+    //     <Link to="/group">
+    //         <TeamOutlined />
+    //         <span>Группа</span>
+    //     </Link>
+    // </SidebarItem>,
     <SidebarItem key="/olympiads">
         <Link to="/olympiads">
             <TrophyOutlined />

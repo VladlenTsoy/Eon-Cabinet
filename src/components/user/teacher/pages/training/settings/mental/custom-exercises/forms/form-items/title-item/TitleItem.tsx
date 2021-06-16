@@ -16,7 +16,7 @@ const TitleItem: React.FC<TitleItemProps> = ({titles, onChangeHandler}) => {
                 titles
                     .map((item: any) =>
                         <Option value={item.id} key={item.id} data-description={item.description}>
-                            {item.title}
+                            ({item.id}) {item.title}
                         </Option>
                     )
             }

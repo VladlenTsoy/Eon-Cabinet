@@ -5,10 +5,11 @@ import {useAppContext} from "../../../../../../../../../store/context/use-app-co
 
 interface DeleteItemProps {
     record: any;
-    fetch: () => void;
+    pagination: any;
+    fetch: (pagination: any) => void;
 }
 
-const DeleteItem: React.FC<DeleteItemProps> = ({record, fetch}) => {
+const DeleteItem: React.FC<DeleteItemProps> = ({record, fetch, pagination}) => {
     const {api} = useAppContext();
 
     const handlerClick = () => {
@@ -19,7 +20,7 @@ const DeleteItem: React.FC<DeleteItemProps> = ({record, fetch}) => {
             onOk: async () => {
                 await api.user.delete(`teacher/custom-exercises/${record.id}`);
                 message.success(`Вы успешно удалили (${record.title})!`);
-                fetch();
+                fetch(pagination);
             }
         });
     };

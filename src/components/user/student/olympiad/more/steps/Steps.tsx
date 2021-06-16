@@ -21,7 +21,8 @@ const Steps: React.FC<StepsProps> = ({olympiad}) => {
             {olympiad.steps.map((step: any) =>
                 <Tab
                     step={step}
-                    currentStep={currentStep}
+                    selectStep={currentStep}
+                    currentStep={olympiad.current_step}
                     clickHandler={clickHandler}
                     key={step.step}
                 />

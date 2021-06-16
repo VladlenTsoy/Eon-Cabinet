@@ -5,6 +5,7 @@ import styled from "styled-components";
 import {useAppContext} from "store/context/use-app-context";
 import {withRouter, RouteComponentProps} from "react-router-dom";
 import ButtonSaveOlympiad from "../../../editor/steps-setting/actions/save/ButtonSaveOlympiad";
+import ResultsButton from "../info/results-button/ResultsButton"
 
 const {Title} = Typography;
 const {confirm} = Modal;
@@ -79,6 +80,7 @@ const TitleInfo: React.FC<TitleProps> = ({olympiad,fetch, history}) => {
                 </span>
             </Title>
             <div className="actions">
+                <ResultsButton/>
                 <ButtonSaveOlympiad
                     olympiad={{
                         id: olympiad.id,

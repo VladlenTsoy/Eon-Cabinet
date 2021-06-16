@@ -64,6 +64,7 @@ const Application: React.FC = () => {
             if (setting.map((val: any) => val.extra.includes('abacus')).includes(true)) {
                 return new Promise((resolve => {
                     const iconAbacus = new Image();
+                    //@ts-ignore
                     iconAbacus.onload = () => resolve(true);
                     iconAbacus.src = IconAbacus;
                 }));

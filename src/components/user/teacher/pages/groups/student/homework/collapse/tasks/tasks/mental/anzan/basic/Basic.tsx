@@ -37,7 +37,7 @@ const Basic:React.FC<BasicProps> = ({totals, setting}) => {
                     {total.answer}
                 </td>
                 <td>
-                    {isMultiplication ? total.exercise : total.exercise.join(', ')}
+                    {isMultiplication ? (setting.custom_exercises_id ? `${total.exercise[0]} ${setting.mode === 'divide' ? '/': '*'} ${total.exercise[1]}` :total.exercise ) : total.exercise.join(', ')}
                 </td>
             </tr>
         )}

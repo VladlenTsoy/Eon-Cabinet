@@ -25,7 +25,7 @@ interface MiddleBlockProps {
 const MiddleBlock: React.FC<MiddleBlockProps> = () => {
     const {stats} = useSelector(gameSelector);
 
-    const [loading, setLoading] = useState();
+    const [loading, setLoading] = useState<boolean>();
     const result: boolean = stats.all !== 0 && stats.all === stats.success;
 
     const [soundsLoading, sounds] = usePreloadSounds({
