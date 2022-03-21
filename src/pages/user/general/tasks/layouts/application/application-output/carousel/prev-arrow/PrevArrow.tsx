@@ -3,7 +3,7 @@ import styled from "styled-components";
 import {PrevArrowWrapper} from "lib/ui/data-display/carousel/prev-arrow/PrevArrow";
 import { ArrowLeftOutlined } from '@ant-design/icons';
 
-const PrevArrowApplication = styled(PrevArrowWrapper)`
+const PrevArrowApplication = styled<any>(PrevArrowWrapper)`
   .ant-carousel &.slick-prev{
     font-size: 70px;
     height: 100px;

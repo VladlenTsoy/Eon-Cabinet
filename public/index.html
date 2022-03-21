@@ -24,17 +24,8 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>Eon - программа развития интеллекта.</title>
-    <% for (key in htmlWebpackPlugin.files.css) { %>
-    <% if(htmlWebpackPlugin.files.css[key].includes('dark')){ %>
-    <link rel="prefetch" as="style" id="app-theme-dark" href="<%= htmlWebpackPlugin.files.css[key] %>"/>
-    <% } else if(htmlWebpackPlugin.files.css[key].includes('default')) { %>
-    <link rel="stylesheet" id="app-theme-default" href="<%= htmlWebpackPlugin.files.css[key] %>"/>
-    <% } else { %>
-    <link rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[key] %>"/>
-    <% } %>
-    <% } %>
 </head>
-<body data-theme="default" data-mode="default">
+<body data-theme="dark" data-mode="default">
 <noscript>You need to enable JavaScript to run this app.</noscript>
 <div id="root"></div>
 <!--

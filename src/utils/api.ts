@@ -5,7 +5,7 @@ import {getCookie, removeCookie, setCookie} from "./cookie"
 
 const CancelToken = axios.CancelToken
 const DOMAIN_API = process.env.NODE_ENV === "production" ? "https://api.eon.uz/api" : "http://192.168.1.37:8000/api"
-const DOMAIN_API_2 = process.env.NODE_ENV === "production" ? "https://api2.eon.uz/api" : "http://192.168.1.37:4000/api"
+const DOMAIN_API_2 = process.env.NODE_ENV === "production" ? "https://api2.eon.uz/api" : "http://localhost:4000/api"
 // export const DOMAIN_API = process.env.NODE_ENV === 'production' ? 'https://api.eon.uz/api' : 'http://localhost:3001';
 
 const TOKEN = getCookie("token_access")
@@ -14,31 +14,31 @@ export const api = {
     token: TOKEN || null,
     guest: axios.create({
         baseURL: DOMAIN_API,
-        headers: {common: {Authorization: "Bearer " + TOKEN}},
+        headers: {Authorization: "Bearer " + TOKEN},
         withCredentials: true
     }),
     user: axios.create({
         baseURL: DOMAIN_API + "/user",
-        headers: {common: {Authorization: "Bearer " + TOKEN}},
+        headers: {Authorization: "Bearer " + TOKEN},
         withCredentials: true
     }),
     teacher: axios.create({
         baseURL: DOMAIN_API + "/user/teacher/1",
-        headers: {common: {Authorization: "Bearer " + TOKEN}}
+        headers: {Authorization: "Bearer " + TOKEN}
     }),
     guest_2: axios.create({
         baseURL: DOMAIN_API_2,
-        headers: {common: {Authorization: "Bearer " + TOKEN}},
+        headers: {Authorization: "Bearer " + TOKEN},
         withCredentials: true
     }),
     user_2: axios.create({
         baseURL: DOMAIN_API_2 + "/user",
-        headers: {common: {Authorization: "Bearer " + TOKEN}},
+        headers: {Authorization: "Bearer " + TOKEN},
         withCredentials: true
     }),
     teacher_2: axios.create({
         baseURL: DOMAIN_API_2 + "/user/teacher/1",
-        headers: {common: {Authorization: "Bearer " + TOKEN}}
+        headers: {Authorization: "Bearer " + TOKEN}
     })
 }
 
@@ -105,7 +105,7 @@ export const apiRequest: ApiRequestProps = async (method = "get", url: string, c
                         await api[selectTypeApi].post(url, data, {..._config, params})
 
         return response.data
-    } catch (e) {
+    } catch (e: any) {
         if (!axios.isCancel(e)) {
             console.error("-----> ", e)
             if (e.response.status === 401) {

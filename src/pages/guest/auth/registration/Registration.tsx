@@ -3,7 +3,7 @@ import {FormItem, InputPassword, Button} from "lib/ui"
 import {Form, Input} from "antd"
 import {useHistory} from "react-router-dom"
 import {useDispatch} from "react-redux"
-import {registrationUser} from "../../../../store/common/user/registrationUser"
+import {registrationUser} from "store/common/user/registrationUser"
 import {useLanguage} from "../../../../hooks/use-language"
 import RegistrationLayout from "../../../../lib/layouts/auth/registration/Registration"
 

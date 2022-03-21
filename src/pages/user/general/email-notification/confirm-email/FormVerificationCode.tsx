@@ -18,7 +18,7 @@ const FormVerificationCode: React.FC<FormVerificationCodeProps> = ({updateResult
             // if (response.data.status === 'success')
             //     changeDataCurrentUser(response.data.user);
             return updateResult(true);
-        } catch (e) {
+        } catch (e: any) {
             message.error(e.response.data.message);
         }
         setLoading(false);

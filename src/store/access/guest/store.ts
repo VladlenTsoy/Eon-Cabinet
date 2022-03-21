@@ -14,5 +14,5 @@ export const guestReducer = combineReducers({
 
 export const store = configureStore({
     reducer: guestReducer,
-    middleware: [...getDefaultMiddleware({immutableCheck: false})]
+    middleware: (getDefaultMiddleware => getDefaultMiddleware({immutableCheck: false}))
 });

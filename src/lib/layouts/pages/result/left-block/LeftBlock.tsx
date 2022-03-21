@@ -3,7 +3,7 @@ import SideBlockLayout
     from "../layouts/side-block/SideBlock.layout";
 import React from "react";
 
-const LeftBlockLayout = styled(SideBlockLayout)`
+const LeftBlockLayout = styled<any>(SideBlockLayout)`
   order: 1;
   
   > div{

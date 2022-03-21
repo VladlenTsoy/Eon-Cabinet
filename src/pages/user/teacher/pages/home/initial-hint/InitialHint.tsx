@@ -9,6 +9,7 @@ import Student2Svg from "assets/images/hints/initial/student_2.svg"
 import SendSvg from "assets/images/hints/initial/send.svg"
 import HomeworkSvg from "assets/images/hints/initial/homework.svg"
 import FlagSvg from "assets/images/hints/initial/flag.svg"
+import {useTranslation} from "react-i18next"
 
 const InitialHintStyled = styled.div`
     display: grid;
@@ -117,10 +118,12 @@ const InitialHintStyled = styled.div`
 `
 
 const InitialHint = () => {
+    const {t} = useTranslation()
+
     return (
         <Card>
             <Card.Title
-                title="Добро пожаловать!"
+                title={t("home.welcome")}
                 subTitle={
                     "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, cumque, quasi. Animi aperiam facilis harum minus saepe sapiente sint soluta ut velit. Accusamus cumque delectus fuga, illum iste non odio!"
                 }

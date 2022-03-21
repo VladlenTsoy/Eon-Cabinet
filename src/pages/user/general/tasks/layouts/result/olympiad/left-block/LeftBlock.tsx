@@ -6,7 +6,7 @@ import styled from "styled-components";
 import {useSelector} from "react-redux";
 import {gameSelector} from "store/common/game/gameSplice";
 
-const LeftBlockLayout = styled(SideBlockLayout)`
+const LeftBlockLayout = styled<any>(SideBlockLayout)`
   order: 1;
   
   @media (max-width: 992px) {

@@ -3,7 +3,7 @@ import { ArrowRightOutlined } from '@ant-design/icons';
 import styled from "styled-components";
 import {NextArrowWrapper} from "lib/ui/data-display/carousel/next-arrow/NextArrow";
 
-const NextArrowApplication = styled(NextArrowWrapper)`
+const NextArrowApplication = styled<any>(NextArrowWrapper)`
   .ant-carousel &.slick-next{
     font-size: 70px;
     height: 100px;

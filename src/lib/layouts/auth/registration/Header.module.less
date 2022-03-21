@@ -1,0 +1,39 @@
+.header {
+  padding: 0 1rem;
+  box-shadow: rgba(0, 0, 0, 0.05) 0 2px 15px 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  background: @component-background;
+}
+
+.back {
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+
+  a {
+    color: @text-color;
+  }
+
+  a:hover {
+    color: @primary-color;
+  }
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  > div {
+    width: 76px;
+    padding: 0.5rem 1rem;
+  }
+}
+
+.language {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}

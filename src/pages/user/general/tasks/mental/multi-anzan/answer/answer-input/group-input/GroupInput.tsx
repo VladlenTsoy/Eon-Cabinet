@@ -7,7 +7,7 @@ import TextFit
     from "../../../../../../../teacher/pages/training/settings/mental/multi-anzan/exercise-setting/multiplication-block/TextFit";
 import {gameSelector} from "../../../../../../../../../store/common/game/gameSplice";
 
-const GroupWrapper = styled(BasicWrapper)`
+const GroupWrapper = styled<any>(BasicWrapper)`
   h2.ant-typography{
     color: ${props => props.theme.color_primary};
   }

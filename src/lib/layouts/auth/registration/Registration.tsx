@@ -1,29 +1,25 @@
 import React from "react"
-import Header from "./header/Header"
-import styled from "styled-components"
-import Footer from "./footer/Footer"
-import Container from "./container/Container"
-
-const RegistrationStyled = styled.div`
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-`
+import Header from "./Header"
+import Footer from "./Footer"
+import Container from "./Container"
+import styles from "./Registration.module.less"
 
 interface RegistrationProps {
     handleSubmit: (params: any) => void
 }
 
-const RegistrationLayout: React.FC<RegistrationProps> = ({
-    handleSubmit,
-    children
-}) => {
+const RegistrationLayout: React.FC<RegistrationProps> = (
+    {
+        handleSubmit,
+        children
+    }
+) => {
     return (
-        <RegistrationStyled>
+        <div className={styles.registration}>
             <Header />
             <Container handleSubmit={handleSubmit}>{children}</Container>
             <Footer />
-        </RegistrationStyled>
+        </div>
     )
 }
 

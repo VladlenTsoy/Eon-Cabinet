@@ -19,7 +19,7 @@ const BgIconLeft = styled.div`
   }
 `;
 
-const BgIconRight = styled(BgIconLeft)`
+const BgIconRight = styled<any>(BgIconLeft)`
   left: auto;
   font-size: 230px;
   right: 15px;
