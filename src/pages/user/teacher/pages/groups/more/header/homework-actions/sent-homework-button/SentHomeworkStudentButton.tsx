@@ -2,12 +2,12 @@ import React, {useCallback, useState} from "react";
 import {useScreenWindow} from "hooks/use-screen-window.effect";
 import DrawerEditor from "lib/ui/feedback/drawer-editor/DrawerEditor";
 import {useSelector} from "react-redux";
-import {groupSelector} from "store/access/teacher/group/groupSlice";
+import {groupSelector} from "store/group/groupSlice";
 import Container from "./container/Container";
 import checkStudentGif from "assets/images/hints/check-student.gif";
 import {useParams} from "react-router-dom";
 import {ParamsProps} from "../../../Group";
-import {useSelectSelectedStudentsByIdsGroupId} from "store/access/teacher/students/studentsSelectors";
+import {useSelectSelectedStudentsByIdsGroupId} from "store/students/studentsSelectors";
 import {Button, info} from "lib/ui"
 import {SendOutlined} from "@ant-design/icons"
 

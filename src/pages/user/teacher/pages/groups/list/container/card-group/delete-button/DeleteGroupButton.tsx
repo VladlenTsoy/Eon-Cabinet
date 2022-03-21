@@ -1,7 +1,7 @@
 import React from "react"
 import {DeleteOutlined} from "@ant-design/icons"
 import {useDispatch} from "react-redux"
-import {deleteGroup} from "store/access/teacher/group/deleteGroup"
+import {deleteGroup} from "store/group/deleteGroup"
 import {Group} from "../../../../../../../../../lib/types/teacher/Group"
 import {confirm, warning} from "lib/ui/feedback/modal/confirm"
 

@@ -2,7 +2,7 @@ import React from "react"
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom"
 import {Loader} from "../lib/ui"
 import {useSelector} from "react-redux"
-import {userSelector} from "../store/common/user/userSlice"
+import {userSelector} from "store/user/userSlice"
 
 const Guest = React.lazy(() => import("./guest/index"))
 const User = React.lazy(() => import("./user/index"))

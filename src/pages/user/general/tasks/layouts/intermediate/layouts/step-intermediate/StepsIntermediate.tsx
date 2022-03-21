@@ -3,7 +3,7 @@ import {TrophyOutlined} from '@ant-design/icons';
 import {Steps} from "antd";
 import styled from "styled-components";
 import {useSelector} from "react-redux";
-import {gameSelector} from "../../../../../../../../store/common/game/gameSplice";
+import {gameSelector} from "store/game/gameSplice";
 
 const {Step} = Steps;
 

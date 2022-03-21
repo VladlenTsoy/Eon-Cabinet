@@ -5,7 +5,7 @@ import TrophyResultIntermediate from "../../../../layouts/intermediate/result-in
 import {Modal, Button, Title} from "lib/ui";
 import {LoadingBlock} from "lib/ui";
 import MoreModal from "./more-modal/MoreModal";
-import {gameSelector} from "../../../../../../../../store/common/game/gameSplice";
+import {gameSelector} from "store/game/gameSplice";
 
 const WinSound = require("assets/sounds/win.mp3");
 const LossSound = require("assets/sounds/loss.mp3");

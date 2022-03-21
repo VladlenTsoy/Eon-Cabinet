@@ -3,8 +3,8 @@ import {Button, Card, TablePagination} from "../../../../../../../../lib/ui";
 import LeftToOlympiad
     from "../../../../../../../../lib/components/olympiad-timer-left/OlympiadTimerLeft";
 import {useDispatch, useSelector} from "react-redux";
-import {olympiadSelector} from "../../../../../../../../store/access/teacher/olympiad/olympiadSlice";
-import {fetchCurrentOlympiads} from "../../../../../../../../store/access/teacher/olympiad/current/fetchCurrentOlympiads";
+import {olympiadSelector} from "store/olympiad/olympiadSlice";
+import {fetchCurrentOlympiads} from "store/olympiad/current/fetchCurrentOlympiads";
 import OlympiadTagAccess from "../../../../../../../../lib/components/olympiad-tag-access/OlympiadTagAccess";
 
 const Currents: React.FC = () => {

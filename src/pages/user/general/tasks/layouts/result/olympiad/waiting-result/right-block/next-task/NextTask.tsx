@@ -3,7 +3,7 @@ import {Button, Card, GrayIcon, LoadingBlock} from "lib/ui";
 import TaskSuccessSVG from "assets/images/olympiad/task_success.svg";
 import { FlagOutlined } from '@ant-design/icons';
 import {RouteComponentProps, withRouter} from "react-router-dom";
-import {changeStatus, changeCurrentTimes, changeSetting, changeTotals} from "../../../../../../../../../../store/common/game/gameSplice";
+import {changeStatus, changeCurrentTimes, changeSetting, changeTotals} from "store/game/gameSplice";
 import {useDispatch} from "react-redux";
 
 interface RouteProps {

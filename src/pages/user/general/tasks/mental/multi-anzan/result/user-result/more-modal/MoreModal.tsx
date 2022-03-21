@@ -1,7 +1,7 @@
 import React from 'react';
 import {useSelector} from "react-redux";
 import MoreBasic from "./more-basic/MoreBasic";
-import {gameSelector} from "../../../../../../../../../store/common/game/gameSplice";
+import {gameSelector} from "store/game/gameSplice";
 
 interface MoreModalProps {
     taskKey: number;

@@ -3,7 +3,7 @@ import { FileAddOutlined } from '@ant-design/icons';
 import {withRouter, RouteComponentProps} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {Empty as EmptyLib, Button} from "lib/ui";
-import {changeIsSaved} from "store/access/teacher/group/groupSlice";
+import {changeIsSaved} from "store/group/groupSlice";
 import {useLanguage} from "hooks/use-language";
 
 const Empty: React.FC<RouteComponentProps> = ({history}) => {

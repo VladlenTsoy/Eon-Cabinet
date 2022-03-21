@@ -1,0 +1,38 @@
+.headerProfile {
+  color: @primary-color;
+  display: flex;
+  align-items: center;
+  //margin-right: ${(props: any) => props.mr || "0.5rem"};
+  padding: 0.25rem 0.5rem;
+  border-radius: 10px;
+  margin-left: -0.5rem;
+  transition: all 0.3s ease-in-out;
+
+  :hover {
+    background: @layout-body-background;
+  }
+}
+
+.data {
+  overflow: hidden;
+  margin-left: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.userName {
+  display: block;
+  line-height: initial;
+}
+
+.userId {
+  font-weight: bolder;
+  font-size: 80%;
+  line-height: initial;
+
+  span {
+    color: #ff9800;
+    //color: ${props => props.theme.color_warning};
+  }
+}

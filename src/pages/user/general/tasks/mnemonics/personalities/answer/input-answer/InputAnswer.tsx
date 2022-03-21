@@ -4,7 +4,7 @@ import {FormItem, Avatar} from "../../../../../../../../lib/ui";
 import {DatePicker} from "antd";
 import {useSelector} from "react-redux";
 import {useScreenWindow} from "../../../../../../../../hooks/use-screen-window.effect";
-import {gameSelector} from "../../../../../../../../store/common/game/gameSplice";
+import {gameSelector} from "store/game/gameSplice";
 
 const dateFormatList = ['DD/MM/YYYY', 'DD/MM/YY'];
 

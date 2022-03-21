@@ -1,9 +1,9 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {changeStatus, StatusProps} from "store/common/game/gameSplice";
+import {changeStatus, StatusProps} from "store/game/gameSplice";
 import {useAddInternal} from "hooks/use-add-interval.effect";
 import {useDispatch} from "react-redux";
 import Output from "./output/Output";
-import {SettingAnzanProps} from "store/common/game/setting/games-types/anzan.types";
+import {SettingAnzanProps} from "store/game/setting/games-types/anzan.types";
 import AbacusOutput from "./abacus-output/AbacusOutput";
 import {useSoundEffect} from "../use-sound.effect";
 import TurboOutput from "./turbo-output/TurboOutput";

@@ -1,7 +1,7 @@
 import React from "react"
 import {DeleteFilled} from "@ant-design/icons"
 import {useDispatch} from "react-redux"
-import {deleteStudent} from "../../../../../../../../../../../../store/access/teacher/students/deleteStudent"
+import {deleteStudent} from "store/students/deleteStudent"
 import {confirm} from "lib/ui"
 
 interface DeleteButtonProps {

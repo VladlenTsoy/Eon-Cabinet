@@ -5,7 +5,7 @@ import styled from "styled-components";
 import {useHistory} from "react-router-dom";
 import ButtonSaveOlympiad from "../../../editor/steps-setting/actions/save/ButtonSaveOlympiad";
 import {useDispatch} from "react-redux";
-import {deleteOlympiad} from "../../../../../../../../store/access/teacher/olympiad/deleteOlympiad";
+import {deleteOlympiad} from "store/olympiad/deleteOlympiad";
 
 const TitleWrapper = styled.div`
   display: flex;

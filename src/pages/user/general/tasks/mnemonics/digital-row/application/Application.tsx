@@ -4,7 +4,7 @@ import {random} from 'lodash';
 import {useAddSpaceToString} from "hooks/use-add-space-to-string";
 import ApplicationLayout from "../../../layouts/application/Application.layout";
 import Custom from "./custom/Custom";
-import {gameSelector} from "../../../../../../../store/common/game/gameSplice";
+import {gameSelector} from "store/game/gameSplice";
 
 const Application: React.FC = () => {
     const {setting} = useSelector(gameSelector);

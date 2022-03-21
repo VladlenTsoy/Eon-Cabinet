@@ -5,7 +5,7 @@ import {
     changeStats,
     gameSubSelector,
     StatsActionProps
-} from "../../../../../../../store/common/game/gameSplice";
+} from "store/game/gameSplice";
 import {useLoadSoundsEffect} from "../application-output/use-load-sounds.effect";
 import {LoadingBlock} from "../../../../../../../lib/ui";
 import {picturesFunction} from "../Application.layout";

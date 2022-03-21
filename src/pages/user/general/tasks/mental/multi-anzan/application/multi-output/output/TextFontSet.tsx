@@ -1,7 +1,7 @@
 import React from 'react';
 import {useSelector} from "react-redux";
 import styled from "styled-components";
-import {gameSelector} from "../../../../../../../../../store/common/game/gameSplice";
+import {gameSelector} from "store/game/gameSplice";
 
 const TextFontSetWrapper: any = styled.div<any>`
   color: ${props => props.isWait ? props.theme.color_minimal : props.isEven ? props.theme.color_main : props.theme.color_primary}

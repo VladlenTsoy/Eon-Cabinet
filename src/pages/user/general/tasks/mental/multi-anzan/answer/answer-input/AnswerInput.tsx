@@ -3,7 +3,7 @@ import styled from "styled-components";
 import {useSelector} from "react-redux";
 import BasicInput from "./basic-input/BasicInput";
 import GroupInput from "./group-input/GroupInput";
-import {gameSelector} from "../../../../../../../../store/common/game/gameSplice";
+import {gameSelector} from "store/game/gameSplice";
 
 const AnswerWrapper = styled.div`
   height: 100%;

@@ -12,7 +12,9 @@ module.exports = {
                 lessLoaderOptions: {
                     lessOptions: {
                         modifyVars: {
-                            ...getThemeVariables({dark: true})
+                            ...getThemeVariables({dark: true}),
+                            "primary-color": "#8e24aa",
+                            "max-width": "1400px"
                         },
                         javascriptEnabled: true
                     }

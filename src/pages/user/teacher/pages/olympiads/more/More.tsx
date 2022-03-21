@@ -9,9 +9,9 @@ import {Spin} from "lib/ui";
 import {useChangeActionNavbar} from "../../../../../../hooks/old/use-change-action-navbar.effect";
 import {useChangeTitle} from "../../../../../../hooks/old/use-change-title.effect";
 import {useSelector} from "react-redux";
-import {olympiadSelector} from "../../../../../../store/access/teacher/olympiad/olympiadSlice";
-import {useTeacherDispatch} from "../../../../../../store/access/teacher/store";
-import {fetchOlympiad} from "../../../../../../store/access/teacher/olympiad/detail/fetchOlympiad";
+import {olympiadSelector} from "store/olympiad/olympiadSlice";
+import {useDispatch} from "store/store";
+import {fetchOlympiad} from "store/olympiad/detail/fetchOlympiad";
 
 const MoreWrapper = styled.div`
   position: absolute;
@@ -36,7 +36,7 @@ interface MoreOlympiadProps {
 const MoreOlympiad: React.FC<MoreOlympiadProps> = ({match}) => {
     const {detail} = useSelector(olympiadSelector)
     const {loading, data: olympiad, error} = detail;
-    const dispatch = useTeacherDispatch()
+    const dispatch = useDispatch()
 
     console.log(olympiad)
     const fetch = () => dispatch(fetchOlympiad({olympiadId: match.params.id}))

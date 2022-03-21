@@ -7,7 +7,7 @@ import {
     changeStatus,
     changeTotals,
     updateCurrentTotal,
-} from "../../../../../../store/common/game/gameSplice";
+} from "store/game/gameSplice";
 import {useDispatch} from "react-redux";
 import {ArrowRightOutlined} from '@ant-design/icons';
 

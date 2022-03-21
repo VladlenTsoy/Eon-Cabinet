@@ -1,15 +1,15 @@
 import React, {useEffect} from 'react';
 import {useSelector} from "react-redux";
-import {fetchCategories} from "../../../../../store/access/teacher/category/fetchCategories";
-import {disciplineSelector} from "../../../../../store/access/teacher/discipline/disciplineSlice";
+import {fetchCategories} from "store/category/fetchCategories";
+import {disciplineSelector} from "store/discipline/disciplineSlice";
 import {Loader} from "../../../../../lib/ui";
-import {useTeacherDispatch} from "../../../../../store/access/teacher/store";
-import {useLoadingCategories} from "../../../../../store/access/teacher/category/categorySelectors";
+import {useDispatch} from "store/store";
+import {useLoadingCategories} from "store/category/categorySelectors";
 
 const CategoriesProvider: React.FC = ({children}) => {
     const discipline = useSelector(disciplineSelector);
     const loading = useLoadingCategories()
-    const dispatch = useTeacherDispatch();
+    const dispatch = useDispatch();
 
     useEffect(() => {
         if (discipline.activeDisciplineId){

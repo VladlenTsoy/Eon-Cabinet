@@ -6,7 +6,7 @@ import socket from "../../../../../../utils/socket"
 import {useUser} from "../../../../../../hooks/use-user"
 import {useSelectNewMessagesByChatIdAndUserId} from "../../../reducer/messages/messagesSelectors"
 import {updateMessages} from "../../../reducer/messages/messagesSlice"
-import {useCommonDispatch} from "../../../../../../store/common/store"
+import {useDispatch} from "store/store"
 
 const ChatMessageStyled = styled.div`
     position: relative;
@@ -22,7 +22,7 @@ interface ChatMessagesProps {
 
 const ChatMessages: React.FC<ChatMessagesProps> = ({chatId}) => {
     const {userId} = useUser()
-    const dispatch = useCommonDispatch()
+    const dispatch = useDispatch()
     const messages = useSelectNewMessagesByChatIdAndUserId(chatId, userId)
 
     useEffect(() => {

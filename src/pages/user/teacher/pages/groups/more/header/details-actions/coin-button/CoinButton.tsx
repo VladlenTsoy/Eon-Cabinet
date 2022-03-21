@@ -4,10 +4,10 @@ import {Form} from "antd";
 import {FormItem, Modal, info, Stepper, Button} from "lib/ui";
 import styled from "styled-components";
 import {useDispatch} from "react-redux";
-import {sendCoins} from "store/access/teacher/students/sendСoins";
+import {sendCoins} from "store/students/sendСoins";
 import {useParams} from "react-router-dom";
 import {ParamsProps} from "../../../Group";
-import {useSelectSelectedStudentsByIdsGroupId} from "store/access/teacher/students/studentsSelectors";
+import {useSelectSelectedStudentsByIdsGroupId} from "store/students/studentsSelectors";
 import checkStudentGif from "../../../../../../../../../assets/images/hints/check-student.gif"
 
 const ImageStyled = styled.div`

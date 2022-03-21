@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {store} from "../../../store/store";
+import {store} from "store/store";
 import {Loader} from "../../ui";
 import {useUser} from "../../../hooks/use-user";
 
@@ -11,7 +11,7 @@ const StoreProvider: React.FC = ({children}) => {
         if (user?.id) {
             (async () => {
                 // setLoading(true)
-                const {teacherReducer} = await import("../../../store/access/teacher/store")
+                const {teacherReducer} = await import("store/store")
                 // @ts-ignore
                 store.replaceReducer(teacherReducer)
                 setLoading(false)

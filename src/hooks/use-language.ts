@@ -1,4 +1,4 @@
-import {useSelectCurrentLanguage} from "../store/common/language/languageSelectors"
+import {useSelectCurrentLanguage} from "store/language/languageSelectors"
 
 export const useLanguage = () => {
     const currentLanguage = useSelectCurrentLanguage();

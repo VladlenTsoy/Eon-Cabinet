@@ -2,7 +2,7 @@ import React from "react";
 import {confirm} from "lib/ui";
 import {QuestionCircleOutlined} from "@ant-design/icons";
 import {useDispatch} from "react-redux";
-import {deleteHomework} from "../../../../../../../../../../../store/access/teacher/homework/deleteHomework";
+import {deleteHomework} from "store/homework/deleteHomework";
 import {Homework} from "../../../../../../../../../../../lib/types/teacher/Homework";
 
 interface DeleteHomeworkProps {

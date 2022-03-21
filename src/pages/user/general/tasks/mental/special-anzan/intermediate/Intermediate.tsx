@@ -2,7 +2,7 @@ import React from 'react';
 import AnswerIntermediateWrapper
     from "../../../layouts/intermediate/layouts/answer-intermediate/AnwerIntermediate.layout";
 import {useSelector} from "react-redux";
-import {gameSelector} from "../../../../../../../store/common/game/gameSplice";
+import {gameSelector} from "store/game/gameSplice";
 
 const IntermediateBlock = () => {
     const {currentTimes, totals} = useSelector(gameSelector);

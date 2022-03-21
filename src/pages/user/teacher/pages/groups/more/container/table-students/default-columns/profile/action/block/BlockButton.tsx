@@ -1,7 +1,7 @@
 import React from "react"
 import {LockFilled} from "@ant-design/icons"
 import {confirm} from "lib/ui"
-import {blockStudent} from "../../../../../../../../../../../../store/access/teacher/students/blockStudent"
+import {blockStudent} from "store/students/blockStudent"
 import {useDispatch} from "react-redux"
 
 interface BlockButtonProps {

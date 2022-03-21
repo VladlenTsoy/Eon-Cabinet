@@ -1,5 +1,5 @@
 import {useSelector} from "react-redux";
-import {disciplineSelector} from "../store/access/teacher/discipline/disciplineSlice";
+import {disciplineSelector} from "store/discipline/disciplineSlice";
 
 const useDiscipline = () => {
     const discipline = useSelector(disciplineSelector)

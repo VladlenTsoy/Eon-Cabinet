@@ -1,13 +1,13 @@
 import React, {useCallback, useEffect, useState} from "react"
 import {useParams} from "react-router-dom"
 import Container from "./container/Container"
-import {useTeacherDispatch} from "../../../../../../store/access/teacher/store"
+import {useDispatch} from "store/store"
 import NotFound from "../../../../../errors/404"
 import {
     useLoadingGroups,
     useSelectGroupById
-} from "../../../../../../store/access/teacher/group/groupSelectors"
-import {fetchGroup} from "../../../../../../store/access/teacher/group/fetchGroup"
+} from "store/group/groupSelectors"
+import {fetchGroup} from "store/group/fetchGroup"
 import {useChangeConfigPageEffect} from "../../../../../../hooks/use-change-config-page.effect"
 import Header from "./header/Header"
 
@@ -21,7 +21,7 @@ const Group: React.FC = () => {
     const {id} = useParams<ParamsProps>()
     const group = useSelectGroupById(Number(id))
     const loading = useLoadingGroups()
-    const dispatch = useTeacherDispatch()
+    const dispatch = useDispatch()
     const [tab, setTab] = useState<TabStudentsType>("details")
 
     const changeTabHandler = useCallback((val: TabStudentsType) => setTab(val), [])

@@ -4,7 +4,7 @@ import {TrophyOutlined} from '@ant-design/icons';
 import {Avatar} from "../../../../../../../lib/ui";
 import moment from "moment";
 import ResultMoreLayout from "../../../layouts/result/result-more/ResultMore.layout";
-import {gameSelector} from "../../../../../../../store/common/game/gameSplice";
+import {gameSelector} from "store/game/gameSplice";
 
 const ResultBlock = () => {
     const {setting, totals} = useSelector(gameSelector);

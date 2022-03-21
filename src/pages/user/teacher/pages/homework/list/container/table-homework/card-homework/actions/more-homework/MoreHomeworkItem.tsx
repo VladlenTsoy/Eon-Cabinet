@@ -4,12 +4,12 @@ import ExerciseLists from "../../../../../../../../../../../lib/components/exerc
 import styled from "styled-components";
 import moment from "moment";
 import {LoadingBlock} from "lib/ui";
-import {fetchExercisesByHomeworkId} from "../../../../../../../../../../../store/access/teacher/homework-exercises/fetchExercisesByHomeworkId"
-import {useTeacherDispatch} from "../../../../../../../../../../../store/access/teacher/store"
+import {fetchExercisesByHomeworkId} from "store/homework-exercises/fetchExercisesByHomeworkId"
+import {useDispatch} from "store/store"
 import {
     useLoadingHomeworkExercises,
     useSelectHomeworkExercisesByHomeworkId
-} from "../../../../../../../../../../../store/access/teacher/homework-exercises/homeworkExercisesSelectors"
+} from "store/homework-exercises/homeworkExercisesSelectors"
 
 const SubTitle = styled.p`
   color: ${props => props.theme.color_second};
@@ -18,7 +18,7 @@ const SubTitle = styled.p`
 const MoreHomeworkItem: React.FC<any> = ({homework}) => {
     const exercises = useSelectHomeworkExercisesByHomeworkId(homework.id)
     const loading = useLoadingHomeworkExercises()
-    const dispatch = useTeacherDispatch();
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const promise = dispatch(fetchExercisesByHomeworkId({homeworkId: homework.id}))

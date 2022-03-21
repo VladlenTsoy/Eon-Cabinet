@@ -3,7 +3,7 @@ import {useSelector} from "react-redux";
 import AnswerLayout from "../../../layouts/answer/Answer.layout";
 import InputAnswer from "./input-answer/InputAnswer";
 import styled from "styled-components";
-import {gameSelector} from "../../../../../../../store/common/game/gameSplice";
+import {gameSelector} from "store/game/gameSplice";
 
 const InputsWrapper = styled.div`
   display: grid;

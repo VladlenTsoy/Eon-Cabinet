@@ -1,7 +1,7 @@
 import {useCallback, useEffect} from "react"
-import {nextWeek, prevWeek} from "../../../../../../../store/access/teacher/student-homework/studentHomeworkSlice"
-import {fetchStudentsHomeworkDates} from "../../../../../../../store/access/teacher/student-homework/fetchStudentsHomeworkDates"
-import {useTeacherDispatch} from "../../../../../../../store/access/teacher/store"
+import {nextWeek, prevWeek} from "store/student-homework/studentHomeworkSlice"
+import {fetchStudentsHomeworkDates} from "store/student-homework/fetchStudentsHomeworkDates"
+import {useDispatch} from "store/store"
 import {TabStudentsType} from "../Group"
 
 interface ParamsProps {
@@ -18,7 +18,7 @@ interface ReturnProps {
 type Props = (params: ParamsProps) => ReturnProps
 
 export const useHomeworkDates: Props = ({id, tab, homework}) => {
-    const dispatch = useTeacherDispatch()
+    const dispatch = useDispatch()
 
     const nextAction = useCallback(() => dispatch(nextWeek()), [dispatch])
     const prevAction = useCallback(() => dispatch(prevWeek()), [dispatch])

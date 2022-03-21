@@ -3,7 +3,7 @@ import {useSelector} from "react-redux";
 import BasicResult from "./basic-result/Basic";
 import DoubleResult from "./double-result/Double";
 import ResultMoreLayout from "../../../layouts/result/result-more/ResultMore.layout";
-import {gameSelector} from "../../../../../../../store/common/game/gameSplice";
+import {gameSelector} from "store/game/gameSplice";
 
 const ResultBlock: React.FC = () => {
     const {totals, setting}= useSelector(gameSelector);

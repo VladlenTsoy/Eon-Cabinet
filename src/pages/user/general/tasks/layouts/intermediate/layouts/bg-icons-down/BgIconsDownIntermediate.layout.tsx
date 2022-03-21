@@ -2,7 +2,7 @@ import React from 'react';
 import {useSelector} from "react-redux";
 import styled from "styled-components";
 import {CheckCircleOutlined, ExclamationCircleOutlined, FlagOutlined, ArrowRightOutlined} from '@ant-design/icons';
-import {gameSelector} from "../../../../../../../../store/common/game/gameSplice";
+import {gameSelector} from "store/game/gameSplice";
 
 const BgIconLeft = styled.div`
   display: inline-flex;

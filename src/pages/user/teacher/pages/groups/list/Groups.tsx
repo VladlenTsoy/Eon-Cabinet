@@ -5,13 +5,13 @@ import Tabs from "../../../../../../lib/ui/data-display/tabs/Tabs"
 import {
     useActiveCategoryId,
     useSelectAllCategories
-} from "../../../../../../store/access/teacher/category/categorySelectors"
-import {useTeacherDispatch} from "../../../../../../store/access/teacher/store"
-import {changeActiveCategoryId} from "store/access/teacher/category/categorySlice"
+} from "store/category/categorySelectors"
+import {useDispatch} from "store/store"
+import {changeActiveCategoryId} from "store/category/categorySlice"
 import TabTopExtra from "./tab-top-extra/TabTopExtra"
 
 const Groups: React.FC = () => {
-    const dispatch = useTeacherDispatch()
+    const dispatch = useDispatch()
     const activeCategoryId = useActiveCategoryId()
     const categories = useSelectAllCategories()
 

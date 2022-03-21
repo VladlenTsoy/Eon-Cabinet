@@ -1,7 +1,7 @@
 import React from "react"
 import {CloseOutlined, ArrowLeftOutlined} from "@ant-design/icons"
 import {Chat} from "../../../interfaces/Chat"
-import {useCommonDispatch} from "../../../../../../store/common/store"
+import {useDispatch} from "store/store"
 import {changeSelectedChatId} from "../../../reducer/chats/chatsSlice"
 import {useSelectChatsById} from "../../../reducer/chats/chatsSelectors"
 import Profile from "./profile/Profile"
@@ -12,7 +12,7 @@ interface MoreProps {
 }
 
 const More: React.FC<MoreProps> = ({close, chatId}) => {
-    const dispatch = useCommonDispatch()
+    const dispatch = useDispatch()
     const back = () => dispatch(changeSelectedChatId(null))
     const chat = useSelectChatsById(chatId)
 

@@ -3,7 +3,7 @@ import {ArrowRightOutlined, FlagOutlined, HistoryOutlined} from '@ant-design/ico
 import {Button} from "lib/ui";
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
-import {nextGame, repeatGame, completionGame, gameSelector} from "store/common/game/gameSplice";
+import {nextGame, repeatGame, completionGame, gameSelector} from "store/game/gameSplice";
 import {useRouteMatch} from "react-router-dom";
 import {ResultMatchProps} from "../../result/homework/Result";
 

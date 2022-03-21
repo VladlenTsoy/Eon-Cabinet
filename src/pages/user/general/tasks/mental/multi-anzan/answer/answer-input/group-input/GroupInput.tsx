@@ -5,7 +5,7 @@ import {FormItem, Title} from "lib/ui";
 import {useSelector} from "react-redux";
 import TextFit
     from "../../../../../../../teacher/pages/training/settings/mental/multi-anzan/exercise-setting/multiplication-block/TextFit";
-import {gameSelector} from "../../../../../../../../../store/common/game/gameSplice";
+import {gameSelector} from "store/game/gameSplice";
 
 const GroupWrapper = styled<any>(BasicWrapper)`
   h2.ant-typography{

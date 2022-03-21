@@ -1,7 +1,7 @@
 import {createSlice, createEntityAdapter, PayloadAction} from "@reduxjs/toolkit"
 import {Chat} from "../../interfaces/Chat"
 import {fetchChats} from "./fetchChats"
-import {CommonState} from "../../../../../store/common/store"
+import {CommonState} from "store/store"
 import {addMessage} from "../messages/addMessage"
 import {createChat} from "./createChat"
 import moment from "moment"

@@ -9,7 +9,7 @@ import {
     useLastMessageByChatId,
     useSelectCountNotReadByChatId
 } from "../../../../reducer/messages/messagesSelectors"
-import {useCommonDispatch} from "../../../../../../../store/common/store"
+import {useDispatch} from "store/store"
 import {useUser} from "../../../../../../../hooks/use-user"
 import {Contact} from "../../../../interfaces/Contact"
 
@@ -44,7 +44,7 @@ const ContactItem: React.FC<ContactItemProps> = ({chat}) => {
     const {user} = useUser()
     const notRead = useSelectCountNotReadByChatId(chat.chat_id, user.id) || 0
     const lastMessage = useLastMessageByChatId(chat.chat_id) || chat.last_message
-    const dispatch = useCommonDispatch()
+    const dispatch = useDispatch()
 
     const onClickHandler = (event: any) => {
         if (!event.target.className.includes("ant-tag"))

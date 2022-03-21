@@ -1,0 +1,19 @@
+.sidebars {
+  height: 100%;
+  padding: 0.5rem 1rem;
+  display: flex;
+  z-index: 5;
+  align-items: center;
+
+  > div:not(:last-child) {
+    margin-right: 0.75rem;
+  }
+
+  @media (max-width: 576px) {
+    padding: 0.5rem 0.5rem;
+
+    > div:not(:last-child) {
+      margin-right: 0.5rem;
+    }
+  }
+}

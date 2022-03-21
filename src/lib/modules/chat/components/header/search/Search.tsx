@@ -1,7 +1,7 @@
 import React from "react"
 import {Input} from "antd"
 import {CloseOutlined, ArrowLeftOutlined} from "@ant-design/icons"
-import {useCommonDispatch} from "../../../../../../store/common/store"
+import {useDispatch} from "store/store"
 import {fetchContactsBySearch} from "../../../reducer/contacts/fetchContactsBySearch"
 
 interface SearchProps {
@@ -10,7 +10,7 @@ interface SearchProps {
 }
 
 const Search: React.FC<SearchProps> = ({back, close}) => {
-    const dispatch = useCommonDispatch()
+    const dispatch = useDispatch()
 
     const onChangeHandler = (search: string) => {
         if (search.trim() !== "")

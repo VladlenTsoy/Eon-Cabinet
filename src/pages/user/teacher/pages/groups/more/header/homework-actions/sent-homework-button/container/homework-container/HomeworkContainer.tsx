@@ -5,9 +5,9 @@ import Empty from "./empty/Empty";
 import {
     useLoadingSelectsHomeworkByCategoryId,
     useAllSelectsHomeworkByCategoryId
-} from "store/access/teacher/homework/homeworkSelector";
-import {useTeacherDispatch} from "store/access/teacher/store";
-import {fetchSelectsHomework} from "store/access/teacher/homework/fetchSelectsHomework";
+} from "store/homework/homeworkSelector";
+import {useDispatch} from "store/store";
+import {fetchSelectsHomework} from "store/homework/fetchSelectsHomework";
 
 interface HomeworkContainerProps {
     groupId: number;
@@ -16,7 +16,7 @@ interface HomeworkContainerProps {
 }
 
 const HomeworkContainer: React.FC<HomeworkContainerProps> = ({categoryId, groupId, close}) => {
-    const dispatch = useTeacherDispatch();
+    const dispatch = useDispatch();
     const loading = useLoadingSelectsHomeworkByCategoryId(categoryId)
     const homework = useAllSelectsHomeworkByCategoryId(categoryId);
 

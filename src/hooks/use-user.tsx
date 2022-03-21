@@ -1,7 +1,7 @@
 import React from "react";
 import {useDispatch, useSelector} from "react-redux"
-import {userSelector} from "../store/common/user/userSlice";
-import {logoutUser} from "../store/common/user/logoutUser"
+import {userSelector} from "store/user/userSlice";
+import {logoutUser} from "store/user/logoutUser"
 import {QuestionCircleOutlined} from "@ant-design/icons"
 import {confirm} from "lib/ui"
 import {useCallback} from "react"

@@ -6,7 +6,7 @@ import {
     changeStats,
     changeStatus,
     changeTotals, gameSubSelector
-} from "../../../../../../../store/common/game/gameSplice";
+} from "store/game/gameSplice";
 import {useUpdateOutputEffect} from "../../../layouts/application/application-output/use-update-output.effect";
 import TbodyAddition from "./list/tbody-addition/TbodyAddition";
 import TbodyMultiplication from "./list/tbody-multiplication/TbodyMultiplication";

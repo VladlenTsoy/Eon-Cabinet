@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Card, TablePagination} from "../../../../../../../../lib/ui";
 import {useDispatch, useSelector} from "react-redux";
-import {olympiadSelector} from "../../../../../../../../store/access/teacher/olympiad/olympiadSlice";
-import {fetchFutureOlympiads} from "../../../../../../../../store/access/teacher/olympiad/future/fetchFutureOlympiads";
+import {olympiadSelector} from "store/olympiad/olympiadSlice";
+import {fetchFutureOlympiads} from "store/olympiad/future/fetchFutureOlympiads";
 import OlympiadTagAccess from "../../../../../../../../lib/components/olympiad-tag-access/OlympiadTagAccess";
 import {momentFormatCheckYear} from "../../../../../../../../utils/momentFormatCheckYear";
 

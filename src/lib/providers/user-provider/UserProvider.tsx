@@ -1,12 +1,12 @@
 import React, {useEffect} from 'react';
-import {fetchUser} from "../../../store/common/user/fetchUser";
+import {fetchUser} from "store/user/fetchUser";
 import {Loader} from "../../ui";
-import {useCommonDispatch} from "../../../store/common/store";
+import {useDispatch} from "store/store";
 import {useUser} from "../../../hooks/use-user";
 
 const UserProvider: React.FC = ({children}) => {
     const {token, loading} = useUser()
-    const dispatch = useCommonDispatch()
+    const dispatch = useDispatch()
 
     useEffect(() => {
         const promise = dispatch(fetchUser())

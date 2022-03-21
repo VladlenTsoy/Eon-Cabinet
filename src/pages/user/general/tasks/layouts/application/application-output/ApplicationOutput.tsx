@@ -3,7 +3,7 @@ import PreparationLayout from './preparation/Preparation.layout';
 import ApplicationCardLayout from './ApplicationCard.layout';
 import {Form, Modal} from 'antd';
 import {useDispatch, useSelector} from 'react-redux';
-import {changeStatus, gameSelector, StatusProps} from 'store/common/game/gameSplice';
+import {changeStatus, gameSelector, StatusProps} from 'store/game/gameSplice';
 import {ExclamationCircleOutlined} from "@ant-design/icons";
 import {useLoadSoundsEffect} from './use-load-sounds.effect';
 import Double from "./double/Double";
@@ -12,7 +12,7 @@ import Timer from "./timer/Timer";
 import List from "./list/List";
 import Carousel from "./carousel/Carousel";
 import {ListSettingProps} from "./list/tables-output/TablesOutput";
-import {SettingAnzanProps} from "../../../../../../../store/common/game/setting/games-types/anzan.types";
+import {SettingAnzanProps} from "store/game/setting/games-types/anzan.types";
 import {CarouselSettingProps} from "../Application.layout";
 
 interface ApplicationOutputProps {

@@ -5,9 +5,9 @@ import {TranslationOutlined} from "@ant-design/icons"
 import {
     useSelectAllLanguages,
     useSelectCurrentLanguage
-} from "../../../../../../store/common/language/languageSelectors"
+} from "store/language/languageSelectors"
 import styled from "styled-components"
-import {fetchLanguage} from "../../../../../../store/common/language/fetchLanguage"
+import {fetchLanguage} from "store/language/fetchLanguage"
 import {useDispatch} from "react-redux"
 
 const LanguagesListStyled = styled.div``

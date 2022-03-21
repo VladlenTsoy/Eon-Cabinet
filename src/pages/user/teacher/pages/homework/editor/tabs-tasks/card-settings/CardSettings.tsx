@@ -3,10 +3,10 @@ import {Tabs} from "antd";
 import FormSetting from "./from-setting/FormSetting";
 import {Card} from "../../../../../../../../lib/ui";
 import {useSelector} from "react-redux";
-import {tasksSelector} from "../../../../../../../../store/access/teacher/tasks/tasksSlice";
+import {tasksSelector} from "store/tasks/tasksSlice";
 import {useScreenWindow} from "../../../../../../../../hooks/use-screen-window.effect";
-import {fetchTasks} from "../../../../../../../../store/access/teacher/tasks/fetchTasks";
-import {useTeacherDispatch} from "../../../../../../../../store/access/teacher/store";
+import {fetchTasks} from "store/tasks/fetchTasks";
+import {useDispatch} from "store/store";
 
 const {TabPane} = Tabs;
 
@@ -16,7 +16,7 @@ interface CardSettingsProps {
 
 const CardSettings: React.FC<CardSettingsProps> = ({setExercises}) => {
     const {homework, fetchLoading} = useSelector(tasksSelector);
-    const dispatch = useTeacherDispatch();
+    const dispatch = useDispatch();
     const [, isBreakpoint] = useScreenWindow({breakpoint: 'md'});
 
     // Send setting for start application

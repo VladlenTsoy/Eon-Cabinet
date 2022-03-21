@@ -5,7 +5,7 @@ import PhotoBlock from "../../../../../lib/ui/data-display/avatar/Photo";
 import ProfileBlockMenu from "./menu/ProfileBlockMenu";
 import styled from "styled-components";
 import {useDispatch} from "react-redux";
-import {updateUser} from "../../../../../store/common/user/updateUser";
+import {updateUser} from "store/user/updateUser";
 import {useUser} from "../../../../../hooks/use-user";
 
 interface ProfileBlockProps {

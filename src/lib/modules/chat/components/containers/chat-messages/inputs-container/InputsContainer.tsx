@@ -6,7 +6,7 @@ import TextareaItem from "./textarea-item/TextareaItem"
 import SendItem from "./send-item/SendItem"
 import {useUser} from "../../../../../../../hooks/use-user"
 import EmojiContainer from "./emoji-container/EmojiContainer"
-import {useCommonDispatch} from "../../../../../../../store/common/store"
+import {useDispatch} from "store/store"
 import {addMessage} from "../../../../reducer/messages/addMessage"
 
 const InputMessageStyled = styled.form`
@@ -40,7 +40,7 @@ const InputsContainer: React.FC<InputsContainerProps> = ({selectedContactId}) =>
     const [emojiVisible, setEmojiVisible] = useState(false)
     const [emojiBlockVisible, setEmojiBlockVisible] = useState(false)
     const [message, setMessage] = useState<string>("")
-    const dispatch = useCommonDispatch()
+    const dispatch = useDispatch()
 
     const onChangeHandler = useCallback((value: string) => {
         setMessage(value)

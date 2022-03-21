@@ -3,11 +3,11 @@ import styled from "styled-components"
 import {CheckCircleOutlined, ClockCircleOutlined, DeleteOutlined} from "@ant-design/icons"
 import {Drawer, confirm} from "lib/ui"
 import More from "./more/More"
-import {cancelStudentHomework} from "../../../../../../../../../../../store/access/teacher/student-homework/cancelStudentHomework"
+import {cancelStudentHomework} from "store/student-homework/cancelStudentHomework"
 import {useDispatch} from "react-redux"
 import {useParams} from "react-router-dom"
 import {ParamsProps} from "../../../../../Group"
-import {fetchStudentsHomeworkDates} from "../../../../../../../../../../../store/access/teacher/student-homework/fetchStudentsHomeworkDates"
+import {fetchStudentsHomeworkDates} from "store/student-homework/fetchStudentsHomeworkDates"
 import {StudentSentHomework} from "../../../../../../../../../../../lib/types/teacher/StudentHomework"
 
 interface HomeworkBadgeStyledProps extends React.HTMLAttributes<HTMLDivElement> {

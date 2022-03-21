@@ -1,7 +1,7 @@
 import React from "react"
 import {Card} from "../../../../../../lib/ui"
 import {DeleteOutlined, EditOutlined, PlusOutlined} from "@ant-design/icons"
-import {useSelectAllCategories} from "../../../../../../store/access/teacher/category/categorySelectors"
+import {useSelectAllCategories} from "store/category/categorySelectors"
 import {Row, Col, List, Button} from "antd"
 
 const Categories = () => {

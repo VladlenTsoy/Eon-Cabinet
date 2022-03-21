@@ -2,7 +2,7 @@ import React, {useEffect} from "react"
 import styled from "styled-components"
 import ContactItem from "./contact-item/ContactItem"
 import {fetchChats} from "../../../reducer/chats/fetchChats"
-import {useCommonDispatch} from "../../../../../../store/common/store"
+import {useDispatch} from "store/store"
 import {
     useSelectAllChats,
     useLoadingChats
@@ -16,7 +16,7 @@ const ContactListStyled = styled.div`
 `
 
 const ContactList: React.FC = () => {
-    const dispatch = useCommonDispatch()
+    const dispatch = useDispatch()
     const loading = useLoadingChats()
     const chats = useSelectAllChats()
 

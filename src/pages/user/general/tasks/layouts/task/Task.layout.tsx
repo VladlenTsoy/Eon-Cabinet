@@ -3,7 +3,7 @@ import {useSelector} from "react-redux";
 import Intermediate from "../intermediate/Intermediate";
 import ResultHomework from "../result/homework/Result";
 import ResultOlympiad from "../result/olympiad/Result";
-import {gameSelector} from "../../../../../../store/common/game/gameSplice";
+import {gameSelector} from "store/game/gameSplice";
 import {useRouteMatch} from "react-router-dom";
 
 interface TaskProps {

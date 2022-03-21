@@ -1,7 +1,7 @@
 import React from 'react';
 import ResultMoreLayout from "../../../layouts/result/result-more/ResultMore.layout";
 import {useSelector} from "react-redux";
-import {gameSelector} from "../../../../../../../store/common/game/gameSplice";
+import {gameSelector} from "store/game/gameSplice";
 import {TrophyOutlined} from '@ant-design/icons';
 
 const Result = () => {

@@ -1,6 +1,6 @@
 import {Chat} from "../../interfaces/Chat"
 import {createAsyncThunk} from "@reduxjs/toolkit"
-import {CommonThunkProps} from "../../../../../store/common/store"
+import {AppThunkProps} from "store/store"
 import {apiRequest} from "../../../../../utils/api"
 import {Contact} from "../../interfaces/Contact"
 
@@ -10,7 +10,7 @@ interface ArgProps {
     contactId: Contact['id']
 }
 
-export const createChat = createAsyncThunk<ReturnedType, ArgProps, CommonThunkProps>(
+export const createChat = createAsyncThunk<ReturnedType, ArgProps, AppThunkProps>(
     "chats/create",
     async (data, {signal}) => {
         return await apiRequest("post", `chat`, {signal, api2: true, data})

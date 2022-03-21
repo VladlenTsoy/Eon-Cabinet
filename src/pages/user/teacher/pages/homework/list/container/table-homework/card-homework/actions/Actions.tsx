@@ -6,7 +6,7 @@ import MoreHomeworkDrawer from "./more-homework/MoreHomeworkDrawer";
 import {ModalMenu, Button} from "lib/ui";
 import {Link} from "react-router-dom";
 import DeleteHomework from "./delete/DeleteHomework";
-// import {HomeworkProps} from "../../../../../../../../../../store/access/teacher/homework/homeworkSlice";
+// import {HomeworkProps} from "store/access/teacher/homework/homeworkSlice";
 import MoreLink from "./more-link/MoreLink";
 
 const ActionStyled = styled.div`

@@ -4,7 +4,7 @@ import styled from "styled-components";
 import AnswerInput from "./answer-input/AnswerInput";
 import {Card} from "lib/ui";
 import {Form} from "antd";
-import {changeStatus, gameSelector, changeTotals, updateCurrentTotal} from "../../../../../../../store/common/game/gameSplice";
+import {changeStatus, gameSelector, changeTotals, updateCurrentTotal} from "store/game/gameSplice";
 import MultiGridLayout from "../layouts/MultiGrid.layout";
 import Header from "./header/Header";
 

@@ -2,7 +2,7 @@ import React, {useCallback} from 'react';
 import {useSelector} from "react-redux";
 import ApplicationLayout from "../../../layouts/application/Application.layout";
 import CarouselItem from "./carousel-item/CarouselItem";
-import {gameSelector} from "../../../../../../../store/common/game/gameSplice";
+import {gameSelector} from "store/game/gameSplice";
 
 const Application: React.FC = () => {
     const {setting} = useSelector(gameSelector);

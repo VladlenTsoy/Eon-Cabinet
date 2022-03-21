@@ -1,6 +1,6 @@
 import React from 'react';
 import {useDispatch} from "react-redux";
-import {clearGame, changeSetting} from "store/common/game/gameSplice";
+import {clearGame, changeSetting} from "store/game/gameSplice";
 import {Button, Card, GrayIcon} from "lib/ui";
 import TaskSuccessSVG from "assets/images/olympiad/task_success.svg";
 import {useHistory, useParams} from "react-router-dom";

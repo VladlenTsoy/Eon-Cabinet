@@ -1,6 +1,6 @@
 import {createEntityAdapter, createSlice} from "@reduxjs/toolkit"
 import {Contact} from "../../interfaces/Contact"
-import {CommonState} from "../../../../../store/common/store"
+import {CommonState} from "store/store"
 import {fetchContactsBySearch} from "./fetchContactsBySearch"
 
 export const contactsAdapter = createEntityAdapter<Contact>({

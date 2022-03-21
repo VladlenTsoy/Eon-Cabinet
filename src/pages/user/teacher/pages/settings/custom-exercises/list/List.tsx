@@ -4,10 +4,10 @@ import {Link} from "react-router-dom";
 // import {ModalMenu} from "lib/ui";
 // import DeleteItem from "./Menu/delete-item/DeleteItem";
 // import PrintItem from "./Menu/print-item/PrintItem";
-import {useTeacherDispatch} from "../../../../../../../store/access/teacher/store";
+import {useDispatch} from "store/store";
 // import {useSelector} from "react-redux";
-// import {customExercisesSelector} from "../../../../../../../store/access/teacher/custom-exercises/customExercisesSlice";
-import {fetchCustomExercises} from "../../../../../../../store/access/teacher/custom-exercises/fetchCustomExercises";
+// import {customExercisesSelector} from "store/access/teacher/custom-exercises/customExercisesSlice";
+import {fetchCustomExercises} from "store/custom-exercises/fetchCustomExercises";
 
 // const columns = (fetch: any) => [
 //     {
@@ -61,7 +61,7 @@ import {fetchCustomExercises} from "../../../../../../../store/access/teacher/cu
 
 const List: React.FC = () => {
     // const {loading, exercises} = useSelector(customExercisesSelector)
-    const dispatch = useTeacherDispatch()
+    const dispatch = useDispatch()
 
     // teacher/custom-exercises/table
     useEffect(() => {

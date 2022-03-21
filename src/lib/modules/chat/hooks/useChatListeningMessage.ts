@@ -2,7 +2,7 @@ import {useEffect} from "react"
 import socket from "../../../../utils/socket"
 import {Message} from "../interfaces/Message"
 import {addSocketMessages} from "../reducer/messages/messagesSlice"
-import {useCommonDispatch} from "../../../../store/common/store"
+import {useDispatch} from "store/store"
 import {useSelectCountNotReadAll} from "../reducer/messages/messagesSelectors"
 import {fetchMessages} from "../reducer/messages/fetchMessages"
 import {User} from "../../../types/common/User"
@@ -14,7 +14,7 @@ type HookType = (params: {userId: User['id']}) => number
  * @return Кол-во не прочитанных сообщений
  */
 export const useChatListeningMessage: HookType = ({userId}) => {
-    const dispatch = useCommonDispatch()
+    const dispatch = useDispatch()
     const countNewMessages = useSelectCountNotReadAll(userId)
 
     useEffect(() => {

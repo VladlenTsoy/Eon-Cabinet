@@ -5,7 +5,7 @@ import styled from "styled-components";
 import {Card} from "lib/ui";
 import UserResult from "./user-result/UserResult";
 import Header from "./header/Header";
-import {gameSelector} from "../../../../../../../store/common/game/gameSplice";
+import {gameSelector} from "store/game/gameSplice";
 
 const ResultWrapper = styled(Card)`
   &.ant-card{

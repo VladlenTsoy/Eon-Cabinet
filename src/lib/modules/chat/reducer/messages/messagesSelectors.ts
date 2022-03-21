@@ -1,6 +1,6 @@
 // Загрузка домашних заданий по категории
 import {useSelector} from "react-redux"
-import {CommonState} from "../../../../../store/common/store"
+import {CommonState} from "store/store"
 import {Chat} from "../../interfaces/Chat"
 import {selectAllMessages} from "./messagesSlice"
 import {User} from "../../../../types/common/User"

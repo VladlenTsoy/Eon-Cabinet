@@ -1,5 +1,5 @@
 import {createAsyncThunk} from "@reduxjs/toolkit"
-import {CommonThunkProps} from "../../../../../store/common/store"
+import {AppThunkProps} from "store/store"
 import {apiRequest} from "../../../../../utils/api"
 import {Message} from "../../interfaces/Message"
 import {Chat} from "../../interfaces/Chat"
@@ -16,7 +16,7 @@ interface ArgsProps {
 /**
  * Добавить сообщение
  */
-export const addMessage = createAsyncThunk<ReturnedType, ArgsProps, CommonThunkProps>(
+export const addMessage = createAsyncThunk<ReturnedType, ArgsProps, AppThunkProps>(
     "messages/add",
     async (data, {signal}) => {
         return await apiRequest("post", `message`, {data, signal, api2: true})

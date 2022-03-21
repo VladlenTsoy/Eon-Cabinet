@@ -4,9 +4,9 @@ import {useHistory, useParams} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {Button, Modal} from "lib/ui";
 import FormItems from "./form-items/FormItems";
-import {groupSelector} from "../../../../../../../store/access/teacher/group/groupSlice";
+import {groupSelector} from "store/group/groupSlice";
 import {ParamsProps} from "../../../groups/more/Group";
-import {useSelectGroupById} from "../../../../../../../store/access/teacher/group/groupSelectors";
+import {useSelectGroupById} from "store/group/groupSelectors";
 
 interface ButtonSaveHomeworkProps {
     homework?: any;

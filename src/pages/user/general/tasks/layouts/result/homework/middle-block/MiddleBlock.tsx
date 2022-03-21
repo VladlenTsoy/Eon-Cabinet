@@ -8,7 +8,7 @@ import {LoadingBlock} from "lib/ui"
 import StarSvg from "assets/images/star.svg"
 import {usePreloadPictures} from "../../../../../../../../hooks/use-preload-pictures.effect"
 import {useSelector} from "react-redux"
-import {gameSelector} from "../../../../../../../../store/common/game/gameSplice"
+import {gameSelector} from "store/game/gameSplice"
 
 const TotalWinSound = require("assets/sounds/total_win.mp3")
 const TotalLoseSound = require("assets/sounds/loss.mp3")

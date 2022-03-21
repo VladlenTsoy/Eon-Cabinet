@@ -3,10 +3,10 @@ import styled from "styled-components";
 import moment from "moment";
 import {Popover} from "antd";
 import StepSuccess from "assets/images/olympiad/step_success.svg";
-import {useTeacherDispatch} from "../../../../../../../../../store/access/teacher/store";
-import {fetchOlympiadStepStudents} from "../../../../../../../../../store/access/teacher/olympiad/detail/students/fetchOlympiadStudents";
+import {useDispatch} from "store/store";
+import {fetchOlympiadStepStudents} from "store/olympiad/detail/students/fetchOlympiadStudents";
 import {useSelector} from "react-redux";
-import {olympiadSelector} from "../../../../../../../../../store/access/teacher/olympiad/olympiadSlice";
+import {olympiadSelector} from "store/olympiad/olympiadSlice";
 import {TablePagination, Avatar, Title} from "lib/ui";
 
 const Wrapper = styled.div`
@@ -119,7 +119,7 @@ const Columns = () => [
 
 const StudentsMore: React.FC<StudentsMoreProps> = ({step}) => {
     const {detail} = useSelector(olympiadSelector)
-    const dispatch = useTeacherDispatch()
+    const dispatch = useDispatch()
 
     useEffect(() => {
         const promise = dispatch(fetchOlympiadStepStudents({stepId: step.id}))

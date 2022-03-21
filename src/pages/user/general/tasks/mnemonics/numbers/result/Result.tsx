@@ -2,7 +2,7 @@ import React from 'react';
 import {useSelector} from "react-redux";
 import ResultMoreLayout from "../../../layouts/result/result-more/ResultMore.layout";
 import {TrophyOutlined} from '@ant-design/icons';
-import {gameSelector} from "../../../../../../../store/common/game/gameSplice";
+import {gameSelector} from "store/game/gameSplice";
 
 const ResultBlock = () => {
     const {totals} = useSelector(gameSelector);

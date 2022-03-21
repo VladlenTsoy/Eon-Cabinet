@@ -5,7 +5,7 @@ import MultiGridLayout from "../layouts/MultiGrid.layout";
 import {useSelector} from "react-redux";
 import Header from "./header/Header";
 import UserIntermediate from "./user-intermediate/UserIntermediate";
-import {gameSelector} from "../../../../../../../store/common/game/gameSplice";
+import {gameSelector} from "store/game/gameSplice";
 
 const IntermediateWrapper = styled(Card)`
   &.ant-card{

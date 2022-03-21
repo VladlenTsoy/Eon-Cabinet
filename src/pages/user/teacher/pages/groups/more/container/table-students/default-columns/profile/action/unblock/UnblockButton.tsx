@@ -2,7 +2,7 @@ import React from 'react';
 import {UnlockFilled} from '@ant-design/icons';
 import {confirm} from "lib/ui";
 import {useDispatch} from "react-redux";
-import {unblockStudent} from "store/access/teacher/students/unblockStudent";
+import {unblockStudent} from "store/students/unblockStudent";
 
 interface UnblockButtonProps {
     student: any;

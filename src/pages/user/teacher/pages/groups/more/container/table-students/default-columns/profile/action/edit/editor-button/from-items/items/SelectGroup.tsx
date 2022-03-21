@@ -1,15 +1,15 @@
 import {Select} from "antd";
 import React, {useEffect} from "react";
 import {FormItem} from "../../../../../../../../../../../../../../../lib/ui";
-import {useTeacherDispatch} from "../../../../../../../../../../../../../../../store/access/teacher/store";
+import {useDispatch} from "store/store";
 import {useParams} from "react-router-dom";
 import {ParamsProps} from "../../../../../../../../../Group";
 import {
     useLoadingSelectsGroupsByCategoryId,
     useAllSelectsGroupsByCategoryId,
     useSelectGroupById
-} from "../../../../../../../../../../../../../../../store/access/teacher/group/groupSelectors";
-import {fetchSelectsGroups} from "../../../../../../../../../../../../../../../store/access/teacher/group/fetchSelectsGroups";
+} from "store/group/groupSelectors";
+import {fetchSelectsGroups} from "store/group/fetchSelectsGroups";
 
 const {Option} = Select;
 
@@ -18,7 +18,7 @@ const SelectGroup: React.FC = () => {
     const group = useSelectGroupById(Number(id));
     const groups = useAllSelectsGroupsByCategoryId(group?.category.id || 0)
     const loading = useLoadingSelectsGroupsByCategoryId(group?.category.id || 0)
-    const dispatch = useTeacherDispatch();
+    const dispatch = useDispatch();
 
     const filter = (input: string, option: any) =>
         option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0;

@@ -2,7 +2,7 @@ import * as React from "react";
 import './Color.less';
 import {useState} from "react";
 import {useDispatch} from "react-redux";
-import {updateUser} from "../../../../../../../../store/common/user/updateUser";
+import {updateUser} from "store/user/updateUser";
 import {User} from "../../../../../../../../lib/types/common/User";
 
 interface ColorProps {

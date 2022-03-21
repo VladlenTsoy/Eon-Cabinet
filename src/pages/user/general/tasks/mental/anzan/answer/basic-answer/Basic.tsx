@@ -1,7 +1,7 @@
 import React from 'react';
 import FormInputAnswerLayout from "../../../../layouts/answer/form-input-answer/FormInputAnswer.layout";
 import {useSelector} from "react-redux";
-import {gameSelector} from "../../../../../../../../store/common/game/gameSplice";
+import {gameSelector} from "store/game/gameSplice";
 
 const Basic: React.FC = () => {
     const {totals, setting} = useSelector(gameSelector);

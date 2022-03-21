@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react"
 import {Loader} from "lib/ui"
-import {fetchLanguage} from "../../../store/common/language/fetchLanguage"
+import {fetchLanguage} from "store/language/fetchLanguage"
 import {locale} from "moment"
 import {ConfigProvider} from "antd"
 import ruRU from "antd/es/locale-provider/ru_RU"
@@ -8,11 +8,11 @@ import enUs from "antd/es/locale-provider/en_US"
 import "moment/locale/ru"
 import "moment/locale/en-ie"
 import {getCookie} from "../../../utils/cookie"
-import {useCommonDispatch} from "../../../store/common/store"
+import {useDispatch} from "store/store"
 import {
     useLoadingLanguage,
     useSelectCurrentLanguage
-} from "../../../store/common/language/languageSelectors"
+} from "store/language/languageSelectors"
 
 const browserLanguage = getCookie("language") || navigator.language || "ru-RU"
 
@@ -22,7 +22,7 @@ const LanguageProvider: React.FC = ({children}) => {
     const [antLang, setAntLang] = useState(
         currentLanguage.abbr === "ru-RU" ? ruRU : enUs
     )
-    const dispatch = useCommonDispatch()
+    const dispatch = useDispatch()
 
     useEffect(() => {
         locale(currentLanguage.abbr === "ru-RU" ? "ru" : "en")

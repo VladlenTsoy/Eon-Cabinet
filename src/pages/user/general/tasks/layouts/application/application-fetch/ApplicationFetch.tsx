@@ -6,14 +6,14 @@ import {
     changeTotals,
     changeOutputs,
     StatsActionProps, gameSubSelector
-} from "store/common/game/gameSplice";
+} from "store/game/gameSplice";
 import {useLoadPicturesEffect} from "../application-output/use-load-pictures.effect";
 import {LoadingBlock} from 'lib/ui';
 import {useLoadSoundsEffect} from '../application-output/use-load-sounds.effect';
 import {picturesFunction} from "../Application.layout";
 import {useUser} from "../../../../../../../hooks/use-user";
-import {fetchGameExercises} from "../../../../../../../store/common/game/fetchGameExercises";
-import {useCommonDispatch} from "../../../../../../../store/common/store";
+import {fetchGameExercises} from "store/game/fetchGameExercises";
+import {useDispatch} from "store/store";
 
 interface ApplicationFetchProps {
     pictures?: string[] | 'abacus' | picturesFunction;
@@ -37,7 +37,7 @@ const ApplicationFetch: React.FC<ApplicationFetchProps> = (
     const [loading, setLoading] = useState(true);
     const currentTimes = useSelector(gameSubSelector('currentTimes'));
     const setting = useSelector(gameSubSelector('setting'));
-    const dispatch = useCommonDispatch();
+    const dispatch = useDispatch();
 
     // Загрузка картинок
     const [picturesLoad] = useLoadPicturesEffect({pictures});

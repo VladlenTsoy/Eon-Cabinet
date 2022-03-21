@@ -4,9 +4,9 @@ import {
     useLastPageGroupsByCategoryId,
     useLoadingGroupsByCategoryId,
     useSelectGroupsByCategoryId,
-} from "../../../../../../../store/access/teacher/group/groupSelectors"
-import {useTeacherDispatch} from "../../../../../../../store/access/teacher/store"
-import {fetchGroups} from "../../../../../../../store/access/teacher/group/fetchGroups"
+} from "store/group/groupSelectors"
+import {useDispatch} from "store/store"
+import {fetchGroups} from "store/group/fetchGroups"
 import {Spin, Button} from "../../../../../../../lib/ui"
 import GroupBlock from "./card-group/CardGroup"
 import GroupsEmpty from "./groups-empty/GroupsEmpty"
@@ -29,7 +29,7 @@ const Container: React.FC<ContainerProps> = ({categoryId}) => {
     const lastPage = useLastPageGroupsByCategoryId(categoryId)
     const currentPage = useCurrentPageGroupsByCategoryId(categoryId)
     const groups = useSelectGroupsByCategoryId(categoryId)
-    const dispatch = useTeacherDispatch()
+    const dispatch = useDispatch()
     const [page, setPage] = useState(currentPage)
 
     const clickMoreHandler = () => {

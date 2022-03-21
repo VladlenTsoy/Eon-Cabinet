@@ -1,15 +1,15 @@
 import React, {useEffect} from 'react';
 import {useSelector} from "react-redux";
 import {LoadingBlock} from "lib/ui";
-import {fetchTasks} from "../../../../../../store/access/teacher/tasks/fetchTasks";
-import {tasksSelector} from "../../../../../../store/access/teacher/tasks/tasksSlice";
+import {fetchTasks} from "store/tasks/fetchTasks";
+import {tasksSelector} from "store/tasks/tasksSlice";
 import {Col, Row} from "antd";
 import TaskBlock from "./task/Task";
-import {useTeacherDispatch} from "../../../../../../store/access/teacher/store";
+import {useDispatch} from "store/store";
 
 const Training: React.FC = () => {
     const tasks = useSelector(tasksSelector);
-    const dispatch = useTeacherDispatch();
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const promise = dispatch(fetchTasks());

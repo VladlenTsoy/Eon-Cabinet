@@ -1,5 +1,5 @@
 import {useCallback} from "react";
-import {ExtraTypes} from "../../../../../../../store/common/game/setting/types";
+import {ExtraTypes} from "store/game/setting/types";
 
 interface SettingProps {
     extra: ExtraTypes;

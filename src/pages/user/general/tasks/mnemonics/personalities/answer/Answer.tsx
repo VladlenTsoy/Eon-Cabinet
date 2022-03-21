@@ -4,7 +4,7 @@ import {useSelector} from "react-redux";
 import InputAnswer from "./input-answer/InputAnswer";
 import styled from "styled-components";
 import moment from "moment";
-import {gameSelector} from "../../../../../../../store/common/game/gameSplice";
+import {gameSelector} from "store/game/gameSplice";
 
 const InputsWrapper = styled.div`
   display: grid;

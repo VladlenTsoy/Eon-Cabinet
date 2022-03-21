@@ -1,8 +1,8 @@
 import React, {useCallback, useEffect} from 'react';
 import {Button, Card, TablePagination} from "../../../../../../../../lib/ui";
 import {useDispatch, useSelector} from "react-redux";
-import {olympiadSelector} from "../../../../../../../../store/access/teacher/olympiad/olympiadSlice";
-import {fetchPastOlympiads} from "../../../../../../../../store/access/teacher/olympiad/past/fetchPastOlympiads";
+import {olympiadSelector} from "store/olympiad/olympiadSlice";
+import {fetchPastOlympiads} from "store/olympiad/past/fetchPastOlympiads";
 import OlympiadTagAccess from "../../../../../../../../lib/components/olympiad-tag-access/OlympiadTagAccess";
 import {momentFormatCheckYear} from "../../../../../../../../utils/momentFormatCheckYear";
 import ProfileColumn from "../../../../groups/more/container/table-students/default-columns/profile/ProfileColumn";

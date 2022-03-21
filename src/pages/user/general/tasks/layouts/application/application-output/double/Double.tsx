@@ -1,10 +1,10 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import styled from "styled-components";
 import Output from "../basic/output/Output";
-import {SettingAnzanBasicProps,} from "../../../../../../../../store/common/game/setting/games-types/anzan.types";
+import {SettingAnzanBasicProps,} from "store/game/setting/games-types/anzan.types";
 import {useDispatch} from "react-redux";
 import {useAddInternal} from "../../../../../../../../hooks/use-add-interval.effect";
-import {changeStatus, StatusProps} from "../../../../../../../../store/common/game/gameSplice";
+import {changeStatus, StatusProps} from "store/game/gameSplice";
 import {useSoundEffect} from "../use-sound.effect";
 import AbacusOutput from "../basic/abacus-output/AbacusOutput";
 

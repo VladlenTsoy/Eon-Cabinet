@@ -4,7 +4,7 @@ import ApplicationLayout from "../../../layouts/application/Application.layout";
 import {chunk} from "lodash";
 import List from "./list/List";
 import CarouselItem from "./carousel-item/CarouselItem";
-import {gameSelector} from "../../../../../../../store/common/game/gameSplice";
+import {gameSelector} from "store/game/gameSplice";
 
 const Application: React.FC = () => {
     const {setting} = useSelector(gameSelector);

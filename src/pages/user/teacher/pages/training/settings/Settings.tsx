@@ -9,10 +9,10 @@ import {useChangeActionNavbar} from "hooks/old/use-change-action-navbar.effect"
 import {Col, Row} from "antd"
 import {Card, LoadingBlock} from "lib/ui"
 import styled from "styled-components"
-import {useTeacherDispatch} from "../../../../../../store/access/teacher/store"
+import {useDispatch} from "store/store"
 import {getCookie, setCookie} from "../../../../../../utils/cookie"
-import {createList} from "../../../../../../store/access/teacher/lists/createList"
-import {changeExecutionMode, changeSetting} from "../../../../../../store/common/game/gameSplice"
+import {createList} from "store/lists/createList"
+import {changeExecutionMode, changeSetting} from "store/game/gameSplice"
 
 const Mental = React.lazy(() => import("./mental/Mental"))
 const Mnemonics = React.lazy(() => import("./mnemonics/Mnemonics"))
@@ -43,7 +43,7 @@ const Tasks: React.FC = () => {
     const match = useRouteMatch<TasksRouteProps>()
     const history = useHistory()
     const {discipline, task} = match.params
-    const dispatch = useTeacherDispatch()
+    const dispatch = useDispatch()
 
     const _setting = getCookie(`setting_${discipline}_${task}`)
     const setting = _setting ? JSON.parse(String(_setting)) : _setting

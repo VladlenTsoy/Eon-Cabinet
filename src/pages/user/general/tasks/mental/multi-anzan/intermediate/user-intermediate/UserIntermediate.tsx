@@ -2,7 +2,7 @@ import React from 'react';
 import {TrophyOutlined} from '@ant-design/icons';
 import styled from "styled-components";
 import {useSelector} from "react-redux";
-import {gameSelector} from "../../../../../../../../store/common/game/gameSplice";
+import {gameSelector} from "store/game/gameSplice";
 
 const WaitWrapper = styled.div`
   display: flex;

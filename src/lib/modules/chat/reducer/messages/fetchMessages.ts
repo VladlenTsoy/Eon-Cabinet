@@ -1,6 +1,6 @@
 import {Message} from "../../interfaces/Message"
 import {createAsyncThunk} from "@reduxjs/toolkit"
-import {CommonThunkProps} from "../../../../../store/common/store"
+import {AppThunkProps} from "store/store"
 import {apiRequest} from "../../../../../utils/api"
 import {User} from "../../../../types/common/User"
 
@@ -13,7 +13,7 @@ interface ArgsProps {
 /**
  * Вывод всех не прочитанных сообщений
  */
-export const fetchMessages = createAsyncThunk<ReturnedType, ArgsProps, CommonThunkProps>(
+export const fetchMessages = createAsyncThunk<ReturnedType, ArgsProps, AppThunkProps>(
     "messages/user/fetch",
     async ({userId}, {signal}) => {
         return await apiRequest("get", `messages/user/${userId}`, {signal, api2: true})

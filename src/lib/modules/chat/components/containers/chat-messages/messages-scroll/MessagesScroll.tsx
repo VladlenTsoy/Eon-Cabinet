@@ -8,7 +8,7 @@ import {
 } from "../../../../reducer/messages/messagesSelectors"
 import {Chat} from "../../../../interfaces/Chat"
 import LoadingBlock from "./loading-block/LoadingBlock"
-import {useCommonDispatch} from "../../../../../../../store/common/store"
+import {useDispatch} from "store/store"
 import {fetchMessagesByChatId} from "../../../../reducer/messages/fetchMessagesByChatId"
 import MessagesContainer from "./messages-container/MessagesContainer"
 
@@ -37,7 +37,7 @@ const MessagesScroll: React.FC<MessagesScrollProps> = ({chatId}) => {
     const lastMessage = useLastMessageByChatId(chatId)
     const [page, setPage] = useState(currentPage)
     const [isMoreLoading, setIsMoreLoading] = useState(false)
-    const dispatch = useCommonDispatch()
+    const dispatch = useDispatch()
 
     useEffect(() => {
         if (lastMessage) {

@@ -4,7 +4,7 @@ import {
     changeAction,
     changeStatusContainer,
     changeTitle
-} from "../store/common/app/appSlice"
+} from "store/app/appSlice"
 
 interface ParamsProps {
     title?: string

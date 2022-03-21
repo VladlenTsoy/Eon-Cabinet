@@ -2,7 +2,7 @@ import React from 'react';
 import styled from "styled-components";
 import {ArrowRightOutlined, FlagOutlined, HistoryOutlined} from '@ant-design/icons';
 import {Button} from "lib/ui";
-import {nextGame, completionGame, repeatGame, gameSelector} from "store/common/game/gameSplice";
+import {nextGame, completionGame, repeatGame, gameSelector} from "store/game/gameSplice";
 import {useDispatch, useSelector} from "react-redux";
 
 const HeaderWrapper = styled.div`

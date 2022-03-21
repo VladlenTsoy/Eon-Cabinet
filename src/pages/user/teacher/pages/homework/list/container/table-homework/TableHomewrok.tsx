@@ -2,14 +2,14 @@ import React, {useEffect, useState} from 'react';
 import {Spin} from "lib/ui";
 import styled from "styled-components";
 import CardHomework from "./card-homework/CardHomework";
-import {fetchHomeworkByCategoryId} from "../../../../../../../../store/access/teacher/homework/fetchHomeworkByCategoryId";
-import {useTeacherDispatch} from "../../../../../../../../store/access/teacher/store";
+import {fetchHomeworkByCategoryId} from "store/homework/fetchHomeworkByCategoryId";
+import {useDispatch} from "store/store";
 import {
     useLoadingHomeworkByCategoryId,
     useSelectHomeworkByCategoryId,
     useLastPageHomeworkByCategoryId,
     useCurrentPageHomeworkByCategoryId
-} from "../../../../../../../../store/access/teacher/homework/homeworkSelector";
+} from "store/homework/homeworkSelector";
 import HomeworkEmpty from "../homework-empty/HomeworkEmpty";
 import {Button} from "antd";
 import {ArrowDownOutlined} from "@ant-design/icons";
@@ -35,7 +35,7 @@ const TableHomework: React.FC<TableHomeworkProps> = ({categoryId}) => {
     const lastPage = useLastPageHomeworkByCategoryId(categoryId)
     const currentPage = useCurrentPageHomeworkByCategoryId(categoryId)
     const homework = useSelectHomeworkByCategoryId(categoryId);
-    const dispatch = useTeacherDispatch();
+    const dispatch = useDispatch();
     const [page, setPage] = useState(currentPage)
 
     const clickMoreHandler = () => {

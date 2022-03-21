@@ -5,7 +5,7 @@ import {useAddTimeout} from "../../../../../../../../hooks/use-add-timeout.effec
 import TextFit
     from "../../../../../../teacher/pages/training/settings/mental/multi-anzan/exercise-setting/multiplication-block/TextFit";
 import {PreparationSoundProps} from "../use-load-sounds.effect";
-import {SettingAnzanProps} from "../../../../../../../../store/common/game/setting/games-types/anzan.types";
+import {SettingAnzanProps} from "store/game/setting/games-types/anzan.types";
 
 const PreparationWrapper = styled(Card)`
   &.ant-card{

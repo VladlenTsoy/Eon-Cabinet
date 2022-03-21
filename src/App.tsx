@@ -31,9 +31,7 @@ const App: React.FC = () => {
             <ThemeProvider theme={{..._theme["default-theme-eon"], ...blackTheme}}>
                 <LanguageProvider>
                     <UserProvider>
-                        <StoreProvider>
-                            <Index />
-                        </StoreProvider>
+                        <Index />
                     </UserProvider>
                 </LanguageProvider>
             </ThemeProvider>

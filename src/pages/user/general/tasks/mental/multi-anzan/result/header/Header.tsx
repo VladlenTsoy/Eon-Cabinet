@@ -4,7 +4,7 @@ import {Button} from "antd";
 import styled from "styled-components";
 import {useHistory} from "react-router";
 import {useDispatch} from "react-redux";
-import {clearGame, refreshGame} from "../../../../../../../../store/common/game/gameSplice";
+import {clearGame, refreshGame} from "store/game/gameSplice";
 
 const HeaderWrapper = styled.div`
   display: flex;

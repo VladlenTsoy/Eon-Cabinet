@@ -1,6 +1,6 @@
 import React, {useCallback} from 'react';
-import {gameSubSelector, StatsActionProps} from "store/common/game/gameSplice";
-import {SettingAnzanProps} from "../../../../../../store/common/game/setting/games-types/anzan.types";
+import {gameSubSelector, StatsActionProps} from "store/game/gameSplice";
+import {SettingAnzanProps} from "store/game/setting/games-types/anzan.types";
 import ApplicationFetch from './application-fetch/ApplicationFetch';
 import {useSelector} from "react-redux";
 import ApplicationTotals from "./application-totals/ApplicationTotals";

@@ -6,7 +6,7 @@ import {LoadingBlock} from "lib/ui";
 import {Card} from "lib/ui";
 import MultiOutput from "./multi-output/MultiOutput";
 import styled from "styled-components";
-import {changeStatus, changeTotals, gameSelector, updateCurrentTotal} from "../../../../../../../store/common/game/gameSplice";
+import {changeStatus, changeTotals, gameSelector, updateCurrentTotal} from "store/game/gameSplice";
 import MultiGridLayout from "../layouts/MultiGrid.layout";
 
 const CardWrapper = styled(Card)`

@@ -2,9 +2,9 @@ import React, {useEffect} from 'react';
 import {LoadingBlock} from "lib/ui";
 import FormSetting from "./forms/FormSetting";
 import {useSelector} from "react-redux";
-import {customExercisesSelector} from "../../../../../../../../store/access/teacher/custom-exercises/customExercisesSlice";
-import {fetchCustomExercises} from "../../../../../../../../store/access/teacher/custom-exercises/fetchCustomExercises";
-import {useTeacherDispatch} from "../../../../../../../../store/access/teacher/store";
+import {customExercisesSelector} from "store/custom-exercises/customExercisesSlice";
+import {fetchCustomExercises} from "store/custom-exercises/fetchCustomExercises";
+import {useDispatch} from "store/store";
 
 interface CustomExercisesProps {
     isEdit?: boolean;
@@ -24,7 +24,7 @@ const CustomExercises: React.FC<CustomExercisesProps> = (
     }
 ) => {
     const {loading, exercises} = useSelector(customExercisesSelector)
-    const dispatch = useTeacherDispatch()
+    const dispatch = useDispatch()
 
     useEffect(() => {
         const promise = dispatch(fetchCustomExercises())

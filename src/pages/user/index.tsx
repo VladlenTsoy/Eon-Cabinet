@@ -1,7 +1,7 @@
 import React from 'react';
 import {Loader} from "lib/ui";
 import {useSelector} from "react-redux";
-import {userSelector} from "../../store/common/user/userSlice";
+import {userSelector} from "store/user/userSlice";
 
 const BlockedAccount = React.lazy(() => import("./blocked-account/BlockedAccount"));
 const Student = React.lazy(() => import("./student/index"));

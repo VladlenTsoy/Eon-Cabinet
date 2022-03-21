@@ -1,11 +1,11 @@
 import React, {useState} from "react";
 import {Select, Form} from "antd";
 import {FormItem, Button} from "lib/ui";
-import {updateGroup} from "store/access/teacher/group/updateGroup";
-import {createGroup} from "store/access/teacher/group/createGroup";
+import {updateGroup} from "store/group/updateGroup";
+import {createGroup} from "store/group/createGroup";
 import {Group} from "../../../../../../../../../lib/types/teacher/Group";
-import {useTeacherDispatch} from "../../../../../../../../../store/access/teacher/store";
-import {useSelectAllCategories} from "../../../../../../../../../store/access/teacher/category/categorySelectors";
+import {useDispatch} from "store/store";
+import {useSelectAllCategories} from "store/category/categorySelectors";
 
 const {Option} = Select;
 
@@ -17,7 +17,7 @@ interface FormItemsProps {
 const FormItems: React.FC<FormItemsProps> = ({group, close}) => {
     const categories = useSelectAllCategories();
     const [loading, setLoading] = useState(false);
-    const dispatch = useTeacherDispatch();
+    const dispatch = useDispatch();
 
     const onFinishHandler = async (values: any) => {
         setLoading(true)

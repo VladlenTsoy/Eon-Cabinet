@@ -3,7 +3,7 @@ import {useSelector} from "react-redux";
 import {random} from 'lodash';
 import {useUpdateOutputEffect} from "../../../layouts/application/application-output/use-update-output.effect";
 import ApplicationLayout from "../../../layouts/application/Application.layout";
-import {gameSubSelector} from "../../../../../../../store/common/game/gameSplice";
+import {gameSubSelector} from "store/game/gameSplice";
 
 const Application: React.FC = () => {
     const setting = useSelector(gameSubSelector('setting'));

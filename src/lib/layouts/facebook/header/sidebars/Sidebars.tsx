@@ -1,26 +1,6 @@
 import React from "react"
-import styled from "styled-components"
+import styles from "./Sidebars.module.less"
 import AccountMenu from "./account-menu/AccountMenu"
-
-const SidebarsStyled = styled.div`
-    height: 100%;
-    padding: 0.5rem 1rem;
-    display: flex;
-    z-index: 5;
-    align-items: center;
-
-    > div:not(:last-child) {
-        margin-right: 0.75rem;
-    }
-
-    @media (max-width: 576px) {
-        padding: 0.5rem 0.5rem;
-
-        > div:not(:last-child) {
-            margin-right: 0.5rem;
-        }
-    }
-`
 
 interface SidebarsProps {
     accountMenu: React.ReactFragment[]
@@ -29,10 +9,10 @@ interface SidebarsProps {
 
 const Sidebars: React.FC<SidebarsProps> = ({sidebars, accountMenu}) => {
     return (
-        <SidebarsStyled>
+        <div className={styles.sidebars}>
             {sidebars}
             <AccountMenu key="account-menu">{accountMenu}</AccountMenu>
-        </SidebarsStyled>
+        </div>
     )
 }
 

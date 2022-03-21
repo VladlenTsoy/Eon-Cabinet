@@ -5,7 +5,7 @@ import {useState} from "react"
 import {FormItem, Button} from "../../../../lib/ui"
 import LoginLayout from "../../../../lib/layouts/auth/login/LoginLayout"
 import {useDispatch} from "react-redux"
-import {forgotPassword} from "../../../../store/common/user/recoveryUser"
+import {forgotPassword} from "store/user/recoveryUser"
 
 const ForgotPasswordBlock = () => {
     const [loading, setLoading] = useState<boolean>(false)

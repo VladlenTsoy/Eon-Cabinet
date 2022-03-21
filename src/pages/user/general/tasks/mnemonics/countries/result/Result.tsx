@@ -3,7 +3,7 @@ import styled from "styled-components";
 import {TrophyOutlined} from '@ant-design/icons';
 import {useSelector} from "react-redux";
 import ResultMoreLayout from "../../../layouts/result/result-more/ResultMore.layout";
-import {gameSelector} from "../../../../../../../store/common/game/gameSplice";
+import {gameSelector} from "store/game/gameSplice";
 
 const FlagStyle = styled.div`
   width: 200px;

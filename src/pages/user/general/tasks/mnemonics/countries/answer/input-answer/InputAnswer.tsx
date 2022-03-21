@@ -2,7 +2,7 @@ import React from 'react';
 import styled from "styled-components";
 import {FormItem} from "../../../../../../../../lib/ui";
 import {useSelector} from "react-redux";
-import {gameSelector} from "../../../../../../../../store/common/game/gameSplice";
+import {gameSelector} from "store/game/gameSplice";
 
 const InputWrapper = styled.div`
   display: grid;

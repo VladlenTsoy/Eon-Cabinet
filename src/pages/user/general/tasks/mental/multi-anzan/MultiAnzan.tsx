@@ -4,7 +4,7 @@ import Answer from "./answer/Answer";
 import Intermediate from "./intermediate/Intermediate";
 import Result from "./result/Result";
 import {useSelector} from "react-redux";
-import {gameSelector} from "../../../../../../store/common/game/gameSplice";
+import {gameSelector} from "store/game/gameSplice";
 
 
 const MultiAnzan: React.FC = () => {

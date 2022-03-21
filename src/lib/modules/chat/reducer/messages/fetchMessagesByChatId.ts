@@ -1,6 +1,6 @@
 import {Chat} from "../../interfaces/Chat"
 import {createAsyncThunk} from "@reduxjs/toolkit"
-import {CommonThunkProps} from "../../../../../store/common/store"
+import {AppThunkProps} from "store/store"
 import {apiRequest} from "../../../../../utils/api"
 import {Message} from "../../interfaces/Message"
 
@@ -20,7 +20,7 @@ interface ArgsProps {
 /**
  * Вывод всех сообщений чата
  */
-export const fetchMessagesByChatId = createAsyncThunk<ReturnedType, ArgsProps, CommonThunkProps>(
+export const fetchMessagesByChatId = createAsyncThunk<ReturnedType, ArgsProps, AppThunkProps>(
     "messages/chat/fetch",
     async ({chatId, page = 1}, {signal}) => {
         return await apiRequest("get", `messages/chat/${chatId}`, {signal, api2: true, params: {page}})

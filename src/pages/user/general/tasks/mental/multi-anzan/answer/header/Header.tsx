@@ -12,7 +12,7 @@ import {Button} from "lib/ui"
 import styled from "styled-components"
 import {withRouter, RouteComponentProps} from "react-router"
 import {useDispatch, useSelector} from "react-redux"
-import {clearGame, gameSelector, refreshGame} from "../../../../../../../../store/common/game/gameSplice"
+import {clearGame, gameSelector, refreshGame} from "store/game/gameSplice"
 
 const HeaderWrapper = styled.div`
     display: flex;

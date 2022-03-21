@@ -3,13 +3,13 @@ import {Button, Col, Form, Input, Row, Select, InputNumber} from "antd";
 import {FormItem} from "lib/ui";
 import {useDispatch, useSelector} from "react-redux";
 import {SaveOutlined} from "@ant-design/icons";
-import {groupSelector} from "store/access/teacher/group/groupSlice";
+import {groupSelector} from "store/group/groupSlice";
 import {useParams} from "react-router";
-import {createHomework} from "../../../../../../../../store/access/teacher/homework/createHomework";
-import {updateHomework} from "../../../../../../../../store/access/teacher/homework/updateHomework";
+import {createHomework} from "store/homework/createHomework";
+import {updateHomework} from "store/homework/updateHomework";
 import {ParamsProps} from "../../../../groups/more/Group";
-import {useSelectGroupById} from "../../../../../../../../store/access/teacher/group/groupSelectors";
-import {useSelectAllCategories} from "../../../../../../../../store/access/teacher/category/categorySelectors";
+import {useSelectGroupById} from "store/group/groupSelectors";
+import {useSelectAllCategories} from "store/category/categorySelectors";
 
 const {TextArea} = Input;
 

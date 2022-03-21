@@ -4,7 +4,7 @@ import AnswerLayout from "../../../layouts/answer/Answer.layout";
 import FormInputAnswerLayout from "../../../layouts/answer/form-input-answer/FormInputAnswer.layout";
 import List from "../../word-list/answer/list/List";
 import {flattenDepth} from "lodash";
-import {gameSelector} from "../../../../../../../store/common/game/gameSplice";
+import {gameSelector} from "store/game/gameSplice";
 
 const Answer: React.FC = () => {
     const {setting, totals} = useSelector(gameSelector);

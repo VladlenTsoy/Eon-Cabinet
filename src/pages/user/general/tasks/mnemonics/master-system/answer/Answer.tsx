@@ -2,7 +2,7 @@ import React from 'react';
 import AnswerLayout from "../../../layouts/answer/Answer.layout";
 import {useSelector} from "react-redux";
 import FormInputAnswerLayout from "../../../layouts/answer/form-input-answer/FormInputAnswer.layout";
-import {gameSelector} from "../../../../../../../store/common/game/gameSplice";
+import {gameSelector} from "store/game/gameSplice";
 
 const Answer: React.FC = () => {
     const {totals} = useSelector(gameSelector);

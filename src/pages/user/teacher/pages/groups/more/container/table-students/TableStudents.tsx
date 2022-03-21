@@ -10,9 +10,9 @@ import {
     useSelectStudentsByGroupId,
     useLoadingStudents,
     useSelectSelectedStudentsByIdsGroupId
-} from "../../../../../../../../store/access/teacher/students/studentsSelectors"
+} from "store/students/studentsSelectors"
 import {useHomeworkDates} from "../useHomeworkDates"
-import {studentHomeworkSelector} from "../../../../../../../../store/access/teacher/student-homework/studentHomeworkSlice"
+import {studentHomeworkSelector} from "store/student-homework/studentHomeworkSlice"
 
 interface TableStudentsProps {
     tab: TabStudentsType

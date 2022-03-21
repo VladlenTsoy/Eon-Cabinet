@@ -2,15 +2,15 @@ import React, {useState} from 'react';
 import {DrawerActions, FormItem, Button} from "lib/ui";
 import {Input, Select, Form, Divider, Empty} from "antd";
 import moment from "moment";
-import {changeIsSaved} from "store/access/teacher/group/groupSlice";
+import {changeIsSaved} from "store/group/groupSlice";
 import {useHistory, useParams} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {FileAddOutlined} from '@ant-design/icons';
 import Exercises from "./exercises/Exercises";
 import {SaveOutlined} from "@ant-design/icons";
-import {sentHomeworkStudents} from "store/access/teacher/student-homework/sentHomeworkStudent";
+import {sentHomeworkStudents} from "store/student-homework/sentHomeworkStudent";
 import {ParamsProps} from "../../../../../../Group";
-import {fetchStudentsHomeworkDates} from "store/access/teacher/student-homework/fetchStudentsHomeworkDates";
+import {fetchStudentsHomeworkDates} from "store/student-homework/fetchStudentsHomeworkDates";
 import {Homework} from "lib/types/teacher/Homework";
 
 const {TextArea} = Input;

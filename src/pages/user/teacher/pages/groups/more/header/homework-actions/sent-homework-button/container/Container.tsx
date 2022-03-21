@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {
     changeIsSaved,
-} from "store/access/teacher/group/groupSlice";
+} from "store/group/groupSlice";
 import {useDispatch} from "react-redux";
 import {LoadingBlock} from "lib/ui";
 import HomeworkContainer from "./homework-container/HomeworkContainer";
@@ -11,7 +11,7 @@ import {ParamsProps} from "../../../../Group";
 import {
     useLoadingGroups,
     useSelectGroupById
-} from "store/access/teacher/group/groupSelectors";
+} from "store/group/groupSelectors";
 
 interface ContainerProps {
     close: () => void;

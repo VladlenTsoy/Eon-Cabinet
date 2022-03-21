@@ -2,12 +2,12 @@ import React, {useEffect} from 'react';
 import ExerciseLists
     from "lib/components/exercise-lists/ExerciseLists";
 import {LoadingBlock} from "lib/ui";
-import {useTeacherDispatch} from "store/access/teacher/store";
-import {fetchExercisesByHomeworkId} from "store/access/teacher/homework-exercises/fetchExercisesByHomeworkId";
+import {useDispatch} from "store/store";
+import {fetchExercisesByHomeworkId} from "store/homework-exercises/fetchExercisesByHomeworkId";
 import {
     useLoadingHomeworkExercises,
     useSelectHomeworkExercisesByHomeworkId
-} from "store/access/teacher/homework-exercises/homeworkExercisesSelectors";
+} from "store/homework-exercises/homeworkExercisesSelectors";
 import {Homework} from "../../../../../../../../../../../../../lib/types/teacher/Homework"
 
 interface ExercisesProps {
@@ -17,7 +17,7 @@ interface ExercisesProps {
 const Exercises: React.FC<ExercisesProps> = ({homeworkId}) => {
     const exercises = useSelectHomeworkExercisesByHomeworkId(homeworkId)
     const loading = useLoadingHomeworkExercises()
-    const dispatch = useTeacherDispatch()
+    const dispatch = useDispatch()
 
     useEffect(() => {
         const promise = dispatch(fetchExercisesByHomeworkId({homeworkId: homeworkId}))

@@ -5,7 +5,7 @@ import styled from "styled-components";
 import moment from 'moment';
 import {useUser} from "../../../../../hooks/use-user";
 import {useDispatch} from "react-redux";
-import {updateUser} from "../../../../../store/common/user/updateUser";
+import {updateUser} from "store/user/updateUser";
 
 const ProfileTitle = styled(Title)`
    text-align: center;

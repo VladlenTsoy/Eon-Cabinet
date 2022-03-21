@@ -1,7 +1,7 @@
 import React from 'react';
 import {Card, Button} from "lib/ui";
 import {RedoOutlined} from '@ant-design/icons';
-import {clearGame} from "store/common/game/gameSplice";
+import {clearGame} from "store/game/gameSplice";
 import {useDispatch} from "react-redux";
 
 const AgainBlock = () => {

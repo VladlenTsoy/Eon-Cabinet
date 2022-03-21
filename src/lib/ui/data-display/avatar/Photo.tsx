@@ -5,7 +5,7 @@ import {confirm} from "../.."
 import {useState} from "react"
 import {IconsWrapper, IconWrapper, IconEditWrapper} from "./IconsWrapper"
 import AvatarLabelWrapper from "./Label"
-import {updateImageUser} from "../../../../store/common/user/updateImageUser"
+import {updateImageUser} from "store/user/updateImageUser"
 import {useUser} from "../../../../hooks/use-user"
 import {useDispatch} from "react-redux"
 

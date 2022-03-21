@@ -2,8 +2,8 @@ import React, {useState} from 'react';
 import {Form, Input, Select} from "antd";
 import {Button, DrawerActions, FormItem} from "lib/ui";
 import {SaveOutlined} from "@ant-design/icons";
-import {updateOlympiad} from "../../../../../../../../../../store/access/teacher/olympiad/updateOlympiad";
-import {createOlympiad} from "../../../../../../../../../../store/access/teacher/olympiad/createOlympiad";
+import {updateOlympiad} from "store/olympiad/updateOlympiad";
+import {createOlympiad} from "store/olympiad/createOlympiad";
 import {useDispatch} from "react-redux";
 import {useHistory} from "react-router";
 

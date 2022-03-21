@@ -6,7 +6,7 @@ import React from 'react';
 // import MiddleBlock from "./middle-block/MiddleBlock";
 // import LeftBlock from "./left-block/LeftBlock";
 // import RightBlock from "./right-block/RightBlock";
-// import {gameSelector} from "../../../../../../../store/common/game/gameSplice";
+// import {gameSelector} from "store/common/game/gameSplice";
 // import {useUser} from "../../../../../../../hooks/use-user";
 
 export type ResultMatchProps = {

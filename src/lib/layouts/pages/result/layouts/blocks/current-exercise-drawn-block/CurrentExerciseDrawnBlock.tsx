@@ -2,7 +2,7 @@ import React, {useCallback, useState} from 'react';
 import {Button, confirm, Card, Drawer} from "lib/ui";
 import {EyeOutlined, ThunderboltOutlined, QuestionCircleOutlined} from '@ant-design/icons';
 import {useSelector} from "react-redux";
-import {gameSelector} from "../../../../../../../store/common/game/gameSplice";
+import {gameSelector} from "store/game/gameSplice";
 import {useUser} from "../../../../../../../hooks/use-user";
 
 interface CurrentExerciseDrawnBlockProps {

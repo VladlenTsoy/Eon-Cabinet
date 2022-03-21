@@ -3,7 +3,7 @@ import {Link} from "react-router-dom"
 import {Button} from "../../../../../../../lib/ui"
 import {PlusOutlined, AppstoreOutlined} from "@ant-design/icons";
 import {useSelector} from "react-redux"
-import {disciplineSelector} from "../../../../../../../store/access/teacher/discipline/disciplineSlice"
+import {disciplineSelector} from "store/discipline/disciplineSlice"
 
 const TabTopExtra = () => {
     const {activeDisciplineId} = useSelector(disciplineSelector);

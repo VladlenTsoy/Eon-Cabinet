@@ -6,7 +6,7 @@ import TablesOutput from "../../../../layouts/application/application-output/lis
 import Table from "./table/Table";
 import {chunk} from "lodash";
 import ApplicationCardLayout from "../../../../layouts/application/application-output/ApplicationCard.layout";
-import {changeStatus, addSuccessStats, changeTotals,gameSelector} from "../../../../../../../../store/common/game/gameSplice";
+import {changeStatus, addSuccessStats, changeTotals,gameSelector} from "store/game/gameSplice";
 
 interface ListProps {
     checkHandler: (values: any) => any | {

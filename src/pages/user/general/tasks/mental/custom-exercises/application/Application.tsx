@@ -1,6 +1,6 @@
 import React from 'react';
 import {useSelector} from "react-redux";
-import {gameSelector} from "../../../../../../../store/common/game/gameSplice";
+import {gameSelector} from "store/game/gameSplice";
 import ApplicationAnzan from "../../anzan/application/Application";
 
 const Application = () => {

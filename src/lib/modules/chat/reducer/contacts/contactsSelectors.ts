@@ -1,5 +1,5 @@
 import {useSelector} from "react-redux"
-import {CommonState} from "../../../../../store/common/store"
+import {CommonState} from "store/store"
 import {selectAllContacts, getContactById} from "./contactsSlice"
 import {Contact} from "../../interfaces/Contact"
 

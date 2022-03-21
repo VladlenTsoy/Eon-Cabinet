@@ -4,7 +4,7 @@ import {FormItem, Button} from "lib/ui";
 import {SaveOutlined} from "@ant-design/icons";
 import {useHistory} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {createCustomExercises} from "../../../../../../../../../../../store/access/teacher/custom-exercises/createCustomExercises";
+import {createCustomExercises} from "store/custom-exercises/createCustomExercises";
 
 const {TextArea} = Input;
 

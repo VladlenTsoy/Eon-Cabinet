@@ -3,7 +3,7 @@ import {useSelector} from "react-redux";
 import {chunk, random, shuffle} from 'lodash';
 import ApplicationLayout from "../../../layouts/application/Application.layout";
 import List from "../../word-list/application/list/List";
-import {gameSelector} from "../../../../../../../store/common/game/gameSplice";
+import {gameSelector} from "store/game/gameSplice";
 
 const Application: React.FC = () => {
     const {setting} = useSelector(gameSelector);
